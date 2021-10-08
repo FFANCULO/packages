@@ -1,0 +1,18 @@
+<dt:DomainTable xmlns:dt="http://www.verisk.com/iso/erc/DomainTable">
+	<dt:MetaData>
+		<dt:MetaDataCode>DomainTableCoinsuranceBusnIncome</dt:MetaDataCode>
+		<dt:MetaDataCode>BureauRuleNumber50E3b1</dt:MetaDataCode>
+	</dt:MetaData>
+	<dt:KeyCols>
+		<dt:KeyCol Name="StateCode" Type="string" CaseInsensitive="false" />
+		<dt:KeyCol Name="CauseOfLossBusnIncome" Type="string" CaseInsensitive="false" />
+		<dt:KeyCol Name="TypeOfRisk" Type="string" CaseInsensitive="false" />
+		<dt:KeyCol Name="EQCovIndicatorBusnIncome" Type="string" CaseInsensitive="false" />
+		<dt:KeyCol Name="AgreedValueBusnIncome" Type="string" CaseInsensitive="false" />
+		<dt:KeyCol Name="ExtendedPeriodApplies" Type="string" CaseInsensitive="false" />
+	</dt:KeyCols>
+	<dt:ValueCols>
+		<dt:ValueCol Name="DisplayValue" Type="string" />
+		<dt:ValueCol Name="DataValue" Type="string" />
+	</dt:ValueCols>
+</dt:DomainTable>

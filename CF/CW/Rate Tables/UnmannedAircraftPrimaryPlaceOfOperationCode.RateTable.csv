@@ -1,0 +1,8 @@
+"StateCode","PrimaryPlaceOfOperation","Code"
+"CW","Rural","1"
+"CW","Urban","2"
+"CW","Suburban","3"
+"CW","Indoors","4"
+"CW","Private Land","5"
+"CW","Not applicable","6"
+"CW","Unknown","7"

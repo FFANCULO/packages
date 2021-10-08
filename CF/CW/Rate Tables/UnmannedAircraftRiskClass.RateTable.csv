@@ -1,0 +1,5 @@
+"StateCode","TypeOfOperations","RiskClass"
+"CW","Search & Rescue","High Risk Class"
+"CW","Firefighting","High Risk Class"
+"CW","Weather & Environmental Data Collection (including storm monitoring)","High Risk Class"
+"CW","All Other","Ordinary Risk Class"

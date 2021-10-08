@@ -1,0 +1,213 @@
+<rul:Rules xmlns:rul="http://www.verisk.com/iso/erc/Rule">
+	<rul:Rule Name="InitializeRuleSet" DataDefGroup="CommercialPropertyLeasedPropertyDetail">
+		<rul:Sequence>
+			<rul:Locate AtDataDef="CommercialPropertyLeasedPropertyDetailAgreedValueBasicGroupICov">
+				<rul:RunRule Type="none" FileName="CommercialPropertyLeasedPropertyDetailAgreedValueBasicGroupICovRules" Rule="InitializeRuleSet" ClearCache="true" />
+			</rul:Locate>
+			<rul:Locate AtDataDef="CommercialPropertyLeasedPropertyDetailAgreedValueBasicGroupIICov">
+				<rul:RunRule Type="none" FileName="CommercialPropertyLeasedPropertyDetailAgreedValueBasicGroupIICovRules" Rule="InitializeRuleSet" ClearCache="true" />
+			</rul:Locate>
+			<rul:Locate AtDataDef="CommercialPropertyLeasedPropertyDetailAgreedValueBroadCov">
+				<rul:RunRule Type="none" FileName="CommercialPropertyLeasedPropertyDetailAgreedValueBroadCovRules" Rule="InitializeRuleSet" ClearCache="true" />
+			</rul:Locate>
+			<rul:Locate AtDataDef="CommercialPropertyLeasedPropertyDetailAgreedValueEarthquakeCov">
+				<rul:RunRule Type="none" FileName="CommercialPropertyLeasedPropertyDetailAgreedValueEarthquakeCovRules" Rule="InitializeRuleSet" ClearCache="true" />
+			</rul:Locate>
+			<rul:Locate AtDataDef="CommercialPropertyLeasedPropertyDetailAgreedValueSpecialCov">
+				<rul:RunRule Type="none" FileName="CommercialPropertyLeasedPropertyDetailAgreedValueSpecialCovRules" Rule="InitializeRuleSet" ClearCache="true" />
+			</rul:Locate>
+			<rul:Locate AtDataDef="CommercialPropertyLeasedPropertyDetailBasicGroupICov">
+				<rul:RunRule Type="none" FileName="CommercialPropertyLeasedPropertyDetailBasicGroupICovRules" Rule="InitializeRuleSet" ClearCache="true" />
+			</rul:Locate>
+			<rul:Locate AtDataDef="CommercialPropertyLeasedPropertyDetailBasicGroupIICov">
+				<rul:RunRule Type="none" FileName="CommercialPropertyLeasedPropertyDetailBasicGroupIICovRules" Rule="InitializeRuleSet" ClearCache="true" />
+			</rul:Locate>
+			<rul:Locate AtDataDef="CommercialPropertyLeasedPropertyDetailBroadCov">
+				<rul:RunRule Type="none" FileName="CommercialPropertyLeasedPropertyDetailBroadCovRules" Rule="InitializeRuleSet" ClearCache="true" />
+			</rul:Locate>
+			<rul:Locate AtDataDef="CommercialPropertyLeasedPropertyDetailEarthquakeCov">
+				<rul:RunRule Type="none" FileName="CommercialPropertyLeasedPropertyDetailEarthquakeCovRules" Rule="InitializeRuleSet" ClearCache="true" />
+			</rul:Locate>
+			<rul:Locate AtDataDef="CommercialPropertyLeasedPropertyDetailSpecialCov">
+				<rul:RunRule Type="none" FileName="CommercialPropertyLeasedPropertyDetailSpecialCovRules" Rule="InitializeRuleSet" ClearCache="true" />
+			</rul:Locate>
+		</rul:Sequence>
+	</rul:Rule>
+	<rul:Rule Name="CalculateTotalPremium" Type="decimal" DataDefGroup="CommercialPropertyLeasedPropertyDetail">
+		<rul:Sum>
+			<rul:Locate AtDataDef="CommercialPropertyLeasedPropertyDetailAgreedValueBasicGroupICov">
+				<rul:RunRule Type="decimal" FileName="CommercialPropertyLeasedPropertyDetailAgreedValueBasicGroupICovRules" Rule="CalculateTotalPremium" ClearCache="true" />
+			</rul:Locate>
+			<rul:Locate AtDataDef="CommercialPropertyLeasedPropertyDetailAgreedValueBasicGroupIICov">
+				<rul:RunRule Type="decimal" FileName="CommercialPropertyLeasedPropertyDetailAgreedValueBasicGroupIICovRules" Rule="CalculateTotalPremium" ClearCache="true" />
+			</rul:Locate>
+			<rul:Locate AtDataDef="CommercialPropertyLeasedPropertyDetailAgreedValueBroadCov">
+				<rul:RunRule Type="decimal" FileName="CommercialPropertyLeasedPropertyDetailAgreedValueBroadCovRules" Rule="CalculateTotalPremium" ClearCache="true" />
+			</rul:Locate>
+			<rul:Locate AtDataDef="CommercialPropertyLeasedPropertyDetailAgreedValueEarthquakeCov">
+				<rul:RunRule Type="decimal" FileName="CommercialPropertyLeasedPropertyDetailAgreedValueEarthquakeCovRules" Rule="CalculateTotalPremium" ClearCache="true" />
+			</rul:Locate>
+			<rul:Locate AtDataDef="CommercialPropertyLeasedPropertyDetailAgreedValueSpecialCov">
+				<rul:RunRule Type="decimal" FileName="CommercialPropertyLeasedPropertyDetailAgreedValueSpecialCovRules" Rule="CalculateTotalPremium" ClearCache="true" />
+			</rul:Locate>
+			<rul:Locate AtDataDef="CommercialPropertyLeasedPropertyDetailBasicGroupICov">
+				<rul:RunRule Type="decimal" FileName="CommercialPropertyLeasedPropertyDetailBasicGroupICovRules" Rule="CalculateTotalPremium" ClearCache="true" />
+			</rul:Locate>
+			<rul:Locate AtDataDef="CommercialPropertyLeasedPropertyDetailBasicGroupIICov">
+				<rul:RunRule Type="decimal" FileName="CommercialPropertyLeasedPropertyDetailBasicGroupIICovRules" Rule="CalculateTotalPremium" ClearCache="true" />
+			</rul:Locate>
+			<rul:Locate AtDataDef="CommercialPropertyLeasedPropertyDetailBroadCov">
+				<rul:RunRule Type="decimal" FileName="CommercialPropertyLeasedPropertyDetailBroadCovRules" Rule="CalculateTotalPremium" ClearCache="true" />
+			</rul:Locate>
+			<rul:Locate AtDataDef="CommercialPropertyLeasedPropertyDetailEarthquakeCov">
+				<rul:RunRule Type="decimal" FileName="CommercialPropertyLeasedPropertyDetailEarthquakeCovRules" Rule="CalculateTotalPremium" ClearCache="true" />
+			</rul:Locate>
+			<rul:Locate AtDataDef="CommercialPropertyLeasedPropertyDetailSpecialCov">
+				<rul:RunRule Type="decimal" FileName="CommercialPropertyLeasedPropertyDetailSpecialCovRules" Rule="CalculateTotalPremium" ClearCache="true" />
+			</rul:Locate>
+			<rul:If>
+				<rul:Test>
+					<rul:And>
+						<rul:Equal>
+							<rul:FirstValue Type="integer" FromConstant="0" FromDataDef="@PremiumIndicator" Order="DataDefInputParamConstant" />
+							<rul:Constant Type="integer">1</rul:Constant>
+						</rul:Equal>
+						<rul:NotEqual>
+							<rul:FirstValue Type="decimal" FromConstant="0" FromDataDef="@Premium" Order="DataDefInputParamConstant" />
+							<rul:Constant Type="decimal">0</rul:Constant>
+						</rul:NotEqual>
+					</rul:And>
+				</rul:Test>
+				<rul:Then>
+					<rul:FirstValue Type="decimal" FromConstant="0" FromDataDef="@Premium" Order="DataDefInputParamConstant" />
+				</rul:Then>
+				<rul:Else>
+					<rul:Constant Type="decimal">0</rul:Constant>
+				</rul:Else>
+			</rul:If>
+		</rul:Sum>
+	</rul:Rule>
+	<rul:Rule Name="ErcSetRatesAndFactors" Type="none" DataDefGroup="CommercialPropertyLeasedPropertyDetail">
+		<rul:Sequence>
+			<rul:RunRule Type="none" FileName="CommercialPropertyLeasedPropertyDetailRules" Rule="SetAgreedValueOption" ClearCache="true" />
+			<rul:RunRule Type="none" FileName="CommercialPropertyLeasedPropertyDetailRules" Rule="SetAgreedValueBaseFactor" ClearCache="true" />
+			<rul:RunRule Type="none" FileName="CommercialPropertyLeasedPropertyDetailRules" Rule="SetAgreedValueFactor" ClearCache="true" />
+		</rul:Sequence>
+	</rul:Rule>
+	<rul:Rule Name="SetAgreedValueOption" Type="none" DataDefGroup="CommercialPropertyLeasedPropertyDetail">
+		<rul:Sequence>
+			<rul:Copy Type="string" ToDataDef="@AgreeValueOption" FromDataDef="ancestor::CommercialPropertyPersonalProperty/@AgreedValueOption" />
+		</rul:Sequence>
+	</rul:Rule>
+	<rul:Rule Name="SetAgreedValueBaseFactor" Type="none" DataDefGroup="CommercialPropertyLeasedPropertyDetail">
+		<rul:Sequence>
+			<rul:RunRule Type="decimal" ToDataDef="@AgreedValueBaseFactor" FileName="CommercialPropertyLeasedPropertyDetailRules" Rule="LookupAgreedValueFactor" ClearCache="true" />
+		</rul:Sequence>
+	</rul:Rule>
+	<rul:Rule Name="SetAgreedValueFactor" Type="none" DataDefGroup="CommercialPropertyLeasedPropertyDetail">
+		<rul:Sequence>
+			<rul:Round ToDataDef="@AgreedValueFactor" DecimalPlaces="3">
+				<rul:Subtract>
+					<rul:Value Type="decimal" FromDataDef="@AgreedValueBaseFactor" />
+					<rul:Constant Type="integer">1</rul:Constant>
+				</rul:Subtract>
+			</rul:Round>
+		</rul:Sequence>
+	</rul:Rule>
+	<rul:Rule Name="ErcRate" Type="none" DataDefGroup="CommercialPropertyLeasedPropertyDetail">
+		<rul:Sequence>
+			<rul:RunRule Type="none" FileName="CommercialPropertyLeasedPropertyDetailRules" Rule="SetLeasedPremium" ClearCache="true" />
+			<rul:RunRule Type="none" FileName="CommercialPropertyLeasedPropertyDetailRules" Rule="SetAgreedValueLeasedPremium" ClearCache="true" />
+		</rul:Sequence>
+	</rul:Rule>
+	<rul:Rule Name="SetLeasedPremium" Type="none" DataDefGroup="CommercialPropertyLeasedPropertyDetail">
+		<rul:Sequence>
+			<rul:WithArgs>
+				<rul:Arg Type="decimal" Param="calcLeasedPremiumSum">
+					<rul:FirstNonNull Type="decimal">
+						<rul:Sum>
+							<rul:Value Type="decimal" FromDataDef="CommercialPropertyLeasedPropertyDetailBasicGroupICov/@Premium" />
+							<rul:Value Type="decimal" FromDataDef="CommercialPropertyLeasedPropertyDetailBasicGroupIICov/@Premium" />
+							<rul:Value Type="decimal" FromDataDef="CommercialPropertyLeasedPropertyDetailBroadCov/@Premium" />
+							<rul:Value Type="decimal" FromDataDef="CommercialPropertyLeasedPropertyDetailSpecialCov/@Premium" />
+							<rul:Value Type="decimal" FromDataDef="CommercialPropertyLeasedPropertyDetailEarthquakeCov/@Premium" />
+						</rul:Sum>
+						<rul:Constant Type="decimal">0</rul:Constant>
+					</rul:FirstNonNull>
+				</rul:Arg>
+				<rul:Value Type="decimal" ToDataDef="@LeasedPremium" FromParam="calcLeasedPremiumSum" />
+			</rul:WithArgs>
+		</rul:Sequence>
+	</rul:Rule>
+	<rul:Rule Name="SetAgreedValueLeasedPremium" Type="none" DataDefGroup="CommercialPropertyLeasedPropertyDetail">
+		<rul:Sequence>
+			<rul:WithArgs>
+				<rul:Arg Type="decimal" Param="calcAgreedValueLeasedPremiumSum">
+					<rul:FirstNonNull Type="decimal">
+						<rul:Sum>
+							<rul:Value Type="decimal" FromDataDef="CommercialPropertyLeasedPropertyDetailAgreedValueBasicGroupICov/@Premium" />
+							<rul:Value Type="decimal" FromDataDef="CommercialPropertyLeasedPropertyDetailAgreedValueBasicGroupIICov/@Premium" />
+							<rul:Value Type="decimal" FromDataDef="CommercialPropertyLeasedPropertyDetailAgreedValueBroadCov/@Premium" />
+							<rul:Value Type="decimal" FromDataDef="CommercialPropertyLeasedPropertyDetailAgreedValueSpecialCov/@Premium" />
+							<rul:Value Type="decimal" FromDataDef="CommercialPropertyLeasedPropertyDetailAgreedValueEarthquakeCov/@Premium" />
+						</rul:Sum>
+						<rul:Constant Type="decimal">0</rul:Constant>
+					</rul:FirstNonNull>
+				</rul:Arg>
+				<rul:Value Type="decimal" ToDataDef="@AgreedValueLeasedPremium" FromParam="calcAgreedValueLeasedPremiumSum" />
+			</rul:WithArgs>
+		</rul:Sequence>
+	</rul:Rule>
+	<rul:Rule Name="ErcProcess" Type="none" DataDefGroup="CommercialPropertyLeasedPropertyDetail">
+		<rul:Sequence>
+			<rul:RunRule Type="none" FileName="CommercialPropertyLeasedPropertyDetailRules" Rule="ErcSetRatesAndFactors" ClearCache="true" />
+			<rul:Locate AtDataDef="CommercialPropertyLeasedPropertyDetailBasicGroupICov">
+				<rul:RunRule Type="none" FileName="CommercialPropertyLeasedPropertyDetailBasicGroupICovRules" Rule="ErcProcess" ClearCache="true" />
+			</rul:Locate>
+			<rul:Locate AtDataDef="CommercialPropertyLeasedPropertyDetailBasicGroupIICov">
+				<rul:RunRule Type="none" FileName="CommercialPropertyLeasedPropertyDetailBasicGroupIICovRules" Rule="ErcProcess" ClearCache="true" />
+			</rul:Locate>
+			<rul:Locate AtDataDef="CommercialPropertyLeasedPropertyDetailBroadCov">
+				<rul:RunRule Type="none" FileName="CommercialPropertyLeasedPropertyDetailBroadCovRules" Rule="ErcProcess" ClearCache="true" />
+			</rul:Locate>
+			<rul:Locate AtDataDef="CommercialPropertyLeasedPropertyDetailEarthquakeCov">
+				<rul:RunRule Type="none" FileName="CommercialPropertyLeasedPropertyDetailEarthquakeCovRules" Rule="ErcProcess" ClearCache="true" />
+			</rul:Locate>
+			<rul:Locate AtDataDef="CommercialPropertyLeasedPropertyDetailSpecialCov">
+				<rul:RunRule Type="none" FileName="CommercialPropertyLeasedPropertyDetailSpecialCovRules" Rule="ErcProcess" ClearCache="true" />
+			</rul:Locate>
+			<rul:Locate AtDataDef="CommercialPropertyLeasedPropertyDetailAgreedValueBasicGroupICov">
+				<rul:RunRule Type="none" FileName="CommercialPropertyLeasedPropertyDetailAgreedValueBasicGroupICovRules" Rule="ErcProcess" ClearCache="true" />
+			</rul:Locate>
+			<rul:Locate AtDataDef="CommercialPropertyLeasedPropertyDetailAgreedValueBasicGroupIICov">
+				<rul:RunRule Type="none" FileName="CommercialPropertyLeasedPropertyDetailAgreedValueBasicGroupIICovRules" Rule="ErcProcess" ClearCache="true" />
+			</rul:Locate>
+			<rul:Locate AtDataDef="CommercialPropertyLeasedPropertyDetailAgreedValueBroadCov">
+				<rul:RunRule Type="none" FileName="CommercialPropertyLeasedPropertyDetailAgreedValueBroadCovRules" Rule="ErcProcess" ClearCache="true" />
+			</rul:Locate>
+			<rul:Locate AtDataDef="CommercialPropertyLeasedPropertyDetailAgreedValueEarthquakeCov">
+				<rul:RunRule Type="none" FileName="CommercialPropertyLeasedPropertyDetailAgreedValueEarthquakeCovRules" Rule="ErcProcess" ClearCache="true" />
+			</rul:Locate>
+			<rul:Locate AtDataDef="CommercialPropertyLeasedPropertyDetailAgreedValueSpecialCov">
+				<rul:RunRule Type="none" FileName="CommercialPropertyLeasedPropertyDetailAgreedValueSpecialCovRules" Rule="ErcProcess" ClearCache="true" />
+			</rul:Locate>
+			<rul:RunRule Type="none" FileName="CommercialPropertyLeasedPropertyDetailRules" Rule="ErcRate" ClearCache="true" />
+		</rul:Sequence>
+	</rul:Rule>
+	<rul:Rule Name="LookupAgreedValueFactor" Type="decimal" DataDefGroup="CommercialPropertyLeasedPropertyDetail">
+		<rul:FirstNonNull Type="decimal">
+			<rul:Lookup Type="decimal" MatrixCol="Factor" MatrixDef="AgreedValueFactorDef" MatrixFromConstant="AgreedValueFactor" ResultMode="FirstResult">
+				<rul:Keys>
+					<rul:Value Type="string" FromDataDef="/State/@Code" />
+					<rul:Constant Type="string">Y</rul:Constant>
+				</rul:Keys>
+			</rul:Lookup>
+			<rul:Lookup Type="decimal" MatrixCol="Factor" MatrixDef="AgreedValueFactorDef" MatrixFromConstant="AgreedValueFactor" ResultMode="SingleResult">
+				<rul:Keys>
+					<rul:Constant Type="string">CW</rul:Constant>
+					<rul:Constant Type="string">Y</rul:Constant>
+				</rul:Keys>
+			</rul:Lookup>
+		</rul:FirstNonNull>
+	</rul:Rule>
+</rul:Rules>

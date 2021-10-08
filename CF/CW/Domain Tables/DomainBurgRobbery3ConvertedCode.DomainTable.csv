@@ -1,0 +1,5 @@
+"StateCode","BurgRobberyWatchmanService","DisplayValue","DataValue"
+"CW","Service Applying Within the Insured's Premises, Requiring Hourly Rounds and Signals Hourly to a Station Outside Location","Option75","Option75"
+"CW","Service Does Not Signal to an Outside Station but Registers at Least Hourly on a Watchman's Clock in the Insured's Premises","Option85","Option85"
+"CW","Service Does Not Signal to an Outside Station or Register on a Watchman's Clock","Option95","Option95"
+"CW","Not Applicable","Null Option","Null Option"

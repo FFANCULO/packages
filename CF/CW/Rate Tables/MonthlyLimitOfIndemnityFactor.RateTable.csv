@@ -1,0 +1,61 @@
+"StateCode","CovTypeBusnIncome","TypeOfRisk","MonthlyLimitOfIndemnity","Factor"
+"CW","Business Income With Extra Expense","Mercantile and Non-manufacturing","1/3",1.08
+"CW","Business Income With Extra Expense","Mercantile and Non-manufacturing","1/4",0.96
+"CW","Business Income With Extra Expense","Mercantile and Non-manufacturing","1/6",0.81
+"CW","Business Income With Extra Expense","Manufacturing","1/3",1.75
+"CW","Business Income With Extra Expense","Manufacturing","1/4",1.62
+"CW","Business Income With Extra Expense","Manufacturing","1/6",1.33
+"CW","Business Income With Extra Expense","Rental Properties","1/3",0.96
+"CW","Business Income With Extra Expense","Rental Properties","1/4",0.88
+"CW","Business Income With Extra Expense","Rental Properties","1/6",0.73
+"CW","Business Income With Extra Expense","Mining","1/3",0
+"CW","Business Income With Extra Expense","Mining","1/4",0
+"CW","Business Income With Extra Expense","Mining","1/6",0
+"CW","Business Income With Extra Expense","Combined Manufacturing and Mercantile Operations","1/3",0
+"CW","Business Income With Extra Expense","Combined Manufacturing and Mercantile Operations","1/4",0
+"CW","Business Income With Extra Expense","Combined Manufacturing and Mercantile Operations","1/6",0
+"CW","Business Income With Extra Expense","Combined Manufacturing and Rental Operations","1/3",0
+"CW","Business Income With Extra Expense","Combined Manufacturing and Rental Operations","1/4",0
+"CW","Business Income With Extra Expense","Combined Manufacturing and Rental Operations","1/6",0
+"CW","Business Income With Extra Expense","Combined Educational Institutes and Rental Operations","1/3",0
+"CW","Business Income With Extra Expense","Combined Educational Institutes and Rental Operations","1/4",0
+"CW","Business Income With Extra Expense","Combined Educational Institutes and Rental Operations","1/6",0
+"CW","Business Income With Extra Expense","Combined Mercantile and Rental Operations","1/3",0
+"CW","Business Income With Extra Expense","Combined Mercantile and Rental Operations","1/4",0
+"CW","Business Income With Extra Expense","Combined Mercantile and Rental Operations","1/6",0
+"CW","Business Income With Extra Expense","Educational Institutions","1/3",0
+"CW","Business Income With Extra Expense","Educational Institutions","1/4",0
+"CW","Business Income With Extra Expense","Educational Institutions","1/6",0
+"CW","Business Income With Extra Expense","Seasonal Leases with Monthly Limit","1/3",0
+"CW","Business Income With Extra Expense","Seasonal Leases with Monthly Limit","1/4",0
+"CW","Business Income With Extra Expense","Seasonal Leases with Monthly Limit","1/6",0
+"CW","Business Income Without Extra Expense","Mercantile and Non-manufacturing","1/3",0.96
+"CW","Business Income Without Extra Expense","Mercantile and Non-manufacturing","1/4",0.88
+"CW","Business Income Without Extra Expense","Mercantile and Non-manufacturing","1/6",0.77
+"CW","Business Income Without Extra Expense","Manufacturing","1/3",1.62
+"CW","Business Income Without Extra Expense","Manufacturing","1/4",1.45
+"CW","Business Income Without Extra Expense","Manufacturing","1/6",1.24
+"CW","Business Income Without Extra Expense","Rental Properties","1/3",0.88
+"CW","Business Income Without Extra Expense","Rental Properties","1/4",0.81
+"CW","Business Income Without Extra Expense","Rental Properties","1/6",0.65
+"CW","Business Income Without Extra Expense","Mining","1/3",0
+"CW","Business Income Without Extra Expense","Mining","1/4",0
+"CW","Business Income Without Extra Expense","Mining","1/6",0
+"CW","Business Income Without Extra Expense","Combined Manufacturing and Mercantile Operations","1/3",0
+"CW","Business Income Without Extra Expense","Combined Manufacturing and Mercantile Operations","1/4",0
+"CW","Business Income Without Extra Expense","Combined Manufacturing and Mercantile Operations","1/6",0
+"CW","Business Income Without Extra Expense","Combined Manufacturing and Rental Operations","1/3",0
+"CW","Business Income Without Extra Expense","Combined Manufacturing and Rental Operations","1/4",0
+"CW","Business Income Without Extra Expense","Combined Manufacturing and Rental Operations","1/6",0
+"CW","Business Income Without Extra Expense","Combined Educational Institutes and Rental Operations","1/3",0
+"CW","Business Income Without Extra Expense","Combined Educational Institutes and Rental Operations","1/4",0
+"CW","Business Income Without Extra Expense","Combined Educational Institutes and Rental Operations","1/6",0
+"CW","Business Income Without Extra Expense","Combined Mercantile and Rental Operations","1/3",0
+"CW","Business Income Without Extra Expense","Combined Mercantile and Rental Operations","1/4",0
+"CW","Business Income Without Extra Expense","Combined Mercantile and Rental Operations","1/6",0
+"CW","Business Income Without Extra Expense","Educational Institutions","1/3",0
+"CW","Business Income Without Extra Expense","Educational Institutions","1/4",0
+"CW","Business Income Without Extra Expense","Educational Institutions","1/6",0
+"CW","Business Income Without Extra Expense","Seasonal Leases with Monthly Limit","1/3",0
+"CW","Business Income Without Extra Expense","Seasonal Leases with Monthly Limit","1/4",0
+"CW","Business Income Without Extra Expense","Seasonal Leases with Monthly Limit","1/6",0

@@ -1,0 +1,187 @@
+<rul:Rules xmlns:rul="http://www.verisk.com/iso/erc/Rule">
+	<rul:Rule Name="InitializeRuleSet" DataDefGroup="CommercialPropertyMoltenMaterialBusnIncome">
+		<rul:Sequence />
+	</rul:Rule>
+	<rul:Rule Name="CalculateTotalPremium" Type="decimal" DataDefGroup="CommercialPropertyMoltenMaterialBusnIncome">
+		<rul:If>
+			<rul:Test>
+				<rul:And>
+					<rul:Equal>
+						<rul:FirstValue Type="integer" FromConstant="0" FromDataDef="@PremiumIndicator" Order="DataDefInputParamConstant" />
+						<rul:Constant Type="integer">1</rul:Constant>
+					</rul:Equal>
+					<rul:NotEqual>
+						<rul:FirstValue Type="decimal" FromConstant="0" FromDataDef="@Premium" Order="DataDefInputParamConstant" />
+						<rul:Constant Type="decimal">0</rul:Constant>
+					</rul:NotEqual>
+				</rul:And>
+			</rul:Test>
+			<rul:Then>
+				<rul:FirstValue Type="decimal" FromConstant="0" FromDataDef="@Premium" Order="DataDefInputParamConstant" />
+			</rul:Then>
+			<rul:Else>
+				<rul:Constant Type="decimal">0</rul:Constant>
+			</rul:Else>
+		</rul:If>
+	</rul:Rule>
+	<rul:Rule Name="ErcRate" Type="none" DataDefGroup="CommercialPropertyMoltenMaterialBusnIncome">
+		<rul:Sequence>
+			<rul:RunRule Type="decimal" ToDataDef="@Factor" FileName="CommercialPropertyMoltenMaterialBusnIncomeRules" Rule="LookupMoltenMaterialFactor" ClearCache="true" />
+			<rul:Copy Type="string" ToDataDef="@IncludedInBlkt" FromDataDef="ancestor::CommercialPropertyBusinessIncome/@IncludedInBlkt" />
+			<!--Logic for LimitToUse moved to be inline where used.-->
+			<rul:WithArgs>
+				<rul:Arg Type="decimal" Param="calcPremium">
+					<rul:FirstNonNull Type="decimal">
+						<rul:Choose>
+							<rul:When>
+								<rul:Test>
+									<rul:Equal>
+										<rul:FirstValue Type="string" FromConstant="" FromDataDef="ancestor::CommercialPropertyBusinessIncome/@CauseOfLossToUse" Order="DataDefInputParamConstant" />
+										<rul:Constant Type="string">Special</rul:Constant>
+									</rul:Equal>
+								</rul:Test>
+								<rul:Then>
+									<rul:Constant Type="decimal">0</rul:Constant>
+								</rul:Then>
+							</rul:When>
+							<rul:When>
+								<rul:Test>
+									<rul:NotEqual>
+										<rul:FirstValue Type="string" FromConstant="" FromDataDef="ancestor::CommercialPropertyBusinessIncome/@CauseOfLossToUse" Order="DataDefInputParamConstant" />
+										<rul:Constant Type="string">Special</rul:Constant>
+									</rul:NotEqual>
+								</rul:Test>
+								<rul:Then>
+									<rul:Product DecimalPlaces="0">
+										<rul:Product DecimalPlaces="0">
+											<rul:Product DecimalPlaces="0">
+												<rul:Product DecimalPlaces="3">
+													<rul:FirstValue Type="decimal" FromConstant="0" FromDataDef="@Factor" Order="DataDefInputParamConstant" />
+													<rul:FirstValue Type="decimal" FromConstant="0" FromDataDef="ancestor::CommercialPropertyBusinessIncome/@BasicGroupIRate" Order="DataDefInputParamConstant" />
+													<rul:FirstValue Type="decimal" FromConstant="0" FromDataDef="ancestor::CommercialPropertyBusinessIncome/@Factor" Order="DataDefInputParamConstant" />
+												</rul:Product>
+												<rul:Divide>
+													<rul:If>
+														<rul:Test>
+															<rul:Equal>
+																<rul:FirstValue Type="string" FromConstant="" FromDataDef="@IncludedInBlkt" Order="DataDefInputParamConstant" />
+																<rul:Constant Type="string">Yes</rul:Constant>
+															</rul:Equal>
+														</rul:Test>
+														<rul:Then>
+															<rul:FirstValue Type="integer" FromConstant="0" FromDataDef="@Limit" Order="DataDefInputParamConstant" />
+														</rul:Then>
+														<rul:Else>
+															<rul:FirstValue Type="integer" FromConstant="0" FromDataDef="ancestor::CommercialPropertyBusinessIncome/@Limit" Order="DataDefInputParamConstant" />
+														</rul:Else>
+													</rul:If>
+													<rul:Constant Type="decimal">100</rul:Constant>
+												</rul:Divide>
+											</rul:Product>
+											<rul:FirstValue Type="decimal" FromConstant="0" FromDataDef="ancestor::CommercialProperty/@PackageModFactor" Order="DataDefInputParamConstant" />
+										</rul:Product>
+										<rul:FirstValue Type="decimal" FromConstant="0" FromDataDef="ancestor::CommercialProperty/@IRPMFactor" Order="DataDefInputParamConstant" />
+									</rul:Product>
+								</rul:Then>
+							</rul:When>
+							<rul:Otherwise>
+								<rul:Constant Type="decimal">0</rul:Constant>
+							</rul:Otherwise>
+						</rul:Choose>
+						<rul:Constant Type="decimal">0</rul:Constant>
+					</rul:FirstNonNull>
+				</rul:Arg>
+				<rul:Value Type="decimal" ToDataDef="@Premium" FromParam="calcPremium" />
+			</rul:WithArgs>
+			<rul:If>
+				<rul:Test>
+					<rul:NotEqual>
+						<rul:FirstValue Type="decimal" FromConstant="0" FromDataDef="@Premium" Order="DataDefInputParamConstant" />
+						<rul:Constant Type="decimal">0</rul:Constant>
+					</rul:NotEqual>
+				</rul:Test>
+				<rul:Then>
+					<rul:Sequence>
+						<rul:Constant Type="integer" ToDataDef="@PremiumIndicator">1</rul:Constant>
+					</rul:Sequence>
+				</rul:Then>
+				<rul:Else>
+					<rul:Sequence>
+						<rul:Constant Type="integer" ToDataDef="@PremiumIndicator">0</rul:Constant>
+					</rul:Sequence>
+				</rul:Else>
+			</rul:If>
+		</rul:Sequence>
+	</rul:Rule>
+	<rul:Rule Name="ErcSetStatisticalCodes" Type="none" DataDefGroup="CommercialPropertyMoltenMaterialBusnIncome">
+		<rul:Sequence>
+			<rul:If>
+				<rul:Test>
+					<rul:Exist AtInputDataDef="ancestor::MasterCFCW/Policy" />
+				</rul:Test>
+				<rul:Then>
+					<rul:Sequence>
+						<rul:RunRule Type="string" ToDataDef="@SublineAllOtherAlliedLines" FileName="CommercialPropertyMoltenMaterialBusnIncomeRules" Rule="LookupSublineAllOtherAlliedLines" ClearCache="true" />
+					</rul:Sequence>
+				</rul:Then>
+			</rul:If>
+		</rul:Sequence>
+	</rul:Rule>
+	<rul:Rule Name="ErcProcess" Type="none" DataDefGroup="CommercialPropertyMoltenMaterialBusnIncome">
+		<rul:Sequence>
+			<rul:RunRule Type="none" FileName="CommercialPropertyMoltenMaterialBusnIncomeRules" Rule="ErcRate" ClearCache="true" />
+			<rul:RunRule Type="none" FileName="CommercialPropertyMoltenMaterialBusnIncomeRules" Rule="ErcSetStatisticalCodes" ClearCache="true" />
+		</rul:Sequence>
+	</rul:Rule>
+	<rul:Rule Name="LimitToUse" Type="integer" DataDefGroup="CommercialPropertyMoltenMaterialBusnIncome">
+		<rul:FirstNonNull Type="integer">
+			<rul:If>
+				<rul:Test>
+					<rul:Equal>
+						<rul:FirstValue Type="string" FromConstant="" FromDataDef="@IncludedInBlkt" Order="DataDefInputParamConstant" />
+						<rul:Constant Type="string">Yes</rul:Constant>
+					</rul:Equal>
+				</rul:Test>
+				<rul:Then>
+					<rul:FirstValue Type="integer" FromConstant="0" FromDataDef="@Limit" Order="DataDefInputParamConstant" />
+				</rul:Then>
+				<rul:Else>
+					<rul:FirstValue Type="integer" FromConstant="0" FromDataDef="ancestor::CommercialPropertyBusinessIncome/@Limit" Order="DataDefInputParamConstant" />
+				</rul:Else>
+			</rul:If>
+			<rul:Constant Type="integer">0</rul:Constant>
+		</rul:FirstNonNull>
+	</rul:Rule>
+	<rul:Rule Name="LookupMoltenMaterialFactor" Type="decimal" DataDefGroup="CommercialPropertyMoltenMaterialBusnIncome">
+		<rul:FirstNonNull Type="decimal">
+			<rul:Lookup Type="decimal" MatrixCol="Factor" MatrixDef="MoltenMaterialFactorDef" MatrixFromConstant="MoltenMaterialFactor" ResultMode="FirstResult">
+				<rul:Keys>
+					<rul:Value Type="string" FromDataDef="/State/@Code" />
+					<rul:Constant Type="string">Y</rul:Constant>
+				</rul:Keys>
+			</rul:Lookup>
+			<rul:Lookup Type="decimal" MatrixCol="Factor" MatrixDef="MoltenMaterialFactorDef" MatrixFromConstant="MoltenMaterialFactor" ResultMode="SingleResult">
+				<rul:Keys>
+					<rul:Constant Type="string">CW</rul:Constant>
+					<rul:Constant Type="string">Y</rul:Constant>
+				</rul:Keys>
+			</rul:Lookup>
+		</rul:FirstNonNull>
+	</rul:Rule>
+	<rul:Rule Name="LookupSublineAllOtherAlliedLines" Type="string" DataDefGroup="CommercialPropertyMoltenMaterialBusnIncome">
+		<rul:FirstNonNull Type="string">
+			<rul:Lookup Type="string" MatrixCol="Code" MatrixDef="SublineAllOtherAlliedLinesDef" MatrixFromConstant="SublineAllOtherAlliedLines" ResultMode="FirstResult">
+				<rul:Keys>
+					<rul:Value Type="string" FromDataDef="/State/@Code" />
+					<rul:Constant Type="string">Y</rul:Constant>
+				</rul:Keys>
+			</rul:Lookup>
+			<rul:Lookup Type="string" MatrixCol="Code" MatrixDef="SublineAllOtherAlliedLinesDef" MatrixFromConstant="SublineAllOtherAlliedLines" ResultMode="SingleResult">
+				<rul:Keys>
+					<rul:Constant Type="string">CW</rul:Constant>
+					<rul:Constant Type="string">Y</rul:Constant>
+				</rul:Keys>
+			</rul:Lookup>
+		</rul:FirstNonNull>
+	</rul:Rule>
+</rul:Rules>

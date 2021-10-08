@@ -1,0 +1,7 @@
+"StateCode","ConstructionTypeToUse","DisplayValue","DataValue"
+"CW","Frame","1",1
+"CW","Joisted Masonry","2",2
+"CW","Non-Combustible","3",3
+"CW","Masonry Non-Combustible","4",4
+"CW","Modified Fire Resistive","5",5
+"CW","Fire Resistive","6",6

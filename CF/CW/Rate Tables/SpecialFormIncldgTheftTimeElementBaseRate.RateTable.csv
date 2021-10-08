@@ -1,0 +1,25 @@
+"StateCode","ConstructionTypeToUse","CovTypeBusinessIncome","SpecialIncldgTheftTypeRiskBusnIncome","Rate"
+"CW","Frame","Business Income Without Extra Expense","Apartments and Condominiums",0.016
+"CW","Joisted Masonry","Business Income Without Extra Expense","Apartments and Condominiums",0.016
+"CW","Non-Combustible","Business Income Without Extra Expense","Apartments and Condominiums",0.016
+"CW","Masonry Non-Combustible","Business Income Without Extra Expense","Apartments and Condominiums",0.016
+"CW","Modified Fire Resistive","Business Income Without Extra Expense","Apartments and Condominiums",0.01
+"CW","Fire Resistive","Business Income Without Extra Expense","Apartments and Condominiums",0.01
+"CW","Frame","All Other","Apartments and Condominiums",0.029
+"CW","Joisted Masonry","All Other","Apartments and Condominiums",0.029
+"CW","Non-Combustible","All Other","Apartments and Condominiums",0.029
+"CW","Masonry Non-Combustible","All Other","Apartments and Condominiums",0.029
+"CW","Modified Fire Resistive","All Other","Apartments and Condominiums",0.017
+"CW","Fire Resistive","All Other","Apartments and Condominiums",0.017
+"CW","Frame","Business Income Without Extra Expense","Other than Apartments and Condominiums",0.033
+"CW","Joisted Masonry","Business Income Without Extra Expense","Other than Apartments and Condominiums",0.033
+"CW","Non-Combustible","Business Income Without Extra Expense","Other than Apartments and Condominiums",0.033
+"CW","Masonry Non-Combustible","Business Income Without Extra Expense","Other than Apartments and Condominiums",0.033
+"CW","Modified Fire Resistive","Business Income Without Extra Expense","Other than Apartments and Condominiums",0.027
+"CW","Fire Resistive","Business Income Without Extra Expense","Other than Apartments and Condominiums",0.027
+"CW","Frame","All Other","Other than Apartments and Condominiums",0.047
+"CW","Joisted Masonry","All Other","Other than Apartments and Condominiums",0.047
+"CW","Non-Combustible","All Other","Other than Apartments and Condominiums",0.047
+"CW","Masonry Non-Combustible","All Other","Other than Apartments and Condominiums",0.047
+"CW","Modified Fire Resistive","All Other","Other than Apartments and Condominiums",0.035
+"CW","Fire Resistive","All Other","Other than Apartments and Condominiums",0.035

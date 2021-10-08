@@ -1,0 +1,18 @@
+<rt:RateTable xmlns:rt="http://www.verisk.com/iso/erc/RateTable">
+	<rt:MetaData>
+		<rt:MetaDataCode>RateTableRelativity</rt:MetaDataCode>
+		<rt:MetaDataCode>BureauRuleNumber72E2d3b</rt:MetaDataCode>
+	</rt:MetaData>
+	<rt:KeyCols>
+		<rt:KeyCol Name="StateCode" Type="string" CaseInsensitive="false" />
+		<rt:KeyCol Name="SpecialIncldgTheftRateGroup" Type="string" CaseInsensitive="false" />
+		<rt:KeyCol Name="SpecialIncldgTheftClassLimit" Type="string" CaseInsensitive="false" />
+		<rt:Range Name="Limit" Type="integer" RangeType="FromExclusiveToInclusive">
+			<rt:KeyCol Name="Limit_FromGreaterThan" />
+			<rt:KeyCol Name="Limit_To" />
+		</rt:Range>
+	</rt:KeyCols>
+	<rt:ValueCols>
+		<rt:ValueCol Name="Factor" Type="decimal" />
+	</rt:ValueCols>
+</rt:RateTable>

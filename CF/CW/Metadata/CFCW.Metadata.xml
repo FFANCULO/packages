@@ -1,0 +1,1250 @@
+<meta:Metadata xmlns:meta="http://www.verisk.com/iso/erc/Metadata">
+	<meta:MetadataEntry Code="BureauRuleNumbers" Name="Bureau Rule Numbers">
+		<meta:MetadataEntry Code="BureauRuleNumber51B3bBIBroad" Name="51.B.3.b BI Broad" />
+		<meta:MetadataEntry Code="BureauRuleNumber38GBldgEQ" Name="38.G Bldg EQ" />
+		<meta:MetadataEntry Code="BureauRuleNumber72B1BI" Name="72.B.1 BI" />
+		<meta:MetadataEntry Code="BureauRuleNumber38ELocation" Name="38.E Location" />
+		<meta:MetadataEntry Code="BureauRuleNumber73B1CP1040SpClBI" Name="73.B.1 CP1040 SpCl BI" />
+		<meta:MetadataEntry Code="BureauRuleNumber51DBISp" Name="51.D BI Sp" />
+		<meta:MetadataEntry Code="BureauRuleNumber38FSpCl" Name="38.F SpCl" />
+		<meta:MetadataEntry Code="BureauRuleNumber75B1CP1045Bldg" Name="75.B.1 CP1045 Bldg" />
+		<meta:MetadataEntry Code="BureauRuleNumber51ISpClBIEQ" Name="51.I SpCl BI EQ" />
+		<meta:MetadataEntry Code="BureauRuleNumber51NSpClBI" Name="51.N SpCl BI" />
+		<meta:MetadataEntry Code="BureauRuleNumber78D3Bldg" Name="78.D.3 Bldg" />
+		<meta:MetadataEntry Code="BureauRuleNumberTERIL0953" Name="TER IL 09 53" />
+		<meta:MetadataEntry Code="BureauRuleNumber51ABusnIncEQ" Name="51.A Busn Inc EQ" />
+		<meta:MetadataEntry Code="BureauRuleNumber38D1cBldgBGI" Name="38.D.1.c Bldg BGI" />
+		<meta:MetadataEntry Code="BureauRuleNumber38RBldgEQ" Name="38.R Bldg EQ" />
+		<meta:MetadataEntry Code="BureauRuleNumber71SpCLBI" Name="71 SpCL BI" />
+		<meta:MetadataEntry Code="BureauRuleNumber74BPrsnlProp" Name="74.B PrsnlProp" />
+		<meta:MetadataEntry Code="BureauRuleNumber38SPrsnlPropEQ" Name="38.S PrsnlProp EQ" />
+		<meta:MetadataEntry Code="BureauRuleNumber54ASpClBIBroad" Name="54.A SpCl BI Broad" />
+		<meta:MetadataEntry Code="BureauRuleNumber38GSpClBGI" Name="38.G SpCl BGI" />
+		<meta:MetadataEntry Code="BureauRuleNumber51MSpClBIBroad" Name="51.M SpCl BI Broad" />
+		<meta:MetadataEntry Code="BureauRuleNumber51B3bSpClBI" Name="51.B.3.b  SpCl BI" />
+		<meta:MetadataEntry Code="BureauRuleNumber30C3bBldgEQ" Name="30.C.3.b Bldg EQ" />
+		<meta:MetadataEntry Code="BureauRuleNumber38LBldgDtlBGI" Name="38.L Bldg Dtl BGI" />
+		<meta:MetadataEntry Code="BureauRuleNumber51B3bBI" Name="51.B.3.b BI" />
+		<meta:MetadataEntry Code="BureauRuleNumber38D1aBldg" Name="38.D.1.a Bldg" />
+		<meta:MetadataEntry Code="BureauRuleNumber72BI" Name="72 BI" />
+		<meta:MetadataEntry Code="BureauRuleNumber72B1PrsnlProp" Name="72.B.1 Prsnl Prop" />
+		<meta:MetadataEntry Code="BureauRuleNumberGreenUpgrdSpClBISp" Name="GreenUpgrd SpCl BI Sp" />
+		<meta:MetadataEntry Code="BureauRuleNumber29BusnIncome" Name="29 BusnIncome" />
+		<meta:MetadataEntry Code="BureauRuleNumber38APrsnlProp" Name="38.A Prsnl Prop" />
+		<meta:MetadataEntry Code="BureauRuleNumber51JSpClBI" Name="51.J SpCl BI" />
+		<meta:MetadataEntry Code="BureauRuleNumber51ABusnIncBGII" Name="51.A Busn Inc BGII" />
+		<meta:MetadataEntry Code="BureauRuleNumber54ABIEQ" Name="54.A BI EQ" />
+		<meta:MetadataEntry Code="BureauRuleNumber53BSpClBIDtlEQ" Name="53.B SpCl BI Dtl EQ" />
+		<meta:MetadataEntry Code="BureauRuleNumber69B2Occup" Name="69.B.2 Occup" />
+		<meta:MetadataEntry Code="BureauRuleNumber51N3bBI" Name="51.N.3.b BI" />
+		<meta:MetadataEntry Code="BureauRuleNumber54BSpClBIDtlBGII" Name="54.B SpCl BI Dtl BGII" />
+		<meta:MetadataEntry Code="BureauRuleNumber72SpCL" Name="72 SpCL" />
+		<meta:MetadataEntry Code="BureauRuleNumber38LSpClBroad" Name="38.L SpCl Broad" />
+		<meta:MetadataEntry Code="BureauRuleNumber38F4PrsnlPropBroad" Name="38.F.4 Prsnl Prop Broad" />
+		<meta:MetadataEntry Code="BureauRuleNumber31C11Occup" Name="31.C.11 Occup" />
+		<meta:MetadataEntry Code="BureauRuleNumber35B2PolicyEQ" Name="35.B.2 Policy EQ" />
+		<meta:MetadataEntry Code="BureauRuleNumber73B1CP1040PrsnlProp" Name="73.B.1 CP1040  PrsnlProp" />
+		<meta:MetadataEntry Code="BureauRuleNumber41BBldgSp" Name="41.B Bldg Sp" />
+		<meta:MetadataEntry Code="BureauRuleNumber74DBIBGII" Name="74.D BI BGII" />
+		<meta:MetadataEntry Code="BureauRuleNumber14A2Policy" Name="14.A.2 Policy" />
+		<meta:MetadataEntry Code="BureauRuleNumber65A3BldgBroad" Name="65.A.3 Bldg Broad" />
+		<meta:MetadataEntry Code="BureauRuleNumber38GBldgBroad" Name="38.G Bldg Broad" />
+		<meta:MetadataEntry Code="BureauRuleNumber37C1BldgDtl" Name="37.C.1 Bldg Dtl" />
+		<meta:MetadataEntry Code="BureauRuleNumber65B3kBldg" Name="65.B.3.k Bldg" />
+		<meta:MetadataEntry Code="BureauRuleNumber67Policy" Name="67 Policy" />
+		<meta:MetadataEntry Code="BureauRuleNumber36APrsnlPropEQ" Name="36.A PrsnlProp EQ" />
+		<meta:MetadataEntry Code="BureauRuleNumber51DSpClBI" Name="51.D SpCl BI" />
+		<meta:MetadataEntry Code="BureauRuleNumber54ASpClBIBGII" Name="54.A SpCl BI BGII" />
+		<meta:MetadataEntry Code="BureauRuleNumber31C8PrsnlProp" Name="31.C.8 PrsnlProp" />
+		<meta:MetadataEntry Code="BureauRuleNumber54FBIDtlColl" Name="54.F BI Dtl Coll" />
+		<meta:MetadataEntry Code="BureauRuleNumber54FBIDtl" Name="54.F BI Dtl" />
+		<meta:MetadataEntry Code="BureauRuleNumber38GPrsnlProp" Name="38.G PrsnlProp" />
+		<meta:MetadataEntry Code="BureauRuleNumberTERIL0032" Name="TER IL 00 32" />
+		<meta:MetadataEntry Code="BureauRuleNumberFungusBIBGII" Name="Fungus BI BGII" />
+		<meta:MetadataEntry Code="BureauRuleNumber74CSpCl" Name="74.C SpCl" />
+		<meta:MetadataEntry Code="BureauRuleNumber12B1BldgDtl" Name="12.B.1 Bldg Dtl" />
+		<meta:MetadataEntry Code="BureauRuleNumber38FSpClSp" Name="38.F SpCl Sp" />
+		<meta:MetadataEntry Code="BureauRuleNumber38APrsnlPropEQ" Name="38.A Prsnl Prop EQ" />
+		<meta:MetadataEntry Code="BureauRuleNumber54BBIDtlBGI" Name="54.B BI Dtl BGI" />
+		<meta:MetadataEntry Code="BureauRuleNumber30C3aBldgDtlBGI" Name="30.C.3.a Bldg Dtl BGI" />
+		<meta:MetadataEntry Code="BureauRuleNumber38D1aBldgBGII" Name="38.D.1.a Bldg BGII" />
+		<meta:MetadataEntry Code="BureauRuleNumber76Location" Name="76 Location" />
+		<meta:MetadataEntry Code="BureauRuleNumber41BBldgBGII" Name="41.B Bldg BGII" />
+		<meta:MetadataEntry Code="BureauRuleNumber32FCovBBroadCov" Name="32.F Cov B Broad Cov" />
+		<meta:MetadataEntry Code="BureauRuleNumber51B3aBISp" Name="51.B.3.a BI Sp" />
+		<meta:MetadataEntry Code="BureauRuleNumber32FCovBandCEQCov" Name="32.F Cov B and C EQ Cov" />
+		<meta:MetadataEntry Code="BureauRuleNumber38YBldgSp" Name="38.Y Bldg Sp" />
+		<meta:MetadataEntry Code="BureauRuleNumber38MPrsnlPropDtl" Name="38.M PrsnlProp Dtl" />
+		<meta:MetadataEntry Code="BureauRuleNumber38P1BldgMoltenMat" Name="38.P.1 Bldg Molten Mat" />
+		<meta:MetadataEntry Code="BureauRuleNumber53BBI" Name="53.B BI" />
+		<meta:MetadataEntry Code="BureauRuleNumber54ASpClBISp" Name="54.A SpCl BI Sp" />
+		<meta:MetadataEntry Code="BureauRuleNumber32FCovBBGIICov" Name="32.F Cov B BGII Cov" />
+		<meta:MetadataEntry Code="BureauRuleNumber38YBldgBGI" Name="38.Y Bldg BGI" />
+		<meta:MetadataEntry Code="BureauRuleNumber74CBldg" Name="74.C Bldg" />
+		<meta:MetadataEntry Code="BureauRuleNumber38LPrsnlPropBroad" Name="38.L PrsnlProp Broad" />
+		<meta:MetadataEntry Code="BureauRuleNumber38ASpClBroad" Name="38.A SpCl Broad" />
+		<meta:MetadataEntry Code="BureauRuleNumber77APolicy" Name="77.A Policy" />
+		<meta:MetadataEntry Code="BureauRuleNumber73B1CP1040SpCl" Name="73.B.1 CP1040 SpCl" />
+		<meta:MetadataEntry Code="BureauRuleNumber73B1CP1028PrsnlProp" Name="73.B.1 CP1028  PrsnlProp" />
+		<meta:MetadataEntry Code="BureauRuleNumber32FCovCBGICov" Name="32.F Cov C BGI Cov" />
+		<meta:MetadataEntry Code="BureauRuleNumber38YSpClSp" Name="38.Y SpCl Sp" />
+		<meta:MetadataEntry Code="BureauRuleNumber27A8PatternsPrsnlProp" Name="27.A.8 Patterns PrsnlProp" />
+		<meta:MetadataEntry Code="BureauRuleNumber30C5aScBldgGlassEQ" Name="30.C.5.a Sc Bldg Glass EQ" />
+		<meta:MetadataEntry Code="BureauRuleNumber85BI" Name="85 BI" />
+		<meta:MetadataEntry Code="BureauRuleNumber38D1cBldgEQ" Name="38.D.1.c Bldg EQ" />
+		<meta:MetadataEntry Code="BureauRuleNumber38P1PrsnlPropMoltenMat" Name="38.P.1 PrsnlProp Molten Mat" />
+		<meta:MetadataEntry Code="BureauRuleNumber51B6BIDtl" Name="51.B.6 BI Dtl" />
+		<meta:MetadataEntry Code="BureauRuleNumberTERIL0952" Name="TER IL 09 52" />
+		<meta:MetadataEntry Code="BureauRuleNumber35APrsnlPropEQ" Name="35.A PrsnlProp EQ" />
+		<meta:MetadataEntry Code="BureauRuleNumber51DBIEQ" Name="51.D BI EQ" />
+		<meta:MetadataEntry Code="BureauRuleNumber30C5aScBldgPropOTGBroad" Name="30.C.5.a Sc BldgProp OTG Broad" />
+		<meta:MetadataEntry Code="BureauRuleNumber38YBldgBroad" Name="38.Y Bldg Broad" />
+		<meta:MetadataEntry Code="BureauRuleNumber71B1BI" Name="71.B.1 BI" />
+		<meta:MetadataEntry Code="BureauRuleNumber51DBIBroad" Name="51.D BI Broad" />
+		<meta:MetadataEntry Code="BureauRuleNumber34B6cBldg" Name="34.B.6.c Bldg" />
+		<meta:MetadataEntry Code="BureauRuleNumber65Bldg" Name="65 Bldg" />
+		<meta:MetadataEntry Code="BureauRuleNumber54EBISp" Name="54.E BI Sp" />
+		<meta:MetadataEntry Code="BureauRuleNumber78C2BI" Name="78.C.2 BI" />
+		<meta:MetadataEntry Code="BureauRuleNumber37C1Bldg" Name="37.C.1 Bldg" />
+		<meta:MetadataEntry Code="BureauRuleNumber22Location" Name="22 Location" />
+		<meta:MetadataEntry Code="BureauRuleNumber27A8StampsPrsnlProp" Name="27.A.8 Stamps PrsnlProp" />
+		<meta:MetadataEntry Code="BureauRuleNumber27AOccup" Name="27.A Occup" />
+		<meta:MetadataEntry Code="BureauRuleNumber38OBldgBGI" Name="38.O Bldg BGI" />
+		<meta:MetadataEntry Code="BureauRuleNumber35APrsnlPropBGI" Name="35.A PrsnlProp BGI" />
+		<meta:MetadataEntry Code="BureauRuleNumber51ASpClBIBGI" Name="51.A SpCl BI BGI" />
+		<meta:MetadataEntry Code="BureauRuleNumber78BI" Name="78 BI" />
+		<meta:MetadataEntry Code="BureauRuleNumber41BBldgBGI" Name="41.B Bldg BGI" />
+		<meta:MetadataEntry Code="BureauRuleNumber32FCovAEQCov" Name="32.F Cov A EQ Cov" />
+		<meta:MetadataEntry Code="BureauRuleNumber38GSpCl" Name="38.G SpCl" />
+		<meta:MetadataEntry Code="BureauRuleNumber38HPrsnlProp" Name="38.H PrsnlProp" />
+		<meta:MetadataEntry Code="BureauRuleNumber29PrsnlPropDtlDroneCov" Name="29 PrsnlProp Dtl Drone Cov" />
+		<meta:MetadataEntry Code="BureauRuleNumber31C3PrsnlProp" Name="31.C.3 PrsnlProp" />
+		<meta:MetadataEntry Code="BureauRuleNumber36B3Policy" Name="36.B.3 Policy" />
+		<meta:MetadataEntry Code="BureauRuleNumber30C5aUnBldgPropOTGBGI" Name="30.C.5.a Un Bldg Prop OTG BGI" />
+		<meta:MetadataEntry Code="BureauRuleNumber38SPrsnlPropBGII" Name="38.S PrsnlProp BGII" />
+		<meta:MetadataEntry Code="BureauRuleNumber38P2PrsnlProp" Name="38.P.2 PrsnlProp" />
+		<meta:MetadataEntry Code="BureauRuleNumber54DBIEQ" Name="54.D BI EQ" />
+		<meta:MetadataEntry Code="BureauRuleNumber78Bldg" Name="78 Bldg" />
+		<meta:MetadataEntry Code="BureauRuleNumber30C5aScBldgGlassBroad" Name="30.C.5.a Sc Bldg Glass Broad" />
+		<meta:MetadataEntry Code="BureauRuleNumber38BPrsnlProp" Name="38.B PrsnlProp" />
+		<meta:MetadataEntry Code="BureauRuleNumber38MPolicy" Name="38.M Policy" />
+		<meta:MetadataEntry Code="BureauRuleNumber54BBIDtlBGII" Name="54.B BI Dtl BGII" />
+		<meta:MetadataEntry Code="BureauRuleNumber51B3aBIDtl" Name="51.B.3.a  BI Dtl" />
+		<meta:MetadataEntry Code="BureauRuleNumber39A2PrsnlProp" Name="39.A.2 PrsnlProp" />
+		<meta:MetadataEntry Code="BureauRuleNumber75B1CP1029Bldg" Name="75.B.1 CP1029 Bldg" />
+		<meta:MetadataEntry Code="BureauRuleNumber51N3bSpClBI" Name="51.N.3.b SpCl BI" />
+		<meta:MetadataEntry Code="BureauRuleNumber53BSpClBIDtlBGI" Name="53.B SpCl BI Dtl BGI" />
+		<meta:MetadataEntry Code="BureauRuleNumber51MSpClBI" Name="51.M SpCl BI" />
+		<meta:MetadataEntry Code="BureauRuleNumber51B3bBIDtl" Name="51.B.3.b BI Dtl" />
+		<meta:MetadataEntry Code="BureauRuleNumber85PrsnlProp" Name="85 PrsnlProp" />
+		<meta:MetadataEntry Code="BureauRuleNumber51MBI" Name="51.M BI" />
+		<meta:MetadataEntry Code="BureauRuleNumber54ABIBGII" Name="54.A BI BGII" />
+		<meta:MetadataEntry Code="BureauRuleNumber71PrsnlProp" Name="71 PrsnlProp" />
+		<meta:MetadataEntry Code="BureauRuleNumber51HBIBGII" Name="51.H BI BGII" />
+		<meta:MetadataEntry Code="BureauRuleNumber41ABldgSp" Name="41.A Bldg Sp" />
+		<meta:MetadataEntry Code="BureauRuleNumber77A2Policy" Name="77.A.2 Policy" />
+		<meta:MetadataEntry Code="BureauRuleNumber82BSpCl" Name="82.B SpCl" />
+		<meta:MetadataEntry Code="BureauRuleNumber72B2PrsnlProp" Name="72.B.2 PrsnlProp" />
+		<meta:MetadataEntry Code="BureauRuleNumber32FCovASpecialCov" Name="32.F Cov A Special Cov" />
+		<meta:MetadataEntry Code="BureauRuleNumber70B1PrsnlProp" Name="70.B.1 PrsnlProp" />
+		<meta:MetadataEntry Code="BureauRuleNumber29BusnIncomeDtlDroneCov" Name="29 BusnIncome Dtl Drone Cov" />
+		<meta:MetadataEntry Code="BureauRuleNumber38LPrsnlProp" Name="38.L PrsnlProp" />
+		<meta:MetadataEntry Code="BureauRuleNumber29SpecialClassDtlDroneCov" Name="29 SpecialClass Dtl Drone Cov" />
+		<meta:MetadataEntry Code="BureauRuleNumber51IBIBGI" Name="51.I BI BGI" />
+		<meta:MetadataEntry Code="BureauRuleNumber14ChangesIL0246" Name="14 Changes IL 02 46" />
+		<meta:MetadataEntry Code="BureauRuleNumberGreenUpgrdPrsnlPropBroad" Name="GreenUpgrd PrsnlProp Broad" />
+		<meta:MetadataEntry Code="BureauRuleNumber50B1SpClBI" Name="50.B.1 SpCl BI" />
+		<meta:MetadataEntry Code="BureauRuleNumber38VBldgDtl" Name="38.V Bldg Dtl" />
+		<meta:MetadataEntry Code="BureauRuleNumber70B1BI" Name="70.B.1 BI" />
+		<meta:MetadataEntry Code="BureauRuleNumber33DBldg" Name="33.D Bldg" />
+		<meta:MetadataEntry Code="BureauRuleNumberPremiumAdjustmentForm" Name="PremiumAdjustmentForm" />
+		<meta:MetadataEntry Code="BureauRuleNumber74DBI" Name="74.D BI" />
+		<meta:MetadataEntry Code="BureauRuleNumber17Policy" Name="17 Policy" />
+		<meta:MetadataEntry Code="BureauRuleNumber29BusnIncomeDtlEQCov" Name="29 BusnIncome Dtl EQ Cov" />
+		<meta:MetadataEntry Code="BureauRuleNumber51HSpClBIDtl" Name="51.H SpCl BI Dtl" />
+		<meta:MetadataEntry Code="BureauRuleNumber29SpclClBusnIncDtlEQCov" Name="29 SpclClBusnInc Dtl EQ Cov" />
+		<meta:MetadataEntry Code="BureauRuleNumber54DBIBGI" Name="54.D BI BGI" />
+		<meta:MetadataEntry Code="BureauRuleNumber38A3bSpCl" Name="38.A.3.b  SpCl" />
+		<meta:MetadataEntry Code="BureauRuleNumber54ESpClBIDtl" Name="54.E SpCl BI Dtl" />
+		<meta:MetadataEntry Code="BureauRuleNumber75B1CP1029SpClBI" Name="75.B.1 CP1029 SpCl BI" />
+		<meta:MetadataEntry Code="BureauRuleNumber38ELocationSp" Name="38.E Location Sp" />
+		<meta:MetadataEntry Code="BureauRuleNumber71SpCL" Name="71 SpCL" />
+		<meta:MetadataEntry Code="BureauRuleNumber74BBI" Name="74.B BI" />
+		<meta:MetadataEntry Code="BureauRuleNumber38LBldgDtl" Name="38.L Bldg Dtl" />
+		<meta:MetadataEntry Code="BureauRuleNumber38D3b2BldgBGI" Name="38.D.3.b.2 Bldg BGI" />
+		<meta:MetadataEntry Code="BureauRuleNumber31C12PrsnlPropCOLBroad" Name="31.C.12 PrsnlProp COL Broad" />
+		<meta:MetadataEntry Code="BureauRuleNumber53BBIDtlBGI" Name="53.B BI Dtl BGI" />
+		<meta:MetadataEntry Code="BureauRuleNumber54ABIBGI" Name="54.A BI BGI" />
+		<meta:MetadataEntry Code="BureauRuleNumber30C4Bldg" Name="30.C.4 Bldg" />
+		<meta:MetadataEntry Code="BureauRuleNumber53BBIDtlEQ" Name="53.B BI Dtl EQ" />
+		<meta:MetadataEntry Code="BureauRuleNumber36APrsnlPropBroad" Name="36.A PrsnlProp Broad" />
+		<meta:MetadataEntry Code="BureauRuleNumber51ISpClBIBGI" Name="51.I SpCl BI BGI" />
+		<meta:MetadataEntry Code="BureauRuleNumber78C4Bldg" Name="78.C.4 Bldg" />
+		<meta:MetadataEntry Code="BureauRuleNumber76C4PolicyDtl" Name="76.C.4 Policy Dtl" />
+		<meta:MetadataEntry Code="BureauRuleNumber53BBIDtlBGII" Name="53.B BI Dtl BGII" />
+		<meta:MetadataEntry Code="BureauRuleNumber69B2Bldg" Name="69.B.2 Bldg" />
+		<meta:MetadataEntry Code="BureauRuleNumber31C12PrsnlPropCOLEQ" Name="31.C.12 PrsnlProp COL EQ" />
+		<meta:MetadataEntry Code="BureauRuleNumber35APrsnlPropSp" Name="35.A PrsnlProp Sp" />
+		<meta:MetadataEntry Code="BureauRuleNumber51B3bSpClBIBGI" Name="51.B.3.b SpCl BI BGI" />
+		<meta:MetadataEntry Code="BureauRuleNumber51GBIBGII" Name="51.G BI BGII" />
+		<meta:MetadataEntry Code="BureauRuleNumber51B3aSpClBIBroad" Name="51.B.3.a SpCl BI Broad" />
+		<meta:MetadataEntry Code="BureauRuleNumber54ESpClBI" Name="54.E SpCl BI" />
+		<meta:MetadataEntry Code="BureauRuleNumber74DBISp" Name="74.D BI Sp" />
+		<meta:MetadataEntry Code="BureauRuleNumber38ASpClEQ" Name="38.A SpCl EQ" />
+		<meta:MetadataEntry Code="BureauRuleNumber51B3aSpClBISp" Name="51.B.3.a SpCl BI Sp" />
+		<meta:MetadataEntry Code="BureauRuleNumber41ABldgBGI" Name="41.A Bldg BGI" />
+		<meta:MetadataEntry Code="BureauRuleNumber38P1BldgBGII" Name="38.P.1 Bldg BGII" />
+		<meta:MetadataEntry Code="BureauRuleNumberBuildingCommonRating" Name="Building Common Rating" />
+		<meta:MetadataEntry Code="BureauRuleNumber29BldgDtlEQCoverage" Name="29 Bldg Dtl EQ Coverage" />
+		<meta:MetadataEntry Code="BureauRuleNumber38GPrsnlPropBGI" Name="38.G PrsnlProp BGI" />
+		<meta:MetadataEntry Code="BureauRuleNumber51MSpClBISp" Name="51.M SpCl BI Sp" />
+		<meta:MetadataEntry Code="BureauRuleNumber74A2aSpCl" Name="74.A.2.a SpCl" />
+		<meta:MetadataEntry Code="BureauRuleNumber41C1BldgDtl" Name="41.C.1 Bldg Dtl" />
+		<meta:MetadataEntry Code="BureauRuleNumber54BBI" Name="54.B BI" />
+		<meta:MetadataEntry Code="BureauRuleNumber72B1SpCl" Name="72.B.1 SpCl" />
+		<meta:MetadataEntry Code="BureauRuleNumberTERIL0997" Name="TER IL 09 97" />
+		<meta:MetadataEntry Code="BureauRuleNumber74ESpCl" Name="74.E  SpCl" />
+		<meta:MetadataEntry Code="BureauRuleNumber31A1Occup" Name="31.A.1 Occup" />
+		<meta:MetadataEntry Code="BureauRuleNumber72B1Bldg" Name="72.B.1 Bldg" />
+		<meta:MetadataEntry Code="BureauRuleNumber73B2Location" Name="73.B.2 Location" />
+		<meta:MetadataEntry Code="BureauRuleNumber70B1SpCl" Name="70.B.1 SpCl" />
+		<meta:MetadataEntry Code="BureauRuleNumberGreenUpgrdBIEQ" Name="GreenUpgrd BI EQ" />
+		<meta:MetadataEntry Code="BureauRuleNumberTERIL0030" Name="TER IL 00 30" />
+		<meta:MetadataEntry Code="BureauRuleNumber5B4Policy" Name="5.B.4 Policy" />
+		<meta:MetadataEntry Code="BureauRuleNumber51HSpClBI" Name="51.H SpCl BI" />
+		<meta:MetadataEntry Code="BureauRuleNumber38LSpClBGII" Name="38.L SpCl BGII" />
+		<meta:MetadataEntry Code="BureauRuleNumberFungusBIEQ" Name="Fungus BI EQ" />
+		<meta:MetadataEntry Code="BureauRuleNumber38IPrsnlPropBroad" Name="38.I PrsnlProp Broad" />
+		<meta:MetadataEntry Code="BureauRuleNumberTotPremiumCoverage" Name="TotPremiumCoverage" />
+		<meta:MetadataEntry Code="BureauRuleNumber38D1aBldgBroad" Name="38.D.1.a Bldg Broad" />
+		<meta:MetadataEntry Code="BureauRuleNumber38RBldgBGI" Name="38.R Bldg BGI" />
+		<meta:MetadataEntry Code="BureauRuleNumberBusnIncomeCommonRating" Name="Busn Income Common Rating" />
+		<meta:MetadataEntry Code="BureauRuleNumber54ABIBroad" Name="54.A BI Broad" />
+		<meta:MetadataEntry Code="BureauRuleNumber81DSpCl" Name="81.D SpCl" />
+		<meta:MetadataEntry Code="BureauRuleNumber54ASpClBI" Name="54.A SpCl BI" />
+		<meta:MetadataEntry Code="BureauRuleNumber30C5aScBldgPropOTGBGI" Name="30.C.5.a Sc Bldg Prop OTG BGI" />
+		<meta:MetadataEntry Code="BureauRuleNumber30C3bBldgBGII" Name="30.C.3.b Bldg BGII" />
+		<meta:MetadataEntry Code="BureauRuleNumber53BBIDtl" Name="53.B BI Dtl" />
+		<meta:MetadataEntry Code="BureauRuleNumber38OBldgBroad" Name="38.O Bldg Broad" />
+		<meta:MetadataEntry Code="BureauRuleNumber81DBldg" Name="81.D Bldg" />
+		<meta:MetadataEntry Code="BureauRuleNumber53BSpClBIDtlBGII" Name="53.B SpCl BI Dtl BGII" />
+		<meta:MetadataEntry Code="BureauRuleNumber31C7a2PrsnlPropSp" Name="31.C.7.a.2 PrsnlProp Sp" />
+		<meta:MetadataEntry Code="BureauRuleNumber51B3bSpClBIBGII" Name="51.B.3.b SpCl BI BGII" />
+		<meta:MetadataEntry Code="BureauRuleNumber74G1aSpCl" Name="74.G.1.a SpCl" />
+		<meta:MetadataEntry Code="BureauRuleNumber39A2Building" Name="39.A.2 Building" />
+		<meta:MetadataEntry Code="BureauRuleNumber76SpClBI" Name="76 SpCl BI" />
+		<meta:MetadataEntry Code="BureauRuleNumber38IPrsnlPropEQ" Name="38.I PrsnlProp EQ" />
+		<meta:MetadataEntry Code="BureauRuleNumber38F4PrsnlPropBGI" Name="38.F.4 Prsnl Prop BGI" />
+		<meta:MetadataEntry Code="BureauRuleNumber38USpCl" Name="38.U SpCl" />
+		<meta:MetadataEntry Code="BureauRuleNumber40Bldg" Name="40 Bldg" />
+		<meta:MetadataEntry Code="BureauRuleNumber30C3bBldgDtl" Name="30.C.3.b Bldg Dtl" />
+		<meta:MetadataEntry Code="BureauRuleNumber65A1BldgEQ" Name="65.A.1 Bldg EQ" />
+		<meta:MetadataEntry Code="BureauRuleNumber85SpCL" Name="85 SpCL" />
+		<meta:MetadataEntry Code="BureauRuleNumber51GBIBGI" Name="51.G BI BGI" />
+		<meta:MetadataEntry Code="BureauRuleNumberGreenUpgrdBI" Name="GreenUpgrd BI" />
+		<meta:MetadataEntry Code="BureauRuleNumber32FCovBSpecialCov" Name="32.F Cov B Special Cov" />
+		<meta:MetadataEntry Code="BureauRuleNumber38D3b2BldgEQ" Name="38.D.3.b.2 Bldg EQ" />
+		<meta:MetadataEntry Code="BureauRuleNumber69B3SpCl" Name="69.B.3 SpCl" />
+		<meta:MetadataEntry Code="BureauRuleNumber39A1SpecialClass" Name="39.A.1 Special Class" />
+		<meta:MetadataEntry Code="BureauRuleNumberTotalBICoverage" Name="Total BI Coverage" />
+		<meta:MetadataEntry Code="BureauRuleNumber32FCovCEQCov" Name="32.F Cov C EQ Cov" />
+		<meta:MetadataEntry Code="BureauRuleNumberCP1360" Name="CP 13 60" />
+		<meta:MetadataEntry Code="BureauRuleNumber36APrsnlProp" Name="36.A PrsnlProp" />
+		<meta:MetadataEntry Code="BureauRuleNumber38SPrsnlPropBroad" Name="38.S PrsnlProp Broad" />
+		<meta:MetadataEntry Code="BureauRuleNumber51B3aBIBroad" Name="51.B.3.a BI Broad" />
+		<meta:MetadataEntry Code="BureauRuleNumber50B1BI" Name="50.B.1 BI" />
+		<meta:MetadataEntry Code="BureauRuleNumber24SpClDtl" Name="24 SpCl Dtl" />
+		<meta:MetadataEntry Code="BureauRuleNumber54ASpClBIEQ" Name="54.A SpCl BI EQ" />
+		<meta:MetadataEntry Code="BureauRuleNumber70B2Bldg" Name="70.B.2 Bldg" />
+		<meta:MetadataEntry Code="BureauRuleNumber75B1CP1029SpCl" Name="75.B.1 CP1029 SpCl" />
+		<meta:MetadataEntry Code="BureauRuleNumber38CPrsnlPropEQ" Name="38.C PrsnlProp EQ" />
+		<meta:MetadataEntry Code="BureauRuleNumber51DSpClBIBGI" Name="51.D SpCl BI BGI" />
+		<meta:MetadataEntry Code="BureauRuleNumber73B1CP1040BI" Name="73.B.1 CP1040 BI" />
+		<meta:MetadataEntry Code="BureauRuleNumber74DBIBroad" Name="74.D BI Broad" />
+		<meta:MetadataEntry Code="BureauRuleNumber65A4BldgBGI" Name="65.A.4 Bldg BGI" />
+		<meta:MetadataEntry Code="BureauRuleNumber30ASpCl" Name="30.A SpCl" />
+		<meta:MetadataEntry Code="BureauRuleNumber54ESpClBIEQ" Name="54.E SpCl BI EQ" />
+		<meta:MetadataEntry Code="BureauRuleNumber51HBIDtl" Name="51.H BI Dtl" />
+		<meta:MetadataEntry Code="BureauRuleNumber75B1CP1045SpCl" Name="75.B.1 CP1045 SpCl" />
+		<meta:MetadataEntry Code="BureauRuleNumber30C5aScBldgPropOTGEQ" Name="30.C.5.a Sc Bldg Prop OTG EQ" />
+		<meta:MetadataEntry Code="BureauRuleNumberPrsnlPropCommonRating" Name="Prsnl Prop Common Rating" />
+		<meta:MetadataEntry Code="BureauRuleNumberPolicyChangesIL1201" Name="Policy Changes IL 12 01" />
+		<meta:MetadataEntry Code="BureauRuleNumber38LSpClDtl" Name="38.L SpCl Dtl" />
+		<meta:MetadataEntry Code="BureauRuleNumber38MPrsnlPropBGII" Name="38.M PrsnlProp BGII" />
+		<meta:MetadataEntry Code="BureauRuleNumberGreenUpgrdSpClBI" Name="GreenUpgrd SpCl BI" />
+		<meta:MetadataEntry Code="BureauRuleNumber38SPrsnlPropSp" Name="38.S PrsnlProp Sp" />
+		<meta:MetadataEntry Code="BureauRuleNumber32FCovBandCBroadCov" Name="32.F Cov B and C Broad Cov" />
+		<meta:MetadataEntry Code="BureauRuleNumberSpecialClassCommonRating" Name="Special Class Common Rating" />
+		<meta:MetadataEntry Code="BureauRuleNumber38ABldgCOLSp" Name="38.A Bldg COL Sp" />
+		<meta:MetadataEntry Code="BureauRuleNumber38ZBI" Name="38.Z BI" />
+		<meta:MetadataEntry Code="BureauRuleNumber38P1BldgBroad" Name="38.P.1 Bldg Broad" />
+		<meta:MetadataEntry Code="BureauRuleNumberFungusPolicy" Name="Fungus Policy" />
+		<meta:MetadataEntry Code="BureauRuleNumber38LPrsnlPropSp" Name="38.L PrsnlProp Sp" />
+		<meta:MetadataEntry Code="BureauRuleNumber38ELocationBGI" Name="38.E Location BGI" />
+		<meta:MetadataEntry Code="BureauRuleNumber74DBIEQ" Name="74.D BI EQ" />
+		<meta:MetadataEntry Code="BureauRuleNumber38FSpClBGI" Name="38.F SpCl BGI" />
+		<meta:MetadataEntry Code="BureauRuleNumber14A1Policy" Name="14.A.1 Policy" />
+		<meta:MetadataEntry Code="BureauRuleNumber31C7PrsnlPropBroad" Name="31.C.7 PrsnlProp Broad" />
+		<meta:MetadataEntry Code="BureauRuleNumber54ABISp" Name="54.A BI Sp" />
+		<meta:MetadataEntry Code="BureauRuleNumber51GSpClBI" Name="51.G SpCl BI" />
+		<meta:MetadataEntry Code="BureauRuleNumber51MSpClBIEQ" Name="51.M SpCl BI EQ" />
+		<meta:MetadataEntry Code="BureauRuleNumber51MBIBroad" Name="51.M BI Broad" />
+		<meta:MetadataEntry Code="BureauRuleNumber74CSpClBI" Name="74.C SpCl BI" />
+		<meta:MetadataEntry Code="BureauRuleNumber51HBIBGI" Name="51.H BI BGI" />
+		<meta:MetadataEntry Code="BureauRuleNumber38P2Bldg" Name="38.P.2 Bldg" />
+		<meta:MetadataEntry Code="BureauRuleNumber38LSpCl" Name="38.L SpCl" />
+		<meta:MetadataEntry Code="BureauRuleNumber38LBldg" Name="38.L Bldg" />
+		<meta:MetadataEntry Code="BureauRuleNumber38YSpClBGI" Name="38.Y SpCl BGI" />
+		<meta:MetadataEntry Code="BureauRuleNumber51C2aSpClBI" Name="51.C.2.a SpCl BI" />
+		<meta:MetadataEntry Code="BureauRuleNumber30C3aBldgDtlBroad" Name="30.C.3.a Bldg Dtl Broad" />
+		<meta:MetadataEntry Code="BureauRuleNumber65B3dBldg" Name="65.B.3.d Bldg" />
+		<meta:MetadataEntry Code="BureauRuleNumber52BI" Name="52 BI" />
+		<meta:MetadataEntry Code="BureauRuleNumber51B6BI" Name="51.B.6 BI" />
+		<meta:MetadataEntry Code="BureauRuleNumber74A2cPrsnlProp" Name="74.A.2.c PrsnlProp" />
+		<meta:MetadataEntry Code="BureauRuleNumber27A8JewelryPrsnlProp" Name="27.A.8 Jewelry PrsnlProp" />
+		<meta:MetadataEntry Code="BureauRuleNumber75B1CP1029PrsnlProp" Name="75.B.1 CP1029  PrsnlProp" />
+		<meta:MetadataEntry Code="BureauRuleNumber51B3bSpClBIBroad" Name="51.B.3.b SpCl BI Broad" />
+		<meta:MetadataEntry Code="BureauRuleNumber51DBIBGI" Name="51.D BI BGI" />
+		<meta:MetadataEntry Code="BureauRuleNumber54FBIDtlOTC" Name="54.F BI Dtl OTC" />
+		<meta:MetadataEntry Code="BureauRuleNumber30C5aUnBldgGlassEQ" Name="30.C.5.a Un Bldg Glass EQ" />
+		<meta:MetadataEntry Code="BureauRuleNumber51B3bSpClBIDtl" Name="51.B.3.b SpCl BI Dtl" />
+		<meta:MetadataEntry Code="BureauRuleNumber54EBIBGI" Name="54.E BI BGI" />
+		<meta:MetadataEntry Code="BureauRuleNumber29BldgDtl" Name="29 Bldg Dtl" />
+		<meta:MetadataEntry Code="BureauRuleNumber38IPrsnlPropSp" Name="38.I PrsnlProp Sp" />
+		<meta:MetadataEntry Code="BureauRuleNumber30C3bSpCl" Name="30.C.3.b SpCl" />
+		<meta:MetadataEntry Code="BureauRuleNumber54DSpClBIEQ" Name="54.D SpCl BI EQ" />
+		<meta:MetadataEntry Code="BureauRuleNumber78D2BI" Name="78.D.2 BI" />
+		<meta:MetadataEntry Code="BureauRuleNumber75B1CP1045SpClBI" Name="75.B.1 CP1045 SpCl BI" />
+		<meta:MetadataEntry Code="BureauRuleNumber54BSpClBI" Name="54.B SpCl BI" />
+		<meta:MetadataEntry Code="BureauRuleNumber38B3bPrsnlProp" Name="38.B.3.b PrsnlProp" />
+		<meta:MetadataEntry Code="BureauRuleNumber68Occup" Name="68 Occup" />
+		<meta:MetadataEntry Code="BureauRuleNumber30C3aBldgDtl" Name="30.C.3.a Bldg Dtl" />
+		<meta:MetadataEntry Code="BureauRuleNumber39A1BusnIncome" Name="39.A.1 BusnIncome" />
+		<meta:MetadataEntry Code="BureauRuleNumber68PrsnlProp" Name="68 PrsnlProp" />
+		<meta:MetadataEntry Code="BureauRuleNumberGreenUpgrdBldgBroad" Name="GreenUpgrd Bldg Broad" />
+		<meta:MetadataEntry Code="BureauRuleNumber54FSpClBI" Name="54.F SpCl BI" />
+		<meta:MetadataEntry Code="BureauRuleNumber38FSpClEQ" Name="38.F SpCl EQ" />
+		<meta:MetadataEntry Code="BureauRuleNumber75B1CP1045PrsnlProp" Name="75.B.1 CP1045  PrsnlProp" />
+		<meta:MetadataEntry Code="BureauRuleNumber38ZSpCl" Name="38.Z SpCl" />
+		<meta:MetadataEntry Code="BureauRuleNumber54BSpClBIDtl" Name="54.B SpCl BI Dtl" />
+		<meta:MetadataEntry Code="BureauRuleNumber51HSpClBIBGI" Name="51.H SpCl BI BGI" />
+		<meta:MetadataEntry Code="BureauRuleNumber74A2bBI" Name="74.A.2.b BI" />
+		<meta:MetadataEntry Code="BureauRuleNumber34B6cSpCl" Name="34.B.6.c SpCl" />
+		<meta:MetadataEntry Code="BureauRuleNumber54ABI" Name="54.A BI" />
+		<meta:MetadataEntry Code="BureauRuleNumber54ESpClBIBGII" Name="54.E SpCl BI BGII" />
+		<meta:MetadataEntry Code="BureauRuleNumber51ASpClBI" Name="51.A SpCl BI" />
+		<meta:MetadataEntry Code="BureauRuleNumber38YSpClEQ" Name="38.Y SpCl EQ" />
+		<meta:MetadataEntry Code="BureauRuleNumber31C12PrsnlPropCOLSp" Name="31.C.12 PrsnlProp COL Sp" />
+		<meta:MetadataEntry Code="BureauRuleNumber74A2aBI" Name="74.A.2.a BI" />
+		<meta:MetadataEntry Code="BureauRuleNumber54DBIBGII" Name="54.D BI BGII" />
+		<meta:MetadataEntry Code="BureauRuleNumber29SpecialClass" Name="29 SpecialClass" />
+		<meta:MetadataEntry Code="BureauRuleNumber30C4SpCl" Name="30.C.4 SpCl" />
+		<meta:MetadataEntry Code="BureauRuleNumber38P1PrsnlPropRadioCntm" Name="38.P.1 PrsnlProp Radio Cntm" />
+		<meta:MetadataEntry Code="BureauRuleNumber51B3aSpClBI" Name="51.B.3.a SpCl BI" />
+		<meta:MetadataEntry Code="BureauRuleNumber31C7a2PrsnlPropBGI" Name="31.C.7.a.2 PrsnlProp BGI" />
+		<meta:MetadataEntry Code="BureauRuleNumber38P1BldgEQ" Name="38.P.1 Bldg EQ" />
+		<meta:MetadataEntry Code="BureauRuleNumber51GSpClBIBGII" Name="51.G SpCl BI BGII" />
+		<meta:MetadataEntry Code="BureauRuleNumberGreenUpgrdBldg" Name="GreenUpgrd Bldg" />
+		<meta:MetadataEntry Code="BureauRuleNumber31C7a2PrsnlPropBroad" Name="31.C.7.a.2 PrsnlProp Broad" />
+		<meta:MetadataEntry Code="BureauRuleNumberGreenUpgrdBldgEQ" Name="GreenUpgrd Bldg EQ" />
+		<meta:MetadataEntry Code="BureauRuleNumber32FCovCBroadCov" Name="32.F Cov C Broad Cov" />
+		<meta:MetadataEntry Code="BureauRuleNumber65A4BldgBroad" Name="65.A.4 Bldg Broad" />
+		<meta:MetadataEntry Code="BureauRuleNumber54CBI" Name="54.C BI" />
+		<meta:MetadataEntry Code="BureauRuleNumber36APrsnlPropBGII" Name="36.A PrsnlProp BGII" />
+		<meta:MetadataEntry Code="BureauRuleNumber38GBldgBGII" Name="38.G Bldg BGII" />
+		<meta:MetadataEntry Code="BureauRuleNumber54BBIDtlBroad" Name="54.B BI Dtl Broad" />
+		<meta:MetadataEntry Code="BureauRuleNumber32FCovCSpecialCov" Name="32.F Cov C Special Cov" />
+		<meta:MetadataEntry Code="BureauRuleNumber32FCovABroadCov" Name="32.F Cov A Broad Cov" />
+		<meta:MetadataEntry Code="BureauRuleNumber65A4BldgSp" Name="65.A.4 Bldg Sp" />
+		<meta:MetadataEntry Code="BureauRuleNumber70B1Bldg" Name="70.B.1 Bldg" />
+		<meta:MetadataEntry Code="BureauRuleNumber29SpecialClassDtl" Name="29 SpecialClass Dtl" />
+		<meta:MetadataEntry Code="BureauRuleNumber51ABusnIncBGI" Name="51.A Busn Inc BGI" />
+		<meta:MetadataEntry Code="BureauRuleNumber75B1CP1045BI" Name="75.B.1 CP1045 BI" />
+		<meta:MetadataEntry Code="BureauRuleNumber38CPrsnlProp" Name="38.C PrsnlProp" />
+		<meta:MetadataEntry Code="BureauRuleNumber38P1PrsnlPropBGII" Name="38.P.1 PrsnlProp BGII" />
+		<meta:MetadataEntry Code="BureauRuleNumber38F4PrsnlPropEQ" Name="38.F.4 Prsnl Prop EQ" />
+		<meta:MetadataEntry Code="BureauRuleNumber36B2PrsnlProp" Name="36.B.2 PrsnlProp" />
+		<meta:MetadataEntry Code="BureauRuleNumber54BSpClBIDtlBGI" Name="54.B SpCl BI Dtl BGI" />
+		<meta:MetadataEntry Code="BureauRuleNumber85SpCLBI" Name="85 SpCL BI" />
+		<meta:MetadataEntry Code="BureauRuleNumber65B3aBldg" Name="65.B.3.a Bldg" />
+		<meta:MetadataEntry Code="BureauRuleNumber52ESpClBI" Name="52.E SpCl BI" />
+		<meta:MetadataEntry Code="BureauRuleNumber51ASpClBIBroad" Name="51.A SpCl BI Broad" />
+		<meta:MetadataEntry Code="BureauRuleNumber51HSpClBIBGII" Name="51.H SpCl BI BGII" />
+		<meta:MetadataEntry Code="BureauRuleNumber38D1bBldgBGI" Name="38.D.1.b Bldg BGI" />
+		<meta:MetadataEntry Code="BureauRuleNumber35B2PolicyBGII" Name="35.B.2 Policy BGII" />
+		<meta:MetadataEntry Code="BureauRuleNumber41B3cBldgDtl" Name="41.B.3.c Bldg Dtl" />
+		<meta:MetadataEntry Code="BureauRuleNumber38LBldgDtlSp" Name="38.L Bldg Dtl Sp" />
+		<meta:MetadataEntry Code="BureauRuleNumber51ABusnInc" Name="51.A Busn Inc" />
+		<meta:MetadataEntry Code="BureauRuleNumber38FBldgEQ" Name="38.F Bldg EQ" />
+		<meta:MetadataEntry Code="BureauRuleNumberCP1361" Name="CP 13 61" />
+		<meta:MetadataEntry Code="BureauRuleNumber30C3aBldgDtlSp" Name="30.C.3.a Bldg Dtl Sp" />
+		<meta:MetadataEntry Code="BureauRuleNumber38P1PrsnlPropEQ" Name="38.P.1 PrsnlProp EQ" />
+		<meta:MetadataEntry Code="BureauRuleNumberGreenUpgrdSpClBIEQ" Name="GreenUpgrd SpCl BI EQ" />
+		<meta:MetadataEntry Code="BureauRuleNumber30C3aBldg" Name="30.C.3.a Bldg" />
+		<meta:MetadataEntry Code="BureauRuleNumber54EBIEQ" Name="54.E BI EQ" />
+		<meta:MetadataEntry Code="BureauRuleNumber38TPrsnlProp" Name="38.T PrsnlProp" />
+		<meta:MetadataEntry Code="BureauRuleNumber30C5aScBldgGlassSp" Name="30.C.5.a Sc Bldg Glass Sp" />
+		<meta:MetadataEntry Code="BureauRuleNumber38SPrsnlProp" Name="38.S PrsnlProp" />
+		<meta:MetadataEntry Code="BureauRuleNumber38JPrsnlProp" Name="38.J PrsnlProp" />
+		<meta:MetadataEntry Code="BureauRuleNumber54EBI" Name="54.E BI" />
+		<meta:MetadataEntry Code="BureauRuleNumber38ZBldg" Name="38.Z Bldg" />
+		<meta:MetadataEntry Code="BureauRuleNumber29SpclClassBusnIncomeDtl" Name="29 SpclClassBusnIncome Dtl" />
+		<meta:MetadataEntry Code="BureauRuleNumber37C2Bldg" Name="37.C.2 Bldg" />
+		<meta:MetadataEntry Code="BureauRuleNumber38ASpClBGI" Name="38.A SpCl BGI" />
+		<meta:MetadataEntry Code="BureauRuleNumber38ABldgCOLBroad" Name="38.A Bldg COL Broad" />
+		<meta:MetadataEntry Code="BureauRuleNumber54DSpClBI" Name="54.D SpCl BI" />
+		<meta:MetadataEntry Code="BureauRuleNumber74A2bSpCl" Name="74.A.2.b SpCl" />
+		<meta:MetadataEntry Code="BureauRuleNumber71B1PrsnlProp" Name="71.B.1 Prsnl Prop" />
+		<meta:MetadataEntry Code="BureauRuleNumber29Bldg" Name="29 Bldg" />
+		<meta:MetadataEntry Code="BureauRuleNumber38GSpClBroad" Name="38.G SpCl Broad" />
+		<meta:MetadataEntry Code="BureauRuleNumber38FBldgBroad" Name="38.F Bldg Broad" />
+		<meta:MetadataEntry Code="BureauRuleNumber38D3b2BldgBGII" Name="38.D.3.b.2 Bldg BGII" />
+		<meta:MetadataEntry Code="BureauRuleNumber74ESpClBI" Name="74.E  SpCl BI" />
+		<meta:MetadataEntry Code="BureauRuleNumber51ISpClBI" Name="51.I SpCl BI" />
+		<meta:MetadataEntry Code="BureauRuleNumber41B3cBldg" Name="41.B.3.c Bldg" />
+		<meta:MetadataEntry Code="BureauRuleNumber69B2SpCl" Name="69.B.2 SpCl" />
+		<meta:MetadataEntry Code="BureauRuleNumber51MSpClBIBGI" Name="51.M SpCl BI BGI" />
+		<meta:MetadataEntry Code="BureauRuleNumberGreenUpgrdPrsnlPropBGI" Name="GreenUpgrd PrsnlProp BGI" />
+		<meta:MetadataEntry Code="BureauRuleNumber30A1SpCl" Name="30.A.1 SpCl" />
+		<meta:MetadataEntry Code="BureauRuleNumber38GBldg" Name="38.G Bldg" />
+		<meta:MetadataEntry Code="BureauRuleNumber31C7PrsnlProp" Name="31.C.7 PrsnlProp" />
+		<meta:MetadataEntry Code="BureauRuleNumber27ABldg" Name="27.A Bldg" />
+		<meta:MetadataEntry Code="BureauRuleNumber74A2cBI" Name="74.A.2.c BI" />
+		<meta:MetadataEntry Code="BureauRuleNumber76PrsnlProp" Name="76 PrsnlProp" />
+		<meta:MetadataEntry Code="BureauRuleNumber73B1CP1028SpClBI" Name="73.B.1 CP1028 SpCl BI" />
+		<meta:MetadataEntry Code="BureauRuleNumber75B1CP1029BI" Name="75.B.1 CP1029 BI" />
+		<meta:MetadataEntry Code="BureauRuleNumber54BSpClBIDtlEQ" Name="54.B SpCl BI Dtl EQ" />
+		<meta:MetadataEntry Code="BureauRuleNumber74A2cBldg" Name="74.A.2.c Bldg" />
+		<meta:MetadataEntry Code="BureauRuleNumberGreenUpgrdBldgBGII" Name="GreenUpgrd Bldg BGII" />
+		<meta:MetadataEntry Code="BureauRuleNumber54FSpClBIDtl" Name="54.F SpCl BI Dtl" />
+		<meta:MetadataEntry Code="BureauRuleNumber20BBldg" Name="20.B Bldg" />
+		<meta:MetadataEntry Code="BureauRuleNumber30C3bBldgSp" Name="30.C.3.b Bldg Sp" />
+		<meta:MetadataEntry Code="BureauRuleNumber38D1aBldgEQ" Name="38.D.1.a Bldg EQ" />
+		<meta:MetadataEntry Code="BureauRuleNumber38LPrsnlPropEQ" Name="38.L PrsnlProp EQ" />
+		<meta:MetadataEntry Code="BureauRuleNumber38H38JPrsnlProp" Name="38.H; 38.J PrsnlProp" />
+		<meta:MetadataEntry Code="BureauRuleNumber27ALocation" Name="27.A Location" />
+		<meta:MetadataEntry Code="BureauRuleNumber51LSpClBI" Name="51.L SpCl BI" />
+		<meta:MetadataEntry Code="BureauRuleNumber31C3PrsnlPropDtl" Name="31.C.3 PrsnlProp Dtl" />
+		<meta:MetadataEntry Code="BureauRuleNumber51B3aSpClBIDtl" Name="51.B.3.a SpCl BI Dtl" />
+		<meta:MetadataEntry Code="BureauRuleNumber38GSpClSp" Name="38.G SpCl Sp" />
+		<meta:MetadataEntry Code="BureauRuleNumber51ASpClBIEQ" Name="51.A SpCl BI EQ" />
+		<meta:MetadataEntry Code="BureauRuleNumberGreenUpgrdBIBroad" Name="GreenUpgrd BI Broad" />
+		<meta:MetadataEntry Code="BureauRuleNumber41C1Bldg" Name="41.C.1 Bldg" />
+		<meta:MetadataEntry Code="BureauRuleNumber38LBldgDtlEQ" Name="38.L Bldg Dtl EQ" />
+		<meta:MetadataEntry Code="BureauRuleNumber72SpCLBI" Name="72 SpCL BI" />
+		<meta:MetadataEntry Code="BureauRuleNumber69Policy" Name="69 Policy" />
+		<meta:MetadataEntry Code="BureauRuleNumber39A1SpclClassBusnIncome" Name="39.A.1 SpclClassBusnIncome" />
+		<meta:MetadataEntry Code="BureauRuleNumber74G1bBI" Name="74.G.1.b BI" />
+		<meta:MetadataEntry Code="BureauRuleNumber72B1SpClBI" Name="72.B.1 SpCl BI" />
+		<meta:MetadataEntry Code="BureauRuleNumber34BPolicyDtl" Name="34.B Policy Dtl" />
+		<meta:MetadataEntry Code="BureauRuleNumberGreenUpgrdBldgBGI" Name="GreenUpgrd Bldg BGI" />
+		<meta:MetadataEntry Code="BureauRuleNumber72B2SpCl" Name="72.B.2 SpCl" />
+		<meta:MetadataEntry Code="BureauRuleNumber38D1bBldgBroad" Name="38.D.1.b Bldg Broad" />
+		<meta:MetadataEntry Code="BureauRuleNumber32FCovCBGIICov" Name="32.F Cov C BGII Cov" />
+		<meta:MetadataEntry Code="BureauRuleNumber38OBldg" Name="38.O Bldg" />
+		<meta:MetadataEntry Code="BureauRuleNumber38GBldgSp" Name="38.G Bldg Sp" />
+		<meta:MetadataEntry Code="BureauRuleNumber38ABldgCOLBGII" Name="38.A Bldg COL BGII" />
+		<meta:MetadataEntry Code="BureauRuleNumber38ABldg" Name="38.A Bldg" />
+		<meta:MetadataEntry Code="BureauRuleNumber41ABldgDtl" Name="41.A Bldg Dtl" />
+		<meta:MetadataEntry Code="BureauRuleNumber38RBldgSp" Name="38.R Bldg Sp" />
+		<meta:MetadataEntry Code="BureauRuleNumber34BPolicy" Name="34.B Policy" />
+		<meta:MetadataEntry Code="BureauRuleNumberTERIL0996" Name="TER IL 09 96" />
+		<meta:MetadataEntry Code="BureauRuleNumber38MPrsnlProp" Name="38.M PrsnlProp" />
+		<meta:MetadataEntry Code="BureauRuleNumber71Bldg" Name="71 Bldg" />
+		<meta:MetadataEntry Code="BureauRuleNumber38D3b2BldgSp" Name="38.D.3.b.2 Bldg Sp" />
+		<meta:MetadataEntry Code="BureauRuleNumber74G1aBI" Name="74.G.1.a BI" />
+		<meta:MetadataEntry Code="BureauRuleNumber38A3bBldg" Name="38.A.3.b Bldg" />
+		<meta:MetadataEntry Code="BureauRuleNumber31A1SpCl" Name="31.A.1 SpCl" />
+		<meta:MetadataEntry Code="BureauRuleNumber54E3aBIRadius" Name="54.E.3.a BI Radius" />
+		<meta:MetadataEntry Code="BureauRuleNumber41BBldgEQ" Name="41.B Bldg EQ" />
+		<meta:MetadataEntry Code="BureauRuleNumber38FBldg" Name="38.F Bldg" />
+		<meta:MetadataEntry Code="BureauRuleNumber41C2BldgDtl" Name="41.C.2 Bldg Dtl" />
+		<meta:MetadataEntry Code="BureauRuleNumber32FCovBandCBGIICov" Name="32.F Cov B and C BGII Cov" />
+		<meta:MetadataEntry Code="BureauRuleNumber38IPrsnlProp" Name="38.I PrsnlProp" />
+		<meta:MetadataEntry Code="BureauRuleNumber74EBldg" Name="74.E Bldg" />
+		<meta:MetadataEntry Code="BureauRuleNumberGreenUpgrdBldgSp" Name="GreenUpgrd Bldg Sp" />
+		<meta:MetadataEntry Code="BureauRuleNumber38CPrsnlPropSp" Name="38.C PrsnlProp Sp" />
+		<meta:MetadataEntry Code="BureauRuleNumber30A1Bldg" Name="30.A.1 Bldg" />
+		<meta:MetadataEntry Code="BureauRuleNumber53A3SpClBI" Name="53.A.3 SpCl BI" />
+		<meta:MetadataEntry Code="BureauRuleNumber38IPrsnlPropBGI" Name="38.I PrsnlProp BGI" />
+		<meta:MetadataEntry Code="BureauRuleNumber35APrsnlPropBGII" Name="35.A PrsnlProp BGII" />
+		<meta:MetadataEntry Code="BureauRuleNumber51GBI" Name="51.G BI" />
+		<meta:MetadataEntry Code="BureauRuleNumber76BI" Name="76 BI" />
+		<meta:MetadataEntry Code="BureauRuleNumber31AOccup" Name="31.A Occup" />
+		<meta:MetadataEntry Code="BureauRuleNumber31C7a2PrsnlPropBGII" Name="31.C.7.a.2 PrsnlProp BGII" />
+		<meta:MetadataEntry Code="BureauRuleNumber30C2Bldg" Name="30.C.2 Bldg" />
+		<meta:MetadataEntry Code="BureauRuleNumber38D1bBldgBGII" Name="38.D.1.b Bldg BGII" />
+		<meta:MetadataEntry Code="BureauRuleNumber38GSpClBGII" Name="38.G SpCl BGII" />
+		<meta:MetadataEntry Code="BureauRuleNumber29SpclClassBusnIncome" Name="29 SpclClassBusnIncome" />
+		<meta:MetadataEntry Code="BureauRuleNumber30C5aScBldgGlassBGII" Name="30.C.5.a Sc Bldg Glass BGII" />
+		<meta:MetadataEntry Code="BureauRuleNumberGreenUpgrdSpClBGII" Name="GreenUpgrd SpCl BGII" />
+		<meta:MetadataEntry Code="BureauRuleNumber53A2BI" Name="53.A.2 BI" />
+		<meta:MetadataEntry Code="BureauRuleNumber51LBIDtl" Name="51.L BI Dtl" />
+		<meta:MetadataEntry Code="BureauRuleNumber50B2SpClBI" Name="50.B.2 SpCl BI" />
+		<meta:MetadataEntry Code="BureauRuleNumber51B3aBIBGI" Name="51.B.3.a BI BGI" />
+		<meta:MetadataEntry Code="BureauRuleNumber31C1aPrsnlProp" Name="31.C.1.a PrsnlProp" />
+		<meta:MetadataEntry Code="BureauRuleNumber51LSpClBIDtl" Name="51.L SpCl BI Dtl" />
+		<meta:MetadataEntry Code="BureauRuleNumber38LPrsnlPropDtl" Name="38.L PrsnlProp Dtl" />
+		<meta:MetadataEntry Code="BureauRuleNumber70PrsnlProp" Name="70 PrsnlProp" />
+		<meta:MetadataEntry Code="BureauRuleNumber38RBldgBGII" Name="38.R Bldg BGII" />
+		<meta:MetadataEntry Code="BureauRuleNumber71B1SpCl" Name="71.B.1 SpCl" />
+		<meta:MetadataEntry Code="BureauRuleNumber65A3BldgSp" Name="65.A.3 Bldg Sp" />
+		<meta:MetadataEntry Code="BureauRuleNumber38W2PrsnlProp" Name="38.W.2 PrsnlProp" />
+		<meta:MetadataEntry Code="BureauRuleNumber38FBldgBGII" Name="38.F Bldg BGII" />
+		<meta:MetadataEntry Code="BureauRuleNumber38ELocationEQ" Name="38.E Location EQ" />
+		<meta:MetadataEntry Code="BureauRuleNumber31C7a2PrsnlPropEQ" Name="31.C.7.a.2 PrsnlProp EQ" />
+		<meta:MetadataEntry Code="BureauRuleNumber30C5aUnBldgGlassSp" Name="30.C.5.a Un Bldg Glass Sp" />
+		<meta:MetadataEntry Code="BureauRuleNumberLocationCommonRating" Name="Location Common Rating" />
+		<meta:MetadataEntry Code="BureauRuleNumber41ABldgBGII" Name="41.A Bldg BGII" />
+		<meta:MetadataEntry Code="BureauRuleNumber38LSpClSp" Name="38.L SpCl Sp" />
+		<meta:MetadataEntry Code="BureauRuleNumber74EBI" Name="74.E BI" />
+		<meta:MetadataEntry Code="BureauRuleNumber51B3bBISp" Name="51.B.3.b BI Sp" />
+		<meta:MetadataEntry Code="BureauRuleNumber65A2BldgBGII" Name="65.A.2 Bldg BGII" />
+		<meta:MetadataEntry Code="BureauRuleNumber70B1SpClBI" Name="70.B.1 SpCl BI" />
+		<meta:MetadataEntry Code="BureauRuleNumber53BBIDtlBroad" Name="53.B BI Dtl Broad" />
+		<meta:MetadataEntry Code="BureauRuleNumber38P2Policy" Name="38.P.2 Policy" />
+		<meta:MetadataEntry Code="BureauRuleNumber51MBIBGII" Name="51.M BI BGII" />
+		<meta:MetadataEntry Code="BureauRuleNumber65A3BldgEQ" Name="65.A.3 Bldg EQ" />
+		<meta:MetadataEntry Code="BureauRuleNumber30C1cBldg" Name="30.C.1.c Bldg" />
+		<meta:MetadataEntry Code="BureauRuleNumberOccupancyCommonRating" Name="Occupancy Common Rating" />
+		<meta:MetadataEntry Code="BureauRuleNumberGreenUpgrdSpClBIBGI" Name="GreenUpgrd SpCl BI BGI" />
+		<meta:MetadataEntry Code="BureauRuleNumber35B2PolicyBroad" Name="35.B.2 Policy Broad" />
+		<meta:MetadataEntry Code="BureauRuleNumber65A3BldgBGII" Name="65.A.3 Bldg BGII" />
+		<meta:MetadataEntry Code="BureauRuleNumber52EBI" Name="52.E BI" />
+		<meta:MetadataEntry Code="BureauRuleNumber53BSpClBIDtlSp" Name="53.B SpCl BI Dtl Sp" />
+		<meta:MetadataEntry Code="BureauRuleNumber38OBldgSp" Name="38.O Bldg Sp" />
+		<meta:MetadataEntry Code="BureauRuleNumber32FCovBandCSpecialCov" Name="32.F Cov B and C Special Cov" />
+		<meta:MetadataEntry Code="BureauRuleNumber54BBIDtlEQ" Name="54.B BI Dtl EQ" />
+		<meta:MetadataEntry Code="BureauRuleNumber53B5BI" Name="53.B.5 BI" />
+		<meta:MetadataEntry Code="BureauRuleNumber70BI" Name="70 BI" />
+		<meta:MetadataEntry Code="BureauRuleNumber38APrsnlPropBGI" Name="38.A Prsnl Prop BGI" />
+		<meta:MetadataEntry Code="BureauRuleNumber29BldgDtlDroneCoverage" Name="29 Bldg Dtl Drone Coverage" />
+		<meta:MetadataEntry Code="BureauRuleNumber38KBldg" Name="38.K Bldg" />
+		<meta:MetadataEntry Code="BureauRuleNumber35APrsnlPropBroad" Name="35.A PrsnlProp Broad" />
+		<meta:MetadataEntry Code="BureauRuleNumber51MBIEQ" Name="51.M BI EQ" />
+		<meta:MetadataEntry Code="BureauRuleNumber53BBIDtlSp" Name="53.B BI Dtl Sp" />
+		<meta:MetadataEntry Code="BureauRuleNumber51IBIBGII" Name="51.I BI BGII" />
+		<meta:MetadataEntry Code="BureauRuleNumber53B5BIDtl" Name="53.B.5 BI Dtl" />
+		<meta:MetadataEntry Code="BureauRuleNumber38P1BldgBGI" Name="38.P.1 Bldg BGI" />
+		<meta:MetadataEntry Code="BureauRuleNumberFungusBIBGI" Name="Fungus BI BGI" />
+		<meta:MetadataEntry Code="BureauRuleNumber39A2BusnIncome" Name="39.A.2 BusnIncome" />
+		<meta:MetadataEntry Code="BureauRuleNumber32FBldg" Name="32.F - Bldg" />
+		<meta:MetadataEntry Code="BureauRuleNumber65A3BldgBGI" Name="65.A.3 Bldg BGI" />
+		<meta:MetadataEntry Code="BureauRuleNumber30C1cBldgDtl" Name="30.C.1.c Bldg Dtl" />
+		<meta:MetadataEntry Code="BureauRuleNumber53BSpClBIDtl" Name="53.B SpCl BI Dtl" />
+		<meta:MetadataEntry Code="BureauRuleNumber76Bldg" Name="76 Bldg" />
+		<meta:MetadataEntry Code="BureauRuleNumber38ASpClSp" Name="38.A SpCl Sp" />
+		<meta:MetadataEntry Code="BureauRuleNumber38P1PrsnlProp" Name="38.P.1 PrsnlProp" />
+		<meta:MetadataEntry Code="BureauRuleNumber74G1bSpClBI" Name="74.G.1.b SpCl BI" />
+		<meta:MetadataEntry Code="BureauRuleNumber38MPolicyDtl" Name="38.M Policy Dtl" />
+		<meta:MetadataEntry Code="BureauRuleNumber27A8FursPrsnlProp" Name="27.A.8 Furs PrsnlProp" />
+		<meta:MetadataEntry Code="BureauRuleNumber41DBldg" Name="41.D Bldg" />
+		<meta:MetadataEntry Code="BureauRuleNumberGreenUpgrdSpClBIBGII" Name="GreenUpgrd SpCl BI BGII" />
+		<meta:MetadataEntry Code="BureauRuleNumber38D1cBldgBGII" Name="38.D.1.c Bldg BGII" />
+		<meta:MetadataEntry Code="BureauRuleNumber38ASpClBGII" Name="38.A SpCl BGII" />
+		<meta:MetadataEntry Code="BureauRuleNumber74BBldg" Name="74.B Bldg" />
+		<meta:MetadataEntry Code="BureauRuleNumber65B3fBldg" Name="65.B.3.f Bldg" />
+		<meta:MetadataEntry Code="BureauRuleNumber38P1BldgSp" Name="38.P.1 Bldg Sp" />
+		<meta:MetadataEntry Code="BureauRuleNumber74EPrsnlProp" Name="74.E PrsnlProp" />
+		<meta:MetadataEntry Code="BureauRuleNumberSpclClassBusnIncCommonRating" Name="SpclClassBusnInc Common Rating" />
+		<meta:MetadataEntry Code="BureauRuleNumber12B1Bldg" Name="12.B.1 Bldg" />
+		<meta:MetadataEntry Code="BureauRuleNumber38MPrsnlPropBroad" Name="38.M PrsnlProp Broad" />
+		<meta:MetadataEntry Code="BureauRuleNumber51ISpClBIBGII" Name="51.I SpCl BI BGII" />
+		<meta:MetadataEntry Code="BureauRuleNumber73B1CP1040Bldg" Name="73.B.1 CP1040 Bldg" />
+		<meta:MetadataEntry Code="BureauRuleNumber41BBldgBroad" Name="41.B Bldg Broad" />
+		<meta:MetadataEntry Code="BureauRuleNumberGreenUpgrdSpClBIBroad" Name="GreenUpgrd SpCl BI Broad" />
+		<meta:MetadataEntry Code="BureauRuleNumber41ABldgEQ" Name="41.A Bldg EQ" />
+		<meta:MetadataEntry Code="BureauRuleNumber51DBIBGII" Name="51.D BI BGII" />
+		<meta:MetadataEntry Code="BureauRuleNumber38YBldgEQ" Name="38.Y Bldg EQ" />
+		<meta:MetadataEntry Code="BureauRuleNumber54BSpClBIDtlBroad" Name="54.B SpCl BI Dtl Broad" />
+		<meta:MetadataEntry Code="BureauRuleNumber38F4PrsnlPropBGII" Name="38.F.4 Prsnl Prop BGII" />
+		<meta:MetadataEntry Code="BureauRuleNumber51B3aSpClBIEQ" Name="51.B.3.a SpCl BI EQ" />
+		<meta:MetadataEntry Code="BureauRuleNumber38YSpClBGII" Name="38.Y SpCl BGII" />
+		<meta:MetadataEntry Code="BureauRuleNumber38CPrsnlPropBGI" Name="38.C PrsnlProp BGI" />
+		<meta:MetadataEntry Code="BureauRuleNumber35B2PolicySp" Name="35.B.2 Policy Sp" />
+		<meta:MetadataEntry Code="BureauRuleNumber39A1PrsnlProp" Name="39.A.1 PrsnlProp" />
+		<meta:MetadataEntry Code="BureauRuleNumber38FBldgSp" Name="38.F Bldg Sp" />
+		<meta:MetadataEntry Code="BureauRuleNumber51N3aSpClBI" Name="51.N.3.a SpCl BI" />
+		<meta:MetadataEntry Code="BureauRuleNumber29SpclClBusnIncDtlDroneCov" Name="29 SpclClBusnInc Dtl Drone Cov" />
+		<meta:MetadataEntry Code="BureauRuleNumber51JBI" Name="51.J BI" />
+		<meta:MetadataEntry Code="BureauRuleNumber78D1Bldg" Name="78.D.1 Bldg" />
+		<meta:MetadataEntry Code="BureauRuleNumber30C5aUnBldgGlassBroad" Name="30.C.5.a Un Bldg Glass Broad" />
+		<meta:MetadataEntry Code="BureauRuleNumber65A1BldgBGI" Name="65.A.1 Bldg BGI" />
+		<meta:MetadataEntry Code="BureauRuleNumber38GBldgBGI" Name="38.G Bldg BGI" />
+		<meta:MetadataEntry Code="BureauRuleNumber38P1BldgRadioCntmt" Name="38.P.1 Bldg Radio Cntmt" />
+		<meta:MetadataEntry Code="BureauRuleNumber30C5aUnBldgGlassBGII" Name="30.C.5.a Un Bldg Glass BGII" />
+		<meta:MetadataEntry Code="BureauRuleNumber38D1aBldgBGI" Name="38.D.1.a Bldg BGI" />
+		<meta:MetadataEntry Code="BureauRuleNumber26ASpCl" Name="26.A SpCl" />
+		<meta:MetadataEntry Code="BureauRuleNumber65A2BldgBroad" Name="65.A.2 Bldg Broad" />
+		<meta:MetadataEntry Code="BureauRuleNumber65B3hBldg" Name="65.B.3.h Bldg" />
+		<meta:MetadataEntry Code="BureauRuleNumberGreenUpgrdBISp" Name="GreenUpgrd BI Sp" />
+		<meta:MetadataEntry Code="BureauRuleNumber12B2Bldg" Name="12.B.2 Bldg" />
+		<meta:MetadataEntry Code="BureauRuleNumber65B3gBldg" Name="65.B.3.g Bldg" />
+		<meta:MetadataEntry Code="BureauRuleNumber74DSpClBI" Name="74.D SpCl BI" />
+		<meta:MetadataEntry Code="BureauRuleNumber51B3bBIEQ" Name="51.B.3.b BI EQ" />
+		<meta:MetadataEntry Code="BureauRuleNumberTotalSpClCoverage" Name="Total SpCl Coverage" />
+		<meta:MetadataEntry Code="BureauRuleNumber38D1bBldgEQ" Name="38.D.1.b Bldg EQ" />
+		<meta:MetadataEntry Code="BureauRuleNumber54EBIBGII" Name="54.E BI BGII" />
+		<meta:MetadataEntry Code="BureauRuleNumber30C3aSpCl" Name="30.C.3.a SpCl" />
+		<meta:MetadataEntry Code="BureauRuleNumber76SpCl" Name="76 SpCl" />
+		<meta:MetadataEntry Code="BureauRuleNumber32FCovBEQCov" Name="32.F Cov B EQ Cov" />
+		<meta:MetadataEntry Code="BureauRuleNumberExclLossDueToVirusBacPolicy" Name="ExclLossDueToVirusBac Policy" />
+		<meta:MetadataEntry Code="BureauRuleNumber51B3aSpClBIBGI" Name="51.B.3.a SpCl BI BGI" />
+		<meta:MetadataEntry Code="BureauRuleNumber38FSpClBroad" Name="38.F SpCl Broad" />
+		<meta:MetadataEntry Code="BureauRuleNumber27A4PrsnlProp" Name="27.A.4 PrsnlProp" />
+		<meta:MetadataEntry Code="BureauRuleNumber54ASpClBIBGI" Name="54.A SpCl BI BGI" />
+		<meta:MetadataEntry Code="BureauRuleNumber38YBldg" Name="38.Y Bldg" />
+		<meta:MetadataEntry Code="BureauRuleNumber54ESpClBIBGI" Name="54.E SpCl BI BGI" />
+		<meta:MetadataEntry Code="BureauRuleNumber32FCovABGIICov" Name="32.F Cov A BGII Cov" />
+		<meta:MetadataEntry Code="BureauRuleNumber31C7PrsnlPropBGII" Name="31.C.7 PrsnlProp BGII" />
+		<meta:MetadataEntry Code="BureauRuleNumber39A1Building" Name="39.A.1 Building" />
+		<meta:MetadataEntry Code="BureauRuleNumber65A4BldgEQ" Name="65.A.4 Bldg EQ" />
+		<meta:MetadataEntry Code="BureauRuleNumber38GPrsnlPropSp" Name="38.G PrsnlProp Sp" />
+		<meta:MetadataEntry Code="BureauRuleNumber51LBI" Name="51.L BI" />
+		<meta:MetadataEntry Code="BureauRuleNumber38GPrsnlPropEQ" Name="38.G PrsnlProp EQ" />
+		<meta:MetadataEntry Code="BureauRuleNumber51IBIEQ" Name="51.I BI EQ" />
+		<meta:MetadataEntry Code="BureauRuleNumber38GPrsnlPropBroad" Name="38.G PrsnlProp Broad" />
+		<meta:MetadataEntry Code="BureauRuleNumber38IPrsnlPropBGII" Name="38.I PrsnlProp BGII" />
+		<meta:MetadataEntry Code="BureauRuleNumber38A3bPrsnlProp" Name="38.A.3.b PrsnlProp" />
+		<meta:MetadataEntry Code="BureauRuleNumber54FBI" Name="54.F BI" />
+		<meta:MetadataEntry Code="BureauRuleNumber51B6SpClBIEE" Name="51.B.6 SpCl BI EE" />
+		<meta:MetadataEntry Code="BureauRuleNumber38D3b2BldgBroad" Name="38.D.3.b.2 Bldg Broad" />
+		<meta:MetadataEntry Code="BureauRuleNumber54FSpClBIDtlOTC" Name="54.F SpCl BI Dtl OTC" />
+		<meta:MetadataEntry Code="BureauRuleNumberPolicyCommonRating" Name="Policy Common Rating" />
+		<meta:MetadataEntry Code="BureauRuleNumber51B3aBIBGII" Name="51.B.3.a BI BGII" />
+		<meta:MetadataEntry Code="BureauRuleNumber54DBI" Name="54.D BI" />
+		<meta:MetadataEntry Code="BureauRuleNumber38DBldg" Name="38.D Bldg" />
+		<meta:MetadataEntry Code="BureauRuleNumber37C2BldgDtl" Name="37.C.2 Bldg Dtl" />
+		<meta:MetadataEntry Code="BureauRuleNumber39A2SpecialClass" Name="39.A.2 Special Class" />
+		<meta:MetadataEntry Code="BureauRuleNumber54BBIDtl" Name="54.B BI Dtl" />
+		<meta:MetadataEntry Code="BureauRuleNumber32FCovABGICov" Name="32.F Cov A BGI Cov" />
+		<meta:MetadataEntry Code="BureauRuleNumber38Q2bPrsnlProp" Name="38.Q.2.b PrsnlProp" />
+		<meta:MetadataEntry Code="BureauRuleNumber35B2Policy" Name="35.B.2 Policy" />
+		<meta:MetadataEntry Code="BureauRuleNumber74G1aSpClBI" Name="74.G.1.a SpCl BI" />
+		<meta:MetadataEntry Code="BureauRuleNumber30C2SpCl" Name="30.C.2 SpCl" />
+		<meta:MetadataEntry Code="BureauRuleNumber54CSpClBI" Name="54.C SpCl BI" />
+		<meta:MetadataEntry Code="BureauRuleNumber38MPrsnlPropSp" Name="38.M PrsnlProp Sp" />
+		<meta:MetadataEntry Code="BureauRuleNumber75C2PolicyDtl" Name="75.C.2 Policy Dtl" />
+		<meta:MetadataEntry Code="BureauRuleNumber51B3bSpClBISp" Name="51.B.3.b SpCl BI Sp" />
+		<meta:MetadataEntry Code="BureauRuleNumber54ESpClBISp" Name="54.E SpCl BI Sp" />
+		<meta:MetadataEntry Code="BureauRuleNumber66Bldg" Name="66 Bldg" />
+		<meta:MetadataEntry Code="BureauRuleNumber54EBIBroad" Name="54.E BI Broad" />
+		<meta:MetadataEntry Code="BureauRuleNumber38MPrsnlPropBGI" Name="38.M PrsnlProp BGI" />
+		<meta:MetadataEntry Code="BureauRuleNumber52SpClBI" Name="52 SpCl BI" />
+		<meta:MetadataEntry Code="BureauRuleNumber38ABldgCOLEQ" Name="38.A Bldg COL EQ" />
+		<meta:MetadataEntry Code="BureauRuleNumber31C12PrsnlProp" Name="31.C.12 PrsnlProp" />
+		<meta:MetadataEntry Code="BureauRuleNumber72B2Bldg" Name="72.B.2 Bldg" />
+		<meta:MetadataEntry Code="BureauRuleNumber30ABldg" Name="30.A Bldg" />
+		<meta:MetadataEntry Code="BureauRuleNumberY2KCompRltdBI" Name="Y2KCompRltd BI" />
+		<meta:MetadataEntry Code="BureauRuleNumber27A5PrsnlProp" Name="27.A.5 PrsnlProp" />
+		<meta:MetadataEntry Code="BureauRuleNumber31C7PrsnlPropSp" Name="31.C.7 PrsnlProp Sp" />
+		<meta:MetadataEntry Code="BureauRuleNumber38ZSpClBI" Name="38.Z SpCl BI" />
+		<meta:MetadataEntry Code="BureauRuleNumber51B6SpClBIDtl" Name="51.B.6 SpCl BI Dtl" />
+		<meta:MetadataEntry Code="BureauRuleNumber29PrsnlPropDtlEQCov" Name="29 PrsnlProp Dtl EQ Cov" />
+		<meta:MetadataEntry Code="BureauRuleNumberGreenUpgrdPrsnlPropEQ" Name="GreenUpgrd PrsnlProp EQ" />
+		<meta:MetadataEntry Code="BureauRuleNumber51GSpClBIBGI" Name="51.G SpCl BI BGI" />
+		<meta:MetadataEntry Code="BureauRuleNumber41C2Bldg" Name="41.C.2 Bldg" />
+		<meta:MetadataEntry Code="BureauRuleNumber26ABldg" Name="26.A Bldg" />
+		<meta:MetadataEntry Code="BureauRuleNumber38APrsnlPropBroad" Name="38.A Prsnl Prop Broad" />
+		<meta:MetadataEntry Code="BureauRuleNumber31C7PrsnlPropDtl" Name="31.C.7 PrsnlProp Dtl" />
+		<meta:MetadataEntry Code="BureauRuleNumber77A1Policy" Name="77.A.1 Policy" />
+		<meta:MetadataEntry Code="BureauRuleNumber38XLocation" Name="38.X Location" />
+		<meta:MetadataEntry Code="BureauRuleNumberTERIL0999" Name="TER IL 09 99" />
+		<meta:MetadataEntry Code="BureauRuleNumberTERIL0031" Name="TER IL 00 31" />
+		<meta:MetadataEntry Code="BureauRuleNumber51DSpClBIBroad" Name="51.D SpCl BI Broad" />
+		<meta:MetadataEntry Code="BureauRuleNumber65B3cBldg" Name="65.B.3.c Bldg" />
+		<meta:MetadataEntry Code="BureauRuleNumber72PrsnlProp" Name="72 PrsnlProp" />
+		<meta:MetadataEntry Code="BureauRuleNumber38FSpClBGII" Name="38.F SpCl BGII" />
+		<meta:MetadataEntry Code="BureauRuleNumber65A1BldgBroad" Name="65.A.1 Bldg Broad" />
+		<meta:MetadataEntry Code="BureauRuleNumber38VBldg" Name="38.V Bldg" />
+		<meta:MetadataEntry Code="BureauRuleNumber38W1PrsnlProp" Name="38.W.1 PrsnlProp" />
+		<meta:MetadataEntry Code="BureauRuleNumber38LSpClBGI" Name="38.L SpCl BGI" />
+		<meta:MetadataEntry Code="BureauRuleNumber38GPrsnlPropBGII" Name="38.G PrsnlProp BGII" />
+		<meta:MetadataEntry Code="BureauRuleNumber31C12PrsnlPropDtl" Name="31.C.12 PrsnlProp Dtl" />
+		<meta:MetadataEntry Code="BureauRuleNumber51B6SpClBIEEDtl" Name="51.B.6 SpCl BI EE Dtl" />
+		<meta:MetadataEntry Code="BureauRuleNumber51ABusnIncSp" Name="51.A Busn Inc Sp" />
+		<meta:MetadataEntry Code="BureauRuleNumber38Q2aPrsnlProp" Name="38.Q.2.a PrsnlProp" />
+		<meta:MetadataEntry Code="BureauRuleNumber65B3jBldg" Name="65.B.3.j Bldg" />
+		<meta:MetadataEntry Code="BureauRuleNumber73B1CP1028Bldg" Name="73.B.1 CP1028 Bldg" />
+		<meta:MetadataEntry Code="BureauRuleNumber38LBldgDtlBGII" Name="38.L Bldg Dtl BGII" />
+		<meta:MetadataEntry Code="BureauRuleNumber30C2SpClDtl" Name="30.C.2 SpCl Dtl" />
+		<meta:MetadataEntry Code="BureauRuleNumber28Bldg" Name="28 Bldg" />
+		<meta:MetadataEntry Code="BureauRuleNumber65A2BldgEQ" Name="65.A.2 Bldg EQ" />
+		<meta:MetadataEntry Code="BureauRuleNumber30C3bBldgBroad" Name="30.C.3.b Bldg Broad" />
+		<meta:MetadataEntry Code="BureauRuleNumber51MBIBGI" Name="51.M BI BGI" />
+		<meta:MetadataEntry Code="BureauRuleNumber69B4Bldg" Name="69.B.4 Bldg" />
+		<meta:MetadataEntry Code="BureauRuleNumber38ASpCl" Name="38.A SpCl" />
+		<meta:MetadataEntry Code="BureauRuleNumber32FCovBBGICov" Name="32.F Cov B BGI Cov" />
+		<meta:MetadataEntry Code="BureauRuleNumber72B2SpClBI" Name="72.B.2 SpCl BI" />
+		<meta:MetadataEntry Code="BureauRuleNumber32FCovBandCBGICov" Name="32.F Cov B and C BGI Cov" />
+		<meta:MetadataEntry Code="BureauRuleNumber31C7PrsnlPropBGI" Name="31.C.7 PrsnlProp BGI" />
+		<meta:MetadataEntry Code="BureauRuleNumberGreenUpgrdPrsnlProp" Name="GreenUpgrd PrsnlProp" />
+		<meta:MetadataEntry Code="BureauRuleNumber31C12PrsnlPropCOLBGI" Name="31.C.12 PrsnlProp COL BGI" />
+		<meta:MetadataEntry Code="BureauRuleNumber30C5aScBldgPropOTGSp" Name="30.C.5.a Sc Bldg Prop OTG Sp" />
+		<meta:MetadataEntry Code="BureauRuleNumber71BI" Name="71 BI" />
+		<meta:MetadataEntry Code="BureauRuleNumber65B3iBldg" Name="65.B.3.i Bldg" />
+		<meta:MetadataEntry Code="BureauRuleNumber14A414B38AA67B4" Name="14.A.4; 14.B; 38.AA; 67.B.4" />
+		<meta:MetadataEntry Code="BureauRuleNumber70SpCLBI" Name="70 SpCL BI" />
+		<meta:MetadataEntry Code="BureauRuleNumber51B3aBIEQ" Name="51.B.3.a BI EQ" />
+		<meta:MetadataEntry Code="BureauRuleNumber38LSpClEQ" Name="38.L SpCl EQ" />
+		<meta:MetadataEntry Code="BureauRuleNumber51KSpClBI" Name="51.K SpCl BI" />
+		<meta:MetadataEntry Code="BureauRuleNumberTERIL0986" Name="TER IL 09 86" />
+		<meta:MetadataEntry Code="BureauRuleNumber38LBldgDtlBroad" Name="38.L Bldg Dtl Broad" />
+		<meta:MetadataEntry Code="BureauRuleNumber27APrsnlProp" Name="27.A PrsnlProp" />
+		<meta:MetadataEntry Code="BureauRuleNumber72B2BI" Name="72.B.2 BI" />
+		<meta:MetadataEntry Code="BureauRuleNumber70Bldg" Name="70 Bldg" />
+		<meta:MetadataEntry Code="BureauRuleNumber38LPrsnlPropBGI" Name="38.L PrsnlProp BGI" />
+		<meta:MetadataEntry Code="BureauRuleNumberTERIL0985" Name="TER IL 09 85" />
+		<meta:MetadataEntry Code="BureauRuleNumberTotalSpClBICoverage" Name="Total SpCl BI Coverage" />
+		<meta:MetadataEntry Code="BureauRuleNumber38P1PrsnlPropBroad" Name="38.P.1 PrsnlProp Broad" />
+		<meta:MetadataEntry Code="BureauRuleNumber65B3eBldg" Name="65.B.3.e Bldg" />
+		<meta:MetadataEntry Code="BureauRuleNumber27A7Location" Name="27.A.7 Location" />
+		<meta:MetadataEntry Code="BureauRuleNumberGreenUpgrdPrsnlPropBGII" Name="GreenUpgrd PrsnlProp BGII" />
+		<meta:MetadataEntry Code="BureauRuleNumber33DSpCl" Name="33.D SpCl" />
+		<meta:MetadataEntry Code="BureauRuleNumber53BSpClBI" Name="53.B SpCl BI" />
+		<meta:MetadataEntry Code="BureauRuleNumber69B3Occup" Name="69.B.3 Occup" />
+		<meta:MetadataEntry Code="BureauRuleNumberTotalBldgCoverage" Name="Total Bldg Coverage" />
+		<meta:MetadataEntry Code="BureauRuleNumber51NBI" Name="51.N BI" />
+		<meta:MetadataEntry Code="BureauRuleNumber54ESpClBIBroad" Name="54.E SpCl BI Broad" />
+		<meta:MetadataEntry Code="BureauRuleNumber41EBldg" Name="41.E Bldg" />
+		<meta:MetadataEntry Code="BureauRuleNumber38RBldgBroad" Name="38.R Bldg Broad" />
+		<meta:MetadataEntry Code="BureauRuleNumber38YSpClBroad" Name="38.Y SpCl Broad" />
+		<meta:MetadataEntry Code="BureauRuleNumber74A2aSpClBI" Name="74.A.2.a SpCl BI" />
+		<meta:MetadataEntry Code="BureauRuleNumber21APolicy" Name="21.A Policy" />
+		<meta:MetadataEntry Code="BureauRuleNumber82BBldg" Name="82.B Bldg" />
+		<meta:MetadataEntry Code="BureauRuleNumber51HSpClBIEQ" Name="51.H SpCl BI EQ" />
+		<meta:MetadataEntry Code="BureauRuleNumber30C5aUnBldgPropOTGEQ" Name="30.C.5.a Un Bldg Prop OTG EQ" />
+		<meta:MetadataEntry Code="BureauRuleNumber54BBIDtlSp" Name="54.B BI Dtl Sp" />
+		<meta:MetadataEntry Code="BureauRuleNumber51B3bBIBGI" Name="51.B.3.b BI BGI" />
+		<meta:MetadataEntry Code="BureauRuleNumber38APrsnlPropSp" Name="38.A Prsnl Prop Sp" />
+		<meta:MetadataEntry Code="BureauRuleNumber51IBI" Name="51.I BI" />
+		<meta:MetadataEntry Code="BureauRuleNumber38D1cBldgSp" Name="38.D.1.c Bldg Sp" />
+		<meta:MetadataEntry Code="BureauRuleNumber51B6SpClBI" Name="51.B.6 SpCl BI" />
+		<meta:MetadataEntry Code="BureauRuleNumberGreenUpgrdSpCl" Name="GreenUpgrd Sp Cl" />
+		<meta:MetadataEntry Code="BureauRuleNumber38ELocationBGII" Name="38.E Location BGII" />
+		<meta:MetadataEntry Code="BureauRuleNumber38ZPrsnlProp" Name="38.Z PrsnlProp" />
+		<meta:MetadataEntry Code="BureauRuleNumber38YSpCl" Name="38.Y SpCl" />
+		<meta:MetadataEntry Code="BureauRuleNumber74A2bPrsnlProp" Name="74.A.2.b PrsnlProp" />
+		<meta:MetadataEntry Code="BureauRuleNumber30C3bBldg" Name="30.C.3.b Bldg" />
+		<meta:MetadataEntry Code="BureauRuleNumber51B3bBIBGII" Name="51.B.3.b BI BGII" />
+		<meta:MetadataEntry Code="BureauRuleNumber54E3aSpClBIRadius" Name="54.E.3.a SpCl BI Radius" />
+		<meta:MetadataEntry Code="BureauRuleNumber30C3bBldgBGI" Name="30.C.3.b Bldg BGI" />
+		<meta:MetadataEntry Code="BureauRuleNumberTERIL0995" Name="TER IL 09 95" />
+		<meta:MetadataEntry Code="BureauRuleNumber51B3aSpClBIBGII" Name="51.B.3.a SpCl BI BGII" />
+		<meta:MetadataEntry Code="BureauRuleNumber75C2Policy" Name="75.C.2 Policy" />
+		<meta:MetadataEntry Code="BureauRuleNumber29BusnIncomeDtl" Name="29 BusnIncome Dtl" />
+		<meta:MetadataEntry Code="BureauRuleNumber51B3bSpClBIEQ" Name="51.B.3.b SpCl BI EQ" />
+		<meta:MetadataEntry Code="BureauRuleNumberGreenUpgrdSpClSp" Name="GreenUpgrd SpCl Sp" />
+		<meta:MetadataEntry Code="BureauRuleNumber30C5bCP1401Bldg" Name="30.C.5.b - CP1401 - Bldg" />
+		<meta:MetadataEntry Code="BureauRuleNumber74A2aPrsnlProp" Name="74.A.2.a PrsnlProp" />
+		<meta:MetadataEntry Code="BureauRuleNumber30C5aUnBldgPropOTGBroad" Name="30.C.5.a Un BldgProp OTG Broad" />
+		<meta:MetadataEntry Code="BureauRuleNumber41BBldg" Name="41.B Bldg" />
+		<meta:MetadataEntry Code="BureauRuleNumber51HBI" Name="51.H BI" />
+		<meta:MetadataEntry Code="BureauRuleNumber51MSpClBIBGII" Name="51.M SpCl BI BGII" />
+		<meta:MetadataEntry Code="BureauRuleNumber38P1PrsnlPropSp" Name="38.P.1 PrsnlProp Sp" />
+		<meta:MetadataEntry Code="BureauRuleNumber74DBIBGI" Name="74.D BI BGI" />
+		<meta:MetadataEntry Code="BureauRuleNumber27A6Bldg" Name="27.A.6 Bldg" />
+		<meta:MetadataEntry Code="BureauRuleNumberGreenUpgrdSpClBrd" Name="GreenUpgrd SpCl Brd" />
+		<meta:MetadataEntry Code="BureauRuleNumber38P1PrsnlPropBGI" Name="38.P.1 PrsnlProp BGI" />
+		<meta:MetadataEntry Code="BureauRuleNumber50B2BI" Name="50.B.2 BI" />
+		<meta:MetadataEntry Code="BureauRuleNumber51DBI" Name="51.D BI" />
+		<meta:MetadataEntry Code="BureauRuleNumber30C3aBldgDtlBGII" Name="30.C.3.a Bldg Dtl BGII" />
+		<meta:MetadataEntry Code="BureauRuleNumber38CPrsnlPropBroad" Name="38.C PrsnlProp Broad" />
+		<meta:MetadataEntry Code="BureauRuleNumber85Bldg" Name="85 Bldg" />
+		<meta:MetadataEntry Code="BureauRuleNumberTERPostTRIA" Name="TER Post TRIA" />
+		<meta:MetadataEntry Code="BureauRuleNumber65A2BldgBGI" Name="65.A.2 Bldg BGI" />
+		<meta:MetadataEntry Code="BureauRuleNumber30C5bCP1401DetailBldg" Name="30.C.5.b - CP1401 Detail Bldg" />
+		<meta:MetadataEntry Code="BureauRuleNumber31C12PrsnlPropCOLBGII" Name="31.C.12 PrsnlProp COL BGII" />
+		<meta:MetadataEntry Code="BureauRuleNumber51HBIEQ" Name="51.H BI EQ" />
+		<meta:MetadataEntry Code="BureauRuleNumber38F4PrsnlProp" Name="38.F.4 Prsnl Prop" />
+		<meta:MetadataEntry Code="BureauRuleNumber30C5aUnBldgGlassBGI" Name="30.C.5.a Un Bldg Glass BGI" />
+		<meta:MetadataEntry Code="BureauRuleNumber29PrsnlProp" Name="29 PrsnlProp" />
+		<meta:MetadataEntry Code="BureauRuleNumber54EDtl" Name="54.E Dtl" />
+		<meta:MetadataEntry Code="BureauRuleNumber51DSpClBIEQ" Name="51.D SpCl BI EQ" />
+		<meta:MetadataEntry Code="BureauRuleNumber74A2aBldg" Name="74.A.2.a Bldg" />
+		<meta:MetadataEntry Code="BureauRuleNumber39A2SpclClassBusnIncome" Name="39.A.2 SpclClassBusnIncome" />
+		<meta:MetadataEntry Code="BureauRuleNumber54DSpClBIBGII" Name="54.D SpCl BI BGII" />
+		<meta:MetadataEntry Code="BureauRuleNumber24Bldg" Name="24 Bldg" />
+		<meta:MetadataEntry Code="BureauRuleNumber51DSpClBIBGII" Name="51.D SpCl BI BGII" />
+		<meta:MetadataEntry Code="BureauRuleNumberGreenUpgrdBIBGII" Name="GreenUpgrd BI BGII" />
+		<meta:MetadataEntry Code="BureauRuleNumber31C7PrsnlPropEQ" Name="31.C.7 PrsnlProp EQ" />
+		<meta:MetadataEntry Code="BureauRuleNumber30C3aBldgDtlEQ" Name="30.C.3.a Bldg Dtl EQ" />
+		<meta:MetadataEntry Code="BureauRuleNumber38YBldgBGII" Name="38.Y Bldg BGII" />
+		<meta:MetadataEntry Code="BureauRuleNumberGreenUpgrdSpClEQ" Name="GreenUpgrd SpCl EQ" />
+		<meta:MetadataEntry Code="BureauRuleNumber53BSpClBIDtlBroad" Name="53.B SpCl BI Dtl Broad" />
+		<meta:MetadataEntry Code="BureauRuleNumber38F4PrsnlPropSp" Name="38.F.4 Prsnl Prop Sp" />
+		<meta:MetadataEntry Code="BureauRuleNumber65A1BldgSp" Name="65.A.1 Bldg Sp" />
+		<meta:MetadataEntry Code="BureauRuleNumber51B3aBI" Name="51.B.3.a BI" />
+		<meta:MetadataEntry Code="BureauRuleNumber54DSpClBIBGI" Name="54.D SpCl BI BGI" />
+		<meta:MetadataEntry Code="BureauRuleNumber73B1CP1028SpCl" Name="73.B.1 CP1028 SpCl" />
+		<meta:MetadataEntry Code="BureauRuleNumber51ASpClBISp" Name="51.A SpCl BI Sp" />
+		<meta:MetadataEntry Code="BureauRuleNumber51ASpClBIBGII" Name="51.A SpCl BI BGII" />
+		<meta:MetadataEntry Code="BureauRuleNumber51MBISp" Name="51.M BI Sp" />
+		<meta:MetadataEntry Code="BureauRuleNumber74HBldg" Name="74.H Bldg" />
+		<meta:MetadataEntry Code="BureauRuleNumber70SpCL" Name="70 SpCL" />
+		<meta:MetadataEntry Code="BureauRuleNumber54FSpClBIDtlColl" Name="54.F SpCl BI Dtl Coll" />
+		<meta:MetadataEntry Code="BureauRuleNumber24BldgDtl" Name="24 Bldg Dtl" />
+		<meta:MetadataEntry Code="BureauRuleNumber36APrsnlPropBGI" Name="36.A PrsnlProp BGI" />
+		<meta:MetadataEntry Code="BureauRuleNumber38D1aBldgSp" Name="38.D.1.a Bldg Sp" />
+		<meta:MetadataEntry Code="BureauRuleNumber38ELocationBroad" Name="38.E Location Broad" />
+		<meta:MetadataEntry Code="BureauRuleNumber38P1Bldg" Name="38.P.1 Bldg" />
+		<meta:MetadataEntry Code="BureauRuleNumber30C5bCP1402Bldg" Name="30.C.5.b - CP1402 - Bldg" />
+		<meta:MetadataEntry Code="BureauRuleNumber38D1bBldgSp" Name="38.D.1.b Bldg Sp" />
+		<meta:MetadataEntry Code="BureauRuleNumber30C5aScBldgPropOTGBGII" Name="30.C.5.a Sc Bldg Prop OTG BGII" />
+		<meta:MetadataEntry Code="BureauRuleNumberGreenUpgrdPrsnlPropSp" Name="GreenUpgrd PrsnlProp Sp" />
+		<meta:MetadataEntry Code="BureauRuleNumberA2PolicyIL0935" Name="A.2 Policy IL 09 35" />
+		<meta:MetadataEntry Code="BureauRuleNumber30C5aUnBldgPropOTGBGII" Name="30.C.5.a Un Bldg Prop OTG BGII" />
+		<meta:MetadataEntry Code="BureauRuleNumber38SPrsnlPropBGI" Name="38.S PrsnlProp BGI" />
+		<meta:MetadataEntry Code="BureauRuleNumber51C2aBI" Name="51.C.2.a BI" />
+		<meta:MetadataEntry Code="BureauRuleNumber38APrsnlPropBGII" Name="38.A Prsnl Prop BGII" />
+		<meta:MetadataEntry Code="BureauRuleNumber65A4BldgBGII" Name="65.A.4 Bldg BGII" />
+		<meta:MetadataEntry Code="BureauRuleNumberGreenUpgrdSpClBGI" Name="GreenUpgrd SpCl BGI" />
+		<meta:MetadataEntry Code="BureauRuleNumber38FBldgBGI" Name="38.F Bldg BGI" />
+		<meta:MetadataEntry Code="BureauRuleNumber36APrsnlPropSp" Name="36.A PrsnlProp Sp" />
+		<meta:MetadataEntry Code="BureauRuleNumber74A2bBldg" Name="74.A.2.b Bldg" />
+		<meta:MetadataEntry Code="BureauRuleNumberTERIL0998" Name="TER IL 09 98" />
+		<meta:MetadataEntry Code="BureauRuleNumber78D4Bldg" Name="78.D.4 Bldg" />
+		<meta:MetadataEntry Code="BureauRuleNumber38MPrsnlPropEQ" Name="38.M PrsnlProp EQ" />
+		<meta:MetadataEntry Code="BureauRuleNumberTERIL0987" Name="TER IL 09 87" />
+		<meta:MetadataEntry Code="BureauRuleNumber31C8PrsnlPropDtl" Name="31.C.8 PrsnlProp Dtl" />
+		<meta:MetadataEntry Code="BureauRuleNumber30C5aScBldgGlassBGI" Name="30.C.5.a Sc Bldg Glass BGI" />
+		<meta:MetadataEntry Code="BureauRuleNumber38D1cBldgBroad" Name="38.D.1.c Bldg Broad" />
+		<meta:MetadataEntry Code="BureauRuleNumber73B1CP1028BI" Name="73.B.1 CP1028 BI" />
+		<meta:MetadataEntry Code="BureauRuleNumberGreenUpgrdBIBGI" Name="GreenUpgrd BI BGI" />
+		<meta:MetadataEntry Code="BureauRuleNumber65A2BldgSp" Name="65.A.2 Bldg Sp" />
+		<meta:MetadataEntry Code="BureauRuleNumber66Occup" Name="66 Occup" />
+		<meta:MetadataEntry Code="BureauRuleNumber35B2PolicyBGI" Name="35.B.2 Policy BGI" />
+		<meta:MetadataEntry Code="BureauRuleNumber29SpecialClassDtlEQCov" Name="29 SpecialClass Dtl EQ Cov" />
+		<meta:MetadataEntry Code="BureauRuleNumber72Bldg" Name="72 Bldg" />
+		<meta:MetadataEntry Code="BureauRuleNumber29PrsnlPropDtl" Name="29 PrsnlProp Dtl" />
+		<meta:MetadataEntry Code="BureauRuleNumber38GSpClEQ" Name="38.G SpCl EQ" />
+		<meta:MetadataEntry Code="BureauRuleNumber76C4Policy" Name="76.C.4 Policy" />
+		<meta:MetadataEntry Code="BureauRuleNumber14A414B38AA" Name="14.A.4; 14.B; 38.AA" />
+		<meta:MetadataEntry Code="BureauRuleNumber71B1Bldg" Name="71.B.1 Bldg" />
+		<meta:MetadataEntry Code="BureauRuleNumber38ABldgCOLBGI" Name="38.A Bldg COL BGI" />
+		<meta:MetadataEntry Code="BureauRuleNumber24SpCl" Name="24 SpCl" />
+		<meta:MetadataEntry Code="BureauRuleNumber27APolicy" Name="27.A Policy" />
+		<meta:MetadataEntry Code="BureauRuleNumber51DSpClBISp" Name="51.D SpCl BI Sp" />
+		<meta:MetadataEntry Code="BureauRuleNumber30A1CondoOccup" Name="30.A.1 Condo Occup" />
+		<meta:MetadataEntry Code="BureauRuleNumber41ABldgBroad" Name="41.A Bldg Broad" />
+		<meta:MetadataEntry Code="BureauRuleNumber38CPrsnlPropBGII" Name="38.C PrsnlProp BGII" />
+		<meta:MetadataEntry Code="BureauRuleNumber41ABldg" Name="41.A Bldg" />
+		<meta:MetadataEntry Code="BureauRuleNumber38OBldgBGII" Name="38.O Bldg BGII" />
+		<meta:MetadataEntry Code="BureauRuleNumber30C5aUnBldgPropOTGSp" Name="30.C.5.a Un Bldg Prop OTG Sp" />
+		<meta:MetadataEntry Code="BureauRuleNumber65B3bBldg" Name="65.B.3.b Bldg" />
+		<meta:MetadataEntry Code="BureauRuleNumber51ABusnIncBroad" Name="51.A Busn Inc Broad" />
+		<meta:MetadataEntry Code="BureauRuleNumber38RBldg" Name="38.R Bldg" />
+		<meta:MetadataEntry Code="BureauRuleNumber38Q2dPrsnlProp" Name="38.Q.2.d PrsnlProp" />
+		<meta:MetadataEntry Code="BureauRuleNumber51N3aBI" Name="51.N.3.a BI" />
+		<meta:MetadataEntry Code="BureauRuleNumber74A2bSpClBI" Name="74.A.2.b SpCl BI" />
+		<meta:MetadataEntry Code="BureauRuleNumberTotalPrsnlPropCoverage" Name="Total PrsnlProp Coverage" />
+		<meta:MetadataEntry Code="BureauRuleNumber80Policy" Name="80 Policy" />
+		<meta:MetadataEntry Code="BureauRuleNumber71B1SpClBI" Name="71.B.1 SpCl BI" />
+		<meta:MetadataEntry Code="BureauRuleNumber38UBldg" Name="38.U Bldg" />
+		<meta:MetadataEntry Code="BureauRuleNumber54BSpClBIDtlSp" Name="54.B SpCl BI Dtl Sp" />
+		<meta:MetadataEntry Code="BureauRuleNumber14Changes" Name="14 Changes" />
+		<meta:MetadataEntry Code="BureauRuleNumber65A1BldgBGII" Name="65.A.1 Bldg BGII" />
+		<meta:MetadataEntry Code="BureauRuleNumber35APrsnlProp" Name="35.A PrsnlProp" />
+		<meta:MetadataEntry Code="BureauRuleNumber74G1aBldg" Name="74.G.1.a Bldg" />
+		<meta:MetadataEntry Code="BureauRuleNumber74CBI" Name="74.C BI" />
+		<meta:MetadataEntry Code="BureauRuleNumber38LPrsnlPropBGII" Name="38.L PrsnlProp BGII" />
+		<meta:MetadataEntry Code="BureauRuleNumber30C2BldgDtl" Name="30.C.2 Bldg Dtl" />
+		<meta:MetadataEntry Code="BureauRuleNumber51KBI" Name="51.K BI" />
+		<meta:MetadataEntry Code="BureauRuleNumber38Y5" Name="38.Y.5" />
+		<meta:MetadataEntry Code="BureauRuleNumberCF70" Name="CF-70" />
+		<meta:MetadataEntry Code="BureauRuleNumber66D1" Name="66.D.1" />
+		<meta:MetadataEntry Code="BureauRuleNumber66D1b" Name="66.D.1.b" />
+		<meta:MetadataEntry Code="BureauRuleNumber35F2d3" Name="35.F.2.d.(3)" />
+		<meta:MetadataEntry Code="BureauRuleNumberRule53A3c2" Name="Rule 53.A.3.c.(2)" />
+		<meta:MetadataEntry Code="BureauRuleNumber53A3c1" Name="53.A.3.c.(1)" />
+		<meta:MetadataEntry Code="BureauRuleNumber38A4b" Name="38.A.4.b" />
+		<meta:MetadataEntry Code="BureauRuleNumber51A4" Name="51.A.4" />
+		<meta:MetadataEntry Code="BureauRuleNumberCF78" Name="CF-78" />
+		<meta:MetadataEntry Code="BureauRuleNumberCF883" Name="CF-88.3" />
+		<meta:MetadataEntry Code="BureauRuleNumber78D3" Name="78.D.3" />
+		<meta:MetadataEntry Code="BureauRuleNumber76C7d" Name="76.C.7.d" />
+		<meta:MetadataEntry Code="BureauRuleNumberCF30" Name="CF-30" />
+		<meta:MetadataEntry Code="BureauRuleNumber50D2" Name="50.D.2" />
+		<meta:MetadataEntry Code="BureauRuleNumberCF71" Name="CF-71" />
+		<meta:MetadataEntry Code="BureauRuleNumber70E2a4a" Name="70.E.2.a.(4)(a)" />
+		<meta:MetadataEntry Code="BureauRuleNumber70E1e1b" Name="70.E.1.e.(1)(b)" />
+		<meta:MetadataEntry Code="BureauRuleNumber70E2d1" Name="70.E.2.d.(1)" />
+		<meta:MetadataEntry Code="BureauRuleNumber70E2d2" Name="70.E.2.d.(2)" />
+		<meta:MetadataEntry Code="BureauRuleNumber70E2e" Name="70.E.2.e" />
+		<meta:MetadataEntry Code="BureauRuleNumber70E2a4b" Name="70.E.2.a.(4)(b)" />
+		<meta:MetadataEntry Code="BureauRuleNumber84E1b" Name="84.E.1.b" />
+		<meta:MetadataEntry Code="BureauRuleNumber70E1f1" Name="70.E.1.f.(1)" />
+		<meta:MetadataEntry Code="BureauRuleNumber70E1f2" Name="70.E.1.f.(2)" />
+		<meta:MetadataEntry Code="BureauRuleNumber85" Name="85" />
+		<meta:MetadataEntry Code="BureauRuleNumber85L323" Name="85.L.3.(23)" />
+		<meta:MetadataEntry Code="BureauRuleNumber85L3" Name="85.L.3" />
+		<meta:MetadataEntry Code="BureauRuleNumberA3E1b" Name="A3.E.1.b" />
+		<meta:MetadataEntry Code="BureauRuleNumberBCEGE1a" Name="BCEG E.1.a" />
+		<meta:MetadataEntry Code="BureauRuleNumberCF83" Name="CF-83" />
+		<meta:MetadataEntry Code="BureauRuleNumber73D8" Name="73.D.8" />
+		<meta:MetadataEntry Code="BureauRuleNumberCF63" Name="CF-63" />
+		<meta:MetadataEntry Code="BureauRuleNumber41D4a41D4b" Name="41.D.4.a; 41.D.4.b" />
+		<meta:MetadataEntry Code="BureauRuleNumber73D4b" Name="73.D.4.b" />
+		<meta:MetadataEntry Code="BureauRuleNumber50E2c1" Name="50.E.2.c.(1)" />
+		<meta:MetadataEntry Code="BureauRuleNumber41A4a2" Name="41.A.4.a.(2)" />
+		<meta:MetadataEntry Code="BureauRuleNumber41A4a141A4b1" Name="41.A.4.a.(1); 41.A.4.b.(1)" />
+		<meta:MetadataEntry Code="BureauRuleNumber41B4c" Name="41.B.4.c" />
+		<meta:MetadataEntry Code="BureauRuleNumberCF69" Name="CF-69" />
+		<meta:MetadataEntry Code="BureauRuleNumber38C2" Name="38.C.2" />
+		<meta:MetadataEntry Code="BureauRuleNumber38C3" Name="38.C.3" />
+		<meta:MetadataEntry Code="BureauRuleNumber71E271E371E4" Name="71.E.2; 71.E.3; 71.E.4" />
+		<meta:MetadataEntry Code="BureauRuleNumber71E2a31" Name="71.E.2.a.(3)#1" />
+		<meta:MetadataEntry Code="BureauRuleNumber71E2a32" Name="71.E.2.a.(3)#2" />
+		<meta:MetadataEntry Code="BureauRuleNumber40D1b2e" Name="40.D.1.b.(2)(e)" />
+		<meta:MetadataEntry Code="BureauRuleNumber40" Name="40" />
+		<meta:MetadataEntry Code="BureauRuleNumber41E4" Name="41.E.4." />
+		<meta:MetadataEntry Code="BureauRuleNumber41E4" Name="41.E.4" />
+		<meta:MetadataEntry Code="BureauRuleNumber30C5c2c" Name="30.C.5.c.(2)(c)" />
+		<meta:MetadataEntry Code="BureauRuleNumber51K4a" Name="51.K.4.a" />
+		<meta:MetadataEntry Code="BureauRuleNumber51L4b" Name="51.L.4.b." />
+		<meta:MetadataEntry Code="BureauRuleNumber54D3" Name="54.D.3" />
+		<meta:MetadataEntry Code="BureauRuleNumber51K4b" Name="51.K.4.b" />
+		<meta:MetadataEntry Code="BureauRuleNumber50E3b150E3b2" Name="50.E.3.b.(1); 50.E.3.b.(2)" />
+		<meta:MetadataEntry Code="BureauRuleNumber54E2c" Name="54.E.2.c" />
+		<meta:MetadataEntry Code="BureauRuleNumber70E1e1a" Name="70.E.1.e.(1)(a)" />
+		<meta:MetadataEntry Code="BureauRuleNumber34B5a2f34B5b2" Name="34.B.5.a.(2)(f); 34.B.5.b.(2)" />
+		<meta:MetadataEntry Code="BureauRuleNumberCF79" Name="CF-79" />
+		<meta:MetadataEntry Code="BureauRuleNumber76C9c" Name="76.C.9.c" />
+		<meta:MetadataEntry Code="BureauRuleNumber15B" Name="15.B" />
+		<meta:MetadataEntry Code="BureauRuleNumberCF901" Name="CF-90.1" />
+		<meta:MetadataEntry Code="BureauRuleNumber38AA3a2" Name="38.AA.3.a.(2)" />
+		<meta:MetadataEntry Code="BureauRuleNumber38AA3a1" Name="38.AA.3.a.(1)" />
+		<meta:MetadataEntry Code="BureauRuleNumber38AA3b" Name="38.AA.3.b" />
+		<meta:MetadataEntry Code="BureauRuleNumber38F3c" Name="38.F.3.c" />
+		<meta:MetadataEntry Code="BureauRuleNumber38F4" Name="38.F.4" />
+		<meta:MetadataEntry Code="BureauRuleNumber33C" Name="33.C" />
+		<meta:MetadataEntry Code="BureauRuleNumber33D" Name="33.D" />
+		<meta:MetadataEntry Code="BureauRuleNumber81E4" Name="81.E.4" />
+		<meta:MetadataEntry Code="BureauRuleNumberUtility" Name="Utility" />
+		<meta:MetadataEntry Code="BureauRuleNumber38Z4" Name="38.Z.4" />
+		<meta:MetadataEntry Code="BureauRuleNumberCF885" Name="CF-88.5" />
+		<meta:MetadataEntry Code="BureauRuleNumberEQ21" Name="EQ-21" />
+		<meta:MetadataEntry Code="BureauRuleNumberEQ22" Name="EQ-22" />
+		<meta:MetadataEntry Code="BureauRuleNumberEQ241" Name="EQ-24.1" />
+		<meta:MetadataEntry Code="BureauRuleNumberEQ23" Name="EQ-23" />
+		<meta:MetadataEntry Code="BureauRuleNumberEQ24" Name="EQ-24" />
+		<meta:MetadataEntry Code="BureauRuleNumber73D3" Name="73.D.3" />
+		<meta:MetadataEntry Code="BureauRuleNumberEQ25" Name="EQ-25" />
+		<meta:MetadataEntry Code="BureauRuleNumber73E1a" Name="73.E.1.a." />
+		<meta:MetadataEntry Code="BureauRuleNumber75C6c3" Name="75.C.6.c.(3)" />
+		<meta:MetadataEntry Code="BureauRuleNumber73" Name="73" />
+		<meta:MetadataEntry Code="BureauRuleNumber73E1a" Name="73.E.1.a" />
+		<meta:MetadataEntry Code="BureauRuleNumber73D2d" Name="73.D.2.d" />
+		<meta:MetadataEntry Code="BureauRuleNumber73E1a3" Name="73.E.1.a.(3)" />
+		<meta:MetadataEntry Code="BureauRuleNumber73D7" Name="73.D.7" />
+		<meta:MetadataEntry Code="BureauRuleNumber74F4c1a" Name="74.F.4.c.(1)(a)" />
+		<meta:MetadataEntry Code="BureauRuleNumber74F5d" Name="74.F.5.d" />
+		<meta:MetadataEntry Code="BureauRuleNumber74F4c1b" Name="74.F.4.c.(1)(b)" />
+		<meta:MetadataEntry Code="BureauRuleNumber75" Name="75" />
+		<meta:MetadataEntry Code="BureauRuleNumber75C6a5" Name="75.C.6.a.(5)" />
+		<meta:MetadataEntry Code="BureauRuleNumber75C6c2" Name="75.C.6.c.(2)" />
+		<meta:MetadataEntry Code="BureauRuleNumber78D1b4LC" Name="78.D.1.b.#4(LC)" />
+		<meta:MetadataEntry Code="BureauRuleNumber78D2aLC" Name="78.D.2.a.(LC)" />
+		<meta:MetadataEntry Code="BureauRuleNumber53A3b" Name="53.A.3.b" />
+		<meta:MetadataEntry Code="BureauRuleNumber51D4" Name="51.D.4" />
+		<meta:MetadataEntry Code="BureauRuleNumber52D2" Name="52.D.2" />
+		<meta:MetadataEntry Code="BureauRuleNumber38X3" Name="38.X.3" />
+		<meta:MetadataEntry Code="BureauRuleNumber85G9b" Name="85.G.9.b" />
+		<meta:MetadataEntry Code="BureauRuleNumberCF862" Name="CF-86.2" />
+		<meta:MetadataEntry Code="BureauRuleNumberCF861" Name="CF-86.1" />
+		<meta:MetadataEntry Code="BureauRuleNumber76C7a1" Name="76.C.7.a.(1)" />
+		<meta:MetadataEntry Code="BureauRuleNumber51N4b1" Name="51.N.4.b.(1)" />
+		<meta:MetadataEntry Code="BureauRuleNumber51N4a1" Name="51.N.4.a.(1)" />
+		<meta:MetadataEntry Code="BureauRuleNumber38R538S4" Name="38.R.5; 38.S.4" />
+		<meta:MetadataEntry Code="BureauRuleNumberAdditionalRuleFungusB2a" Name="Additional Rule Fungus.B.2.a" />
+		<meta:MetadataEntry Code="BureauRuleNumberAdditionalRuleFungusB2c" Name="Additional Rule Fungus.B.2.c" />
+		<meta:MetadataEntry Code="BureauRuleNumberAdditionalRuleFungusB2b" Name="Additional Rule Fungus.B.2.b" />
+		<meta:MetadataEntry Code="BureauRuleNumberCF86" Name="CF-86" />
+		<meta:MetadataEntry Code="BureauRuleNumberGreenUpgrdC2a" Name="GreenUpgrd.C.2.a" />
+		<meta:MetadataEntry Code="BureauRuleNumberCF732" Name="CF-73.2" />
+		<meta:MetadataEntry Code="BureauRuleNumberCF31" Name="CF-31" />
+		<meta:MetadataEntry Code="BureauRuleNumber38G4" Name="38.G.4" />
+		<meta:MetadataEntry Code="BureauRuleNumberIRPM3" Name="IRPM 3" />
+		<meta:MetadataEntry Code="BureauRuleNumber65D2b2" Name="65.D.2.b.(2)" />
+		<meta:MetadataEntry Code="BureauRuleNumber71E4b2" Name="71.E.4.b.(2)" />
+		<meta:MetadataEntry Code="BureauRuleNumber66E12" Name="66.E.1 &amp; 2" />
+		<meta:MetadataEntry Code="BureauRuleNumber28C" Name="28.C" />
+		<meta:MetadataEntry Code="BureauRuleNumber38H4" Name="38.H.4" />
+		<meta:MetadataEntry Code="BureauRuleNumber38H4a" Name="38.H.4.a" />
+		<meta:MetadataEntry Code="BureauRuleNumber38H4b" Name="38.H.4.b" />
+		<meta:MetadataEntry Code="BureauRuleNumber1D3" Name="1.D.3" />
+		<meta:MetadataEntry Code="BureauRuleNumberCF90" Name="CF-90" />
+		<meta:MetadataEntry Code="BureauRuleNumber38I4b2" Name="38.I.4.b.(2)" />
+		<meta:MetadataEntry Code="BureauRuleNumber34B6d" Name="34.B.6.d" />
+		<meta:MetadataEntry Code="BureauRuleNumber76C7a2" Name="76.C.7.a.(2)" />
+		<meta:MetadataEntry Code="BureauRuleNumber51E4" Name="51.E.4" />
+		<meta:MetadataEntry Code="BureauRuleNumber8B" Name="8.B" />
+		<meta:MetadataEntry Code="BureauRuleNumber51G4" Name="51.G.4" />
+		<meta:MetadataEntry Code="BureauRuleNumber38J5" Name="38.J.5" />
+		<meta:MetadataEntry Code="BureauRuleNumberCF88" Name="CF-88" />
+		<meta:MetadataEntry Code="BureauRuleNumber74B3" Name="74.B.3" />
+		<meta:MetadataEntry Code="BureauRuleNumber51F4" Name="51.F.4" />
+		<meta:MetadataEntry Code="BureauRuleNumber67D1" Name="67.D.1" />
+		<meta:MetadataEntry Code="BureauRuleNumber83D1a" Name="83.D.1.a" />
+		<meta:MetadataEntry Code="BureauRuleNumber83D1b" Name="83.D.1.b" />
+		<meta:MetadataEntry Code="BureauRuleNumber51B5a2ac" Name="51.B.5.a.(2)(a) &amp; (c)" />
+		<meta:MetadataEntry Code="BureauRuleNumber51B5a2ab" Name="51.B.5.a.(2)(a) &amp; (b)" />
+		<meta:MetadataEntry Code="BureauRuleNumber36G2b2" Name="36.G.2.b.(2)" />
+		<meta:MetadataEntry Code="BureauRuleNumberCF863" Name="CF-86.3" />
+		<meta:MetadataEntry Code="BureauRuleNumber78D1a" Name="78.D.1.a" />
+		<meta:MetadataEntry Code="BureauRuleNumber72E2c1" Name="72.E.2.c.(1)" />
+		<meta:MetadataEntry Code="BureauRuleNumberCF80" Name="CF-80" />
+		<meta:MetadataEntry Code="BureauRuleNumber54F6c2" Name="54.F.6.c.(2)" />
+		<meta:MetadataEntry Code="BureauRuleNumber54F6b" Name="54.F.6.b" />
+		<meta:MetadataEntry Code="BureauRuleNumber54F6c1" Name="54.F.6.c.(1)" />
+		<meta:MetadataEntry Code="BureauRuleNumber54F6d" Name="54.F.6.d" />
+		<meta:MetadataEntry Code="BureauRuleNumber54F6aLC" Name="54.F.6.a.(LC)" />
+		<meta:MetadataEntry Code="BureauRuleNumber38D4b" Name="38.D.4.b" />
+		<meta:MetadataEntry Code="BureauRuleNumber38D4a1" Name="38.D.4.a.(1)" />
+		<meta:MetadataEntry Code="BureauRuleNumberCF881" Name="CF-88.1" />
+		<meta:MetadataEntry Code="BureauRuleNumber51I4b" Name="51.I.4.b" />
+		<meta:MetadataEntry Code="BureauRuleNumber54A3b" Name="54.A.3.b" />
+		<meta:MetadataEntry Code="BureauRuleNumber54A3a" Name="54.A.3.a" />
+		<meta:MetadataEntry Code="BureauRuleNumber85L323" Name="85.L.3(23)" />
+		<meta:MetadataEntry Code="BureauRuleNumber51H4b" Name="51.H.4.b" />
+		<meta:MetadataEntry Code="BureauRuleNumber73D4d" Name="73.D.4.d" />
+		<meta:MetadataEntry Code="BureauRuleNumberCF53" Name="CF-53" />
+		<meta:MetadataEntry Code="BureauRuleNumberGreenUpgrdD3" Name="GreenUpgrd.D.3" />
+		<meta:MetadataEntry Code="BureauRuleNumber74C5" Name="74.C.5" />
+		<meta:MetadataEntry Code="BureauRuleNumber38E5" Name="38.E.5" />
+		<meta:MetadataEntry Code="BureauRuleNumber38E4" Name="38.E.4" />
+		<meta:MetadataEntry Code="BureauRuleNumber38D4a438R5b54A3c" Name="38.D.4.a(4) - 38.R.5.b - 54.A.3.c" />
+		<meta:MetadataEntry Code="BureauRuleNumber76C81" Name="76.C.8.#1" />
+		<meta:MetadataEntry Code="BureauRuleNumber76C82" Name="76.C.8.#2" />
+		<meta:MetadataEntry Code="BureauRuleNumber76C83" Name="76.C.8.#3" />
+		<meta:MetadataEntry Code="BureauRuleNumber76C84" Name="76.C.8.#4" />
+		<meta:MetadataEntry Code="BureauRuleNumber76C85" Name="76.C.8.#5" />
+		<meta:MetadataEntry Code="BureauRuleNumber76C86" Name="76.C.8.#6" />
+		<meta:MetadataEntry Code="BureauRuleNumber76C87" Name="76.C.8.#7" />
+		<meta:MetadataEntry Code="BureauRuleNumber85M1b" Name="85.M.1.b" />
+		<meta:MetadataEntry Code="BureauRuleNumberCF74" Name="CF-74" />
+		<meta:MetadataEntry Code="BureauRuleNumber38I4b1" Name="38.I.4.b.(1)" />
+		<meta:MetadataEntry Code="BureauRuleNumber72E2c2" Name="72.E.2.c.(2)" />
+		<meta:MetadataEntry Code="BureauRuleNumberGreenUpgrdD1c" Name="GreenUpgrd.D.1.c" />
+		<meta:MetadataEntry Code="BureauRuleNumberLOCATION" Name="LOCATION" />
+		<meta:MetadataEntry Code="BureauRuleNumber38Y5a" Name="38.Y.5.a" />
+		<meta:MetadataEntry Code="BureauRuleNumberGreenUpgrdD2" Name="GreenUpgrd.D.2" />
+		<meta:MetadataEntry Code="BureauRuleNumber72E2d3b" Name="72.E.2.d.(3)(b)" />
+		<meta:MetadataEntry Code="BureauRuleNumber51B5c" Name="51.B.5.c" />
+		<meta:MetadataEntry Code="BureauRuleNumber72E2b1" Name="72.E.2.b.(1)" />
+		<meta:MetadataEntry Code="BureauRuleNumber72E2b2" Name="72.E.2.b.(2)" />
+		<meta:MetadataEntry Code="BureauRuleNumber72E3a" Name="72.E.3.a" />
+		<meta:MetadataEntry Code="BureauRuleNumber72E3b" Name="72.E.3.(b)" />
+		<meta:MetadataEntry Code="BureauRuleNumber72E4b1" Name="72.E.4.b.(1)" />
+		<meta:MetadataEntry Code="BureauRuleNumber72E2d172E2d2" Name="72.E.2.d.(1) &amp; 72.E.2.d.(2)" />
+		<meta:MetadataEntry Code="BureauRuleNumber72E2d3c" Name="72.E.2.d.(3)(c)" />
+		<meta:MetadataEntry Code="BureauRuleNumber72E4a1" Name="72.E.4.a.(1)" />
+		<meta:MetadataEntry Code="BureauRuleNumber72E2c3" Name="72.E.2.c.(3)" />
+		<meta:MetadataEntry Code="BureauRuleNumber31C12c1" Name="31.C.12.c.(1)" />
+		<meta:MetadataEntry Code="BureauRuleNumber38T4a" Name="38.T.4.a" />
+		<meta:MetadataEntry Code="BureauRuleNumber38T4b" Name="38.T.4.b" />
+		<meta:MetadataEntry Code="BureauRuleNumber38T4b2" Name="38.T.4.b.(2)" />
+		<meta:MetadataEntry Code="BureauRuleNumber74F" Name="74.F" />
+		<meta:MetadataEntry Code="BureauRuleNumber74A3c" Name="74.A.3.c" />
+		<meta:MetadataEntry Code="BureauRuleNumber74A3c1" Name="74.A.3.c.(1)" />
+		<meta:MetadataEntry Code="BureauRuleNumber70G3b" Name="70.G.3.b" />
+		<meta:MetadataEntry Code="BureauRuleNumberCF24" Name="CF-24" />
+		<meta:MetadataEntry Code="BureauRuleNumberTERDIVVCFRU" Name="TER DIV. V - CF (RU)" />
+		<meta:MetadataEntry Code="BureauRuleNumber69D2" Name="69.D.2" />
+		<meta:MetadataEntry Code="BureauRuleNumber69D3" Name="69.D.3" />
+		<meta:MetadataEntry Code="BureauRuleNumber73E1b" Name="73.E.1.b" />
+		<meta:MetadataEntry Code="BureauRuleNumberCF4" Name="CF-4" />
+		<meta:MetadataEntry Code="BureauRuleNumberLCRule85SubStandardConditionCharges" Name="LC_Rule 85 Sub-Standard Condition Charges" />
+		<meta:MetadataEntry Code="BureauRuleNumberAdditionalRuleSurcharge" Name="Additional Rule Surcharge" />
+		<meta:MetadataEntry Code="BureauRuleNumberTERB2" Name="TER B.2" />
+		<meta:MetadataEntry Code="BureauRuleNumberTERC2" Name="TER C.2" />
+		<meta:MetadataEntry Code="BureauRuleNumberTERC2b" Name="TER C.2.b" />
+		<meta:MetadataEntry Code="BureauRuleNumberTERB2a" Name="TER B.2.a" />
+		<meta:MetadataEntry Code="BureauRuleNumber72E2a1" Name="72.E.2.a.(1)" />
+		<meta:MetadataEntry Code="BureauRuleNumber74H4" Name="74.H.4" />
+		<meta:MetadataEntry Code="BureauRuleNumber68F1" Name="68.F.1" />
+		<meta:MetadataEntry Code="BureauRuleNumberCF89" Name="CF-89" />
+		<meta:MetadataEntry Code="BureauRuleNumber51K4a" Name="51.K.4.a." />
+		<meta:MetadataEntry Code="BureauRuleNumberCF26" Name="CF-26" />
+		<meta:MetadataEntry Code="BureauRuleNumberCF40" Name="CF-40" />
+		<meta:MetadataEntry Code="BureauRuleNumber29E1a" Name="29.E.1.a" />
+		<meta:MetadataEntry Code="BureauRuleNumberCF884" Name="CF-88.4" />
+		<meta:MetadataEntry Code="BureauRuleNumberCF886" Name="CF-88.6" />
+		<meta:MetadataEntry Code="BureauRuleNumber29E1d" Name="29.E.1.d" />
+		<meta:MetadataEntry Code="BureauRuleNumber29E1b" Name="29.E.1.b" />
+		<meta:MetadataEntry Code="BureauRuleNumberCF751" Name="CF-75.1" />
+		<meta:MetadataEntry Code="BureauRuleNumberCF753" Name="CF-75.3" />
+		<meta:MetadataEntry Code="BureauRuleNumberCF691" Name="CF-69.1" />
+		<meta:MetadataEntry Code="BureauRuleNumber29E" Name="29.E" />
+		<meta:MetadataEntry Code="BureauRuleNumberCF752" Name="CF-75.2" />
+		<meta:MetadataEntry Code="BureauRuleNumber54B4e" Name="54.B.4.e" />
+		<meta:MetadataEntry Code="BureauRuleNumber54B" Name="54.B." />
+		<meta:MetadataEntry Code="BureauRuleNumber38L4b" Name="38.L.4.b" />
+		<meta:MetadataEntry Code="BureauRuleNumber38L4a" Name="38.L.4.a" />
+		<meta:MetadataEntry Code="BureauRuleNumber54B4c" Name="54.B.4.c" />
+		<meta:MetadataEntry Code="BureauRuleNumber54B4d" Name="54.B.4.d" />
+		<meta:MetadataEntry Code="BureauRuleNumber54B4b" Name="54.B.4.b" />
+		<meta:MetadataEntry Code="BureauRuleNumber38P4c1a" Name="38.P.4.c.(1)(a)" />
+		<meta:MetadataEntry Code="BureauRuleNumber38P4c2b" Name="38.P.4.c.(2)(b)" />
+		<meta:MetadataEntry Code="BureauRuleNumber38P4c1b38P1d3ai" Name="38.P.4.c.(1)(b) &amp; 38.P.1.d.(3)(a)(i)" />
+		<meta:MetadataEntry Code="BureauRuleNumber38P1d3aiii" Name="38.P.1.d.(3)(a)(iii)" />
+		<meta:MetadataEntry Code="BureauRuleNumber85G5" Name="85.G.5" />
+		<meta:MetadataEntry Code="BureauRuleNumber36G2b4b" Name="36.G.2.b.(4)(b)" />
+		<meta:MetadataEntry Code="BureauRuleNumber36G1a" Name="36.G.1.a" />
+		<meta:MetadataEntry Code="BureauRuleNumber74A3b" Name="74.A.3.b" />
+		<meta:MetadataEntry Code="BureauRuleNumber38P1d3ai" Name="38.P.1.d.(3)(a)(i)" />
+		<meta:MetadataEntry Code="BureauRuleNumber38O3b" Name="38.O.3.b" />
+		<meta:MetadataEntry Code="BureauRuleNumber72E2c4" Name="72.E.2.c.(4)" />
+		<meta:MetadataEntry Code="BureauRuleNumber74G4" Name="74.G.4" />
+		<meta:MetadataEntry Code="BureauRuleNumber82D" Name="82.D" />
+		<meta:MetadataEntry Code="BureauRuleNumber743a" Name="74.3.a" />
+		<meta:MetadataEntry Code="BureauRuleNumberCF731" Name="CF-73.1" />
+		<meta:MetadataEntry Code="BureauRuleNumber30C2c" Name="30.C.2.c" />
+		<meta:MetadataEntry Code="BureauRuleNumber31C3" Name="31.C.3" />
+		<meta:MetadataEntry Code="BureauRuleNumber30C2c31C3b" Name="30.C.2.c; 31.C.3.b" />
+		<meta:MetadataEntry Code="BureauRuleNumber38Y4b" Name="38.Y.4.b" />
+		<meta:MetadataEntry Code="BureauRuleNumber38A3a238A269A4" Name="38.A.3.a.(2); 38.A.2; 69.A.4" />
+		<meta:MetadataEntry Code="BureauRuleNumber38A3c38A269A4" Name="38.A.3.c; 38.A.2; 69.A.4" />
+		<meta:MetadataEntry Code="BureauRuleNumber51A2" Name="51.A.2" />
+		<meta:MetadataEntry Code="BureauRuleNumber69A476C3" Name="69.A.4; 76.C.3" />
+		<meta:MetadataEntry Code="BureauRuleNumber37B" Name="37.B" />
+		<meta:MetadataEntry Code="BureauRuleNumberTerritory" Name="Territory" />
+		<meta:MetadataEntry Code="BureauRuleNumber54D2" Name="54.D.2" />
+		<meta:MetadataEntry Code="BureauRuleNumber54D" Name="54.D" />
+		<meta:MetadataEntry Code="BureauRuleNumber34B" Name="34.B" />
+		<meta:MetadataEntry Code="BureauRuleNumber34B169A" Name="34.B.1; 69.A" />
+		<meta:MetadataEntry Code="BureauRuleNumberBCEGA1" Name="BCEG A.1" />
+		<meta:MetadataEntry Code="BureauRuleNumberBCEGB1BCEGC1BCEGD" Name="BCEG B.1; BCEG C.1; BCEG D" />
+		<meta:MetadataEntry Code="BureauRuleNumber51E3b52C453B3b" Name="51.E.3.b; 52.C.4; 53.B.3.b" />
+		<meta:MetadataEntry Code="BureauRuleNumber41D4" Name="41.D.4" />
+		<meta:MetadataEntry Code="BureauRuleNumber50D5d1" Name="50.D.5.d.(1)" />
+		<meta:MetadataEntry Code="BureauRuleNumber70C20B41A441B4" Name="70.C.; 20.B; 41.A.4; 41.B.4" />
+		<meta:MetadataEntry Code="BureauRuleNumberCP1106" Name="CP1106" />
+		<meta:MetadataEntry Code="BureauRuleNumber81E433C" Name="81.E.4; 33.C" />
+		<meta:MetadataEntry Code="BureauRuleNumber72E2c5" Name="72.E.2.c.(5)" />
+		<meta:MetadataEntry Code="BureauRuleNumber69C34A70D71A72A" Name="69.C; 34.A; 70.D; 71.A;72.A;" />
+		<meta:MetadataEntry Code="BureauRuleNumber52C4" Name="52.C.4" />
+		<meta:MetadataEntry Code="BureauRuleNumber69C70D71A72A" Name="69.C; 70.D; 71.A; 72.A" />
+		<meta:MetadataEntry Code="BureauRuleNumber69C34A70D71A72A" Name="69.C; 34.A; 70.D; 71.A; 72.A" />
+		<meta:MetadataEntry Code="BureauRuleNumber70D71A72A" Name="70.D; 71.A; 72.A" />
+		<meta:MetadataEntry Code="BureauRuleNumber36G" Name="36.G" />
+		<meta:MetadataEntry Code="BureauRuleNumber34B4" Name="34.B.4" />
+		<meta:MetadataEntry Code="BureauRuleNumberLocation" Name="Location" />
+		<meta:MetadataEntry Code="BureauRuleNumberClassificationTable" Name="Classification Table" />
+		<meta:MetadataEntry Code="BureauRuleNumber73D651M3" Name="73.D.6; 51.M.3" />
+		<meta:MetadataEntry Code="BureauRuleNumberCP1615" Name="CP1615" />
+		<meta:MetadataEntry Code="BureauRuleNumber35E1" Name="35.E.1" />
+		<meta:MetadataEntry Code="BureauRuleNumber34B338N3a38R4b71D172D1" Name="34.B.3; 38.N.3.a; 38.R.4.b; 71.D.1; 72.D.1" />
+		<meta:MetadataEntry Code="BureauRuleNumber50E3b1" Name="50.E.3.b.#1" />
+		<meta:MetadataEntry Code="BureauRuleNumber76C4" Name="76.C.4" />
+		<meta:MetadataEntry Code="BureauRuleNumber76C3" Name="76.C.3" />
+		<meta:MetadataEntry Code="BureauRuleNumber34B3" Name="34.B.3" />
+		<meta:MetadataEntry Code="BureauRuleNumber70D271D172D2" Name="70.D.2; 71.D.1; 72.D.2" />
+		<meta:MetadataEntry Code="BureauRuleNumber34B338N3a38S3b71D172D1" Name="34.B.3; 38.N.3.a; 38.S.3.b; 71.D.1; 72.D.1" />
+		<meta:MetadataEntry Code="BureauRuleNumber34B338N3d38R4b71D172D1" Name="34.B.3; 38.N.3.d; 38.R.4.b; 71.D.1; 72.D.1" />
+		<meta:MetadataEntry Code="BureauRuleNumber51K" Name="51.K" />
+		<meta:MetadataEntry Code="BureauRuleNumber50E" Name="50.E" />
+		<meta:MetadataEntry Code="BureauRuleNumberTERPEX" Name="TER PEX" />
+		<meta:MetadataEntry Code="BureauRuleNumberTERTEX" Name="TER TEX" />
+		<meta:MetadataEntry Code="BureauRuleNumber30A16668" Name="30.A.1; 66; 68" />
+		<meta:MetadataEntry Code="BureauRuleNumber50B52C1" Name="50.B; 52.C.1" />
+		<meta:MetadataEntry Code="BureauRuleNumber31A169" Name="31.A.1; 69" />
+		<meta:MetadataEntry Code="BureauRuleNumber40C30A30C5656632" Name="40.C; 30.A; 30.C.5; 65; 66; 32" />
+		<meta:MetadataEntry Code="BureauRuleNumber31C1a31A168A69A" Name="31.C.1.a; 31.A.1; 68.A; 69.A" />
+		<meta:MetadataEntry Code="BureauRuleNumber51H" Name="51.H" />
+		<meta:MetadataEntry Code="BureauRuleNumber34B73C2" Name="34.B; 73.C.2" />
+		<meta:MetadataEntry Code="BureauRuleNumber73B175B1" Name="73.B.1; 75.B.1" />
+		<meta:MetadataEntry Code="BureauRuleNumber73E1a75C6a" Name="73.E.1.a; 75.C.6.a" />
+		<meta:MetadataEntry Code="BureauRuleNumber73D4c" Name="73.D.4.c" />
+		<meta:MetadataEntry Code="BureauRuleNumber73D6" Name="73.D.6" />
+		<meta:MetadataEntry Code="BureauRuleNumber38L" Name="38.L" />
+		<meta:MetadataEntry Code="BureauRuleNumber40C30A30C56566327375" Name="40.C; 30.A; 30.C.5; 65; 66; 32; 73; 75" />
+		<meta:MetadataEntry Code="BureauRuleNumber50B52C173B175B1" Name="50.B; 52.C.1; 73.B.1; 75.B.1" />
+		<meta:MetadataEntry Code="BureauRuleNumber30A1666873B175B1" Name="30.A.1; 66; 68; 73.B.1; 75.B.1" />
+		<meta:MetadataEntry Code="BureauRuleNumber74F373F" Name="74.F.3; 73.F" />
+		<meta:MetadataEntry Code="BureauRuleNumber73E1a375C6b5" Name="73.E.1.a(3); 75.C.6.b(5)" />
+		<meta:MetadataEntry Code="BureauRuleNumber74A3c74F" Name="74.A.3.c; 74.F" />
+		<meta:MetadataEntry Code="BureauRuleNumber75A" Name="75.A" />
+		<meta:MetadataEntry Code="BureauRuleNumber75C6a" Name="75.C.6.a" />
+		<meta:MetadataEntry Code="BureauRuleNumber51K1b" Name="51.K.1.b" />
+		<meta:MetadataEntry Code="BureauRuleNumber76" Name="76" />
+		<meta:MetadataEntry Code="BureauRuleNumber76C7a" Name="76.C.7.a" />
+		<meta:MetadataEntry Code="BureauRuleNumberCP0433" Name="CP 04 33" />
+		<meta:MetadataEntry Code="BureauRuleNumberCP9910" Name="CP9910" />
+		<meta:MetadataEntry Code="BureauRuleNumber34B76C7" Name="34.B - 76.C.7" />
+		<meta:MetadataEntry Code="BureauRuleNumberA7B2c" Name="A7.B.2.c" />
+		<meta:MetadataEntry Code="BureauRuleNumberA7A" Name="A7.A" />
+		<meta:MetadataEntry Code="BureauRuleNumber34B40C30A30C5656632" Name="34.B 40.C; 30.A; 30.C.5; 65; 66; 32" />
+		<meta:MetadataEntry Code="BureauRuleNumber34B50B52C1" Name="34.B; 50.B; 52.C.1" />
+		<meta:MetadataEntry Code="BureauRuleNumber31B31C34B666869" Name="31.B; 31.C;34.B; 66; 68; 69" />
+		<meta:MetadataEntry Code="BureauRuleNumberAdditionalRuleGreenUpgrdC2a" Name="Additional Rule GreenUpgrd.C.2.a" />
+		<meta:MetadataEntry Code="BureauRuleNumber29BldgDtl29PrsnlPropDtl29BusnIncomeDtl29SpecialClassDtl29SpclClassBusnIncomeDtl" Name="29 Bldg Dtl; 29 PrsnlProp Dtl; 29 BusnIncome Dtl; 29 SpecialClass Dtl; 29 SpclClassBusnIncome Dtl" />
+		<meta:MetadataEntry Code="BureauRuleNumber38G" Name="38.G" />
+		<meta:MetadataEntry Code="BureauRuleNumberFormCP1030C3b" Name="Form CP 10 30 - C.3.b" />
+		<meta:MetadataEntry Code="BureauRuleNumber65B3" Name="65.B.3" />
+		<meta:MetadataEntry Code="BureauRuleNumber38B3a" Name="38.B.3.a" />
+		<meta:MetadataEntry Code="BureauRuleNumber505" Name="50.5" />
+		<meta:MetadataEntry Code="BureauRuleNumber30305324065" Name="30; 30.5; 32; 40; 65" />
+		<meta:MetadataEntry Code="BureauRuleNumber51B" Name="51.B" />
+		<meta:MetadataEntry Code="BureauRuleNumber31C131C27375" Name="31.C.1; 31.C.2; 73; 75" />
+		<meta:MetadataEntry Code="BureauRuleNumber31C7375" Name="31.C; 73; 75" />
+		<meta:MetadataEntry Code="BureauRuleNumber74EFormCP1037" Name="74.E; Form CP 10 37" />
+		<meta:MetadataEntry Code="BureauRuleNumber73C275C234B" Name="73.C.2; 75.C.2; 34.B" />
+		<meta:MetadataEntry Code="BureauRuleNumberCP1030" Name="CP 10 30" />
+		<meta:MetadataEntry Code="BureauRuleNumber83D" Name="83.D" />
+		<meta:MetadataEntry Code="BureauRuleNumber38H" Name="38.H" />
+		<meta:MetadataEntry Code="BureauRuleNumber34B6d" Name="34.B.6.d." />
+		<meta:MetadataEntry Code="BureauRuleNumber51" Name="51" />
+		<meta:MetadataEntry Code="BureauRuleNumber51G3bFormCP1524" Name="51.G.3.b; Form CP 15 24" />
+		<meta:MetadataEntry Code="BureauRuleNumber51F" Name="51.F." />
+		<meta:MetadataEntry Code="BureauRuleNumber67D1" Name="67.D.1." />
+		<meta:MetadataEntry Code="BureauRuleNumber36G236G3" Name="36.G.2; 36.G.3" />
+		<meta:MetadataEntry Code="BureauRuleNumber80" Name="80" />
+		<meta:MetadataEntry Code="BureauRuleNumber83" Name="83" />
+		<meta:MetadataEntry Code="BureauRuleNumber5153B50D5a" Name="51,; 53.B; 50.D.5.a" />
+		<meta:MetadataEntry Code="BureauRuleNumber78D2aLC72E2c178D1a" Name="78.D.2.a.(LC); 72.E.2.c(1); 78.D.1.a" />
+		<meta:MetadataEntry Code="BureauRuleNumber78D2aLC78D1a" Name="78.D.2.a(LC); 78.D.1.a" />
+		<meta:MetadataEntry Code="BureauRuleNumber54F" Name="54.F" />
+		<meta:MetadataEntry Code="BureauRuleNumberFormCP040538D" Name="Form CP 04 05; 38.D" />
+		<meta:MetadataEntry Code="BureauRuleNumber51H51L" Name="51.H; 51.L" />
+		<meta:MetadataEntry Code="BureauRuleNumber76C6" Name="76.C.6" />
+		<meta:MetadataEntry Code="BureauRuleNumberFormCP1440" Name="Form CP 14 40" />
+		<meta:MetadataEntry Code="BureauRuleNumber30C3aCP1440" Name="30.C.3.a; CP 14 40" />
+		<meta:MetadataEntry Code="BureauRuleNumber38M" Name="38.M" />
+		<meta:MetadataEntry Code="BureauRuleNumber31A666869" Name="31.A; 66; 68; 69" />
+		<meta:MetadataEntry Code="BureauRuleNumber74C5" Name="74.C.5." />
+		<meta:MetadataEntry Code="BureauRuleNumber6938" Name="69; 38" />
+		<meta:MetadataEntry Code="BureauRuleNumber38E3c38E5" Name="38.E.3.c; 38.E.5" />
+		<meta:MetadataEntry Code="BureauRuleNumber12B1" Name="12.B.1" />
+		<meta:MetadataEntry Code="BureauRuleNumber74E4" Name="74.E.4" />
+		<meta:MetadataEntry Code="BureauRuleNumber74E2" Name="74.E.2" />
+		<meta:MetadataEntry Code="BureauRuleNumber8534A20B" Name="85; 34.A; 20.B" />
+		<meta:MetadataEntry Code="BureauRuleNumber38T3a4" Name="38.T.3.a(4)" />
+		<meta:MetadataEntry Code="BureauRuleNumber85L3" Name="85.L.3." />
+		<meta:MetadataEntry Code="BureauRuleNumber34A" Name="34.A" />
+		<meta:MetadataEntry Code="BureauRuleNumber38T1" Name="38.T.1" />
+		<meta:MetadataEntry Code="BureauRuleNumber70G3bFormCP1056" Name="70.G.3.b Form CP 10 56" />
+		<meta:MetadataEntry Code="BureauRuleNumber30C5" Name="30.C.5" />
+		<meta:MetadataEntry Code="BureauRuleNumberTERPEB4TERPEC4" Name="TER PE B.4; TER PE C.4" />
+		<meta:MetadataEntry Code="BureauRuleNumberTERPEC2b" Name="TER PE C.2.b" />
+		<meta:MetadataEntry Code="BureauRuleNumberCP0432" Name="CP 04 32" />
+		<meta:MetadataEntry Code="BureauRuleNumber3369A" Name="33; 69.A" />
+		<meta:MetadataEntry Code="BureauRuleNumber38W1b4FormCP0431" Name="38.W.1.b.(4); Form CP 04 31" />
+		<meta:MetadataEntry Code="BureauRuleNumber38W1b4FormCP0432" Name="38.W.1.b.(4); Form CP 04 32" />
+		<meta:MetadataEntry Code="BureauRuleNumber53A3a34B5a34B5b" Name="53.A.3.a; 34.B.5.a; 34.B.5.b." />
+		<meta:MetadataEntry Code="BureauRuleNumber51B2a1234" Name="51.B.2.a(1)(2)(3)(4)" />
+		<meta:MetadataEntry Code="BureauRuleNumber51B6" Name="51.B.6" />
+		<meta:MetadataEntry Code="BureauRuleNumber50C51K1a" Name="50.C; 51.K.1.a" />
+		<meta:MetadataEntry Code="BureauRuleNumber74D30C3b31C4bFormCP1450FormCP1550" Name="74.D; 30.C.3.b; 31.C.4.b; Form CP 14 50; Form CP 15 50" />
+		<meta:MetadataEntry Code="BureauRuleNumber38L1" Name="38.L.1" />
+		<meta:MetadataEntry Code="BureauRuleNumber54B" Name="54.B" />
+		<meta:MetadataEntry Code="BureauRuleNumber54B3" Name="54.B.3" />
+		<meta:MetadataEntry Code="BureauRuleNumber38L4a54B4a" Name="38.L.4.a; 54.B.4.a" />
+		<meta:MetadataEntry Code="BureauRuleNumberRule85G5" Name="Rule 85.G.5" />
+		<meta:MetadataEntry Code="BureauRuleNumber38N38R" Name="38.N; 38.R;" />
+		<meta:MetadataEntry Code="BureauRuleNumber31C1a38N38S" Name="31.C.1.a; 38.N; 38.S" />
+		<meta:MetadataEntry Code="BureauRuleNumber69A4" Name="69.A.4" />
+		<meta:MetadataEntry Code="BureauRuleNumber74G" Name="74.G" />
+		<meta:MetadataEntry Code="BureauRuleNumber82A" Name="82.A" />
+	</meta:MetadataEntry>
+</meta:Metadata>

@@ -1,0 +1,572 @@
+<rul:Rules xmlns:rul="http://www.verisk.com/iso/erc/Rule">
+	<rul:Rule Name="InitializeRuleSet" DataDefGroup="CommercialPropertyMortgageholdersErrorsAndOmissionsCoverageForm">
+		<rul:Sequence />
+	</rul:Rule>
+	<rul:Rule Name="CalculateTotalPremium" Type="decimal" DataDefGroup="CommercialPropertyMortgageholdersErrorsAndOmissionsCoverageForm">
+		<rul:If>
+			<rul:Test>
+				<rul:And>
+					<rul:Equal>
+						<rul:FirstValue Type="integer" FromConstant="0" FromDataDef="@PremiumIndicator" Order="DataDefInputParamConstant" />
+						<rul:Constant Type="integer">1</rul:Constant>
+					</rul:Equal>
+					<rul:NotEqual>
+						<rul:FirstValue Type="decimal" FromConstant="0" FromDataDef="@Premium" Order="DataDefInputParamConstant" />
+						<rul:Constant Type="decimal">0</rul:Constant>
+					</rul:NotEqual>
+				</rul:And>
+			</rul:Test>
+			<rul:Then>
+				<rul:FirstValue Type="decimal" FromConstant="0" FromDataDef="@Premium" Order="DataDefInputParamConstant" />
+			</rul:Then>
+			<rul:Else>
+				<rul:Constant Type="decimal">0</rul:Constant>
+			</rul:Else>
+		</rul:If>
+	</rul:Rule>
+	<rul:Rule Name="ErcSetRatesAndFactors" Type="none" DataDefGroup="CommercialPropertyMortgageholdersErrorsAndOmissionsCoverageForm">
+		<rul:Sequence>
+			<rul:RunRule Type="none" FileName="CommercialPropertyMortgageholdersErrorsAndOmissionsCoverageFormRules" Rule="SetFirst500Mortgages" ClearCache="true" />
+			<rul:RunRule Type="none" FileName="CommercialPropertyMortgageholdersErrorsAndOmissionsCoverageFormRules" Rule="SetNext500Mortgages" ClearCache="true" />
+			<rul:RunRule Type="none" FileName="CommercialPropertyMortgageholdersErrorsAndOmissionsCoverageFormRules" Rule="SetNext4000Mortgages" ClearCache="true" />
+			<rul:RunRule Type="none" FileName="CommercialPropertyMortgageholdersErrorsAndOmissionsCoverageFormRules" Rule="SetNext10000Mortgages" ClearCache="true" />
+			<rul:RunRule Type="none" FileName="CommercialPropertyMortgageholdersErrorsAndOmissionsCoverageFormRules" Rule="SetOver15000Mortgages" ClearCache="true" />
+			<rul:RunRule Type="none" FileName="CommercialPropertyMortgageholdersErrorsAndOmissionsCoverageFormRules" Rule="SetFirst500Rate" ClearCache="true" />
+			<rul:RunRule Type="none" FileName="CommercialPropertyMortgageholdersErrorsAndOmissionsCoverageFormRules" Rule="SetNext500Rate" ClearCache="true" />
+			<rul:RunRule Type="none" FileName="CommercialPropertyMortgageholdersErrorsAndOmissionsCoverageFormRules" Rule="SetNext4000Rate" ClearCache="true" />
+			<rul:RunRule Type="none" FileName="CommercialPropertyMortgageholdersErrorsAndOmissionsCoverageFormRules" Rule="SetNext10000Rate" ClearCache="true" />
+			<rul:RunRule Type="none" FileName="CommercialPropertyMortgageholdersErrorsAndOmissionsCoverageFormRules" Rule="SetOver15000Rate" ClearCache="true" />
+		</rul:Sequence>
+	</rul:Rule>
+	<rul:Rule Name="SetFirst500Mortgages" Type="none" DataDefGroup="CommercialPropertyMortgageholdersErrorsAndOmissionsCoverageForm">
+		<rul:Sequence>
+			<rul:If>
+				<rul:Test>
+					<rul:GreaterThan>
+						<rul:FirstValue Type="integer" FromConstant="0" FromDataDef="@NumberMortgages" Order="DataDefInputParamConstant" />
+						<rul:Constant Type="integer">500</rul:Constant>
+					</rul:GreaterThan>
+				</rul:Test>
+				<rul:Then>
+					<rul:Sequence>
+						<rul:Constant Type="integer" ToDataDef="@First500Mortgages">500</rul:Constant>
+					</rul:Sequence>
+				</rul:Then>
+				<rul:Else>
+					<rul:Copy Type="integer" ToDataDef="@First500Mortgages" FromDataDef="@NumberMortgages" />
+				</rul:Else>
+			</rul:If>
+		</rul:Sequence>
+	</rul:Rule>
+	<rul:Rule Name="SetNext500Mortgages" Type="none" DataDefGroup="CommercialPropertyMortgageholdersErrorsAndOmissionsCoverageForm">
+		<rul:Sequence>
+			<rul:If>
+				<rul:Test>
+					<rul:GreaterThan>
+						<rul:FirstValue Type="integer" FromConstant="0" FromDataDef="@NumberMortgages" Order="DataDefInputParamConstant" />
+						<rul:Constant Type="integer">500</rul:Constant>
+					</rul:GreaterThan>
+				</rul:Test>
+				<rul:Then>
+					<rul:Sequence>
+						<rul:If>
+							<rul:Test>
+								<rul:GreaterThan>
+									<rul:FirstValue Type="integer" FromConstant="0" FromDataDef="@NumberMortgages" Order="DataDefInputParamConstant" />
+									<rul:Constant Type="integer">1000</rul:Constant>
+								</rul:GreaterThan>
+							</rul:Test>
+							<rul:Then>
+								<rul:Sequence>
+									<rul:Constant Type="integer" ToDataDef="@Next500Mortgages">500</rul:Constant>
+								</rul:Sequence>
+							</rul:Then>
+							<rul:Else>
+								<rul:Sequence>
+									<rul:Subtract ToDataDef="@Next500Mortgages">
+										<rul:Value Type="integer" FromDataDef="@NumberMortgages" />
+										<rul:Constant Type="integer">500</rul:Constant>
+									</rul:Subtract>
+								</rul:Sequence>
+							</rul:Else>
+						</rul:If>
+					</rul:Sequence>
+				</rul:Then>
+				<rul:Else>
+					<rul:Sequence>
+						<rul:Constant Type="integer" ToDataDef="@Next500Mortgages">0</rul:Constant>
+					</rul:Sequence>
+				</rul:Else>
+			</rul:If>
+		</rul:Sequence>
+	</rul:Rule>
+	<rul:Rule Name="SetNext4000Mortgages" Type="none" DataDefGroup="CommercialPropertyMortgageholdersErrorsAndOmissionsCoverageForm">
+		<rul:Sequence>
+			<rul:If>
+				<rul:Test>
+					<rul:GreaterThan>
+						<rul:FirstValue Type="integer" FromConstant="0" FromDataDef="@NumberMortgages" Order="DataDefInputParamConstant" />
+						<rul:Constant Type="integer">1000</rul:Constant>
+					</rul:GreaterThan>
+				</rul:Test>
+				<rul:Then>
+					<rul:Sequence>
+						<rul:If>
+							<rul:Test>
+								<rul:GreaterThan>
+									<rul:FirstValue Type="integer" FromConstant="0" FromDataDef="@NumberMortgages" Order="DataDefInputParamConstant" />
+									<rul:Constant Type="integer">5000</rul:Constant>
+								</rul:GreaterThan>
+							</rul:Test>
+							<rul:Then>
+								<rul:Sequence>
+									<rul:Constant Type="integer" ToDataDef="@Next4000Mortgages">4000</rul:Constant>
+								</rul:Sequence>
+							</rul:Then>
+							<rul:Else>
+								<rul:Sequence>
+									<rul:Subtract ToDataDef="@Next4000Mortgages">
+										<rul:Value Type="integer" FromDataDef="@NumberMortgages" />
+										<rul:Constant Type="integer">1000</rul:Constant>
+									</rul:Subtract>
+								</rul:Sequence>
+							</rul:Else>
+						</rul:If>
+					</rul:Sequence>
+				</rul:Then>
+				<rul:Else>
+					<rul:Sequence>
+						<rul:Constant Type="integer" ToDataDef="@Next4000Mortgages">0</rul:Constant>
+					</rul:Sequence>
+				</rul:Else>
+			</rul:If>
+		</rul:Sequence>
+	</rul:Rule>
+	<rul:Rule Name="SetNext10000Mortgages" Type="none" DataDefGroup="CommercialPropertyMortgageholdersErrorsAndOmissionsCoverageForm">
+		<rul:Sequence>
+			<rul:If>
+				<rul:Test>
+					<rul:GreaterThan>
+						<rul:FirstValue Type="integer" FromConstant="0" FromDataDef="@NumberMortgages" Order="DataDefInputParamConstant" />
+						<rul:Constant Type="integer">5000</rul:Constant>
+					</rul:GreaterThan>
+				</rul:Test>
+				<rul:Then>
+					<rul:Sequence>
+						<rul:If>
+							<rul:Test>
+								<rul:GreaterThan>
+									<rul:FirstValue Type="integer" FromConstant="0" FromDataDef="@NumberMortgages" Order="DataDefInputParamConstant" />
+									<rul:Constant Type="integer">15000</rul:Constant>
+								</rul:GreaterThan>
+							</rul:Test>
+							<rul:Then>
+								<rul:Sequence>
+									<rul:Constant Type="integer" ToDataDef="@Next10000Mortgages">10000</rul:Constant>
+								</rul:Sequence>
+							</rul:Then>
+							<rul:Else>
+								<rul:Sequence>
+									<rul:Subtract ToDataDef="@Next10000Mortgages">
+										<rul:Value Type="integer" FromDataDef="@NumberMortgages" />
+										<rul:Constant Type="integer">5000</rul:Constant>
+									</rul:Subtract>
+								</rul:Sequence>
+							</rul:Else>
+						</rul:If>
+					</rul:Sequence>
+				</rul:Then>
+				<rul:Else>
+					<rul:Sequence>
+						<rul:Constant Type="integer" ToDataDef="@Next10000Mortgages">0</rul:Constant>
+					</rul:Sequence>
+				</rul:Else>
+			</rul:If>
+		</rul:Sequence>
+	</rul:Rule>
+	<rul:Rule Name="SetOver15000Mortgages" Type="none" DataDefGroup="CommercialPropertyMortgageholdersErrorsAndOmissionsCoverageForm">
+		<rul:Sequence>
+			<rul:If>
+				<rul:Test>
+					<rul:GreaterThan>
+						<rul:FirstValue Type="integer" FromConstant="0" FromDataDef="@NumberMortgages" Order="DataDefInputParamConstant" />
+						<rul:Constant Type="integer">15000</rul:Constant>
+					</rul:GreaterThan>
+				</rul:Test>
+				<rul:Then>
+					<rul:Sequence>
+						<rul:Subtract ToDataDef="@Over15000Mortgages">
+							<rul:Value Type="integer" FromDataDef="@NumberMortgages" />
+							<rul:Constant Type="integer">15000</rul:Constant>
+						</rul:Subtract>
+					</rul:Sequence>
+				</rul:Then>
+				<rul:Else>
+					<rul:Sequence>
+						<rul:Constant Type="integer" ToDataDef="@Over15000Mortgages">0</rul:Constant>
+					</rul:Sequence>
+				</rul:Else>
+			</rul:If>
+		</rul:Sequence>
+	</rul:Rule>
+	<rul:Rule Name="SetFirst500Rate" Type="none" DataDefGroup="CommercialPropertyMortgageholdersErrorsAndOmissionsCoverageForm">
+		<rul:Sequence>
+			<rul:RunRule Type="decimal" ToDataDef="@First500Rate" FileName="CommercialPropertyMortgageholdersErrorsAndOmissionsCoverageFormRules" Rule="LookupMortgageholdersErrorsAndOmissRate" ClearCache="true">
+				<rul:Arg Type="string" Param="numOfMortgages">
+					<rul:Constant Type="string">First 500</rul:Constant>
+				</rul:Arg>
+			</rul:RunRule>
+		</rul:Sequence>
+	</rul:Rule>
+	<rul:Rule Name="SetNext500Rate" Type="none" DataDefGroup="CommercialPropertyMortgageholdersErrorsAndOmissionsCoverageForm">
+		<rul:Sequence>
+			<rul:If>
+				<rul:Test>
+					<rul:GreaterThan>
+						<rul:FirstValue Type="integer" FromConstant="0" FromDataDef="@NumberMortgages" Order="DataDefInputParamConstant" />
+						<rul:Constant Type="integer">500</rul:Constant>
+					</rul:GreaterThan>
+				</rul:Test>
+				<rul:Then>
+					<rul:Sequence>
+						<rul:RunRule Type="decimal" ToDataDef="@Next500Rate" FileName="CommercialPropertyMortgageholdersErrorsAndOmissionsCoverageFormRules" Rule="LookupMortgageholdersErrorsAndOmissRate" ClearCache="true">
+							<rul:Arg Type="string" Param="numOfMortgages">
+								<rul:Constant Type="string">Next 500</rul:Constant>
+							</rul:Arg>
+						</rul:RunRule>
+					</rul:Sequence>
+				</rul:Then>
+				<rul:Else>
+					<rul:Sequence>
+						<rul:Constant Type="decimal" ToDataDef="@Next500Rate">0.0</rul:Constant>
+					</rul:Sequence>
+				</rul:Else>
+			</rul:If>
+		</rul:Sequence>
+	</rul:Rule>
+	<rul:Rule Name="SetNext4000Rate" Type="none" DataDefGroup="CommercialPropertyMortgageholdersErrorsAndOmissionsCoverageForm">
+		<rul:Sequence>
+			<rul:If>
+				<rul:Test>
+					<rul:GreaterThan>
+						<rul:FirstValue Type="integer" FromConstant="0" FromDataDef="@NumberMortgages" Order="DataDefInputParamConstant" />
+						<rul:Constant Type="integer">1000</rul:Constant>
+					</rul:GreaterThan>
+				</rul:Test>
+				<rul:Then>
+					<rul:Sequence>
+						<rul:RunRule Type="decimal" ToDataDef="@Next4000Rate" FileName="CommercialPropertyMortgageholdersErrorsAndOmissionsCoverageFormRules" Rule="LookupMortgageholdersErrorsAndOmissRate" ClearCache="true">
+							<rul:Arg Type="string" Param="numOfMortgages">
+								<rul:Constant Type="string">Next 4,000</rul:Constant>
+							</rul:Arg>
+						</rul:RunRule>
+					</rul:Sequence>
+				</rul:Then>
+				<rul:Else>
+					<rul:Sequence>
+						<rul:Constant Type="decimal" ToDataDef="@Next4000Rate">0.0</rul:Constant>
+					</rul:Sequence>
+				</rul:Else>
+			</rul:If>
+		</rul:Sequence>
+	</rul:Rule>
+	<rul:Rule Name="SetNext10000Rate" Type="none" DataDefGroup="CommercialPropertyMortgageholdersErrorsAndOmissionsCoverageForm">
+		<rul:Sequence>
+			<rul:If>
+				<rul:Test>
+					<rul:GreaterThan>
+						<rul:FirstValue Type="integer" FromConstant="0" FromDataDef="@NumberMortgages" Order="DataDefInputParamConstant" />
+						<rul:Constant Type="integer">5000</rul:Constant>
+					</rul:GreaterThan>
+				</rul:Test>
+				<rul:Then>
+					<rul:Sequence>
+						<rul:RunRule Type="decimal" ToDataDef="@Next10000Rate" FileName="CommercialPropertyMortgageholdersErrorsAndOmissionsCoverageFormRules" Rule="LookupMortgageholdersErrorsAndOmissRate" ClearCache="true">
+							<rul:Arg Type="string" Param="numOfMortgages">
+								<rul:Constant Type="string">Next 10,000</rul:Constant>
+							</rul:Arg>
+						</rul:RunRule>
+					</rul:Sequence>
+				</rul:Then>
+				<rul:Else>
+					<rul:Sequence>
+						<rul:Constant Type="decimal" ToDataDef="@Next10000Rate">0.0</rul:Constant>
+					</rul:Sequence>
+				</rul:Else>
+			</rul:If>
+		</rul:Sequence>
+	</rul:Rule>
+	<rul:Rule Name="SetOver15000Rate" Type="none" DataDefGroup="CommercialPropertyMortgageholdersErrorsAndOmissionsCoverageForm">
+		<rul:Sequence>
+			<rul:If>
+				<rul:Test>
+					<rul:GreaterThan>
+						<rul:FirstValue Type="integer" FromConstant="0" FromDataDef="@NumberMortgages" Order="DataDefInputParamConstant" />
+						<rul:Constant Type="integer">15000</rul:Constant>
+					</rul:GreaterThan>
+				</rul:Test>
+				<rul:Then>
+					<rul:Sequence>
+						<rul:RunRule Type="decimal" ToDataDef="@Over15000Rate" FileName="CommercialPropertyMortgageholdersErrorsAndOmissionsCoverageFormRules" Rule="LookupMortgageholdersErrorsAndOmissRate" ClearCache="true">
+							<rul:Arg Type="string" Param="numOfMortgages">
+								<rul:Constant Type="string">Over 15,000</rul:Constant>
+							</rul:Arg>
+						</rul:RunRule>
+					</rul:Sequence>
+				</rul:Then>
+				<rul:Else>
+					<rul:Sequence>
+						<rul:Constant Type="decimal" ToDataDef="@Over15000Rate">0.0</rul:Constant>
+					</rul:Sequence>
+				</rul:Else>
+			</rul:If>
+		</rul:Sequence>
+	</rul:Rule>
+	<rul:Rule Name="ErcRate" Type="none" DataDefGroup="CommercialPropertyMortgageholdersErrorsAndOmissionsCoverageForm">
+		<rul:Sequence>
+			<rul:RunRule Type="none" FileName="CommercialPropertyMortgageholdersErrorsAndOmissionsCoverageFormRules" Rule="SetFirst500Premium" ClearCache="true" />
+			<rul:RunRule Type="none" FileName="CommercialPropertyMortgageholdersErrorsAndOmissionsCoverageFormRules" Rule="SetNext500Premium" ClearCache="true" />
+			<rul:RunRule Type="none" FileName="CommercialPropertyMortgageholdersErrorsAndOmissionsCoverageFormRules" Rule="SetNext4000Premium" ClearCache="true" />
+			<rul:RunRule Type="none" FileName="CommercialPropertyMortgageholdersErrorsAndOmissionsCoverageFormRules" Rule="SetNext10000Premium" ClearCache="true" />
+			<rul:RunRule Type="none" FileName="CommercialPropertyMortgageholdersErrorsAndOmissionsCoverageFormRules" Rule="SetOver15000Premium" ClearCache="true" />
+			<rul:RunRule Type="none" FileName="CommercialPropertyMortgageholdersErrorsAndOmissionsCoverageFormRules" Rule="SetPremium" ClearCache="true" />
+			<rul:RunRule Type="none" FileName="CommercialPropertyMortgageholdersErrorsAndOmissionsCoverageFormRules" Rule="SetPremiumIndicator" ClearCache="true" />
+		</rul:Sequence>
+	</rul:Rule>
+	<rul:Rule Name="SetFirst500Premium" Type="none" DataDefGroup="CommercialPropertyMortgageholdersErrorsAndOmissionsCoverageForm">
+		<rul:Sequence>
+			<rul:Product ToDataDef="@First500Premium">
+				<rul:Product DecimalPlaces="3">
+					<rul:FirstValue Type="decimal" FromConstant="0" FromDataDef="@First500Rate" Order="DataDefInputParamConstant" />
+					<rul:FirstValue Type="decimal" FromConstant="0" FromDataDef="ancestor::CommercialProperty/@LossCostMultiplier" Order="DataDefInputParamConstant" />
+				</rul:Product>
+				<rul:FirstValue Type="integer" FromConstant="0" FromDataDef="@First500Mortgages" Order="DataDefInputParamConstant" />
+			</rul:Product>
+		</rul:Sequence>
+	</rul:Rule>
+	<rul:Rule Name="SetNext500Premium" Type="none" DataDefGroup="CommercialPropertyMortgageholdersErrorsAndOmissionsCoverageForm">
+		<rul:Sequence>
+			<rul:If>
+				<rul:Test>
+					<rul:GreaterThan>
+						<rul:FirstValue Type="integer" FromConstant="0" FromDataDef="@NumberMortgages" Order="DataDefInputParamConstant" />
+						<rul:Constant Type="integer">500</rul:Constant>
+					</rul:GreaterThan>
+				</rul:Test>
+				<rul:Then>
+					<rul:Sequence>
+						<rul:Product ToDataDef="@Next500Premium">
+							<rul:Product DecimalPlaces="3">
+								<rul:FirstValue Type="decimal" FromConstant="0" FromDataDef="@Next500Rate" Order="DataDefInputParamConstant" />
+								<rul:FirstValue Type="decimal" FromConstant="0" FromDataDef="ancestor::CommercialProperty/@LossCostMultiplier" Order="DataDefInputParamConstant" />
+							</rul:Product>
+							<rul:FirstValue Type="integer" FromConstant="0" FromDataDef="@Next500Mortgages" Order="DataDefInputParamConstant" />
+						</rul:Product>
+					</rul:Sequence>
+				</rul:Then>
+				<rul:Else>
+					<rul:Sequence>
+						<rul:Constant Type="decimal" ToDataDef="@Next500Premium">0.0</rul:Constant>
+					</rul:Sequence>
+				</rul:Else>
+			</rul:If>
+		</rul:Sequence>
+	</rul:Rule>
+	<rul:Rule Name="SetNext4000Premium" Type="none" DataDefGroup="CommercialPropertyMortgageholdersErrorsAndOmissionsCoverageForm">
+		<rul:Sequence>
+			<rul:If>
+				<rul:Test>
+					<rul:GreaterThan>
+						<rul:FirstValue Type="integer" FromConstant="0" FromDataDef="@NumberMortgages" Order="DataDefInputParamConstant" />
+						<rul:Constant Type="integer">1000</rul:Constant>
+					</rul:GreaterThan>
+				</rul:Test>
+				<rul:Then>
+					<rul:Sequence>
+						<rul:Product ToDataDef="@Next4000Premium">
+							<rul:Product DecimalPlaces="3">
+								<rul:FirstValue Type="decimal" FromConstant="0" FromDataDef="@Next4000Rate" Order="DataDefInputParamConstant" />
+								<rul:FirstValue Type="decimal" FromConstant="0" FromDataDef="ancestor::CommercialProperty/@LossCostMultiplier" Order="DataDefInputParamConstant" />
+							</rul:Product>
+							<rul:FirstValue Type="integer" FromConstant="0" FromDataDef="@Next4000Mortgages" Order="DataDefInputParamConstant" />
+						</rul:Product>
+					</rul:Sequence>
+				</rul:Then>
+				<rul:Else>
+					<rul:Sequence>
+						<rul:Constant Type="decimal" ToDataDef="@Next4000Premium">0.0</rul:Constant>
+					</rul:Sequence>
+				</rul:Else>
+			</rul:If>
+		</rul:Sequence>
+	</rul:Rule>
+	<rul:Rule Name="SetNext10000Premium" Type="none" DataDefGroup="CommercialPropertyMortgageholdersErrorsAndOmissionsCoverageForm">
+		<rul:Sequence>
+			<rul:If>
+				<rul:Test>
+					<rul:GreaterThan>
+						<rul:FirstValue Type="integer" FromConstant="0" FromDataDef="@NumberMortgages" Order="DataDefInputParamConstant" />
+						<rul:Constant Type="integer">5000</rul:Constant>
+					</rul:GreaterThan>
+				</rul:Test>
+				<rul:Then>
+					<rul:Sequence>
+						<rul:Product ToDataDef="@Next10000Premium">
+							<rul:Product DecimalPlaces="3">
+								<rul:FirstValue Type="decimal" FromConstant="0" FromDataDef="@Next10000Rate" Order="DataDefInputParamConstant" />
+								<rul:FirstValue Type="decimal" FromConstant="0" FromDataDef="ancestor::CommercialProperty/@LossCostMultiplier" Order="DataDefInputParamConstant" />
+							</rul:Product>
+							<rul:FirstValue Type="integer" FromConstant="0" FromDataDef="@Next10000Mortgages" Order="DataDefInputParamConstant" />
+						</rul:Product>
+					</rul:Sequence>
+				</rul:Then>
+				<rul:Else>
+					<rul:Sequence>
+						<rul:Constant Type="decimal" ToDataDef="@Next10000Premium">0.0</rul:Constant>
+					</rul:Sequence>
+				</rul:Else>
+			</rul:If>
+		</rul:Sequence>
+	</rul:Rule>
+	<rul:Rule Name="SetOver15000Premium" Type="none" DataDefGroup="CommercialPropertyMortgageholdersErrorsAndOmissionsCoverageForm">
+		<rul:Sequence>
+			<rul:If>
+				<rul:Test>
+					<rul:GreaterThan>
+						<rul:FirstValue Type="integer" FromConstant="0" FromDataDef="@NumberMortgages" Order="DataDefInputParamConstant" />
+						<rul:Constant Type="integer">15000</rul:Constant>
+					</rul:GreaterThan>
+				</rul:Test>
+				<rul:Then>
+					<rul:Sequence>
+						<rul:Product ToDataDef="@Over15000Premium">
+							<rul:Product DecimalPlaces="3">
+								<rul:FirstValue Type="decimal" FromConstant="0" FromDataDef="@Over15000Rate" Order="DataDefInputParamConstant" />
+								<rul:FirstValue Type="decimal" FromConstant="0" FromDataDef="ancestor::CommercialProperty/@LossCostMultiplier" Order="DataDefInputParamConstant" />
+							</rul:Product>
+							<rul:FirstValue Type="integer" FromConstant="0" FromDataDef="@Over15000Mortgages" Order="DataDefInputParamConstant" />
+						</rul:Product>
+					</rul:Sequence>
+				</rul:Then>
+				<rul:Else>
+					<rul:Sequence>
+						<rul:Constant Type="decimal" ToDataDef="@Over15000Premium">0.0</rul:Constant>
+					</rul:Sequence>
+				</rul:Else>
+			</rul:If>
+		</rul:Sequence>
+	</rul:Rule>
+	<rul:Rule Name="SetPremium" Type="none" DataDefGroup="CommercialPropertyMortgageholdersErrorsAndOmissionsCoverageForm">
+		<rul:Sequence>
+			<rul:WithArgs>
+				<rul:Arg Type="decimal" Param="calcPremium">
+					<rul:FirstNonNull Type="decimal">
+						<rul:Product DecimalPlaces="0">
+							<rul:Product DecimalPlaces="0">
+								<rul:Product DecimalPlaces="0">
+									<rul:Round DecimalPlaces="0">
+										<rul:Sum>
+											<rul:Value Type="decimal" FromDataDef="@First500Premium" />
+											<rul:Value Type="decimal" FromDataDef="@Next500Premium" />
+											<rul:Value Type="decimal" FromDataDef="@Next4000Premium" />
+											<rul:Value Type="decimal" FromDataDef="@Next10000Premium" />
+											<rul:Value Type="decimal" FromDataDef="@Over15000Premium" />
+										</rul:Sum>
+									</rul:Round>
+									<rul:FirstValue Type="decimal" FromConstant="0" FromDataDef="ancestor::CommercialProperty/@PackageModFactor" Order="DataDefInputParamConstant" />
+								</rul:Product>
+								<rul:FirstValue Type="decimal" FromConstant="0" FromDataDef="ancestor::CommercialProperty/@IRPMFactor" Order="DataDefInputParamConstant" />
+							</rul:Product>
+							<rul:FirstValue Type="decimal" FromConstant="0" FromDataDef="../../@CyberIncidentExclusionFactorMortgageholdersErrorsAndOmissions" Order="DataDefInputParamConstant" />
+						</rul:Product>
+						<rul:Constant Type="decimal">0</rul:Constant>
+					</rul:FirstNonNull>
+				</rul:Arg>
+				<rul:Value Type="decimal" ToDataDef="@Premium" FromParam="calcPremium" />
+			</rul:WithArgs>
+		</rul:Sequence>
+	</rul:Rule>
+	<rul:Rule Name="SetPremiumIndicator" Type="none" DataDefGroup="CommercialPropertyMortgageholdersErrorsAndOmissionsCoverageForm">
+		<rul:Sequence>
+			<rul:If>
+				<rul:Test>
+					<rul:NotEqual>
+						<rul:FirstValue Type="decimal" FromConstant="0" FromDataDef="@Premium" Order="DataDefInputParamConstant" />
+						<rul:Constant Type="decimal">0</rul:Constant>
+					</rul:NotEqual>
+				</rul:Test>
+				<rul:Then>
+					<rul:Sequence>
+						<rul:Constant Type="integer" ToDataDef="@PremiumIndicator">1</rul:Constant>
+					</rul:Sequence>
+				</rul:Then>
+				<rul:Else>
+					<rul:Sequence>
+						<rul:Constant Type="integer" ToDataDef="@PremiumIndicator">0</rul:Constant>
+					</rul:Sequence>
+				</rul:Else>
+			</rul:If>
+		</rul:Sequence>
+	</rul:Rule>
+	<rul:Rule Name="ErcSetStatisticalCodes" Type="none" DataDefGroup="CommercialPropertyMortgageholdersErrorsAndOmissionsCoverageForm">
+		<rul:Sequence>
+			<rul:RunRule Type="none" FileName="CommercialPropertyMortgageholdersErrorsAndOmissionsCoverageFormRules" Rule="SetSublineAllOtherAlliedLines" ClearCache="true" />
+		</rul:Sequence>
+	</rul:Rule>
+	<rul:Rule Name="SetSublineAllOtherAlliedLines" Type="none" DataDefGroup="CommercialPropertyMortgageholdersErrorsAndOmissionsCoverageForm">
+		<rul:Sequence>
+			<rul:If>
+				<rul:Test>
+					<rul:Exist AtInputDataDef="ancestor::MasterCFCW/Policy" />
+				</rul:Test>
+				<rul:Then>
+					<rul:Sequence>
+						<rul:RunRule Type="string" ToDataDef="@SublineAllOtherAlliedLines" FileName="CommercialPropertyMortgageholdersErrorsAndOmissionsCoverageFormRules" Rule="LookupSublineAllOtherAlliedLines" ClearCache="true" />
+					</rul:Sequence>
+				</rul:Then>
+			</rul:If>
+		</rul:Sequence>
+	</rul:Rule>
+	<rul:Rule Name="ErcProcess" Type="none" DataDefGroup="CommercialPropertyMortgageholdersErrorsAndOmissionsCoverageForm">
+		<rul:Sequence>
+			<rul:RunRule Type="none" FileName="CommercialPropertyMortgageholdersErrorsAndOmissionsCoverageFormRules" Rule="ErcSetRatesAndFactors" ClearCache="true" />
+			<rul:RunRule Type="none" FileName="CommercialPropertyMortgageholdersErrorsAndOmissionsCoverageFormRules" Rule="ErcRate" ClearCache="true" />
+			<rul:RunRule Type="none" FileName="CommercialPropertyMortgageholdersErrorsAndOmissionsCoverageFormRules" Rule="ErcSetStatisticalCodes" ClearCache="true" />
+		</rul:Sequence>
+	</rul:Rule>
+	<rul:Rule Name="LookupMortgageholdersErrorsAndOmissRate" Type="decimal" DataDefGroup="CommercialPropertyMortgageholdersErrorsAndOmissionsCoverageForm">
+		<rul:Param Name="numOfMortgages" Type="string" />
+		<rul:FirstNonNull Type="decimal">
+			<rul:Lookup Type="decimal" MatrixCol="Rate" MatrixDef="MortgageholdersErrorsAndOmissRateDef" MatrixFromConstant="MortgageholdersErrorsAndOmissRate" ResultMode="FirstResult">
+				<rul:Keys>
+					<rul:Value Type="string" FromDataDef="/State/@Code" />
+					<rul:Value Type="string" FromParam="numOfMortgages" />
+					<rul:FirstValue Type="string" FromConstant="" FromDataDef="@Limit" Order="DataDefInputParamConstant" />
+				</rul:Keys>
+			</rul:Lookup>
+			<rul:Lookup Type="decimal" MatrixCol="Rate" MatrixDef="MortgageholdersErrorsAndOmissRateDef" MatrixFromConstant="MortgageholdersErrorsAndOmissRate" ResultMode="SingleResult">
+				<rul:Keys>
+					<rul:Constant Type="string">CW</rul:Constant>
+					<rul:Value Type="string" FromParam="numOfMortgages" />
+					<rul:FirstValue Type="string" FromConstant="" FromDataDef="@Limit" Order="DataDefInputParamConstant" />
+				</rul:Keys>
+			</rul:Lookup>
+		</rul:FirstNonNull>
+	</rul:Rule>
+	<rul:Rule Name="LookupSublineAllOtherAlliedLines" Type="string" DataDefGroup="CommercialPropertyMortgageholdersErrorsAndOmissionsCoverageForm">
+		<rul:FirstNonNull Type="string">
+			<rul:Lookup Type="string" MatrixCol="Code" MatrixDef="SublineAllOtherAlliedLinesDef" MatrixFromConstant="SublineAllOtherAlliedLines" ResultMode="FirstResult">
+				<rul:Keys>
+					<rul:Value Type="string" FromDataDef="/State/@Code" />
+					<rul:Constant Type="string">Y</rul:Constant>
+				</rul:Keys>
+			</rul:Lookup>
+			<rul:Lookup Type="string" MatrixCol="Code" MatrixDef="SublineAllOtherAlliedLinesDef" MatrixFromConstant="SublineAllOtherAlliedLines" ResultMode="SingleResult">
+				<rul:Keys>
+					<rul:Constant Type="string">CW</rul:Constant>
+					<rul:Constant Type="string">Y</rul:Constant>
+				</rul:Keys>
+			</rul:Lookup>
+		</rul:FirstNonNull>
+	</rul:Rule>
+</rul:Rules>

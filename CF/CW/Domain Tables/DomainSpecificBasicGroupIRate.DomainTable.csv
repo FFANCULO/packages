@@ -1,0 +1,22 @@
+"StateCode","RatingType","CovTypeBldg","DisplayValue","DataValue","MinimumValue","MaximumValue"
+"CW","Class","Building","","",0,0
+"CW","Class","Improvements and Betterments","","",0,0
+"CW","Class","No Coverage","","",0,0
+"CW","Class","Legal Liability","","",0,0
+"CW","Class","Leasehold Interest","","",0,0
+"CW","Class","Condominium Association","","",0,0
+"CW","Class","Builders Risk","","",0,0
+"CW","Specific","Building","","",0.001,9.999
+"CW","Specific","Improvements and Betterments","","",0.001,9.999
+"CW","Specific","No Coverage","","",0,9.999
+"CW","Specific","Legal Liability","","",0.001,9.999
+"CW","Specific","Leasehold Interest","","",0.001,9.999
+"CW","Specific","Condominium Association","","",0.001,9.999
+"CW","Specific","Builders Risk","","",0.001,9.999
+"CW","Tentative","Building","","",0.001,9.999
+"CW","Tentative","Improvements and Betterments","","",0.001,9.999
+"CW","Tentative","No Coverage","","",0,9.999
+"CW","Tentative","Legal Liability","","",0.001,9.999
+"CW","Tentative","Leasehold Interest","","",0.001,9.999
+"CW","Tentative","Condominium Association","","",0.001,9.999
+"CW","Tentative","Builders Risk","","",0.001,9.999

@@ -1,0 +1,209 @@
+<rul:Rules xmlns:rul="http://www.verisk.com/iso/erc/Rule">
+	<rul:Rule Name="InitializeRuleSet" DataDefGroup="CommercialPropertyIncreasedCostOfLossAndRelatedExpensesForGreenUpgradesEndtPersPropSpecialCov">
+		<rul:Sequence>
+			<rul:RunRule Type="none" FileName="CommercialPropertyIncreasedCostOfLossAndRelatedExpensesForGreenUpgradesEndtPersPropSpecialCovRules" Rule="SetCoverageOnPolicyIndicator" ClearCache="true" />
+		</rul:Sequence>
+	</rul:Rule>
+	<rul:Rule Name="CalculateTotalPremium" Type="decimal" DataDefGroup="CommercialPropertyIncreasedCostOfLossAndRelatedExpensesForGreenUpgradesEndtPersPropSpecialCov">
+		<rul:If>
+			<rul:Test>
+				<rul:And>
+					<rul:Equal>
+						<rul:FirstValue Type="integer" FromConstant="0" FromDataDef="@PremiumIndicator" Order="DataDefInputParamConstant" />
+						<rul:Constant Type="integer">1</rul:Constant>
+					</rul:Equal>
+					<rul:NotEqual>
+						<rul:FirstValue Type="decimal" FromConstant="0" FromDataDef="@Premium" Order="DataDefInputParamConstant" />
+						<rul:Constant Type="decimal">0</rul:Constant>
+					</rul:NotEqual>
+				</rul:And>
+			</rul:Test>
+			<rul:Then>
+				<rul:FirstValue Type="decimal" FromConstant="0" FromDataDef="@Premium" Order="DataDefInputParamConstant" />
+			</rul:Then>
+			<rul:Else>
+				<rul:Constant Type="decimal">0</rul:Constant>
+			</rul:Else>
+		</rul:If>
+	</rul:Rule>
+	<rul:Rule Name="SetCoverageOnPolicyIndicator" Type="none" DataDefGroup="CommercialPropertyIncreasedCostOfLossAndRelatedExpensesForGreenUpgradesEndtPersPropSpecialCov">
+		<rul:Sequence>
+			<rul:If>
+				<rul:Test>
+					<rul:Equal>
+						<rul:FirstValue Type="string" FromConstant="" FromDataDef="../../../@CauseOfLossToUse" Order="DataDefInputParamConstant" />
+						<rul:Constant Type="string">Special</rul:Constant>
+					</rul:Equal>
+				</rul:Test>
+				<rul:Then>
+					<rul:Sequence>
+						<rul:Constant Type="integer" ToDataDef="@CoverageOnPolicyIndicator">1</rul:Constant>
+					</rul:Sequence>
+				</rul:Then>
+				<rul:Else>
+					<rul:Sequence>
+						<rul:Constant Type="integer" ToDataDef="@CoverageOnPolicyIndicator">0</rul:Constant>
+					</rul:Sequence>
+				</rul:Else>
+			</rul:If>
+		</rul:Sequence>
+	</rul:Rule>
+	<rul:Rule Name="ErcSetRatesAndFactors" Type="none" DataDefGroup="CommercialPropertyIncreasedCostOfLossAndRelatedExpensesForGreenUpgradesEndtPersPropSpecialCov">
+		<rul:Sequence>
+			<rul:RunRule Type="none" FileName="CommercialPropertyIncreasedCostOfLossAndRelatedExpensesForGreenUpgradesEndtPersPropSpecialCovRules" Rule="SetRelatedExpensesRate" ClearCache="true" />
+		</rul:Sequence>
+	</rul:Rule>
+	<rul:Rule Name="SetRelatedExpensesRate" Type="none" DataDefGroup="CommercialPropertyIncreasedCostOfLossAndRelatedExpensesForGreenUpgradesEndtPersPropSpecialCov">
+		<rul:Sequence>
+			<rul:If>
+				<rul:Test>
+					<rul:GreaterThan>
+						<rul:FirstValue Type="integer" FromConstant="0" FromDataDef="../@RelatedExpenses" Order="DataDefInputParamConstant" />
+						<rul:Constant Type="integer">0</rul:Constant>
+					</rul:GreaterThan>
+				</rul:Test>
+				<rul:Then>
+					<rul:Sequence>
+						<rul:Product ToDataDef="@RelatedExpensesRate" DecimalPlaces="3">
+							<rul:FirstValue Type="decimal" FromConstant="0" FromDataDef="ancestor::CommercialPropertyPersonalProperty/@AdjustedSpecialRate" Order="DataDefInputParamConstant" />
+							<rul:FirstValue Type="decimal" FromConstant="0" FromDataDef="../@RelatedExpensesFactor" Order="DataDefInputParamConstant" />
+						</rul:Product>
+					</rul:Sequence>
+				</rul:Then>
+			</rul:If>
+		</rul:Sequence>
+	</rul:Rule>
+	<rul:Rule Name="ErcRate" Type="none" DataDefGroup="CommercialPropertyIncreasedCostOfLossAndRelatedExpensesForGreenUpgradesEndtPersPropSpecialCov">
+		<rul:Sequence>
+			<rul:RunRule Type="none" FileName="CommercialPropertyIncreasedCostOfLossAndRelatedExpensesForGreenUpgradesEndtPersPropSpecialCovRules" Rule="SetRelatedExpensesPremium" ClearCache="true" />
+			<rul:RunRule Type="none" FileName="CommercialPropertyIncreasedCostOfLossAndRelatedExpensesForGreenUpgradesEndtPersPropSpecialCovRules" Rule="SetGreenUpgradesPremium" ClearCache="true" />
+			<rul:RunRule Type="none" FileName="CommercialPropertyIncreasedCostOfLossAndRelatedExpensesForGreenUpgradesEndtPersPropSpecialCovRules" Rule="SetTotalPremium" ClearCache="true" />
+			<rul:RunRule Type="none" FileName="CommercialPropertyIncreasedCostOfLossAndRelatedExpensesForGreenUpgradesEndtPersPropSpecialCovRules" Rule="SetPremiumIndicator" ClearCache="true" />
+		</rul:Sequence>
+	</rul:Rule>
+	<rul:Rule Name="SetRelatedExpensesPremium" Type="none" DataDefGroup="CommercialPropertyIncreasedCostOfLossAndRelatedExpensesForGreenUpgradesEndtPersPropSpecialCov">
+		<rul:Sequence>
+			<rul:WithArgs>
+				<rul:Arg Type="decimal" Param="calcRelatedExpensesPremium">
+					<rul:FirstNonNull Type="decimal">
+						<rul:Product DecimalPlaces="0">
+							<rul:Product DecimalPlaces="0">
+								<rul:Product DecimalPlaces="0">
+									<rul:Product DecimalPlaces="0">
+										<rul:Product DecimalPlaces="0">
+											<rul:Product DecimalPlaces="0">
+												<rul:Divide>
+													<rul:Value Type="integer" FromDataDef="../@RelatedExpenses" />
+													<rul:Constant Type="decimal">100</rul:Constant>
+												</rul:Divide>
+												<rul:FirstValue Type="decimal" FromConstant="0" FromDataDef="@RelatedExpensesRate" Order="DataDefInputParamConstant" />
+											</rul:Product>
+											<rul:FirstValue Type="decimal" FromConstant="0" FromDataDef="ancestor::CommercialProperty/@PackageModFactor" Order="DataDefInputParamConstant" />
+										</rul:Product>
+										<rul:FirstValue Type="decimal" FromConstant="0" FromDataDef="ancestor::CommercialPropertyPersonalProperty/@MultiPremiumAndDispersionCreditFactor" Order="DataDefInputParamConstant" />
+									</rul:Product>
+									<rul:FirstValue Type="decimal" FromConstant="0" FromDataDef="ancestor::CommercialProperty/@IRPMFactor" Order="DataDefInputParamConstant" />
+								</rul:Product>
+								<rul:FirstValue Type="decimal" FromConstant="0" FromDataDef="../../../../../../../../../../../@CyberIncidentExclusionFactorSpecial" Order="DataDefInputParamConstant" />
+							</rul:Product>
+							<rul:FirstValue Type="decimal" FromConstant="0" FromDataDef="../../../../../../../../../../../@CyberIncidentExclusionCOLExcptnsFactorSpecial" Order="DataDefInputParamConstant" />
+						</rul:Product>
+						<rul:Constant Type="decimal">0</rul:Constant>
+					</rul:FirstNonNull>
+				</rul:Arg>
+				<rul:Value Type="decimal" ToDataDef="@RelatedExpensesPremium" FromParam="calcRelatedExpensesPremium" />
+			</rul:WithArgs>
+		</rul:Sequence>
+	</rul:Rule>
+	<rul:Rule Name="SetGreenUpgradesPremium" Type="none" DataDefGroup="CommercialPropertyIncreasedCostOfLossAndRelatedExpensesForGreenUpgradesEndtPersPropSpecialCov">
+		<rul:Sequence>
+			<rul:WithArgs>
+				<rul:Arg Type="decimal" Param="calcGreenUpgradesPremium">
+					<rul:FirstNonNull Type="decimal">
+						<rul:Product DecimalPlaces="0">
+							<rul:Product DecimalPlaces="0">
+								<rul:Product DecimalPlaces="0">
+									<rul:Product DecimalPlaces="0">
+										<rul:Product DecimalPlaces="0">
+											<rul:Product DecimalPlaces="0">
+												<rul:Product DecimalPlaces="3">
+													<rul:FirstValue Type="decimal" FromConstant="0" FromDataDef="../@RateModificationFactor" Order="DataDefInputParamConstant" />
+													<rul:FirstValue Type="decimal" FromConstant="0" FromDataDef="ancestor::CommercialPropertyPersonalProperty/@AdjustedSpecialRate" Order="DataDefInputParamConstant" />
+												</rul:Product>
+												<rul:Divide>
+													<rul:Value Type="integer" FromDataDef="../@Limit" />
+													<rul:Constant Type="decimal">100</rul:Constant>
+												</rul:Divide>
+											</rul:Product>
+											<rul:FirstValue Type="decimal" FromConstant="0" FromDataDef="ancestor::CommercialProperty/@PackageModFactor" Order="DataDefInputParamConstant" />
+										</rul:Product>
+										<rul:FirstValue Type="decimal" FromConstant="0" FromDataDef="ancestor::CommercialPropertyPersonalProperty/@MultiPremiumAndDispersionCreditFactor" Order="DataDefInputParamConstant" />
+									</rul:Product>
+									<rul:FirstValue Type="decimal" FromConstant="0" FromDataDef="ancestor::CommercialProperty/@IRPMFactor" Order="DataDefInputParamConstant" />
+								</rul:Product>
+								<rul:FirstValue Type="decimal" FromConstant="0" FromDataDef="../../../../../../../../../../../@CyberIncidentExclusionFactorSpecial" Order="DataDefInputParamConstant" />
+							</rul:Product>
+							<rul:FirstValue Type="decimal" FromConstant="0" FromDataDef="../../../../../../../../../../../@CyberIncidentExclusionCOLExcptnsFactorSpecial" Order="DataDefInputParamConstant" />
+						</rul:Product>
+						<rul:Constant Type="decimal">0</rul:Constant>
+					</rul:FirstNonNull>
+				</rul:Arg>
+				<rul:Value Type="decimal" ToDataDef="@GreenUpgradesPremium" FromParam="calcGreenUpgradesPremium" />
+			</rul:WithArgs>
+		</rul:Sequence>
+	</rul:Rule>
+	<rul:Rule Name="SetTotalPremium" Type="none" DataDefGroup="CommercialPropertyIncreasedCostOfLossAndRelatedExpensesForGreenUpgradesEndtPersPropSpecialCov">
+		<rul:Sequence>
+			<rul:Sum ToDataDef="@Premium">
+				<rul:Value Type="decimal" FromDataDef="@RelatedExpensesPremium" />
+				<rul:Value Type="decimal" FromDataDef="@GreenUpgradesPremium" />
+			</rul:Sum>
+		</rul:Sequence>
+	</rul:Rule>
+	<rul:Rule Name="SetPremiumIndicator" Type="none" DataDefGroup="CommercialPropertyIncreasedCostOfLossAndRelatedExpensesForGreenUpgradesEndtPersPropSpecialCov">
+		<rul:Sequence>
+			<rul:If>
+				<rul:Test>
+					<rul:NotEqual>
+						<rul:FirstValue Type="decimal" FromConstant="0" FromDataDef="@Premium" Order="DataDefInputParamConstant" />
+						<rul:Constant Type="decimal">0</rul:Constant>
+					</rul:NotEqual>
+				</rul:Test>
+				<rul:Then>
+					<rul:Sequence>
+						<rul:Constant Type="integer" ToDataDef="@PremiumIndicator">1</rul:Constant>
+					</rul:Sequence>
+				</rul:Then>
+				<rul:Else>
+					<rul:Sequence>
+						<rul:Constant Type="integer" ToDataDef="@PremiumIndicator">0</rul:Constant>
+					</rul:Sequence>
+				</rul:Else>
+			</rul:If>
+		</rul:Sequence>
+	</rul:Rule>
+	<rul:Rule Name="ErcProcess" Type="none" DataDefGroup="CommercialPropertyIncreasedCostOfLossAndRelatedExpensesForGreenUpgradesEndtPersPropSpecialCov">
+		<rul:Sequence>
+			<rul:RunRule Type="none" FileName="CommercialPropertyIncreasedCostOfLossAndRelatedExpensesForGreenUpgradesEndtPersPropSpecialCovRules" Rule="SetCoverageOnPolicyIndicator" ClearCache="true" />
+			<rul:If>
+				<rul:Test>
+					<rul:Equal>
+						<rul:FirstValue Type="integer" FromConstant="0" FromDataDef="@CoverageOnPolicyIndicator" Order="DataDefInputParamConstant" />
+						<rul:Constant Type="integer">0</rul:Constant>
+					</rul:Equal>
+				</rul:Test>
+				<rul:Then>
+					<rul:Sequence>
+						<rul:Constant Type="decimal" ToDataDef="@Premium">0.0</rul:Constant>
+					</rul:Sequence>
+				</rul:Then>
+				<rul:Else>
+					<rul:Sequence>
+						<rul:RunRule Type="none" FileName="CommercialPropertyIncreasedCostOfLossAndRelatedExpensesForGreenUpgradesEndtPersPropSpecialCovRules" Rule="ErcSetRatesAndFactors" ClearCache="true" />
+						<rul:RunRule Type="none" FileName="CommercialPropertyIncreasedCostOfLossAndRelatedExpensesForGreenUpgradesEndtPersPropSpecialCovRules" Rule="ErcRate" ClearCache="true" />
+					</rul:Sequence>
+				</rul:Else>
+			</rul:If>
+		</rul:Sequence>
+	</rul:Rule>
+</rul:Rules>

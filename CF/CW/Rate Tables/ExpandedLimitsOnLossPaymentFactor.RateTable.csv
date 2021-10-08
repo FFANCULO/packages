@@ -1,0 +1,4 @@
+"StateCode","ExpandedLimitsOnLossPayments","Factor"
+"CW","30%, 60%, 90%, 100%",1.53
+"CW","25%, 50%, 75%, 100%",1.45
+"CW","20%, 40%, 80%, 100%",1.36

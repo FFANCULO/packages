@@ -1,0 +1,17 @@
+<rt:RateTable xmlns:rt="http://www.verisk.com/iso/erc/RateTable">
+	<rt:MetaData>
+		<rt:MetaDataCode>RateTableWindstormOrHailDeductibleFactor</rt:MetaDataCode>
+		<rt:MetaDataCode>BureauRuleNumber82D</rt:MetaDataCode>
+	</rt:MetaData>
+	<rt:KeyCols>
+		<rt:KeyCol Name="StateCode" Type="string" CaseInsensitive="false" />
+		<rt:KeyCol Name="WindstormOrHailDeductible" Type="string" CaseInsensitive="false" />
+		<rt:Range Name="Limit" Type="integer" RangeType="FromInclusiveToExclusive">
+			<rt:KeyCol Name="Limit_From" />
+			<rt:KeyCol Name="Limit_ToLessThan" />
+		</rt:Range>
+	</rt:KeyCols>
+	<rt:ValueCols>
+		<rt:ValueCol Name="Factor" Type="decimal" />
+	</rt:ValueCols>
+</rt:RateTable>

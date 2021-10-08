@@ -1,0 +1,11 @@
+"StateCode","EQSprinklerLeakageCoinsurance_From","EQSprinklerLeakageCoinsurance_ToLessThan","Factor_From","Factor_ToLessThan",
+"CW",100,2147483647,0.9,0.9
+"CW",90,100,0.95,0.9
+"CW",80,90,1,0.95
+"CW",70,80,1.09,1
+"CW",60,70,1.23,1.09
+"CW",50,60,1.44,1.23
+"CW",40,50,1.74,1.44
+"CW",30,40,2.21,1.74
+"CW",20,30,3.12,2.21
+"CW",10,20,5.63,3.12

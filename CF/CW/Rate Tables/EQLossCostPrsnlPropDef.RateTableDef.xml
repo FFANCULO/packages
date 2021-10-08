@@ -1,0 +1,15 @@
+<rt:RateTable xmlns:rt="http://www.verisk.com/iso/erc/RateTable">
+	<rt:MetaData>
+		<rt:MetaDataCode>RateTableEQLossCostPrsnlProp</rt:MetaDataCode>
+		<rt:MetaDataCode>BureauRuleNumber73E1a</rt:MetaDataCode>
+	</rt:MetaData>
+	<rt:KeyCols>
+		<rt:KeyCol Name="StateCode" Type="string" CaseInsensitive="false" />
+		<rt:KeyCol Name="EQClass" Type="string" CaseInsensitive="false" />
+		<rt:KeyCol Name="EQTerr" Type="string" CaseInsensitive="false" />
+		<rt:KeyCol Name="EQGrade" Type="string" CaseInsensitive="false" />
+	</rt:KeyCols>
+	<rt:ValueCols>
+		<rt:ValueCol Name="LossCost" Type="decimal" />
+	</rt:ValueCols>
+</rt:RateTable>

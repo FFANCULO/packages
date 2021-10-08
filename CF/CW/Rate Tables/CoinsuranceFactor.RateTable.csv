@@ -1,0 +1,4 @@
+"StateCode","CoinsuranceValue","Factor"
+"CW","80%",1
+"CW","90%",0.95
+"CW","100%",0.9

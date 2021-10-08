@@ -1,0 +1,13 @@
+<rt:RateTable xmlns:rt="http://www.verisk.com/iso/erc/RateTable">
+	<rt:MetaData>
+		<rt:MetaDataCode>RateTablePrsnlPropYardCoverageCode</rt:MetaDataCode>
+		<rt:MetaDataCode>BureauRuleNumberCF63</rt:MetaDataCode>
+	</rt:MetaData>
+	<rt:KeyCols>
+		<rt:KeyCol Name="StateCode" Type="string" CaseInsensitive="false" />
+		<rt:KeyCol Name="Constant" Type="string" CaseInsensitive="false" />
+	</rt:KeyCols>
+	<rt:ValueCols>
+		<rt:ValueCol Name="Code" Type="string" />
+	</rt:ValueCols>
+</rt:RateTable>

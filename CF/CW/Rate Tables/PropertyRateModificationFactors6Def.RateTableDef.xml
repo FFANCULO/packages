@@ -1,0 +1,24 @@
+<rt:RateTable xmlns:rt="http://www.verisk.com/iso/erc/RateTable">
+	<rt:MetaData>
+		<rt:MetaDataCode>RateTablePropertyRateModificationFactors6</rt:MetaDataCode>
+		<rt:MetaDataCode>BureauRuleNumber76C86</rt:MetaDataCode>
+	</rt:MetaData>
+	<rt:KeyCols>
+		<rt:KeyCol Name="StateCode" Type="string" CaseInsensitive="false" />
+		<rt:KeyCol Name="Deductible" Type="string" CaseInsensitive="false" />
+		<rt:Range Name="InsuranceToValueLevelPercentage" Type="decimal" RangeType="FromInclusiveToExclusive">
+			<rt:KeyCol Name="InsuranceToValueLevelPercentage_From" />
+			<rt:KeyCol Name="InsuranceToValueLevelPercentage_ToLessThan" />
+		</rt:Range>
+		<rt:Range Name="TotalPropertyValue" Type="integer" RangeType="FromInclusiveToExclusive">
+			<rt:KeyCol Name="TotalPropertyValue_From" />
+			<rt:KeyCol Name="TotalPropertyValue_ToLessThan" />
+		</rt:Range>
+	</rt:KeyCols>
+	<rt:ValueCols>
+		<rt:Range Name="Factor" RangeKeyCol="InsuranceToValueLevelPercentage" InterpolateMode="Linear" Type="decimal">
+			<rt:ValueCol Name="Factor_From" />
+			<rt:ValueCol Name="Factor_ToLessThan" />
+		</rt:Range>
+	</rt:ValueCols>
+</rt:RateTable>

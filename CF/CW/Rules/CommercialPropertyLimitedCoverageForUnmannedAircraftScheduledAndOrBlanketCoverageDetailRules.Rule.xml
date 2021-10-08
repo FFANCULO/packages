@@ -1,0 +1,1850 @@
+<rul:Rules xmlns:rul="http://www.verisk.com/iso/erc/Rule">
+	<rul:Rule Name="InitializeRuleSet" DataDefGroup="CommercialPropertyLimitedCoverageForUnmannedAircraftScheduledAndOrBlanketCoverageDetail">
+		<rul:Sequence>
+			<rul:Locate AtDataDef="CommercialPropertyLimitedCoverageForUnmannedAircraftScheduledAndOrBlanketCoverageDetailDroneCov">
+				<rul:RunRule Type="none" FileName="CommercialPropertyLimitedCoverageForUnmannedAircraftScheduledAndOrBlanketCoverageDetailDroneCovRules" Rule="InitializeRuleSet" ClearCache="true" />
+			</rul:Locate>
+			<rul:Locate AtDataDef="CommercialPropertyLimitedCoverageForUnmannedAircraftScheduledAndOrBlanketCoverageDetailEQCov">
+				<rul:RunRule Type="none" FileName="CommercialPropertyLimitedCoverageForUnmannedAircraftScheduledAndOrBlanketCoverageDetailEQCovRules" Rule="InitializeRuleSet" ClearCache="true" />
+			</rul:Locate>
+		</rul:Sequence>
+	</rul:Rule>
+	<rul:Rule Name="CalculateTotalPremium" Type="decimal" DataDefGroup="CommercialPropertyLimitedCoverageForUnmannedAircraftScheduledAndOrBlanketCoverageDetail">
+		<rul:Sum>
+			<rul:Locate AtDataDef="CommercialPropertyLimitedCoverageForUnmannedAircraftScheduledAndOrBlanketCoverageDetailDroneCov">
+				<rul:RunRule Type="decimal" FileName="CommercialPropertyLimitedCoverageForUnmannedAircraftScheduledAndOrBlanketCoverageDetailDroneCovRules" Rule="CalculateTotalPremium" ClearCache="true" />
+			</rul:Locate>
+			<rul:Locate AtDataDef="CommercialPropertyLimitedCoverageForUnmannedAircraftScheduledAndOrBlanketCoverageDetailEQCov">
+				<rul:RunRule Type="decimal" FileName="CommercialPropertyLimitedCoverageForUnmannedAircraftScheduledAndOrBlanketCoverageDetailEQCovRules" Rule="CalculateTotalPremium" ClearCache="true" />
+			</rul:Locate>
+			<rul:If>
+				<rul:Test>
+					<rul:And>
+						<rul:Equal>
+							<rul:FirstValue Type="integer" FromConstant="0" FromDataDef="@PremiumIndicator" Order="DataDefInputParamConstant" />
+							<rul:Constant Type="integer">1</rul:Constant>
+						</rul:Equal>
+						<rul:NotEqual>
+							<rul:FirstValue Type="decimal" FromConstant="0" FromDataDef="@Premium" Order="DataDefInputParamConstant" />
+							<rul:Constant Type="decimal">0</rul:Constant>
+						</rul:NotEqual>
+					</rul:And>
+				</rul:Test>
+				<rul:Then>
+					<rul:FirstValue Type="decimal" FromConstant="0" FromDataDef="@Premium" Order="DataDefInputParamConstant" />
+				</rul:Then>
+				<rul:Else>
+					<rul:Constant Type="decimal">0</rul:Constant>
+				</rul:Else>
+			</rul:If>
+		</rul:Sum>
+	</rul:Rule>
+	<rul:Rule Name="ErcSetRatesAndFactors" Type="none" DataDefGroup="CommercialPropertyLimitedCoverageForUnmannedAircraftScheduledAndOrBlanketCoverageDetail">
+		<rul:Sequence>
+			<rul:RunRule Type="none" FileName="CommercialPropertyLimitedCoverageForUnmannedAircraftScheduledAndOrBlanketCoverageDetailRules" Rule="SetRiskClass" ClearCache="true" />
+			<rul:RunRule Type="none" FileName="CommercialPropertyLimitedCoverageForUnmannedAircraftScheduledAndOrBlanketCoverageDetailRules" Rule="SetUnmannedAircraftBaseRate" ClearCache="true" />
+			<rul:RunRule Type="none" FileName="CommercialPropertyLimitedCoverageForUnmannedAircraftScheduledAndOrBlanketCoverageDetailRules" Rule="SetLimitToUse" ClearCache="true" />
+			<rul:RunRule Type="none" FileName="CommercialPropertyLimitedCoverageForUnmannedAircraftScheduledAndOrBlanketCoverageDetailRules" Rule="SetDeductibleFactor" ClearCache="true" />
+			<rul:RunRule Type="none" FileName="CommercialPropertyLimitedCoverageForUnmannedAircraftScheduledAndOrBlanketCoverageDetailRules" Rule="SetNewlyAcquiredPropertyFactor" ClearCache="true" />
+			<rul:RunRule Type="none" FileName="CommercialPropertyLimitedCoverageForUnmannedAircraftScheduledAndOrBlanketCoverageDetailRules" Rule="SetWindstormOrHailExclFactor" ClearCache="true" />
+			<rul:RunRule Type="none" FileName="CommercialPropertyLimitedCoverageForUnmannedAircraftScheduledAndOrBlanketCoverageDetailRules" Rule="SetEQRatesAndFactors" ClearCache="true" />
+		</rul:Sequence>
+	</rul:Rule>
+	<rul:Rule Name="SetRiskClass" Type="none" DataDefGroup="CommercialPropertyLimitedCoverageForUnmannedAircraftScheduledAndOrBlanketCoverageDetail">
+		<rul:Sequence>
+			<rul:If>
+				<rul:Test>
+					<rul:NotEqual>
+						<rul:FirstValue Type="string" FromConstant="" FromDataDef="@TypeOfOperations" Order="DataDefInputParamConstant" />
+						<rul:Constant Type="string"></rul:Constant>
+					</rul:NotEqual>
+				</rul:Test>
+				<rul:Then>
+					<rul:Sequence>
+						<rul:RunRule Type="string" ToDataDef="@RiskClass" FileName="CommercialPropertyLimitedCoverageForUnmannedAircraftScheduledAndOrBlanketCoverageDetailRules" Rule="LookupUnmannedAircraftRiskClass" ClearCache="true" />
+					</rul:Sequence>
+				</rul:Then>
+				<rul:Else>
+					<rul:Sequence>
+						<rul:Constant Type="string" ToDataDef="@RiskClass"></rul:Constant>
+					</rul:Sequence>
+				</rul:Else>
+			</rul:If>
+		</rul:Sequence>
+	</rul:Rule>
+	<rul:Rule Name="SetUnmannedAircraftBaseRate" Type="none" DataDefGroup="CommercialPropertyLimitedCoverageForUnmannedAircraftScheduledAndOrBlanketCoverageDetail">
+		<rul:Sequence>
+			<rul:If>
+				<rul:Test>
+					<rul:NotEqual>
+						<rul:FirstValue Type="string" FromConstant="" FromDataDef="@RiskClass" Order="DataDefInputParamConstant" />
+						<rul:Constant Type="string"></rul:Constant>
+					</rul:NotEqual>
+				</rul:Test>
+				<rul:Then>
+					<rul:Sequence>
+						<rul:RunRule Type="decimal" ToDataDef="@UnmannedAircraftBaseRate" FileName="CommercialPropertyLimitedCoverageForUnmannedAircraftScheduledAndOrBlanketCoverageDetailRules" Rule="LookupUnmannedAircraftLossCosts" ClearCache="true" />
+					</rul:Sequence>
+				</rul:Then>
+				<rul:Else>
+					<rul:Sequence>
+						<rul:Constant Type="decimal" ToDataDef="@UnmannedAircraftBaseRate">0.0</rul:Constant>
+					</rul:Sequence>
+				</rul:Else>
+			</rul:If>
+		</rul:Sequence>
+	</rul:Rule>
+	<rul:Rule Name="SetLimitToUse" Type="none" DataDefGroup="CommercialPropertyLimitedCoverageForUnmannedAircraftScheduledAndOrBlanketCoverageDetail">
+		<rul:Sequence>
+			<rul:If>
+				<rul:Test>
+					<rul:Equal>
+						<rul:FirstValue Type="string" FromConstant="" FromDataDef="@BlanketCoverageUnmannedAircraftAppliesToUnmannedAircraftNotIndividuallyDescribed" Order="DataDefInputParamConstant" />
+						<rul:Constant Type="string">Yes</rul:Constant>
+					</rul:Equal>
+				</rul:Test>
+				<rul:Then>
+					<rul:Copy Type="integer" ToDataDef="@LimitToUse" FromDataDef="@BlanketLimitOfInsurance" />
+				</rul:Then>
+				<rul:Else>
+					<rul:Copy Type="integer" ToDataDef="@LimitToUse" FromDataDef="@LimitOfInsurance" />
+				</rul:Else>
+			</rul:If>
+		</rul:Sequence>
+	</rul:Rule>
+	<rul:Rule Name="SetDeductibleFactor" Type="none" DataDefGroup="CommercialPropertyLimitedCoverageForUnmannedAircraftScheduledAndOrBlanketCoverageDetail">
+		<rul:Sequence>
+			<rul:Choose>
+				<rul:When>
+					<rul:Test>
+						<rul:Equal>
+							<rul:FirstValue Type="string" FromConstant="" FromDataDef="@Deductible" Order="DataDefInputParamConstant" />
+							<rul:Constant Type="string">Not Applicable</rul:Constant>
+						</rul:Equal>
+					</rul:Test>
+					<rul:Then>
+						<rul:Sequence>
+							<rul:RunRule Type="decimal" ToDataDef="@DeductibleFactor" FileName="CommercialPropertyLimitedCoverageForUnmannedAircraftScheduledAndOrBlanketCoverageDetailRules" Rule="LookupUnmannedAircraftNoDeductibleFactor" ClearCache="true" />
+						</rul:Sequence>
+					</rul:Then>
+				</rul:When>
+				<rul:When>
+					<rul:Test>
+						<rul:Equal>
+							<rul:FirstValue Type="string" FromConstant="" FromDataDef="@Deductible" Order="DataDefInputParamConstant" />
+							<rul:Constant Type="string">250</rul:Constant>
+						</rul:Equal>
+					</rul:Test>
+					<rul:Then>
+						<rul:Sequence>
+							<rul:RunRule Type="decimal" ToDataDef="@DeductibleFactor" FileName="CommercialPropertyLimitedCoverageForUnmannedAircraftScheduledAndOrBlanketCoverageDetailRules" Rule="LookupDeductible250Factor" ClearCache="true">
+								<rul:Arg Type="string" Param="causeOfLoss">
+									<rul:Constant Type="string">All Other</rul:Constant>
+								</rul:Arg>
+							</rul:RunRule>
+						</rul:Sequence>
+					</rul:Then>
+				</rul:When>
+				<rul:When>
+					<rul:Test>
+						<rul:NotEqual>
+							<rul:FirstValue Type="string" FromConstant="" FromDataDef="@Deductible" Order="DataDefInputParamConstant" />
+							<rul:Constant Type="string"></rul:Constant>
+						</rul:NotEqual>
+					</rul:Test>
+					<rul:Then>
+						<rul:Sequence>
+							<rul:RunRule Type="decimal" ToDataDef="@DeductibleFactor" FileName="CommercialPropertyLimitedCoverageForUnmannedAircraftScheduledAndOrBlanketCoverageDetailRules" Rule="LookupDeductibleFactor" ClearCache="true">
+								<rul:Arg Type="string" Param="ded">
+									<rul:FirstValue Type="string" FromConstant="" FromDataDef="@Deductible" Order="DataDefInputParamConstant" />
+								</rul:Arg>
+								<rul:Arg Type="integer" Param="limit">
+									<rul:FirstValue Type="integer" FromConstant="0" FromDataDef="../../@TotalScheduleLimit" Order="DataDefInputParamConstant" />
+								</rul:Arg>
+								<rul:Arg Type="string" Param="causeOfLossDed">
+									<rul:Constant Type="string">Other Cause Of Loss</rul:Constant>
+								</rul:Arg>
+							</rul:RunRule>
+						</rul:Sequence>
+					</rul:Then>
+				</rul:When>
+				<rul:Otherwise>
+					<rul:Sequence>
+						<rul:Constant Type="decimal" ToDataDef="@DeductibleFactor">0.0</rul:Constant>
+					</rul:Sequence>
+				</rul:Otherwise>
+			</rul:Choose>
+		</rul:Sequence>
+	</rul:Rule>
+	<rul:Rule Name="SetNewlyAcquiredPropertyFactor" Type="none" DataDefGroup="CommercialPropertyLimitedCoverageForUnmannedAircraftScheduledAndOrBlanketCoverageDetail">
+		<rul:Sequence>
+			<rul:If>
+				<rul:Test>
+					<rul:Equal>
+						<rul:FirstValue Type="string" FromConstant="" FromDataDef="@CoverageExtensionForNewlyAcquiredPropertyIncludingTemporarySubstitutePropertyAppliesToScheduledCoverageonly" Order="DataDefInputParamConstant" />
+						<rul:Constant Type="string">Yes</rul:Constant>
+					</rul:Equal>
+				</rul:Test>
+				<rul:Then>
+					<rul:Sequence>
+						<rul:RunRule Type="decimal" ToDataDef="@NewlyAcquiredPropertyFactor" FileName="CommercialPropertyLimitedCoverageForUnmannedAircraftScheduledAndOrBlanketCoverageDetailRules" Rule="LookupUnmannedAircraftNewlyAcquiredPropertyFactor" ClearCache="true" />
+					</rul:Sequence>
+				</rul:Then>
+				<rul:Else>
+					<rul:Sequence>
+						<rul:Constant Type="decimal" ToDataDef="@NewlyAcquiredPropertyFactor">1.0</rul:Constant>
+					</rul:Sequence>
+				</rul:Else>
+			</rul:If>
+		</rul:Sequence>
+	</rul:Rule>
+	<rul:Rule Name="SetWindstormOrHailExclFactor" Type="none" DataDefGroup="CommercialPropertyLimitedCoverageForUnmannedAircraftScheduledAndOrBlanketCoverageDetail">
+		<rul:Sequence>
+			<rul:If>
+				<rul:Test>
+					<rul:Exist AtInputDataDef="../../../../CommercialPropertyWindstormOrHailExclusionTable/CommercialPropertyWindstormOrHailExclusion" />
+				</rul:Test>
+				<rul:Then>
+					<rul:Sequence>
+						<rul:RunRule Type="decimal" ToDataDef="@WindstormOrHailExclFactor" FileName="CommercialPropertyLimitedCoverageForUnmannedAircraftScheduledAndOrBlanketCoverageDetailRules" Rule="LookupWindstormOrHailExclFactor" ClearCache="true" />
+					</rul:Sequence>
+				</rul:Then>
+				<rul:Else>
+					<rul:Sequence>
+						<rul:Constant Type="decimal" ToDataDef="@WindstormOrHailExclFactor">1.0</rul:Constant>
+					</rul:Sequence>
+				</rul:Else>
+			</rul:If>
+		</rul:Sequence>
+	</rul:Rule>
+	<rul:Rule Name="SetEQRatesAndFactors" Type="none" DataDefGroup="CommercialPropertyLimitedCoverageForUnmannedAircraftScheduledAndOrBlanketCoverageDetail">
+		<rul:Sequence>
+			<rul:RunRule Type="none" FileName="CommercialPropertyLimitedCoverageForUnmannedAircraftScheduledAndOrBlanketCoverageDetailRules" Rule="SetEQBaseRate" ClearCache="true" />
+			<rul:RunRule Type="none" FileName="CommercialPropertyLimitedCoverageForUnmannedAircraftScheduledAndOrBlanketCoverageDetailRules" Rule="SetEQRate" ClearCache="true" />
+			<rul:RunRule Type="none" FileName="CommercialPropertyLimitedCoverageForUnmannedAircraftScheduledAndOrBlanketCoverageDetailRules" Rule="SetEQCauseOfLossAdjustment" ClearCache="true" />
+			<rul:RunRule Type="none" FileName="CommercialPropertyLimitedCoverageForUnmannedAircraftScheduledAndOrBlanketCoverageDetailRules" Rule="SetEQDeductibleFactor" ClearCache="true" />
+		</rul:Sequence>
+	</rul:Rule>
+	<rul:Rule Name="SetEQBaseRate" Type="none" DataDefGroup="CommercialPropertyLimitedCoverageForUnmannedAircraftScheduledAndOrBlanketCoverageDetail">
+		<rul:Sequence>
+			<rul:If>
+				<rul:Test>
+					<rul:And>
+						<rul:NotEqual>
+							<rul:FirstValue Type="string" FromConstant="" FromDataDef="../../../../@EQClass" Order="DataDefInputParamConstant" />
+							<rul:Constant Type="string"></rul:Constant>
+						</rul:NotEqual>
+						<rul:NotEqual>
+							<rul:FirstValue Type="string" FromConstant="" FromDataDef="../../../../../../@EQTerr" Order="DataDefInputParamConstant" />
+							<rul:Constant Type="string"></rul:Constant>
+						</rul:NotEqual>
+					</rul:And>
+				</rul:Test>
+				<rul:Then>
+					<rul:Sequence>
+						<rul:RunRule Type="decimal" ToDataDef="@EQBaseRate" FileName="CommercialPropertyLimitedCoverageForUnmannedAircraftScheduledAndOrBlanketCoverageDetailRules" Rule="LookupEQLossCostPrsnlProp" ClearCache="true" />
+					</rul:Sequence>
+				</rul:Then>
+				<rul:Else>
+					<rul:Sequence>
+						<rul:Constant Type="decimal" ToDataDef="@EQBaseRate">0.0</rul:Constant>
+					</rul:Sequence>
+				</rul:Else>
+			</rul:If>
+		</rul:Sequence>
+	</rul:Rule>
+	<rul:Rule Name="SetEQRate" Type="none" DataDefGroup="CommercialPropertyLimitedCoverageForUnmannedAircraftScheduledAndOrBlanketCoverageDetail">
+		<rul:Sequence>
+			<rul:WithArgs>
+				<rul:Arg Type="decimal" Param="calcEQRate">
+					<rul:FirstNonNull Type="decimal">
+						<rul:Product DecimalPlaces="3">
+							<rul:Product DecimalPlaces="3">
+								<rul:Product DecimalPlaces="3">
+									<rul:FirstValue Type="decimal" FromConstant="0" FromDataDef="@EQBaseRate" Order="DataDefInputParamConstant" />
+									<rul:FirstValue Type="decimal" FromConstant="0" FromDataDef="../../../../@LossCostMultiplier" Order="DataDefInputParamConstant" />
+								</rul:Product>
+								<rul:FirstValue Type="decimal" FromConstant="0" FromDataDef="../../../../@LimitationsOnCovForRoofSurfacingACVFactor" Order="DataDefInputParamConstant" />
+							</rul:Product>
+							<rul:FirstValue Type="decimal" FromConstant="0" FromDataDef="../../../../@EQRoofTankHazardFactor" Order="DataDefInputParamConstant" />
+							<rul:FirstValue Type="decimal" FromConstant="0" FromDataDef="../../../../@EQSprinkleredRiskFactor" Order="DataDefInputParamConstant" />
+							<rul:FirstValue Type="decimal" FromConstant="0" FromDataDef="../../../../@BldgHeightFactor" Order="DataDefInputParamConstant" />
+							<rul:FirstValue Type="decimal" FromConstant="0" FromDataDef="../../../../@BCEGEQFactor" Order="DataDefInputParamConstant" />
+							<rul:FirstValue Type="decimal" FromConstant="0" FromDataDef="../../../../@PctOfMasonryVeneerEQFactor" Order="DataDefInputParamConstant" />
+							<rul:FirstValue Type="decimal" FromConstant="0" FromDataDef="../../../../@BuildersRiskEQFactor" Order="DataDefInputParamConstant" />
+						</rul:Product>
+						<rul:Constant Type="decimal">0</rul:Constant>
+					</rul:FirstNonNull>
+				</rul:Arg>
+				<rul:Value Type="decimal" ToDataDef="@EQRate" FromParam="calcEQRate" />
+			</rul:WithArgs>
+		</rul:Sequence>
+	</rul:Rule>
+	<rul:Rule Name="SetEQCauseOfLossAdjustment" Type="none" DataDefGroup="CommercialPropertyLimitedCoverageForUnmannedAircraftScheduledAndOrBlanketCoverageDetail">
+		<rul:Sequence>
+			<rul:Product ToDataDef="@EQCauseOfLossAdjustment" DecimalPlaces="3">
+				<rul:FirstValue Type="decimal" FromConstant="0" FromDataDef="@EQRate" Order="DataDefInputParamConstant" />
+				<rul:FirstValue Type="decimal" FromConstant="0" FromDataDef="../../../../@EQSprinklerLeakageOnlyBldgFactor" Order="DataDefInputParamConstant" />
+			</rul:Product>
+		</rul:Sequence>
+	</rul:Rule>
+	<rul:Rule Name="SetEQDeductibleFactor" Type="none" DataDefGroup="CommercialPropertyLimitedCoverageForUnmannedAircraftScheduledAndOrBlanketCoverageDetail">
+		<rul:Sequence>
+			<rul:Choose>
+				<rul:When>
+					<rul:Test>
+						<rul:And>
+							<rul:Exist AtInputDataDef="../../../../CommercialPropertyEarthquakeAndVolcanicEruptionCoverageWithFlatDollarDeductibleBldgTable/CommercialPropertyEarthquakeAndVolcanicEruptionCoverageWithFlatDollarDeductibleBldg" />
+							<rul:NotEqual>
+								<rul:FirstValue Type="integer" FromConstant="0" FromDataDef="../../../../../../@EQDeductibleTier" Order="DataDefInputParamConstant" />
+								<rul:Constant Type="integer">0</rul:Constant>
+							</rul:NotEqual>
+							<rul:NotEqual>
+								<rul:FirstValue Type="string" FromConstant="" FromDataDef="../../../../@EQClass" Order="DataDefInputParamConstant" />
+								<rul:Constant Type="string"></rul:Constant>
+							</rul:NotEqual>
+							<rul:NotEqual>
+								<rul:FirstValue Type="string" FromConstant="" FromDataDef="@EQDeductible" Order="DataDefInputParamConstant" />
+								<rul:Constant Type="string"></rul:Constant>
+							</rul:NotEqual>
+							<rul:NotEqual>
+								<rul:FirstValue Type="string" FromConstant="" FromDataDef="@EQDeductible" Order="DataDefInputParamConstant" />
+								<rul:Constant Type="string">Not Applicable</rul:Constant>
+							</rul:NotEqual>
+							<rul:NotEqual>
+								<rul:FirstValue Type="integer" FromConstant="0" FromDataDef="../../@TotalScheduleLimit" Order="DataDefInputParamConstant" />
+								<rul:Constant Type="integer">0</rul:Constant>
+							</rul:NotEqual>
+						</rul:And>
+					</rul:Test>
+					<rul:Then>
+						<rul:Sequence>
+							<rul:RunRule Type="decimal" ToDataDef="@EQDeductibleFactor" FileName="CommercialPropertyLimitedCoverageForUnmannedAircraftScheduledAndOrBlanketCoverageDetailRules" Rule="LookupEQFlatDeductibleFactor" ClearCache="true" />
+						</rul:Sequence>
+					</rul:Then>
+				</rul:When>
+				<rul:When>
+					<rul:Test>
+						<rul:And>
+							<rul:Exist AtInputDataDef="../../../../CommercialPropertyEarthquakeAndVolcanicEruptionEndorsementTable/CommercialPropertyEarthquakeAndVolcanicEruptionEndorsement" />
+							<rul:NotEqual>
+								<rul:FirstValue Type="integer" FromConstant="0" FromDataDef="../../../../../../@EQDeductibleTier" Order="DataDefInputParamConstant" />
+								<rul:Constant Type="integer">0</rul:Constant>
+							</rul:NotEqual>
+							<rul:NotEqual>
+								<rul:FirstValue Type="string" FromConstant="" FromDataDef="../../../../@EQClass" Order="DataDefInputParamConstant" />
+								<rul:Constant Type="string"></rul:Constant>
+							</rul:NotEqual>
+							<rul:NotEqual>
+								<rul:FirstValue Type="string" FromConstant="" FromDataDef="@EQDeductible" Order="DataDefInputParamConstant" />
+								<rul:Constant Type="string"></rul:Constant>
+							</rul:NotEqual>
+							<rul:NotEqual>
+								<rul:FirstValue Type="string" FromConstant="" FromDataDef="@EQDeductible" Order="DataDefInputParamConstant" />
+								<rul:Constant Type="string">Not Applicable</rul:Constant>
+							</rul:NotEqual>
+						</rul:And>
+					</rul:Test>
+					<rul:Then>
+						<rul:Sequence>
+							<rul:RunRule Type="decimal" ToDataDef="@EQDeductibleFactor" FileName="CommercialPropertyLimitedCoverageForUnmannedAircraftScheduledAndOrBlanketCoverageDetailRules" Rule="LookupEQPercentageDeductibleFactor" ClearCache="true" />
+						</rul:Sequence>
+					</rul:Then>
+				</rul:When>
+				<rul:When>
+					<rul:Test>
+						<rul:And>
+							<rul:Exist AtInputDataDef="../../../../CommercialPropertyEarthquakeAndVolcanicEruptionCoverageSubLimitFormWithFlatDollarDeductibleBldgTable/CommercialPropertyEarthquakeAndVolcanicEruptionCoverageSubLimitFormWithFlatDollarDeductibleBldg" />
+							<rul:GreaterThan>
+								<rul:FirstValue Type="integer" FromConstant="0" FromDataDef="../../../../@EQSubLimitPercent" Order="DataDefInputParamConstant" />
+								<rul:Constant Type="integer">0</rul:Constant>
+							</rul:GreaterThan>
+							<rul:LessThanOrEqual>
+								<rul:FirstValue Type="integer" FromConstant="0" FromDataDef="../../../../@EQSubLimitPercent" Order="DataDefInputParamConstant" />
+								<rul:Constant Type="integer">75</rul:Constant>
+							</rul:LessThanOrEqual>
+							<rul:NotEqual>
+								<rul:FirstValue Type="integer" FromConstant="0" FromDataDef="../../../../../../@EQDeductibleTier" Order="DataDefInputParamConstant" />
+								<rul:Constant Type="integer">0</rul:Constant>
+							</rul:NotEqual>
+							<rul:NotEqual>
+								<rul:FirstValue Type="string" FromConstant="" FromDataDef="../../../../@EQClass" Order="DataDefInputParamConstant" />
+								<rul:Constant Type="string"></rul:Constant>
+							</rul:NotEqual>
+							<rul:NotEqual>
+								<rul:FirstValue Type="string" FromConstant="" FromDataDef="@EQDeductible" Order="DataDefInputParamConstant" />
+								<rul:Constant Type="string"></rul:Constant>
+							</rul:NotEqual>
+							<rul:NotEqual>
+								<rul:FirstValue Type="string" FromConstant="" FromDataDef="@EQDeductible" Order="DataDefInputParamConstant" />
+								<rul:Constant Type="string">Not Applicable</rul:Constant>
+							</rul:NotEqual>
+							<rul:NotEqual>
+								<rul:FirstValue Type="integer" FromConstant="0" FromDataDef="../../@TotalScheduleLimit" Order="DataDefInputParamConstant" />
+								<rul:Constant Type="integer">0</rul:Constant>
+							</rul:NotEqual>
+						</rul:And>
+					</rul:Test>
+					<rul:Then>
+						<rul:Sequence>
+							<rul:Choose>
+								<rul:When>
+									<rul:Test>
+										<rul:Equal>
+											<rul:FirstValue Type="string" FromConstant="" FromDataDef="@EQDeductible" Order="DataDefInputParamConstant" />
+											<rul:Constant Type="string">500</rul:Constant>
+										</rul:Equal>
+									</rul:Test>
+									<rul:Then>
+										<rul:Sequence>
+											<rul:RunRule Type="decimal" ToDataDef="@EQDeductibleFactor" FileName="CommercialPropertyLimitedCoverageForUnmannedAircraftScheduledAndOrBlanketCoverageDetailRules" Rule="LookupEQSubLimit500FlatDeductibleFactor" ClearCache="true" />
+										</rul:Sequence>
+									</rul:Then>
+								</rul:When>
+								<rul:When>
+									<rul:Test>
+										<rul:Equal>
+											<rul:FirstValue Type="string" FromConstant="" FromDataDef="@EQDeductible" Order="DataDefInputParamConstant" />
+											<rul:Constant Type="string">1,000</rul:Constant>
+										</rul:Equal>
+									</rul:Test>
+									<rul:Then>
+										<rul:Sequence>
+											<rul:RunRule Type="decimal" ToDataDef="@EQDeductibleFactor" FileName="CommercialPropertyLimitedCoverageForUnmannedAircraftScheduledAndOrBlanketCoverageDetailRules" Rule="LookupEQSubLimit1000FlatDeductibleFactor" ClearCache="true" />
+										</rul:Sequence>
+									</rul:Then>
+								</rul:When>
+								<rul:When>
+									<rul:Test>
+										<rul:Equal>
+											<rul:FirstValue Type="string" FromConstant="" FromDataDef="@EQDeductible" Order="DataDefInputParamConstant" />
+											<rul:Constant Type="string">2,500</rul:Constant>
+										</rul:Equal>
+									</rul:Test>
+									<rul:Then>
+										<rul:Sequence>
+											<rul:RunRule Type="decimal" ToDataDef="@EQDeductibleFactor" FileName="CommercialPropertyLimitedCoverageForUnmannedAircraftScheduledAndOrBlanketCoverageDetailRules" Rule="LookupEQSubLimit2500FlatDeductibleFactor" ClearCache="true" />
+										</rul:Sequence>
+									</rul:Then>
+								</rul:When>
+								<rul:When>
+									<rul:Test>
+										<rul:Equal>
+											<rul:FirstValue Type="string" FromConstant="" FromDataDef="@EQDeductible" Order="DataDefInputParamConstant" />
+											<rul:Constant Type="string">5,000</rul:Constant>
+										</rul:Equal>
+									</rul:Test>
+									<rul:Then>
+										<rul:Sequence>
+											<rul:RunRule Type="decimal" ToDataDef="@EQDeductibleFactor" FileName="CommercialPropertyLimitedCoverageForUnmannedAircraftScheduledAndOrBlanketCoverageDetailRules" Rule="LookupEQSubLimit5000FlatDeductibleFactor" ClearCache="true" />
+										</rul:Sequence>
+									</rul:Then>
+								</rul:When>
+								<rul:When>
+									<rul:Test>
+										<rul:Equal>
+											<rul:FirstValue Type="string" FromConstant="" FromDataDef="@EQDeductible" Order="DataDefInputParamConstant" />
+											<rul:Constant Type="string">10,000</rul:Constant>
+										</rul:Equal>
+									</rul:Test>
+									<rul:Then>
+										<rul:Sequence>
+											<rul:RunRule Type="decimal" ToDataDef="@EQDeductibleFactor" FileName="CommercialPropertyLimitedCoverageForUnmannedAircraftScheduledAndOrBlanketCoverageDetailRules" Rule="LookupEQSubLimit10000FlatDeductibleFactor" ClearCache="true" />
+										</rul:Sequence>
+									</rul:Then>
+								</rul:When>
+								<rul:When>
+									<rul:Test>
+										<rul:Equal>
+											<rul:FirstValue Type="string" FromConstant="" FromDataDef="@EQDeductible" Order="DataDefInputParamConstant" />
+											<rul:Constant Type="string">25,000</rul:Constant>
+										</rul:Equal>
+									</rul:Test>
+									<rul:Then>
+										<rul:Sequence>
+											<rul:RunRule Type="decimal" ToDataDef="@EQDeductibleFactor" FileName="CommercialPropertyLimitedCoverageForUnmannedAircraftScheduledAndOrBlanketCoverageDetailRules" Rule="LookupEQSubLimit25000FlatDeductibleFactor" ClearCache="true" />
+										</rul:Sequence>
+									</rul:Then>
+								</rul:When>
+								<rul:When>
+									<rul:Test>
+										<rul:Equal>
+											<rul:FirstValue Type="string" FromConstant="" FromDataDef="@EQDeductible" Order="DataDefInputParamConstant" />
+											<rul:Constant Type="string">50,000</rul:Constant>
+										</rul:Equal>
+									</rul:Test>
+									<rul:Then>
+										<rul:Sequence>
+											<rul:RunRule Type="decimal" ToDataDef="@EQDeductibleFactor" FileName="CommercialPropertyLimitedCoverageForUnmannedAircraftScheduledAndOrBlanketCoverageDetailRules" Rule="LookupEQSubLimit50000FlatDeductibleFactor" ClearCache="true" />
+										</rul:Sequence>
+									</rul:Then>
+								</rul:When>
+								<rul:When>
+									<rul:Test>
+										<rul:Equal>
+											<rul:FirstValue Type="string" FromConstant="" FromDataDef="@EQDeductible" Order="DataDefInputParamConstant" />
+											<rul:Constant Type="string">75,000</rul:Constant>
+										</rul:Equal>
+									</rul:Test>
+									<rul:Then>
+										<rul:Sequence>
+											<rul:RunRule Type="decimal" ToDataDef="@EQDeductibleFactor" FileName="CommercialPropertyLimitedCoverageForUnmannedAircraftScheduledAndOrBlanketCoverageDetailRules" Rule="LookupEQSubLimit75000FlatDeductibleFactor" ClearCache="true" />
+										</rul:Sequence>
+									</rul:Then>
+								</rul:When>
+								<rul:When>
+									<rul:Test>
+										<rul:Equal>
+											<rul:FirstValue Type="string" FromConstant="" FromDataDef="@EQDeductible" Order="DataDefInputParamConstant" />
+											<rul:Constant Type="string">100,000</rul:Constant>
+										</rul:Equal>
+									</rul:Test>
+									<rul:Then>
+										<rul:Sequence>
+											<rul:RunRule Type="decimal" ToDataDef="@EQDeductibleFactor" FileName="CommercialPropertyLimitedCoverageForUnmannedAircraftScheduledAndOrBlanketCoverageDetailRules" Rule="LookupEQSubLimit100000FlatDeductibleFactor" ClearCache="true" />
+										</rul:Sequence>
+									</rul:Then>
+								</rul:When>
+								<rul:When>
+									<rul:Test>
+										<rul:Equal>
+											<rul:FirstValue Type="string" FromConstant="" FromDataDef="@EQDeductible" Order="DataDefInputParamConstant" />
+											<rul:Constant Type="string">250,000</rul:Constant>
+										</rul:Equal>
+									</rul:Test>
+									<rul:Then>
+										<rul:Sequence>
+											<rul:RunRule Type="decimal" ToDataDef="@EQDeductibleFactor" FileName="CommercialPropertyLimitedCoverageForUnmannedAircraftScheduledAndOrBlanketCoverageDetailRules" Rule="LookupEQSubLimit250000FlatDeductibleFactor" ClearCache="true" />
+										</rul:Sequence>
+									</rul:Then>
+								</rul:When>
+								<rul:When>
+									<rul:Test>
+										<rul:Equal>
+											<rul:FirstValue Type="string" FromConstant="" FromDataDef="@EQDeductible" Order="DataDefInputParamConstant" />
+											<rul:Constant Type="string">500,000</rul:Constant>
+										</rul:Equal>
+									</rul:Test>
+									<rul:Then>
+										<rul:Sequence>
+											<rul:RunRule Type="decimal" ToDataDef="@EQDeductibleFactor" FileName="CommercialPropertyLimitedCoverageForUnmannedAircraftScheduledAndOrBlanketCoverageDetailRules" Rule="LookupEQSubLimit500000FlatDeductibleFactor" ClearCache="true" />
+										</rul:Sequence>
+									</rul:Then>
+								</rul:When>
+								<rul:When>
+									<rul:Test>
+										<rul:Equal>
+											<rul:FirstValue Type="string" FromConstant="" FromDataDef="@EQDeductible" Order="DataDefInputParamConstant" />
+											<rul:Constant Type="string">750,000</rul:Constant>
+										</rul:Equal>
+									</rul:Test>
+									<rul:Then>
+										<rul:Sequence>
+											<rul:RunRule Type="decimal" ToDataDef="@EQDeductibleFactor" FileName="CommercialPropertyLimitedCoverageForUnmannedAircraftScheduledAndOrBlanketCoverageDetailRules" Rule="LookupEQSubLimit750000FlatDeductibleFactor" ClearCache="true" />
+										</rul:Sequence>
+									</rul:Then>
+								</rul:When>
+								<rul:When>
+									<rul:Test>
+										<rul:Equal>
+											<rul:FirstValue Type="string" FromConstant="" FromDataDef="@EQDeductible" Order="DataDefInputParamConstant" />
+											<rul:Constant Type="string">1,000,000</rul:Constant>
+										</rul:Equal>
+									</rul:Test>
+									<rul:Then>
+										<rul:Sequence>
+											<rul:RunRule Type="decimal" ToDataDef="@EQDeductibleFactor" FileName="CommercialPropertyLimitedCoverageForUnmannedAircraftScheduledAndOrBlanketCoverageDetailRules" Rule="LookupEQSubLimit1000000FlatDeductibleFactor" ClearCache="true" />
+										</rul:Sequence>
+									</rul:Then>
+								</rul:When>
+							</rul:Choose>
+						</rul:Sequence>
+					</rul:Then>
+				</rul:When>
+				<rul:When>
+					<rul:Test>
+						<rul:And>
+							<rul:Exist AtInputDataDef="../../../../CommercialPropertyEarthquakeAndVolcanicEruptionEndorsementSubLimitFormTable/CommercialPropertyEarthquakeAndVolcanicEruptionEndorsementSubLimitForm" />
+							<rul:GreaterThan>
+								<rul:FirstValue Type="integer" FromConstant="0" FromDataDef="../../../../@EQSubLimitPercent" Order="DataDefInputParamConstant" />
+								<rul:Constant Type="integer">0</rul:Constant>
+							</rul:GreaterThan>
+							<rul:LessThanOrEqual>
+								<rul:FirstValue Type="integer" FromConstant="0" FromDataDef="../../../../@EQSubLimitPercent" Order="DataDefInputParamConstant" />
+								<rul:Constant Type="integer">75</rul:Constant>
+							</rul:LessThanOrEqual>
+							<rul:NotEqual>
+								<rul:FirstValue Type="string" FromConstant="" FromDataDef="../../../../@EQClass" Order="DataDefInputParamConstant" />
+								<rul:Constant Type="string"></rul:Constant>
+							</rul:NotEqual>
+							<rul:NotEqual>
+								<rul:FirstValue Type="string" FromConstant="" FromDataDef="@EQDeductible" Order="DataDefInputParamConstant" />
+								<rul:Constant Type="string"></rul:Constant>
+							</rul:NotEqual>
+							<rul:NotEqual>
+								<rul:FirstValue Type="string" FromConstant="" FromDataDef="@EQDeductible" Order="DataDefInputParamConstant" />
+								<rul:Constant Type="string">Not Applicable</rul:Constant>
+							</rul:NotEqual>
+							<rul:NotEqual>
+								<rul:FirstValue Type="integer" FromConstant="0" FromDataDef="../../../../../../@EQDeductibleTier" Order="DataDefInputParamConstant" />
+								<rul:Constant Type="integer">0</rul:Constant>
+							</rul:NotEqual>
+						</rul:And>
+					</rul:Test>
+					<rul:Then>
+						<rul:Sequence>
+							<rul:Choose>
+								<rul:When>
+									<rul:Test>
+										<rul:Or>
+											<rul:Equal>
+												<rul:FirstValue Type="string" FromConstant="" FromDataDef="../../../../@EQClass" Order="DataDefInputParamConstant" />
+												<rul:Constant Type="string">1C</rul:Constant>
+											</rul:Equal>
+											<rul:Equal>
+												<rul:FirstValue Type="string" FromConstant="" FromDataDef="../../../../@EQClass" Order="DataDefInputParamConstant" />
+												<rul:Constant Type="string">1D</rul:Constant>
+											</rul:Equal>
+											<rul:Equal>
+												<rul:FirstValue Type="string" FromConstant="" FromDataDef="../../../../@EQClass" Order="DataDefInputParamConstant" />
+												<rul:Constant Type="string">2A</rul:Constant>
+											</rul:Equal>
+											<rul:Equal>
+												<rul:FirstValue Type="string" FromConstant="" FromDataDef="../../../../@EQClass" Order="DataDefInputParamConstant" />
+												<rul:Constant Type="string">2B</rul:Constant>
+											</rul:Equal>
+											<rul:Equal>
+												<rul:FirstValue Type="string" FromConstant="" FromDataDef="../../../../@EQClass" Order="DataDefInputParamConstant" />
+												<rul:Constant Type="string">3A</rul:Constant>
+											</rul:Equal>
+											<rul:Equal>
+												<rul:FirstValue Type="string" FromConstant="" FromDataDef="../../../../@EQClass" Order="DataDefInputParamConstant" />
+												<rul:Constant Type="string">3B</rul:Constant>
+											</rul:Equal>
+											<rul:Equal>
+												<rul:FirstValue Type="string" FromConstant="" FromDataDef="../../../../@EQClass" Order="DataDefInputParamConstant" />
+												<rul:Constant Type="string">4A</rul:Constant>
+											</rul:Equal>
+										</rul:Or>
+									</rul:Test>
+									<rul:Then>
+										<rul:Sequence>
+											<rul:Choose>
+												<rul:When>
+													<rul:Test>
+														<rul:Equal>
+															<rul:FirstValue Type="integer" FromConstant="0" FromDataDef="../../../../../../@EQDeductibleTier" Order="DataDefInputParamConstant" />
+															<rul:Constant Type="integer">1</rul:Constant>
+														</rul:Equal>
+													</rul:Test>
+													<rul:Then>
+														<rul:Sequence>
+															<rul:RunRule Type="decimal" ToDataDef="@EQDeductibleFactor" FileName="CommercialPropertyLimitedCoverageForUnmannedAircraftScheduledAndOrBlanketCoverageDetailRules" Rule="LookupEQSubLimitDeductibleTier1Table1" ClearCache="true" />
+														</rul:Sequence>
+													</rul:Then>
+												</rul:When>
+												<rul:When>
+													<rul:Test>
+														<rul:Equal>
+															<rul:FirstValue Type="integer" FromConstant="0" FromDataDef="../../../../../../@EQDeductibleTier" Order="DataDefInputParamConstant" />
+															<rul:Constant Type="integer">2</rul:Constant>
+														</rul:Equal>
+													</rul:Test>
+													<rul:Then>
+														<rul:Sequence>
+															<rul:RunRule Type="decimal" ToDataDef="@EQDeductibleFactor" FileName="CommercialPropertyLimitedCoverageForUnmannedAircraftScheduledAndOrBlanketCoverageDetailRules" Rule="LookupEQSubLimitDeductibleTier2Table3" ClearCache="true" />
+														</rul:Sequence>
+													</rul:Then>
+												</rul:When>
+												<rul:When>
+													<rul:Test>
+														<rul:Equal>
+															<rul:FirstValue Type="integer" FromConstant="0" FromDataDef="../../../../../../@EQDeductibleTier" Order="DataDefInputParamConstant" />
+															<rul:Constant Type="integer">3</rul:Constant>
+														</rul:Equal>
+													</rul:Test>
+													<rul:Then>
+														<rul:Sequence>
+															<rul:RunRule Type="decimal" ToDataDef="@EQDeductibleFactor" FileName="CommercialPropertyLimitedCoverageForUnmannedAircraftScheduledAndOrBlanketCoverageDetailRules" Rule="LookupEQSubLimitDeductibleTier3Table5" ClearCache="true" />
+														</rul:Sequence>
+													</rul:Then>
+												</rul:When>
+											</rul:Choose>
+										</rul:Sequence>
+									</rul:Then>
+								</rul:When>
+								<rul:When>
+									<rul:Test>
+										<rul:Or>
+											<rul:Equal>
+												<rul:FirstValue Type="string" FromConstant="" FromDataDef="../../../../@EQClass" Order="DataDefInputParamConstant" />
+												<rul:Constant Type="string">3C</rul:Constant>
+											</rul:Equal>
+											<rul:Equal>
+												<rul:FirstValue Type="string" FromConstant="" FromDataDef="../../../../@EQClass" Order="DataDefInputParamConstant" />
+												<rul:Constant Type="string">4B</rul:Constant>
+											</rul:Equal>
+											<rul:Equal>
+												<rul:FirstValue Type="string" FromConstant="" FromDataDef="../../../../@EQClass" Order="DataDefInputParamConstant" />
+												<rul:Constant Type="string">4C</rul:Constant>
+											</rul:Equal>
+											<rul:Equal>
+												<rul:FirstValue Type="string" FromConstant="" FromDataDef="../../../../@EQClass" Order="DataDefInputParamConstant" />
+												<rul:Constant Type="string">4D</rul:Constant>
+											</rul:Equal>
+											<rul:Equal>
+												<rul:FirstValue Type="string" FromConstant="" FromDataDef="../../../../@EQClass" Order="DataDefInputParamConstant" />
+												<rul:Constant Type="string">5A</rul:Constant>
+											</rul:Equal>
+											<rul:Equal>
+												<rul:FirstValue Type="string" FromConstant="" FromDataDef="../../../../@EQClass" Order="DataDefInputParamConstant" />
+												<rul:Constant Type="string">5B</rul:Constant>
+											</rul:Equal>
+											<rul:Equal>
+												<rul:FirstValue Type="string" FromConstant="" FromDataDef="../../../../@EQClass" Order="DataDefInputParamConstant" />
+												<rul:Constant Type="string">5C</rul:Constant>
+											</rul:Equal>
+											<rul:Equal>
+												<rul:FirstValue Type="string" FromConstant="" FromDataDef="../../../../@EQClass" Order="DataDefInputParamConstant" />
+												<rul:Constant Type="string">5AA</rul:Constant>
+											</rul:Equal>
+										</rul:Or>
+									</rul:Test>
+									<rul:Then>
+										<rul:Sequence>
+											<rul:Choose>
+												<rul:When>
+													<rul:Test>
+														<rul:Equal>
+															<rul:FirstValue Type="integer" FromConstant="0" FromDataDef="../../../../../../@EQDeductibleTier" Order="DataDefInputParamConstant" />
+															<rul:Constant Type="integer">1</rul:Constant>
+														</rul:Equal>
+													</rul:Test>
+													<rul:Then>
+														<rul:Sequence>
+															<rul:RunRule Type="decimal" ToDataDef="@EQDeductibleFactor" FileName="CommercialPropertyLimitedCoverageForUnmannedAircraftScheduledAndOrBlanketCoverageDetailRules" Rule="LookupEQSubLimitDeductibleTier1Table2" ClearCache="true" />
+														</rul:Sequence>
+													</rul:Then>
+												</rul:When>
+												<rul:When>
+													<rul:Test>
+														<rul:Equal>
+															<rul:FirstValue Type="integer" FromConstant="0" FromDataDef="../../../../../../@EQDeductibleTier" Order="DataDefInputParamConstant" />
+															<rul:Constant Type="integer">2</rul:Constant>
+														</rul:Equal>
+													</rul:Test>
+													<rul:Then>
+														<rul:Sequence>
+															<rul:RunRule Type="decimal" ToDataDef="@EQDeductibleFactor" FileName="CommercialPropertyLimitedCoverageForUnmannedAircraftScheduledAndOrBlanketCoverageDetailRules" Rule="LookupEQSubLimitDeductibleTier2Table4" ClearCache="true" />
+														</rul:Sequence>
+													</rul:Then>
+												</rul:When>
+												<rul:When>
+													<rul:Test>
+														<rul:Equal>
+															<rul:FirstValue Type="integer" FromConstant="0" FromDataDef="../../../../../../@EQDeductibleTier" Order="DataDefInputParamConstant" />
+															<rul:Constant Type="integer">3</rul:Constant>
+														</rul:Equal>
+													</rul:Test>
+													<rul:Then>
+														<rul:Sequence>
+															<rul:RunRule Type="decimal" ToDataDef="@EQDeductibleFactor" FileName="CommercialPropertyLimitedCoverageForUnmannedAircraftScheduledAndOrBlanketCoverageDetailRules" Rule="LookupEQSubLimitDeductibleTier3Table6" ClearCache="true" />
+														</rul:Sequence>
+													</rul:Then>
+												</rul:When>
+											</rul:Choose>
+										</rul:Sequence>
+									</rul:Then>
+								</rul:When>
+							</rul:Choose>
+						</rul:Sequence>
+					</rul:Then>
+				</rul:When>
+				<rul:Otherwise>
+					<rul:Sequence>
+						<rul:Constant Type="decimal" ToDataDef="@EQDeductibleFactor">0.0</rul:Constant>
+					</rul:Sequence>
+				</rul:Otherwise>
+			</rul:Choose>
+		</rul:Sequence>
+	</rul:Rule>
+	<rul:Rule Name="ErcSetStatisticalCodes" Type="none" DataDefGroup="CommercialPropertyLimitedCoverageForUnmannedAircraftScheduledAndOrBlanketCoverageDetail">
+		<rul:Sequence>
+			<rul:If>
+				<rul:Test>
+					<rul:Exist AtInputDataDef="ancestor::MasterCFCW/Policy" />
+				</rul:Test>
+				<rul:Then>
+					<rul:Sequence>
+						<rul:RunRule Type="none" FileName="CommercialPropertyLimitedCoverageForUnmannedAircraftScheduledAndOrBlanketCoverageDetailRules" Rule="SetUnmannedAircraftClassCodes" ClearCache="true" />
+						<rul:RunRule Type="none" FileName="CommercialPropertyLimitedCoverageForUnmannedAircraftScheduledAndOrBlanketCoverageDetailRules" Rule="SetUnmannedAircraftRatingIdentificationCode" ClearCache="true" />
+						<rul:RunRule Type="none" FileName="CommercialPropertyLimitedCoverageForUnmannedAircraftScheduledAndOrBlanketCoverageDetailRules" Rule="SetUnmannedAircraftOwnershipAndOperationCode" ClearCache="true" />
+						<rul:RunRule Type="none" FileName="CommercialPropertyLimitedCoverageForUnmannedAircraftScheduledAndOrBlanketCoverageDetailRules" Rule="SetUnmannedAircraftSecurityFeaturesCode" ClearCache="true" />
+						<rul:RunRule Type="none" FileName="CommercialPropertyLimitedCoverageForUnmannedAircraftScheduledAndOrBlanketCoverageDetailRules" Rule="SetUnmannedAircraftPrimaryPlaceOfOperationCode" ClearCache="true" />
+						<rul:RunRule Type="none" FileName="CommercialPropertyLimitedCoverageForUnmannedAircraftScheduledAndOrBlanketCoverageDetailRules" Rule="SetUnmannedAircraftLossSettlementCode" ClearCache="true" />
+						<rul:RunRule Type="none" FileName="CommercialPropertyLimitedCoverageForUnmannedAircraftScheduledAndOrBlanketCoverageDetailRules" Rule="SetBlanketUnmannedAircraftLossSettlementCode" ClearCache="true" />
+						<rul:RunRule Type="none" FileName="CommercialPropertyLimitedCoverageForUnmannedAircraftScheduledAndOrBlanketCoverageDetailRules" Rule="SetDroneModificationsCode" ClearCache="true" />
+						<rul:RunRule Type="none" FileName="CommercialPropertyLimitedCoverageForUnmannedAircraftScheduledAndOrBlanketCoverageDetailRules" Rule="SetUnmannedAircraftMethodOfControlCode" ClearCache="true" />
+					</rul:Sequence>
+				</rul:Then>
+			</rul:If>
+		</rul:Sequence>
+	</rul:Rule>
+	<rul:Rule Name="SetUnmannedAircraftClassCodes" Type="none" DataDefGroup="CommercialPropertyLimitedCoverageForUnmannedAircraftScheduledAndOrBlanketCoverageDetail">
+		<rul:Sequence>
+			<rul:If>
+				<rul:Test>
+					<rul:NotEqual>
+						<rul:FirstValue Type="string" FromConstant="" FromDataDef="@UnmannedAircraftClassDescriptions" Order="DataDefInputParamConstant" />
+						<rul:Constant Type="string"></rul:Constant>
+					</rul:NotEqual>
+				</rul:Test>
+				<rul:Then>
+					<rul:Sequence>
+						<rul:RunRule Type="string" ToDataDef="@UnmannedAircraftClassCodes" FileName="CommercialPropertyLimitedCoverageForUnmannedAircraftScheduledAndOrBlanketCoverageDetailRules" Rule="LookupUnmannedAircraftClassCodes" ClearCache="true" />
+					</rul:Sequence>
+				</rul:Then>
+				<rul:Else>
+					<rul:Sequence>
+						<rul:Constant Type="string" ToDataDef="@UnmannedAircraftClassCodes"></rul:Constant>
+					</rul:Sequence>
+				</rul:Else>
+			</rul:If>
+		</rul:Sequence>
+	</rul:Rule>
+	<rul:Rule Name="SetUnmannedAircraftRatingIdentificationCode" Type="none" DataDefGroup="CommercialPropertyLimitedCoverageForUnmannedAircraftScheduledAndOrBlanketCoverageDetail">
+		<rul:Sequence>
+			<rul:If>
+				<rul:Test>
+					<rul:NotEqual>
+						<rul:FirstValue Type="string" FromConstant="" FromDataDef="@UnmannedAircraftRatingIdentification" Order="DataDefInputParamConstant" />
+						<rul:Constant Type="string"></rul:Constant>
+					</rul:NotEqual>
+				</rul:Test>
+				<rul:Then>
+					<rul:Sequence>
+						<rul:RunRule Type="string" ToDataDef="@UnmannedAircraftRatingIdentificationCode" FileName="CommercialPropertyLimitedCoverageForUnmannedAircraftScheduledAndOrBlanketCoverageDetailRules" Rule="LookupUnmannedAircraftRatingIdentificationCode" ClearCache="true" />
+					</rul:Sequence>
+				</rul:Then>
+				<rul:Else>
+					<rul:Sequence>
+						<rul:Constant Type="string" ToDataDef="@UnmannedAircraftRatingIdentificationCode"></rul:Constant>
+					</rul:Sequence>
+				</rul:Else>
+			</rul:If>
+		</rul:Sequence>
+	</rul:Rule>
+	<rul:Rule Name="SetUnmannedAircraftOwnershipAndOperationCode" Type="none" DataDefGroup="CommercialPropertyLimitedCoverageForUnmannedAircraftScheduledAndOrBlanketCoverageDetail">
+		<rul:Sequence>
+			<rul:If>
+				<rul:Test>
+					<rul:NotEqual>
+						<rul:FirstValue Type="string" FromConstant="" FromDataDef="@UnmannedAircraftOwnershipAndOperation" Order="DataDefInputParamConstant" />
+						<rul:Constant Type="string"></rul:Constant>
+					</rul:NotEqual>
+				</rul:Test>
+				<rul:Then>
+					<rul:Sequence>
+						<rul:RunRule Type="string" ToDataDef="@UnmannedAircraftOwnershipAndOperationCode" FileName="CommercialPropertyLimitedCoverageForUnmannedAircraftScheduledAndOrBlanketCoverageDetailRules" Rule="LookupUnmannedAircraftOwnershipAndOperationCode" ClearCache="true" />
+					</rul:Sequence>
+				</rul:Then>
+				<rul:Else>
+					<rul:Sequence>
+						<rul:Constant Type="string" ToDataDef="@UnmannedAircraftOwnershipAndOperationCode"></rul:Constant>
+					</rul:Sequence>
+				</rul:Else>
+			</rul:If>
+		</rul:Sequence>
+	</rul:Rule>
+	<rul:Rule Name="SetUnmannedAircraftSecurityFeaturesCode" Type="none" DataDefGroup="CommercialPropertyLimitedCoverageForUnmannedAircraftScheduledAndOrBlanketCoverageDetail">
+		<rul:Sequence>
+			<rul:If>
+				<rul:Test>
+					<rul:Equal>
+						<rul:FirstValue Type="string" FromConstant="" FromDataDef="@UnknownSecurityFeaturesOfDrones" Order="DataDefInputParamConstant" />
+						<rul:Constant Type="string">No</rul:Constant>
+					</rul:Equal>
+				</rul:Test>
+				<rul:Then>
+					<rul:Sequence>
+						<rul:If>
+							<rul:Test>
+								<rul:And>
+									<rul:NotEqual>
+										<rul:FirstValue Type="string" FromConstant="" FromDataDef="@SenseAndAvoidTechnology" Order="DataDefInputParamConstant" />
+										<rul:Constant Type="string"></rul:Constant>
+									</rul:NotEqual>
+									<rul:NotEqual>
+										<rul:FirstValue Type="string" FromConstant="" FromDataDef="@ReturnToBaseTechnologyOrHoverCapability" Order="DataDefInputParamConstant" />
+										<rul:Constant Type="string"></rul:Constant>
+									</rul:NotEqual>
+									<rul:NotEqual>
+										<rul:FirstValue Type="string" FromConstant="" FromDataDef="@GeoFencingTechnologyToAvoidRestrictedAirspace" Order="DataDefInputParamConstant" />
+										<rul:Constant Type="string"></rul:Constant>
+									</rul:NotEqual>
+									<rul:NotEqual>
+										<rul:FirstValue Type="string" FromConstant="" FromDataDef="@EncryptedCommunications" Order="DataDefInputParamConstant" />
+										<rul:Constant Type="string"></rul:Constant>
+									</rul:NotEqual>
+								</rul:And>
+							</rul:Test>
+							<rul:Then>
+								<rul:Sequence>
+									<rul:RunRule Type="string" ToDataDef="@UnmannedAircraftSecurityFeaturesCode" FileName="CommercialPropertyLimitedCoverageForUnmannedAircraftScheduledAndOrBlanketCoverageDetailRules" Rule="LookupUnmannedAircraftSecurityFeaturesCode" ClearCache="true" />
+								</rul:Sequence>
+							</rul:Then>
+							<rul:Else>
+								<rul:Sequence>
+									<rul:Constant Type="string" ToDataDef="@UnmannedAircraftSecurityFeaturesCode"></rul:Constant>
+								</rul:Sequence>
+							</rul:Else>
+						</rul:If>
+					</rul:Sequence>
+				</rul:Then>
+			</rul:If>
+			<rul:If>
+				<rul:Test>
+					<rul:Equal>
+						<rul:FirstValue Type="string" FromConstant="" FromDataDef="@UnknownSecurityFeaturesOfDrones" Order="DataDefInputParamConstant" />
+						<rul:Constant Type="string">Yes</rul:Constant>
+					</rul:Equal>
+				</rul:Test>
+				<rul:Then>
+					<rul:Sequence>
+						<rul:RunRule Type="string" ToDataDef="@UnmannedAircraftSecurityFeaturesCode" FileName="CommercialPropertyLimitedCoverageForUnmannedAircraftScheduledAndOrBlanketCoverageDetailRules" Rule="LookupUnmannedAircraftSecurityFeaturesUnknownCode" ClearCache="true" />
+					</rul:Sequence>
+				</rul:Then>
+			</rul:If>
+		</rul:Sequence>
+	</rul:Rule>
+	<rul:Rule Name="SetUnmannedAircraftPrimaryPlaceOfOperationCode" Type="none" DataDefGroup="CommercialPropertyLimitedCoverageForUnmannedAircraftScheduledAndOrBlanketCoverageDetail">
+		<rul:Sequence>
+			<rul:If>
+				<rul:Test>
+					<rul:NotEqual>
+						<rul:FirstValue Type="string" FromConstant="" FromDataDef="@UnmannedAircraftPrimaryPlaceOfOperation" Order="DataDefInputParamConstant" />
+						<rul:Constant Type="string"></rul:Constant>
+					</rul:NotEqual>
+				</rul:Test>
+				<rul:Then>
+					<rul:Sequence>
+						<rul:RunRule Type="string" ToDataDef="@UnmannedAircraftPrimaryPlaceOfOperationCode" FileName="CommercialPropertyLimitedCoverageForUnmannedAircraftScheduledAndOrBlanketCoverageDetailRules" Rule="LookupUnmannedAircraftPrimaryPlaceOfOperationCode" ClearCache="true" />
+					</rul:Sequence>
+				</rul:Then>
+				<rul:Else>
+					<rul:Sequence>
+						<rul:Constant Type="string" ToDataDef="@UnmannedAircraftPrimaryPlaceOfOperationCode"></rul:Constant>
+					</rul:Sequence>
+				</rul:Else>
+			</rul:If>
+		</rul:Sequence>
+	</rul:Rule>
+	<rul:Rule Name="SetUnmannedAircraftLossSettlementCode" Type="none" DataDefGroup="CommercialPropertyLimitedCoverageForUnmannedAircraftScheduledAndOrBlanketCoverageDetail">
+		<rul:Sequence>
+			<rul:If>
+				<rul:Test>
+					<rul:NotEqual>
+						<rul:FirstValue Type="string" FromConstant="" FromDataDef="@IndicateActualCashValueACVOrReplacementCostRC" Order="DataDefInputParamConstant" />
+						<rul:Constant Type="string"></rul:Constant>
+					</rul:NotEqual>
+				</rul:Test>
+				<rul:Then>
+					<rul:Sequence>
+						<rul:RunRule Type="string" ToDataDef="@UnmannedAircraftLossSettlementCode" FileName="CommercialPropertyLimitedCoverageForUnmannedAircraftScheduledAndOrBlanketCoverageDetailRules" Rule="LookupUnmannedAircraftLossSettlementCode" ClearCache="true" />
+					</rul:Sequence>
+				</rul:Then>
+				<rul:Else>
+					<rul:Sequence>
+						<rul:Constant Type="string" ToDataDef="@UnmannedAircraftLossSettlementCode"></rul:Constant>
+					</rul:Sequence>
+				</rul:Else>
+			</rul:If>
+		</rul:Sequence>
+	</rul:Rule>
+	<rul:Rule Name="SetBlanketUnmannedAircraftLossSettlementCode" Type="none" DataDefGroup="CommercialPropertyLimitedCoverageForUnmannedAircraftScheduledAndOrBlanketCoverageDetail">
+		<rul:Sequence>
+			<rul:If>
+				<rul:Test>
+					<rul:NotEqual>
+						<rul:FirstValue Type="string" FromConstant="" FromDataDef="@ValuationType" Order="DataDefInputParamConstant" />
+						<rul:Constant Type="string"></rul:Constant>
+					</rul:NotEqual>
+				</rul:Test>
+				<rul:Then>
+					<rul:Sequence>
+						<rul:RunRule Type="string" ToDataDef="@BlanketUnmannedAircraftLossSettlementCode" FileName="CommercialPropertyLimitedCoverageForUnmannedAircraftScheduledAndOrBlanketCoverageDetailRules" Rule="LookupBlanketUnmannedAircraftLossSettlementCode" ClearCache="true" />
+					</rul:Sequence>
+				</rul:Then>
+				<rul:Else>
+					<rul:Sequence>
+						<rul:Constant Type="string" ToDataDef="@BlanketUnmannedAircraftLossSettlementCode"></rul:Constant>
+					</rul:Sequence>
+				</rul:Else>
+			</rul:If>
+		</rul:Sequence>
+	</rul:Rule>
+	<rul:Rule Name="SetDroneModificationsCode" Type="none" DataDefGroup="CommercialPropertyLimitedCoverageForUnmannedAircraftScheduledAndOrBlanketCoverageDetail">
+		<rul:Sequence>
+			<rul:If>
+				<rul:Test>
+					<rul:NotEqual>
+						<rul:FirstValue Type="string" FromConstant="" FromDataDef="@DroneModification" Order="DataDefInputParamConstant" />
+						<rul:Constant Type="string"></rul:Constant>
+					</rul:NotEqual>
+				</rul:Test>
+				<rul:Then>
+					<rul:Sequence>
+						<rul:RunRule Type="string" ToDataDef="@DroneModificationsCode" FileName="CommercialPropertyLimitedCoverageForUnmannedAircraftScheduledAndOrBlanketCoverageDetailRules" Rule="LookupDroneModificationsCode" ClearCache="true" />
+					</rul:Sequence>
+				</rul:Then>
+				<rul:Else>
+					<rul:Sequence>
+						<rul:Constant Type="string" ToDataDef="@DroneModificationsCode"></rul:Constant>
+					</rul:Sequence>
+				</rul:Else>
+			</rul:If>
+		</rul:Sequence>
+	</rul:Rule>
+	<rul:Rule Name="SetUnmannedAircraftMethodOfControlCode" Type="none" DataDefGroup="CommercialPropertyLimitedCoverageForUnmannedAircraftScheduledAndOrBlanketCoverageDetail">
+		<rul:Sequence>
+			<rul:If>
+				<rul:Test>
+					<rul:NotEqual>
+						<rul:FirstValue Type="string" FromConstant="" FromDataDef="@UnmannedAircraftMethodOfControl" Order="DataDefInputParamConstant" />
+						<rul:Constant Type="string"></rul:Constant>
+					</rul:NotEqual>
+				</rul:Test>
+				<rul:Then>
+					<rul:Sequence>
+						<rul:RunRule Type="string" ToDataDef="@UnmannedAircraftMethodOfControlCode" FileName="CommercialPropertyLimitedCoverageForUnmannedAircraftScheduledAndOrBlanketCoverageDetailRules" Rule="LookupUnmannedAircraftMethodOfControlCode" ClearCache="true" />
+					</rul:Sequence>
+				</rul:Then>
+				<rul:Else>
+					<rul:Sequence>
+						<rul:Constant Type="string" ToDataDef="@UnmannedAircraftMethodOfControlCode"></rul:Constant>
+					</rul:Sequence>
+				</rul:Else>
+			</rul:If>
+		</rul:Sequence>
+	</rul:Rule>
+	<rul:Rule Name="ErcProcess" Type="none" DataDefGroup="CommercialPropertyLimitedCoverageForUnmannedAircraftScheduledAndOrBlanketCoverageDetail">
+		<rul:Sequence>
+			<rul:RunRule Type="none" FileName="CommercialPropertyLimitedCoverageForUnmannedAircraftScheduledAndOrBlanketCoverageDetailRules" Rule="ErcSetRatesAndFactors" ClearCache="true" />
+			<rul:Locate AtDataDef="CommercialPropertyLimitedCoverageForUnmannedAircraftScheduledAndOrBlanketCoverageDetailDroneCov">
+				<rul:RunRule Type="none" FileName="CommercialPropertyLimitedCoverageForUnmannedAircraftScheduledAndOrBlanketCoverageDetailDroneCovRules" Rule="ErcProcess" ClearCache="true" />
+			</rul:Locate>
+			<rul:Locate AtDataDef="CommercialPropertyLimitedCoverageForUnmannedAircraftScheduledAndOrBlanketCoverageDetailEQCov">
+				<rul:RunRule Type="none" FileName="CommercialPropertyLimitedCoverageForUnmannedAircraftScheduledAndOrBlanketCoverageDetailEQCovRules" Rule="ErcProcess" ClearCache="true" />
+			</rul:Locate>
+			<rul:RunRule Type="none" FileName="CommercialPropertyLimitedCoverageForUnmannedAircraftScheduledAndOrBlanketCoverageDetailRules" Rule="ErcSetStatisticalCodes" ClearCache="true" />
+		</rul:Sequence>
+	</rul:Rule>
+	<rul:Rule Name="LookupEQPercentageDeductibleFactor" Type="decimal" DataDefGroup="CommercialPropertyLimitedCoverageForUnmannedAircraftScheduledAndOrBlanketCoverageDetail">
+		<rul:FirstNonNull Type="decimal">
+			<rul:Lookup Type="decimal" MatrixCol="Factor" MatrixDef="EQPercentageDeductibleFactorDef" MatrixFromConstant="EQPercentageDeductibleFactor" ResultMode="FirstResult">
+				<rul:Keys>
+					<rul:Value Type="string" FromDataDef="/State/@Code" />
+					<rul:FirstValue Type="integer" FromConstant="0" FromDataDef="../../../../../../@EQDeductibleTier" Order="DataDefInputParamConstant" />
+					<rul:FirstValue Type="string" FromConstant="" FromDataDef="../../../../@EQClass" Order="DataDefInputParamConstant" />
+					<rul:FirstValue Type="string" FromConstant="" FromDataDef="@EQDeductible" Order="DataDefInputParamConstant" />
+				</rul:Keys>
+			</rul:Lookup>
+			<rul:Lookup Type="decimal" MatrixCol="Factor" MatrixDef="EQPercentageDeductibleFactorDef" MatrixFromConstant="EQPercentageDeductibleFactor" ResultMode="SingleResult">
+				<rul:Keys>
+					<rul:Constant Type="string">CW</rul:Constant>
+					<rul:FirstValue Type="integer" FromConstant="0" FromDataDef="../../../../../../@EQDeductibleTier" Order="DataDefInputParamConstant" />
+					<rul:FirstValue Type="string" FromConstant="" FromDataDef="../../../../@EQClass" Order="DataDefInputParamConstant" />
+					<rul:FirstValue Type="string" FromConstant="" FromDataDef="@EQDeductible" Order="DataDefInputParamConstant" />
+				</rul:Keys>
+			</rul:Lookup>
+		</rul:FirstNonNull>
+	</rul:Rule>
+	<rul:Rule Name="LookupEQFlatDeductibleFactor" Type="decimal" DataDefGroup="CommercialPropertyLimitedCoverageForUnmannedAircraftScheduledAndOrBlanketCoverageDetail">
+		<rul:FirstNonNull Type="decimal">
+			<rul:Lookup Type="decimal" MatrixCol="Factor" MatrixDef="EQFlatDeductibleFactorDef" MatrixFromConstant="EQFlatDeductibleFactor" ResultMode="FirstResult">
+				<rul:Keys>
+					<rul:Value Type="string" FromDataDef="/State/@Code" />
+					<rul:FirstValue Type="integer" FromConstant="0" FromDataDef="../../../../../../@EQDeductibleTier" Order="DataDefInputParamConstant" />
+					<rul:FirstValue Type="string" FromConstant="" FromDataDef="../../../../@EQClass" Order="DataDefInputParamConstant" />
+					<rul:FirstValue Type="string" FromConstant="" FromDataDef="@EQDeductible" Order="DataDefInputParamConstant" />
+					<rul:FirstValue Type="integer" FromConstant="0" FromDataDef="../../@TotalScheduleLimit" Order="DataDefInputParamConstant" />
+				</rul:Keys>
+			</rul:Lookup>
+			<rul:Lookup Type="decimal" MatrixCol="Factor" MatrixDef="EQFlatDeductibleFactorDef" MatrixFromConstant="EQFlatDeductibleFactor" ResultMode="SingleResult">
+				<rul:Keys>
+					<rul:Constant Type="string">CW</rul:Constant>
+					<rul:FirstValue Type="integer" FromConstant="0" FromDataDef="../../../../../../@EQDeductibleTier" Order="DataDefInputParamConstant" />
+					<rul:FirstValue Type="string" FromConstant="" FromDataDef="../../../../@EQClass" Order="DataDefInputParamConstant" />
+					<rul:FirstValue Type="string" FromConstant="" FromDataDef="@EQDeductible" Order="DataDefInputParamConstant" />
+					<rul:FirstValue Type="integer" FromConstant="0" FromDataDef="../../@TotalScheduleLimit" Order="DataDefInputParamConstant" />
+				</rul:Keys>
+			</rul:Lookup>
+		</rul:FirstNonNull>
+	</rul:Rule>
+	<rul:Rule Name="LookupEQSubLimitDeductibleTier1Table1" Type="decimal" DataDefGroup="CommercialPropertyLimitedCoverageForUnmannedAircraftScheduledAndOrBlanketCoverageDetail">
+		<rul:FirstNonNull Type="decimal">
+			<rul:Lookup Type="decimal" MatrixCol="Factor" MatrixDef="EQSubLimitDeductibleTierCWTableDef" MatrixFromConstant="EQSubLimitDeductibleTierCWTable" ResultMode="FirstResult">
+				<rul:Keys>
+					<rul:Value Type="string" FromDataDef="/State/@Code" />
+					<rul:Constant Type="string">Y</rul:Constant>
+				</rul:Keys>
+			</rul:Lookup>
+			<rul:Lookup Type="decimal" MatrixCol="Factor" MatrixDef="EQSubLimitDeductibleTierCWTableDef" MatrixFromConstant="EQSubLimitDeductibleTierCWTable" ResultMode="SingleResult">
+				<rul:Keys>
+					<rul:Constant Type="string">CW</rul:Constant>
+					<rul:Constant Type="string">Y</rul:Constant>
+				</rul:Keys>
+			</rul:Lookup>
+		</rul:FirstNonNull>
+	</rul:Rule>
+	<rul:Rule Name="LookupEQSubLimitDeductibleTier1Table2" Type="decimal" DataDefGroup="CommercialPropertyLimitedCoverageForUnmannedAircraftScheduledAndOrBlanketCoverageDetail">
+		<rul:FirstNonNull Type="decimal">
+			<rul:Lookup Type="decimal" MatrixCol="Factor" MatrixDef="EQSubLimitDeductibleTierCWTableDef" MatrixFromConstant="EQSubLimitDeductibleTierCWTable" ResultMode="FirstResult">
+				<rul:Keys>
+					<rul:Value Type="string" FromDataDef="/State/@Code" />
+					<rul:Constant Type="string">Y</rul:Constant>
+				</rul:Keys>
+			</rul:Lookup>
+			<rul:Lookup Type="decimal" MatrixCol="Factor" MatrixDef="EQSubLimitDeductibleTierCWTableDef" MatrixFromConstant="EQSubLimitDeductibleTierCWTable" ResultMode="SingleResult">
+				<rul:Keys>
+					<rul:Constant Type="string">CW</rul:Constant>
+					<rul:Constant Type="string">Y</rul:Constant>
+				</rul:Keys>
+			</rul:Lookup>
+		</rul:FirstNonNull>
+	</rul:Rule>
+	<rul:Rule Name="LookupEQSubLimitDeductibleTier2Table3" Type="decimal" DataDefGroup="CommercialPropertyLimitedCoverageForUnmannedAircraftScheduledAndOrBlanketCoverageDetail">
+		<rul:FirstNonNull Type="decimal">
+			<rul:Lookup Type="decimal" MatrixCol="Factor" MatrixDef="EQSubLimitDeductibleTierCWTableDef" MatrixFromConstant="EQSubLimitDeductibleTierCWTable" ResultMode="FirstResult">
+				<rul:Keys>
+					<rul:Value Type="string" FromDataDef="/State/@Code" />
+					<rul:Constant Type="string">Y</rul:Constant>
+				</rul:Keys>
+			</rul:Lookup>
+			<rul:Lookup Type="decimal" MatrixCol="Factor" MatrixDef="EQSubLimitDeductibleTierCWTableDef" MatrixFromConstant="EQSubLimitDeductibleTierCWTable" ResultMode="SingleResult">
+				<rul:Keys>
+					<rul:Constant Type="string">CW</rul:Constant>
+					<rul:Constant Type="string">Y</rul:Constant>
+				</rul:Keys>
+			</rul:Lookup>
+		</rul:FirstNonNull>
+	</rul:Rule>
+	<rul:Rule Name="LookupEQSubLimitDeductibleTier2Table4" Type="decimal" DataDefGroup="CommercialPropertyLimitedCoverageForUnmannedAircraftScheduledAndOrBlanketCoverageDetail">
+		<rul:FirstNonNull Type="decimal">
+			<rul:Lookup Type="decimal" MatrixCol="Factor" MatrixDef="EQSubLimitDeductibleTierCWTableDef" MatrixFromConstant="EQSubLimitDeductibleTierCWTable" ResultMode="FirstResult">
+				<rul:Keys>
+					<rul:Value Type="string" FromDataDef="/State/@Code" />
+					<rul:Constant Type="string">Y</rul:Constant>
+				</rul:Keys>
+			</rul:Lookup>
+			<rul:Lookup Type="decimal" MatrixCol="Factor" MatrixDef="EQSubLimitDeductibleTierCWTableDef" MatrixFromConstant="EQSubLimitDeductibleTierCWTable" ResultMode="SingleResult">
+				<rul:Keys>
+					<rul:Constant Type="string">CW</rul:Constant>
+					<rul:Constant Type="string">Y</rul:Constant>
+				</rul:Keys>
+			</rul:Lookup>
+		</rul:FirstNonNull>
+	</rul:Rule>
+	<rul:Rule Name="LookupEQSubLimitDeductibleTier3Table5" Type="decimal" DataDefGroup="CommercialPropertyLimitedCoverageForUnmannedAircraftScheduledAndOrBlanketCoverageDetail">
+		<rul:FirstNonNull Type="decimal">
+			<rul:Lookup Type="decimal" MatrixCol="Factor" MatrixDef="EQSubLimitDeductibleTierCWTableDef" MatrixFromConstant="EQSubLimitDeductibleTierCWTable" ResultMode="FirstResult">
+				<rul:Keys>
+					<rul:Value Type="string" FromDataDef="/State/@Code" />
+					<rul:Constant Type="string">Y</rul:Constant>
+				</rul:Keys>
+			</rul:Lookup>
+			<rul:Lookup Type="decimal" MatrixCol="Factor" MatrixDef="EQSubLimitDeductibleTierCWTableDef" MatrixFromConstant="EQSubLimitDeductibleTierCWTable" ResultMode="SingleResult">
+				<rul:Keys>
+					<rul:Constant Type="string">CW</rul:Constant>
+					<rul:Constant Type="string">Y</rul:Constant>
+				</rul:Keys>
+			</rul:Lookup>
+		</rul:FirstNonNull>
+	</rul:Rule>
+	<rul:Rule Name="LookupEQSubLimitDeductibleTier3Table6" Type="decimal" DataDefGroup="CommercialPropertyLimitedCoverageForUnmannedAircraftScheduledAndOrBlanketCoverageDetail">
+		<rul:FirstNonNull Type="decimal">
+			<rul:Lookup Type="decimal" MatrixCol="Factor" MatrixDef="EQSubLimitDeductibleTierCWTableDef" MatrixFromConstant="EQSubLimitDeductibleTierCWTable" ResultMode="FirstResult">
+				<rul:Keys>
+					<rul:Value Type="string" FromDataDef="/State/@Code" />
+					<rul:Constant Type="string">Y</rul:Constant>
+				</rul:Keys>
+			</rul:Lookup>
+			<rul:Lookup Type="decimal" MatrixCol="Factor" MatrixDef="EQSubLimitDeductibleTierCWTableDef" MatrixFromConstant="EQSubLimitDeductibleTierCWTable" ResultMode="SingleResult">
+				<rul:Keys>
+					<rul:Constant Type="string">CW</rul:Constant>
+					<rul:Constant Type="string">Y</rul:Constant>
+				</rul:Keys>
+			</rul:Lookup>
+		</rul:FirstNonNull>
+	</rul:Rule>
+	<rul:Rule Name="LookupEQSubLimit500FlatDeductibleFactor" Type="decimal" DataDefGroup="CommercialPropertyLimitedCoverageForUnmannedAircraftScheduledAndOrBlanketCoverageDetail">
+		<rul:FirstNonNull Type="decimal">
+			<rul:Round DecimalPlaces="4">
+				<rul:Lookup Type="decimal" MatrixCol="Factor" MatrixDef="EQSubLimit500FlatDeductibleFactorDef" MatrixFromConstant="EQSubLimit500FlatDeductibleFactor" ResultMode="FirstResult">
+					<rul:Keys>
+						<rul:Value Type="string" FromDataDef="/State/@Code" />
+						<rul:FirstValue Type="integer" FromConstant="0" FromDataDef="../../../../../../@EQDeductibleTier" Order="DataDefInputParamConstant" />
+						<rul:FirstValue Type="string" FromConstant="" FromDataDef="../../../../@EQClass" Order="DataDefInputParamConstant" />
+						<rul:FirstValue Type="string" FromConstant="" FromDataDef="@EQDeductible" Order="DataDefInputParamConstant" />
+						<rul:FirstValue Type="integer" FromConstant="0" FromDataDef="../../../../@EQSubLimitPercent" Order="DataDefInputParamConstant" />
+						<rul:FirstValue Type="integer" FromConstant="0" FromDataDef="../../@TotalScheduleLimit" Order="DataDefInputParamConstant" />
+					</rul:Keys>
+				</rul:Lookup>
+			</rul:Round>
+			<rul:Round DecimalPlaces="4">
+				<rul:Lookup Type="decimal" MatrixCol="Factor" MatrixDef="EQSubLimit500FlatDeductibleFactorDef" MatrixFromConstant="EQSubLimit500FlatDeductibleFactor" ResultMode="SingleResult">
+					<rul:Keys>
+						<rul:Constant Type="string">CW</rul:Constant>
+						<rul:FirstValue Type="integer" FromConstant="0" FromDataDef="../../../../../../@EQDeductibleTier" Order="DataDefInputParamConstant" />
+						<rul:FirstValue Type="string" FromConstant="" FromDataDef="../../../../@EQClass" Order="DataDefInputParamConstant" />
+						<rul:FirstValue Type="string" FromConstant="" FromDataDef="@EQDeductible" Order="DataDefInputParamConstant" />
+						<rul:FirstValue Type="integer" FromConstant="0" FromDataDef="../../../../@EQSubLimitPercent" Order="DataDefInputParamConstant" />
+						<rul:FirstValue Type="integer" FromConstant="0" FromDataDef="../../@TotalScheduleLimit" Order="DataDefInputParamConstant" />
+					</rul:Keys>
+				</rul:Lookup>
+			</rul:Round>
+		</rul:FirstNonNull>
+	</rul:Rule>
+	<rul:Rule Name="LookupEQSubLimit1000FlatDeductibleFactor" Type="decimal" DataDefGroup="CommercialPropertyLimitedCoverageForUnmannedAircraftScheduledAndOrBlanketCoverageDetail">
+		<rul:FirstNonNull Type="decimal">
+			<rul:Round DecimalPlaces="4">
+				<rul:Lookup Type="decimal" MatrixCol="Factor" MatrixDef="EQSubLimit1000FlatDeductibleFactorDef" MatrixFromConstant="EQSubLimit1000FlatDeductibleFactor" ResultMode="FirstResult">
+					<rul:Keys>
+						<rul:Value Type="string" FromDataDef="/State/@Code" />
+						<rul:FirstValue Type="integer" FromConstant="0" FromDataDef="../../../../../../@EQDeductibleTier" Order="DataDefInputParamConstant" />
+						<rul:FirstValue Type="string" FromConstant="" FromDataDef="../../../../@EQClass" Order="DataDefInputParamConstant" />
+						<rul:FirstValue Type="string" FromConstant="" FromDataDef="@EQDeductible" Order="DataDefInputParamConstant" />
+						<rul:FirstValue Type="integer" FromConstant="0" FromDataDef="../../../../@EQSubLimitPercent" Order="DataDefInputParamConstant" />
+						<rul:FirstValue Type="integer" FromConstant="0" FromDataDef="../../@TotalScheduleLimit" Order="DataDefInputParamConstant" />
+					</rul:Keys>
+				</rul:Lookup>
+			</rul:Round>
+			<rul:Round DecimalPlaces="4">
+				<rul:Lookup Type="decimal" MatrixCol="Factor" MatrixDef="EQSubLimit1000FlatDeductibleFactorDef" MatrixFromConstant="EQSubLimit1000FlatDeductibleFactor" ResultMode="SingleResult">
+					<rul:Keys>
+						<rul:Constant Type="string">CW</rul:Constant>
+						<rul:FirstValue Type="integer" FromConstant="0" FromDataDef="../../../../../../@EQDeductibleTier" Order="DataDefInputParamConstant" />
+						<rul:FirstValue Type="string" FromConstant="" FromDataDef="../../../../@EQClass" Order="DataDefInputParamConstant" />
+						<rul:FirstValue Type="string" FromConstant="" FromDataDef="@EQDeductible" Order="DataDefInputParamConstant" />
+						<rul:FirstValue Type="integer" FromConstant="0" FromDataDef="../../../../@EQSubLimitPercent" Order="DataDefInputParamConstant" />
+						<rul:FirstValue Type="integer" FromConstant="0" FromDataDef="../../@TotalScheduleLimit" Order="DataDefInputParamConstant" />
+					</rul:Keys>
+				</rul:Lookup>
+			</rul:Round>
+		</rul:FirstNonNull>
+	</rul:Rule>
+	<rul:Rule Name="LookupEQSubLimit2500FlatDeductibleFactor" Type="decimal" DataDefGroup="CommercialPropertyLimitedCoverageForUnmannedAircraftScheduledAndOrBlanketCoverageDetail">
+		<rul:FirstNonNull Type="decimal">
+			<rul:Round DecimalPlaces="4">
+				<rul:Lookup Type="decimal" MatrixCol="Factor" MatrixDef="EQSubLimit2500FlatDeductibleFactorDef" MatrixFromConstant="EQSubLimit2500FlatDeductibleFactor" ResultMode="FirstResult">
+					<rul:Keys>
+						<rul:Value Type="string" FromDataDef="/State/@Code" />
+						<rul:FirstValue Type="integer" FromConstant="0" FromDataDef="../../../../../../@EQDeductibleTier" Order="DataDefInputParamConstant" />
+						<rul:FirstValue Type="string" FromConstant="" FromDataDef="../../../../@EQClass" Order="DataDefInputParamConstant" />
+						<rul:FirstValue Type="string" FromConstant="" FromDataDef="@EQDeductible" Order="DataDefInputParamConstant" />
+						<rul:FirstValue Type="integer" FromConstant="0" FromDataDef="../../../../@EQSubLimitPercent" Order="DataDefInputParamConstant" />
+						<rul:FirstValue Type="integer" FromConstant="0" FromDataDef="../../@TotalScheduleLimit" Order="DataDefInputParamConstant" />
+					</rul:Keys>
+				</rul:Lookup>
+			</rul:Round>
+			<rul:Round DecimalPlaces="4">
+				<rul:Lookup Type="decimal" MatrixCol="Factor" MatrixDef="EQSubLimit2500FlatDeductibleFactorDef" MatrixFromConstant="EQSubLimit2500FlatDeductibleFactor" ResultMode="SingleResult">
+					<rul:Keys>
+						<rul:Constant Type="string">CW</rul:Constant>
+						<rul:FirstValue Type="integer" FromConstant="0" FromDataDef="../../../../../../@EQDeductibleTier" Order="DataDefInputParamConstant" />
+						<rul:FirstValue Type="string" FromConstant="" FromDataDef="../../../../@EQClass" Order="DataDefInputParamConstant" />
+						<rul:FirstValue Type="string" FromConstant="" FromDataDef="@EQDeductible" Order="DataDefInputParamConstant" />
+						<rul:FirstValue Type="integer" FromConstant="0" FromDataDef="../../../../@EQSubLimitPercent" Order="DataDefInputParamConstant" />
+						<rul:FirstValue Type="integer" FromConstant="0" FromDataDef="../../@TotalScheduleLimit" Order="DataDefInputParamConstant" />
+					</rul:Keys>
+				</rul:Lookup>
+			</rul:Round>
+		</rul:FirstNonNull>
+	</rul:Rule>
+	<rul:Rule Name="LookupEQSubLimit5000FlatDeductibleFactor" Type="decimal" DataDefGroup="CommercialPropertyLimitedCoverageForUnmannedAircraftScheduledAndOrBlanketCoverageDetail">
+		<rul:FirstNonNull Type="decimal">
+			<rul:Round DecimalPlaces="4">
+				<rul:Lookup Type="decimal" MatrixCol="Factor" MatrixDef="EQSubLimit5000FlatDeductibleFactorDef" MatrixFromConstant="EQSubLimit5000FlatDeductibleFactor" ResultMode="FirstResult">
+					<rul:Keys>
+						<rul:Value Type="string" FromDataDef="/State/@Code" />
+						<rul:FirstValue Type="integer" FromConstant="0" FromDataDef="../../../../../../@EQDeductibleTier" Order="DataDefInputParamConstant" />
+						<rul:FirstValue Type="string" FromConstant="" FromDataDef="../../../../@EQClass" Order="DataDefInputParamConstant" />
+						<rul:FirstValue Type="string" FromConstant="" FromDataDef="@EQDeductible" Order="DataDefInputParamConstant" />
+						<rul:FirstValue Type="integer" FromConstant="0" FromDataDef="../../../../@EQSubLimitPercent" Order="DataDefInputParamConstant" />
+						<rul:FirstValue Type="integer" FromConstant="0" FromDataDef="../../@TotalScheduleLimit" Order="DataDefInputParamConstant" />
+					</rul:Keys>
+				</rul:Lookup>
+			</rul:Round>
+			<rul:Round DecimalPlaces="4">
+				<rul:Lookup Type="decimal" MatrixCol="Factor" MatrixDef="EQSubLimit5000FlatDeductibleFactorDef" MatrixFromConstant="EQSubLimit5000FlatDeductibleFactor" ResultMode="SingleResult">
+					<rul:Keys>
+						<rul:Constant Type="string">CW</rul:Constant>
+						<rul:FirstValue Type="integer" FromConstant="0" FromDataDef="../../../../../../@EQDeductibleTier" Order="DataDefInputParamConstant" />
+						<rul:FirstValue Type="string" FromConstant="" FromDataDef="../../../../@EQClass" Order="DataDefInputParamConstant" />
+						<rul:FirstValue Type="string" FromConstant="" FromDataDef="@EQDeductible" Order="DataDefInputParamConstant" />
+						<rul:FirstValue Type="integer" FromConstant="0" FromDataDef="../../../../@EQSubLimitPercent" Order="DataDefInputParamConstant" />
+						<rul:FirstValue Type="integer" FromConstant="0" FromDataDef="../../@TotalScheduleLimit" Order="DataDefInputParamConstant" />
+					</rul:Keys>
+				</rul:Lookup>
+			</rul:Round>
+		</rul:FirstNonNull>
+	</rul:Rule>
+	<rul:Rule Name="LookupEQSubLimit10000FlatDeductibleFactor" Type="decimal" DataDefGroup="CommercialPropertyLimitedCoverageForUnmannedAircraftScheduledAndOrBlanketCoverageDetail">
+		<rul:FirstNonNull Type="decimal">
+			<rul:Round DecimalPlaces="4">
+				<rul:Lookup Type="decimal" MatrixCol="Factor" MatrixDef="EQSubLimit10000FlatDeductibleFactorDef" MatrixFromConstant="EQSubLimit10000FlatDeductibleFactor" ResultMode="FirstResult">
+					<rul:Keys>
+						<rul:Value Type="string" FromDataDef="/State/@Code" />
+						<rul:FirstValue Type="integer" FromConstant="0" FromDataDef="../../../../../../@EQDeductibleTier" Order="DataDefInputParamConstant" />
+						<rul:FirstValue Type="string" FromConstant="" FromDataDef="../../../../@EQClass" Order="DataDefInputParamConstant" />
+						<rul:FirstValue Type="string" FromConstant="" FromDataDef="@EQDeductible" Order="DataDefInputParamConstant" />
+						<rul:FirstValue Type="integer" FromConstant="0" FromDataDef="../../../../@EQSubLimitPercent" Order="DataDefInputParamConstant" />
+						<rul:FirstValue Type="integer" FromConstant="0" FromDataDef="../../@TotalScheduleLimit" Order="DataDefInputParamConstant" />
+					</rul:Keys>
+				</rul:Lookup>
+			</rul:Round>
+			<rul:Round DecimalPlaces="4">
+				<rul:Lookup Type="decimal" MatrixCol="Factor" MatrixDef="EQSubLimit10000FlatDeductibleFactorDef" MatrixFromConstant="EQSubLimit10000FlatDeductibleFactor" ResultMode="SingleResult">
+					<rul:Keys>
+						<rul:Constant Type="string">CW</rul:Constant>
+						<rul:FirstValue Type="integer" FromConstant="0" FromDataDef="../../../../../../@EQDeductibleTier" Order="DataDefInputParamConstant" />
+						<rul:FirstValue Type="string" FromConstant="" FromDataDef="../../../../@EQClass" Order="DataDefInputParamConstant" />
+						<rul:FirstValue Type="string" FromConstant="" FromDataDef="@EQDeductible" Order="DataDefInputParamConstant" />
+						<rul:FirstValue Type="integer" FromConstant="0" FromDataDef="../../../../@EQSubLimitPercent" Order="DataDefInputParamConstant" />
+						<rul:FirstValue Type="integer" FromConstant="0" FromDataDef="../../@TotalScheduleLimit" Order="DataDefInputParamConstant" />
+					</rul:Keys>
+				</rul:Lookup>
+			</rul:Round>
+		</rul:FirstNonNull>
+	</rul:Rule>
+	<rul:Rule Name="LookupEQSubLimit25000FlatDeductibleFactor" Type="decimal" DataDefGroup="CommercialPropertyLimitedCoverageForUnmannedAircraftScheduledAndOrBlanketCoverageDetail">
+		<rul:FirstNonNull Type="decimal">
+			<rul:Round DecimalPlaces="4">
+				<rul:Lookup Type="decimal" MatrixCol="Factor" MatrixDef="EQSubLimit25000FlatDeductibleFactorDef" MatrixFromConstant="EQSubLimit25000FlatDeductibleFactor" ResultMode="FirstResult">
+					<rul:Keys>
+						<rul:Value Type="string" FromDataDef="/State/@Code" />
+						<rul:FirstValue Type="integer" FromConstant="0" FromDataDef="../../../../../../@EQDeductibleTier" Order="DataDefInputParamConstant" />
+						<rul:FirstValue Type="string" FromConstant="" FromDataDef="../../../../@EQClass" Order="DataDefInputParamConstant" />
+						<rul:FirstValue Type="string" FromConstant="" FromDataDef="@EQDeductible" Order="DataDefInputParamConstant" />
+						<rul:FirstValue Type="integer" FromConstant="0" FromDataDef="../../../../@EQSubLimitPercent" Order="DataDefInputParamConstant" />
+						<rul:FirstValue Type="integer" FromConstant="0" FromDataDef="../../@TotalScheduleLimit" Order="DataDefInputParamConstant" />
+					</rul:Keys>
+				</rul:Lookup>
+			</rul:Round>
+			<rul:Round DecimalPlaces="4">
+				<rul:Lookup Type="decimal" MatrixCol="Factor" MatrixDef="EQSubLimit25000FlatDeductibleFactorDef" MatrixFromConstant="EQSubLimit25000FlatDeductibleFactor" ResultMode="SingleResult">
+					<rul:Keys>
+						<rul:Constant Type="string">CW</rul:Constant>
+						<rul:FirstValue Type="integer" FromConstant="0" FromDataDef="../../../../../../@EQDeductibleTier" Order="DataDefInputParamConstant" />
+						<rul:FirstValue Type="string" FromConstant="" FromDataDef="../../../../@EQClass" Order="DataDefInputParamConstant" />
+						<rul:FirstValue Type="string" FromConstant="" FromDataDef="@EQDeductible" Order="DataDefInputParamConstant" />
+						<rul:FirstValue Type="integer" FromConstant="0" FromDataDef="../../../../@EQSubLimitPercent" Order="DataDefInputParamConstant" />
+						<rul:FirstValue Type="integer" FromConstant="0" FromDataDef="../../@TotalScheduleLimit" Order="DataDefInputParamConstant" />
+					</rul:Keys>
+				</rul:Lookup>
+			</rul:Round>
+		</rul:FirstNonNull>
+	</rul:Rule>
+	<rul:Rule Name="LookupEQSubLimit50000FlatDeductibleFactor" Type="decimal" DataDefGroup="CommercialPropertyLimitedCoverageForUnmannedAircraftScheduledAndOrBlanketCoverageDetail">
+		<rul:FirstNonNull Type="decimal">
+			<rul:Round DecimalPlaces="4">
+				<rul:Lookup Type="decimal" MatrixCol="Factor" MatrixDef="EQSubLimit50000FlatDeductibleFactorDef" MatrixFromConstant="EQSubLimit50000FlatDeductibleFactor" ResultMode="FirstResult">
+					<rul:Keys>
+						<rul:Value Type="string" FromDataDef="/State/@Code" />
+						<rul:FirstValue Type="integer" FromConstant="0" FromDataDef="../../../../../../@EQDeductibleTier" Order="DataDefInputParamConstant" />
+						<rul:FirstValue Type="string" FromConstant="" FromDataDef="../../../../@EQClass" Order="DataDefInputParamConstant" />
+						<rul:FirstValue Type="string" FromConstant="" FromDataDef="@EQDeductible" Order="DataDefInputParamConstant" />
+						<rul:FirstValue Type="integer" FromConstant="0" FromDataDef="../../../../@EQSubLimitPercent" Order="DataDefInputParamConstant" />
+						<rul:FirstValue Type="integer" FromConstant="0" FromDataDef="../../@TotalScheduleLimit" Order="DataDefInputParamConstant" />
+					</rul:Keys>
+				</rul:Lookup>
+			</rul:Round>
+			<rul:Round DecimalPlaces="4">
+				<rul:Lookup Type="decimal" MatrixCol="Factor" MatrixDef="EQSubLimit50000FlatDeductibleFactorDef" MatrixFromConstant="EQSubLimit50000FlatDeductibleFactor" ResultMode="SingleResult">
+					<rul:Keys>
+						<rul:Constant Type="string">CW</rul:Constant>
+						<rul:FirstValue Type="integer" FromConstant="0" FromDataDef="../../../../../../@EQDeductibleTier" Order="DataDefInputParamConstant" />
+						<rul:FirstValue Type="string" FromConstant="" FromDataDef="../../../../@EQClass" Order="DataDefInputParamConstant" />
+						<rul:FirstValue Type="string" FromConstant="" FromDataDef="@EQDeductible" Order="DataDefInputParamConstant" />
+						<rul:FirstValue Type="integer" FromConstant="0" FromDataDef="../../../../@EQSubLimitPercent" Order="DataDefInputParamConstant" />
+						<rul:FirstValue Type="integer" FromConstant="0" FromDataDef="../../@TotalScheduleLimit" Order="DataDefInputParamConstant" />
+					</rul:Keys>
+				</rul:Lookup>
+			</rul:Round>
+		</rul:FirstNonNull>
+	</rul:Rule>
+	<rul:Rule Name="LookupEQSubLimit75000FlatDeductibleFactor" Type="decimal" DataDefGroup="CommercialPropertyLimitedCoverageForUnmannedAircraftScheduledAndOrBlanketCoverageDetail">
+		<rul:FirstNonNull Type="decimal">
+			<rul:Round DecimalPlaces="4">
+				<rul:Lookup Type="decimal" MatrixCol="Factor" MatrixDef="EQSubLimit75000FlatDeductibleFactorDef" MatrixFromConstant="EQSubLimit75000FlatDeductibleFactor" ResultMode="FirstResult">
+					<rul:Keys>
+						<rul:Value Type="string" FromDataDef="/State/@Code" />
+						<rul:FirstValue Type="integer" FromConstant="0" FromDataDef="../../../../../../@EQDeductibleTier" Order="DataDefInputParamConstant" />
+						<rul:FirstValue Type="string" FromConstant="" FromDataDef="../../../../@EQClass" Order="DataDefInputParamConstant" />
+						<rul:FirstValue Type="string" FromConstant="" FromDataDef="@EQDeductible" Order="DataDefInputParamConstant" />
+						<rul:FirstValue Type="integer" FromConstant="0" FromDataDef="../../../../@EQSubLimitPercent" Order="DataDefInputParamConstant" />
+						<rul:FirstValue Type="integer" FromConstant="0" FromDataDef="../../@TotalScheduleLimit" Order="DataDefInputParamConstant" />
+					</rul:Keys>
+				</rul:Lookup>
+			</rul:Round>
+			<rul:Round DecimalPlaces="4">
+				<rul:Lookup Type="decimal" MatrixCol="Factor" MatrixDef="EQSubLimit75000FlatDeductibleFactorDef" MatrixFromConstant="EQSubLimit75000FlatDeductibleFactor" ResultMode="SingleResult">
+					<rul:Keys>
+						<rul:Constant Type="string">CW</rul:Constant>
+						<rul:FirstValue Type="integer" FromConstant="0" FromDataDef="../../../../../../@EQDeductibleTier" Order="DataDefInputParamConstant" />
+						<rul:FirstValue Type="string" FromConstant="" FromDataDef="../../../../@EQClass" Order="DataDefInputParamConstant" />
+						<rul:FirstValue Type="string" FromConstant="" FromDataDef="@EQDeductible" Order="DataDefInputParamConstant" />
+						<rul:FirstValue Type="integer" FromConstant="0" FromDataDef="../../../../@EQSubLimitPercent" Order="DataDefInputParamConstant" />
+						<rul:FirstValue Type="integer" FromConstant="0" FromDataDef="../../@TotalScheduleLimit" Order="DataDefInputParamConstant" />
+					</rul:Keys>
+				</rul:Lookup>
+			</rul:Round>
+		</rul:FirstNonNull>
+	</rul:Rule>
+	<rul:Rule Name="LookupEQSubLimit100000FlatDeductibleFactor" Type="decimal" DataDefGroup="CommercialPropertyLimitedCoverageForUnmannedAircraftScheduledAndOrBlanketCoverageDetail">
+		<rul:FirstNonNull Type="decimal">
+			<rul:Round DecimalPlaces="4">
+				<rul:Lookup Type="decimal" MatrixCol="Factor" MatrixDef="EQSubLimit100000FlatDeductibleFactorDef" MatrixFromConstant="EQSubLimit100000FlatDeductibleFactor" ResultMode="FirstResult">
+					<rul:Keys>
+						<rul:Value Type="string" FromDataDef="/State/@Code" />
+						<rul:FirstValue Type="integer" FromConstant="0" FromDataDef="../../../../../../@EQDeductibleTier" Order="DataDefInputParamConstant" />
+						<rul:FirstValue Type="string" FromConstant="" FromDataDef="../../../../@EQClass" Order="DataDefInputParamConstant" />
+						<rul:FirstValue Type="string" FromConstant="" FromDataDef="@EQDeductible" Order="DataDefInputParamConstant" />
+						<rul:FirstValue Type="integer" FromConstant="0" FromDataDef="../../../../@EQSubLimitPercent" Order="DataDefInputParamConstant" />
+						<rul:FirstValue Type="integer" FromConstant="0" FromDataDef="../../@TotalScheduleLimit" Order="DataDefInputParamConstant" />
+					</rul:Keys>
+				</rul:Lookup>
+			</rul:Round>
+			<rul:Round DecimalPlaces="4">
+				<rul:Lookup Type="decimal" MatrixCol="Factor" MatrixDef="EQSubLimit100000FlatDeductibleFactorDef" MatrixFromConstant="EQSubLimit100000FlatDeductibleFactor" ResultMode="SingleResult">
+					<rul:Keys>
+						<rul:Constant Type="string">CW</rul:Constant>
+						<rul:FirstValue Type="integer" FromConstant="0" FromDataDef="../../../../../../@EQDeductibleTier" Order="DataDefInputParamConstant" />
+						<rul:FirstValue Type="string" FromConstant="" FromDataDef="../../../../@EQClass" Order="DataDefInputParamConstant" />
+						<rul:FirstValue Type="string" FromConstant="" FromDataDef="@EQDeductible" Order="DataDefInputParamConstant" />
+						<rul:FirstValue Type="integer" FromConstant="0" FromDataDef="../../../../@EQSubLimitPercent" Order="DataDefInputParamConstant" />
+						<rul:FirstValue Type="integer" FromConstant="0" FromDataDef="../../@TotalScheduleLimit" Order="DataDefInputParamConstant" />
+					</rul:Keys>
+				</rul:Lookup>
+			</rul:Round>
+		</rul:FirstNonNull>
+	</rul:Rule>
+	<rul:Rule Name="LookupEQSubLimit250000FlatDeductibleFactor" Type="decimal" DataDefGroup="CommercialPropertyLimitedCoverageForUnmannedAircraftScheduledAndOrBlanketCoverageDetail">
+		<rul:FirstNonNull Type="decimal">
+			<rul:Round DecimalPlaces="4">
+				<rul:Lookup Type="decimal" MatrixCol="Factor" MatrixDef="EQSubLimit250000FlatDeductibleFactorDef" MatrixFromConstant="EQSubLimit250000FlatDeductibleFactor" ResultMode="FirstResult">
+					<rul:Keys>
+						<rul:Value Type="string" FromDataDef="/State/@Code" />
+						<rul:FirstValue Type="integer" FromConstant="0" FromDataDef="../../../../../../@EQDeductibleTier" Order="DataDefInputParamConstant" />
+						<rul:FirstValue Type="string" FromConstant="" FromDataDef="../../../../@EQClass" Order="DataDefInputParamConstant" />
+						<rul:FirstValue Type="string" FromConstant="" FromDataDef="@EQDeductible" Order="DataDefInputParamConstant" />
+						<rul:FirstValue Type="integer" FromConstant="0" FromDataDef="../../../../@EQSubLimitPercent" Order="DataDefInputParamConstant" />
+						<rul:FirstValue Type="integer" FromConstant="0" FromDataDef="../../@TotalScheduleLimit" Order="DataDefInputParamConstant" />
+					</rul:Keys>
+				</rul:Lookup>
+			</rul:Round>
+			<rul:Round DecimalPlaces="4">
+				<rul:Lookup Type="decimal" MatrixCol="Factor" MatrixDef="EQSubLimit250000FlatDeductibleFactorDef" MatrixFromConstant="EQSubLimit250000FlatDeductibleFactor" ResultMode="SingleResult">
+					<rul:Keys>
+						<rul:Constant Type="string">CW</rul:Constant>
+						<rul:FirstValue Type="integer" FromConstant="0" FromDataDef="../../../../../../@EQDeductibleTier" Order="DataDefInputParamConstant" />
+						<rul:FirstValue Type="string" FromConstant="" FromDataDef="../../../../@EQClass" Order="DataDefInputParamConstant" />
+						<rul:FirstValue Type="string" FromConstant="" FromDataDef="@EQDeductible" Order="DataDefInputParamConstant" />
+						<rul:FirstValue Type="integer" FromConstant="0" FromDataDef="../../../../@EQSubLimitPercent" Order="DataDefInputParamConstant" />
+						<rul:FirstValue Type="integer" FromConstant="0" FromDataDef="../../@TotalScheduleLimit" Order="DataDefInputParamConstant" />
+					</rul:Keys>
+				</rul:Lookup>
+			</rul:Round>
+		</rul:FirstNonNull>
+	</rul:Rule>
+	<rul:Rule Name="LookupEQSubLimit500000FlatDeductibleFactor" Type="decimal" DataDefGroup="CommercialPropertyLimitedCoverageForUnmannedAircraftScheduledAndOrBlanketCoverageDetail">
+		<rul:FirstNonNull Type="decimal">
+			<rul:Round DecimalPlaces="4">
+				<rul:Lookup Type="decimal" MatrixCol="Factor" MatrixDef="EQSubLimit500000FlatDeductibleFactorDef" MatrixFromConstant="EQSubLimit500000FlatDeductibleFactor" ResultMode="FirstResult">
+					<rul:Keys>
+						<rul:Value Type="string" FromDataDef="/State/@Code" />
+						<rul:FirstValue Type="integer" FromConstant="0" FromDataDef="../../../../../../@EQDeductibleTier" Order="DataDefInputParamConstant" />
+						<rul:FirstValue Type="string" FromConstant="" FromDataDef="../../../../@EQClass" Order="DataDefInputParamConstant" />
+						<rul:FirstValue Type="string" FromConstant="" FromDataDef="@EQDeductible" Order="DataDefInputParamConstant" />
+						<rul:FirstValue Type="integer" FromConstant="0" FromDataDef="../../../../@EQSubLimitPercent" Order="DataDefInputParamConstant" />
+						<rul:FirstValue Type="integer" FromConstant="0" FromDataDef="../../@TotalScheduleLimit" Order="DataDefInputParamConstant" />
+					</rul:Keys>
+				</rul:Lookup>
+			</rul:Round>
+			<rul:Round DecimalPlaces="4">
+				<rul:Lookup Type="decimal" MatrixCol="Factor" MatrixDef="EQSubLimit500000FlatDeductibleFactorDef" MatrixFromConstant="EQSubLimit500000FlatDeductibleFactor" ResultMode="SingleResult">
+					<rul:Keys>
+						<rul:Constant Type="string">CW</rul:Constant>
+						<rul:FirstValue Type="integer" FromConstant="0" FromDataDef="../../../../../../@EQDeductibleTier" Order="DataDefInputParamConstant" />
+						<rul:FirstValue Type="string" FromConstant="" FromDataDef="../../../../@EQClass" Order="DataDefInputParamConstant" />
+						<rul:FirstValue Type="string" FromConstant="" FromDataDef="@EQDeductible" Order="DataDefInputParamConstant" />
+						<rul:FirstValue Type="integer" FromConstant="0" FromDataDef="../../../../@EQSubLimitPercent" Order="DataDefInputParamConstant" />
+						<rul:FirstValue Type="integer" FromConstant="0" FromDataDef="../../@TotalScheduleLimit" Order="DataDefInputParamConstant" />
+					</rul:Keys>
+				</rul:Lookup>
+			</rul:Round>
+		</rul:FirstNonNull>
+	</rul:Rule>
+	<rul:Rule Name="LookupEQSubLimit750000FlatDeductibleFactor" Type="decimal" DataDefGroup="CommercialPropertyLimitedCoverageForUnmannedAircraftScheduledAndOrBlanketCoverageDetail">
+		<rul:FirstNonNull Type="decimal">
+			<rul:Round DecimalPlaces="4">
+				<rul:Lookup Type="decimal" MatrixCol="Factor" MatrixDef="EQSubLimit750000FlatDeductibleFactorDef" MatrixFromConstant="EQSubLimit750000FlatDeductibleFactor" ResultMode="FirstResult">
+					<rul:Keys>
+						<rul:Value Type="string" FromDataDef="/State/@Code" />
+						<rul:FirstValue Type="integer" FromConstant="0" FromDataDef="../../../../../../@EQDeductibleTier" Order="DataDefInputParamConstant" />
+						<rul:FirstValue Type="string" FromConstant="" FromDataDef="../../../../@EQClass" Order="DataDefInputParamConstant" />
+						<rul:FirstValue Type="string" FromConstant="" FromDataDef="@EQDeductible" Order="DataDefInputParamConstant" />
+						<rul:FirstValue Type="integer" FromConstant="0" FromDataDef="../../../../@EQSubLimitPercent" Order="DataDefInputParamConstant" />
+						<rul:FirstValue Type="integer" FromConstant="0" FromDataDef="../../@TotalScheduleLimit" Order="DataDefInputParamConstant" />
+					</rul:Keys>
+				</rul:Lookup>
+			</rul:Round>
+			<rul:Round DecimalPlaces="4">
+				<rul:Lookup Type="decimal" MatrixCol="Factor" MatrixDef="EQSubLimit750000FlatDeductibleFactorDef" MatrixFromConstant="EQSubLimit750000FlatDeductibleFactor" ResultMode="SingleResult">
+					<rul:Keys>
+						<rul:Constant Type="string">CW</rul:Constant>
+						<rul:FirstValue Type="integer" FromConstant="0" FromDataDef="../../../../../../@EQDeductibleTier" Order="DataDefInputParamConstant" />
+						<rul:FirstValue Type="string" FromConstant="" FromDataDef="../../../../@EQClass" Order="DataDefInputParamConstant" />
+						<rul:FirstValue Type="string" FromConstant="" FromDataDef="@EQDeductible" Order="DataDefInputParamConstant" />
+						<rul:FirstValue Type="integer" FromConstant="0" FromDataDef="../../../../@EQSubLimitPercent" Order="DataDefInputParamConstant" />
+						<rul:FirstValue Type="integer" FromConstant="0" FromDataDef="../../@TotalScheduleLimit" Order="DataDefInputParamConstant" />
+					</rul:Keys>
+				</rul:Lookup>
+			</rul:Round>
+		</rul:FirstNonNull>
+	</rul:Rule>
+	<rul:Rule Name="LookupEQSubLimit1000000FlatDeductibleFactor" Type="decimal" DataDefGroup="CommercialPropertyLimitedCoverageForUnmannedAircraftScheduledAndOrBlanketCoverageDetail">
+		<rul:FirstNonNull Type="decimal">
+			<rul:Round DecimalPlaces="4">
+				<rul:Lookup Type="decimal" MatrixCol="Factor" MatrixDef="EQSubLimit1000000FlatDeductibleFactorDef" MatrixFromConstant="EQSubLimit1000000FlatDeductibleFactor" ResultMode="FirstResult">
+					<rul:Keys>
+						<rul:Value Type="string" FromDataDef="/State/@Code" />
+						<rul:FirstValue Type="integer" FromConstant="0" FromDataDef="../../../../../../@EQDeductibleTier" Order="DataDefInputParamConstant" />
+						<rul:FirstValue Type="string" FromConstant="" FromDataDef="../../../../@EQClass" Order="DataDefInputParamConstant" />
+						<rul:FirstValue Type="string" FromConstant="" FromDataDef="@EQDeductible" Order="DataDefInputParamConstant" />
+						<rul:FirstValue Type="integer" FromConstant="0" FromDataDef="../../../../@EQSubLimitPercent" Order="DataDefInputParamConstant" />
+						<rul:FirstValue Type="integer" FromConstant="0" FromDataDef="../../@TotalScheduleLimit" Order="DataDefInputParamConstant" />
+					</rul:Keys>
+				</rul:Lookup>
+			</rul:Round>
+			<rul:Round DecimalPlaces="4">
+				<rul:Lookup Type="decimal" MatrixCol="Factor" MatrixDef="EQSubLimit1000000FlatDeductibleFactorDef" MatrixFromConstant="EQSubLimit1000000FlatDeductibleFactor" ResultMode="SingleResult">
+					<rul:Keys>
+						<rul:Constant Type="string">CW</rul:Constant>
+						<rul:FirstValue Type="integer" FromConstant="0" FromDataDef="../../../../../../@EQDeductibleTier" Order="DataDefInputParamConstant" />
+						<rul:FirstValue Type="string" FromConstant="" FromDataDef="../../../../@EQClass" Order="DataDefInputParamConstant" />
+						<rul:FirstValue Type="string" FromConstant="" FromDataDef="@EQDeductible" Order="DataDefInputParamConstant" />
+						<rul:FirstValue Type="integer" FromConstant="0" FromDataDef="../../../../@EQSubLimitPercent" Order="DataDefInputParamConstant" />
+						<rul:FirstValue Type="integer" FromConstant="0" FromDataDef="../../@TotalScheduleLimit" Order="DataDefInputParamConstant" />
+					</rul:Keys>
+				</rul:Lookup>
+			</rul:Round>
+		</rul:FirstNonNull>
+	</rul:Rule>
+	<rul:Rule Name="LookupUnmannedAircraftRiskClass" Type="string" DataDefGroup="CommercialPropertyLimitedCoverageForUnmannedAircraftScheduledAndOrBlanketCoverageDetail">
+		<rul:FirstNonNull Type="string">
+			<rul:Lookup Type="string" MatrixCol="RiskClass" MatrixDef="UnmannedAircraftRiskClassDef" MatrixFromConstant="UnmannedAircraftRiskClass" ResultMode="FirstResult">
+				<rul:Keys>
+					<rul:Value Type="string" FromDataDef="/State/@Code" />
+					<rul:FirstValue Type="string" FromConstant="" FromDataDef="@TypeOfOperations" Order="DataDefInputParamConstant" />
+				</rul:Keys>
+			</rul:Lookup>
+			<rul:Lookup Type="string" MatrixCol="RiskClass" MatrixDef="UnmannedAircraftRiskClassDef" MatrixFromConstant="UnmannedAircraftRiskClass" ResultMode="SingleResult">
+				<rul:Keys>
+					<rul:Constant Type="string">CW</rul:Constant>
+					<rul:FirstValue Type="string" FromConstant="" FromDataDef="@TypeOfOperations" Order="DataDefInputParamConstant" />
+				</rul:Keys>
+			</rul:Lookup>
+		</rul:FirstNonNull>
+	</rul:Rule>
+	<rul:Rule Name="LookupUnmannedAircraftLossCosts" Type="decimal" DataDefGroup="CommercialPropertyLimitedCoverageForUnmannedAircraftScheduledAndOrBlanketCoverageDetail">
+		<rul:FirstNonNull Type="decimal">
+			<rul:Lookup Type="decimal" MatrixCol="LossCosts" MatrixDef="UnmannedAircraftLossCostsDef" MatrixFromConstant="UnmannedAircraftLossCosts" ResultMode="FirstResult">
+				<rul:Keys>
+					<rul:Value Type="string" FromDataDef="/State/@Code" />
+					<rul:FirstValue Type="string" FromConstant="" FromDataDef="@RiskClass" Order="DataDefInputParamConstant" />
+				</rul:Keys>
+			</rul:Lookup>
+			<rul:Lookup Type="decimal" MatrixCol="LossCosts" MatrixDef="UnmannedAircraftLossCostsDef" MatrixFromConstant="UnmannedAircraftLossCosts" ResultMode="SingleResult">
+				<rul:Keys>
+					<rul:Constant Type="string">CW</rul:Constant>
+					<rul:FirstValue Type="string" FromConstant="" FromDataDef="@RiskClass" Order="DataDefInputParamConstant" />
+				</rul:Keys>
+			</rul:Lookup>
+		</rul:FirstNonNull>
+	</rul:Rule>
+	<rul:Rule Name="LookupUnmannedAircraftNoDeductibleFactor" Type="decimal" DataDefGroup="CommercialPropertyLimitedCoverageForUnmannedAircraftScheduledAndOrBlanketCoverageDetail">
+		<rul:FirstNonNull Type="decimal">
+			<rul:Lookup Type="decimal" MatrixCol="Factor" MatrixDef="UnmannedAircraftNoDeductibleFactorDef" MatrixFromConstant="UnmannedAircraftNoDeductibleFactor" ResultMode="FirstResult">
+				<rul:Keys>
+					<rul:Value Type="string" FromDataDef="/State/@Code" />
+					<rul:Constant Type="string">Y</rul:Constant>
+				</rul:Keys>
+			</rul:Lookup>
+			<rul:Lookup Type="decimal" MatrixCol="Factor" MatrixDef="UnmannedAircraftNoDeductibleFactorDef" MatrixFromConstant="UnmannedAircraftNoDeductibleFactor" ResultMode="SingleResult">
+				<rul:Keys>
+					<rul:Constant Type="string">CW</rul:Constant>
+					<rul:Constant Type="string">Y</rul:Constant>
+				</rul:Keys>
+			</rul:Lookup>
+		</rul:FirstNonNull>
+	</rul:Rule>
+	<rul:Rule Name="LookupDeductible250Factor" Type="decimal" DataDefGroup="CommercialPropertyLimitedCoverageForUnmannedAircraftScheduledAndOrBlanketCoverageDetail">
+		<rul:Param Name="causeOfLoss" Type="string" />
+		<rul:FirstNonNull Type="decimal">
+			<rul:Lookup Type="decimal" MatrixCol="Factor" MatrixDef="Deductible250FactorDef" MatrixFromConstant="Deductible250Factor" ResultMode="FirstResult">
+				<rul:Keys>
+					<rul:Value Type="string" FromDataDef="/State/@Code" />
+					<rul:Value Type="string" FromParam="causeOfLoss" />
+				</rul:Keys>
+			</rul:Lookup>
+			<rul:Lookup Type="decimal" MatrixCol="Factor" MatrixDef="Deductible250FactorDef" MatrixFromConstant="Deductible250Factor" ResultMode="SingleResult">
+				<rul:Keys>
+					<rul:Constant Type="string">CW</rul:Constant>
+					<rul:Value Type="string" FromParam="causeOfLoss" />
+				</rul:Keys>
+			</rul:Lookup>
+		</rul:FirstNonNull>
+	</rul:Rule>
+	<rul:Rule Name="LookupDeductibleFactor" Type="decimal" DataDefGroup="CommercialPropertyLimitedCoverageForUnmannedAircraftScheduledAndOrBlanketCoverageDetail">
+		<rul:Param Name="ded" Type="string" />
+		<rul:Param Name="limit" Type="integer" />
+		<rul:Param Name="causeOfLossDed" Type="string" />
+		<rul:FirstNonNull Type="decimal">
+			<rul:Lookup Type="decimal" MatrixCol="Factor" MatrixDef="DeductibleFactorDef" MatrixFromConstant="DeductibleFactor" ResultMode="FirstResult">
+				<rul:Keys>
+					<rul:Value Type="string" FromDataDef="/State/@Code" />
+					<rul:Value Type="string" FromParam="ded" />
+					<rul:Value Type="integer" FromParam="limit" />
+					<rul:Value Type="string" FromParam="causeOfLossDed" />
+				</rul:Keys>
+			</rul:Lookup>
+			<rul:Lookup Type="decimal" MatrixCol="Factor" MatrixDef="DeductibleFactorDef" MatrixFromConstant="DeductibleFactor" ResultMode="SingleResult">
+				<rul:Keys>
+					<rul:Constant Type="string">CW</rul:Constant>
+					<rul:Value Type="string" FromParam="ded" />
+					<rul:Value Type="integer" FromParam="limit" />
+					<rul:Value Type="string" FromParam="causeOfLossDed" />
+				</rul:Keys>
+			</rul:Lookup>
+		</rul:FirstNonNull>
+	</rul:Rule>
+	<rul:Rule Name="LookupUnmannedAircraftNewlyAcquiredPropertyFactor" Type="decimal" DataDefGroup="CommercialPropertyLimitedCoverageForUnmannedAircraftScheduledAndOrBlanketCoverageDetail">
+		<rul:FirstNonNull Type="decimal">
+			<rul:Lookup Type="decimal" MatrixCol="Factor" MatrixDef="UnmannedAircraftNewlyAcquiredPropertyFactorDef" MatrixFromConstant="UnmannedAircraftNewlyAcquiredPropertyFactor" ResultMode="FirstResult">
+				<rul:Keys>
+					<rul:Value Type="string" FromDataDef="/State/@Code" />
+					<rul:Constant Type="string">Y</rul:Constant>
+				</rul:Keys>
+			</rul:Lookup>
+			<rul:Lookup Type="decimal" MatrixCol="Factor" MatrixDef="UnmannedAircraftNewlyAcquiredPropertyFactorDef" MatrixFromConstant="UnmannedAircraftNewlyAcquiredPropertyFactor" ResultMode="SingleResult">
+				<rul:Keys>
+					<rul:Constant Type="string">CW</rul:Constant>
+					<rul:Constant Type="string">Y</rul:Constant>
+				</rul:Keys>
+			</rul:Lookup>
+		</rul:FirstNonNull>
+	</rul:Rule>
+	<rul:Rule Name="LookupUnmannedAircraftClassCodes" Type="string" DataDefGroup="CommercialPropertyLimitedCoverageForUnmannedAircraftScheduledAndOrBlanketCoverageDetail">
+		<rul:FirstNonNull Type="string">
+			<rul:Lookup Type="string" MatrixCol="Code" MatrixDef="UnmannedAircraftClassCodesDef" MatrixFromConstant="UnmannedAircraftClassCodes" ResultMode="FirstResult">
+				<rul:Keys>
+					<rul:Value Type="string" FromDataDef="/State/@Code" />
+					<rul:FirstValue Type="string" FromConstant="" FromDataDef="@UnmannedAircraftClassDescriptions" Order="DataDefInputParamConstant" />
+				</rul:Keys>
+			</rul:Lookup>
+			<rul:Lookup Type="string" MatrixCol="Code" MatrixDef="UnmannedAircraftClassCodesDef" MatrixFromConstant="UnmannedAircraftClassCodes" ResultMode="SingleResult">
+				<rul:Keys>
+					<rul:Constant Type="string">CW</rul:Constant>
+					<rul:FirstValue Type="string" FromConstant="" FromDataDef="@UnmannedAircraftClassDescriptions" Order="DataDefInputParamConstant" />
+				</rul:Keys>
+			</rul:Lookup>
+		</rul:FirstNonNull>
+	</rul:Rule>
+	<rul:Rule Name="LookupUnmannedAircraftRatingIdentificationCode" Type="string" DataDefGroup="CommercialPropertyLimitedCoverageForUnmannedAircraftScheduledAndOrBlanketCoverageDetail">
+		<rul:FirstNonNull Type="string">
+			<rul:Lookup Type="string" MatrixCol="Code" MatrixDef="UnmannedAircraftRatingIdentificationCodeDef" MatrixFromConstant="UnmannedAircraftRatingIdentificationCode" ResultMode="FirstResult">
+				<rul:Keys>
+					<rul:Value Type="string" FromDataDef="/State/@Code" />
+					<rul:FirstValue Type="string" FromConstant="" FromDataDef="@UnmannedAircraftRatingIdentification" Order="DataDefInputParamConstant" />
+				</rul:Keys>
+			</rul:Lookup>
+			<rul:Lookup Type="string" MatrixCol="Code" MatrixDef="UnmannedAircraftRatingIdentificationCodeDef" MatrixFromConstant="UnmannedAircraftRatingIdentificationCode" ResultMode="SingleResult">
+				<rul:Keys>
+					<rul:Constant Type="string">CW</rul:Constant>
+					<rul:FirstValue Type="string" FromConstant="" FromDataDef="@UnmannedAircraftRatingIdentification" Order="DataDefInputParamConstant" />
+				</rul:Keys>
+			</rul:Lookup>
+		</rul:FirstNonNull>
+	</rul:Rule>
+	<rul:Rule Name="LookupUnmannedAircraftOwnershipAndOperationCode" Type="string" DataDefGroup="CommercialPropertyLimitedCoverageForUnmannedAircraftScheduledAndOrBlanketCoverageDetail">
+		<rul:FirstNonNull Type="string">
+			<rul:Lookup Type="string" MatrixCol="Code" MatrixDef="UnmannedAircraftOwnershipAndOperationCodeDef" MatrixFromConstant="UnmannedAircraftOwnershipAndOperationCode" ResultMode="FirstResult">
+				<rul:Keys>
+					<rul:Value Type="string" FromDataDef="/State/@Code" />
+					<rul:FirstValue Type="string" FromConstant="" FromDataDef="@UnmannedAircraftOwnershipAndOperation" Order="DataDefInputParamConstant" />
+				</rul:Keys>
+			</rul:Lookup>
+			<rul:Lookup Type="string" MatrixCol="Code" MatrixDef="UnmannedAircraftOwnershipAndOperationCodeDef" MatrixFromConstant="UnmannedAircraftOwnershipAndOperationCode" ResultMode="SingleResult">
+				<rul:Keys>
+					<rul:Constant Type="string">CW</rul:Constant>
+					<rul:FirstValue Type="string" FromConstant="" FromDataDef="@UnmannedAircraftOwnershipAndOperation" Order="DataDefInputParamConstant" />
+				</rul:Keys>
+			</rul:Lookup>
+		</rul:FirstNonNull>
+	</rul:Rule>
+	<rul:Rule Name="LookupUnmannedAircraftSecurityFeaturesCode" Type="string" DataDefGroup="CommercialPropertyLimitedCoverageForUnmannedAircraftScheduledAndOrBlanketCoverageDetail">
+		<rul:FirstNonNull Type="string">
+			<rul:Lookup Type="string" MatrixCol="Code" MatrixDef="UnmannedAircraftSecurityFeaturesCodeDef" MatrixFromConstant="UnmannedAircraftSecurityFeaturesCode" ResultMode="FirstResult">
+				<rul:Keys>
+					<rul:Value Type="string" FromDataDef="/State/@Code" />
+					<rul:FirstValue Type="string" FromConstant="" FromDataDef="@SenseAndAvoidTechnology" Order="DataDefInputParamConstant" />
+					<rul:FirstValue Type="string" FromConstant="" FromDataDef="@ReturnToBaseTechnologyOrHoverCapability" Order="DataDefInputParamConstant" />
+					<rul:FirstValue Type="string" FromConstant="" FromDataDef="@GeoFencingTechnologyToAvoidRestrictedAirspace" Order="DataDefInputParamConstant" />
+					<rul:FirstValue Type="string" FromConstant="" FromDataDef="@EncryptedCommunications" Order="DataDefInputParamConstant" />
+				</rul:Keys>
+			</rul:Lookup>
+			<rul:Lookup Type="string" MatrixCol="Code" MatrixDef="UnmannedAircraftSecurityFeaturesCodeDef" MatrixFromConstant="UnmannedAircraftSecurityFeaturesCode" ResultMode="SingleResult">
+				<rul:Keys>
+					<rul:Constant Type="string">CW</rul:Constant>
+					<rul:FirstValue Type="string" FromConstant="" FromDataDef="@SenseAndAvoidTechnology" Order="DataDefInputParamConstant" />
+					<rul:FirstValue Type="string" FromConstant="" FromDataDef="@ReturnToBaseTechnologyOrHoverCapability" Order="DataDefInputParamConstant" />
+					<rul:FirstValue Type="string" FromConstant="" FromDataDef="@GeoFencingTechnologyToAvoidRestrictedAirspace" Order="DataDefInputParamConstant" />
+					<rul:FirstValue Type="string" FromConstant="" FromDataDef="@EncryptedCommunications" Order="DataDefInputParamConstant" />
+				</rul:Keys>
+			</rul:Lookup>
+		</rul:FirstNonNull>
+	</rul:Rule>
+	<rul:Rule Name="LookupUnmannedAircraftSecurityFeaturesUnknownCode" Type="string" DataDefGroup="CommercialPropertyLimitedCoverageForUnmannedAircraftScheduledAndOrBlanketCoverageDetail">
+		<rul:FirstNonNull Type="string">
+			<rul:Lookup Type="string" MatrixCol="Code" MatrixDef="UnmannedAircraftSecurityFeaturesUnknownCodeDef" MatrixFromConstant="UnmannedAircraftSecurityFeaturesUnknownCode" ResultMode="FirstResult">
+				<rul:Keys>
+					<rul:Value Type="string" FromDataDef="/State/@Code" />
+					<rul:Constant Type="string">Y</rul:Constant>
+				</rul:Keys>
+			</rul:Lookup>
+			<rul:Lookup Type="string" MatrixCol="Code" MatrixDef="UnmannedAircraftSecurityFeaturesUnknownCodeDef" MatrixFromConstant="UnmannedAircraftSecurityFeaturesUnknownCode" ResultMode="SingleResult">
+				<rul:Keys>
+					<rul:Constant Type="string">CW</rul:Constant>
+					<rul:Constant Type="string">Y</rul:Constant>
+				</rul:Keys>
+			</rul:Lookup>
+		</rul:FirstNonNull>
+	</rul:Rule>
+	<rul:Rule Name="LookupUnmannedAircraftPrimaryPlaceOfOperationCode" Type="string" DataDefGroup="CommercialPropertyLimitedCoverageForUnmannedAircraftScheduledAndOrBlanketCoverageDetail">
+		<rul:FirstNonNull Type="string">
+			<rul:Lookup Type="string" MatrixCol="Code" MatrixDef="UnmannedAircraftPrimaryPlaceOfOperationCodeDef" MatrixFromConstant="UnmannedAircraftPrimaryPlaceOfOperationCode" ResultMode="FirstResult">
+				<rul:Keys>
+					<rul:Value Type="string" FromDataDef="/State/@Code" />
+					<rul:FirstValue Type="string" FromConstant="" FromDataDef="@UnmannedAircraftPrimaryPlaceOfOperation" Order="DataDefInputParamConstant" />
+				</rul:Keys>
+			</rul:Lookup>
+			<rul:Lookup Type="string" MatrixCol="Code" MatrixDef="UnmannedAircraftPrimaryPlaceOfOperationCodeDef" MatrixFromConstant="UnmannedAircraftPrimaryPlaceOfOperationCode" ResultMode="SingleResult">
+				<rul:Keys>
+					<rul:Constant Type="string">CW</rul:Constant>
+					<rul:FirstValue Type="string" FromConstant="" FromDataDef="@UnmannedAircraftPrimaryPlaceOfOperation" Order="DataDefInputParamConstant" />
+				</rul:Keys>
+			</rul:Lookup>
+		</rul:FirstNonNull>
+	</rul:Rule>
+	<rul:Rule Name="LookupUnmannedAircraftLossSettlementCode" Type="string" DataDefGroup="CommercialPropertyLimitedCoverageForUnmannedAircraftScheduledAndOrBlanketCoverageDetail">
+		<rul:FirstNonNull Type="string">
+			<rul:Lookup Type="string" MatrixCol="Code" MatrixDef="UnmannedAircraftLossSettlementCodeDef" MatrixFromConstant="UnmannedAircraftLossSettlementCode" ResultMode="FirstResult">
+				<rul:Keys>
+					<rul:Value Type="string" FromDataDef="/State/@Code" />
+					<rul:FirstValue Type="string" FromConstant="" FromDataDef="@IndicateActualCashValueACVOrReplacementCostRC" Order="DataDefInputParamConstant" />
+				</rul:Keys>
+			</rul:Lookup>
+			<rul:Lookup Type="string" MatrixCol="Code" MatrixDef="UnmannedAircraftLossSettlementCodeDef" MatrixFromConstant="UnmannedAircraftLossSettlementCode" ResultMode="SingleResult">
+				<rul:Keys>
+					<rul:Constant Type="string">CW</rul:Constant>
+					<rul:FirstValue Type="string" FromConstant="" FromDataDef="@IndicateActualCashValueACVOrReplacementCostRC" Order="DataDefInputParamConstant" />
+				</rul:Keys>
+			</rul:Lookup>
+		</rul:FirstNonNull>
+	</rul:Rule>
+	<rul:Rule Name="LookupBlanketUnmannedAircraftLossSettlementCode" Type="string" DataDefGroup="CommercialPropertyLimitedCoverageForUnmannedAircraftScheduledAndOrBlanketCoverageDetail">
+		<rul:FirstNonNull Type="string">
+			<rul:Lookup Type="string" MatrixCol="Code" MatrixDef="UnmannedAircraftLossSettlementCodeDef" MatrixFromConstant="UnmannedAircraftLossSettlementCode" ResultMode="FirstResult">
+				<rul:Keys>
+					<rul:Value Type="string" FromDataDef="/State/@Code" />
+					<rul:FirstValue Type="string" FromConstant="" FromDataDef="@ValuationType" Order="DataDefInputParamConstant" />
+				</rul:Keys>
+			</rul:Lookup>
+			<rul:Lookup Type="string" MatrixCol="Code" MatrixDef="UnmannedAircraftLossSettlementCodeDef" MatrixFromConstant="UnmannedAircraftLossSettlementCode" ResultMode="SingleResult">
+				<rul:Keys>
+					<rul:Constant Type="string">CW</rul:Constant>
+					<rul:FirstValue Type="string" FromConstant="" FromDataDef="@ValuationType" Order="DataDefInputParamConstant" />
+				</rul:Keys>
+			</rul:Lookup>
+		</rul:FirstNonNull>
+	</rul:Rule>
+	<rul:Rule Name="LookupDroneModificationsCode" Type="string" DataDefGroup="CommercialPropertyLimitedCoverageForUnmannedAircraftScheduledAndOrBlanketCoverageDetail">
+		<rul:FirstNonNull Type="string">
+			<rul:Lookup Type="string" MatrixCol="Code" MatrixDef="DroneModificationsCodeDef" MatrixFromConstant="DroneModificationsCode" ResultMode="FirstResult">
+				<rul:Keys>
+					<rul:Value Type="string" FromDataDef="/State/@Code" />
+					<rul:FirstValue Type="string" FromConstant="" FromDataDef="@DroneModification" Order="DataDefInputParamConstant" />
+				</rul:Keys>
+			</rul:Lookup>
+			<rul:Lookup Type="string" MatrixCol="Code" MatrixDef="DroneModificationsCodeDef" MatrixFromConstant="DroneModificationsCode" ResultMode="SingleResult">
+				<rul:Keys>
+					<rul:Constant Type="string">CW</rul:Constant>
+					<rul:FirstValue Type="string" FromConstant="" FromDataDef="@DroneModification" Order="DataDefInputParamConstant" />
+				</rul:Keys>
+			</rul:Lookup>
+		</rul:FirstNonNull>
+	</rul:Rule>
+	<rul:Rule Name="LookupUnmannedAircraftMethodOfControlCode" Type="string" DataDefGroup="CommercialPropertyLimitedCoverageForUnmannedAircraftScheduledAndOrBlanketCoverageDetail">
+		<rul:FirstNonNull Type="string">
+			<rul:Lookup Type="string" MatrixCol="Code" MatrixDef="UnmannedAircraftMethodOfControlCodeDef" MatrixFromConstant="UnmannedAircraftMethodOfControlCode" ResultMode="FirstResult">
+				<rul:Keys>
+					<rul:Value Type="string" FromDataDef="/State/@Code" />
+					<rul:FirstValue Type="string" FromConstant="" FromDataDef="@UnmannedAircraftMethodOfControl" Order="DataDefInputParamConstant" />
+				</rul:Keys>
+			</rul:Lookup>
+			<rul:Lookup Type="string" MatrixCol="Code" MatrixDef="UnmannedAircraftMethodOfControlCodeDef" MatrixFromConstant="UnmannedAircraftMethodOfControlCode" ResultMode="SingleResult">
+				<rul:Keys>
+					<rul:Constant Type="string">CW</rul:Constant>
+					<rul:FirstValue Type="string" FromConstant="" FromDataDef="@UnmannedAircraftMethodOfControl" Order="DataDefInputParamConstant" />
+				</rul:Keys>
+			</rul:Lookup>
+		</rul:FirstNonNull>
+	</rul:Rule>
+	<rul:Rule Name="LookupWindstormOrHailExclFactor" Type="decimal" DataDefGroup="CommercialPropertyLimitedCoverageForUnmannedAircraftScheduledAndOrBlanketCoverageDetail">
+		<rul:FirstNonNull Type="decimal">
+			<rul:Lookup Type="decimal" MatrixCol="Factor" MatrixDef="WindstormOrHailExclFactorDef" MatrixFromConstant="WindstormOrHailExclFactor" ResultMode="FirstResult">
+				<rul:Keys>
+					<rul:Value Type="string" FromDataDef="/State/@Code" />
+					<rul:Constant Type="string">B</rul:Constant>
+				</rul:Keys>
+			</rul:Lookup>
+			<rul:Lookup Type="decimal" MatrixCol="Factor" MatrixDef="WindstormOrHailExclFactorDef" MatrixFromConstant="WindstormOrHailExclFactor" ResultMode="SingleResult">
+				<rul:Keys>
+					<rul:Constant Type="string">CW</rul:Constant>
+					<rul:Constant Type="string">B</rul:Constant>
+				</rul:Keys>
+			</rul:Lookup>
+		</rul:FirstNonNull>
+	</rul:Rule>
+	<rul:Rule Name="LookupEQLossCostPrsnlProp" Type="decimal" DataDefGroup="CommercialPropertyLimitedCoverageForUnmannedAircraftScheduledAndOrBlanketCoverageDetail">
+		<rul:FirstNonNull Type="decimal">
+			<rul:Lookup Type="decimal" MatrixCol="LossCost" MatrixDef="EQLossCostPrsnlPropDef" MatrixFromConstant="EQLossCostPrsnlProp" ResultMode="FirstResult">
+				<rul:Keys>
+					<rul:Value Type="string" FromDataDef="/State/@Code" />
+					<rul:FirstValue Type="string" FromConstant="" FromDataDef="../../../../@EQClass" Order="DataDefInputParamConstant" />
+					<rul:FirstValue Type="string" FromConstant="" FromDataDef="../../../../../../@EQTerr" Order="DataDefInputParamConstant" />
+					<rul:Constant Type="string">2</rul:Constant>
+				</rul:Keys>
+			</rul:Lookup>
+			<rul:Lookup Type="decimal" MatrixCol="LossCost" MatrixDef="EQLossCostPrsnlPropDef" MatrixFromConstant="EQLossCostPrsnlProp" ResultMode="SingleResult">
+				<rul:Keys>
+					<rul:Constant Type="string">CW</rul:Constant>
+					<rul:FirstValue Type="string" FromConstant="" FromDataDef="../../../../@EQClass" Order="DataDefInputParamConstant" />
+					<rul:FirstValue Type="string" FromConstant="" FromDataDef="../../../../../../@EQTerr" Order="DataDefInputParamConstant" />
+					<rul:Constant Type="string">2</rul:Constant>
+				</rul:Keys>
+			</rul:Lookup>
+		</rul:FirstNonNull>
+	</rul:Rule>
+</rul:Rules>

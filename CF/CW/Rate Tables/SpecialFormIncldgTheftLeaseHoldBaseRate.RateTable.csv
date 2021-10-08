@@ -1,0 +1,13 @@
+"StateCode","ConstructionTypeToUse","ApartmentCondoIndicator","Rate"
+"CW","Modified Fire Resistive","Yes",0.017
+"CW","Fire Resistive","Yes",0.017
+"CW","Frame","Yes",0.029
+"CW","Joisted Masonry","Yes",0.029
+"CW","Non-Combustible","Yes",0.029
+"CW","Masonry Non-Combustible","Yes",0.029
+"CW","Modified Fire Resistive","No",0.035
+"CW","Fire Resistive","No",0.035
+"CW","Frame","No",0.047
+"CW","Joisted Masonry","No",0.047
+"CW","Non-Combustible","No",0.047
+"CW","Masonry Non-Combustible","No",0.047

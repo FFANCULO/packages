@@ -1,0 +1,1195 @@
+<meta:Metadata xmlns:meta="http://www.verisk.com/iso/erc/Metadata">
+	<meta:MetadataEntry Code="DomainTables" Name="Domain Tables">
+		<meta:MetadataEntry Code="DomainTableaaaaaa" Name="aaaaaa">
+			<meta:Description>aaaaa</meta:Description>
+		</meta:MetadataEntry>
+		<meta:MetadataEntry Code="DomainTableActualValues" Name="ActualValues">
+			<meta:Description>ActualValues</meta:Description>
+		</meta:MetadataEntry>
+		<meta:MetadataEntry Code="DomainTableAdditionalCoveredPropParagraphBldg" Name="AdditionalCoveredPropParagraphBldg">
+			<meta:Description>Additional Covered Property Paragraph Reference</meta:Description>
+			<meta:Property Name="Comment" Type="string">Building Level</meta:Property>
+		</meta:MetadataEntry>
+		<meta:MetadataEntry Code="DomainTableAdditionalCoveredPropParagraphPrsnlProp" Name="AdditionalCoveredPropParagraphPrsnlProp">
+			<meta:Description>Additional Covered Property Paragraph Reference</meta:Description>
+			<meta:Property Name="Comment" Type="string">Personal Property Level</meta:Property>
+		</meta:MetadataEntry>
+		<meta:MetadataEntry Code="DomainTableAdditionalCoveredPropParagraphSpecialClass" Name="AdditionalCoveredPropParagraphSpecialClass">
+			<meta:Description>Additional Covered Property Paragraph Reference</meta:Description>
+			<meta:Property Name="Comment" Type="string">Special Class Level</meta:Property>
+		</meta:MetadataEntry>
+		<meta:MetadataEntry Code="DomainTableAdditionalCoveredPropTypeBldg" Name="AdditionalCoveredPropTypeBldg">
+			<meta:Description>Additional Covered Property Type</meta:Description>
+			<meta:Property Name="Comment" Type="string">Building Level</meta:Property>
+		</meta:MetadataEntry>
+		<meta:MetadataEntry Code="DomainTableAdditionalCoveredPropTypePrsnlProp" Name="AdditionalCoveredPropTypePrsnlProp">
+			<meta:Description>Additional Covered Property Type</meta:Description>
+			<meta:Property Name="Comment" Type="string">Personal Property Level</meta:Property>
+		</meta:MetadataEntry>
+		<meta:MetadataEntry Code="DomainTableAdditionalCoveredPropTypeSpecialClass" Name="AdditionalCoveredPropTypeSpecialClass">
+			<meta:Description>Additional Covered Property Type</meta:Description>
+			<meta:Property Name="Comment" Type="string">Special Class Level</meta:Property>
+		</meta:MetadataEntry>
+		<meta:MetadataEntry Code="DomainTableAdditionalExpenseCoveragePercentage" Name="AdditionalExpenseCoveragePercentage">
+			<meta:Description>Additional Expense Coverage Percentage</meta:Description>
+		</meta:MetadataEntry>
+		<meta:MetadataEntry Code="DomainTableAdditionalFloodConstructionType" Name="AdditionalFloodConstructionType">
+			<meta:Description>Additional Flood Construction Type</meta:Description>
+		</meta:MetadataEntry>
+		<meta:MetadataEntry Code="DomainTableAddlCoveredPropParagraphReference" Name="AddlCoveredPropParagraphReference">
+			<meta:Description>Additional Covered Property Paragraph Reference</meta:Description>
+		</meta:MetadataEntry>
+		<meta:MetadataEntry Code="DomainTableAddlInsurableInt" Name="AddlInsurableInt">
+			<meta:Description>Additional Insurable Interests</meta:Description>
+			<meta:Property Name="Comment" Type="string">Legal Liability Form</meta:Property>
+		</meta:MetadataEntry>
+		<meta:MetadataEntry Code="DomainTableAddlInsurableIntOption" Name="AddlInsurableIntOption">
+			<meta:Description>Additional Insurable Interest Option</meta:Description>
+		</meta:MetadataEntry>
+		<meta:MetadataEntry Code="DomainTableAgreedValueBlanket" Name="AgreedValueBlanket">
+			<meta:Description>Agreed Value</meta:Description>
+			<meta:Property Name="Comment" Type="string">Blanket Process</meta:Property>
+		</meta:MetadataEntry>
+		<meta:MetadataEntry Code="DomainTableAgreedValueBldg" Name="AgreedValueBldg">
+			<meta:Description>Agreed Value</meta:Description>
+			<meta:Property Name="Comment" Type="string">Building (Structure) Level</meta:Property>
+		</meta:MetadataEntry>
+		<meta:MetadataEntry Code="DomainTableAgreedValueBusnIncome" Name="AgreedValueBusnIncome">
+			<meta:Description>Agreed Value</meta:Description>
+			<meta:Property Name="Comment" Type="string">Business Income Level</meta:Property>
+		</meta:MetadataEntry>
+		<meta:MetadataEntry Code="DomainTableAgreedValueFloodBlanket" Name="AgreedValueFloodBlanket">
+			<meta:Description>Agreed Value</meta:Description>
+			<meta:Property Name="Comment" Type="string">Flood Blanket Rating Process</meta:Property>
+		</meta:MetadataEntry>
+		<meta:MetadataEntry Code="DomainTableApplicableClause" Name="ApplicableClause">
+			<meta:Description>ApplicableClause</meta:Description>
+		</meta:MetadataEntry>
+		<meta:MetadataEntry Code="DomainTableBasicGroupIIRatingTerr" Name="BasicGroupIIRatingTerr">
+			<meta:Description>Basic Group II Rating Territory</meta:Description>
+		</meta:MetadataEntry>
+		<meta:MetadataEntry Code="DomainTableBasicGroupIISymbol" Name="BasicGroupIISymbol">
+			<meta:Description>Basic Group II Symbol</meta:Description>
+			<meta:Property Name="Comment" Type="string">CommercialPropertyStructure.BasicGroupIISymbol</meta:Property>
+		</meta:MetadataEntry>
+		<meta:MetadataEntry Code="DomainTableBasicGroupIRatingTerr" Name="BasicGroupIRatingTerr">
+			<meta:Description>Basic Group I Rating Territory</meta:Description>
+		</meta:MetadataEntry>
+		<meta:MetadataEntry Code="DomainTableBasicGroupIRatingTerritory" Name="BasicGroupIRatingTerritory">
+			<meta:Description>Basic Group I RatingT erritory</meta:Description>
+			<meta:Property Name="Comment" Type="string">New BGIRatingTerr with City name</meta:Property>
+		</meta:MetadataEntry>
+		<meta:MetadataEntry Code="DomainTableBCEG" Name="BCEG">
+			<meta:Description>Building Code Effectiveness Grade</meta:Description>
+		</meta:MetadataEntry>
+		<meta:MetadataEntry Code="DomainTableBeginPeriodOfRestoration" Name="BeginPeriodOfRestoration">
+			<meta:Description>Begin Period Of Restoration</meta:Description>
+		</meta:MetadataEntry>
+		<meta:MetadataEntry Code="DomainTableBeginPeriodOfRestorationOptionalForms" Name="BeginPeriodOfRestorationOptionalForms">
+			<meta:Description>Begin Period Of Restoration Optional Forms</meta:Description>
+		</meta:MetadataEntry>
+		<meta:MetadataEntry Code="DomainTableBlanketLimitBuilding" Name="BlanketLimitBuilding">
+			<meta:Description>Blanket Limit Building</meta:Description>
+		</meta:MetadataEntry>
+		<meta:MetadataEntry Code="DomainTableBlanketRatedSelection" Name="BlanketRatedSelection">
+			<meta:Description>Blanket Rated Selection</meta:Description>
+		</meta:MetadataEntry>
+		<meta:MetadataEntry Code="DomainTableBlanketType" Name="BlanketType">
+			<meta:Description>BlanketType</meta:Description>
+		</meta:MetadataEntry>
+		<meta:MetadataEntry Code="DomainTableBldgCodeEffectivenessGrade2" Name="BldgCodeEffectivenessGrade2">
+			<meta:Description>Bldg Code Effectiveness Grade</meta:Description>
+		</meta:MetadataEntry>
+		<meta:MetadataEntry Code="DomainTableBldgCodeEffectivenessGradeClass" Name="BldgCodeEffectivenessGradeClass">
+			<meta:Description>Bldg Code Effectiveness Grade Class</meta:Description>
+		</meta:MetadataEntry>
+		<meta:MetadataEntry Code="DomainTableBldgIncludedInOperationalUnit" Name="BldgIncludedInOperationalUnit">
+			<meta:Description>Building Included in Operational Unit</meta:Description>
+		</meta:MetadataEntry>
+		<meta:MetadataEntry Code="DomainTableBldrsRiskCollapseDuringConstrctnOption" Name="BldrsRiskCollapseDuringConstrctnOption">
+			<meta:Description>Builders Risk Collapse During Construction Option</meta:Description>
+		</meta:MetadataEntry>
+		<meta:MetadataEntry Code="DomainTableBldrsRiskCollapseDuringConstrctnOptionConverted" Name="BldrsRiskCollapseDuringConstrctnOptionConverted">
+			<meta:Description>Builders Risk Collapse During Construction Option Converted</meta:Description>
+		</meta:MetadataEntry>
+		<meta:MetadataEntry Code="DomainTableBlktIDNum" Name="BlktIDNum">
+			<meta:Description>Blanket ID Number</meta:Description>
+		</meta:MetadataEntry>
+		<meta:MetadataEntry Code="DomainTableBlktIDNumBldg" Name="BlktIDNumBldg">
+			<meta:Description>Blanket ID Number for Buildings</meta:Description>
+		</meta:MetadataEntry>
+		<meta:MetadataEntry Code="DomainTableBlktIDNumPrsnlProp" Name="BlktIDNumPrsnlProp">
+			<meta:Description>Blanket ID Number for Personal Property</meta:Description>
+		</meta:MetadataEntry>
+		<meta:MetadataEntry Code="DomainTableBlktIDNumVacancyPermit" Name="BlktIDNumVacancyPermit">
+			<meta:Description>Blanket ID Number</meta:Description>
+			<meta:Property Name="Comment" Type="string">Vacancy Permit Form</meta:Property>
+		</meta:MetadataEntry>
+		<meta:MetadataEntry Code="DomainTableBlktRated" Name="BlktRated">
+			<meta:Description>Blanket Rated</meta:Description>
+			<meta:Property Name="Comment" Type="string">CommercialProperty.BlktRated</meta:Property>
+		</meta:MetadataEntry>
+		<meta:MetadataEntry Code="DomainTableBlktWeightBlkt" Name="BlktWeightBlkt">
+			<meta:Description>Blanket Weight</meta:Description>
+			<meta:Property Name="Comment" Type="string">Blanket level</meta:Property>
+		</meta:MetadataEntry>
+		<meta:MetadataEntry Code="DomainTableBlktWeightBusnIncome" Name="BlktWeightBusnIncome">
+			<meta:Description>Blanket Weight</meta:Description>
+			<meta:Property Name="Comment" Type="string">Business Income Level</meta:Property>
+		</meta:MetadataEntry>
+		<meta:MetadataEntry Code="DomainTableBoatType" Name="BoatType">
+			<meta:Description>Type of Boat</meta:Description>
+		</meta:MetadataEntry>
+		<meta:MetadataEntry Code="DomainTableBuildersRiskTentativeGroupIRate" Name="BuildersRiskTentativeGroupIRate">
+			<meta:Description>Tentative Group I Rate</meta:Description>
+		</meta:MetadataEntry>
+		<meta:MetadataEntry Code="DomainTableBuildingIDNumber" Name="BuildingIDNumber">
+			<meta:Description>Building ID Number</meta:Description>
+		</meta:MetadataEntry>
+		<meta:MetadataEntry Code="DomainTableBuildingTheftDeductible" Name="BuildingTheftDeductible">
+			<meta:Description>Building Theft Deductible</meta:Description>
+		</meta:MetadataEntry>
+		<meta:MetadataEntry Code="DomainTableBurglaryAlarmCreditFactorRange" Name="BurglaryAlarmCreditFactorRange">
+			<meta:Description>Burglary Alarm Credit Factor Range</meta:Description>
+		</meta:MetadataEntry>
+		<meta:MetadataEntry Code="DomainTableBurglaryAlarmSystemType" Name="BurglaryAlarmSystemType">
+			<meta:Description>Burglary Alarm System Type</meta:Description>
+		</meta:MetadataEntry>
+		<meta:MetadataEntry Code="DomainTableBurgRobbery3ConvertedCode" Name="BurgRobbery3ConvertedCode">
+			<meta:Description>BR3 Converted Code</meta:Description>
+			<meta:Property Name="Comment" Type="string">Translate long string into a string that the rate table can use</meta:Property>
+		</meta:MetadataEntry>
+		<meta:MetadataEntry Code="DomainTableBurgRobbery4Factor" Name="BurgRobbery4Factor">
+			<meta:Description>BR4 Factor</meta:Description>
+			<meta:Property Name="Comment" Type="string">Burglary &amp; Robber Form</meta:Property>
+		</meta:MetadataEntry>
+		<meta:MetadataEntry Code="DomainTableBurgRobberyGrade" Name="BurgRobberyGrade">
+			<meta:Description>Grade</meta:Description>
+			<meta:Property Name="Comment" Type="string">Burglary and Robbery Form</meta:Property>
+		</meta:MetadataEntry>
+		<meta:MetadataEntry Code="DomainTableBurgRobberyWatchmanService" Name="BurgRobberyWatchmanService">
+			<meta:Description>Watchman Service</meta:Description>
+			<meta:Property Name="Comment" Type="string">Burglary and Robbery Form</meta:Property>
+		</meta:MetadataEntry>
+		<meta:MetadataEntry Code="DomainTableCauseOfLoss" Name="CauseOfLoss">
+			<meta:Description>Cause of Loss</meta:Description>
+		</meta:MetadataEntry>
+		<meta:MetadataEntry Code="DomainTableCauseOfLossAllTypes" Name="CauseOfLossAllTypes">
+			<meta:Description>Cause of Loss All Types</meta:Description>
+		</meta:MetadataEntry>
+		<meta:MetadataEntry Code="DomainTableCauseOfLossBldg" Name="CauseOfLossBldg">
+			<meta:Description>Cause of Loss for Building</meta:Description>
+		</meta:MetadataEntry>
+		<meta:MetadataEntry Code="DomainTableCauseOfLossBusnIncome" Name="CauseOfLossBusnIncome">
+			<meta:Description>Cause of Loss</meta:Description>
+		</meta:MetadataEntry>
+		<meta:MetadataEntry Code="DomainTableCauseOfLossByPolicyOptionalForms" Name="CauseOfLossByPolicyOptionalForms">
+			<meta:Description>Cause Of Loss By Policy Optional Forms</meta:Description>
+		</meta:MetadataEntry>
+		<meta:MetadataEntry Code="DomainTableCauseOfLossByPolicyType4OptionalForms" Name="CauseOfLossByPolicyType4OptionalForms">
+			<meta:Description>Cause Of Loss By Policy Type for Optional Forms</meta:Description>
+		</meta:MetadataEntry>
+		<meta:MetadataEntry Code="DomainTableCauseOfLossCPPOnly" Name="CauseOfLossCPPOnly">
+			<meta:Description>Cause of Loss for CPP only</meta:Description>
+		</meta:MetadataEntry>
+		<meta:MetadataEntry Code="DomainTableCauseOfLossDS04" Name="CauseOfLossDS04">
+			<meta:Description>Cause of Loss</meta:Description>
+			<meta:Property Name="Comment" Type="string">DS 04 for Value Reporting Form</meta:Property>
+		</meta:MetadataEntry>
+		<meta:MetadataEntry Code="DomainTableCauseOfLossForBlanket" Name="CauseOfLossForBlanket">
+			<meta:Description>Cause of Loss</meta:Description>
+			<meta:Property Name="Comment" Type="string">For Blanket Processes</meta:Property>
+		</meta:MetadataEntry>
+		<meta:MetadataEntry Code="DomainTableCauseOfLossOptionalForm" Name="CauseOfLossOptionalForm">
+			<meta:Description>Cause Of Loss Optional Form</meta:Description>
+		</meta:MetadataEntry>
+		<meta:MetadataEntry Code="DomainTableCauseOfLossPrsnlProp" Name="CauseOfLossPrsnlProp">
+			<meta:Description>Cause Of Loss for Personal Property</meta:Description>
+		</meta:MetadataEntry>
+		<meta:MetadataEntry Code="DomainTableCauseOfLossSpecialClass" Name="CauseOfLossSpecialClass">
+			<meta:Description>Cause Of Loss Special Class</meta:Description>
+		</meta:MetadataEntry>
+		<meta:MetadataEntry Code="DomainTableCityTown" Name="CityTown">
+			<meta:Description>City Town</meta:Description>
+		</meta:MetadataEntry>
+		<meta:MetadataEntry Code="DomainTableCityTownState" Name="CityTownState">
+			<meta:Description>City Town State</meta:Description>
+		</meta:MetadataEntry>
+		<meta:MetadataEntry Code="DomainTableCivilAuthorityIncreasedCoveragePeriod" Name="CivilAuthorityIncreasedCoveragePeriod">
+			<meta:Description>Civil Authority Increased Coverage Period</meta:Description>
+		</meta:MetadataEntry>
+		<meta:MetadataEntry Code="DomainTableClassCode" Name="ClassCode">
+			<meta:Description>Class Code</meta:Description>
+		</meta:MetadataEntry>
+		<meta:MetadataEntry Code="DomainTableClassCodeBldg" Name="ClassCodeBldg">
+			<meta:Description>Class Code</meta:Description>
+			<meta:Property Name="Comment" Type="string">Building Level</meta:Property>
+		</meta:MetadataEntry>
+		<meta:MetadataEntry Code="DomainTableClassCodeOccupClass" Name="ClassCodeOccupClass">
+			<meta:Description>Class Code</meta:Description>
+			<meta:Property Name="Comment" Type="string">Occupancy Class</meta:Property>
+		</meta:MetadataEntry>
+		<meta:MetadataEntry Code="DomainTableClassDesc" Name="ClassDesc">
+			<meta:Description>Class Description</meta:Description>
+		</meta:MetadataEntry>
+		<meta:MetadataEntry Code="DomainTableCoinsurance" Name="Coinsurance">
+			<meta:Description>Coinsurance</meta:Description>
+		</meta:MetadataEntry>
+		<meta:MetadataEntry Code="DomainTableCoinsuranceAddlLocsSpclCoins" Name="CoinsuranceAddlLocsSpclCoins">
+			<meta:Description>Coinsurance</meta:Description>
+			<meta:Property Name="Comment" Type="string">Additional Locations Special Coinsurance Provisions form</meta:Property>
+		</meta:MetadataEntry>
+		<meta:MetadataEntry Code="DomainTableCoinsuranceBldg" Name="CoinsuranceBldg">
+			<meta:Description>Coinsurance for Building</meta:Description>
+		</meta:MetadataEntry>
+		<meta:MetadataEntry Code="DomainTableCoinsuranceBusnIncome" Name="CoinsuranceBusnIncome">
+			<meta:Description>Coinsurance for Business Income</meta:Description>
+		</meta:MetadataEntry>
+		<meta:MetadataEntry Code="DomainTableCoinsuranceFloodBlkt" Name="CoinsuranceFloodBlkt">
+			<meta:Description>Coinsurance for Flood Blankets</meta:Description>
+		</meta:MetadataEntry>
+		<meta:MetadataEntry Code="DomainTableCoinsuranceFloodForm" Name="CoinsuranceFloodForm">
+			<meta:Description>Coinsurance for Flood Form</meta:Description>
+		</meta:MetadataEntry>
+		<meta:MetadataEntry Code="DomainTableCoinsuranceForBlanket" Name="CoinsuranceForBlanket">
+			<meta:Description>Coinsurance</meta:Description>
+			<meta:Property Name="Comment" Type="string">For Blanket Process</meta:Property>
+		</meta:MetadataEntry>
+		<meta:MetadataEntry Code="DomainTableCoinsuranceForOptionalForms" Name="CoinsuranceForOptionalForms">
+			<meta:Description>Coinsurance for Optional Forms</meta:Description>
+		</meta:MetadataEntry>
+		<meta:MetadataEntry Code="DomainTableCoinsurancePrsnlProp" Name="CoinsurancePrsnlProp">
+			<meta:Description>Coinsurance for Personal Property</meta:Description>
+		</meta:MetadataEntry>
+		<meta:MetadataEntry Code="DomainTableCoinsuranceSpecialClass" Name="CoinsuranceSpecialClass">
+			<meta:Description>Coinsurance</meta:Description>
+			<meta:Property Name="Comment" Type="string">Special Class Level</meta:Property>
+		</meta:MetadataEntry>
+		<meta:MetadataEntry Code="DomainTableCoinsuranceVacancyPermit" Name="CoinsuranceVacancyPermit">
+			<meta:Description>Coinsurance Vacancy Permit</meta:Description>
+		</meta:MetadataEntry>
+		<meta:MetadataEntry Code="DomainTableCoinsuranceValue" Name="CoinsuranceValue">
+			<meta:Description>Coinsurance Value to be used in Rate Table lookup</meta:Description>
+		</meta:MetadataEntry>
+		<meta:MetadataEntry Code="DomainTableCombinedTypeOfRiskEducationalPct" Name="CombinedTypeOfRiskEducationalPct">
+			<meta:Description>Combined Type Of Risk Educational Percentage</meta:Description>
+		</meta:MetadataEntry>
+		<meta:MetadataEntry Code="DomainTableCombinedTypeOfRiskManufacturingPct" Name="CombinedTypeOfRiskManufacturingPct">
+			<meta:Description>Combined Type Of Risk Manufacturing Percent</meta:Description>
+		</meta:MetadataEntry>
+		<meta:MetadataEntry Code="DomainTableCombinedTypeOfRiskMercantilePct" Name="CombinedTypeOfRiskMercantilePct">
+			<meta:Description>Combined Type Of Risk Mercantile Percent</meta:Description>
+		</meta:MetadataEntry>
+		<meta:MetadataEntry Code="DomainTableCombinedTypeOfRiskRentalPct" Name="CombinedTypeOfRiskRentalPct">
+			<meta:Description>Combined Type Of Risk Rental Pct</meta:Description>
+		</meta:MetadataEntry>
+		<meta:MetadataEntry Code="DomainTableCommunityRatingSystemGrade" Name="CommunityRatingSystemGrade">
+			<meta:Description>Community Rating System Grade</meta:Description>
+		</meta:MetadataEntry>
+		<meta:MetadataEntry Code="DomainTableConditionalExclusionRatingOption" Name="ConditionalExclusionRatingOption">
+			<meta:Description>Conditional Exclusion Rating Option</meta:Description>
+			<meta:Property Name="Comment" Type="string">Not in use</meta:Property>
+		</meta:MetadataEntry>
+		<meta:MetadataEntry Code="DomainTableConstant" Name="Constant">
+			<meta:Description>Constant</meta:Description>
+		</meta:MetadataEntry>
+		<meta:MetadataEntry Code="DomainTableConstructionCode" Name="ConstructionCode">
+			<meta:Description>ConstructionCode</meta:Description>
+		</meta:MetadataEntry>
+		<meta:MetadataEntry Code="DomainTableConstructionType" Name="ConstructionType">
+			<meta:Description>Type of Construction</meta:Description>
+		</meta:MetadataEntry>
+		<meta:MetadataEntry Code="DomainTableConstructionTypeBldg" Name="ConstructionTypeBldg">
+			<meta:Description>Construction Type</meta:Description>
+		</meta:MetadataEntry>
+		<meta:MetadataEntry Code="DomainTableConstructionTypeToUse" Name="ConstructionTypeToUse">
+			<meta:Description>Construction Type To Use</meta:Description>
+		</meta:MetadataEntry>
+		<meta:MetadataEntry Code="DomainTableCounty" Name="County">
+			<meta:Description>County</meta:Description>
+		</meta:MetadataEntry>
+		<meta:MetadataEntry Code="DomainTableCountyState" Name="CountyState">
+			<meta:Description>County State</meta:Description>
+		</meta:MetadataEntry>
+		<meta:MetadataEntry Code="DomainTableCoverageForCertifiedActs" Name="CoverageForCertifiedActs">
+			<meta:Description>Coverage for Certified Acts of Terrorism</meta:Description>
+			<meta:Property Name="Comment" Type="string">Not in use</meta:Property>
+		</meta:MetadataEntry>
+		<meta:MetadataEntry Code="DomainTableCoverageForOtherActs" Name="CoverageForOtherActs">
+			<meta:Description>Coverage For Other Acts of Terrorism</meta:Description>
+			<meta:Property Name="Comment" Type="string">Not in use</meta:Property>
+		</meta:MetadataEntry>
+		<meta:MetadataEntry Code="DomainTableCovForm" Name="CovForm">
+			<meta:Description>Coverage Form</meta:Description>
+			<meta:Property Name="Comment" Type="string">Occupancy Level only</meta:Property>
+		</meta:MetadataEntry>
+		<meta:MetadataEntry Code="DomainTableCovFormBusnIncome" Name="CovFormBusnIncome">
+			<meta:Description>Coverage Form</meta:Description>
+			<meta:Property Name="Comment" Type="string">Business Income Level</meta:Property>
+		</meta:MetadataEntry>
+		<meta:MetadataEntry Code="DomainTableCovFormSpecialClass" Name="CovFormSpecialClass">
+			<meta:Description>Coverage Form</meta:Description>
+			<meta:Property Name="Comment" Type="string">Special Class Level</meta:Property>
+		</meta:MetadataEntry>
+		<meta:MetadataEntry Code="DomainTableCovTypeBldg" Name="CovTypeBldg">
+			<meta:Description>Coverage Type for Building</meta:Description>
+		</meta:MetadataEntry>
+		<meta:MetadataEntry Code="DomainTableCovTypeBusnIncome" Name="CovTypeBusnIncome">
+			<meta:Description>Coverage Type for Business Income</meta:Description>
+		</meta:MetadataEntry>
+		<meta:MetadataEntry Code="DomainTableCovTypePrsnlProp" Name="CovTypePrsnlProp">
+			<meta:Description>Coverage Types for Personal Property</meta:Description>
+		</meta:MetadataEntry>
+		<meta:MetadataEntry Code="DomainTableDeduct" Name="Deduct">
+			<meta:Description>Deductible</meta:Description>
+		</meta:MetadataEntry>
+		<meta:MetadataEntry Code="DomainTableDeductible" Name="Deductible">
+			<meta:Description>Deductible</meta:Description>
+		</meta:MetadataEntry>
+		<meta:MetadataEntry Code="DomainTableDeductibleBldg" Name="DeductibleBldg">
+			<meta:Description>Deductible Building</meta:Description>
+		</meta:MetadataEntry>
+		<meta:MetadataEntry Code="DomainTableDiscretionaryType" Name="DiscretionaryType">
+			<meta:Description>DiscretionaryType</meta:Description>
+		</meta:MetadataEntry>
+		<meta:MetadataEntry Code="DomainTableDroneModification" Name="DroneModification">
+			<meta:Description>Drone Modification</meta:Description>
+		</meta:MetadataEntry>
+		<meta:MetadataEntry Code="DomainTableEarthquakeDeductible" Name="EarthquakeDeductible">
+			<meta:Description>Earthquake Deductible</meta:Description>
+		</meta:MetadataEntry>
+		<meta:MetadataEntry Code="DomainTableEarthquakeDeductibleBuilding" Name="EarthquakeDeductibleBuilding">
+			<meta:Description>Earthquake Deductible Building</meta:Description>
+			<meta:Property Name="Comment" Type="string">Building (Structure) Level</meta:Property>
+		</meta:MetadataEntry>
+		<meta:MetadataEntry Code="DomainTableEBOccupCategory" Name="EBOccupCategory">
+			<meta:Description>Equipment Breakdown Occupancy Category</meta:Description>
+		</meta:MetadataEntry>
+		<meta:MetadataEntry Code="DomainTableElectronicSignature" Name="ElectronicSignature">
+			<meta:Description>Electronic Signature</meta:Description>
+		</meta:MetadataEntry>
+		<meta:MetadataEntry Code="DomainTableEmployeeAndOrClassifications" Name="EmployeeAndOrClassifications">
+			<meta:Description>Employee And/Or Classifications</meta:Description>
+		</meta:MetadataEntry>
+		<meta:MetadataEntry Code="DomainTableEntityType" Name="EntityType">
+			<meta:Description>Entity Type</meta:Description>
+			<meta:Property Name="Comment" Type="string">CommercialProperty.EntityType</meta:Property>
+		</meta:MetadataEntry>
+		<meta:MetadataEntry Code="DomainTableEQCauseOfLossCovBlktIDNum" Name="EQCauseOfLossCovBlktIDNum">
+			<meta:Description>EQ Cause Of Loss Coverage Blanket ID Number</meta:Description>
+		</meta:MetadataEntry>
+		<meta:MetadataEntry Code="DomainTableEQCauseOfLossCovBlktIDNumBldg" Name="EQCauseOfLossCovBlktIDNumBldg">
+			<meta:Description>Earthquake Cause Of Loss Coverage Blanket ID Number</meta:Description>
+			<meta:Property Name="Comment" Type="string">Building Level</meta:Property>
+		</meta:MetadataEntry>
+		<meta:MetadataEntry Code="DomainTableEQCauseOfLossCoverageBlktIDNumPrsnlProp" Name="EQCauseOfLossCoverageBlktIDNumPrsnlProp">
+			<meta:Description>EQ Cause of Loss Coverage Blanket ID Number</meta:Description>
+			<meta:Property Name="Comment" Type="string">Personal Property Level</meta:Property>
+		</meta:MetadataEntry>
+		<meta:MetadataEntry Code="DomainTableEQCauseofLossCoverageOptionalForms" Name="EQCauseofLossCoverageOptionalForms">
+			<meta:Description>EQ Cause of Loss Coverage Optional Forms</meta:Description>
+		</meta:MetadataEntry>
+		<meta:MetadataEntry Code="DomainTableEQCauseOfLossForm" Name="EQCauseOfLossForm">
+			<meta:Description>EQ Cause of Loss Form</meta:Description>
+		</meta:MetadataEntry>
+		<meta:MetadataEntry Code="DomainTableEQCauseOfLossIncludedInBlkt" Name="EQCauseOfLossIncludedInBlkt">
+			<meta:Description>EQ Cause Of Loss Included In Blanket</meta:Description>
+		</meta:MetadataEntry>
+		<meta:MetadataEntry Code="DomainTableEQClass" Name="EQClass">
+			<meta:Description>Earthquake Class</meta:Description>
+		</meta:MetadataEntry>
+		<meta:MetadataEntry Code="DomainTableEQClassBldg" Name="EQClassBldg">
+			<meta:Description>Earthquake Class</meta:Description>
+			<meta:Property Name="Comment" Type="string">Building (Structue) Level</meta:Property>
+		</meta:MetadataEntry>
+		<meta:MetadataEntry Code="DomainTableEQClassRenovations" Name="EQClassRenovations">
+			<meta:Description>EQ Class for Builders Risk Renovations</meta:Description>
+		</meta:MetadataEntry>
+		<meta:MetadataEntry Code="DomainTableEQClassSpecialClass" Name="EQClassSpecialClass">
+			<meta:Description>Earthquake Class</meta:Description>
+			<meta:Property Name="Comment" Type="string">Special Class Level</meta:Property>
+		</meta:MetadataEntry>
+		<meta:MetadataEntry Code="DomainTableEQCoinsurance" Name="EQCoinsurance">
+			<meta:Description>Earthquake Coinsurance</meta:Description>
+		</meta:MetadataEntry>
+		<meta:MetadataEntry Code="DomainTableEQCoverageUtilityService" Name="EQCoverageUtilityService">
+			<meta:Description>Earthquake Coverage for Utility Services</meta:Description>
+		</meta:MetadataEntry>
+		<meta:MetadataEntry Code="DomainTableEQCovIndicator" Name="EQCovIndicator">
+			<meta:Description>Earthquake Coverage Indicator</meta:Description>
+		</meta:MetadataEntry>
+		<meta:MetadataEntry Code="DomainTableEQCovIndicatorBldg" Name="EQCovIndicatorBldg">
+			<meta:Description>Earthquake Coverage Indicator</meta:Description>
+			<meta:Property Name="Comment" Type="string">Building (Structure) Level</meta:Property>
+		</meta:MetadataEntry>
+		<meta:MetadataEntry Code="DomainTableEQCovIndicatorBusnIncome" Name="EQCovIndicatorBusnIncome">
+			<meta:Description>EQ Coverage Indicator Business Income</meta:Description>
+		</meta:MetadataEntry>
+		<meta:MetadataEntry Code="DomainTableEQCovIndicatorPrsnlProp" Name="EQCovIndicatorPrsnlProp">
+			<meta:Description>Earthquake Coverage Indicator</meta:Description>
+			<meta:Property Name="Comment" Type="string">Personal Property Level</meta:Property>
+		</meta:MetadataEntry>
+		<meta:MetadataEntry Code="DomainTableEQCovIndicatorSpecialClass" Name="EQCovIndicatorSpecialClass">
+			<meta:Description>EQ Coverage Indicator</meta:Description>
+			<meta:Property Name="Comment" Type="string">Special Class Level</meta:Property>
+		</meta:MetadataEntry>
+		<meta:MetadataEntry Code="DomainTableEQDeductible" Name="EQDeductible">
+			<meta:Description>Earthquake Deductible</meta:Description>
+		</meta:MetadataEntry>
+		<meta:MetadataEntry Code="DomainTableEQDeductibleBuilding" Name="EQDeductibleBuilding">
+			<meta:Description>Earthquake Deductible</meta:Description>
+			<meta:Property Name="Comment" Type="string">Building (Structure) Level</meta:Property>
+		</meta:MetadataEntry>
+		<meta:MetadataEntry Code="DomainTableEQDeductibleTier" Name="EQDeductibleTier">
+			<meta:Description>Earthquake Deductible Tier</meta:Description>
+		</meta:MetadataEntry>
+		<meta:MetadataEntry Code="DomainTableEQGradePrsnlProp" Name="EQGradePrsnlProp">
+			<meta:Description>Earthquake Grade</meta:Description>
+			<meta:Property Name="Comment" Type="string">Personal Property Level</meta:Property>
+		</meta:MetadataEntry>
+		<meta:MetadataEntry Code="DomainTableEQRoofTankHazard" Name="EQRoofTankHazard">
+			<meta:Description>Earthquake Roof Tank Hazard</meta:Description>
+		</meta:MetadataEntry>
+		<meta:MetadataEntry Code="DomainTableEQSpecialClassStructureDesc" Name="EQSpecialClassStructureDesc">
+			<meta:Description>Earthquake Structure Description</meta:Description>
+			<meta:Property Name="Comment" Type="string">Special Class Level</meta:Property>
+		</meta:MetadataEntry>
+		<meta:MetadataEntry Code="DomainTableEQSprinklerLeakageOnly" Name="EQSprinklerLeakageOnly">
+			<meta:Description>Earthquake Sprinkler Leakage Only</meta:Description>
+		</meta:MetadataEntry>
+		<meta:MetadataEntry Code="DomainTableEQSprinklerLeakageOnlyBuilding" Name="EQSprinklerLeakageOnlyBuilding">
+			<meta:Description>Earthquake Sprinkler Leakage Only</meta:Description>
+			<meta:Property Name="Comment" Type="string">Building (Structure) Level</meta:Property>
+		</meta:MetadataEntry>
+		<meta:MetadataEntry Code="DomainTableEQSprinklerLeakageOnlyBusnIncome" Name="EQSprinklerLeakageOnlyBusnIncome">
+			<meta:Description>Earthquake Sprinkler Leakage Only</meta:Description>
+			<meta:Property Name="Comment" Type="string">Business Income Level</meta:Property>
+		</meta:MetadataEntry>
+		<meta:MetadataEntry Code="DomainTableEQSprinklerLeakageOnlyPersProp" Name="EQSprinklerLeakageOnlyPersProp">
+			<meta:Description>EQ Sprinkler Leakage Only Pers Prop</meta:Description>
+		</meta:MetadataEntry>
+		<meta:MetadataEntry Code="DomainTableEQSubLimitBlktIndicator" Name="EQSubLimitBlktIndicator">
+			<meta:Description>EQ Sublimit Blanket Indicator</meta:Description>
+		</meta:MetadataEntry>
+		<meta:MetadataEntry Code="DomainTableEQSubLimitPct" Name="EQSubLimitPct">
+			<meta:Description>EQ Sub-Limit Percentage</meta:Description>
+		</meta:MetadataEntry>
+		<meta:MetadataEntry Code="DomainTableEQSubLimitPctBlkt" Name="EQSubLimitPctBlkt">
+			<meta:Description>Earthquake Sub Limit Percentages Blanket</meta:Description>
+		</meta:MetadataEntry>
+		<meta:MetadataEntry Code="DomainTableEQTerr" Name="EQTerr">
+			<meta:Description>Earthquake Territory</meta:Description>
+			<meta:Property Name="Comment" Type="string">CommercialPropertyStructure.EQTerr</meta:Property>
+		</meta:MetadataEntry>
+		<meta:MetadataEntry Code="DomainTableExpandedLimitsOnLossPaymentOption" Name="ExpandedLimitsOnLossPaymentOption">
+			<meta:Description>Expanded Limits On Loss Payment Option</meta:Description>
+		</meta:MetadataEntry>
+		<meta:MetadataEntry Code="DomainTableExtendedPeriod" Name="ExtendedPeriod">
+			<meta:Description>Extended Period</meta:Description>
+		</meta:MetadataEntry>
+		<meta:MetadataEntry Code="DomainTableExtendedPeriodApplies" Name="ExtendedPeriodApplies">
+			<meta:Description>Extended Period Applies</meta:Description>
+		</meta:MetadataEntry>
+		<meta:MetadataEntry Code="DomainTableExtendedPeriodBusnIncomeFromDependentProp" Name="ExtendedPeriodBusnIncomeFromDependentProp">
+			<meta:Description>Extended Period for Business Income From Dependent Properties</meta:Description>
+		</meta:MetadataEntry>
+		<meta:MetadataEntry Code="DomainTableExtendedPeriodOptionalForms" Name="ExtendedPeriodOptionalForms">
+			<meta:Description>Extended Period Optional Forms</meta:Description>
+		</meta:MetadataEntry>
+		<meta:MetadataEntry Code="DomainTableExtentOfProtectionBurgRobbery1" Name="ExtentOfProtectionBurgRobbery1">
+			<meta:Description>Extent Of Protection for BR1</meta:Description>
+			<meta:Property Name="Comment" Type="string">Burglary &amp; Robbery Form</meta:Property>
+		</meta:MetadataEntry>
+		<meta:MetadataEntry Code="DomainTableExtentOfProtectionBurgRobbery2" Name="ExtentOfProtectionBurgRobbery2">
+			<meta:Description>Extent Of Protection for BR2</meta:Description>
+			<meta:Property Name="Comment" Type="string">Burglary &amp; Robbery Form</meta:Property>
+		</meta:MetadataEntry>
+		<meta:MetadataEntry Code="DomainTableExtOfRecoveryNumOfMonths" Name="ExtOfRecoveryNumOfMonths" />
+		<meta:MetadataEntry Code="DomainTableExtraExpnLimitOnLossPymts" Name="ExtraExpnLimitOnLossPymts">
+			<meta:Description>Extra Expense Limits On Loss Payment</meta:Description>
+		</meta:MetadataEntry>
+		<meta:MetadataEntry Code="DomainTableFeetToHydrant" Name="FeetToHydrant">
+			<meta:Description>Feet To Hydrant</meta:Description>
+		</meta:MetadataEntry>
+		<meta:MetadataEntry Code="DomainTableFireDepartmentIncreaseLimit" Name="FireDepartmentIncreaseLimit">
+			<meta:Description>Fire Department Increase Limit</meta:Description>
+		</meta:MetadataEntry>
+		<meta:MetadataEntry Code="DomainTableFloodBlanketRating" Name="FloodBlanketRating">
+			<meta:Description>Flood Blanket Rating</meta:Description>
+		</meta:MetadataEntry>
+		<meta:MetadataEntry Code="DomainTableFloodConstructionType" Name="FloodConstructionType">
+			<meta:Description>Flood Construction Type</meta:Description>
+		</meta:MetadataEntry>
+		<meta:MetadataEntry Code="DomainTableFloodDeductible" Name="FloodDeductible">
+			<meta:Description>Flood Deductible</meta:Description>
+		</meta:MetadataEntry>
+		<meta:MetadataEntry Code="DomainTableFloodFloorLevel" Name="FloodFloorLevel">
+			<meta:Description>Flood Floor Level</meta:Description>
+		</meta:MetadataEntry>
+		<meta:MetadataEntry Code="DomainTableFloodNumberOfStories" Name="FloodNumberOfStories">
+			<meta:Description>Flood Number Of Stories</meta:Description>
+		</meta:MetadataEntry>
+		<meta:MetadataEntry Code="DomainTableFloodZone" Name="FloodZone">
+			<meta:Description>Flood Zone</meta:Description>
+		</meta:MetadataEntry>
+		<meta:MetadataEntry Code="DomainTableFullValueBldg" Name="FullValueBldg">
+			<meta:Description>Full Value</meta:Description>
+			<meta:Property Name="Comment" Type="string">Building (Structure) Level for Blanket process; Range</meta:Property>
+		</meta:MetadataEntry>
+		<meta:MetadataEntry Code="DomainTableFullValueBuilding" Name="FullValueBuilding">
+			<meta:Description>Full Value Building</meta:Description>
+		</meta:MetadataEntry>
+		<meta:MetadataEntry Code="DomainTableFullValuePersonalProperty" Name="FullValuePersonalProperty">
+			<meta:Description>Full Value Personal Property</meta:Description>
+		</meta:MetadataEntry>
+		<meta:MetadataEntry Code="DomainTableFullValuePersProp" Name="FullValuePersProp">
+			<meta:Description>Full Value Personal Property</meta:Description>
+			<meta:Property Name="Comment" Type="string">Range</meta:Property>
+		</meta:MetadataEntry>
+		<meta:MetadataEntry Code="DomainTableFullValueRange" Name="FullValueRange">
+			<meta:Description>Full Value Range</meta:Description>
+			<meta:Property Name="Comment" Type="string">Range</meta:Property>
+		</meta:MetadataEntry>
+		<meta:MetadataEntry Code="DomainTableFullValueSpecial" Name="FullValueSpecial">
+			<meta:Description>Full Value Special</meta:Description>
+		</meta:MetadataEntry>
+		<meta:MetadataEntry Code="DomainTableFungusWetRotDryRotBacteriaBusnIncome" Name="FungusWetRotDryRotBacteriaBusnIncome">
+			<meta:Description>Fungus, Wet Rot, Dry Rot and Bacteria</meta:Description>
+			<meta:Property Name="Comment" Type="string">Business Income level</meta:Property>
+		</meta:MetadataEntry>
+		<meta:MetadataEntry Code="DomainTableFungusWetRotDryRotBacteriaCovLocApply" Name="FungusWetRotDryRotBacteriaCovLocApply" />
+		<meta:MetadataEntry Code="DomainTableFungusWetRotDryRotBacteriaCovStructApply" Name="FungusWetRotDryRotBacteriaCovStructApply">
+			<meta:Description>Fungus, Wet Rot, Dry Rot and Bacteria Coverage Apply</meta:Description>
+			<meta:Property Name="Comment" Type="string">Struct</meta:Property>
+		</meta:MetadataEntry>
+		<meta:MetadataEntry Code="DomainTableFungusWetRotDryRotBacteriaIncrdPeriodRestoration" Name="FungusWetRotDryRotBacteriaIncrdPeriodRestoration">
+			<meta:Description>Fungus, Wet Rot, Dry Rot and Bacteria Increased Period of Restoration</meta:Description>
+		</meta:MetadataEntry>
+		<meta:MetadataEntry Code="DomainTableFungusWetRotDryRotBacteriaPolicy" Name="FungusWetRotDryRotBacteriaPolicy">
+			<meta:Description>Fungus, Wet Rot, Dry Rot and Bacteria</meta:Description>
+			<meta:Property Name="Comment" Type="string">Policy Level</meta:Property>
+		</meta:MetadataEntry>
+		<meta:MetadataEntry Code="DomainTableFungusWetRotDryRotBacteriaSublimitLoc" Name="FungusWetRotDryRotBacteriaSublimitLoc">
+			<meta:Description>Fungus, Wet Rot, Dry Rot and Bacteria Sub Limit</meta:Description>
+			<meta:Property Name="Comment" Type="string">Location level</meta:Property>
+		</meta:MetadataEntry>
+		<meta:MetadataEntry Code="DomainTableFungusWetRotDryRotBacteriaSublimitLocStruct" Name="FungusWetRotDryRotBacteriaSublimitLocStruct">
+			<meta:Description>Fungus, Wet Rot, Dry Rot and Bacteria Sublimit</meta:Description>
+			<meta:Property Name="Comment" Type="string">Location or Structure level</meta:Property>
+		</meta:MetadataEntry>
+		<meta:MetadataEntry Code="DomainTableFungusWetRotDryRotBacteriaSublimitPolicy" Name="FungusWetRotDryRotBacteriaSublimitPolicy">
+			<meta:Description>Fungus, Wet Rot, Dry Rot and Bacteria Sublimit</meta:Description>
+			<meta:Property Name="Comment" Type="string">Policy Level</meta:Property>
+		</meta:MetadataEntry>
+		<meta:MetadataEntry Code="DomainTableFungusWetRotDryRotBacteriaSubLimitStruct" Name="FungusWetRotDryRotBacteriaSubLimitStruct">
+			<meta:Description>Fungus, Wet Rot, Dry Rot and Bacteria Sub Limit</meta:Description>
+			<meta:Property Name="Comment" Type="string">Building (Structure) Level</meta:Property>
+		</meta:MetadataEntry>
+		<meta:MetadataEntry Code="DomainTableHeightOfRadioAntenna" Name="HeightOfRadioAntenna">
+			<meta:Description>HeightOfRadioAntenna</meta:Description>
+		</meta:MetadataEntry>
+		<meta:MetadataEntry Code="DomainTableIncludedInBlkt" Name="IncludedInBlkt">
+			<meta:Description>Included In Blanket</meta:Description>
+		</meta:MetadataEntry>
+		<meta:MetadataEntry Code="DomainTableIncludedInBlktBldg" Name="IncludedInBlktBldg">
+			<meta:Description>Included in Blanket for Buildings</meta:Description>
+		</meta:MetadataEntry>
+		<meta:MetadataEntry Code="DomainTableIncludedInBlktBusnIncome" Name="IncludedInBlktBusnIncome">
+			<meta:Description>Included In Blanket Busines Income</meta:Description>
+		</meta:MetadataEntry>
+		<meta:MetadataEntry Code="DomainTableIncludedInBlktPrsnlProp" Name="IncludedInBlktPrsnlProp">
+			<meta:Description>Included In Blanket Personal Property</meta:Description>
+		</meta:MetadataEntry>
+		<meta:MetadataEntry Code="DomainTableIncludedInBlktSpecialClass" Name="IncludedInBlktSpecialClass">
+			<meta:Description>Included in Blanket for Special Class</meta:Description>
+		</meta:MetadataEntry>
+		<meta:MetadataEntry Code="DomainTableIncrdPeriodRestorationFungus" Name="IncrdPeriodRestorationFungus">
+			<meta:Description>Increase Period of Restoration</meta:Description>
+			<meta:Property Name="Comment" Type="string">Fungus, Dry Rot, Wet Rot &amp; Bacteria form</meta:Property>
+		</meta:MetadataEntry>
+		<meta:MetadataEntry Code="DomainTableIncreasedCostOfLossPct" Name="IncreasedCostOfLossPct">
+			<meta:Description>Increased Cost Of Loss Percentage</meta:Description>
+		</meta:MetadataEntry>
+		<meta:MetadataEntry Code="DomainTableIndicateActualCashValueACVOrReplacementCostRC" Name="IndicateActualCashValueACVOrReplacementCostRC">
+			<meta:Description>Indicate Actual Cash Value ACV Or Replacement Cost RC</meta:Description>
+		</meta:MetadataEntry>
+		<meta:MetadataEntry Code="DomainTableInflationGuardPct" Name="InflationGuardPct">
+			<meta:Description>Inflation Guard Percentage</meta:Description>
+		</meta:MetadataEntry>
+		<meta:MetadataEntry Code="DomainTableInflationGuardPctBlanket" Name="InflationGuardPctBlanket">
+			<meta:Description>Inflation Guard Percent</meta:Description>
+			<meta:Property Name="Comment" Type="string">Blanket Detail</meta:Property>
+		</meta:MetadataEntry>
+		<meta:MetadataEntry Code="DomainTableInflationGuardPctBldg" Name="InflationGuardPctBldg">
+			<meta:Description>Inflation Guard Percent for Building</meta:Description>
+		</meta:MetadataEntry>
+		<meta:MetadataEntry Code="DomainTableInflationGuardPctPrsnlProp" Name="InflationGuardPctPrsnlProp">
+			<meta:Description>Inflation Guard Percent Personal Property</meta:Description>
+		</meta:MetadataEntry>
+		<meta:MetadataEntry Code="DomainTableInflationGuardPctSubLimitBlanket" Name="InflationGuardPctSubLimitBlanket">
+			<meta:Description>Inflation Guard Pct Sub Limit Blanket</meta:Description>
+		</meta:MetadataEntry>
+		<meta:MetadataEntry Code="DomainTableInflationGuardSpecialClass" Name="InflationGuardSpecialClass">
+			<meta:Description>Inflation Guard</meta:Description>
+			<meta:Property Name="Comment" Type="string">Special Class Level</meta:Property>
+		</meta:MetadataEntry>
+		<meta:MetadataEntry Code="DomainTableInstallationBurgRobbery1" Name="InstallationBurgRobbery1">
+			<meta:Description>Installation for BR1</meta:Description>
+			<meta:Property Name="Comment" Type="string">Burglary &amp; Robbery Form</meta:Property>
+		</meta:MetadataEntry>
+		<meta:MetadataEntry Code="DomainTableIRPMBuildingFeaturesPct" Name="IRPMBuildingFeaturesPct">
+			<meta:Description>IRPM Building Features Percent</meta:Description>
+		</meta:MetadataEntry>
+		<meta:MetadataEntry Code="DomainTableIRPMEmployeesPct" Name="IRPMEmployeesPct">
+			<meta:Description>IRPM Employees Percent</meta:Description>
+		</meta:MetadataEntry>
+		<meta:MetadataEntry Code="DomainTableIRPMLocationPct" Name="IRPMLocationPct">
+			<meta:Description>IRPM Location Percent</meta:Description>
+		</meta:MetadataEntry>
+		<meta:MetadataEntry Code="DomainTableIRPMModificationPct" Name="IRPMModificationPct">
+			<meta:Description>IRPM Modification Percent</meta:Description>
+		</meta:MetadataEntry>
+		<meta:MetadataEntry Code="DomainTableIRPMPremisesEquipmentPct" Name="IRPMPremisesEquipmentPct">
+			<meta:Description>IRPM Premises Equipment Percent</meta:Description>
+		</meta:MetadataEntry>
+		<meta:MetadataEntry Code="DomainTableIRPMProtectionPct" Name="IRPMProtectionPct">
+			<meta:Description>IRPM Protection Percent</meta:Description>
+		</meta:MetadataEntry>
+		<meta:MetadataEntry Code="DomainTableJewelryAndWatchesIndicator" Name="JewelryAndWatchesIndicator">
+			<meta:Description>Jewelry And Watches Indicator</meta:Description>
+		</meta:MetadataEntry>
+		<meta:MetadataEntry Code="DomainTableLeaseholdInterestPct" Name="LeaseholdInterestPct">
+			<meta:Description>Leasehold Interest Percentage</meta:Description>
+		</meta:MetadataEntry>
+		<meta:MetadataEntry Code="DomainTableLiabLimit" Name="LiabLimit">
+			<meta:Description>LiabLimit</meta:Description>
+		</meta:MetadataEntry>
+		<meta:MetadataEntry Code="DomainTableLimitAlcoholicBeveragesTaxExcl" Name="LimitAlcoholicBeveragesTaxExcl">
+			<meta:Description>Alcoholic Beverages Tax Exclusion Limit</meta:Description>
+			<meta:Property Name="Comment" Type="string">Replacing LimitAlcoholicBeveragesTaxExclusion</meta:Property>
+		</meta:MetadataEntry>
+		<meta:MetadataEntry Code="DomainTableLimitAlcoholicBeveragesTaxExclusion" Name="LimitAlcoholicBeveragesTaxExclusion">
+			<meta:Description>Limit</meta:Description>
+			<meta:Property Name="Comment" Type="string">Alcoholic Beverages Tax Exclusion</meta:Property>
+		</meta:MetadataEntry>
+		<meta:MetadataEntry Code="DomainTableLimitationPeriod" Name="LimitationPeriod">
+			<meta:Description>Limitation Period</meta:Description>
+			<meta:Property Name="Comment" Type="string">Electronic Media and Records Form</meta:Property>
+		</meta:MetadataEntry>
+		<meta:MetadataEntry Code="DomainTableLimitationsRoofSurfacing" Name="LimitationsRoofSurfacing">
+			<meta:Description>Limitations Roof Surfacing</meta:Description>
+		</meta:MetadataEntry>
+		<meta:MetadataEntry Code="DomainTableLimitBIOptionalForm" Name="LimitBIOptionalForm">
+			<meta:Description>Limit on Business Income Optional Form</meta:Description>
+		</meta:MetadataEntry>
+		<meta:MetadataEntry Code="DomainTableLimitBldg" Name="LimitBldg">
+			<meta:Description>Limit</meta:Description>
+			<meta:Property Name="Comment" Type="string">Building (Structure) Level; Range</meta:Property>
+		</meta:MetadataEntry>
+		<meta:MetadataEntry Code="DomainTableLimitBusnIncomeOptionalForm" Name="LimitBusnIncomeOptionalForm">
+			<meta:Description>Limit on Business Income Optional Form</meta:Description>
+			<meta:Property Name="Comment" Type="string">Range</meta:Property>
+		</meta:MetadataEntry>
+		<meta:MetadataEntry Code="DomainTableLimitContributingLocations" Name="LimitContributingLocations">
+			<meta:Description>Limit Contributing Locations</meta:Description>
+		</meta:MetadataEntry>
+		<meta:MetadataEntry Code="DomainTableLimitManufacturingLocations" Name="LimitManufacturingLocations">
+			<meta:Description>Limit Manufacturing Locations</meta:Description>
+		</meta:MetadataEntry>
+		<meta:MetadataEntry Code="DomainTableLimitPersonalProperty" Name="LimitPersonalProperty">
+			<meta:Description>Limit Personal Property</meta:Description>
+			<meta:Property Name="Comment" Type="string">Personal Property Level; Range</meta:Property>
+		</meta:MetadataEntry>
+		<meta:MetadataEntry Code="DomainTableLimitPrsnlProp" Name="LimitPrsnlProp">
+			<meta:Description>Limit Range</meta:Description>
+			<meta:Property Name="Comment" Type="string">Personal Property Level; Range</meta:Property>
+		</meta:MetadataEntry>
+		<meta:MetadataEntry Code="DomainTableLimitRadioactiveContaminationBldg" Name="LimitRadioactiveContaminationBldg">
+			<meta:Property Name="Comment" Type="string">Used on Building (Structure) Radioactive Contamination form.</meta:Property>
+		</meta:MetadataEntry>
+		<meta:MetadataEntry Code="DomainTableLimitRadioactiveContaminationNonBldg" Name="LimitRadioactiveContaminationNonBldg">
+			<meta:Property Name="Comment" Type="string">Used on risk levels other than Building (Struture)</meta:Property>
+		</meta:MetadataEntry>
+		<meta:MetadataEntry Code="DomainTableLimitRange" Name="LimitRange">
+			<meta:Description>Limit Range</meta:Description>
+			<meta:Property Name="Comment" Type="string">Range</meta:Property>
+		</meta:MetadataEntry>
+		<meta:MetadataEntry Code="DomainTableLimitsforPreciousMetals" Name="LimitsforPreciousMetals">
+			<meta:Description>Limits for Precious Metals</meta:Description>
+		</meta:MetadataEntry>
+		<meta:MetadataEntry Code="DomainTableLocOfHeatingPlantIndicator" Name="LocOfHeatingPlantIndicator">
+			<meta:Description>Location of Heating Plant Indicator</meta:Description>
+			<meta:Property Name="Comment" Type="string">Building Level. Used in conjunction with Multiple Residential Property Special Credit</meta:Property>
+		</meta:MetadataEntry>
+		<meta:MetadataEntry Code="DomainTableLossAssessmentDeductible" Name="LossAssessmentDeductible">
+			<meta:Description>Loss Assessment Deductible</meta:Description>
+			<meta:Property Name="Comment" Type="string">CommercialPropertyCondominiumCommercialUnitOwnersOptionalCoverages.LossAssessDeduct</meta:Property>
+		</meta:MetadataEntry>
+		<meta:MetadataEntry Code="DomainTableLossAssessmentLimit" Name="LossAssessmentLimit">
+			<meta:Description>Loss Assessment Limit</meta:Description>
+		</meta:MetadataEntry>
+		<meta:MetadataEntry Code="DomainTableLossAssessmentLimitConverted" Name="LossAssessmentLimitConverted">
+			<meta:Description>Loss Assessment Limit Converted</meta:Description>
+		</meta:MetadataEntry>
+		<meta:MetadataEntry Code="DomainTableMarginClause" Name="MarginClause">
+			<meta:Description>Margin Clause</meta:Description>
+		</meta:MetadataEntry>
+		<meta:MetadataEntry Code="DomainTableMaxPeriod" Name="MaxPeriod">
+			<meta:Description>Maximum Period</meta:Description>
+		</meta:MetadataEntry>
+		<meta:MetadataEntry Code="DomainTableMedPayLimit" Name="MedPayLimit">
+			<meta:Description>Medical Payments Limit</meta:Description>
+		</meta:MetadataEntry>
+		<meta:MetadataEntry Code="DomainTableMilesToStation" Name="MilesToStation">
+			<meta:Description>Miles To Station</meta:Description>
+		</meta:MetadataEntry>
+		<meta:MetadataEntry Code="DomainTableMiningCoverageOption" Name="MiningCoverageOption">
+			<meta:Description>Mining Coverage Option</meta:Description>
+			<meta:Property Name="Comment" Type="string">CommercialPropertyMiningPropertiesBusinessIncome.MiningCoverageOption</meta:Property>
+		</meta:MetadataEntry>
+		<meta:MetadataEntry Code="DomainTableMiscLocsRule" Name="MiscLocsRule">
+			<meta:Description>Miscellaneous Locations Rule</meta:Description>
+		</meta:MetadataEntry>
+		<meta:MetadataEntry Code="DomainTableMiscLocsRuleEQ" Name="MiscLocsRuleEQ">
+			<meta:Description>Miscellaneous Locations Rule for EQ</meta:Description>
+		</meta:MetadataEntry>
+		<meta:MetadataEntry Code="DomainTableMiscLocsRulePeakSeason" Name="MiscLocsRulePeakSeason">
+			<meta:Description>Miscellaneous Locations Rule</meta:Description>
+			<meta:Property Name="Comment" Type="string">Peak Season Form</meta:Property>
+		</meta:MetadataEntry>
+		<meta:MetadataEntry Code="DomainTableMonthlyLimitOfIndemnity" Name="MonthlyLimitOfIndemnity">
+			<meta:Description>Monthly Limit Of Indemnity</meta:Description>
+		</meta:MetadataEntry>
+		<meta:MetadataEntry Code="DomainTableMortgageholdersLimitOfInsPerMortg" Name="MortgageholdersLimitOfInsPerMortg">
+			<meta:Description>Mortgageholders Limit of Insurance Per Mortgage</meta:Description>
+		</meta:MetadataEntry>
+		<meta:MetadataEntry Code="DomainTableMultiLocAvgRates" Name="MultiLocAvgRates">
+			<meta:Description>Multiple Location Average Rates</meta:Description>
+		</meta:MetadataEntry>
+		<meta:MetadataEntry Code="DomainTableMultiPremiumAndDispersionCreditFactor" Name="MultiPremiumAndDispersionCreditFactor">
+			<meta:Description>Multiple Premium and Dispersion Credit Factor</meta:Description>
+		</meta:MetadataEntry>
+		<meta:MetadataEntry Code="DomainTableMultiResidentialPropSpecialCredits" Name="MultiResidentialPropSpecialCredits">
+			<meta:Description>Multiple Residential Properties-Special Credits</meta:Description>
+		</meta:MetadataEntry>
+		<meta:MetadataEntry Code="DomainTableNatureOfDependentProperty" Name="NatureOfDependentProperty">
+			<meta:Description>Nature of Dependent Property</meta:Description>
+		</meta:MetadataEntry>
+		<meta:MetadataEntry Code="DomainTableNFIPFloodZone" Name="NFIPFloodZone">
+			<meta:Description>NFIP Flood Zone</meta:Description>
+		</meta:MetadataEntry>
+		<meta:MetadataEntry Code="DomainTableNumOfDependentProperties" Name="NumOfDependentProperties">
+			<meta:Description>Number of Dependent Properties</meta:Description>
+		</meta:MetadataEntry>
+		<meta:MetadataEntry Code="DomainTableNumOfMonths" Name="NumOfMonths">
+			<meta:Description>Number Of Months</meta:Description>
+			<meta:Property Name="Comment" Type="string">CommercialPropertyLeaseholdInterestCoverageForm.TotNumOfLeasedMonths AND CommercialPropertyLeaseholdInterestCoverageForm.NumOfRemainingLeasedMonthsFactor</meta:Property>
+		</meta:MetadataEntry>
+		<meta:MetadataEntry Code="DomainTableNumOfStoriesInBldg" Name="NumOfStoriesInBldg">
+			<meta:Description>Number of Stories in Building</meta:Description>
+		</meta:MetadataEntry>
+		<meta:MetadataEntry Code="DomainTableOccupancyCategory" Name="OccupancyCategory">
+			<meta:Description>Occupancy Category</meta:Description>
+		</meta:MetadataEntry>
+		<meta:MetadataEntry Code="DomainTableOccupancyGroup" Name="OccupancyGroup">
+			<meta:Description>Occupancy Group</meta:Description>
+		</meta:MetadataEntry>
+		<meta:MetadataEntry Code="DomainTableOffPremExtendedPeriod" Name="OffPremExtendedPeriod">
+			<meta:Description>Off-Premises Extended Period</meta:Description>
+		</meta:MetadataEntry>
+		<meta:MetadataEntry Code="DomainTableOffPremOption" Name="OffPremOption">
+			<meta:Description>Off-Premises Option</meta:Description>
+		</meta:MetadataEntry>
+		<meta:MetadataEntry Code="DomainTableOffPremPercentInsToExposure" Name="OffPremPercentInsToExposure">
+			<meta:Description>Off-Premises Percentage Of Insurance to Exposure</meta:Description>
+		</meta:MetadataEntry>
+		<meta:MetadataEntry Code="DomainTableOperationalUnitIndicator" Name="OperationalUnitIndicator">
+			<meta:Description>Operational Unit Indicator</meta:Description>
+		</meta:MetadataEntry>
+		<meta:MetadataEntry Code="DomainTableOrdinanceOrLawCovB" Name="OrdinanceOrLawCovB">
+			<meta:Description>Ordinance Or Law Coverage B</meta:Description>
+		</meta:MetadataEntry>
+		<meta:MetadataEntry Code="DomainTableOrdinanceOrLawCovBAndCCombined" Name="OrdinanceOrLawCovBAndCCombined">
+			<meta:Description>Ordinance Or Law Coverage B and C Combined</meta:Description>
+		</meta:MetadataEntry>
+		<meta:MetadataEntry Code="DomainTableOrdinanceOrLawCovC" Name="OrdinanceOrLawCovC">
+			<meta:Description>Ordinance Or Law Coverage C</meta:Description>
+		</meta:MetadataEntry>
+		<meta:MetadataEntry Code="DomainTableOrdinanceOrLawCovType" Name="OrdinanceOrLawCovType">
+			<meta:Description>Ordinance or Law Coverage Types</meta:Description>
+		</meta:MetadataEntry>
+		<meta:MetadataEntry Code="DomainTableOrdinaryPayrollExclusion" Name="OrdinaryPayrollExclusion">
+			<meta:Description>Ordinary Payroll Exclusion</meta:Description>
+		</meta:MetadataEntry>
+		<meta:MetadataEntry Code="DomainTableOrdinaryPayrollNumberOfDays" Name="OrdinaryPayrollNumberOfDays">
+			<meta:Description>Ordinary Payroll Number of Days</meta:Description>
+		</meta:MetadataEntry>
+		<meta:MetadataEntry Code="DomainTableOtherFloodInsurance" Name="OtherFloodInsurance">
+			<meta:Description>Other Flood Insurance</meta:Description>
+		</meta:MetadataEntry>
+		<meta:MetadataEntry Code="DomainTableOutsideSignConstrctnType" Name="OutsideSignConstrctnType">
+			<meta:Description>Outside Sign Construction Type</meta:Description>
+		</meta:MetadataEntry>
+		<meta:MetadataEntry Code="DomainTableOutsideSignPlacement" Name="OutsideSignPlacement">
+			<meta:Description>Outside Sign Placement</meta:Description>
+		</meta:MetadataEntry>
+		<meta:MetadataEntry Code="DomainTablePaymentAgencyBillMethod" Name="PaymentAgencyBillMethod">
+			<meta:Description>Payment Agency Bill Method</meta:Description>
+		</meta:MetadataEntry>
+		<meta:MetadataEntry Code="DomainTablePaymentBillToType" Name="PaymentBillToType">
+			<meta:Description>Payment Bill To Type</meta:Description>
+		</meta:MetadataEntry>
+		<meta:MetadataEntry Code="DomainTablePaymentBillType" Name="PaymentBillType">
+			<meta:Description>Payment Bill Type</meta:Description>
+		</meta:MetadataEntry>
+		<meta:MetadataEntry Code="DomainTablePaymentCreditCardCompany" Name="PaymentCreditCardCompany">
+			<meta:Description>Payment Credit Card Company</meta:Description>
+		</meta:MetadataEntry>
+		<meta:MetadataEntry Code="DomainTablePaymentCreditCardType" Name="PaymentCreditCardType">
+			<meta:Description>PaymentCreditCardType</meta:Description>
+		</meta:MetadataEntry>
+		<meta:MetadataEntry Code="DomainTablePaymentDelivery" Name="PaymentDelivery">
+			<meta:Description>Payment Delivery</meta:Description>
+		</meta:MetadataEntry>
+		<meta:MetadataEntry Code="DomainTablePaymentDownPaymentFeeIndicator" Name="PaymentDownPaymentFeeIndicator">
+			<meta:Description>Payment Down Payment Fee Indicator</meta:Description>
+		</meta:MetadataEntry>
+		<meta:MetadataEntry Code="DomainTablePaymentDownPaymentType" Name="PaymentDownPaymentType">
+			<meta:Description>Payment Down Payment Type</meta:Description>
+		</meta:MetadataEntry>
+		<meta:MetadataEntry Code="DomainTablePaymentEFTAccountType" Name="PaymentEFTAccountType">
+			<meta:Description>Payment EFT Account Type</meta:Description>
+		</meta:MetadataEntry>
+		<meta:MetadataEntry Code="DomainTablePaymentFollowOnPaymentType" Name="PaymentFollowOnPaymentType">
+			<meta:Description>Payment Follow On Payment Type</meta:Description>
+		</meta:MetadataEntry>
+		<meta:MetadataEntry Code="DomainTablePaymentPlan" Name="PaymentPlan">
+			<meta:Description>Payment Plan</meta:Description>
+		</meta:MetadataEntry>
+		<meta:MetadataEntry Code="DomainTablePaymentType" Name="PaymentType">
+			<meta:Description>Payment Type</meta:Description>
+		</meta:MetadataEntry>
+		<meta:MetadataEntry Code="DomainTablePctOfTotalExteriorWallsFaced" Name="PctOfTotalExteriorWallsFaced">
+			<meta:Description>Percent Of Total Exterior Walls Faced with Masonry Veneer</meta:Description>
+		</meta:MetadataEntry>
+		<meta:MetadataEntry Code="DomainTablePeakSeasonBlkt" Name="PeakSeasonBlkt" />
+		<meta:MetadataEntry Code="DomainTablePercentOfTotalExteriorWallsFaced" Name="PercentOfTotalExteriorWallsFaced">
+			<meta:Description>Percent Of Total Exterior Walls Faced with Masonry Veneer</meta:Description>
+		</meta:MetadataEntry>
+		<meta:MetadataEntry Code="DomainTablePeriodOfRestoration" Name="PeriodOfRestoration">
+			<meta:Description>Period Of Restoration</meta:Description>
+		</meta:MetadataEntry>
+		<meta:MetadataEntry Code="DomainTablePersonalPropertyCauseOfLoss" Name="PersonalPropertyCauseOfLoss">
+			<meta:Description>Personal Property Cause Of Loss</meta:Description>
+			<meta:Property Name="Comment" Type="string">Personal Property</meta:Property>
+		</meta:MetadataEntry>
+		<meta:MetadataEntry Code="DomainTablePierAndWharfConstruction" Name="PierAndWharfConstruction">
+			<meta:Description>Pier And Wharf Construction</meta:Description>
+			<meta:Property Name="Comment" Type="string">CommercialPropertyPierAndWharfAdditionalCoveredCauseOfLossEndorsement.Construction</meta:Property>
+		</meta:MetadataEntry>
+		<meta:MetadataEntry Code="DomainTablePolicyForm" Name="PolicyForm">
+			<meta:Description>Policy Form</meta:Description>
+		</meta:MetadataEntry>
+		<meta:MetadataEntry Code="DomainTablePolicyType" Name="PolicyType">
+			<meta:Description>Policy Type</meta:Description>
+		</meta:MetadataEntry>
+		<meta:MetadataEntry Code="DomainTablePolicyTypeSelection" Name="PolicyTypeSelection">
+			<meta:Description>Policy Type Selection</meta:Description>
+		</meta:MetadataEntry>
+		<meta:MetadataEntry Code="DomainTablePollutantDeductible" Name="PollutantDeductible">
+			<meta:Description>Pollutant Deductible</meta:Description>
+		</meta:MetadataEntry>
+		<meta:MetadataEntry Code="DomainTablePostTRIAExclusion" Name="PostTRIAExclusion">
+			<meta:Description>Post TRIA Exclusion</meta:Description>
+			<meta:Property Name="Comment" Type="string">Not in use</meta:Property>
+		</meta:MetadataEntry>
+		<meta:MetadataEntry Code="DomainTableProtClass" Name="ProtClass">
+			<meta:Description>Protection Class</meta:Description>
+			<meta:Property Name="Comment" Type="string">CommercialPropertyLocation.ProtClass</meta:Property>
+		</meta:MetadataEntry>
+		<meta:MetadataEntry Code="DomainTableProtectionClass" Name="ProtectionClass">
+			<meta:Description>Protection Class</meta:Description>
+		</meta:MetadataEntry>
+		<meta:MetadataEntry Code="DomainTableProtectiveSafeguardSymbol" Name="ProtectiveSafeguardSymbol">
+			<meta:Description>Protective Safeguard Symbol</meta:Description>
+		</meta:MetadataEntry>
+		<meta:MetadataEntry Code="DomainTableRadioactiveContaminationBlanket" Name="RadioactiveContaminationBlanket">
+			<meta:Description>Radioactive Contamination for Blankets</meta:Description>
+		</meta:MetadataEntry>
+		<meta:MetadataEntry Code="DomainTableRadioactiveContaminationTypeOfCov" Name="RadioactiveContaminationTypeOfCov">
+			<meta:Description>Radioactive Contamination Type of Coverage</meta:Description>
+		</meta:MetadataEntry>
+		<meta:MetadataEntry Code="DomainTableRadioactiveContaminationTypeOfCovBlkt" Name="RadioactiveContaminationTypeOfCovBlkt">
+			<meta:Description>Radioactive Contamination Type of Coverage</meta:Description>
+			<meta:Property Name="Comment" Type="string">Blanket level</meta:Property>
+		</meta:MetadataEntry>
+		<meta:MetadataEntry Code="DomainTableRatingType" Name="RatingType">
+			<meta:Description>Rating Type</meta:Description>
+		</meta:MetadataEntry>
+		<meta:MetadataEntry Code="DomainTableRefrigerationMaintenanceAgreement" Name="RefrigerationMaintenanceAgreement">
+			<meta:Description>Refrigeration Maintenance Agreement</meta:Description>
+		</meta:MetadataEntry>
+		<meta:MetadataEntry Code="DomainTableReportingPeriod" Name="ReportingPeriod">
+			<meta:Description>Reporting Period</meta:Description>
+			<meta:Property Name="Comment" Type="string">For Value Reporting Form</meta:Property>
+		</meta:MetadataEntry>
+		<meta:MetadataEntry Code="DomainTableRespondingFireDeptByCounty" Name="RespondingFireDeptByCounty">
+			<meta:Description>Responding Fire Department or District by County</meta:Description>
+		</meta:MetadataEntry>
+		<meta:MetadataEntry Code="DomainTableRiskType" Name="RiskType">
+			<meta:Description>Risk Type</meta:Description>
+		</meta:MetadataEntry>
+		<meta:MetadataEntry Code="DomainTableSpecialClassBasicGroupIINum" Name="SpecialClassBasicGroupIINum">
+			<meta:Description>Special Class Basic Group II Number</meta:Description>
+		</meta:MetadataEntry>
+		<meta:MetadataEntry Code="DomainTableSpecialClassBasicGroupIISymbol" Name="SpecialClassBasicGroupIISymbol">
+			<meta:Description>Special Class Basic Group II Symbol</meta:Description>
+		</meta:MetadataEntry>
+		<meta:MetadataEntry Code="DomainTableSpecialClassCode" Name="SpecialClassCode">
+			<meta:Description>Special Class Code</meta:Description>
+		</meta:MetadataEntry>
+		<meta:MetadataEntry Code="DomainTableSpecialClassDescConvertedOption" Name="SpecialClassDescConvertedOption">
+			<meta:Description>Special Class Description Converted Option</meta:Description>
+			<meta:Property Name="Comment" Type="string">Utility only-option numbers not in CLM</meta:Property>
+		</meta:MetadataEntry>
+		<meta:MetadataEntry Code="DomainTableSpecialClassDescription" Name="SpecialClassDescription">
+			<meta:Description>Special Class Description</meta:Description>
+		</meta:MetadataEntry>
+		<meta:MetadataEntry Code="DomainTableSpecialIncldgTheftClassLimit" Name="SpecialIncldgTheftClassLimit">
+			<meta:Description>Special Include Theft Class Limit</meta:Description>
+		</meta:MetadataEntry>
+		<meta:MetadataEntry Code="DomainTableSpecialIncldgTheftOnPrsnlProp" Name="SpecialIncldgTheftOnPrsnlProp">
+			<meta:Description>Special Including Theft on any Personal Property</meta:Description>
+			<meta:Property Name="Comment" Type="string">Occupancy Level</meta:Property>
+		</meta:MetadataEntry>
+		<meta:MetadataEntry Code="DomainTableSpecialIncldgTheftRateGroup" Name="SpecialIncldgTheftRateGroup">
+			<meta:Description>Special Include Theft Rate Group</meta:Description>
+		</meta:MetadataEntry>
+		<meta:MetadataEntry Code="DomainTableSpecialIncldgTheftType3Risks" Name="SpecialIncldgTheftType3Risks">
+			<meta:Description>Special Including Theft Type 3 Risks</meta:Description>
+		</meta:MetadataEntry>
+		<meta:MetadataEntry Code="DomainTableSpecialIncldgTheftTypeOfRiskOccupClass" Name="SpecialIncldgTheftTypeOfRiskOccupClass">
+			<meta:Description>Special Including Theft Type Of Risk</meta:Description>
+			<meta:Property Name="Comment" Type="string">Occupancy Class Level</meta:Property>
+		</meta:MetadataEntry>
+		<meta:MetadataEntry Code="DomainTableSpecialIncldgTheftTypeOfRiskPrsnlProp" Name="SpecialIncldgTheftTypeOfRiskPrsnlProp">
+			<meta:Description>Special Including Theft Type Of Risk Personal Property</meta:Description>
+		</meta:MetadataEntry>
+		<meta:MetadataEntry Code="DomainTableSpecialRatingTerr" Name="SpecialRatingTerr">
+			<meta:Description>Special Rating Territory</meta:Description>
+		</meta:MetadataEntry>
+		<meta:MetadataEntry Code="DomainTableSpecificBasicGroupIRate" Name="SpecificBasicGroupIRate">
+			<meta:Description>Specific Group I Rate</meta:Description>
+			<meta:Property Name="Comment" Type="string">Bldg level; Range Utility</meta:Property>
+		</meta:MetadataEntry>
+		<meta:MetadataEntry Code="DomainTableSpecificBasicGroupIRatePrsnlProp" Name="SpecificBasicGroupIRatePrsnlProp">
+			<meta:Description>Specific Group I Rate</meta:Description>
+			<meta:Property Name="Comment" Type="string">Personal Property Level; Range Utility</meta:Property>
+		</meta:MetadataEntry>
+		<meta:MetadataEntry Code="DomainTableSpoilageCauseOfLoss" Name="SpoilageCauseOfLoss">
+			<meta:Description>Spoilage Cause Of Loss</meta:Description>
+		</meta:MetadataEntry>
+		<meta:MetadataEntry Code="DomainTableSpoilageClassification" Name="SpoilageClassification">
+			<meta:Description>Spoilage Classification</meta:Description>
+		</meta:MetadataEntry>
+		<meta:MetadataEntry Code="DomainTableSpoilageDesc" Name="SpoilageDesc">
+			<meta:Description>Spoilage Description</meta:Description>
+		</meta:MetadataEntry>
+		<meta:MetadataEntry Code="DomainTableSprinklerLeakageEQExtBldg" Name="SprinklerLeakageEQExtBldg">
+			<meta:Description>Sprinkler Leakage Earthquake Extension</meta:Description>
+			<meta:Property Name="Comment" Type="string">Building (Structure) Level</meta:Property>
+		</meta:MetadataEntry>
+		<meta:MetadataEntry Code="DomainTableSprinklerSystemBldg" Name="SprinklerSystemBldg">
+			<meta:Description>Sprinkler System</meta:Description>
+			<meta:Property Name="Comment" Type="string">Buidling (Structure) Level</meta:Property>
+		</meta:MetadataEntry>
+		<meta:MetadataEntry Code="DomainTableSprinklerSystemOccupClass" Name="SprinklerSystemOccupClass">
+			<meta:Description>Sprinkler System</meta:Description>
+			<meta:Property Name="Comment" Type="string">Occupancy Class Level</meta:Property>
+		</meta:MetadataEntry>
+		<meta:MetadataEntry Code="DomainTableState" Name="State">
+			<meta:Description>State</meta:Description>
+		</meta:MetadataEntry>
+		<meta:MetadataEntry Code="DomainTableStateFullName" Name="StateFullName">
+			<meta:Description>State</meta:Description>
+		</meta:MetadataEntry>
+		<meta:MetadataEntry Code="DomainTableStateTerrorismPNumber" Name="StateTerrorismPNumber">
+			<meta:Description>State Terrorism P Number</meta:Description>
+		</meta:MetadataEntry>
+		<meta:MetadataEntry Code="DomainTableStateTerrorismVersion" Name="StateTerrorismVersion">
+			<meta:Description>State Terrorism Version</meta:Description>
+		</meta:MetadataEntry>
+		<meta:MetadataEntry Code="DomainTableSusceptibilityGrading" Name="SusceptibilityGrading">
+			<meta:Description>Susceptibility Grading</meta:Description>
+			<meta:Property Name="Comment" Type="string">CommercialPropertyStructurePersonalProperty.SusceptibilityGrading Rule 74.F.3.</meta:Property>
+		</meta:MetadataEntry>
+		<meta:MetadataEntry Code="DomainTableTenantCoverage" Name="TenantCoverage">
+			<meta:Description>Tenant Coverage</meta:Description>
+		</meta:MetadataEntry>
+		<meta:MetadataEntry Code="DomainTableTenantValuationType" Name="TenantValuationType">
+			<meta:Description>Tenant Valuation Type</meta:Description>
+		</meta:MetadataEntry>
+		<meta:MetadataEntry Code="DomainTableTerrorismConditionalExlusion" Name="TerrorismConditionalExlusion">
+			<meta:Description>Terrorism Conditional Exlusion</meta:Description>
+			<meta:Property Name="Comment" Type="string">Policy Level</meta:Property>
+		</meta:MetadataEntry>
+		<meta:MetadataEntry Code="DomainTableTerrorismConditionalRatingOption" Name="TerrorismConditionalRatingOption">
+			<meta:Description>Terrorism Conditional Rating Option</meta:Description>
+			<meta:Property Name="Comment" Type="string">Policy Level</meta:Property>
+		</meta:MetadataEntry>
+		<meta:MetadataEntry Code="DomainTableTerrorismCoverageForCertifiedActs" Name="TerrorismCoverageForCertifiedActs">
+			<meta:Description>Coverage for Certified Acts of Terrorism</meta:Description>
+			<meta:Property Name="Comment" Type="string">Policy level</meta:Property>
+		</meta:MetadataEntry>
+		<meta:MetadataEntry Code="DomainTableTerrorismDisclosureOfPremium" Name="TerrorismDisclosureOfPremium">
+			<meta:Description>Terrorism Disclosure Of Premium</meta:Description>
+			<meta:Property Name="Comment" Type="string">Not in use</meta:Property>
+		</meta:MetadataEntry>
+		<meta:MetadataEntry Code="DomainTableTerrorismOverridePremium" Name="TerrorismOverridePremium">
+			<meta:Description>Terrorism Override Premium</meta:Description>
+		</meta:MetadataEntry>
+		<meta:MetadataEntry Code="DomainTableTerrorismPostTRIAExclusion" Name="TerrorismPostTRIAExclusion">
+			<meta:Description>Terrorism Post-TRIA Exclusion</meta:Description>
+			<meta:Property Name="Comment" Type="string">Policy Level</meta:Property>
+		</meta:MetadataEntry>
+		<meta:MetadataEntry Code="DomainTableTerrorismSubLimitBI" Name="TerrorismSubLimitBI">
+			<meta:Description>Terrorism Sub-Limit Business Income</meta:Description>
+			<meta:Property Name="Comment" Type="string">Range Utility</meta:Property>
+		</meta:MetadataEntry>
+		<meta:MetadataEntry Code="DomainTableTerrorismSubLimitBldg" Name="TerrorismSubLimitBldg">
+			<meta:Description>Terrorism Sub-Limit Building</meta:Description>
+			<meta:Property Name="Comment" Type="string">Range Utility</meta:Property>
+		</meta:MetadataEntry>
+		<meta:MetadataEntry Code="DomainTableTerrorismSubLimitPct" Name="TerrorismSubLimitPct">
+			<meta:Description>Terrorism Sub-Limit Percentage</meta:Description>
+		</meta:MetadataEntry>
+		<meta:MetadataEntry Code="DomainTableTerrorismTerritoryTier" Name="TerrorismTerritoryTier">
+			<meta:Description>Terrorism Territory Tier</meta:Description>
+		</meta:MetadataEntry>
+		<meta:MetadataEntry Code="DomainTableTerrorismTRIAType" Name="TerrorismTRIAType">
+			<meta:Description>Terrorism TRIA Type</meta:Description>
+			<meta:Property Name="Comment" Type="string">Policy Level</meta:Property>
+		</meta:MetadataEntry>
+		<meta:MetadataEntry Code="DomainTableTheftDeductibleBldg" Name="TheftDeductibleBldg">
+			<meta:Description>Theft Deductible Building</meta:Description>
+		</meta:MetadataEntry>
+		<meta:MetadataEntry Code="DomainTableTheftDeductibleOccupClass" Name="TheftDeductibleOccupClass">
+			<meta:Description>Theft Deductible</meta:Description>
+			<meta:Property Name="Comment" Type="string">Occupancy Class Level</meta:Property>
+		</meta:MetadataEntry>
+		<meta:MetadataEntry Code="DomainTableTheftDeductiblePrsnlProp" Name="TheftDeductiblePrsnlProp">
+			<meta:Description>Theft Deductible Personal Property</meta:Description>
+		</meta:MetadataEntry>
+		<meta:MetadataEntry Code="DomainTableTheftDeductibleSpecialClass" Name="TheftDeductibleSpecialClass">
+			<meta:Description>Theft Deductible Special Class</meta:Description>
+		</meta:MetadataEntry>
+		<meta:MetadataEntry Code="DomainTableTimeLimitation" Name="TimeLimitation">
+			<meta:Description>Time Limitation</meta:Description>
+		</meta:MetadataEntry>
+		<meta:MetadataEntry Code="DomainTableTripType" Name="TripType">
+			<meta:Description>Trip Type</meta:Description>
+			<meta:Property Name="Comment" Type="string">Business Personal Property Limited International Coverage</meta:Property>
+		</meta:MetadataEntry>
+		<meta:MetadataEntry Code="DomainTableTypeOfBlanketRating" Name="TypeOfBlanketRating">
+			<meta:Description>Type of Blanket Rating</meta:Description>
+		</meta:MetadataEntry>
+		<meta:MetadataEntry Code="DomainTableTypeOfDependentProp" Name="TypeOfDependentProp">
+			<meta:Description>Type Of Dependent Property</meta:Description>
+			<meta:Property Name="Comment" Type="string">Business Income From Dependent Properties</meta:Property>
+		</meta:MetadataEntry>
+		<meta:MetadataEntry Code="DomainTableTypeOfDependentPropLimitedInternational" Name="TypeOfDependentPropLimitedInternational">
+			<meta:Description>Type of Dependent Property Limited International</meta:Description>
+		</meta:MetadataEntry>
+		<meta:MetadataEntry Code="DomainTableTypeOfPropertyCoverage" Name="TypeOfPropertyCoverage">
+			<meta:Description>TypeOfPropertyCoverage</meta:Description>
+		</meta:MetadataEntry>
+		<meta:MetadataEntry Code="DomainTableTypeOfRisk" Name="TypeOfRisk">
+			<meta:Description>Type Of Risk</meta:Description>
+		</meta:MetadataEntry>
+		<meta:MetadataEntry Code="DomainTableTypeOfUnmannedAircraftOperation" Name="TypeOfUnmannedAircraftOperation">
+			<meta:Description>Type Of Unmanned Aircraft Operation</meta:Description>
+		</meta:MetadataEntry>
+		<meta:MetadataEntry Code="DomainTableTypeRadioTVAntenna" Name="TypeRadioTVAntenna">
+			<meta:Description>Type of Radio or TV Antenna</meta:Description>
+			<meta:Property Name="Comment" Type="string">85.L.3</meta:Property>
+		</meta:MetadataEntry>
+		<meta:MetadataEntry Code="DomainTableUMBILimit" Name="UMBILimit">
+			<meta:Description>Uninsured Motorist Bodily Injury</meta:Description>
+		</meta:MetadataEntry>
+		<meta:MetadataEntry Code="DomainTableUnmannedAircraftClassDescription" Name="UnmannedAircraftClassDescription">
+			<meta:Description>Unmanned Aircraft Class Description</meta:Description>
+		</meta:MetadataEntry>
+		<meta:MetadataEntry Code="DomainTableUnmannedAircraftMethodOfControl" Name="UnmannedAircraftMethodOfControl">
+			<meta:Description>Unmanned Aircraft Method Of Control</meta:Description>
+		</meta:MetadataEntry>
+		<meta:MetadataEntry Code="DomainTableUnmannedAircraftOwnershipAndOperation" Name="UnmannedAircraftOwnershipAndOperation">
+			<meta:Description>Unmanned Aircraft Ownership And Operation</meta:Description>
+		</meta:MetadataEntry>
+		<meta:MetadataEntry Code="DomainTableUnmannedAircraftPrimaryPlaceOfOperation" Name="UnmannedAircraftPrimaryPlaceOfOperation">
+			<meta:Description>Unmanned Aircraft Primary Place Of Operation</meta:Description>
+		</meta:MetadataEntry>
+		<meta:MetadataEntry Code="DomainTableUnmannedAircraftRatingIdentification" Name="UnmannedAircraftRatingIdentification">
+			<meta:Description>Unmanned Aircraft Rating Identification</meta:Description>
+		</meta:MetadataEntry>
+		<meta:MetadataEntry Code="DomainTableUtility" Name="Utility">
+			<meta:Description>Utility Services</meta:Description>
+		</meta:MetadataEntry>
+		<meta:MetadataEntry Code="DomainTableUtilityServicesTimeElementLimit" Name="UtilityServicesTimeElementLimit">
+			<meta:Description>Utility Services Time Element Limit</meta:Description>
+			<meta:Property Name="Comment" Type="string">Range</meta:Property>
+		</meta:MetadataEntry>
+		<meta:MetadataEntry Code="DomainTableUtilityServicesTimeElementWaitingPeriod" Name="UtilityServicesTimeElementWaitingPeriod">
+			<meta:Description>Utility Services Time Element Waiting Period</meta:Description>
+		</meta:MetadataEntry>
+		<meta:MetadataEntry Code="DomainTableUtilityTimeElement" Name="UtilityTimeElement">
+			<meta:Description>Utility Time Element</meta:Description>
+		</meta:MetadataEntry>
+		<meta:MetadataEntry Code="DomainTableUtilityType" Name="UtilityType">
+			<meta:Description>Utility Type</meta:Description>
+			<meta:Property Name="Comment" Type="string">Public Utility or Other Than Public</meta:Property>
+		</meta:MetadataEntry>
+		<meta:MetadataEntry Code="DomainTableVacantBuilding" Name="VacantBuilding">
+			<meta:Description>Vacant Building</meta:Description>
+		</meta:MetadataEntry>
+		<meta:MetadataEntry Code="DomainTableValuationTypeBldg" Name="ValuationTypeBldg">
+			<meta:Description>Valuation Type for Building</meta:Description>
+		</meta:MetadataEntry>
+		<meta:MetadataEntry Code="DomainTableValuationTypePrsnlProp" Name="ValuationTypePrsnlProp">
+			<meta:Description>Valuation Types for Personal Property</meta:Description>
+		</meta:MetadataEntry>
+		<meta:MetadataEntry Code="DomainTableValuationTypeSpecialClass" Name="ValuationTypeSpecialClass">
+			<meta:Description>Valuation Type</meta:Description>
+			<meta:Property Name="Comment" Type="string">Special Class Level</meta:Property>
+		</meta:MetadataEntry>
+		<meta:MetadataEntry Code="DomainTableWatchmanServiceType" Name="WatchmanServiceType">
+			<meta:Description>Watchman Service Type</meta:Description>
+		</meta:MetadataEntry>
+		<meta:MetadataEntry Code="DomainTableWatercraftExclBuybackConstrctnOptionBldg" Name="WatercraftExclBuybackConstrctnOptionBldg">
+			<meta:Description>Watercraft Exclusion Buyback Construction Option</meta:Description>
+			<meta:Property Name="Comment" Type="string">Building level Additional Coverered Property form</meta:Property>
+		</meta:MetadataEntry>
+		<meta:MetadataEntry Code="DomainTableWatercraftExclBuybackConstrctnOptions" Name="WatercraftExclBuybackConstrctnOptions">
+			<meta:Description>Watercraft Exclusion Buyback Construction Options</meta:Description>
+		</meta:MetadataEntry>
+		<meta:MetadataEntry Code="DomainTableWatercraftExclBuybackConstrctnOptionsConverted" Name="WatercraftExclBuybackConstrctnOptionsConverted">
+			<meta:Description>Watercraft Exclusion Buyback Construction Options Converted</meta:Description>
+		</meta:MetadataEntry>
+		<meta:MetadataEntry Code="DomainTableWatercraftExclBuybackConstrctnOptionSpecialClass" Name="WatercraftExclBuybackConstrctnOptionSpecialClass">
+			<meta:Description>Watercraft Exclusion Buyback Construction Option</meta:Description>
+			<meta:Property Name="Comment" Type="string">Special Class level Additional Coverered Property form</meta:Property>
+		</meta:MetadataEntry>
+		<meta:MetadataEntry Code="DomainTableWatercraftExclBuybackConstrctnOptionTimeElement" Name="WatercraftExclBuybackConstrctnOptionTimeElement">
+			<meta:Description>Watercraft Exclusion Buyback Construction Option</meta:Description>
+			<meta:Property Name="Comment" Type="string">Time Element</meta:Property>
+		</meta:MetadataEntry>
+		<meta:MetadataEntry Code="DomainTableWindstormOrHailDeductible" Name="WindstormOrHailDeductible">
+			<meta:Description>Windstorm or Hail Deductible</meta:Description>
+		</meta:MetadataEntry>
+		<meta:MetadataEntry Code="DomainTableYardPropertyIndicator" Name="YardPropertyIndicator">
+			<meta:Description>Yard Property Indicator</meta:Description>
+		</meta:MetadataEntry>
+		<meta:MetadataEntry Code="DomainTableZipCodeState" Name="ZipCodeState">
+			<meta:Description>Zip Code State</meta:Description>
+		</meta:MetadataEntry>
+	</meta:MetadataEntry>
+</meta:Metadata>

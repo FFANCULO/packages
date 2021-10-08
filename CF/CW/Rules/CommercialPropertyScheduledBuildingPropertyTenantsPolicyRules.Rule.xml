@@ -1,0 +1,1536 @@
+<rul:Rules xmlns:rul="http://www.verisk.com/iso/erc/Rule">
+	<rul:Rule Name="InitializeRuleSet" DataDefGroup="CommercialPropertyScheduledBuildingPropertyTenantsPolicy">
+		<rul:Sequence>
+			<rul:Locate AtDataDef="CommercialPropertyScheduledBuildingPropertyTenantsPolicyBuildingGlassBasicGroupICov">
+				<rul:RunRule Type="none" FileName="CommercialPropertyScheduledBuildingPropertyTenantsPolicyBuildingGlassBasicGroupICovRules" Rule="InitializeRuleSet" ClearCache="true" />
+			</rul:Locate>
+			<rul:Locate AtDataDef="CommercialPropertyScheduledBuildingPropertyTenantsPolicyBuildingGlassBasicGroupIICov">
+				<rul:RunRule Type="none" FileName="CommercialPropertyScheduledBuildingPropertyTenantsPolicyBuildingGlassBasicGroupIICovRules" Rule="InitializeRuleSet" ClearCache="true" />
+			</rul:Locate>
+			<rul:Locate AtDataDef="CommercialPropertyScheduledBuildingPropertyTenantsPolicyBuildingGlassBroadCov">
+				<rul:RunRule Type="none" FileName="CommercialPropertyScheduledBuildingPropertyTenantsPolicyBuildingGlassBroadCovRules" Rule="InitializeRuleSet" ClearCache="true" />
+			</rul:Locate>
+			<rul:Locate AtDataDef="CommercialPropertyScheduledBuildingPropertyTenantsPolicyBuildingGlassEarthquakeCov">
+				<rul:RunRule Type="none" FileName="CommercialPropertyScheduledBuildingPropertyTenantsPolicyBuildingGlassEarthquakeCovRules" Rule="InitializeRuleSet" ClearCache="true" />
+			</rul:Locate>
+			<rul:Locate AtDataDef="CommercialPropertyScheduledBuildingPropertyTenantsPolicyBuildingGlassSpecialCov">
+				<rul:RunRule Type="none" FileName="CommercialPropertyScheduledBuildingPropertyTenantsPolicyBuildingGlassSpecialCovRules" Rule="InitializeRuleSet" ClearCache="true" />
+			</rul:Locate>
+			<rul:ForEach AtDataDef="CommercialPropertyScheduledBuildingPropertyTenantsPolicyDetailTable/CommercialPropertyScheduledBuildingPropertyTenantsPolicyDetail">
+				<rul:RunRule Type="none" FileName="CommercialPropertyScheduledBuildingPropertyTenantsPolicyDetailRules" Rule="InitializeRuleSet" ClearCache="true" />
+			</rul:ForEach>
+		</rul:Sequence>
+	</rul:Rule>
+	<rul:Rule Name="CalculateTotalPremium" Type="decimal" DataDefGroup="CommercialPropertyScheduledBuildingPropertyTenantsPolicy">
+		<rul:Sum>
+			<rul:Locate AtDataDef="CommercialPropertyScheduledBuildingPropertyTenantsPolicyBuildingGlassBasicGroupICov">
+				<rul:RunRule Type="decimal" FileName="CommercialPropertyScheduledBuildingPropertyTenantsPolicyBuildingGlassBasicGroupICovRules" Rule="CalculateTotalPremium" ClearCache="true" />
+			</rul:Locate>
+			<rul:Locate AtDataDef="CommercialPropertyScheduledBuildingPropertyTenantsPolicyBuildingGlassBasicGroupIICov">
+				<rul:RunRule Type="decimal" FileName="CommercialPropertyScheduledBuildingPropertyTenantsPolicyBuildingGlassBasicGroupIICovRules" Rule="CalculateTotalPremium" ClearCache="true" />
+			</rul:Locate>
+			<rul:Locate AtDataDef="CommercialPropertyScheduledBuildingPropertyTenantsPolicyBuildingGlassBroadCov">
+				<rul:RunRule Type="decimal" FileName="CommercialPropertyScheduledBuildingPropertyTenantsPolicyBuildingGlassBroadCovRules" Rule="CalculateTotalPremium" ClearCache="true" />
+			</rul:Locate>
+			<rul:Locate AtDataDef="CommercialPropertyScheduledBuildingPropertyTenantsPolicyBuildingGlassEarthquakeCov">
+				<rul:RunRule Type="decimal" FileName="CommercialPropertyScheduledBuildingPropertyTenantsPolicyBuildingGlassEarthquakeCovRules" Rule="CalculateTotalPremium" ClearCache="true" />
+			</rul:Locate>
+			<rul:Locate AtDataDef="CommercialPropertyScheduledBuildingPropertyTenantsPolicyBuildingGlassSpecialCov">
+				<rul:RunRule Type="decimal" FileName="CommercialPropertyScheduledBuildingPropertyTenantsPolicyBuildingGlassSpecialCovRules" Rule="CalculateTotalPremium" ClearCache="true" />
+			</rul:Locate>
+			<rul:ForEach AtDataDef="CommercialPropertyScheduledBuildingPropertyTenantsPolicyDetailTable/CommercialPropertyScheduledBuildingPropertyTenantsPolicyDetail">
+				<rul:RunRule Type="decimal" FileName="CommercialPropertyScheduledBuildingPropertyTenantsPolicyDetailRules" Rule="CalculateTotalPremium" ClearCache="true" />
+			</rul:ForEach>
+			<rul:If>
+				<rul:Test>
+					<rul:And>
+						<rul:Equal>
+							<rul:FirstValue Type="integer" FromConstant="0" FromDataDef="@PremiumIndicator" Order="DataDefInputParamConstant" />
+							<rul:Constant Type="integer">1</rul:Constant>
+						</rul:Equal>
+						<rul:NotEqual>
+							<rul:FirstValue Type="decimal" FromConstant="0" FromDataDef="@Premium" Order="DataDefInputParamConstant" />
+							<rul:Constant Type="decimal">0</rul:Constant>
+						</rul:NotEqual>
+					</rul:And>
+				</rul:Test>
+				<rul:Then>
+					<rul:FirstValue Type="decimal" FromConstant="0" FromDataDef="@Premium" Order="DataDefInputParamConstant" />
+				</rul:Then>
+				<rul:Else>
+					<rul:Constant Type="decimal">0</rul:Constant>
+				</rul:Else>
+			</rul:If>
+		</rul:Sum>
+	</rul:Rule>
+	<rul:Rule Name="ErcSetRatesAndFactors" Type="none" DataDefGroup="CommercialPropertyScheduledBuildingPropertyTenantsPolicy">
+		<rul:Sequence>
+			<rul:RunRule Type="none" FileName="CommercialPropertyScheduledBuildingPropertyTenantsPolicyRules" Rule="SetCoinsuranceFactor" ClearCache="true" />
+			<rul:RunRule Type="none" FileName="CommercialPropertyScheduledBuildingPropertyTenantsPolicyRules" Rule="SetBasicGroupIICoinsuranceFactor" ClearCache="true" />
+			<rul:RunRule Type="none" FileName="CommercialPropertyScheduledBuildingPropertyTenantsPolicyRules" Rule="SetEQCoinsuranceFactor" ClearCache="true" />
+			<rul:RunRule Type="none" FileName="CommercialPropertyScheduledBuildingPropertyTenantsPolicyRules" Rule="SetBroadBaseRate" ClearCache="true" />
+			<rul:RunRule Type="none" FileName="CommercialPropertyScheduledBuildingPropertyTenantsPolicyRules" Rule="SetSpecialBaseRate" ClearCache="true" />
+			<rul:RunRule Type="none" FileName="CommercialPropertyScheduledBuildingPropertyTenantsPolicyRules" Rule="SetBuildingGlassBGILOIFactor" ClearCache="true" />
+			<rul:RunRule Type="none" FileName="CommercialPropertyScheduledBuildingPropertyTenantsPolicyRules" Rule="SetBuildingGlassBGIILOIFactor" ClearCache="true" />
+			<rul:RunRule Type="none" FileName="CommercialPropertyScheduledBuildingPropertyTenantsPolicyRules" Rule="SetBuildingGlassBroadLOIFactor" ClearCache="true" />
+			<rul:RunRule Type="none" FileName="CommercialPropertyScheduledBuildingPropertyTenantsPolicyRules" Rule="SetBuildingGlassSpecialLOIFactor" ClearCache="true" />
+			<rul:RunRule Type="none" FileName="CommercialPropertyScheduledBuildingPropertyTenantsPolicyRules" Rule="SetDeductibleOnBuildingGlassFactorBasicGroupI" ClearCache="true" />
+			<rul:RunRule Type="none" FileName="CommercialPropertyScheduledBuildingPropertyTenantsPolicyRules" Rule="SetDeductibleOnBuildingGlassFactorBasicGroupII" ClearCache="true" />
+			<rul:RunRule Type="none" FileName="CommercialPropertyScheduledBuildingPropertyTenantsPolicyRules" Rule="SetDeductibleOnBuildingGlassFactorBroad" ClearCache="true" />
+			<rul:RunRule Type="none" FileName="CommercialPropertyScheduledBuildingPropertyTenantsPolicyRules" Rule="SetDeductibleOnBuildingGlassFactorSpecial" ClearCache="true" />
+			<rul:RunRule Type="none" FileName="CommercialPropertyScheduledBuildingPropertyTenantsPolicyRules" Rule="SetDeductibleOnBuildingGlassFactorEQ" ClearCache="true" />
+			<rul:RunRule Type="none" FileName="CommercialPropertyScheduledBuildingPropertyTenantsPolicyRules" Rule="SetBuildingPropertyOtherThanGlassLimit" ClearCache="true" />
+			<rul:RunRule Type="none" FileName="CommercialPropertyScheduledBuildingPropertyTenantsPolicyRules" Rule="SetBuildingPropertyOtherThanGlassBGILOIFactor" ClearCache="true" />
+			<rul:RunRule Type="none" FileName="CommercialPropertyScheduledBuildingPropertyTenantsPolicyRules" Rule="SetBuildingPropertyOtherThanGlassBGIILOIFactor" ClearCache="true" />
+			<rul:RunRule Type="none" FileName="CommercialPropertyScheduledBuildingPropertyTenantsPolicyRules" Rule="SetBuildingPropertyOtherThanGlassBroadLOIFactor" ClearCache="true" />
+			<rul:RunRule Type="none" FileName="CommercialPropertyScheduledBuildingPropertyTenantsPolicyRules" Rule="SetBuildingPropertyOtherThanGlassSpecialLOIFactor" ClearCache="true" />
+			<rul:RunRule Type="none" FileName="CommercialPropertyScheduledBuildingPropertyTenantsPolicyRules" Rule="SetDeductibleOnBldgPropOTGFactorBasicGroupI" ClearCache="true" />
+			<rul:RunRule Type="none" FileName="CommercialPropertyScheduledBuildingPropertyTenantsPolicyRules" Rule="SetDeductibleOnBldgPropOTGFactorBasicGroupII" ClearCache="true" />
+			<rul:RunRule Type="none" FileName="CommercialPropertyScheduledBuildingPropertyTenantsPolicyRules" Rule="SetDeductibleOnBldgPropOTGFactorBroad" ClearCache="true" />
+			<rul:RunRule Type="none" FileName="CommercialPropertyScheduledBuildingPropertyTenantsPolicyRules" Rule="SetDeductibleOnBldgPropOTGFactorSpecial" ClearCache="true" />
+			<rul:RunRule Type="none" FileName="CommercialPropertyScheduledBuildingPropertyTenantsPolicyRules" Rule="SetDeductibleOnBldgPropOTGFactorEQ" ClearCache="true" />
+		</rul:Sequence>
+	</rul:Rule>
+	<rul:Rule Name="SetCoinsuranceFactor" Type="none" DataDefGroup="CommercialPropertyScheduledBuildingPropertyTenantsPolicy">
+		<rul:Sequence>
+			<rul:Choose>
+				<rul:When>
+					<rul:Test>
+						<rul:Or>
+							<rul:Equal>
+								<rul:FirstValue Type="string" FromConstant="" FromDataDef="@Coinsurance" Order="DataDefInputParamConstant" />
+								<rul:Constant Type="string">80%</rul:Constant>
+							</rul:Equal>
+							<rul:Equal>
+								<rul:FirstValue Type="string" FromConstant="" FromDataDef="@Coinsurance" Order="DataDefInputParamConstant" />
+								<rul:Constant Type="string">90%</rul:Constant>
+							</rul:Equal>
+							<rul:Equal>
+								<rul:FirstValue Type="string" FromConstant="" FromDataDef="@Coinsurance" Order="DataDefInputParamConstant" />
+								<rul:Constant Type="string">100%</rul:Constant>
+							</rul:Equal>
+						</rul:Or>
+					</rul:Test>
+					<rul:Then>
+						<rul:Sequence>
+							<rul:RunRule Type="decimal" ToDataDef="@CoinsuranceFactor" FileName="CommercialPropertyScheduledBuildingPropertyTenantsPolicyRules" Rule="LookupCoinsuranceFactor" ClearCache="true" />
+						</rul:Sequence>
+					</rul:Then>
+				</rul:When>
+				<rul:When>
+					<rul:Test>
+						<rul:Or>
+							<rul:Equal>
+								<rul:FirstValue Type="string" FromConstant="" FromDataDef="@Coinsurance" Order="DataDefInputParamConstant" />
+								<rul:Constant Type="string">50%</rul:Constant>
+							</rul:Equal>
+							<rul:Equal>
+								<rul:FirstValue Type="string" FromConstant="" FromDataDef="@Coinsurance" Order="DataDefInputParamConstant" />
+								<rul:Constant Type="string">60%</rul:Constant>
+							</rul:Equal>
+							<rul:Equal>
+								<rul:FirstValue Type="string" FromConstant="" FromDataDef="@Coinsurance" Order="DataDefInputParamConstant" />
+								<rul:Constant Type="string">70%</rul:Constant>
+							</rul:Equal>
+							<rul:Equal>
+								<rul:FirstValue Type="string" FromConstant="" FromDataDef="@Coinsurance" Order="DataDefInputParamConstant" />
+								<rul:Constant Type="string">None</rul:Constant>
+							</rul:Equal>
+						</rul:Or>
+					</rul:Test>
+					<rul:Then>
+						<rul:Sequence>
+							<rul:RunRule Type="decimal" ToDataDef="@CoinsuranceFactor" FileName="CommercialPropertyScheduledBuildingPropertyTenantsPolicyRules" Rule="LookupLessThan80PctMultiplicativeFactor" ClearCache="true" />
+						</rul:Sequence>
+					</rul:Then>
+				</rul:When>
+				<rul:Otherwise>
+					<rul:Sequence>
+						<rul:Constant Type="decimal" ToDataDef="@CoinsuranceFactor">1.0</rul:Constant>
+					</rul:Sequence>
+				</rul:Otherwise>
+			</rul:Choose>
+		</rul:Sequence>
+	</rul:Rule>
+	<rul:Rule Name="SetBasicGroupIICoinsuranceFactor" Type="none" DataDefGroup="CommercialPropertyScheduledBuildingPropertyTenantsPolicy">
+		<rul:Sequence>
+			<rul:If>
+				<rul:Test>
+					<rul:Or>
+						<rul:Equal>
+							<rul:FirstValue Type="string" FromConstant="" FromDataDef="@Coinsurance" Order="DataDefInputParamConstant" />
+							<rul:Constant Type="string">80%</rul:Constant>
+						</rul:Equal>
+						<rul:Equal>
+							<rul:FirstValue Type="string" FromConstant="" FromDataDef="@Coinsurance" Order="DataDefInputParamConstant" />
+							<rul:Constant Type="string">90%</rul:Constant>
+						</rul:Equal>
+						<rul:Equal>
+							<rul:FirstValue Type="string" FromConstant="" FromDataDef="@Coinsurance" Order="DataDefInputParamConstant" />
+							<rul:Constant Type="string">100%</rul:Constant>
+						</rul:Equal>
+					</rul:Or>
+				</rul:Test>
+				<rul:Then>
+					<rul:Copy Type="decimal" ToDataDef="@BasicGroupIICoinsuranceFactor" FromDataDef="@CoinsuranceFactor" />
+				</rul:Then>
+				<rul:Else>
+					<rul:Sequence>
+						<rul:RunRule Type="decimal" ToDataDef="@BasicGroupIICoinsuranceFactor" FileName="CommercialPropertyScheduledBuildingPropertyTenantsPolicyRules" Rule="LookupBasicGroupIIFlatCoinsuranceFactor" ClearCache="true" />
+					</rul:Sequence>
+				</rul:Else>
+			</rul:If>
+		</rul:Sequence>
+	</rul:Rule>
+	<rul:Rule Name="SetEQCoinsuranceFactor" Type="none" DataDefGroup="CommercialPropertyScheduledBuildingPropertyTenantsPolicy">
+		<rul:Sequence>
+			<rul:If>
+				<rul:Test>
+					<rul:Or>
+						<rul:Exist AtInputDataDef="../../CommercialPropertyEarthquakeAndVolcanicEruptionEndorsementSubLimitFormTable/CommercialPropertyEarthquakeAndVolcanicEruptionEndorsementSubLimitForm" />
+						<rul:Exist AtInputDataDef="../../CommercialPropertyEarthquakeAndVolcanicEruptionCoverageSubLimitFormWithFlatDollarDeductibleBldgTable/CommercialPropertyEarthquakeAndVolcanicEruptionCoverageSubLimitFormWithFlatDollarDeductibleBldg" />
+					</rul:Or>
+				</rul:Test>
+				<rul:Then>
+					<rul:Sequence>
+						<rul:Constant Type="decimal" ToDataDef="@EQCoinsuranceFactor">1.0</rul:Constant>
+					</rul:Sequence>
+				</rul:Then>
+				<rul:Else>
+					<rul:Copy Type="decimal" ToDataDef="@EQCoinsuranceFactor" FromDataDef="@CoinsuranceFactor" />
+				</rul:Else>
+			</rul:If>
+		</rul:Sequence>
+	</rul:Rule>
+	<rul:Rule Name="SetBroadBaseRate" Type="none" DataDefGroup="CommercialPropertyScheduledBuildingPropertyTenantsPolicy">
+		<rul:Sequence>
+			<rul:If>
+				<rul:Test>
+					<rul:And>
+						<rul:Equal>
+							<rul:FirstValue Type="string" FromConstant="" FromDataDef="@CausesOfLoss" Order="DataDefInputParamConstant" />
+							<rul:Constant Type="string">Broad</rul:Constant>
+						</rul:Equal>
+						<rul:NotEqual>
+							<rul:FirstValue Type="string" FromConstant="" FromDataDef="../../@ConstructionTypeToUse" Order="DataDefInputParamConstant" />
+							<rul:Constant Type="string"></rul:Constant>
+						</rul:NotEqual>
+					</rul:And>
+				</rul:Test>
+				<rul:Then>
+					<rul:Sequence>
+						<rul:RunRule Type="decimal" ToDataDef="@BroadBaseRate" FileName="CommercialPropertyScheduledBuildingPropertyTenantsPolicyRules" Rule="LookupBroadFormBaseRate" ClearCache="true" />
+					</rul:Sequence>
+				</rul:Then>
+				<rul:Else>
+					<rul:Sequence>
+						<rul:Constant Type="decimal" ToDataDef="@BroadBaseRate">0.0</rul:Constant>
+					</rul:Sequence>
+				</rul:Else>
+			</rul:If>
+		</rul:Sequence>
+	</rul:Rule>
+	<rul:Rule Name="SetSpecialBaseRate" Type="none" DataDefGroup="CommercialPropertyScheduledBuildingPropertyTenantsPolicy">
+		<rul:Sequence>
+			<rul:If>
+				<rul:Test>
+					<rul:Equal>
+						<rul:FirstValue Type="string" FromConstant="" FromDataDef="@CausesOfLoss" Order="DataDefInputParamConstant" />
+						<rul:Constant Type="string">Special</rul:Constant>
+					</rul:Equal>
+				</rul:Test>
+				<rul:Then>
+					<rul:Sequence>
+						<rul:RunRule Type="decimal" ToDataDef="@SpecialBaseRate" FileName="CommercialPropertyScheduledBuildingPropertyTenantsPolicyRules" Rule="LookupSpecialBuildingRate" ClearCache="true" />
+					</rul:Sequence>
+				</rul:Then>
+				<rul:Else>
+					<rul:Sequence>
+						<rul:Constant Type="decimal" ToDataDef="@SpecialBaseRate">0.0</rul:Constant>
+					</rul:Sequence>
+				</rul:Else>
+			</rul:If>
+		</rul:Sequence>
+	</rul:Rule>
+	<rul:Rule Name="SetBuildingGlassBGILOIFactor" Type="none" DataDefGroup="CommercialPropertyScheduledBuildingPropertyTenantsPolicy">
+		<rul:Sequence>
+			<rul:If>
+				<rul:Test>
+					<rul:And>
+						<rul:GreaterThan>
+							<rul:FirstValue Type="integer" FromConstant="0" FromDataDef="@Limit" Order="DataDefInputParamConstant" />
+							<rul:Constant Type="integer">0</rul:Constant>
+						</rul:GreaterThan>
+						<rul:NotEqual>
+							<rul:FirstValue Type="integer" FromConstant="0" FromDataDef="../../@ConstructionCode" Order="DataDefInputParamConstant" />
+							<rul:Constant Type="integer">0</rul:Constant>
+						</rul:NotEqual>
+					</rul:And>
+				</rul:Test>
+				<rul:Then>
+					<rul:Sequence>
+						<rul:RunRule Type="decimal" ToDataDef="@BuildingGlassBGILOIFactor" FileName="CommercialPropertyScheduledBuildingPropertyTenantsPolicyRules" Rule="LookupBasicGroupILOIFactor" ClearCache="true">
+							<rul:Arg Type="integer" Param="limit">
+								<rul:FirstValue Type="integer" FromConstant="0" FromDataDef="@Limit" Order="DataDefInputParamConstant" />
+							</rul:Arg>
+						</rul:RunRule>
+					</rul:Sequence>
+				</rul:Then>
+				<rul:Else>
+					<rul:Sequence>
+						<rul:Constant Type="decimal" ToDataDef="@BuildingGlassBGILOIFactor">0.0</rul:Constant>
+					</rul:Sequence>
+				</rul:Else>
+			</rul:If>
+		</rul:Sequence>
+	</rul:Rule>
+	<rul:Rule Name="SetBuildingGlassBGIILOIFactor" Type="none" DataDefGroup="CommercialPropertyScheduledBuildingPropertyTenantsPolicy">
+		<rul:Sequence>
+			<rul:If>
+				<rul:Test>
+					<rul:GreaterThan>
+						<rul:FirstValue Type="integer" FromConstant="0" FromDataDef="@Limit" Order="DataDefInputParamConstant" />
+						<rul:Constant Type="integer">0</rul:Constant>
+					</rul:GreaterThan>
+				</rul:Test>
+				<rul:Then>
+					<rul:Sequence>
+						<rul:RunRule Type="decimal" ToDataDef="@BuildingGlassBGIILOIFactor" FileName="CommercialPropertyScheduledBuildingPropertyTenantsPolicyRules" Rule="LookupBasicGroupIILOIFactor" ClearCache="true">
+							<rul:Arg Type="integer" Param="limit">
+								<rul:FirstValue Type="integer" FromConstant="0" FromDataDef="@Limit" Order="DataDefInputParamConstant" />
+							</rul:Arg>
+						</rul:RunRule>
+					</rul:Sequence>
+				</rul:Then>
+				<rul:Else>
+					<rul:Sequence>
+						<rul:Constant Type="decimal" ToDataDef="@BuildingGlassBGIILOIFactor">0.0</rul:Constant>
+					</rul:Sequence>
+				</rul:Else>
+			</rul:If>
+		</rul:Sequence>
+	</rul:Rule>
+	<rul:Rule Name="SetBuildingGlassBroadLOIFactor" Type="none" DataDefGroup="CommercialPropertyScheduledBuildingPropertyTenantsPolicy">
+		<rul:Sequence>
+			<rul:If>
+				<rul:Test>
+					<rul:GreaterThan>
+						<rul:FirstValue Type="integer" FromConstant="0" FromDataDef="@Limit" Order="DataDefInputParamConstant" />
+						<rul:Constant Type="integer">0</rul:Constant>
+					</rul:GreaterThan>
+				</rul:Test>
+				<rul:Then>
+					<rul:Sequence>
+						<rul:RunRule Type="decimal" ToDataDef="@BuildingGlassBroadLOIFactor" FileName="CommercialPropertyScheduledBuildingPropertyTenantsPolicyRules" Rule="LookupBroadSpecialLOIFactor" ClearCache="true">
+							<rul:Arg Type="integer" Param="limit">
+								<rul:FirstValue Type="integer" FromConstant="0" FromDataDef="@Limit" Order="DataDefInputParamConstant" />
+							</rul:Arg>
+						</rul:RunRule>
+					</rul:Sequence>
+				</rul:Then>
+				<rul:Else>
+					<rul:Sequence>
+						<rul:Constant Type="decimal" ToDataDef="@BuildingGlassBroadLOIFactor">0.0</rul:Constant>
+					</rul:Sequence>
+				</rul:Else>
+			</rul:If>
+		</rul:Sequence>
+	</rul:Rule>
+	<rul:Rule Name="SetBuildingGlassSpecialLOIFactor" Type="none" DataDefGroup="CommercialPropertyScheduledBuildingPropertyTenantsPolicy">
+		<rul:Sequence>
+			<rul:If>
+				<rul:Test>
+					<rul:GreaterThan>
+						<rul:FirstValue Type="integer" FromConstant="0" FromDataDef="@Limit" Order="DataDefInputParamConstant" />
+						<rul:Constant Type="integer">0</rul:Constant>
+					</rul:GreaterThan>
+				</rul:Test>
+				<rul:Then>
+					<rul:Sequence>
+						<rul:RunRule Type="decimal" ToDataDef="@BuildingGlassSpecialLOIFactor" FileName="CommercialPropertyScheduledBuildingPropertyTenantsPolicyRules" Rule="LookupBroadSpecialLOIFactor" ClearCache="true">
+							<rul:Arg Type="integer" Param="limit">
+								<rul:FirstValue Type="integer" FromConstant="0" FromDataDef="@Limit" Order="DataDefInputParamConstant" />
+							</rul:Arg>
+						</rul:RunRule>
+					</rul:Sequence>
+				</rul:Then>
+				<rul:Else>
+					<rul:Sequence>
+						<rul:Constant Type="decimal" ToDataDef="@BuildingGlassSpecialLOIFactor">0.0</rul:Constant>
+					</rul:Sequence>
+				</rul:Else>
+			</rul:If>
+		</rul:Sequence>
+	</rul:Rule>
+	<rul:Rule Name="SetDeductibleOnBuildingGlassFactorBasicGroupI" Type="none" DataDefGroup="CommercialPropertyScheduledBuildingPropertyTenantsPolicy">
+		<rul:Sequence>
+			<rul:If>
+				<rul:Test>
+					<rul:Equal>
+						<rul:FirstValue Type="string" FromConstant="" FromDataDef="@DeductibleOnBuildingGlass" Order="DataDefInputParamConstant" />
+						<rul:Constant Type="string">Not Applicable</rul:Constant>
+					</rul:Equal>
+				</rul:Test>
+				<rul:Then>
+					<rul:Sequence>
+						<rul:RunRule Type="decimal" ToDataDef="@DeductibleOnBuildingGlassFactorBasicGroupI" FileName="CommercialPropertyScheduledBuildingPropertyTenantsPolicyRules" Rule="LookupNoDeductibleFactor" ClearCache="true">
+							<rul:Arg Type="string" Param="causeOfLoss">
+								<rul:Constant Type="string">Basic Group I</rul:Constant>
+							</rul:Arg>
+						</rul:RunRule>
+					</rul:Sequence>
+				</rul:Then>
+				<rul:Else>
+					<rul:Sequence>
+						<rul:Choose>
+							<rul:When>
+								<rul:Test>
+									<rul:Equal>
+										<rul:FirstValue Type="string" FromConstant="" FromDataDef="@DeductibleOnBuildingGlass" Order="DataDefInputParamConstant" />
+										<rul:Constant Type="string">250</rul:Constant>
+									</rul:Equal>
+								</rul:Test>
+								<rul:Then>
+									<rul:Sequence>
+										<rul:RunRule Type="decimal" ToDataDef="@DeductibleOnBuildingGlassFactorBasicGroupI" FileName="CommercialPropertyScheduledBuildingPropertyTenantsPolicyRules" Rule="LookupDeductible250Factor" ClearCache="true">
+											<rul:Arg Type="string" Param="causeOfLoss">
+												<rul:Constant Type="string">Basic</rul:Constant>
+											</rul:Arg>
+										</rul:RunRule>
+									</rul:Sequence>
+								</rul:Then>
+							</rul:When>
+							<rul:When>
+								<rul:Test>
+									<rul:And>
+										<rul:NotEqual>
+											<rul:FirstValue Type="string" FromConstant="" FromDataDef="@DeductibleOnBuildingGlass" Order="DataDefInputParamConstant" />
+											<rul:Constant Type="string"></rul:Constant>
+										</rul:NotEqual>
+										<rul:GreaterThan>
+											<rul:FirstValue Type="integer" FromConstant="0" FromDataDef="@Limit" Order="DataDefInputParamConstant" />
+											<rul:Constant Type="integer">0</rul:Constant>
+										</rul:GreaterThan>
+									</rul:And>
+								</rul:Test>
+								<rul:Then>
+									<rul:Sequence>
+										<rul:RunRule Type="decimal" ToDataDef="@DeductibleOnBuildingGlassFactorBasicGroupI" FileName="CommercialPropertyScheduledBuildingPropertyTenantsPolicyRules" Rule="LookupDeductibleFactor" ClearCache="true">
+											<rul:Arg Type="string" Param="ded">
+												<rul:FirstValue Type="string" FromConstant="" FromDataDef="@DeductibleOnBuildingGlass" Order="DataDefInputParamConstant" />
+											</rul:Arg>
+											<rul:Arg Type="integer" Param="limit">
+												<rul:FirstValue Type="integer" FromConstant="0" FromDataDef="@Limit" Order="DataDefInputParamConstant" />
+											</rul:Arg>
+											<rul:Arg Type="string" Param="causeOfLossDed">
+												<rul:Constant Type="string">Basic Group I</rul:Constant>
+											</rul:Arg>
+										</rul:RunRule>
+									</rul:Sequence>
+								</rul:Then>
+							</rul:When>
+							<rul:Otherwise>
+								<rul:Sequence>
+									<rul:Constant Type="decimal" ToDataDef="@DeductibleOnBuildingGlassFactorBasicGroupI">0.0</rul:Constant>
+								</rul:Sequence>
+							</rul:Otherwise>
+						</rul:Choose>
+					</rul:Sequence>
+				</rul:Else>
+			</rul:If>
+		</rul:Sequence>
+	</rul:Rule>
+	<rul:Rule Name="SetDeductibleOnBuildingGlassFactorBasicGroupII" Type="none" DataDefGroup="CommercialPropertyScheduledBuildingPropertyTenantsPolicy">
+		<rul:Sequence>
+			<rul:If>
+				<rul:Test>
+					<rul:Equal>
+						<rul:FirstValue Type="string" FromConstant="" FromDataDef="@DeductibleOnBuildingGlass" Order="DataDefInputParamConstant" />
+						<rul:Constant Type="string">Not Applicable</rul:Constant>
+					</rul:Equal>
+				</rul:Test>
+				<rul:Then>
+					<rul:Sequence>
+						<rul:RunRule Type="decimal" ToDataDef="@DeductibleOnBuildingGlassFactorBasicGroupII" FileName="CommercialPropertyScheduledBuildingPropertyTenantsPolicyRules" Rule="LookupNoDeductibleFactor" ClearCache="true">
+							<rul:Arg Type="string" Param="causeOfLoss">
+								<rul:Constant Type="string">Basic Group II</rul:Constant>
+							</rul:Arg>
+						</rul:RunRule>
+					</rul:Sequence>
+				</rul:Then>
+				<rul:Else>
+					<rul:Sequence>
+						<rul:Choose>
+							<rul:When>
+								<rul:Test>
+									<rul:Equal>
+										<rul:FirstValue Type="string" FromConstant="" FromDataDef="@DeductibleOnBuildingGlass" Order="DataDefInputParamConstant" />
+										<rul:Constant Type="string">250</rul:Constant>
+									</rul:Equal>
+								</rul:Test>
+								<rul:Then>
+									<rul:Sequence>
+										<rul:RunRule Type="decimal" ToDataDef="@DeductibleOnBuildingGlassFactorBasicGroupII" FileName="CommercialPropertyScheduledBuildingPropertyTenantsPolicyRules" Rule="LookupDeductible250Factor" ClearCache="true">
+											<rul:Arg Type="string" Param="causeOfLoss">
+												<rul:Constant Type="string">Basic</rul:Constant>
+											</rul:Arg>
+										</rul:RunRule>
+									</rul:Sequence>
+								</rul:Then>
+							</rul:When>
+							<rul:When>
+								<rul:Test>
+									<rul:And>
+										<rul:NotEqual>
+											<rul:FirstValue Type="string" FromConstant="" FromDataDef="@DeductibleOnBuildingGlass" Order="DataDefInputParamConstant" />
+											<rul:Constant Type="string"></rul:Constant>
+										</rul:NotEqual>
+										<rul:GreaterThan>
+											<rul:FirstValue Type="integer" FromConstant="0" FromDataDef="@Limit" Order="DataDefInputParamConstant" />
+											<rul:Constant Type="integer">0</rul:Constant>
+										</rul:GreaterThan>
+									</rul:And>
+								</rul:Test>
+								<rul:Then>
+									<rul:Sequence>
+										<rul:RunRule Type="decimal" ToDataDef="@DeductibleOnBuildingGlassFactorBasicGroupII" FileName="CommercialPropertyScheduledBuildingPropertyTenantsPolicyRules" Rule="LookupDeductibleFactor" ClearCache="true">
+											<rul:Arg Type="string" Param="ded">
+												<rul:FirstValue Type="string" FromConstant="" FromDataDef="@DeductibleOnBuildingGlass" Order="DataDefInputParamConstant" />
+											</rul:Arg>
+											<rul:Arg Type="integer" Param="limit">
+												<rul:FirstValue Type="integer" FromConstant="0" FromDataDef="@Limit" Order="DataDefInputParamConstant" />
+											</rul:Arg>
+											<rul:Arg Type="string" Param="causeOfLossDed">
+												<rul:Constant Type="string">Basic Group II</rul:Constant>
+											</rul:Arg>
+										</rul:RunRule>
+									</rul:Sequence>
+								</rul:Then>
+							</rul:When>
+							<rul:Otherwise>
+								<rul:Sequence>
+									<rul:Constant Type="decimal" ToDataDef="@DeductibleOnBuildingGlassFactorBasicGroupII">0.0</rul:Constant>
+								</rul:Sequence>
+							</rul:Otherwise>
+						</rul:Choose>
+					</rul:Sequence>
+				</rul:Else>
+			</rul:If>
+		</rul:Sequence>
+	</rul:Rule>
+	<rul:Rule Name="SetDeductibleOnBuildingGlassFactorBroad" Type="none" DataDefGroup="CommercialPropertyScheduledBuildingPropertyTenantsPolicy">
+		<rul:Sequence>
+			<rul:If>
+				<rul:Test>
+					<rul:Equal>
+						<rul:FirstValue Type="string" FromConstant="" FromDataDef="@DeductibleOnBuildingGlass" Order="DataDefInputParamConstant" />
+						<rul:Constant Type="string">Not Applicable</rul:Constant>
+					</rul:Equal>
+				</rul:Test>
+				<rul:Then>
+					<rul:Sequence>
+						<rul:RunRule Type="decimal" ToDataDef="@DeductibleOnBuildingGlassFactorBroad" FileName="CommercialPropertyScheduledBuildingPropertyTenantsPolicyRules" Rule="LookupNoDeductibleFactor" ClearCache="true">
+							<rul:Arg Type="string" Param="causeOfLoss">
+								<rul:Constant Type="string">Other</rul:Constant>
+							</rul:Arg>
+						</rul:RunRule>
+					</rul:Sequence>
+				</rul:Then>
+				<rul:Else>
+					<rul:Sequence>
+						<rul:Choose>
+							<rul:When>
+								<rul:Test>
+									<rul:Equal>
+										<rul:FirstValue Type="string" FromConstant="" FromDataDef="@DeductibleOnBuildingGlass" Order="DataDefInputParamConstant" />
+										<rul:Constant Type="string">250</rul:Constant>
+									</rul:Equal>
+								</rul:Test>
+								<rul:Then>
+									<rul:Sequence>
+										<rul:RunRule Type="decimal" ToDataDef="@DeductibleOnBuildingGlassFactorBroad" FileName="CommercialPropertyScheduledBuildingPropertyTenantsPolicyRules" Rule="LookupDeductible250Factor" ClearCache="true">
+											<rul:Arg Type="string" Param="causeOfLoss">
+												<rul:Constant Type="string">Broad</rul:Constant>
+											</rul:Arg>
+										</rul:RunRule>
+									</rul:Sequence>
+								</rul:Then>
+							</rul:When>
+							<rul:When>
+								<rul:Test>
+									<rul:And>
+										<rul:NotEqual>
+											<rul:FirstValue Type="string" FromConstant="" FromDataDef="@DeductibleOnBuildingGlass" Order="DataDefInputParamConstant" />
+											<rul:Constant Type="string"></rul:Constant>
+										</rul:NotEqual>
+										<rul:GreaterThan>
+											<rul:FirstValue Type="integer" FromConstant="0" FromDataDef="@Limit" Order="DataDefInputParamConstant" />
+											<rul:Constant Type="integer">0</rul:Constant>
+										</rul:GreaterThan>
+									</rul:And>
+								</rul:Test>
+								<rul:Then>
+									<rul:Sequence>
+										<rul:RunRule Type="decimal" ToDataDef="@DeductibleOnBuildingGlassFactorBroad" FileName="CommercialPropertyScheduledBuildingPropertyTenantsPolicyRules" Rule="LookupDeductibleFactor" ClearCache="true">
+											<rul:Arg Type="string" Param="ded">
+												<rul:FirstValue Type="string" FromConstant="" FromDataDef="@DeductibleOnBuildingGlass" Order="DataDefInputParamConstant" />
+											</rul:Arg>
+											<rul:Arg Type="integer" Param="limit">
+												<rul:FirstValue Type="integer" FromConstant="0" FromDataDef="@Limit" Order="DataDefInputParamConstant" />
+											</rul:Arg>
+											<rul:Arg Type="string" Param="causeOfLossDed">
+												<rul:Constant Type="string">Other Cause Of Loss</rul:Constant>
+											</rul:Arg>
+										</rul:RunRule>
+									</rul:Sequence>
+								</rul:Then>
+							</rul:When>
+							<rul:Otherwise>
+								<rul:Sequence>
+									<rul:Constant Type="decimal" ToDataDef="@DeductibleOnBuildingGlassFactorBroad">0.0</rul:Constant>
+								</rul:Sequence>
+							</rul:Otherwise>
+						</rul:Choose>
+					</rul:Sequence>
+				</rul:Else>
+			</rul:If>
+		</rul:Sequence>
+	</rul:Rule>
+	<rul:Rule Name="SetDeductibleOnBuildingGlassFactorSpecial" Type="none" DataDefGroup="CommercialPropertyScheduledBuildingPropertyTenantsPolicy">
+		<rul:Sequence>
+			<rul:If>
+				<rul:Test>
+					<rul:Equal>
+						<rul:FirstValue Type="string" FromConstant="" FromDataDef="@DeductibleOnBuildingGlass" Order="DataDefInputParamConstant" />
+						<rul:Constant Type="string">Not Applicable</rul:Constant>
+					</rul:Equal>
+				</rul:Test>
+				<rul:Then>
+					<rul:Sequence>
+						<rul:RunRule Type="decimal" ToDataDef="@DeductibleOnBuildingGlassFactorSpecial" FileName="CommercialPropertyScheduledBuildingPropertyTenantsPolicyRules" Rule="LookupNoDeductibleFactor" ClearCache="true">
+							<rul:Arg Type="string" Param="causeOfLoss">
+								<rul:Constant Type="string">Special</rul:Constant>
+							</rul:Arg>
+						</rul:RunRule>
+					</rul:Sequence>
+				</rul:Then>
+				<rul:Else>
+					<rul:Sequence>
+						<rul:Choose>
+							<rul:When>
+								<rul:Test>
+									<rul:Equal>
+										<rul:FirstValue Type="string" FromConstant="" FromDataDef="@DeductibleOnBuildingGlass" Order="DataDefInputParamConstant" />
+										<rul:Constant Type="string">250</rul:Constant>
+									</rul:Equal>
+								</rul:Test>
+								<rul:Then>
+									<rul:Sequence>
+										<rul:RunRule Type="decimal" ToDataDef="@DeductibleOnBuildingGlassFactorSpecial" FileName="CommercialPropertyScheduledBuildingPropertyTenantsPolicyRules" Rule="LookupDeductible250Factor" ClearCache="true">
+											<rul:Arg Type="string" Param="causeOfLoss">
+												<rul:Constant Type="string">Special</rul:Constant>
+											</rul:Arg>
+										</rul:RunRule>
+									</rul:Sequence>
+								</rul:Then>
+							</rul:When>
+							<rul:When>
+								<rul:Test>
+									<rul:And>
+										<rul:NotEqual>
+											<rul:FirstValue Type="string" FromConstant="" FromDataDef="@DeductibleOnBuildingGlass" Order="DataDefInputParamConstant" />
+											<rul:Constant Type="string"></rul:Constant>
+										</rul:NotEqual>
+										<rul:GreaterThan>
+											<rul:FirstValue Type="integer" FromConstant="0" FromDataDef="@Limit" Order="DataDefInputParamConstant" />
+											<rul:Constant Type="integer">0</rul:Constant>
+										</rul:GreaterThan>
+									</rul:And>
+								</rul:Test>
+								<rul:Then>
+									<rul:Sequence>
+										<rul:RunRule Type="decimal" ToDataDef="@DeductibleOnBuildingGlassFactorSpecial" FileName="CommercialPropertyScheduledBuildingPropertyTenantsPolicyRules" Rule="LookupDeductibleFactor" ClearCache="true">
+											<rul:Arg Type="string" Param="ded">
+												<rul:FirstValue Type="string" FromConstant="" FromDataDef="@DeductibleOnBuildingGlass" Order="DataDefInputParamConstant" />
+											</rul:Arg>
+											<rul:Arg Type="integer" Param="limit">
+												<rul:FirstValue Type="integer" FromConstant="0" FromDataDef="@Limit" Order="DataDefInputParamConstant" />
+											</rul:Arg>
+											<rul:Arg Type="string" Param="causeOfLossDed">
+												<rul:Constant Type="string">Other Cause Of Loss</rul:Constant>
+											</rul:Arg>
+										</rul:RunRule>
+									</rul:Sequence>
+								</rul:Then>
+							</rul:When>
+							<rul:Otherwise>
+								<rul:Sequence>
+									<rul:Constant Type="decimal" ToDataDef="@DeductibleOnBuildingGlassFactorSpecial">0.0</rul:Constant>
+								</rul:Sequence>
+							</rul:Otherwise>
+						</rul:Choose>
+					</rul:Sequence>
+				</rul:Else>
+			</rul:If>
+		</rul:Sequence>
+	</rul:Rule>
+	<rul:Rule Name="SetDeductibleOnBuildingGlassFactorEQ" Type="none" DataDefGroup="CommercialPropertyScheduledBuildingPropertyTenantsPolicy">
+		<rul:Sequence>
+			<rul:If>
+				<rul:Test>
+					<rul:Equal>
+						<rul:FirstValue Type="string" FromConstant="" FromDataDef="@DeductibleOnBuildingGlass" Order="DataDefInputParamConstant" />
+						<rul:Constant Type="string">Not Applicable</rul:Constant>
+					</rul:Equal>
+				</rul:Test>
+				<rul:Then>
+					<rul:Sequence>
+						<rul:RunRule Type="decimal" ToDataDef="@DeductibleOnBuildingGlassFactorEQ" FileName="CommercialPropertyScheduledBuildingPropertyTenantsPolicyRules" Rule="LookupNoDeductibleFactor" ClearCache="true">
+							<rul:Arg Type="string" Param="causeOfLoss">
+								<rul:Constant Type="string">Other</rul:Constant>
+							</rul:Arg>
+						</rul:RunRule>
+					</rul:Sequence>
+				</rul:Then>
+				<rul:Else>
+					<rul:Sequence>
+						<rul:Choose>
+							<rul:When>
+								<rul:Test>
+									<rul:Equal>
+										<rul:FirstValue Type="string" FromConstant="" FromDataDef="@DeductibleOnBuildingGlass" Order="DataDefInputParamConstant" />
+										<rul:Constant Type="string">250</rul:Constant>
+									</rul:Equal>
+								</rul:Test>
+								<rul:Then>
+									<rul:Sequence>
+										<rul:RunRule Type="decimal" ToDataDef="@DeductibleOnBuildingGlassFactorEQ" FileName="CommercialPropertyScheduledBuildingPropertyTenantsPolicyRules" Rule="LookupDeductible250Factor" ClearCache="true">
+											<rul:Arg Type="string" Param="causeOfLoss">
+												<rul:Constant Type="string">Broad</rul:Constant>
+											</rul:Arg>
+										</rul:RunRule>
+									</rul:Sequence>
+								</rul:Then>
+							</rul:When>
+							<rul:When>
+								<rul:Test>
+									<rul:And>
+										<rul:NotEqual>
+											<rul:FirstValue Type="string" FromConstant="" FromDataDef="@DeductibleOnBuildingGlass" Order="DataDefInputParamConstant" />
+											<rul:Constant Type="string"></rul:Constant>
+										</rul:NotEqual>
+										<rul:GreaterThan>
+											<rul:FirstValue Type="integer" FromConstant="0" FromDataDef="@Limit" Order="DataDefInputParamConstant" />
+											<rul:Constant Type="integer">0</rul:Constant>
+										</rul:GreaterThan>
+									</rul:And>
+								</rul:Test>
+								<rul:Then>
+									<rul:Sequence>
+										<rul:RunRule Type="decimal" ToDataDef="@DeductibleOnBuildingGlassFactorEQ" FileName="CommercialPropertyScheduledBuildingPropertyTenantsPolicyRules" Rule="LookupDeductibleFactor" ClearCache="true">
+											<rul:Arg Type="string" Param="ded">
+												<rul:FirstValue Type="string" FromConstant="" FromDataDef="@DeductibleOnBuildingGlass" Order="DataDefInputParamConstant" />
+											</rul:Arg>
+											<rul:Arg Type="integer" Param="limit">
+												<rul:FirstValue Type="integer" FromConstant="0" FromDataDef="@Limit" Order="DataDefInputParamConstant" />
+											</rul:Arg>
+											<rul:Arg Type="string" Param="causeOfLossDed">
+												<rul:Constant Type="string">Other Cause Of Loss</rul:Constant>
+											</rul:Arg>
+										</rul:RunRule>
+									</rul:Sequence>
+								</rul:Then>
+							</rul:When>
+							<rul:Otherwise>
+								<rul:Sequence>
+									<rul:Constant Type="decimal" ToDataDef="@DeductibleOnBuildingGlassFactorEQ">0.0</rul:Constant>
+								</rul:Sequence>
+							</rul:Otherwise>
+						</rul:Choose>
+					</rul:Sequence>
+				</rul:Else>
+			</rul:If>
+		</rul:Sequence>
+	</rul:Rule>
+	<rul:Rule Name="SetBuildingPropertyOtherThanGlassLimit" Type="none" DataDefGroup="CommercialPropertyScheduledBuildingPropertyTenantsPolicy">
+		<rul:Sequence>
+			<rul:Constant Type="integer" ToDataDef="@BuildingPropertyOtherThanGlassLimit">0</rul:Constant>
+			<rul:WithArgs>
+				<rul:Arg Type="integer" Param="BuildingPropertyOtherThanGlassLimitIncrementParam">
+					<rul:Sum>
+						<rul:ForEach AtInputDataDef="CommercialPropertyScheduledBuildingPropertyTenantsPolicyDetailTable/CommercialPropertyScheduledBuildingPropertyTenantsPolicyDetail">
+							<rul:If>
+								<rul:Test>
+									<rul:And>
+										<rul:GreaterThan>
+											<rul:FirstValue Type="integer" FromConstant="0" FromDataDef="@Limit" Order="DataDefInputParamConstant" />
+											<rul:Constant Type="integer">0</rul:Constant>
+										</rul:GreaterThan>
+										<rul:IsNotNull>
+											<rul:Value Type="integer" FromDataDef="@Limit" />
+										</rul:IsNotNull>
+									</rul:And>
+								</rul:Test>
+								<rul:Then>
+									<rul:FirstValue Type="integer" FromConstant="0" FromDataDef="@Limit" Order="DataDefInputParamConstant" />
+								</rul:Then>
+							</rul:If>
+						</rul:ForEach>
+						<rul:FirstValue Type="integer" FromConstant="0" FromDataDef="@BuildingPropertyOtherThanGlassLimit" Order="DataDefInputParamConstant" />
+					</rul:Sum>
+				</rul:Arg>
+				<rul:Value Type="integer" ToDataDef="@BuildingPropertyOtherThanGlassLimit" FromParam="BuildingPropertyOtherThanGlassLimitIncrementParam" />
+			</rul:WithArgs>
+		</rul:Sequence>
+	</rul:Rule>
+	<rul:Rule Name="SetBuildingPropertyOtherThanGlassBGILOIFactor" Type="none" DataDefGroup="CommercialPropertyScheduledBuildingPropertyTenantsPolicy">
+		<rul:Sequence>
+			<rul:If>
+				<rul:Test>
+					<rul:And>
+						<rul:GreaterThan>
+							<rul:FirstValue Type="integer" FromConstant="0" FromDataDef="@BuildingPropertyOtherThanGlassLimit" Order="DataDefInputParamConstant" />
+							<rul:Constant Type="integer">0</rul:Constant>
+						</rul:GreaterThan>
+						<rul:NotEqual>
+							<rul:FirstValue Type="integer" FromConstant="0" FromDataDef="../../@ConstructionCode" Order="DataDefInputParamConstant" />
+							<rul:Constant Type="integer">0</rul:Constant>
+						</rul:NotEqual>
+					</rul:And>
+				</rul:Test>
+				<rul:Then>
+					<rul:Sequence>
+						<rul:RunRule Type="decimal" ToDataDef="@BuildingPropertyOtherThanGlassBGILOIFactor" FileName="CommercialPropertyScheduledBuildingPropertyTenantsPolicyRules" Rule="LookupBasicGroupILOIFactor" ClearCache="true">
+							<rul:Arg Type="integer" Param="limit">
+								<rul:FirstValue Type="integer" FromConstant="0" FromDataDef="@BuildingPropertyOtherThanGlassLimit" Order="DataDefInputParamConstant" />
+							</rul:Arg>
+						</rul:RunRule>
+					</rul:Sequence>
+				</rul:Then>
+				<rul:Else>
+					<rul:Sequence>
+						<rul:Constant Type="decimal" ToDataDef="@BuildingPropertyOtherThanGlassBGILOIFactor">0.0</rul:Constant>
+					</rul:Sequence>
+				</rul:Else>
+			</rul:If>
+		</rul:Sequence>
+	</rul:Rule>
+	<rul:Rule Name="SetBuildingPropertyOtherThanGlassBGIILOIFactor" Type="none" DataDefGroup="CommercialPropertyScheduledBuildingPropertyTenantsPolicy">
+		<rul:Sequence>
+			<rul:If>
+				<rul:Test>
+					<rul:GreaterThan>
+						<rul:FirstValue Type="integer" FromConstant="0" FromDataDef="@BuildingPropertyOtherThanGlassLimit" Order="DataDefInputParamConstant" />
+						<rul:Constant Type="integer">0</rul:Constant>
+					</rul:GreaterThan>
+				</rul:Test>
+				<rul:Then>
+					<rul:Sequence>
+						<rul:RunRule Type="decimal" ToDataDef="@BuildingPropertyOtherThanGlassBGIILOIFactor" FileName="CommercialPropertyScheduledBuildingPropertyTenantsPolicyRules" Rule="LookupBasicGroupIILOIFactor" ClearCache="true">
+							<rul:Arg Type="integer" Param="limit">
+								<rul:FirstValue Type="integer" FromConstant="0" FromDataDef="@BuildingPropertyOtherThanGlassLimit" Order="DataDefInputParamConstant" />
+							</rul:Arg>
+						</rul:RunRule>
+					</rul:Sequence>
+				</rul:Then>
+				<rul:Else>
+					<rul:Sequence>
+						<rul:Constant Type="decimal" ToDataDef="@BuildingPropertyOtherThanGlassBGIILOIFactor">0.0</rul:Constant>
+					</rul:Sequence>
+				</rul:Else>
+			</rul:If>
+		</rul:Sequence>
+	</rul:Rule>
+	<rul:Rule Name="SetBuildingPropertyOtherThanGlassBroadLOIFactor" Type="none" DataDefGroup="CommercialPropertyScheduledBuildingPropertyTenantsPolicy">
+		<rul:Sequence>
+			<rul:If>
+				<rul:Test>
+					<rul:GreaterThan>
+						<rul:FirstValue Type="integer" FromConstant="0" FromDataDef="@BuildingPropertyOtherThanGlassLimit" Order="DataDefInputParamConstant" />
+						<rul:Constant Type="integer">0</rul:Constant>
+					</rul:GreaterThan>
+				</rul:Test>
+				<rul:Then>
+					<rul:Sequence>
+						<rul:RunRule Type="decimal" ToDataDef="@BuildingPropertyOtherThanGlassBroadLOIFactor" FileName="CommercialPropertyScheduledBuildingPropertyTenantsPolicyRules" Rule="LookupBroadSpecialLOIFactor" ClearCache="true">
+							<rul:Arg Type="integer" Param="limit">
+								<rul:FirstValue Type="integer" FromConstant="0" FromDataDef="@BuildingPropertyOtherThanGlassLimit" Order="DataDefInputParamConstant" />
+							</rul:Arg>
+						</rul:RunRule>
+					</rul:Sequence>
+				</rul:Then>
+				<rul:Else>
+					<rul:Sequence>
+						<rul:Constant Type="decimal" ToDataDef="@BuildingPropertyOtherThanGlassBroadLOIFactor">0.0</rul:Constant>
+					</rul:Sequence>
+				</rul:Else>
+			</rul:If>
+		</rul:Sequence>
+	</rul:Rule>
+	<rul:Rule Name="SetBuildingPropertyOtherThanGlassSpecialLOIFactor" Type="none" DataDefGroup="CommercialPropertyScheduledBuildingPropertyTenantsPolicy">
+		<rul:Sequence>
+			<rul:If>
+				<rul:Test>
+					<rul:GreaterThan>
+						<rul:FirstValue Type="integer" FromConstant="0" FromDataDef="@BuildingPropertyOtherThanGlassLimit" Order="DataDefInputParamConstant" />
+						<rul:Constant Type="integer">0</rul:Constant>
+					</rul:GreaterThan>
+				</rul:Test>
+				<rul:Then>
+					<rul:Sequence>
+						<rul:RunRule Type="decimal" ToDataDef="@BuildingPropertyOtherThanGlassSpecialLOIFactor" FileName="CommercialPropertyScheduledBuildingPropertyTenantsPolicyRules" Rule="LookupBroadSpecialLOIFactor" ClearCache="true">
+							<rul:Arg Type="integer" Param="limit">
+								<rul:FirstValue Type="integer" FromConstant="0" FromDataDef="@BuildingPropertyOtherThanGlassLimit" Order="DataDefInputParamConstant" />
+							</rul:Arg>
+						</rul:RunRule>
+					</rul:Sequence>
+				</rul:Then>
+				<rul:Else>
+					<rul:Sequence>
+						<rul:Constant Type="decimal" ToDataDef="@BuildingPropertyOtherThanGlassSpecialLOIFactor">0.0</rul:Constant>
+					</rul:Sequence>
+				</rul:Else>
+			</rul:If>
+		</rul:Sequence>
+	</rul:Rule>
+	<rul:Rule Name="SetDeductibleOnBldgPropOTGFactorBasicGroupI" Type="none" DataDefGroup="CommercialPropertyScheduledBuildingPropertyTenantsPolicy">
+		<rul:Sequence>
+			<rul:Choose>
+				<rul:When>
+					<rul:Test>
+						<rul:Equal>
+							<rul:FirstValue Type="string" FromConstant="" FromDataDef="@DeductibleOnBuildingPropertyOtherThanGlass" Order="DataDefInputParamConstant" />
+							<rul:Constant Type="string">Not Applicable</rul:Constant>
+						</rul:Equal>
+					</rul:Test>
+					<rul:Then>
+						<rul:Sequence>
+							<rul:Constant Type="decimal" ToDataDef="@DeductibleOnBldgPropOTGFactorBasicGroupI">1.0</rul:Constant>
+						</rul:Sequence>
+					</rul:Then>
+				</rul:When>
+				<rul:When>
+					<rul:Test>
+						<rul:Equal>
+							<rul:FirstValue Type="string" FromConstant="" FromDataDef="@DeductibleOnBuildingPropertyOtherThanGlass" Order="DataDefInputParamConstant" />
+							<rul:Constant Type="string">250</rul:Constant>
+						</rul:Equal>
+					</rul:Test>
+					<rul:Then>
+						<rul:Sequence>
+							<rul:RunRule Type="decimal" ToDataDef="@DeductibleOnBldgPropOTGFactorBasicGroupI" FileName="CommercialPropertyScheduledBuildingPropertyTenantsPolicyRules" Rule="LookupDeductible250Factor" ClearCache="true">
+								<rul:Arg Type="string" Param="causeOfLoss">
+									<rul:Constant Type="string">Basic</rul:Constant>
+								</rul:Arg>
+							</rul:RunRule>
+						</rul:Sequence>
+					</rul:Then>
+				</rul:When>
+				<rul:When>
+					<rul:Test>
+						<rul:And>
+							<rul:NotEqual>
+								<rul:FirstValue Type="string" FromConstant="" FromDataDef="@DeductibleOnBuildingPropertyOtherThanGlass" Order="DataDefInputParamConstant" />
+								<rul:Constant Type="string"></rul:Constant>
+							</rul:NotEqual>
+							<rul:GreaterThan>
+								<rul:FirstValue Type="integer" FromConstant="0" FromDataDef="@BuildingPropertyOtherThanGlassLimit" Order="DataDefInputParamConstant" />
+								<rul:Constant Type="integer">0</rul:Constant>
+							</rul:GreaterThan>
+						</rul:And>
+					</rul:Test>
+					<rul:Then>
+						<rul:Sequence>
+							<rul:RunRule Type="decimal" ToDataDef="@DeductibleOnBldgPropOTGFactorBasicGroupI" FileName="CommercialPropertyScheduledBuildingPropertyTenantsPolicyRules" Rule="LookupDeductibleFactor" ClearCache="true">
+								<rul:Arg Type="string" Param="ded">
+									<rul:FirstValue Type="string" FromConstant="" FromDataDef="@DeductibleOnBuildingPropertyOtherThanGlass" Order="DataDefInputParamConstant" />
+								</rul:Arg>
+								<rul:Arg Type="integer" Param="limit">
+									<rul:FirstValue Type="integer" FromConstant="0" FromDataDef="@BuildingPropertyOtherThanGlassLimit" Order="DataDefInputParamConstant" />
+								</rul:Arg>
+								<rul:Arg Type="string" Param="causeOfLossDed">
+									<rul:Constant Type="string">Basic Group I</rul:Constant>
+								</rul:Arg>
+							</rul:RunRule>
+						</rul:Sequence>
+					</rul:Then>
+				</rul:When>
+				<rul:Otherwise>
+					<rul:Sequence>
+						<rul:Constant Type="decimal" ToDataDef="@DeductibleOnBldgPropOTGFactorBasicGroupI">0.0</rul:Constant>
+					</rul:Sequence>
+				</rul:Otherwise>
+			</rul:Choose>
+		</rul:Sequence>
+	</rul:Rule>
+	<rul:Rule Name="SetDeductibleOnBldgPropOTGFactorBasicGroupII" Type="none" DataDefGroup="CommercialPropertyScheduledBuildingPropertyTenantsPolicy">
+		<rul:Sequence>
+			<rul:Choose>
+				<rul:When>
+					<rul:Test>
+						<rul:Equal>
+							<rul:FirstValue Type="string" FromConstant="" FromDataDef="@DeductibleOnBuildingPropertyOtherThanGlass" Order="DataDefInputParamConstant" />
+							<rul:Constant Type="string">Not Applicable</rul:Constant>
+						</rul:Equal>
+					</rul:Test>
+					<rul:Then>
+						<rul:Sequence>
+							<rul:Constant Type="decimal" ToDataDef="@DeductibleOnBldgPropOTGFactorBasicGroupII">1.0</rul:Constant>
+						</rul:Sequence>
+					</rul:Then>
+				</rul:When>
+				<rul:When>
+					<rul:Test>
+						<rul:Equal>
+							<rul:FirstValue Type="string" FromConstant="" FromDataDef="@DeductibleOnBuildingPropertyOtherThanGlass" Order="DataDefInputParamConstant" />
+							<rul:Constant Type="string">250</rul:Constant>
+						</rul:Equal>
+					</rul:Test>
+					<rul:Then>
+						<rul:Sequence>
+							<rul:RunRule Type="decimal" ToDataDef="@DeductibleOnBldgPropOTGFactorBasicGroupII" FileName="CommercialPropertyScheduledBuildingPropertyTenantsPolicyRules" Rule="LookupDeductible250Factor" ClearCache="true">
+								<rul:Arg Type="string" Param="causeOfLoss">
+									<rul:Constant Type="string">Basic</rul:Constant>
+								</rul:Arg>
+							</rul:RunRule>
+						</rul:Sequence>
+					</rul:Then>
+				</rul:When>
+				<rul:When>
+					<rul:Test>
+						<rul:And>
+							<rul:NotEqual>
+								<rul:FirstValue Type="string" FromConstant="" FromDataDef="@DeductibleOnBuildingPropertyOtherThanGlass" Order="DataDefInputParamConstant" />
+								<rul:Constant Type="string"></rul:Constant>
+							</rul:NotEqual>
+							<rul:GreaterThan>
+								<rul:FirstValue Type="integer" FromConstant="0" FromDataDef="@BuildingPropertyOtherThanGlassLimit" Order="DataDefInputParamConstant" />
+								<rul:Constant Type="integer">0</rul:Constant>
+							</rul:GreaterThan>
+						</rul:And>
+					</rul:Test>
+					<rul:Then>
+						<rul:Sequence>
+							<rul:RunRule Type="decimal" ToDataDef="@DeductibleOnBldgPropOTGFactorBasicGroupII" FileName="CommercialPropertyScheduledBuildingPropertyTenantsPolicyRules" Rule="LookupDeductibleFactor" ClearCache="true">
+								<rul:Arg Type="string" Param="ded">
+									<rul:FirstValue Type="string" FromConstant="" FromDataDef="@DeductibleOnBuildingPropertyOtherThanGlass" Order="DataDefInputParamConstant" />
+								</rul:Arg>
+								<rul:Arg Type="integer" Param="limit">
+									<rul:FirstValue Type="integer" FromConstant="0" FromDataDef="@BuildingPropertyOtherThanGlassLimit" Order="DataDefInputParamConstant" />
+								</rul:Arg>
+								<rul:Arg Type="string" Param="causeOfLossDed">
+									<rul:Constant Type="string">Basic Group II</rul:Constant>
+								</rul:Arg>
+							</rul:RunRule>
+						</rul:Sequence>
+					</rul:Then>
+				</rul:When>
+				<rul:Otherwise>
+					<rul:Sequence>
+						<rul:Constant Type="decimal" ToDataDef="@DeductibleOnBldgPropOTGFactorBasicGroupII">0.0</rul:Constant>
+					</rul:Sequence>
+				</rul:Otherwise>
+			</rul:Choose>
+		</rul:Sequence>
+	</rul:Rule>
+	<rul:Rule Name="SetDeductibleOnBldgPropOTGFactorBroad" Type="none" DataDefGroup="CommercialPropertyScheduledBuildingPropertyTenantsPolicy">
+		<rul:Sequence>
+			<rul:Choose>
+				<rul:When>
+					<rul:Test>
+						<rul:Equal>
+							<rul:FirstValue Type="string" FromConstant="" FromDataDef="@DeductibleOnBuildingPropertyOtherThanGlass" Order="DataDefInputParamConstant" />
+							<rul:Constant Type="string">Not Applicable</rul:Constant>
+						</rul:Equal>
+					</rul:Test>
+					<rul:Then>
+						<rul:Sequence>
+							<rul:Constant Type="decimal" ToDataDef="@DeductibleOnBldgPropOTGFactorBroad">1.0</rul:Constant>
+						</rul:Sequence>
+					</rul:Then>
+				</rul:When>
+				<rul:When>
+					<rul:Test>
+						<rul:Equal>
+							<rul:FirstValue Type="string" FromConstant="" FromDataDef="@DeductibleOnBuildingPropertyOtherThanGlass" Order="DataDefInputParamConstant" />
+							<rul:Constant Type="string">250</rul:Constant>
+						</rul:Equal>
+					</rul:Test>
+					<rul:Then>
+						<rul:Sequence>
+							<rul:RunRule Type="decimal" ToDataDef="@DeductibleOnBldgPropOTGFactorBroad" FileName="CommercialPropertyScheduledBuildingPropertyTenantsPolicyRules" Rule="LookupDeductible250Factor" ClearCache="true">
+								<rul:Arg Type="string" Param="causeOfLoss">
+									<rul:Constant Type="string">Broad</rul:Constant>
+								</rul:Arg>
+							</rul:RunRule>
+						</rul:Sequence>
+					</rul:Then>
+				</rul:When>
+				<rul:When>
+					<rul:Test>
+						<rul:And>
+							<rul:NotEqual>
+								<rul:FirstValue Type="string" FromConstant="" FromDataDef="@DeductibleOnBuildingPropertyOtherThanGlass" Order="DataDefInputParamConstant" />
+								<rul:Constant Type="string"></rul:Constant>
+							</rul:NotEqual>
+							<rul:GreaterThan>
+								<rul:FirstValue Type="integer" FromConstant="0" FromDataDef="@BuildingPropertyOtherThanGlassLimit" Order="DataDefInputParamConstant" />
+								<rul:Constant Type="integer">0</rul:Constant>
+							</rul:GreaterThan>
+						</rul:And>
+					</rul:Test>
+					<rul:Then>
+						<rul:Sequence>
+							<rul:RunRule Type="decimal" ToDataDef="@DeductibleOnBldgPropOTGFactorBroad" FileName="CommercialPropertyScheduledBuildingPropertyTenantsPolicyRules" Rule="LookupDeductibleFactor" ClearCache="true">
+								<rul:Arg Type="string" Param="ded">
+									<rul:FirstValue Type="string" FromConstant="" FromDataDef="@DeductibleOnBuildingPropertyOtherThanGlass" Order="DataDefInputParamConstant" />
+								</rul:Arg>
+								<rul:Arg Type="integer" Param="limit">
+									<rul:FirstValue Type="integer" FromConstant="0" FromDataDef="@BuildingPropertyOtherThanGlassLimit" Order="DataDefInputParamConstant" />
+								</rul:Arg>
+								<rul:Arg Type="string" Param="causeOfLossDed">
+									<rul:Constant Type="string">Other Cause Of Loss</rul:Constant>
+								</rul:Arg>
+							</rul:RunRule>
+						</rul:Sequence>
+					</rul:Then>
+				</rul:When>
+				<rul:Otherwise>
+					<rul:Sequence>
+						<rul:Constant Type="decimal" ToDataDef="@DeductibleOnBldgPropOTGFactorBroad">0.0</rul:Constant>
+					</rul:Sequence>
+				</rul:Otherwise>
+			</rul:Choose>
+		</rul:Sequence>
+	</rul:Rule>
+	<rul:Rule Name="SetDeductibleOnBldgPropOTGFactorSpecial" Type="none" DataDefGroup="CommercialPropertyScheduledBuildingPropertyTenantsPolicy">
+		<rul:Sequence>
+			<rul:Choose>
+				<rul:When>
+					<rul:Test>
+						<rul:Equal>
+							<rul:FirstValue Type="string" FromConstant="" FromDataDef="@DeductibleOnBuildingPropertyOtherThanGlass" Order="DataDefInputParamConstant" />
+							<rul:Constant Type="string">Not Applicable</rul:Constant>
+						</rul:Equal>
+					</rul:Test>
+					<rul:Then>
+						<rul:Sequence>
+							<rul:Constant Type="decimal" ToDataDef="@DeductibleOnBldgPropOTGFactorSpecial">1.0</rul:Constant>
+						</rul:Sequence>
+					</rul:Then>
+				</rul:When>
+				<rul:When>
+					<rul:Test>
+						<rul:Equal>
+							<rul:FirstValue Type="string" FromConstant="" FromDataDef="@DeductibleOnBuildingPropertyOtherThanGlass" Order="DataDefInputParamConstant" />
+							<rul:Constant Type="string">250</rul:Constant>
+						</rul:Equal>
+					</rul:Test>
+					<rul:Then>
+						<rul:Sequence>
+							<rul:RunRule Type="decimal" ToDataDef="@DeductibleOnBldgPropOTGFactorSpecial" FileName="CommercialPropertyScheduledBuildingPropertyTenantsPolicyRules" Rule="LookupDeductible250Factor" ClearCache="true">
+								<rul:Arg Type="string" Param="causeOfLoss">
+									<rul:Constant Type="string">Special</rul:Constant>
+								</rul:Arg>
+							</rul:RunRule>
+						</rul:Sequence>
+					</rul:Then>
+				</rul:When>
+				<rul:When>
+					<rul:Test>
+						<rul:And>
+							<rul:NotEqual>
+								<rul:FirstValue Type="string" FromConstant="" FromDataDef="@DeductibleOnBuildingPropertyOtherThanGlass" Order="DataDefInputParamConstant" />
+								<rul:Constant Type="string"></rul:Constant>
+							</rul:NotEqual>
+							<rul:GreaterThan>
+								<rul:FirstValue Type="integer" FromConstant="0" FromDataDef="@BuildingPropertyOtherThanGlassLimit" Order="DataDefInputParamConstant" />
+								<rul:Constant Type="integer">0</rul:Constant>
+							</rul:GreaterThan>
+						</rul:And>
+					</rul:Test>
+					<rul:Then>
+						<rul:Sequence>
+							<rul:RunRule Type="decimal" ToDataDef="@DeductibleOnBldgPropOTGFactorSpecial" FileName="CommercialPropertyScheduledBuildingPropertyTenantsPolicyRules" Rule="LookupDeductibleFactor" ClearCache="true">
+								<rul:Arg Type="string" Param="ded">
+									<rul:FirstValue Type="string" FromConstant="" FromDataDef="@DeductibleOnBuildingPropertyOtherThanGlass" Order="DataDefInputParamConstant" />
+								</rul:Arg>
+								<rul:Arg Type="integer" Param="limit">
+									<rul:FirstValue Type="integer" FromConstant="0" FromDataDef="@BuildingPropertyOtherThanGlassLimit" Order="DataDefInputParamConstant" />
+								</rul:Arg>
+								<rul:Arg Type="string" Param="causeOfLossDed">
+									<rul:Constant Type="string">Other Cause Of Loss</rul:Constant>
+								</rul:Arg>
+							</rul:RunRule>
+						</rul:Sequence>
+					</rul:Then>
+				</rul:When>
+				<rul:Otherwise>
+					<rul:Sequence>
+						<rul:Constant Type="decimal" ToDataDef="@DeductibleOnBldgPropOTGFactorSpecial">0.0</rul:Constant>
+					</rul:Sequence>
+				</rul:Otherwise>
+			</rul:Choose>
+		</rul:Sequence>
+	</rul:Rule>
+	<rul:Rule Name="SetDeductibleOnBldgPropOTGFactorEQ" Type="none" DataDefGroup="CommercialPropertyScheduledBuildingPropertyTenantsPolicy">
+		<rul:Sequence>
+			<rul:Choose>
+				<rul:When>
+					<rul:Test>
+						<rul:Equal>
+							<rul:FirstValue Type="string" FromConstant="" FromDataDef="@DeductibleOnBuildingPropertyOtherThanGlass" Order="DataDefInputParamConstant" />
+							<rul:Constant Type="string">Not Applicable</rul:Constant>
+						</rul:Equal>
+					</rul:Test>
+					<rul:Then>
+						<rul:Sequence>
+							<rul:Constant Type="decimal" ToDataDef="@DeductibleOnBldgPropOTGFactorEQ">1.0</rul:Constant>
+						</rul:Sequence>
+					</rul:Then>
+				</rul:When>
+				<rul:When>
+					<rul:Test>
+						<rul:Equal>
+							<rul:FirstValue Type="string" FromConstant="" FromDataDef="@DeductibleOnBuildingPropertyOtherThanGlass" Order="DataDefInputParamConstant" />
+							<rul:Constant Type="string">250</rul:Constant>
+						</rul:Equal>
+					</rul:Test>
+					<rul:Then>
+						<rul:Sequence>
+							<rul:RunRule Type="decimal" ToDataDef="@DeductibleOnBldgPropOTGFactorEQ" FileName="CommercialPropertyScheduledBuildingPropertyTenantsPolicyRules" Rule="LookupDeductible250Factor" ClearCache="true">
+								<rul:Arg Type="string" Param="causeOfLoss">
+									<rul:Constant Type="string">Broad</rul:Constant>
+								</rul:Arg>
+							</rul:RunRule>
+						</rul:Sequence>
+					</rul:Then>
+				</rul:When>
+				<rul:When>
+					<rul:Test>
+						<rul:And>
+							<rul:NotEqual>
+								<rul:FirstValue Type="string" FromConstant="" FromDataDef="@DeductibleOnBuildingPropertyOtherThanGlass" Order="DataDefInputParamConstant" />
+								<rul:Constant Type="string"></rul:Constant>
+							</rul:NotEqual>
+							<rul:GreaterThan>
+								<rul:FirstValue Type="integer" FromConstant="0" FromDataDef="@BuildingPropertyOtherThanGlassLimit" Order="DataDefInputParamConstant" />
+								<rul:Constant Type="integer">0</rul:Constant>
+							</rul:GreaterThan>
+						</rul:And>
+					</rul:Test>
+					<rul:Then>
+						<rul:Sequence>
+							<rul:RunRule Type="decimal" ToDataDef="@DeductibleOnBldgPropOTGFactorEQ" FileName="CommercialPropertyScheduledBuildingPropertyTenantsPolicyRules" Rule="LookupDeductibleFactor" ClearCache="true">
+								<rul:Arg Type="string" Param="ded">
+									<rul:FirstValue Type="string" FromConstant="" FromDataDef="@DeductibleOnBuildingPropertyOtherThanGlass" Order="DataDefInputParamConstant" />
+								</rul:Arg>
+								<rul:Arg Type="integer" Param="limit">
+									<rul:FirstValue Type="integer" FromConstant="0" FromDataDef="@BuildingPropertyOtherThanGlassLimit" Order="DataDefInputParamConstant" />
+								</rul:Arg>
+								<rul:Arg Type="string" Param="causeOfLossDed">
+									<rul:Constant Type="string">Other Cause Of Loss</rul:Constant>
+								</rul:Arg>
+							</rul:RunRule>
+						</rul:Sequence>
+					</rul:Then>
+				</rul:When>
+				<rul:Otherwise>
+					<rul:Sequence>
+						<rul:Constant Type="decimal" ToDataDef="@DeductibleOnBldgPropOTGFactorEQ">0.0</rul:Constant>
+					</rul:Sequence>
+				</rul:Otherwise>
+			</rul:Choose>
+		</rul:Sequence>
+	</rul:Rule>
+	<rul:Rule Name="ErcRunPostUnderwritingLogic" Type="none" DataDefGroup="CommercialPropertyScheduledBuildingPropertyTenantsPolicy">
+		<rul:Sequence>
+			<rul:RunRule Type="none" FileName="CommercialPropertyScheduledBuildingPropertyTenantsPolicyRules" Rule="DoMessageDetailPagesAreNotApplicableWithSelectedCoverage" ClearCache="true" />
+			<rul:RunRule Type="none" FileName="CommercialPropertyScheduledBuildingPropertyTenantsPolicyRules" Rule="DoMessageDetailPagesAreNeededWithSelectedCoverage" ClearCache="true" />
+		</rul:Sequence>
+	</rul:Rule>
+	<rul:Rule Name="DoMessageDetailPagesAreNotApplicableWithSelectedCoverage" Type="none" DataDefGroup="CommercialPropertyScheduledBuildingPropertyTenantsPolicy">
+		<rul:Sequence>
+			<rul:If>
+				<rul:Test>
+					<rul:And>
+						<rul:Equal>
+							<rul:FirstValue Type="string" FromConstant="" FromDataDef="@CovType" Order="DataDefInputParamConstant" />
+							<rul:Constant Type="string">Building Glass</rul:Constant>
+						</rul:Equal>
+						<rul:Exist AtInputDataDef="CommercialPropertyScheduledBuildingPropertyTenantsPolicyDetailTable/CommercialPropertyScheduledBuildingPropertyTenantsPolicyDetail" />
+					</rul:And>
+				</rul:Test>
+				<rul:Then>
+					<rul:RunRule Type="none" FileName="MessageHelper" Rule="AddErrorMessage" ClearCache="true">
+						<rul:Arg Type="string" Param="Message">
+							<rul:Constant Type="string">Detail page(s) are not applicable with selected coverage</rul:Constant>
+						</rul:Arg>
+					</rul:RunRule>
+				</rul:Then>
+			</rul:If>
+		</rul:Sequence>
+	</rul:Rule>
+	<rul:Rule Name="DoMessageDetailPagesAreNeededWithSelectedCoverage" Type="none" DataDefGroup="CommercialPropertyScheduledBuildingPropertyTenantsPolicy">
+		<rul:Sequence>
+			<rul:If>
+				<rul:Test>
+					<rul:And>
+						<rul:Or>
+							<rul:Equal>
+								<rul:FirstValue Type="string" FromConstant="" FromDataDef="@CovType" Order="DataDefInputParamConstant" />
+								<rul:Constant Type="string">Building Property Other Than Glass</rul:Constant>
+							</rul:Equal>
+							<rul:Equal>
+								<rul:FirstValue Type="string" FromConstant="" FromDataDef="@CovType" Order="DataDefInputParamConstant" />
+								<rul:Constant Type="string">Building Glass And Building Property Other Than Glass</rul:Constant>
+							</rul:Equal>
+						</rul:Or>
+						<rul:NotExist AtInputDataDef="CommercialPropertyScheduledBuildingPropertyTenantsPolicyDetailTable/CommercialPropertyScheduledBuildingPropertyTenantsPolicyDetail" />
+					</rul:And>
+				</rul:Test>
+				<rul:Then>
+					<rul:RunRule Type="none" FileName="MessageHelper" Rule="AddErrorMessage" ClearCache="true">
+						<rul:Arg Type="string" Param="Message">
+							<rul:Constant Type="string">Detail page(s) are needed with selected coverage</rul:Constant>
+						</rul:Arg>
+					</rul:RunRule>
+				</rul:Then>
+			</rul:If>
+		</rul:Sequence>
+	</rul:Rule>
+	<rul:Rule Name="ErcProcess" Type="none" DataDefGroup="CommercialPropertyScheduledBuildingPropertyTenantsPolicy">
+		<rul:Sequence>
+			<rul:RunRule Type="none" FileName="CommercialPropertyScheduledBuildingPropertyTenantsPolicyRules" Rule="ErcSetRatesAndFactors" ClearCache="true" />
+			<rul:ForEach AtDataDef="CommercialPropertyScheduledBuildingPropertyTenantsPolicyDetailTable/CommercialPropertyScheduledBuildingPropertyTenantsPolicyDetail">
+				<rul:RunRule Type="none" FileName="CommercialPropertyScheduledBuildingPropertyTenantsPolicyDetailRules" Rule="ErcProcess" ClearCache="true" />
+			</rul:ForEach>
+			<rul:Locate AtDataDef="CommercialPropertyScheduledBuildingPropertyTenantsPolicyBuildingGlassBasicGroupICov">
+				<rul:RunRule Type="none" FileName="CommercialPropertyScheduledBuildingPropertyTenantsPolicyBuildingGlassBasicGroupICovRules" Rule="ErcProcess" ClearCache="true" />
+			</rul:Locate>
+			<rul:Locate AtDataDef="CommercialPropertyScheduledBuildingPropertyTenantsPolicyBuildingGlassBasicGroupIICov">
+				<rul:RunRule Type="none" FileName="CommercialPropertyScheduledBuildingPropertyTenantsPolicyBuildingGlassBasicGroupIICovRules" Rule="ErcProcess" ClearCache="true" />
+			</rul:Locate>
+			<rul:Locate AtDataDef="CommercialPropertyScheduledBuildingPropertyTenantsPolicyBuildingGlassBroadCov">
+				<rul:RunRule Type="none" FileName="CommercialPropertyScheduledBuildingPropertyTenantsPolicyBuildingGlassBroadCovRules" Rule="ErcProcess" ClearCache="true" />
+			</rul:Locate>
+			<rul:Locate AtDataDef="CommercialPropertyScheduledBuildingPropertyTenantsPolicyBuildingGlassEarthquakeCov">
+				<rul:RunRule Type="none" FileName="CommercialPropertyScheduledBuildingPropertyTenantsPolicyBuildingGlassEarthquakeCovRules" Rule="ErcProcess" ClearCache="true" />
+			</rul:Locate>
+			<rul:Locate AtDataDef="CommercialPropertyScheduledBuildingPropertyTenantsPolicyBuildingGlassSpecialCov">
+				<rul:RunRule Type="none" FileName="CommercialPropertyScheduledBuildingPropertyTenantsPolicyBuildingGlassSpecialCovRules" Rule="ErcProcess" ClearCache="true" />
+			</rul:Locate>
+			<rul:RunRule Type="none" FileName="CommercialPropertyScheduledBuildingPropertyTenantsPolicyRules" Rule="ErcRunPostUnderwritingLogic" ClearCache="true" />
+		</rul:Sequence>
+	</rul:Rule>
+	<rul:Rule Name="LookupCoinsuranceFactor" Type="decimal" DataDefGroup="CommercialPropertyScheduledBuildingPropertyTenantsPolicy">
+		<rul:FirstNonNull Type="decimal">
+			<rul:Lookup Type="decimal" MatrixCol="Factor" MatrixDef="CoinsuranceFactorDef" MatrixFromConstant="CoinsuranceFactor" ResultMode="FirstResult">
+				<rul:Keys>
+					<rul:Value Type="string" FromDataDef="/State/@Code" />
+					<rul:FirstValue Type="string" FromConstant="" FromDataDef="@Coinsurance" Order="DataDefInputParamConstant" />
+				</rul:Keys>
+			</rul:Lookup>
+			<rul:Lookup Type="decimal" MatrixCol="Factor" MatrixDef="CoinsuranceFactorDef" MatrixFromConstant="CoinsuranceFactor" ResultMode="SingleResult">
+				<rul:Keys>
+					<rul:Constant Type="string">CW</rul:Constant>
+					<rul:FirstValue Type="string" FromConstant="" FromDataDef="@Coinsurance" Order="DataDefInputParamConstant" />
+				</rul:Keys>
+			</rul:Lookup>
+		</rul:FirstNonNull>
+	</rul:Rule>
+	<rul:Rule Name="LookupBroadFormBaseRate" Type="decimal" DataDefGroup="CommercialPropertyScheduledBuildingPropertyTenantsPolicy">
+		<rul:FirstNonNull Type="decimal">
+			<rul:Lookup Type="decimal" MatrixCol="Rate" MatrixDef="BroadFormBaseRateDef" MatrixFromConstant="BroadFormBaseRate" ResultMode="FirstResult">
+				<rul:Keys>
+					<rul:Value Type="string" FromDataDef="/State/@Code" />
+					<rul:FirstValue Type="string" FromConstant="" FromDataDef="../../@ConstructionTypeToUse" Order="DataDefInputParamConstant" />
+					<rul:Constant Type="string">Bldg</rul:Constant>
+				</rul:Keys>
+			</rul:Lookup>
+			<rul:Lookup Type="decimal" MatrixCol="Rate" MatrixDef="BroadFormBaseRateDef" MatrixFromConstant="BroadFormBaseRate" ResultMode="SingleResult">
+				<rul:Keys>
+					<rul:Constant Type="string">CW</rul:Constant>
+					<rul:FirstValue Type="string" FromConstant="" FromDataDef="../../@ConstructionTypeToUse" Order="DataDefInputParamConstant" />
+					<rul:Constant Type="string">Bldg</rul:Constant>
+				</rul:Keys>
+			</rul:Lookup>
+		</rul:FirstNonNull>
+	</rul:Rule>
+	<rul:Rule Name="LookupSpecialBuildingRate" Type="decimal" DataDefGroup="CommercialPropertyScheduledBuildingPropertyTenantsPolicy">
+		<rul:FirstNonNull Type="decimal">
+			<rul:Lookup Type="decimal" MatrixCol="Rate" MatrixDef="SpecialBuildingRateDef" MatrixFromConstant="SpecialBuildingRate" ResultMode="FirstResult">
+				<rul:Keys>
+					<rul:Value Type="string" FromDataDef="/State/@Code" />
+					<rul:Constant Type="string">Y</rul:Constant>
+				</rul:Keys>
+			</rul:Lookup>
+			<rul:Lookup Type="decimal" MatrixCol="Rate" MatrixDef="SpecialBuildingRateDef" MatrixFromConstant="SpecialBuildingRate" ResultMode="SingleResult">
+				<rul:Keys>
+					<rul:Constant Type="string">CW</rul:Constant>
+					<rul:Constant Type="string">Y</rul:Constant>
+				</rul:Keys>
+			</rul:Lookup>
+		</rul:FirstNonNull>
+	</rul:Rule>
+	<rul:Rule Name="LookupBasicGroupILOIFactor" Type="decimal" DataDefGroup="CommercialPropertyScheduledBuildingPropertyTenantsPolicy">
+		<rul:Param Name="limit" Type="integer" />
+		<rul:Round DecimalPlaces="3">
+			<rul:FirstNonNull Type="decimal">
+				<rul:Round DecimalPlaces="4">
+					<rul:Lookup Type="decimal" MatrixCol="Factor" MatrixDef="BasicGroupILOIFactorBldgDef" MatrixFromConstant="BasicGroupILOIFactorBldg" ResultMode="FirstResult">
+						<rul:Keys>
+							<rul:Value Type="string" FromDataDef="/State/@Code" />
+							<rul:Value Type="integer" FromParam="limit" />
+							<rul:FirstValue Type="integer" FromConstant="0" FromDataDef="../../@ConstructionCode" Order="DataDefInputParamConstant" />
+						</rul:Keys>
+					</rul:Lookup>
+				</rul:Round>
+				<rul:Round DecimalPlaces="4">
+					<rul:Lookup Type="decimal" MatrixCol="Factor" MatrixDef="BasicGroupILOIFactorBldgDef" MatrixFromConstant="BasicGroupILOIFactorBldg" ResultMode="SingleResult">
+						<rul:Keys>
+							<rul:Constant Type="string">CW</rul:Constant>
+							<rul:Value Type="integer" FromParam="limit" />
+							<rul:FirstValue Type="integer" FromConstant="0" FromDataDef="../../@ConstructionCode" Order="DataDefInputParamConstant" />
+						</rul:Keys>
+					</rul:Lookup>
+				</rul:Round>
+			</rul:FirstNonNull>
+		</rul:Round>
+	</rul:Rule>
+	<rul:Rule Name="LookupBasicGroupIILOIFactor" Type="decimal" DataDefGroup="CommercialPropertyScheduledBuildingPropertyTenantsPolicy">
+		<rul:Param Name="limit" Type="integer" />
+		<rul:Round DecimalPlaces="3">
+			<rul:FirstNonNull Type="decimal">
+				<rul:Round DecimalPlaces="4">
+					<rul:Lookup Type="decimal" MatrixCol="Factor" MatrixDef="BasicGroupIILOIFactorBldgDef" MatrixFromConstant="BasicGroupIILOIFactorBldg" ResultMode="FirstResult">
+						<rul:Keys>
+							<rul:Value Type="string" FromDataDef="/State/@Code" />
+							<rul:Value Type="integer" FromParam="limit" />
+						</rul:Keys>
+					</rul:Lookup>
+				</rul:Round>
+				<rul:Round DecimalPlaces="4">
+					<rul:Lookup Type="decimal" MatrixCol="Factor" MatrixDef="BasicGroupIILOIFactorBldgDef" MatrixFromConstant="BasicGroupIILOIFactorBldg" ResultMode="SingleResult">
+						<rul:Keys>
+							<rul:Constant Type="string">CW</rul:Constant>
+							<rul:Value Type="integer" FromParam="limit" />
+						</rul:Keys>
+					</rul:Lookup>
+				</rul:Round>
+			</rul:FirstNonNull>
+		</rul:Round>
+	</rul:Rule>
+	<rul:Rule Name="LookupBroadSpecialLOIFactor" Type="decimal" DataDefGroup="CommercialPropertyScheduledBuildingPropertyTenantsPolicy">
+		<rul:Param Name="limit" Type="integer" />
+		<rul:Round DecimalPlaces="3">
+			<rul:FirstNonNull Type="decimal">
+				<rul:Round DecimalPlaces="4">
+					<rul:Lookup Type="decimal" MatrixCol="Factor" MatrixDef="BroadSpecialLOIFactorBldgDef" MatrixFromConstant="BroadSpecialLOIFactorBldg" ResultMode="FirstResult">
+						<rul:Keys>
+							<rul:Value Type="string" FromDataDef="/State/@Code" />
+							<rul:Value Type="integer" FromParam="limit" />
+						</rul:Keys>
+					</rul:Lookup>
+				</rul:Round>
+				<rul:Round DecimalPlaces="4">
+					<rul:Lookup Type="decimal" MatrixCol="Factor" MatrixDef="BroadSpecialLOIFactorBldgDef" MatrixFromConstant="BroadSpecialLOIFactorBldg" ResultMode="SingleResult">
+						<rul:Keys>
+							<rul:Constant Type="string">CW</rul:Constant>
+							<rul:Value Type="integer" FromParam="limit" />
+						</rul:Keys>
+					</rul:Lookup>
+				</rul:Round>
+			</rul:FirstNonNull>
+		</rul:Round>
+	</rul:Rule>
+	<rul:Rule Name="LookupLessThan80PctMultiplicativeFactor" Type="decimal" DataDefGroup="CommercialPropertyScheduledBuildingPropertyTenantsPolicy">
+		<rul:FirstNonNull Type="decimal">
+			<rul:Lookup Type="decimal" MatrixCol="Factor" MatrixDef="LessThan80PctMultiplicativeFactorDef" MatrixFromConstant="LessThan80PctMultiplicativeFactor" ResultMode="FirstResult">
+				<rul:Keys>
+					<rul:Value Type="string" FromDataDef="/State/@Code" />
+					<rul:Constant Type="string">Y</rul:Constant>
+				</rul:Keys>
+			</rul:Lookup>
+			<rul:Lookup Type="decimal" MatrixCol="Factor" MatrixDef="LessThan80PctMultiplicativeFactorDef" MatrixFromConstant="LessThan80PctMultiplicativeFactor" ResultMode="SingleResult">
+				<rul:Keys>
+					<rul:Constant Type="string">CW</rul:Constant>
+					<rul:Constant Type="string">Y</rul:Constant>
+				</rul:Keys>
+			</rul:Lookup>
+		</rul:FirstNonNull>
+	</rul:Rule>
+	<rul:Rule Name="LookupBasicGroupIIFlatCoinsuranceFactor" Type="decimal" DataDefGroup="CommercialPropertyScheduledBuildingPropertyTenantsPolicy">
+		<rul:FirstNonNull Type="decimal">
+			<rul:Lookup Type="decimal" MatrixCol="Factor" MatrixDef="BasicGroupIIFlatCoinsuranceFactorDef" MatrixFromConstant="BasicGroupIIFlatCoinsuranceFactor" ResultMode="FirstResult">
+				<rul:Keys>
+					<rul:Value Type="string" FromDataDef="/State/@Code" />
+					<rul:Constant Type="string">Y</rul:Constant>
+				</rul:Keys>
+			</rul:Lookup>
+			<rul:Lookup Type="decimal" MatrixCol="Factor" MatrixDef="BasicGroupIIFlatCoinsuranceFactorDef" MatrixFromConstant="BasicGroupIIFlatCoinsuranceFactor" ResultMode="SingleResult">
+				<rul:Keys>
+					<rul:Constant Type="string">CW</rul:Constant>
+					<rul:Constant Type="string">Y</rul:Constant>
+				</rul:Keys>
+			</rul:Lookup>
+		</rul:FirstNonNull>
+	</rul:Rule>
+	<rul:Rule Name="LookupNoDeductibleFactor" Type="decimal" DataDefGroup="CommercialPropertyScheduledBuildingPropertyTenantsPolicy">
+		<rul:Param Name="causeOfLoss" Type="string" />
+		<rul:FirstNonNull Type="decimal">
+			<rul:Lookup Type="decimal" MatrixCol="Factor" MatrixDef="BuildingGlassNoDeductibleFactorDef" MatrixFromConstant="BuildingGlassNoDeductibleFactor" ResultMode="FirstResult">
+				<rul:Keys>
+					<rul:Value Type="string" FromDataDef="/State/@Code" />
+					<rul:Value Type="string" FromParam="causeOfLoss" />
+				</rul:Keys>
+			</rul:Lookup>
+			<rul:Lookup Type="decimal" MatrixCol="Factor" MatrixDef="BuildingGlassNoDeductibleFactorDef" MatrixFromConstant="BuildingGlassNoDeductibleFactor" ResultMode="SingleResult">
+				<rul:Keys>
+					<rul:Constant Type="string">CW</rul:Constant>
+					<rul:Value Type="string" FromParam="causeOfLoss" />
+				</rul:Keys>
+			</rul:Lookup>
+		</rul:FirstNonNull>
+	</rul:Rule>
+	<rul:Rule Name="LookupDeductible250Factor" Type="decimal" DataDefGroup="CommercialPropertyScheduledBuildingPropertyTenantsPolicy">
+		<rul:Param Name="causeOfLoss" Type="string" />
+		<rul:FirstNonNull Type="decimal">
+			<rul:Lookup Type="decimal" MatrixCol="Factor" MatrixDef="Deductible250FactorDef" MatrixFromConstant="Deductible250Factor" ResultMode="FirstResult">
+				<rul:Keys>
+					<rul:Value Type="string" FromDataDef="/State/@Code" />
+					<rul:Value Type="string" FromParam="causeOfLoss" />
+				</rul:Keys>
+			</rul:Lookup>
+			<rul:Lookup Type="decimal" MatrixCol="Factor" MatrixDef="Deductible250FactorDef" MatrixFromConstant="Deductible250Factor" ResultMode="SingleResult">
+				<rul:Keys>
+					<rul:Constant Type="string">CW</rul:Constant>
+					<rul:Value Type="string" FromParam="causeOfLoss" />
+				</rul:Keys>
+			</rul:Lookup>
+		</rul:FirstNonNull>
+	</rul:Rule>
+	<rul:Rule Name="LookupDeductibleFactor" Type="decimal" DataDefGroup="CommercialPropertyScheduledBuildingPropertyTenantsPolicy">
+		<rul:Param Name="ded" Type="string" />
+		<rul:Param Name="limit" Type="integer" />
+		<rul:Param Name="causeOfLossDed" Type="string" />
+		<rul:FirstNonNull Type="decimal">
+			<rul:Lookup Type="decimal" MatrixCol="Factor" MatrixDef="DeductibleFactorDef" MatrixFromConstant="DeductibleFactor" ResultMode="FirstResult">
+				<rul:Keys>
+					<rul:Value Type="string" FromDataDef="/State/@Code" />
+					<rul:Value Type="string" FromParam="ded" />
+					<rul:Value Type="integer" FromParam="limit" />
+					<rul:Value Type="string" FromParam="causeOfLossDed" />
+				</rul:Keys>
+			</rul:Lookup>
+			<rul:Lookup Type="decimal" MatrixCol="Factor" MatrixDef="DeductibleFactorDef" MatrixFromConstant="DeductibleFactor" ResultMode="SingleResult">
+				<rul:Keys>
+					<rul:Constant Type="string">CW</rul:Constant>
+					<rul:Value Type="string" FromParam="ded" />
+					<rul:Value Type="integer" FromParam="limit" />
+					<rul:Value Type="string" FromParam="causeOfLossDed" />
+				</rul:Keys>
+			</rul:Lookup>
+		</rul:FirstNonNull>
+	</rul:Rule>
+</rul:Rules>

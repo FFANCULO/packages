@@ -1,0 +1,47 @@
+<rul:Rules xmlns:rul="http://www.verisk.com/iso/erc/Rule">
+	<rul:Rule Name="InitializeRuleSet" DataDefGroup="CommercialPropertyAlcoholicBeveragesTaxExclusion">
+		<rul:Sequence />
+	</rul:Rule>
+	<rul:Rule Name="CalculateTotalPremium" Type="decimal" DataDefGroup="CommercialPropertyAlcoholicBeveragesTaxExclusion">
+		<rul:If>
+			<rul:Test>
+				<rul:And>
+					<rul:Equal>
+						<rul:FirstValue Type="integer" FromConstant="0" FromDataDef="@PremiumIndicator" Order="DataDefInputParamConstant" />
+						<rul:Constant Type="integer">1</rul:Constant>
+					</rul:Equal>
+					<rul:NotEqual>
+						<rul:FirstValue Type="decimal" FromConstant="0" FromDataDef="@Premium" Order="DataDefInputParamConstant" />
+						<rul:Constant Type="decimal">0</rul:Constant>
+					</rul:NotEqual>
+				</rul:And>
+			</rul:Test>
+			<rul:Then>
+				<rul:FirstValue Type="decimal" FromConstant="0" FromDataDef="@Premium" Order="DataDefInputParamConstant" />
+			</rul:Then>
+			<rul:Else>
+				<rul:Constant Type="decimal">0</rul:Constant>
+			</rul:Else>
+		</rul:If>
+	</rul:Rule>
+	<rul:Rule Name="ErcSetRatesAndFactors" Type="none" DataDefGroup="CommercialPropertyAlcoholicBeveragesTaxExclusion">
+		<rul:Sequence>
+			<rul:If>
+				<rul:Test>
+					<rul:IsNotNull>
+						<rul:Value Type="integer" FromDataDef="../../@SpecialTheftExclusionIndicator" />
+					</rul:IsNotNull>
+				</rul:Test>
+				<rul:Then>
+					<rul:Copy Type="integer" ToDataDef="@SpecialTheftExclusionIndicator" FromDataDef="../../@SpecialTheftExclusionIndicator" />
+				</rul:Then>
+			</rul:If>
+			<rul:Copy Type="string" ToDataDef="@CauseOfLoss" FromDataDef="../../@CauseOfLossToUse" />
+		</rul:Sequence>
+	</rul:Rule>
+	<rul:Rule Name="ErcProcess" Type="none" DataDefGroup="CommercialPropertyAlcoholicBeveragesTaxExclusion">
+		<rul:Sequence>
+			<rul:RunRule Type="none" FileName="CommercialPropertyAlcoholicBeveragesTaxExclusionRules" Rule="ErcSetRatesAndFactors" ClearCache="true" />
+		</rul:Sequence>
+	</rul:Rule>
+</rul:Rules>

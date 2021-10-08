@@ -1,0 +1,31 @@
+"StateCode","ConstructionTypeToUse","CovType","Rate"
+"CW","Frame","Bldg",0.015
+"CW","Joisted Masonry","Bldg",0.015
+"CW","Non-Combustible","Bldg",0.015
+"CW","Masonry Non-Combustible","Bldg",0.015
+"CW","Modified Fire Resistive","Bldg",0.01
+"CW","Fire Resistive","Bldg",0.01
+"CW","Frame","PersProp",0.021
+"CW","Joisted Masonry","PersProp",0.021
+"CW","Non-Combustible","PersProp",0.021
+"CW","Masonry Non-Combustible","PersProp",0.021
+"CW","Modified Fire Resistive","PersProp",0.011
+"CW","Fire Resistive","PersProp",0.011
+"CW","Frame","BldrRisk",0.012
+"CW","Joisted Masonry","BldrRisk",0.012
+"CW","Non-Combustible","BldrRisk",0.012
+"CW","Masonry Non-Combustible","BldrRisk",0.012
+"CW","Modified Fire Resistive","BldrRisk",0.012
+"CW","Fire Resistive","BldrRisk",0.012
+"CW","Frame","Business Income Without Extra Expense",0.011
+"CW","Joisted Masonry","Business Income Without Extra Expense",0.011
+"CW","Non-Combustible","Business Income Without Extra Expense",0.011
+"CW","Masonry Non-Combustible","Business Income Without Extra Expense",0.011
+"CW","Modified Fire Resistive","Business Income Without Extra Expense",0.007
+"CW","Fire Resistive","Business Income Without Extra Expense",0.007
+"CW","Frame","All Other",0.023
+"CW","Joisted Masonry","All Other",0.023
+"CW","Non-Combustible","All Other",0.023
+"CW","Masonry Non-Combustible","All Other",0.023
+"CW","Modified Fire Resistive","All Other",0.012
+"CW","Fire Resistive","All Other",0.012

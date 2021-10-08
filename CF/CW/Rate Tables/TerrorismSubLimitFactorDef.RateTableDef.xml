@@ -1,0 +1,19 @@
+<rt:RateTable xmlns:rt="http://www.verisk.com/iso/erc/RateTable">
+	<rt:MetaData>
+		<rt:MetaDataCode>RateTableTerrorismSubLimitFactor</rt:MetaDataCode>
+		<rt:MetaDataCode>BureauRuleNumberTERC2b</rt:MetaDataCode>
+	</rt:MetaData>
+	<rt:KeyCols>
+		<rt:KeyCol Name="StateCode" Type="string" CaseInsensitive="false" />
+		<rt:Range Name="TerrorismSubLimitPct" Type="decimal" RangeType="FromInclusiveToExclusive">
+			<rt:KeyCol Name="TerrorismSubLimitPct_From" />
+			<rt:KeyCol Name="TerrorismSubLimitPct_ToLessThan" />
+		</rt:Range>
+	</rt:KeyCols>
+	<rt:ValueCols>
+		<rt:Range Name="Factor" RangeKeyCol="TerrorismSubLimitPct" InterpolateMode="Linear" Type="decimal">
+			<rt:ValueCol Name="Factor_From" />
+			<rt:ValueCol Name="Factor_ToLessThan" />
+		</rt:Range>
+	</rt:ValueCols>
+</rt:RateTable>

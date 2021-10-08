@@ -1,0 +1,7 @@
+"StateCode","IncreasedCostOfLossPctConverted_FromGreaterThan","IncreasedCostOfLossPctConverted_To","Code"
+"CW",-2147483648,10,1
+"CW",10,20,2
+"CW",20,30,3
+"CW",30,40,4
+"CW",40,50,5
+"CW",50,100,6

@@ -1,0 +1,5 @@
+"StateCode","Limit_FromGreaterThan","Limit_To","Rate"
+"CW",0,50000,26
+"CW",50000,75000,40
+"CW",75000,100000,53
+"CW",100000,2147483647,79

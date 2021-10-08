@@ -1,0 +1,134 @@
+<rul:Rules xmlns:rul="http://www.verisk.com/iso/erc/Rule">
+	<rul:Rule Name="InitializeRuleSet" DataDefGroup="CommercialPropertyIncreasedCostOfLossAndRelatedExpensesForGreenUpgradesEndtSpclClassBusnIncome">
+		<rul:Sequence>
+			<rul:Locate AtDataDef="CommercialPropertyIncreasedCostOfLossAndRelatedExpensesForGreenUpgradesEndtSpclClassBusnIncomeBasicGroupICov">
+				<rul:RunRule Type="none" FileName="CommercialPropertyIncreasedCostOfLossAndRelatedExpensesForGreenUpgradesEndtSpclClassBusnIncomeBasicGroupICovRules" Rule="InitializeRuleSet" ClearCache="true" />
+			</rul:Locate>
+			<rul:Locate AtDataDef="CommercialPropertyIncreasedCostOfLossAndRelatedExpensesForGreenUpgradesEndtSpclClassBusnIncomeBasicGroupIICov">
+				<rul:RunRule Type="none" FileName="CommercialPropertyIncreasedCostOfLossAndRelatedExpensesForGreenUpgradesEndtSpclClassBusnIncomeBasicGroupIICovRules" Rule="InitializeRuleSet" ClearCache="true" />
+			</rul:Locate>
+			<rul:Locate AtDataDef="CommercialPropertyIncreasedCostOfLossAndRelatedExpensesForGreenUpgradesEndtSpclClassBusnIncomeBroadCov">
+				<rul:RunRule Type="none" FileName="CommercialPropertyIncreasedCostOfLossAndRelatedExpensesForGreenUpgradesEndtSpclClassBusnIncomeBroadCovRules" Rule="InitializeRuleSet" ClearCache="true" />
+			</rul:Locate>
+			<rul:Locate AtDataDef="CommercialPropertyIncreasedCostOfLossAndRelatedExpensesForGreenUpgradesEndtSpclClassBusnIncomeEarthquakeCov">
+				<rul:RunRule Type="none" FileName="CommercialPropertyIncreasedCostOfLossAndRelatedExpensesForGreenUpgradesEndtSpclClassBusnIncomeEarthquakeCovRules" Rule="InitializeRuleSet" ClearCache="true" />
+			</rul:Locate>
+			<rul:Locate AtDataDef="CommercialPropertyIncreasedCostOfLossAndRelatedExpensesForGreenUpgradesEndtSpclClassBusnIncomeSpecialCov">
+				<rul:RunRule Type="none" FileName="CommercialPropertyIncreasedCostOfLossAndRelatedExpensesForGreenUpgradesEndtSpclClassBusnIncomeSpecialCovRules" Rule="InitializeRuleSet" ClearCache="true" />
+			</rul:Locate>
+		</rul:Sequence>
+	</rul:Rule>
+	<rul:Rule Name="CalculateTotalPremium" Type="decimal" DataDefGroup="CommercialPropertyIncreasedCostOfLossAndRelatedExpensesForGreenUpgradesEndtSpclClassBusnIncome">
+		<rul:Sum>
+			<rul:Locate AtDataDef="CommercialPropertyIncreasedCostOfLossAndRelatedExpensesForGreenUpgradesEndtSpclClassBusnIncomeBasicGroupICov">
+				<rul:RunRule Type="decimal" FileName="CommercialPropertyIncreasedCostOfLossAndRelatedExpensesForGreenUpgradesEndtSpclClassBusnIncomeBasicGroupICovRules" Rule="CalculateTotalPremium" ClearCache="true" />
+			</rul:Locate>
+			<rul:Locate AtDataDef="CommercialPropertyIncreasedCostOfLossAndRelatedExpensesForGreenUpgradesEndtSpclClassBusnIncomeBasicGroupIICov">
+				<rul:RunRule Type="decimal" FileName="CommercialPropertyIncreasedCostOfLossAndRelatedExpensesForGreenUpgradesEndtSpclClassBusnIncomeBasicGroupIICovRules" Rule="CalculateTotalPremium" ClearCache="true" />
+			</rul:Locate>
+			<rul:Locate AtDataDef="CommercialPropertyIncreasedCostOfLossAndRelatedExpensesForGreenUpgradesEndtSpclClassBusnIncomeBroadCov">
+				<rul:RunRule Type="decimal" FileName="CommercialPropertyIncreasedCostOfLossAndRelatedExpensesForGreenUpgradesEndtSpclClassBusnIncomeBroadCovRules" Rule="CalculateTotalPremium" ClearCache="true" />
+			</rul:Locate>
+			<rul:Locate AtDataDef="CommercialPropertyIncreasedCostOfLossAndRelatedExpensesForGreenUpgradesEndtSpclClassBusnIncomeEarthquakeCov">
+				<rul:RunRule Type="decimal" FileName="CommercialPropertyIncreasedCostOfLossAndRelatedExpensesForGreenUpgradesEndtSpclClassBusnIncomeEarthquakeCovRules" Rule="CalculateTotalPremium" ClearCache="true" />
+			</rul:Locate>
+			<rul:Locate AtDataDef="CommercialPropertyIncreasedCostOfLossAndRelatedExpensesForGreenUpgradesEndtSpclClassBusnIncomeSpecialCov">
+				<rul:RunRule Type="decimal" FileName="CommercialPropertyIncreasedCostOfLossAndRelatedExpensesForGreenUpgradesEndtSpclClassBusnIncomeSpecialCovRules" Rule="CalculateTotalPremium" ClearCache="true" />
+			</rul:Locate>
+			<rul:If>
+				<rul:Test>
+					<rul:And>
+						<rul:Equal>
+							<rul:FirstValue Type="integer" FromConstant="0" FromDataDef="@PremiumIndicator" Order="DataDefInputParamConstant" />
+							<rul:Constant Type="integer">1</rul:Constant>
+						</rul:Equal>
+						<rul:NotEqual>
+							<rul:FirstValue Type="decimal" FromConstant="0" FromDataDef="@Premium" Order="DataDefInputParamConstant" />
+							<rul:Constant Type="decimal">0</rul:Constant>
+						</rul:NotEqual>
+					</rul:And>
+				</rul:Test>
+				<rul:Then>
+					<rul:FirstValue Type="decimal" FromConstant="0" FromDataDef="@Premium" Order="DataDefInputParamConstant" />
+				</rul:Then>
+				<rul:Else>
+					<rul:Constant Type="decimal">0</rul:Constant>
+				</rul:Else>
+			</rul:If>
+		</rul:Sum>
+	</rul:Rule>
+	<rul:Rule Name="ErcSetRatesAndFactors" Type="none" DataDefGroup="CommercialPropertyIncreasedCostOfLossAndRelatedExpensesForGreenUpgradesEndtSpclClassBusnIncome">
+		<rul:Sequence>
+			<rul:RunRule Type="none" FileName="CommercialPropertyIncreasedCostOfLossAndRelatedExpensesForGreenUpgradesEndtSpclClassBusnIncomeRules" Rule="SetPeriodOfRestorationBaseFactor" ClearCache="true" />
+			<rul:RunRule Type="none" FileName="CommercialPropertyIncreasedCostOfLossAndRelatedExpensesForGreenUpgradesEndtSpclClassBusnIncomeRules" Rule="SetPeriodOfRestorationFactor" ClearCache="true" />
+		</rul:Sequence>
+	</rul:Rule>
+	<rul:Rule Name="SetPeriodOfRestorationBaseFactor" Type="none" DataDefGroup="CommercialPropertyIncreasedCostOfLossAndRelatedExpensesForGreenUpgradesEndtSpclClassBusnIncome">
+		<rul:Sequence>
+			<rul:If>
+				<rul:Test>
+					<rul:NotEqual>
+						<rul:FirstValue Type="string" FromConstant="" FromDataDef="@PeriodOfRestoration" Order="DataDefInputParamConstant" />
+						<rul:Constant Type="string"></rul:Constant>
+					</rul:NotEqual>
+				</rul:Test>
+				<rul:Then>
+					<rul:Sequence>
+						<rul:RunRule Type="decimal" ToDataDef="@PeriodOfRestorationBaseFactor" FileName="CommercialPropertyIncreasedCostOfLossAndRelatedExpensesForGreenUpgradesEndtSpclClassBusnIncomeRules" Rule="LookupPeriodOfRestorationFactor" ClearCache="true" />
+					</rul:Sequence>
+				</rul:Then>
+				<rul:Else>
+					<rul:Sequence>
+						<rul:Constant Type="decimal" ToDataDef="@PeriodOfRestorationBaseFactor">0.0</rul:Constant>
+					</rul:Sequence>
+				</rul:Else>
+			</rul:If>
+		</rul:Sequence>
+	</rul:Rule>
+	<rul:Rule Name="SetPeriodOfRestorationFactor" Type="none" DataDefGroup="CommercialPropertyIncreasedCostOfLossAndRelatedExpensesForGreenUpgradesEndtSpclClassBusnIncome">
+		<rul:Sequence>
+			<rul:Round ToDataDef="@PeriodOfRestorationFactor" DecimalPlaces="3">
+				<rul:Subtract>
+					<rul:Value Type="decimal" FromDataDef="@PeriodOfRestorationBaseFactor" />
+					<rul:Constant Type="integer">1</rul:Constant>
+				</rul:Subtract>
+			</rul:Round>
+		</rul:Sequence>
+	</rul:Rule>
+	<rul:Rule Name="ErcProcess" Type="none" DataDefGroup="CommercialPropertyIncreasedCostOfLossAndRelatedExpensesForGreenUpgradesEndtSpclClassBusnIncome">
+		<rul:Sequence>
+			<rul:RunRule Type="none" FileName="CommercialPropertyIncreasedCostOfLossAndRelatedExpensesForGreenUpgradesEndtSpclClassBusnIncomeRules" Rule="ErcSetRatesAndFactors" ClearCache="true" />
+			<rul:Locate AtDataDef="CommercialPropertyIncreasedCostOfLossAndRelatedExpensesForGreenUpgradesEndtSpclClassBusnIncomeBasicGroupICov">
+				<rul:RunRule Type="none" FileName="CommercialPropertyIncreasedCostOfLossAndRelatedExpensesForGreenUpgradesEndtSpclClassBusnIncomeBasicGroupICovRules" Rule="ErcProcess" ClearCache="true" />
+			</rul:Locate>
+			<rul:Locate AtDataDef="CommercialPropertyIncreasedCostOfLossAndRelatedExpensesForGreenUpgradesEndtSpclClassBusnIncomeBasicGroupIICov">
+				<rul:RunRule Type="none" FileName="CommercialPropertyIncreasedCostOfLossAndRelatedExpensesForGreenUpgradesEndtSpclClassBusnIncomeBasicGroupIICovRules" Rule="ErcProcess" ClearCache="true" />
+			</rul:Locate>
+			<rul:Locate AtDataDef="CommercialPropertyIncreasedCostOfLossAndRelatedExpensesForGreenUpgradesEndtSpclClassBusnIncomeBroadCov">
+				<rul:RunRule Type="none" FileName="CommercialPropertyIncreasedCostOfLossAndRelatedExpensesForGreenUpgradesEndtSpclClassBusnIncomeBroadCovRules" Rule="ErcProcess" ClearCache="true" />
+			</rul:Locate>
+			<rul:Locate AtDataDef="CommercialPropertyIncreasedCostOfLossAndRelatedExpensesForGreenUpgradesEndtSpclClassBusnIncomeEarthquakeCov">
+				<rul:RunRule Type="none" FileName="CommercialPropertyIncreasedCostOfLossAndRelatedExpensesForGreenUpgradesEndtSpclClassBusnIncomeEarthquakeCovRules" Rule="ErcProcess" ClearCache="true" />
+			</rul:Locate>
+			<rul:Locate AtDataDef="CommercialPropertyIncreasedCostOfLossAndRelatedExpensesForGreenUpgradesEndtSpclClassBusnIncomeSpecialCov">
+				<rul:RunRule Type="none" FileName="CommercialPropertyIncreasedCostOfLossAndRelatedExpensesForGreenUpgradesEndtSpclClassBusnIncomeSpecialCovRules" Rule="ErcProcess" ClearCache="true" />
+			</rul:Locate>
+		</rul:Sequence>
+	</rul:Rule>
+	<rul:Rule Name="LookupPeriodOfRestorationFactor" Type="decimal" DataDefGroup="CommercialPropertyIncreasedCostOfLossAndRelatedExpensesForGreenUpgradesEndtSpclClassBusnIncome">
+		<rul:FirstNonNull Type="decimal">
+			<rul:Lookup Type="decimal" MatrixCol="Factor" MatrixDef="PeriodOfRestorationFactorDef" MatrixFromConstant="PeriodOfRestorationFactor" ResultMode="FirstResult">
+				<rul:Keys>
+					<rul:Value Type="string" FromDataDef="/State/@Code" />
+					<rul:FirstValue Type="string" FromConstant="" FromDataDef="@PeriodOfRestoration" Order="DataDefInputParamConstant" />
+				</rul:Keys>
+			</rul:Lookup>
+			<rul:Lookup Type="decimal" MatrixCol="Factor" MatrixDef="PeriodOfRestorationFactorDef" MatrixFromConstant="PeriodOfRestorationFactor" ResultMode="SingleResult">
+				<rul:Keys>
+					<rul:Constant Type="string">CW</rul:Constant>
+					<rul:FirstValue Type="string" FromConstant="" FromDataDef="@PeriodOfRestoration" Order="DataDefInputParamConstant" />
+				</rul:Keys>
+			</rul:Lookup>
+		</rul:FirstNonNull>
+	</rul:Rule>
+</rul:Rules>

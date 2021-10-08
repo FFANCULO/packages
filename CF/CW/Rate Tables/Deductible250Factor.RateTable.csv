@@ -1,0 +1,5 @@
+"StateCode","CauseOfLoss","Factor"
+"CW","Basic",1.05
+"CW","Broad",1.05
+"CW","Special",1.1
+"CW","All Other",1.1

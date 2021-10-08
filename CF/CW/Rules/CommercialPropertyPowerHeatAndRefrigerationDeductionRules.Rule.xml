@@ -1,0 +1,205 @@
+<rul:Rules xmlns:rul="http://www.verisk.com/iso/erc/Rule">
+	<rul:Rule Name="InitializeRuleSet" DataDefGroup="CommercialPropertyPowerHeatAndRefrigerationDeduction">
+		<rul:Sequence>
+			<rul:Locate AtDataDef="CommercialPropertyPowerHeatAndRefrigerationDeductionBasicGroupICoverage">
+				<rul:RunRule Type="none" FileName="CommercialPropertyPowerHeatAndRefrigerationDeductionBasicGroupICoverageRules" Rule="InitializeRuleSet" ClearCache="true" />
+			</rul:Locate>
+			<rul:Locate AtDataDef="CommercialPropertyPowerHeatAndRefrigerationDeductionBasicGroupIICoverage">
+				<rul:RunRule Type="none" FileName="CommercialPropertyPowerHeatAndRefrigerationDeductionBasicGroupIICoverageRules" Rule="InitializeRuleSet" ClearCache="true" />
+			</rul:Locate>
+			<rul:Locate AtDataDef="CommercialPropertyPowerHeatAndRefrigerationDeductionEarthquakeCoverage">
+				<rul:RunRule Type="none" FileName="CommercialPropertyPowerHeatAndRefrigerationDeductionEarthquakeCoverageRules" Rule="InitializeRuleSet" ClearCache="true" />
+			</rul:Locate>
+		</rul:Sequence>
+	</rul:Rule>
+	<rul:Rule Name="CalculateTotalPremium" Type="decimal" DataDefGroup="CommercialPropertyPowerHeatAndRefrigerationDeduction">
+		<rul:Sum>
+			<rul:Locate AtDataDef="CommercialPropertyPowerHeatAndRefrigerationDeductionBasicGroupICoverage">
+				<rul:RunRule Type="decimal" FileName="CommercialPropertyPowerHeatAndRefrigerationDeductionBasicGroupICoverageRules" Rule="CalculateTotalPremium" ClearCache="true" />
+			</rul:Locate>
+			<rul:Locate AtDataDef="CommercialPropertyPowerHeatAndRefrigerationDeductionBasicGroupIICoverage">
+				<rul:RunRule Type="decimal" FileName="CommercialPropertyPowerHeatAndRefrigerationDeductionBasicGroupIICoverageRules" Rule="CalculateTotalPremium" ClearCache="true" />
+			</rul:Locate>
+			<rul:Locate AtDataDef="CommercialPropertyPowerHeatAndRefrigerationDeductionEarthquakeCoverage">
+				<rul:RunRule Type="decimal" FileName="CommercialPropertyPowerHeatAndRefrigerationDeductionEarthquakeCoverageRules" Rule="CalculateTotalPremium" ClearCache="true" />
+			</rul:Locate>
+			<rul:If>
+				<rul:Test>
+					<rul:And>
+						<rul:Equal>
+							<rul:FirstValue Type="integer" FromConstant="0" FromDataDef="@PremiumIndicator" Order="DataDefInputParamConstant" />
+							<rul:Constant Type="integer">1</rul:Constant>
+						</rul:Equal>
+						<rul:NotEqual>
+							<rul:FirstValue Type="decimal" FromConstant="0" FromDataDef="@Premium" Order="DataDefInputParamConstant" />
+							<rul:Constant Type="decimal">0</rul:Constant>
+						</rul:NotEqual>
+					</rul:And>
+				</rul:Test>
+				<rul:Then>
+					<rul:FirstValue Type="decimal" FromConstant="0" FromDataDef="@Premium" Order="DataDefInputParamConstant" />
+				</rul:Then>
+				<rul:Else>
+					<rul:Constant Type="decimal">0</rul:Constant>
+				</rul:Else>
+			</rul:If>
+		</rul:Sum>
+	</rul:Rule>
+	<rul:Rule Name="ErcSetRatesAndFactors" Type="none" DataDefGroup="CommercialPropertyPowerHeatAndRefrigerationDeduction">
+		<rul:Sequence>
+			<rul:RunRule Type="decimal" ToDataDef="@BaseFactor" FileName="CommercialPropertyPowerHeatAndRefrigerationDeductionRules" Rule="LookupPowerHeatAndRefrigerationFactor" ClearCache="true" />
+			<rul:Round ToDataDef="@Factor" DecimalPlaces="3">
+				<rul:Subtract>
+					<rul:Value Type="decimal" FromDataDef="@BaseFactor" />
+					<rul:Constant Type="integer">1</rul:Constant>
+				</rul:Subtract>
+			</rul:Round>
+		</rul:Sequence>
+	</rul:Rule>
+	<rul:Rule Name="ErcSetStatisticalCodes" Type="none" DataDefGroup="CommercialPropertyPowerHeatAndRefrigerationDeduction">
+		<rul:Sequence>
+			<rul:If>
+				<rul:Test>
+					<rul:Exist AtInputDataDef="ancestor::MasterCFCW/Policy" />
+				</rul:Test>
+				<rul:Then>
+					<rul:Sequence>
+						<rul:WithArgs>
+							<rul:Arg Type="integer" Param="calcExposureStatAmount">
+								<rul:FirstNonNull Type="integer">
+									<rul:Choose>
+										<rul:When>
+											<rul:Test>
+												<rul:Equal>
+													<rul:FirstValue Type="string" FromConstant="" FromDataDef="../../@IncludedInBlkt" Order="DataDefInputParamConstant" />
+													<rul:Constant Type="string">No</rul:Constant>
+												</rul:Equal>
+											</rul:Test>
+											<rul:Then>
+												<rul:Convert Type="integer">
+													<rul:Truncate>
+														<rul:Divide>
+															<rul:Value Type="integer" FromDataDef="../../@Limit" />
+															<rul:Constant Type="integer">1000</rul:Constant>
+														</rul:Divide>
+													</rul:Truncate>
+												</rul:Convert>
+											</rul:Then>
+										</rul:When>
+										<rul:When>
+											<rul:Test>
+												<rul:Equal>
+													<rul:FirstValue Type="string" FromConstant="" FromDataDef="../../@IncludedInBlkt" Order="DataDefInputParamConstant" />
+													<rul:Constant Type="string">Yes</rul:Constant>
+												</rul:Equal>
+											</rul:Test>
+											<rul:Then>
+												<rul:WithArgs>
+													<rul:Arg Type="integer" Param="blktTotalLimit">
+														<rul:FirstNonNull Type="integer">
+															<rul:If>
+																<rul:Test>
+																	<rul:Equal>
+																		<rul:FirstValue Type="string" FromConstant="" FromDataDef="../../@IncludedInBlkt" Order="DataDefInputParamConstant" />
+																		<rul:Constant Type="string">Yes</rul:Constant>
+																	</rul:Equal>
+																</rul:Test>
+																<rul:Then>
+																	<rul:If>
+																		<rul:Test>
+																			<rul:IsNotNull>
+																				<rul:Value Type="integer" FromDataDef="../../@BlktLimit" />
+																			</rul:IsNotNull>
+																		</rul:Test>
+																		<rul:Then>
+																			<rul:FirstValue Type="integer" FromConstant="0" FromDataDef="../../@BlktLimit" Order="DataDefInputParamConstant" />
+																		</rul:Then>
+																	</rul:If>
+																</rul:Then>
+															</rul:If>
+															<rul:Constant Type="integer">0</rul:Constant>
+														</rul:FirstNonNull>
+													</rul:Arg>
+													<rul:Arg Type="decimal" Param="blktProportion">
+														<rul:FirstNonNull Type="decimal">
+															<rul:If>
+																<rul:Test>
+																	<rul:Equal>
+																		<rul:FirstValue Type="string" FromConstant="" FromDataDef="../../@IncludedInBlkt" Order="DataDefInputParamConstant" />
+																		<rul:Constant Type="string">Yes</rul:Constant>
+																	</rul:Equal>
+																</rul:Test>
+																<rul:Then>
+																	<rul:If>
+																		<rul:Test>
+																			<rul:IsNotNull>
+																				<rul:Value Type="decimal" FromDataDef="../../@BlktProportion" />
+																			</rul:IsNotNull>
+																		</rul:Test>
+																		<rul:Then>
+																			<rul:FirstValue Type="decimal" FromConstant="0" FromDataDef="../../@BlktProportion" Order="DataDefInputParamConstant" />
+																		</rul:Then>
+																	</rul:If>
+																</rul:Then>
+															</rul:If>
+															<rul:Constant Type="decimal">0</rul:Constant>
+														</rul:FirstNonNull>
+													</rul:Arg>
+													<rul:Truncate>
+														<rul:Divide DecimalPlaces="0">
+															<rul:Product>
+																<rul:Value Type="integer" FromParam="blktTotalLimit" />
+																<rul:Value Type="decimal" FromParam="blktProportion" />
+															</rul:Product>
+															<rul:Constant Type="integer">1000</rul:Constant>
+														</rul:Divide>
+													</rul:Truncate>
+												</rul:WithArgs>
+											</rul:Then>
+										</rul:When>
+										<rul:Otherwise>
+											<rul:Constant Type="integer">0</rul:Constant>
+										</rul:Otherwise>
+									</rul:Choose>
+									<rul:Constant Type="integer">0</rul:Constant>
+								</rul:FirstNonNull>
+							</rul:Arg>
+							<rul:Value Type="integer" ToDataDef="@ExposureStatAmount" FromParam="calcExposureStatAmount" />
+						</rul:WithArgs>
+					</rul:Sequence>
+				</rul:Then>
+			</rul:If>
+		</rul:Sequence>
+	</rul:Rule>
+	<rul:Rule Name="ErcProcess" Type="none" DataDefGroup="CommercialPropertyPowerHeatAndRefrigerationDeduction">
+		<rul:Sequence>
+			<rul:RunRule Type="none" FileName="CommercialPropertyPowerHeatAndRefrigerationDeductionRules" Rule="ErcSetRatesAndFactors" ClearCache="true" />
+			<rul:Locate AtDataDef="CommercialPropertyPowerHeatAndRefrigerationDeductionBasicGroupICoverage">
+				<rul:RunRule Type="none" FileName="CommercialPropertyPowerHeatAndRefrigerationDeductionBasicGroupICoverageRules" Rule="ErcProcess" ClearCache="true" />
+			</rul:Locate>
+			<rul:Locate AtDataDef="CommercialPropertyPowerHeatAndRefrigerationDeductionBasicGroupIICoverage">
+				<rul:RunRule Type="none" FileName="CommercialPropertyPowerHeatAndRefrigerationDeductionBasicGroupIICoverageRules" Rule="ErcProcess" ClearCache="true" />
+			</rul:Locate>
+			<rul:Locate AtDataDef="CommercialPropertyPowerHeatAndRefrigerationDeductionEarthquakeCoverage">
+				<rul:RunRule Type="none" FileName="CommercialPropertyPowerHeatAndRefrigerationDeductionEarthquakeCoverageRules" Rule="ErcProcess" ClearCache="true" />
+			</rul:Locate>
+			<rul:RunRule Type="none" FileName="CommercialPropertyPowerHeatAndRefrigerationDeductionRules" Rule="ErcSetStatisticalCodes" ClearCache="true" />
+		</rul:Sequence>
+	</rul:Rule>
+	<rul:Rule Name="LookupPowerHeatAndRefrigerationFactor" Type="decimal" DataDefGroup="CommercialPropertyPowerHeatAndRefrigerationDeduction">
+		<rul:FirstNonNull Type="decimal">
+			<rul:Lookup Type="decimal" MatrixCol="Factor" MatrixDef="PowerHeatAndRefrigerationFactorDef" MatrixFromConstant="PowerHeatAndRefrigerationFactor" ResultMode="FirstResult">
+				<rul:Keys>
+					<rul:Value Type="string" FromDataDef="/State/@Code" />
+					<rul:Constant Type="string">Y</rul:Constant>
+				</rul:Keys>
+			</rul:Lookup>
+			<rul:Lookup Type="decimal" MatrixCol="Factor" MatrixDef="PowerHeatAndRefrigerationFactorDef" MatrixFromConstant="PowerHeatAndRefrigerationFactor" ResultMode="SingleResult">
+				<rul:Keys>
+					<rul:Constant Type="string">CW</rul:Constant>
+					<rul:Constant Type="string">Y</rul:Constant>
+				</rul:Keys>
+			</rul:Lookup>
+		</rul:FirstNonNull>
+	</rul:Rule>
+</rul:Rules>

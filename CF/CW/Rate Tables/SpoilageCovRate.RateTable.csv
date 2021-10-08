@@ -1,0 +1,19 @@
+"StateCode","SpoilageClassification","SpoilageCauseOfLoss","RefrigerationMaintenanceAgreement","Rate"
+"CW","Class 1","Breakdown or Contamination","Applicable",0.659
+"CW","Class 1","Breakdown or Contamination","Not Applicable",0.923
+"CW","Class 1","Power Outage","Applicable",0.396
+"CW","Class 1","Power Outage","Not Applicable",0.396
+"CW","Class 1","Both Breakdown or Contamination and Power Outage","Applicable",0.923
+"CW","Class 1","Both Breakdown or Contamination and Power Outage","Not Applicable",1.187
+"CW","Class 2","Breakdown or Contamination","Applicable",0.791
+"CW","Class 2","Breakdown or Contamination","Not Applicable",1.055
+"CW","Class 2","Power Outage","Applicable",0.422
+"CW","Class 2","Power Outage","Not Applicable",0.422
+"CW","Class 2","Both Breakdown or Contamination and Power Outage","Applicable",1.055
+"CW","Class 2","Both Breakdown or Contamination and Power Outage","Not Applicable",1.319
+"CW","Class 3","Breakdown or Contamination","Applicable",0.923
+"CW","Class 3","Breakdown or Contamination","Not Applicable",1.372
+"CW","Class 3","Power Outage","Applicable",0.475
+"CW","Class 3","Power Outage","Not Applicable",0.475
+"CW","Class 3","Both Breakdown or Contamination and Power Outage","Applicable",1.213
+"CW","Class 3","Both Breakdown or Contamination and Power Outage","Not Applicable",1.662

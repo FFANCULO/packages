@@ -1,0 +1,19 @@
+"StateCode","IncludedInBlkt","EQCovIndicator","FloodCovIndicator","DisplayValue","DataValue","MinimumValue","MaximumValue"
+"CW","Yes","Not Applicable","No","","",1,99999999
+"CW","Yes","No Coverage","No","","",1,99999999
+"CW","Yes","Yes, Included in Blanket","No","","",1,99999999
+"CW","Yes","Yes, Not Included in Blanket","No","","",1,99999999
+"CW","No","Not Applicable","No","","",0,0
+"CW","No","No Coverage","No","","",0,0
+"CW","No","Yes, Included in Blanket","No","","",1,99999999
+"CW","No","Yes, Not Included in Blanket","No","","",1,99999999
+"CW","Not Applicable","No Coverage","No","","",0,0
+"CW","Yes","Not Applicable","Yes","","",1,99999999
+"CW","Yes","No Coverage","Yes","","",1,99999999
+"CW","Yes","Yes, Included in Blanket","Yes","","",1,99999999
+"CW","Yes","Yes, Not Included in Blanket","Yes","","",1,99999999
+"CW","No","Not Applicable","Yes","","",1,99999999
+"CW","No","No Coverage","Yes","","",1,99999999
+"CW","No","Yes, Included in Blanket","Yes","","",1,99999999
+"CW","No","Yes, Not Included in Blanket","Yes","","",1,99999999
+"CW","Not Applicable","No Coverage","Yes","","",1,99999999

@@ -1,0 +1,16 @@
+<rt:RateTable xmlns:rt="http://www.verisk.com/iso/erc/RateTable">
+	<rt:MetaData>
+		<rt:MetaDataCode>RateTableTobaccoInSalesWarehousesRate</rt:MetaDataCode>
+		<rt:MetaDataCode>BureauRuleNumber68F1</rt:MetaDataCode>
+	</rt:MetaData>
+	<rt:KeyCols>
+		<rt:KeyCol Name="StateCode" Type="string" CaseInsensitive="false" />
+		<rt:Range Name="Limit" Type="integer" RangeType="FromExclusiveToInclusive">
+			<rt:KeyCol Name="Limit_FromGreaterThan" />
+			<rt:KeyCol Name="Limit_To" />
+		</rt:Range>
+	</rt:KeyCols>
+	<rt:ValueCols>
+		<rt:ValueCol Name="Rate" Type="decimal" />
+	</rt:ValueCols>
+</rt:RateTable>

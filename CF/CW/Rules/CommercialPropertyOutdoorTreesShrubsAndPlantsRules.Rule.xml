@@ -1,0 +1,630 @@
+<rul:Rules xmlns:rul="http://www.verisk.com/iso/erc/Rule">
+	<rul:Rule Name="InitializeRuleSet" DataDefGroup="CommercialPropertyOutdoorTreesShrubsAndPlants">
+		<rul:Sequence>
+			<rul:Locate AtDataDef="CommercialPropertyOutdoorTreesShrubsAndPlantsBasicGroupICoverage">
+				<rul:RunRule Type="none" FileName="CommercialPropertyOutdoorTreesShrubsAndPlantsBasicGroupICoverageRules" Rule="InitializeRuleSet" ClearCache="true" />
+			</rul:Locate>
+			<rul:Locate AtDataDef="CommercialPropertyOutdoorTreesShrubsAndPlantsBasicGroupIICoverage">
+				<rul:RunRule Type="none" FileName="CommercialPropertyOutdoorTreesShrubsAndPlantsBasicGroupIICoverageRules" Rule="InitializeRuleSet" ClearCache="true" />
+			</rul:Locate>
+			<rul:Locate AtDataDef="CommercialPropertyOutdoorTreesShrubsAndPlantsBroadCoverage">
+				<rul:RunRule Type="none" FileName="CommercialPropertyOutdoorTreesShrubsAndPlantsBroadCoverageRules" Rule="InitializeRuleSet" ClearCache="true" />
+			</rul:Locate>
+			<rul:Locate AtDataDef="CommercialPropertyOutdoorTreesShrubsAndPlantsSpecialCoverage">
+				<rul:RunRule Type="none" FileName="CommercialPropertyOutdoorTreesShrubsAndPlantsSpecialCoverageRules" Rule="InitializeRuleSet" ClearCache="true" />
+			</rul:Locate>
+		</rul:Sequence>
+	</rul:Rule>
+	<rul:Rule Name="CalculateTotalPremium" Type="decimal" DataDefGroup="CommercialPropertyOutdoorTreesShrubsAndPlants">
+		<rul:Sum>
+			<rul:Locate AtDataDef="CommercialPropertyOutdoorTreesShrubsAndPlantsBasicGroupICoverage">
+				<rul:RunRule Type="decimal" FileName="CommercialPropertyOutdoorTreesShrubsAndPlantsBasicGroupICoverageRules" Rule="CalculateTotalPremium" ClearCache="true" />
+			</rul:Locate>
+			<rul:Locate AtDataDef="CommercialPropertyOutdoorTreesShrubsAndPlantsBasicGroupIICoverage">
+				<rul:RunRule Type="decimal" FileName="CommercialPropertyOutdoorTreesShrubsAndPlantsBasicGroupIICoverageRules" Rule="CalculateTotalPremium" ClearCache="true" />
+			</rul:Locate>
+			<rul:Locate AtDataDef="CommercialPropertyOutdoorTreesShrubsAndPlantsBroadCoverage">
+				<rul:RunRule Type="decimal" FileName="CommercialPropertyOutdoorTreesShrubsAndPlantsBroadCoverageRules" Rule="CalculateTotalPremium" ClearCache="true" />
+			</rul:Locate>
+			<rul:Locate AtDataDef="CommercialPropertyOutdoorTreesShrubsAndPlantsSpecialCoverage">
+				<rul:RunRule Type="decimal" FileName="CommercialPropertyOutdoorTreesShrubsAndPlantsSpecialCoverageRules" Rule="CalculateTotalPremium" ClearCache="true" />
+			</rul:Locate>
+			<rul:If>
+				<rul:Test>
+					<rul:And>
+						<rul:Equal>
+							<rul:FirstValue Type="integer" FromConstant="0" FromDataDef="@PremiumIndicator" Order="DataDefInputParamConstant" />
+							<rul:Constant Type="integer">1</rul:Constant>
+						</rul:Equal>
+						<rul:NotEqual>
+							<rul:FirstValue Type="decimal" FromConstant="0" FromDataDef="@Premium" Order="DataDefInputParamConstant" />
+							<rul:Constant Type="decimal">0</rul:Constant>
+						</rul:NotEqual>
+					</rul:And>
+				</rul:Test>
+				<rul:Then>
+					<rul:FirstValue Type="decimal" FromConstant="0" FromDataDef="@Premium" Order="DataDefInputParamConstant" />
+				</rul:Then>
+				<rul:Else>
+					<rul:Constant Type="decimal">0</rul:Constant>
+				</rul:Else>
+			</rul:If>
+		</rul:Sum>
+	</rul:Rule>
+	<rul:Rule Name="ErcSetRatesAndFactors" Type="none" DataDefGroup="CommercialPropertyOutdoorTreesShrubsAndPlants">
+		<rul:Sequence>
+			<rul:Copy Type="string" ToDataDef="@PolicyType" FromDataDef="ancestor::CommercialProperty/@PolicyType" />
+			<rul:Copy Type="string" ToDataDef="@BlktCauseOfLossValueFromRiskLevel" FromDataDef="ancestor::CommercialPropertyStructure/@BlktCauseOfLossValue" />
+			<rul:Copy Type="string" ToDataDef="@CauseOfLossValueFromRiskLevel" FromDataDef="ancestor::CommercialPropertyStructure/@CauseOfLoss" />
+			<rul:RunRule Type="none" FileName="CommercialPropertyOutdoorTreesShrubsAndPlantsRules" Rule="SetVandalismExclFactor" ClearCache="true" />
+			<rul:RunRule Type="none" FileName="CommercialPropertyOutdoorTreesShrubsAndPlantsRules" Rule="SetBGIRatesAndFactors" ClearCache="true" />
+			<rul:RunRule Type="none" FileName="CommercialPropertyOutdoorTreesShrubsAndPlantsRules" Rule="SetWindstormHailAndBGIIFactors" ClearCache="true" />
+			<rul:RunRule Type="decimal" ToDataDef="@BroadBaseRate" FileName="CommercialPropertyOutdoorTreesShrubsAndPlantsRules" Rule="LookupBroadFormBaseRate" ClearCache="true" />
+			<rul:RunRule Type="none" FileName="CommercialPropertyOutdoorTreesShrubsAndPlantsRules" Rule="SetBroadRate" ClearCache="true" />
+			<rul:RunRule Type="none" FileName="CommercialPropertyOutdoorTreesShrubsAndPlantsRules" Rule="SetSpecialBaseRate" ClearCache="true" />
+			<rul:RunRule Type="none" FileName="CommercialPropertyOutdoorTreesShrubsAndPlantsRules" Rule="SetSpecialRate" ClearCache="true" />
+		</rul:Sequence>
+	</rul:Rule>
+	<rul:Rule Name="SetVandalismExclFactor" Type="none" DataDefGroup="CommercialPropertyOutdoorTreesShrubsAndPlants">
+		<rul:Sequence>
+			<rul:WithArgs>
+				<rul:Arg Type="decimal" Param="calcVandalismExclFactor">
+					<rul:FirstNonNull Type="decimal">
+						<rul:If>
+							<rul:Test>
+								<rul:Or>
+									<rul:And>
+										<rul:Equal>
+											<rul:FirstValue Type="string" FromConstant="" FromDataDef="@PolicyType" Order="DataDefInputParamConstant" />
+											<rul:Constant Type="string">Commercial Property Policy</rul:Constant>
+										</rul:Equal>
+										<rul:Exist AtInputDataDef="ancestor::CommercialPropertyStructure/CommercialPropertyVandalismExclusionTable/CommercialPropertyVandalismExclusion" />
+									</rul:And>
+									<rul:And>
+										<rul:Equal>
+											<rul:FirstValue Type="string" FromConstant="" FromDataDef="@PolicyType" Order="DataDefInputParamConstant" />
+											<rul:Constant Type="string">Standard Property Policy</rul:Constant>
+										</rul:Equal>
+										<rul:Or>
+											<rul:Equal>
+												<rul:FirstValue Type="string" FromConstant="" FromDataDef="ancestor::CommercialPropertyStructure/@CauseOfLossToUse" Order="DataDefInputParamConstant" />
+												<rul:Constant Type="string">Fire</rul:Constant>
+											</rul:Equal>
+											<rul:Equal>
+												<rul:FirstValue Type="string" FromConstant="" FromDataDef="ancestor::CommercialPropertyStructure/@CauseOfLossToUse" Order="DataDefInputParamConstant" />
+												<rul:Constant Type="string">Fire and Sprinkler Leakage</rul:Constant>
+											</rul:Equal>
+											<rul:Equal>
+												<rul:FirstValue Type="string" FromConstant="" FromDataDef="ancestor::CommercialPropertyStructure/@CauseOfLossToUse" Order="DataDefInputParamConstant" />
+												<rul:Constant Type="string">Fire and Allied Lines</rul:Constant>
+											</rul:Equal>
+											<rul:Equal>
+												<rul:FirstValue Type="string" FromConstant="" FromDataDef="ancestor::CommercialPropertyStructure/@CauseOfLossToUse" Order="DataDefInputParamConstant" />
+												<rul:Constant Type="string">Fire, Sprinkler Leakage and Allied Lines</rul:Constant>
+											</rul:Equal>
+										</rul:Or>
+									</rul:And>
+								</rul:Or>
+							</rul:Test>
+							<rul:Then>
+								<rul:RunRule Type="decimal" FileName="CommercialPropertyOutdoorTreesShrubsAndPlantsRules" Rule="LookupVandalismExclusionFactor" ClearCache="true" />
+							</rul:Then>
+						</rul:If>
+						<rul:Constant Type="decimal">1</rul:Constant>
+					</rul:FirstNonNull>
+				</rul:Arg>
+				<rul:Value Type="decimal" ToDataDef="@VandalismExclFactor" FromParam="calcVandalismExclFactor" />
+			</rul:WithArgs>
+		</rul:Sequence>
+	</rul:Rule>
+	<rul:Rule Name="SetBroadRate" Type="none" DataDefGroup="CommercialPropertyOutdoorTreesShrubsAndPlants">
+		<rul:Sequence>
+			<rul:WithArgs>
+				<rul:Arg Type="decimal" Param="calcBroadRate">
+					<rul:FirstNonNull Type="decimal">
+						<rul:Choose>
+							<rul:When>
+								<rul:Test>
+									<rul:NotEqual>
+										<rul:FirstValue Type="string" FromConstant="" FromDataDef="@CauseOfLoss" Order="DataDefInputParamConstant" />
+										<rul:Constant Type="string">Broad</rul:Constant>
+									</rul:NotEqual>
+								</rul:Test>
+								<rul:Then>
+									<rul:Constant Type="decimal">0</rul:Constant>
+								</rul:Then>
+							</rul:When>
+							<rul:When>
+								<rul:Test>
+									<rul:Equal>
+										<rul:FirstValue Type="string" FromConstant="" FromDataDef="@CauseOfLoss" Order="DataDefInputParamConstant" />
+										<rul:Constant Type="string">Broad</rul:Constant>
+									</rul:Equal>
+								</rul:Test>
+								<rul:Then>
+									<rul:Product DecimalPlaces="3">
+										<rul:FirstValue Type="decimal" FromConstant="0" FromDataDef="@BroadBaseRate" Order="DataDefInputParamConstant" />
+										<rul:FirstValue Type="decimal" FromConstant="0" FromDataDef="ancestor::CommercialProperty/@LossCostMultiplier" Order="DataDefInputParamConstant" />
+									</rul:Product>
+								</rul:Then>
+							</rul:When>
+							<rul:Otherwise>
+								<rul:Constant Type="decimal">0</rul:Constant>
+							</rul:Otherwise>
+						</rul:Choose>
+						<rul:Constant Type="decimal">0</rul:Constant>
+					</rul:FirstNonNull>
+				</rul:Arg>
+				<rul:Value Type="decimal" ToDataDef="@BroadRate" FromParam="calcBroadRate" />
+			</rul:WithArgs>
+		</rul:Sequence>
+	</rul:Rule>
+	<rul:Rule Name="SetSpecialBaseRate" Type="none" DataDefGroup="CommercialPropertyOutdoorTreesShrubsAndPlants">
+		<rul:Sequence>
+			<rul:If>
+				<rul:Test>
+					<rul:Equal>
+						<rul:FirstValue Type="string" FromConstant="" FromDataDef="@CauseOfLoss" Order="DataDefInputParamConstant" />
+						<rul:Constant Type="string">Special</rul:Constant>
+					</rul:Equal>
+				</rul:Test>
+				<rul:Then>
+					<rul:Sequence>
+						<rul:RunRule Type="decimal" ToDataDef="@SpecialBaseRate" FileName="CommercialPropertyOutdoorTreesShrubsAndPlantsRules" Rule="LookupSpecialBuildingRate" ClearCache="true" />
+					</rul:Sequence>
+				</rul:Then>
+				<rul:Else>
+					<rul:Sequence>
+						<rul:Constant Type="decimal" ToDataDef="@SpecialBaseRate">0.0</rul:Constant>
+					</rul:Sequence>
+				</rul:Else>
+			</rul:If>
+		</rul:Sequence>
+	</rul:Rule>
+	<rul:Rule Name="SetSpecialRate" Type="none" DataDefGroup="CommercialPropertyOutdoorTreesShrubsAndPlants">
+		<rul:Sequence>
+			<rul:WithArgs>
+				<rul:Arg Type="decimal" Param="calcSpecialRate">
+					<rul:FirstNonNull Type="decimal">
+						<rul:Product DecimalPlaces="3">
+							<rul:Product DecimalPlaces="3">
+								<rul:FirstValue Type="decimal" FromConstant="0" FromDataDef="@SpecialBaseRate" Order="DataDefInputParamConstant" />
+								<rul:FirstValue Type="decimal" FromConstant="0" FromDataDef="ancestor::CommercialProperty/@LossCostMultiplier" Order="DataDefInputParamConstant" />
+							</rul:Product>
+							<rul:FirstValue Type="decimal" FromConstant="0" FromDataDef="../../@SpecialTheftExclusionFactor" Order="DataDefInputParamConstant" />
+						</rul:Product>
+						<rul:Constant Type="decimal">0</rul:Constant>
+					</rul:FirstNonNull>
+				</rul:Arg>
+				<rul:Value Type="decimal" ToDataDef="@SpecialRate" FromParam="calcSpecialRate" />
+			</rul:WithArgs>
+		</rul:Sequence>
+	</rul:Rule>
+	<rul:Rule Name="SetBGIRatesAndFactors" Type="none" DataDefGroup="CommercialPropertyOutdoorTreesShrubsAndPlants">
+		<rul:Sequence>
+			<rul:RunRule Type="decimal" ToDataDef="@BasicGroupIBaseRate" FileName="CommercialPropertyOutdoorTreesShrubsAndPlantsRules" Rule="LookupBasicGroupIRateSpecialClass" ClearCache="true" />
+			<rul:RunRule Type="none" FileName="CommercialPropertyOutdoorTreesShrubsAndPlantsRules" Rule="SetBasicGroupIRate" ClearCache="true" />
+		</rul:Sequence>
+	</rul:Rule>
+	<rul:Rule Name="SetBasicGroupIRate" Type="none" DataDefGroup="CommercialPropertyOutdoorTreesShrubsAndPlants">
+		<rul:Sequence>
+			<rul:WithArgs>
+				<rul:Arg Type="decimal" Param="calcBasicGroupIRate">
+					<rul:FirstNonNull Type="decimal">
+						<rul:Product DecimalPlaces="3">
+							<rul:Product DecimalPlaces="3">
+								<rul:Product DecimalPlaces="3">
+									<rul:FirstValue Type="decimal" FromConstant="0" FromDataDef="@BasicGroupIBaseRate" Order="DataDefInputParamConstant" />
+									<rul:FirstValue Type="decimal" FromConstant="0" FromDataDef="ancestor::CommercialProperty/@LossCostMultiplier" Order="DataDefInputParamConstant" />
+								</rul:Product>
+								<rul:FirstValue Type="decimal" FromConstant="0" FromDataDef="@VandalismExclFactor" Order="DataDefInputParamConstant" />
+							</rul:Product>
+							<rul:FirstValue Type="decimal" FromConstant="0" FromDataDef="ancestor::CommercialProperty/@StdPropPolBasicGroupIFactor" Order="DataDefInputParamConstant" />
+						</rul:Product>
+						<rul:Constant Type="decimal">0</rul:Constant>
+					</rul:FirstNonNull>
+				</rul:Arg>
+				<rul:Value Type="decimal" ToDataDef="@BasicGroupIRate" FromParam="calcBasicGroupIRate" />
+			</rul:WithArgs>
+		</rul:Sequence>
+	</rul:Rule>
+	<rul:Rule Name="SetWindstormHailAndBGIIFactors" Type="none" DataDefGroup="CommercialPropertyOutdoorTreesShrubsAndPlants">
+		<rul:Sequence>
+			<rul:RunRule Type="none" FileName="CommercialPropertyOutdoorTreesShrubsAndPlantsRules" Rule="SetWinstormOrHailExclFactor" ClearCache="true" />
+			<rul:RunRule Type="none" FileName="CommercialPropertyOutdoorTreesShrubsAndPlantsRules" Rule="SetBasicGroupIIBaseRate" ClearCache="true" />
+			<rul:RunRule Type="none" FileName="CommercialPropertyOutdoorTreesShrubsAndPlantsRules" Rule="SetBasicGroupIISymbolNum" ClearCache="true" />
+			<rul:RunRule Type="none" FileName="CommercialPropertyOutdoorTreesShrubsAndPlantsRules" Rule="SetVehExclFactor" ClearCache="true" />
+			<rul:RunRule Type="none" FileName="CommercialPropertyOutdoorTreesShrubsAndPlantsRules" Rule="SetBasicGroupIIRate" ClearCache="true" />
+		</rul:Sequence>
+	</rul:Rule>
+	<rul:Rule Name="SetWinstormOrHailExclFactor" Type="none" DataDefGroup="CommercialPropertyOutdoorTreesShrubsAndPlants">
+		<rul:Sequence>
+			<rul:If>
+				<rul:Test>
+					<rul:Exist AtInputDataDef="ancestor::CommercialPropertyStructure/CommercialPropertyWindstormOrHailExclusionTable/CommercialPropertyWindstormOrHailExclusion" />
+				</rul:Test>
+				<rul:Then>
+					<rul:Sequence>
+						<rul:RunRule Type="decimal" ToDataDef="@WindstormOrHailExclFactor" FileName="CommercialPropertyOutdoorTreesShrubsAndPlantsRules" Rule="LookupWindstormOrHailExclFactor" ClearCache="true" />
+					</rul:Sequence>
+				</rul:Then>
+				<rul:Else>
+					<rul:Sequence>
+						<rul:Constant Type="decimal" ToDataDef="@WindstormOrHailExclFactor">1.0</rul:Constant>
+					</rul:Sequence>
+				</rul:Else>
+			</rul:If>
+		</rul:Sequence>
+	</rul:Rule>
+	<rul:Rule Name="SetBasicGroupIIBaseRate" Type="none" DataDefGroup="CommercialPropertyOutdoorTreesShrubsAndPlants">
+		<rul:Sequence>
+			<rul:Choose>
+				<rul:When>
+					<rul:Test>
+						<rul:NotExist AtInputDataDef="ancestor::CommercialPropertyStructure/CommercialPropertyWindstormOrHailExclusionTable/CommercialPropertyWindstormOrHailExclusion" />
+					</rul:Test>
+					<rul:Then>
+						<rul:Sequence>
+							<rul:RunRule Type="decimal" ToDataDef="@BasicGroupIIBaseRate" FileName="CommercialPropertyOutdoorTreesShrubsAndPlantsRules" Rule="LookupBasicGroupIIRate" ClearCache="true" />
+						</rul:Sequence>
+					</rul:Then>
+				</rul:When>
+				<rul:When>
+					<rul:Test>
+						<rul:Exist AtInputDataDef="ancestor::CommercialPropertyStructure/CommercialPropertyWindstormOrHailExclusionTable/CommercialPropertyWindstormOrHailExclusion" />
+					</rul:Test>
+					<rul:Then>
+						<rul:Sequence>
+							<rul:RunRule Type="decimal" ToDataDef="@BasicGroupIIBaseRate" FileName="CommercialPropertyOutdoorTreesShrubsAndPlantsRules" Rule="LookupLowestBasicGroupIIRate" ClearCache="true" />
+						</rul:Sequence>
+					</rul:Then>
+				</rul:When>
+			</rul:Choose>
+		</rul:Sequence>
+	</rul:Rule>
+	<rul:Rule Name="SetBasicGroupIISymbolNum" Type="none" DataDefGroup="CommercialPropertyOutdoorTreesShrubsAndPlants">
+		<rul:Sequence>
+			<rul:Choose>
+				<rul:When>
+					<rul:Test>
+						<rul:NotExist AtInputDataDef="ancestor::CommercialPropertyStructure/CommercialPropertyWindstormOrHailExclusionTable/CommercialPropertyWindstormOrHailExclusion" />
+					</rul:Test>
+					<rul:Then>
+						<rul:Sequence>
+							<rul:RunRule Type="integer" ToDataDef="@BasicGroupIISymbolNum" FileName="CommercialPropertyOutdoorTreesShrubsAndPlantsRules" Rule="LookupOutdoorTreeBasicGroupIISymbol" ClearCache="true" />
+						</rul:Sequence>
+					</rul:Then>
+				</rul:When>
+				<rul:When>
+					<rul:Test>
+						<rul:Exist AtInputDataDef="ancestor::CommercialPropertyStructure/CommercialPropertyWindstormOrHailExclusionTable/CommercialPropertyWindstormOrHailExclusion" />
+					</rul:Test>
+					<rul:Then>
+						<rul:Sequence>
+							<rul:Constant Type="integer" ToDataDef="@BasicGroupIISymbolNum">1</rul:Constant>
+						</rul:Sequence>
+					</rul:Then>
+				</rul:When>
+			</rul:Choose>
+		</rul:Sequence>
+	</rul:Rule>
+	<rul:Rule Name="SetVehExclFactor" Type="none" DataDefGroup="CommercialPropertyOutdoorTreesShrubsAndPlants">
+		<rul:Sequence>
+			<rul:If>
+				<rul:Test>
+					<rul:Equal>
+						<rul:FirstValue Type="string" FromConstant="" FromDataDef="@VehExcl" Order="DataDefInputParamConstant" />
+						<rul:Constant Type="string">No</rul:Constant>
+					</rul:Equal>
+				</rul:Test>
+				<rul:Then>
+					<rul:Sequence>
+						<rul:RunRule Type="decimal" ToDataDef="@VehExclFactor" FileName="CommercialPropertyOutdoorTreesShrubsAndPlantsRules" Rule="LookupVehExclFactorOutdoorTrees" ClearCache="true" />
+					</rul:Sequence>
+				</rul:Then>
+				<rul:Else>
+					<rul:Sequence>
+						<rul:Constant Type="decimal" ToDataDef="@VehExclFactor">1.0</rul:Constant>
+					</rul:Sequence>
+				</rul:Else>
+			</rul:If>
+		</rul:Sequence>
+	</rul:Rule>
+	<rul:Rule Name="SetBasicGroupIIRate" Type="none" DataDefGroup="CommercialPropertyOutdoorTreesShrubsAndPlants">
+		<rul:Sequence>
+			<rul:WithArgs>
+				<rul:Arg Type="decimal" Param="calcBasicGroupIIRate">
+					<rul:FirstNonNull Type="decimal">
+						<rul:If>
+							<rul:Test>
+								<rul:Or>
+									<rul:Equal>
+										<rul:FirstValue Type="string" FromConstant="" FromDataDef="@CauseOfLoss" Order="DataDefInputParamConstant" />
+										<rul:Constant Type="string">Fire</rul:Constant>
+									</rul:Equal>
+									<rul:Equal>
+										<rul:FirstValue Type="string" FromConstant="" FromDataDef="@CauseOfLoss" Order="DataDefInputParamConstant" />
+										<rul:Constant Type="string">Fire and Vandalism</rul:Constant>
+									</rul:Equal>
+									<rul:Equal>
+										<rul:FirstValue Type="string" FromConstant="" FromDataDef="@CauseOfLoss" Order="DataDefInputParamConstant" />
+										<rul:Constant Type="string">Fire and Sprinkler Leakage</rul:Constant>
+									</rul:Equal>
+									<rul:Equal>
+										<rul:FirstValue Type="string" FromConstant="" FromDataDef="@CauseOfLoss" Order="DataDefInputParamConstant" />
+										<rul:Constant Type="string">Fire, Vandalism and Sprinkler Leakage</rul:Constant>
+									</rul:Equal>
+								</rul:Or>
+							</rul:Test>
+							<rul:Then>
+								<rul:Constant Type="decimal">0</rul:Constant>
+							</rul:Then>
+							<rul:Else>
+								<rul:Product DecimalPlaces="3">
+									<rul:Product DecimalPlaces="3">
+										<rul:Product DecimalPlaces="3">
+											<rul:Product DecimalPlaces="3">
+												<rul:FirstValue Type="decimal" FromConstant="0" FromDataDef="@BasicGroupIIBaseRate" Order="DataDefInputParamConstant" />
+												<rul:FirstValue Type="decimal" FromConstant="0" FromDataDef="ancestor::CommercialProperty/@LossCostMultiplier" Order="DataDefInputParamConstant" />
+											</rul:Product>
+											<rul:FirstValue Type="integer" FromConstant="0" FromDataDef="@BasicGroupIISymbolNum" Order="DataDefInputParamConstant" />
+										</rul:Product>
+										<rul:FirstValue Type="decimal" FromConstant="0" FromDataDef="@VehExclFactor" Order="DataDefInputParamConstant" />
+									</rul:Product>
+									<rul:FirstValue Type="decimal" FromConstant="0" FromDataDef="ancestor::CommercialProperty/@StdPropPolBasicGroupIIFactor" Order="DataDefInputParamConstant" />
+								</rul:Product>
+							</rul:Else>
+						</rul:If>
+						<rul:Constant Type="decimal">0</rul:Constant>
+					</rul:FirstNonNull>
+				</rul:Arg>
+				<rul:Value Type="decimal" ToDataDef="@BasicGroupIIRate" FromParam="calcBasicGroupIIRate" />
+			</rul:WithArgs>
+		</rul:Sequence>
+	</rul:Rule>
+	<rul:Rule Name="ErcSetStatisticalCodes" Type="none" DataDefGroup="CommercialPropertyOutdoorTreesShrubsAndPlants">
+		<rul:Sequence>
+			<rul:If>
+				<rul:Test>
+					<rul:Exist AtInputDataDef="ancestor::MasterCFCW/Policy" />
+				</rul:Test>
+				<rul:Then>
+					<rul:Sequence>
+						<rul:RunRule Type="string" ToDataDef="@ClassCode" FileName="CommercialPropertyOutdoorTreesShrubsAndPlantsRules" Rule="LookupOutdoorTreesShrubsAndPlantsClassCode" ClearCache="true" />
+						<rul:Copy Type="string" ToDataDef="@ConstructionStatCode" FromDataDef="ancestor::CommercialPropertyStructure/@NoConstructionStatCode" />
+						<rul:RunRule Type="string" ToDataDef="@CoverageCode" FileName="CommercialPropertyOutdoorTreesShrubsAndPlantsRules" Rule="LookupOutdoorTreesShrubsAndPlantsCoverageCode" ClearCache="true" />
+						<rul:RunRule Type="string" ToDataDef="@RatingIdentificationCode" FileName="CommercialPropertyOutdoorTreesShrubsAndPlantsRules" Rule="LookupOutdoorTreesShrubsAndPlantsRatingIdentificationCode" ClearCache="true" />
+						<rul:Convert Type="integer" ToDataDef="@ExposureStatAmount">
+							<rul:Truncate>
+								<rul:Divide>
+									<rul:Value Type="integer" FromDataDef="@AllItemLimit" />
+									<rul:Constant Type="integer">1000</rul:Constant>
+								</rul:Divide>
+							</rul:Truncate>
+						</rul:Convert>
+					</rul:Sequence>
+				</rul:Then>
+			</rul:If>
+		</rul:Sequence>
+	</rul:Rule>
+	<rul:Rule Name="ErcProcess" Type="none" DataDefGroup="CommercialPropertyOutdoorTreesShrubsAndPlants">
+		<rul:Sequence>
+			<rul:RunRule Type="none" FileName="CommercialPropertyOutdoorTreesShrubsAndPlantsRules" Rule="ErcSetRatesAndFactors" ClearCache="true" />
+			<rul:Locate AtDataDef="CommercialPropertyOutdoorTreesShrubsAndPlantsBasicGroupICoverage">
+				<rul:RunRule Type="none" FileName="CommercialPropertyOutdoorTreesShrubsAndPlantsBasicGroupICoverageRules" Rule="ErcProcess" ClearCache="true" />
+			</rul:Locate>
+			<rul:Locate AtDataDef="CommercialPropertyOutdoorTreesShrubsAndPlantsBasicGroupIICoverage">
+				<rul:RunRule Type="none" FileName="CommercialPropertyOutdoorTreesShrubsAndPlantsBasicGroupIICoverageRules" Rule="ErcProcess" ClearCache="true" />
+			</rul:Locate>
+			<rul:Locate AtDataDef="CommercialPropertyOutdoorTreesShrubsAndPlantsBroadCoverage">
+				<rul:RunRule Type="none" FileName="CommercialPropertyOutdoorTreesShrubsAndPlantsBroadCoverageRules" Rule="ErcProcess" ClearCache="true" />
+			</rul:Locate>
+			<rul:Locate AtDataDef="CommercialPropertyOutdoorTreesShrubsAndPlantsSpecialCoverage">
+				<rul:RunRule Type="none" FileName="CommercialPropertyOutdoorTreesShrubsAndPlantsSpecialCoverageRules" Rule="ErcProcess" ClearCache="true" />
+			</rul:Locate>
+			<rul:RunRule Type="none" FileName="CommercialPropertyOutdoorTreesShrubsAndPlantsRules" Rule="ErcSetStatisticalCodes" ClearCache="true" />
+		</rul:Sequence>
+	</rul:Rule>
+	<rul:Rule Name="LookupBasicGroupIIRate" Type="decimal" DataDefGroup="CommercialPropertyOutdoorTreesShrubsAndPlants">
+		<rul:FirstNonNull Type="decimal">
+			<rul:Lookup Type="decimal" MatrixCol="Rate" MatrixDef="BasicGroupIIRateDef" MatrixFromConstant="BasicGroupIIRate" ResultMode="FirstResult">
+				<rul:Keys>
+					<rul:Value Type="string" FromDataDef="/State/@Code" />
+					<rul:FirstValue Type="string" FromConstant="" FromDataDef="ancestor::CommercialPropertyStructure/@BasicGroupIIRatingTerr" Order="DataDefInputParamConstant" />
+					<rul:Constant Type="string">B</rul:Constant>
+					<rul:Constant Type="string">Bldg</rul:Constant>
+				</rul:Keys>
+			</rul:Lookup>
+			<rul:Lookup Type="decimal" MatrixCol="Rate" MatrixDef="BasicGroupIIRateDef" MatrixFromConstant="BasicGroupIIRate" ResultMode="SingleResult">
+				<rul:Keys>
+					<rul:Constant Type="string">CW</rul:Constant>
+					<rul:FirstValue Type="string" FromConstant="" FromDataDef="ancestor::CommercialPropertyStructure/@BasicGroupIIRatingTerr" Order="DataDefInputParamConstant" />
+					<rul:Constant Type="string">B</rul:Constant>
+					<rul:Constant Type="string">Bldg</rul:Constant>
+				</rul:Keys>
+			</rul:Lookup>
+		</rul:FirstNonNull>
+	</rul:Rule>
+	<rul:Rule Name="LookupBasicGroupIRateSpecialClass" Type="decimal" DataDefGroup="CommercialPropertyOutdoorTreesShrubsAndPlants">
+		<rul:FirstNonNull Type="decimal">
+			<rul:Lookup Type="decimal" MatrixCol="Rate" MatrixDef="BasicGroupIRateSpecialClassDef" MatrixFromConstant="BasicGroupIRateSpecialClass" ResultMode="FirstResult">
+				<rul:Keys>
+					<rul:Value Type="string" FromDataDef="/State/@Code" />
+					<rul:Constant Type="string">Option42</rul:Constant>
+					<rul:FirstValue Type="string" FromConstant="" FromDataDef="../../../../@ProtectionClassToUse" Order="DataDefInputParamConstant" />
+				</rul:Keys>
+			</rul:Lookup>
+			<rul:Lookup Type="decimal" MatrixCol="Rate" MatrixDef="BasicGroupIRateSpecialClassDef" MatrixFromConstant="BasicGroupIRateSpecialClass" ResultMode="SingleResult">
+				<rul:Keys>
+					<rul:Constant Type="string">CW</rul:Constant>
+					<rul:Constant Type="string">Option42</rul:Constant>
+					<rul:FirstValue Type="string" FromConstant="" FromDataDef="../../../../@ProtectionClassToUse" Order="DataDefInputParamConstant" />
+				</rul:Keys>
+			</rul:Lookup>
+		</rul:FirstNonNull>
+	</rul:Rule>
+	<rul:Rule Name="LookupBroadFormBaseRate" Type="decimal" DataDefGroup="CommercialPropertyOutdoorTreesShrubsAndPlants">
+		<rul:FirstNonNull Type="decimal">
+			<rul:Lookup Type="decimal" MatrixCol="Rate" MatrixDef="BroadFormBaseRateDef" MatrixFromConstant="BroadFormBaseRate" ResultMode="FirstResult">
+				<rul:Keys>
+					<rul:Value Type="string" FromDataDef="/State/@Code" />
+					<rul:Constant Type="string">Frame</rul:Constant>
+					<rul:Constant Type="string">Bldg</rul:Constant>
+				</rul:Keys>
+			</rul:Lookup>
+			<rul:Lookup Type="decimal" MatrixCol="Rate" MatrixDef="BroadFormBaseRateDef" MatrixFromConstant="BroadFormBaseRate" ResultMode="SingleResult">
+				<rul:Keys>
+					<rul:Constant Type="string">CW</rul:Constant>
+					<rul:Constant Type="string">Frame</rul:Constant>
+					<rul:Constant Type="string">Bldg</rul:Constant>
+				</rul:Keys>
+			</rul:Lookup>
+		</rul:FirstNonNull>
+	</rul:Rule>
+	<rul:Rule Name="LookupLowestBasicGroupIIRate" Type="decimal" DataDefGroup="CommercialPropertyOutdoorTreesShrubsAndPlants">
+		<rul:FirstNonNull Type="decimal">
+			<rul:Lookup Type="decimal" MatrixCol="Rate" MatrixDef="LowestBasicGroupIIRateDef" MatrixFromConstant="LowestBasicGroupIIRate" ResultMode="FirstResult">
+				<rul:Keys>
+					<rul:Value Type="string" FromDataDef="/State/@Code" />
+					<rul:Constant Type="string">B</rul:Constant>
+					<rul:Constant Type="string">Bldg</rul:Constant>
+				</rul:Keys>
+			</rul:Lookup>
+			<rul:Lookup Type="decimal" MatrixCol="Rate" MatrixDef="LowestBasicGroupIIRateDef" MatrixFromConstant="LowestBasicGroupIIRate" ResultMode="SingleResult">
+				<rul:Keys>
+					<rul:Constant Type="string">CW</rul:Constant>
+					<rul:Constant Type="string">B</rul:Constant>
+					<rul:Constant Type="string">Bldg</rul:Constant>
+				</rul:Keys>
+			</rul:Lookup>
+		</rul:FirstNonNull>
+	</rul:Rule>
+	<rul:Rule Name="LookupOutdoorTreeBasicGroupIISymbol" Type="integer" DataDefGroup="CommercialPropertyOutdoorTreesShrubsAndPlants">
+		<rul:FirstNonNull Type="integer">
+			<rul:Lookup Type="integer" MatrixCol="Factor" MatrixDef="OutdoorTreeBasicGroupIISymbolDef" MatrixFromConstant="OutdoorTreeBasicGroupIISymbol" ResultMode="FirstResult">
+				<rul:Keys>
+					<rul:Value Type="string" FromDataDef="/State/@Code" />
+					<rul:Constant Type="string">Y</rul:Constant>
+				</rul:Keys>
+			</rul:Lookup>
+			<rul:Lookup Type="integer" MatrixCol="Factor" MatrixDef="OutdoorTreeBasicGroupIISymbolDef" MatrixFromConstant="OutdoorTreeBasicGroupIISymbol" ResultMode="SingleResult">
+				<rul:Keys>
+					<rul:Constant Type="string">CW</rul:Constant>
+					<rul:Constant Type="string">Y</rul:Constant>
+				</rul:Keys>
+			</rul:Lookup>
+		</rul:FirstNonNull>
+	</rul:Rule>
+	<rul:Rule Name="LookupOutdoorTreesShrubsAndPlantsClassCode" Type="string" DataDefGroup="CommercialPropertyOutdoorTreesShrubsAndPlants">
+		<rul:FirstNonNull Type="string">
+			<rul:Lookup Type="string" MatrixCol="Code" MatrixDef="OutdoorTreesShrubsAndPlantsClassCodeDef" MatrixFromConstant="OutdoorTreesShrubsAndPlantsClassCode" ResultMode="FirstResult">
+				<rul:Keys>
+					<rul:Value Type="string" FromDataDef="/State/@Code" />
+					<rul:Constant Type="string">Y</rul:Constant>
+				</rul:Keys>
+			</rul:Lookup>
+			<rul:Lookup Type="string" MatrixCol="Code" MatrixDef="OutdoorTreesShrubsAndPlantsClassCodeDef" MatrixFromConstant="OutdoorTreesShrubsAndPlantsClassCode" ResultMode="SingleResult">
+				<rul:Keys>
+					<rul:Constant Type="string">CW</rul:Constant>
+					<rul:Constant Type="string">Y</rul:Constant>
+				</rul:Keys>
+			</rul:Lookup>
+		</rul:FirstNonNull>
+	</rul:Rule>
+	<rul:Rule Name="LookupOutdoorTreesShrubsAndPlantsCoverageCode" Type="string" DataDefGroup="CommercialPropertyOutdoorTreesShrubsAndPlants">
+		<rul:FirstNonNull Type="string">
+			<rul:Lookup Type="string" MatrixCol="Code" MatrixDef="OutdoorTreesShrubsAndPlantsCoverageCodeDef" MatrixFromConstant="OutdoorTreesShrubsAndPlantsCoverageCode" ResultMode="FirstResult">
+				<rul:Keys>
+					<rul:Value Type="string" FromDataDef="/State/@Code" />
+					<rul:Constant Type="string">Y</rul:Constant>
+				</rul:Keys>
+			</rul:Lookup>
+			<rul:Lookup Type="string" MatrixCol="Code" MatrixDef="OutdoorTreesShrubsAndPlantsCoverageCodeDef" MatrixFromConstant="OutdoorTreesShrubsAndPlantsCoverageCode" ResultMode="SingleResult">
+				<rul:Keys>
+					<rul:Constant Type="string">CW</rul:Constant>
+					<rul:Constant Type="string">Y</rul:Constant>
+				</rul:Keys>
+			</rul:Lookup>
+		</rul:FirstNonNull>
+	</rul:Rule>
+	<rul:Rule Name="LookupOutdoorTreesShrubsAndPlantsRatingIdentificationCode" Type="string" DataDefGroup="CommercialPropertyOutdoorTreesShrubsAndPlants">
+		<rul:FirstNonNull Type="string">
+			<rul:Lookup Type="string" MatrixCol="Code" MatrixDef="OutdoorTreesShrubsAndPlantsRatingIdentificationCodeDef" MatrixFromConstant="OutdoorTreesShrubsAndPlantsRatingIdentificationCode" ResultMode="FirstResult">
+				<rul:Keys>
+					<rul:Value Type="string" FromDataDef="/State/@Code" />
+					<rul:Constant Type="string">Y</rul:Constant>
+				</rul:Keys>
+			</rul:Lookup>
+			<rul:Lookup Type="string" MatrixCol="Code" MatrixDef="OutdoorTreesShrubsAndPlantsRatingIdentificationCodeDef" MatrixFromConstant="OutdoorTreesShrubsAndPlantsRatingIdentificationCode" ResultMode="SingleResult">
+				<rul:Keys>
+					<rul:Constant Type="string">CW</rul:Constant>
+					<rul:Constant Type="string">Y</rul:Constant>
+				</rul:Keys>
+			</rul:Lookup>
+		</rul:FirstNonNull>
+	</rul:Rule>
+	<rul:Rule Name="LookupSpecialBuildingRate" Type="decimal" DataDefGroup="CommercialPropertyOutdoorTreesShrubsAndPlants">
+		<rul:FirstNonNull Type="decimal">
+			<rul:Lookup Type="decimal" MatrixCol="Rate" MatrixDef="SpecialBuildingRateDef" MatrixFromConstant="SpecialBuildingRate" ResultMode="FirstResult">
+				<rul:Keys>
+					<rul:Value Type="string" FromDataDef="/State/@Code" />
+					<rul:Constant Type="string">Y</rul:Constant>
+				</rul:Keys>
+			</rul:Lookup>
+			<rul:Lookup Type="decimal" MatrixCol="Rate" MatrixDef="SpecialBuildingRateDef" MatrixFromConstant="SpecialBuildingRate" ResultMode="SingleResult">
+				<rul:Keys>
+					<rul:Constant Type="string">CW</rul:Constant>
+					<rul:Constant Type="string">Y</rul:Constant>
+				</rul:Keys>
+			</rul:Lookup>
+		</rul:FirstNonNull>
+	</rul:Rule>
+	<rul:Rule Name="LookupVandalismExclusionFactor" Type="decimal" DataDefGroup="CommercialPropertyOutdoorTreesShrubsAndPlants">
+		<rul:FirstNonNull Type="decimal">
+			<rul:Lookup Type="decimal" MatrixCol="Factor" MatrixDef="VandalismExclFactorDef" MatrixFromConstant="VandalismExclFactor" ResultMode="FirstResult">
+				<rul:Keys>
+					<rul:Value Type="string" FromDataDef="/State/@Code" />
+					<rul:Constant Type="string">1190</rul:Constant>
+				</rul:Keys>
+			</rul:Lookup>
+			<rul:Lookup Type="decimal" MatrixCol="Factor" MatrixDef="VandalismExclFactorDef" MatrixFromConstant="VandalismExclFactor" ResultMode="SingleResult">
+				<rul:Keys>
+					<rul:Constant Type="string">CW</rul:Constant>
+					<rul:Constant Type="string">1190</rul:Constant>
+				</rul:Keys>
+			</rul:Lookup>
+		</rul:FirstNonNull>
+	</rul:Rule>
+	<rul:Rule Name="LookupVehExclFactorOutdoorTrees" Type="decimal" DataDefGroup="CommercialPropertyOutdoorTreesShrubsAndPlants">
+		<rul:FirstNonNull Type="decimal">
+			<rul:Lookup Type="decimal" MatrixCol="Factor" MatrixDef="VehExclFactorOutdoorTreesDef" MatrixFromConstant="VehExclFactorOutdoorTrees" ResultMode="FirstResult">
+				<rul:Keys>
+					<rul:Value Type="string" FromDataDef="/State/@Code" />
+					<rul:Constant Type="string">Y</rul:Constant>
+				</rul:Keys>
+			</rul:Lookup>
+			<rul:Lookup Type="decimal" MatrixCol="Factor" MatrixDef="VehExclFactorOutdoorTreesDef" MatrixFromConstant="VehExclFactorOutdoorTrees" ResultMode="SingleResult">
+				<rul:Keys>
+					<rul:Constant Type="string">CW</rul:Constant>
+					<rul:Constant Type="string">Y</rul:Constant>
+				</rul:Keys>
+			</rul:Lookup>
+		</rul:FirstNonNull>
+	</rul:Rule>
+	<rul:Rule Name="LookupWindstormOrHailExclFactor" Type="decimal" DataDefGroup="CommercialPropertyOutdoorTreesShrubsAndPlants">
+		<rul:FirstNonNull Type="decimal">
+			<rul:Lookup Type="decimal" MatrixCol="Factor" MatrixDef="WindstormOrHailExclFactorDef" MatrixFromConstant="WindstormOrHailExclFactor" ResultMode="FirstResult">
+				<rul:Keys>
+					<rul:Value Type="string" FromDataDef="/State/@Code" />
+					<rul:Constant Type="string">B</rul:Constant>
+				</rul:Keys>
+			</rul:Lookup>
+			<rul:Lookup Type="decimal" MatrixCol="Factor" MatrixDef="WindstormOrHailExclFactorDef" MatrixFromConstant="WindstormOrHailExclFactor" ResultMode="SingleResult">
+				<rul:Keys>
+					<rul:Constant Type="string">CW</rul:Constant>
+					<rul:Constant Type="string">B</rul:Constant>
+				</rul:Keys>
+			</rul:Lookup>
+		</rul:FirstNonNull>
+	</rul:Rule>
+</rul:Rules>

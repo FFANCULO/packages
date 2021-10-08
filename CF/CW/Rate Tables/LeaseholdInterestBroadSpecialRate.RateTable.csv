@@ -1,0 +1,7 @@
+"StateCode","ConstructionTypeToUse","Rate"
+"CW","Frame",0.023
+"CW","Joisted Masonry",0.023
+"CW","Non-Combustible",0.023
+"CW","Masonry Non-Combustible",0.023
+"CW","Modified Fire Resistive",0.012
+"CW","Fire Resistive",0.012

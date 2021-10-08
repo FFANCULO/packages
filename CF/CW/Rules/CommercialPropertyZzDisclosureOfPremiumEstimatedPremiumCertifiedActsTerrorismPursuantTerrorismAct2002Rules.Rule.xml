@@ -1,0 +1,411 @@
+<rul:Rules xmlns:rul="http://www.verisk.com/iso/erc/Rule">
+	<rul:Rule Name="InitializeRuleSet" DataDefGroup="CommercialPropertyZzDisclosureOfPremiumEstimatedPremiumCertifiedActsTerrorismPursuantTerrorismAct2002">
+		<rul:Sequence />
+	</rul:Rule>
+	<rul:Rule Name="CalculateTotalPremium" Type="decimal" DataDefGroup="CommercialPropertyZzDisclosureOfPremiumEstimatedPremiumCertifiedActsTerrorismPursuantTerrorismAct2002">
+		<rul:If>
+			<rul:Test>
+				<rul:And>
+					<rul:Equal>
+						<rul:FirstValue Type="integer" FromConstant="0" FromDataDef="@PremiumIndicator" Order="DataDefInputParamConstant" />
+						<rul:Constant Type="integer">1</rul:Constant>
+					</rul:Equal>
+					<rul:NotEqual>
+						<rul:FirstValue Type="decimal" FromConstant="0" FromDataDef="@Premium" Order="DataDefInputParamConstant" />
+						<rul:Constant Type="decimal">0</rul:Constant>
+					</rul:NotEqual>
+				</rul:And>
+			</rul:Test>
+			<rul:Then>
+				<rul:FirstValue Type="decimal" FromConstant="0" FromDataDef="@Premium" Order="DataDefInputParamConstant" />
+			</rul:Then>
+			<rul:Else>
+				<rul:Constant Type="decimal">0</rul:Constant>
+			</rul:Else>
+		</rul:If>
+	</rul:Rule>
+	<rul:Rule Name="ErcSetRatesAndFactors" Type="none" DataDefGroup="CommercialPropertyZzDisclosureOfPremiumEstimatedPremiumCertifiedActsTerrorismPursuantTerrorismAct2002">
+		<rul:Sequence />
+	</rul:Rule>
+	<rul:Rule Name="ErcRate" Type="none" DataDefGroup="CommercialPropertyZzDisclosureOfPremiumEstimatedPremiumCertifiedActsTerrorismPursuantTerrorismAct2002">
+		<rul:Sequence>
+			<rul:RunRule Type="none" FileName="CommercialPropertyZzDisclosureOfPremiumEstimatedPremiumCertifiedActsTerrorismPursuantTerrorismAct2002Rules" Rule="SetTotalStructurePreTRIAPremium" ClearCache="true" />
+			<rul:RunRule Type="none" FileName="CommercialPropertyZzDisclosureOfPremiumEstimatedPremiumCertifiedActsTerrorismPursuantTerrorismAct2002Rules" Rule="SetTotalPrsnlPropPreTRIAPremium" ClearCache="true" />
+			<rul:RunRule Type="none" FileName="CommercialPropertyZzDisclosureOfPremiumEstimatedPremiumCertifiedActsTerrorismPursuantTerrorismAct2002Rules" Rule="SetTotalBusnIncPreTRIAPremium" ClearCache="true" />
+			<rul:RunRule Type="none" FileName="CommercialPropertyZzDisclosureOfPremiumEstimatedPremiumCertifiedActsTerrorismPursuantTerrorismAct2002Rules" Rule="SetTotalSpecialPreTRIAPremium" ClearCache="true" />
+			<rul:RunRule Type="none" FileName="CommercialPropertyZzDisclosureOfPremiumEstimatedPremiumCertifiedActsTerrorismPursuantTerrorismAct2002Rules" Rule="SetTotalSpClBusnIncPreTRIAPremium" ClearCache="true" />
+			<rul:RunRule Type="none" FileName="CommercialPropertyZzDisclosureOfPremiumEstimatedPremiumCertifiedActsTerrorismPursuantTerrorismAct2002Rules" Rule="SetTotalStructurePostTRIAPremium" ClearCache="true" />
+			<rul:RunRule Type="none" FileName="CommercialPropertyZzDisclosureOfPremiumEstimatedPremiumCertifiedActsTerrorismPursuantTerrorismAct2002Rules" Rule="SetTotalPrsnlPropPostTRIAPremium" ClearCache="true" />
+			<rul:RunRule Type="none" FileName="CommercialPropertyZzDisclosureOfPremiumEstimatedPremiumCertifiedActsTerrorismPursuantTerrorismAct2002Rules" Rule="SetTotalBusnIncPostTRIAPremium" ClearCache="true" />
+			<rul:RunRule Type="none" FileName="CommercialPropertyZzDisclosureOfPremiumEstimatedPremiumCertifiedActsTerrorismPursuantTerrorismAct2002Rules" Rule="SetTotalSpecialPostTRIAPremium" ClearCache="true" />
+			<rul:RunRule Type="none" FileName="CommercialPropertyZzDisclosureOfPremiumEstimatedPremiumCertifiedActsTerrorismPursuantTerrorismAct2002Rules" Rule="SetTotalSpClBusnIncPostTRIAPremium" ClearCache="true" />
+			<rul:RunRule Type="none" FileName="CommercialPropertyZzDisclosureOfPremiumEstimatedPremiumCertifiedActsTerrorismPursuantTerrorismAct2002Rules" Rule="SetTotalPreTRIAPremium" ClearCache="true" />
+			<rul:RunRule Type="none" FileName="CommercialPropertyZzDisclosureOfPremiumEstimatedPremiumCertifiedActsTerrorismPursuantTerrorismAct2002Rules" Rule="SetTotalPostTRIAPremium" ClearCache="true" />
+			<rul:Round ToDataDef="@Premium" DecimalPlaces="0">
+				<rul:Sum>
+					<rul:Value Type="decimal" FromDataDef="@TotalPreTRIAPremium" />
+					<rul:Value Type="decimal" FromDataDef="@TotalPostTRIAPremium" />
+				</rul:Sum>
+			</rul:Round>
+			<rul:If>
+				<rul:Test>
+					<rul:NotEqual>
+						<rul:FirstValue Type="decimal" FromConstant="0" FromDataDef="@Premium" Order="DataDefInputParamConstant" />
+						<rul:Constant Type="decimal">0</rul:Constant>
+					</rul:NotEqual>
+				</rul:Test>
+				<rul:Then>
+					<rul:Sequence>
+						<rul:Constant Type="integer" ToDataDef="@PremiumIndicator">1</rul:Constant>
+					</rul:Sequence>
+				</rul:Then>
+				<rul:Else>
+					<rul:Sequence>
+						<rul:Constant Type="integer" ToDataDef="@PremiumIndicator">0</rul:Constant>
+					</rul:Sequence>
+				</rul:Else>
+			</rul:If>
+		</rul:Sequence>
+	</rul:Rule>
+	<rul:Rule Name="SetTotalStructurePreTRIAPremium" Type="none" DataDefGroup="CommercialPropertyZzDisclosureOfPremiumEstimatedPremiumCertifiedActsTerrorismPursuantTerrorismAct2002">
+		<rul:Sequence>
+			<rul:Constant Type="decimal" ToDataDef="@TotalStructurePreTRIAPremium">0.0</rul:Constant>
+			<rul:WithArgs>
+				<rul:Arg Type="decimal" Param="TotalStructurePreTRIAPremiumIncrementParam">
+					<rul:Sum>
+						<rul:ForEach AtInputDataDef="ancestor::CommercialProperty/CommercialPropertyLocationTable/CommercialPropertyLocation">
+							<rul:ForEach AtInputDataDef="CommercialPropertyStructureTable/CommercialPropertyStructure">
+								<rul:If>
+									<rul:Test>
+										<rul:IsNotNull>
+											<rul:Value Type="decimal" FromDataDef="@PreTRIAPremium" />
+										</rul:IsNotNull>
+									</rul:Test>
+									<rul:Then>
+										<rul:Round DecimalPlaces="2">
+											<rul:FirstValue Type="decimal" FromConstant="0" FromDataDef="@PreTRIAPremium" Order="DataDefInputParamConstant" />
+										</rul:Round>
+									</rul:Then>
+								</rul:If>
+							</rul:ForEach>
+						</rul:ForEach>
+						<rul:FirstValue Type="decimal" FromConstant="0" FromDataDef="@TotalStructurePreTRIAPremium" Order="DataDefInputParamConstant" />
+					</rul:Sum>
+				</rul:Arg>
+				<rul:Value Type="decimal" ToDataDef="@TotalStructurePreTRIAPremium" FromParam="TotalStructurePreTRIAPremiumIncrementParam" />
+			</rul:WithArgs>
+		</rul:Sequence>
+	</rul:Rule>
+	<rul:Rule Name="SetTotalPrsnlPropPreTRIAPremium" Type="none" DataDefGroup="CommercialPropertyZzDisclosureOfPremiumEstimatedPremiumCertifiedActsTerrorismPursuantTerrorismAct2002">
+		<rul:Sequence>
+			<rul:Constant Type="decimal" ToDataDef="@TotalPrsnlPropPreTRIAPremium">0.0</rul:Constant>
+			<rul:WithArgs>
+				<rul:Arg Type="decimal" Param="TotalPrsnlPropPreTRIAPremiumIncrementParam">
+					<rul:Sum>
+						<rul:ForEach AtInputDataDef="ancestor::CommercialProperty/CommercialPropertyLocationTable/CommercialPropertyLocation">
+							<rul:ForEach AtInputDataDef="CommercialPropertyStructureTable/CommercialPropertyStructure">
+								<rul:ForEach AtInputDataDef="CommercialPropertyOccupClassTable/CommercialPropertyOccupClass">
+									<rul:ForEach AtInputDataDef="CommercialPropertyPersonalPropertyTable/CommercialPropertyPersonalProperty">
+										<rul:If>
+											<rul:Test>
+												<rul:IsNotNull>
+													<rul:Value Type="decimal" FromDataDef="@PreTRIAPremium" />
+												</rul:IsNotNull>
+											</rul:Test>
+											<rul:Then>
+												<rul:Round DecimalPlaces="2">
+													<rul:FirstValue Type="decimal" FromConstant="0" FromDataDef="@PreTRIAPremium" Order="DataDefInputParamConstant" />
+												</rul:Round>
+											</rul:Then>
+										</rul:If>
+									</rul:ForEach>
+								</rul:ForEach>
+							</rul:ForEach>
+						</rul:ForEach>
+						<rul:FirstValue Type="decimal" FromConstant="0" FromDataDef="@TotalPrsnlPropPreTRIAPremium" Order="DataDefInputParamConstant" />
+					</rul:Sum>
+				</rul:Arg>
+				<rul:Value Type="decimal" ToDataDef="@TotalPrsnlPropPreTRIAPremium" FromParam="TotalPrsnlPropPreTRIAPremiumIncrementParam" />
+			</rul:WithArgs>
+		</rul:Sequence>
+	</rul:Rule>
+	<rul:Rule Name="SetTotalSpecialPreTRIAPremium" Type="none" DataDefGroup="CommercialPropertyZzDisclosureOfPremiumEstimatedPremiumCertifiedActsTerrorismPursuantTerrorismAct2002">
+		<rul:Sequence>
+			<rul:Constant Type="decimal" ToDataDef="@TotalSpecialPreTRIAPremium">0.0</rul:Constant>
+			<rul:WithArgs>
+				<rul:Arg Type="decimal" Param="TotalSpecialPreTRIAPremiumIncrementParam">
+					<rul:Sum>
+						<rul:ForEach AtInputDataDef="ancestor::CommercialProperty/CommercialPropertyLocationTable/CommercialPropertyLocation">
+							<rul:ForEach AtInputDataDef="CommercialPropertySpecialClassTable/CommercialPropertySpecialClass">
+								<rul:If>
+									<rul:Test>
+										<rul:IsNotNull>
+											<rul:Value Type="decimal" FromDataDef="@PreTRIAPremium" />
+										</rul:IsNotNull>
+									</rul:Test>
+									<rul:Then>
+										<rul:Round DecimalPlaces="2">
+											<rul:FirstValue Type="decimal" FromConstant="0" FromDataDef="@PreTRIAPremium" Order="DataDefInputParamConstant" />
+										</rul:Round>
+									</rul:Then>
+								</rul:If>
+							</rul:ForEach>
+						</rul:ForEach>
+						<rul:FirstValue Type="decimal" FromConstant="0" FromDataDef="@TotalSpecialPreTRIAPremium" Order="DataDefInputParamConstant" />
+					</rul:Sum>
+				</rul:Arg>
+				<rul:Value Type="decimal" ToDataDef="@TotalSpecialPreTRIAPremium" FromParam="TotalSpecialPreTRIAPremiumIncrementParam" />
+			</rul:WithArgs>
+		</rul:Sequence>
+	</rul:Rule>
+	<rul:Rule Name="SetTotalBusnIncPreTRIAPremium" Type="none" DataDefGroup="CommercialPropertyZzDisclosureOfPremiumEstimatedPremiumCertifiedActsTerrorismPursuantTerrorismAct2002">
+		<rul:Sequence>
+			<rul:Constant Type="decimal" ToDataDef="@TotalBusnIncPreTRIAPremium">0.0</rul:Constant>
+			<rul:WithArgs>
+				<rul:Arg Type="decimal" Param="TotalBusnIncPreTRIAPremiumIncrementParam">
+					<rul:Sum>
+						<rul:ForEach AtInputDataDef="ancestor::CommercialProperty/CommercialPropertyLocationTable/CommercialPropertyLocation">
+							<rul:ForEach AtInputDataDef="CommercialPropertyStructureTable/CommercialPropertyStructure">
+								<rul:ForEach AtInputDataDef="CommercialPropertyBusinessIncomeTable/CommercialPropertyBusinessIncome">
+									<rul:If>
+										<rul:Test>
+											<rul:IsNotNull>
+												<rul:Value Type="decimal" FromDataDef="@PreTRIAPremium" />
+											</rul:IsNotNull>
+										</rul:Test>
+										<rul:Then>
+											<rul:Round DecimalPlaces="2">
+												<rul:FirstValue Type="decimal" FromConstant="0" FromDataDef="@PreTRIAPremium" Order="DataDefInputParamConstant" />
+											</rul:Round>
+										</rul:Then>
+									</rul:If>
+								</rul:ForEach>
+							</rul:ForEach>
+						</rul:ForEach>
+						<rul:FirstValue Type="decimal" FromConstant="0" FromDataDef="@TotalBusnIncPreTRIAPremium" Order="DataDefInputParamConstant" />
+					</rul:Sum>
+				</rul:Arg>
+				<rul:Value Type="decimal" ToDataDef="@TotalBusnIncPreTRIAPremium" FromParam="TotalBusnIncPreTRIAPremiumIncrementParam" />
+			</rul:WithArgs>
+		</rul:Sequence>
+	</rul:Rule>
+	<rul:Rule Name="SetTotalSpClBusnIncPreTRIAPremium" Type="none" DataDefGroup="CommercialPropertyZzDisclosureOfPremiumEstimatedPremiumCertifiedActsTerrorismPursuantTerrorismAct2002">
+		<rul:Sequence>
+			<rul:Constant Type="decimal" ToDataDef="@TotalSpClBusnIncPreTRIAPremium">0.0</rul:Constant>
+			<rul:WithArgs>
+				<rul:Arg Type="decimal" Param="TotalSpClBusnIncPreTRIAPremiumIncrementParam">
+					<rul:Sum>
+						<rul:ForEach AtInputDataDef="ancestor::CommercialProperty/CommercialPropertyLocationTable/CommercialPropertyLocation">
+							<rul:ForEach AtInputDataDef="CommercialPropertySpecialClassTable/CommercialPropertySpecialClass">
+								<rul:ForEach AtInputDataDef="CommercialPropertySpecialClassBusnIncomeTable/CommercialPropertySpecialClassBusnIncome">
+									<rul:If>
+										<rul:Test>
+											<rul:IsNotNull>
+												<rul:Value Type="decimal" FromDataDef="@PreTRIAPremium" />
+											</rul:IsNotNull>
+										</rul:Test>
+										<rul:Then>
+											<rul:Round DecimalPlaces="2">
+												<rul:FirstValue Type="decimal" FromConstant="0" FromDataDef="@PreTRIAPremium" Order="DataDefInputParamConstant" />
+											</rul:Round>
+										</rul:Then>
+									</rul:If>
+								</rul:ForEach>
+							</rul:ForEach>
+						</rul:ForEach>
+						<rul:FirstValue Type="decimal" FromConstant="0" FromDataDef="@TotalSpClBusnIncPreTRIAPremium" Order="DataDefInputParamConstant" />
+					</rul:Sum>
+				</rul:Arg>
+				<rul:Value Type="decimal" ToDataDef="@TotalSpClBusnIncPreTRIAPremium" FromParam="TotalSpClBusnIncPreTRIAPremiumIncrementParam" />
+			</rul:WithArgs>
+		</rul:Sequence>
+	</rul:Rule>
+	<rul:Rule Name="SetTotalStructurePostTRIAPremium" Type="none" DataDefGroup="CommercialPropertyZzDisclosureOfPremiumEstimatedPremiumCertifiedActsTerrorismPursuantTerrorismAct2002">
+		<rul:Sequence>
+			<rul:Constant Type="decimal" ToDataDef="@TotalStructurePostTRIAPremium">0.0</rul:Constant>
+			<rul:WithArgs>
+				<rul:Arg Type="decimal" Param="TotalStructurePostTRIAPremiumIncrementParam">
+					<rul:Sum>
+						<rul:ForEach AtInputDataDef="ancestor::CommercialProperty/CommercialPropertyLocationTable/CommercialPropertyLocation">
+							<rul:ForEach AtInputDataDef="CommercialPropertyStructureTable/CommercialPropertyStructure">
+								<rul:If>
+									<rul:Test>
+										<rul:IsNotNull>
+											<rul:Value Type="decimal" FromDataDef="@PostTRIAPremium" />
+										</rul:IsNotNull>
+									</rul:Test>
+									<rul:Then>
+										<rul:Round DecimalPlaces="2">
+											<rul:FirstValue Type="decimal" FromConstant="0" FromDataDef="@PostTRIAPremium" Order="DataDefInputParamConstant" />
+										</rul:Round>
+									</rul:Then>
+								</rul:If>
+							</rul:ForEach>
+						</rul:ForEach>
+						<rul:FirstValue Type="decimal" FromConstant="0" FromDataDef="@TotalStructurePostTRIAPremium" Order="DataDefInputParamConstant" />
+					</rul:Sum>
+				</rul:Arg>
+				<rul:Value Type="decimal" ToDataDef="@TotalStructurePostTRIAPremium" FromParam="TotalStructurePostTRIAPremiumIncrementParam" />
+			</rul:WithArgs>
+		</rul:Sequence>
+	</rul:Rule>
+	<rul:Rule Name="SetTotalPrsnlPropPostTRIAPremium" Type="none" DataDefGroup="CommercialPropertyZzDisclosureOfPremiumEstimatedPremiumCertifiedActsTerrorismPursuantTerrorismAct2002">
+		<rul:Sequence>
+			<rul:Constant Type="decimal" ToDataDef="@TotalPrsnlPropPostTRIAPremium">0.0</rul:Constant>
+			<rul:WithArgs>
+				<rul:Arg Type="decimal" Param="TotalPrsnlPropPostTRIAPremiumIncrementParam">
+					<rul:Sum>
+						<rul:ForEach AtInputDataDef="ancestor::CommercialProperty/CommercialPropertyLocationTable/CommercialPropertyLocation">
+							<rul:ForEach AtInputDataDef="CommercialPropertyStructureTable/CommercialPropertyStructure">
+								<rul:ForEach AtInputDataDef="CommercialPropertyOccupClassTable/CommercialPropertyOccupClass">
+									<rul:ForEach AtInputDataDef="CommercialPropertyPersonalPropertyTable/CommercialPropertyPersonalProperty">
+										<rul:If>
+											<rul:Test>
+												<rul:IsNotNull>
+													<rul:Value Type="decimal" FromDataDef="@PostTRIAPremium" />
+												</rul:IsNotNull>
+											</rul:Test>
+											<rul:Then>
+												<rul:Round DecimalPlaces="2">
+													<rul:FirstValue Type="decimal" FromConstant="0" FromDataDef="@PostTRIAPremium" Order="DataDefInputParamConstant" />
+												</rul:Round>
+											</rul:Then>
+										</rul:If>
+									</rul:ForEach>
+								</rul:ForEach>
+							</rul:ForEach>
+						</rul:ForEach>
+						<rul:FirstValue Type="decimal" FromConstant="0" FromDataDef="@TotalPrsnlPropPostTRIAPremium" Order="DataDefInputParamConstant" />
+					</rul:Sum>
+				</rul:Arg>
+				<rul:Value Type="decimal" ToDataDef="@TotalPrsnlPropPostTRIAPremium" FromParam="TotalPrsnlPropPostTRIAPremiumIncrementParam" />
+			</rul:WithArgs>
+		</rul:Sequence>
+	</rul:Rule>
+	<rul:Rule Name="SetTotalSpecialPostTRIAPremium" Type="none" DataDefGroup="CommercialPropertyZzDisclosureOfPremiumEstimatedPremiumCertifiedActsTerrorismPursuantTerrorismAct2002">
+		<rul:Sequence>
+			<rul:Constant Type="decimal" ToDataDef="@TotalSpecialPostTRIAPremium">0.0</rul:Constant>
+			<rul:WithArgs>
+				<rul:Arg Type="decimal" Param="TotalSpecialPostTRIAPremiumIncrementParam">
+					<rul:Sum>
+						<rul:ForEach AtInputDataDef="ancestor::CommercialProperty/CommercialPropertyLocationTable/CommercialPropertyLocation">
+							<rul:ForEach AtInputDataDef="CommercialPropertySpecialClassTable/CommercialPropertySpecialClass">
+								<rul:If>
+									<rul:Test>
+										<rul:IsNotNull>
+											<rul:Value Type="decimal" FromDataDef="@PostTRIAPremium" />
+										</rul:IsNotNull>
+									</rul:Test>
+									<rul:Then>
+										<rul:Round DecimalPlaces="2">
+											<rul:FirstValue Type="decimal" FromConstant="0" FromDataDef="@PostTRIAPremium" Order="DataDefInputParamConstant" />
+										</rul:Round>
+									</rul:Then>
+								</rul:If>
+							</rul:ForEach>
+						</rul:ForEach>
+						<rul:FirstValue Type="decimal" FromConstant="0" FromDataDef="@TotalSpecialPostTRIAPremium" Order="DataDefInputParamConstant" />
+					</rul:Sum>
+				</rul:Arg>
+				<rul:Value Type="decimal" ToDataDef="@TotalSpecialPostTRIAPremium" FromParam="TotalSpecialPostTRIAPremiumIncrementParam" />
+			</rul:WithArgs>
+		</rul:Sequence>
+	</rul:Rule>
+	<rul:Rule Name="SetTotalBusnIncPostTRIAPremium" Type="none" DataDefGroup="CommercialPropertyZzDisclosureOfPremiumEstimatedPremiumCertifiedActsTerrorismPursuantTerrorismAct2002">
+		<rul:Sequence>
+			<rul:Constant Type="decimal" ToDataDef="@TotalBusnIncPostTRIAPremium">0.0</rul:Constant>
+			<rul:WithArgs>
+				<rul:Arg Type="decimal" Param="TotalBusnIncPostTRIAPremiumIncrementParam">
+					<rul:Sum>
+						<rul:ForEach AtInputDataDef="ancestor::CommercialProperty/CommercialPropertyLocationTable/CommercialPropertyLocation">
+							<rul:ForEach AtInputDataDef="CommercialPropertyStructureTable/CommercialPropertyStructure">
+								<rul:ForEach AtInputDataDef="CommercialPropertyBusinessIncomeTable/CommercialPropertyBusinessIncome">
+									<rul:If>
+										<rul:Test>
+											<rul:IsNotNull>
+												<rul:Value Type="decimal" FromDataDef="@PostTRIAPremium" />
+											</rul:IsNotNull>
+										</rul:Test>
+										<rul:Then>
+											<rul:Round DecimalPlaces="2">
+												<rul:FirstValue Type="decimal" FromConstant="0" FromDataDef="@PostTRIAPremium" Order="DataDefInputParamConstant" />
+											</rul:Round>
+										</rul:Then>
+									</rul:If>
+								</rul:ForEach>
+							</rul:ForEach>
+						</rul:ForEach>
+						<rul:FirstValue Type="decimal" FromConstant="0" FromDataDef="@TotalBusnIncPostTRIAPremium" Order="DataDefInputParamConstant" />
+					</rul:Sum>
+				</rul:Arg>
+				<rul:Value Type="decimal" ToDataDef="@TotalBusnIncPostTRIAPremium" FromParam="TotalBusnIncPostTRIAPremiumIncrementParam" />
+			</rul:WithArgs>
+		</rul:Sequence>
+	</rul:Rule>
+	<rul:Rule Name="SetTotalSpClBusnIncPostTRIAPremium" Type="none" DataDefGroup="CommercialPropertyZzDisclosureOfPremiumEstimatedPremiumCertifiedActsTerrorismPursuantTerrorismAct2002">
+		<rul:Sequence>
+			<rul:Constant Type="decimal" ToDataDef="@TotalSpClBusnIncPostTRIAPremium">0.0</rul:Constant>
+			<rul:WithArgs>
+				<rul:Arg Type="decimal" Param="TotalSpClBusnIncPostTRIAPremiumIncrementParam">
+					<rul:Sum>
+						<rul:ForEach AtInputDataDef="ancestor::CommercialProperty/CommercialPropertyLocationTable/CommercialPropertyLocation">
+							<rul:ForEach AtInputDataDef="CommercialPropertySpecialClassTable/CommercialPropertySpecialClass">
+								<rul:ForEach AtInputDataDef="CommercialPropertySpecialClassBusnIncomeTable/CommercialPropertySpecialClassBusnIncome">
+									<rul:If>
+										<rul:Test>
+											<rul:IsNotNull>
+												<rul:Value Type="decimal" FromDataDef="@PostTRIAPremium" />
+											</rul:IsNotNull>
+										</rul:Test>
+										<rul:Then>
+											<rul:Round DecimalPlaces="2">
+												<rul:FirstValue Type="decimal" FromConstant="0" FromDataDef="@PostTRIAPremium" Order="DataDefInputParamConstant" />
+											</rul:Round>
+										</rul:Then>
+									</rul:If>
+								</rul:ForEach>
+							</rul:ForEach>
+						</rul:ForEach>
+						<rul:FirstValue Type="decimal" FromConstant="0" FromDataDef="@TotalSpClBusnIncPostTRIAPremium" Order="DataDefInputParamConstant" />
+					</rul:Sum>
+				</rul:Arg>
+				<rul:Value Type="decimal" ToDataDef="@TotalSpClBusnIncPostTRIAPremium" FromParam="TotalSpClBusnIncPostTRIAPremiumIncrementParam" />
+			</rul:WithArgs>
+		</rul:Sequence>
+	</rul:Rule>
+	<rul:Rule Name="SetTotalPreTRIAPremium" Type="none" DataDefGroup="CommercialPropertyZzDisclosureOfPremiumEstimatedPremiumCertifiedActsTerrorismPursuantTerrorismAct2002">
+		<rul:Sequence>
+			<rul:Round ToDataDef="@TotalPreTRIAPremium" DecimalPlaces="2">
+				<rul:Sum>
+					<rul:Value Type="decimal" FromDataDef="@TotalStructurePreTRIAPremium" />
+					<rul:Value Type="decimal" FromDataDef="@TotalPrsnlPropPreTRIAPremium" />
+					<rul:Value Type="decimal" FromDataDef="@TotalBusnIncPreTRIAPremium" />
+					<rul:Value Type="decimal" FromDataDef="@TotalSpecialPreTRIAPremium" />
+					<rul:Value Type="decimal" FromDataDef="@TotalSpClBusnIncPreTRIAPremium" />
+				</rul:Sum>
+			</rul:Round>
+		</rul:Sequence>
+	</rul:Rule>
+	<rul:Rule Name="SetTotalPostTRIAPremium" Type="none" DataDefGroup="CommercialPropertyZzDisclosureOfPremiumEstimatedPremiumCertifiedActsTerrorismPursuantTerrorismAct2002">
+		<rul:Sequence>
+			<rul:Round ToDataDef="@TotalPostTRIAPremium" DecimalPlaces="2">
+				<rul:Sum>
+					<rul:Value Type="decimal" FromDataDef="@TotalStructurePostTRIAPremium" />
+					<rul:Value Type="decimal" FromDataDef="@TotalPrsnlPropPostTRIAPremium" />
+					<rul:Value Type="decimal" FromDataDef="@TotalBusnIncPostTRIAPremium" />
+					<rul:Value Type="decimal" FromDataDef="@TotalSpecialPostTRIAPremium" />
+					<rul:Value Type="decimal" FromDataDef="@TotalSpClBusnIncPostTRIAPremium" />
+				</rul:Sum>
+			</rul:Round>
+		</rul:Sequence>
+	</rul:Rule>
+	<rul:Rule Name="TerrorismCapStatePremiumCheck" Type="none" DataDefGroup="CommercialPropertyZzDisclosureOfPremiumEstimatedPremiumCertifiedActsTerrorismPursuantTerrorismAct2002">
+		<rul:Sequence />
+	</rul:Rule>
+	<rul:Rule Name="ErcProcess" Type="none" DataDefGroup="CommercialPropertyZzDisclosureOfPremiumEstimatedPremiumCertifiedActsTerrorismPursuantTerrorismAct2002">
+		<rul:Sequence>
+			<rul:RunRule Type="none" FileName="CommercialPropertyZzDisclosureOfPremiumEstimatedPremiumCertifiedActsTerrorismPursuantTerrorismAct2002Rules" Rule="ErcSetRatesAndFactors" ClearCache="true" />
+			<rul:RunRule Type="none" FileName="CommercialPropertyZzDisclosureOfPremiumEstimatedPremiumCertifiedActsTerrorismPursuantTerrorismAct2002Rules" Rule="ErcRate" ClearCache="true" />
+		</rul:Sequence>
+	</rul:Rule>
+</rul:Rules>

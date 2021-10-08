@@ -1,0 +1,12 @@
+"StateCode","TypeOfRisk","DisplayValue","DataValue","MinimumValue","MaximumValue"
+"CW","Mercantile and Non-manufacturing","","",0,0
+"CW","Manufacturing","","",0,0
+"CW","Mining","","",0,0
+"CW","Rental Properties","","",0,0
+"CW","Combined Manufacturing and Mercantile Operations","","",0,0
+"CW","Combined Manufacturing and Rental Operations","","",1,99
+"CW","Combined Mercantile and Rental Operations","","",1,99
+"CW","Combined Educational Institutes and Rental Operations","","",1,99
+"CW","Seasonal Leases with Monthly Limit","","",0,0
+"CW","Not Applicable","","",0,0
+"CW","Educational Institutions","","",0,0

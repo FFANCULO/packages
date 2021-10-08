@@ -1,0 +1,9 @@
+"StateCode","PolicyType","VacancyCauseOfLoss","Factor"
+"CW","Commercial Property Policy","Basic Group I",0.13
+"CW","Commercial Property Policy","Basic Group II",0.13
+"CW","Standard Property Policy","Basic Group I",0.4
+"CW","Standard Property Policy","Basic Group II",0.4
+"CW","Commercial Property Policy","Broad",0.04
+"CW","Commercial Property Policy","Special",0.053
+"CW","Commercial Property Policy","Earthquake",0.006
+"CW","Standard Property Policy","Earthquake",0.006

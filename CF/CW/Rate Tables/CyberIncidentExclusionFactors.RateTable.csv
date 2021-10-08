@@ -1,0 +1,9 @@
+"StateCode","CausesOfLossOrPerilGroupPremium","Factor"
+"CW","Basic Group I",0.995
+"CW","Basic Group II",0.995
+"CW","Broad",0.995
+"CW","Special",0.995
+"CW","Earthquake",1
+"CW","Flood",0.999
+"CW","Spoilage",0.999
+"CW","Equipment Breakdown",0.999

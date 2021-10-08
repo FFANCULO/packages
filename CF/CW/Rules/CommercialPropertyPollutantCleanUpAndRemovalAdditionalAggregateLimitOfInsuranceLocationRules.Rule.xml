@@ -1,0 +1,2361 @@
+<rul:Rules xmlns:rul="http://www.verisk.com/iso/erc/Rule">
+	<rul:Rule Name="InitializeRuleSet" DataDefGroup="CommercialPropertyPollutantCleanUpAndRemovalAdditionalAggregateLimitOfInsuranceLocation">
+		<rul:Sequence>
+			<rul:Locate AtDataDef="CommercialPropertyPollutantCleanUpAndRemovalAdditionalAggregateLimitOfInsuranceLocationBasicGroupICoverage">
+				<rul:RunRule Type="none" FileName="CommercialPropertyPollutantCleanUpAndRemovalAdditionalAggregateLimitOfInsuranceLocationBasicGroupICoverageRules" Rule="InitializeRuleSet" ClearCache="true" />
+			</rul:Locate>
+			<rul:Locate AtDataDef="CommercialPropertyPollutantCleanUpAndRemovalAdditionalAggregateLimitOfInsuranceLocationBasicGroupIICoverage">
+				<rul:RunRule Type="none" FileName="CommercialPropertyPollutantCleanUpAndRemovalAdditionalAggregateLimitOfInsuranceLocationBasicGroupIICoverageRules" Rule="InitializeRuleSet" ClearCache="true" />
+			</rul:Locate>
+			<rul:Locate AtDataDef="CommercialPropertyPollutantCleanUpAndRemovalAdditionalAggregateLimitOfInsuranceLocationBroadCoverage">
+				<rul:RunRule Type="none" FileName="CommercialPropertyPollutantCleanUpAndRemovalAdditionalAggregateLimitOfInsuranceLocationBroadCoverageRules" Rule="InitializeRuleSet" ClearCache="true" />
+			</rul:Locate>
+			<rul:Locate AtDataDef="CommercialPropertyPollutantCleanUpAndRemovalAdditionalAggregateLimitOfInsuranceLocationEarthquakeCoverage">
+				<rul:RunRule Type="none" FileName="CommercialPropertyPollutantCleanUpAndRemovalAdditionalAggregateLimitOfInsuranceLocationEarthquakeCoverageRules" Rule="InitializeRuleSet" ClearCache="true" />
+			</rul:Locate>
+			<rul:Locate AtDataDef="CommercialPropertyPollutantCleanUpAndRemovalAdditionalAggregateLimitOfInsuranceLocationSpecialCoverage">
+				<rul:RunRule Type="none" FileName="CommercialPropertyPollutantCleanUpAndRemovalAdditionalAggregateLimitOfInsuranceLocationSpecialCoverageRules" Rule="InitializeRuleSet" ClearCache="true" />
+			</rul:Locate>
+		</rul:Sequence>
+	</rul:Rule>
+	<rul:Rule Name="CalculateTotalPremium" Type="decimal" DataDefGroup="CommercialPropertyPollutantCleanUpAndRemovalAdditionalAggregateLimitOfInsuranceLocation">
+		<rul:Sum>
+			<rul:Locate AtDataDef="CommercialPropertyPollutantCleanUpAndRemovalAdditionalAggregateLimitOfInsuranceLocationBasicGroupICoverage">
+				<rul:RunRule Type="decimal" FileName="CommercialPropertyPollutantCleanUpAndRemovalAdditionalAggregateLimitOfInsuranceLocationBasicGroupICoverageRules" Rule="CalculateTotalPremium" ClearCache="true" />
+			</rul:Locate>
+			<rul:Locate AtDataDef="CommercialPropertyPollutantCleanUpAndRemovalAdditionalAggregateLimitOfInsuranceLocationBasicGroupIICoverage">
+				<rul:RunRule Type="decimal" FileName="CommercialPropertyPollutantCleanUpAndRemovalAdditionalAggregateLimitOfInsuranceLocationBasicGroupIICoverageRules" Rule="CalculateTotalPremium" ClearCache="true" />
+			</rul:Locate>
+			<rul:Locate AtDataDef="CommercialPropertyPollutantCleanUpAndRemovalAdditionalAggregateLimitOfInsuranceLocationBroadCoverage">
+				<rul:RunRule Type="decimal" FileName="CommercialPropertyPollutantCleanUpAndRemovalAdditionalAggregateLimitOfInsuranceLocationBroadCoverageRules" Rule="CalculateTotalPremium" ClearCache="true" />
+			</rul:Locate>
+			<rul:Locate AtDataDef="CommercialPropertyPollutantCleanUpAndRemovalAdditionalAggregateLimitOfInsuranceLocationEarthquakeCoverage">
+				<rul:RunRule Type="decimal" FileName="CommercialPropertyPollutantCleanUpAndRemovalAdditionalAggregateLimitOfInsuranceLocationEarthquakeCoverageRules" Rule="CalculateTotalPremium" ClearCache="true" />
+			</rul:Locate>
+			<rul:Locate AtDataDef="CommercialPropertyPollutantCleanUpAndRemovalAdditionalAggregateLimitOfInsuranceLocationSpecialCoverage">
+				<rul:RunRule Type="decimal" FileName="CommercialPropertyPollutantCleanUpAndRemovalAdditionalAggregateLimitOfInsuranceLocationSpecialCoverageRules" Rule="CalculateTotalPremium" ClearCache="true" />
+			</rul:Locate>
+			<rul:If>
+				<rul:Test>
+					<rul:And>
+						<rul:Equal>
+							<rul:FirstValue Type="integer" FromConstant="0" FromDataDef="@PremiumIndicator" Order="DataDefInputParamConstant" />
+							<rul:Constant Type="integer">1</rul:Constant>
+						</rul:Equal>
+						<rul:NotEqual>
+							<rul:FirstValue Type="decimal" FromConstant="0" FromDataDef="@Premium" Order="DataDefInputParamConstant" />
+							<rul:Constant Type="decimal">0</rul:Constant>
+						</rul:NotEqual>
+					</rul:And>
+				</rul:Test>
+				<rul:Then>
+					<rul:FirstValue Type="decimal" FromConstant="0" FromDataDef="@Premium" Order="DataDefInputParamConstant" />
+				</rul:Then>
+				<rul:Else>
+					<rul:Constant Type="decimal">0</rul:Constant>
+				</rul:Else>
+			</rul:If>
+		</rul:Sum>
+	</rul:Rule>
+	<rul:Rule Name="ErcSetRatesAndFactors" Type="none" DataDefGroup="CommercialPropertyPollutantCleanUpAndRemovalAdditionalAggregateLimitOfInsuranceLocation">
+		<rul:Sequence>
+			<rul:RunRule Type="none" FileName="CommercialPropertyPollutantCleanUpAndRemovalAdditionalAggregateLimitOfInsuranceLocationRules" Rule="SetBlanketIndicator" ClearCache="true" />
+			<rul:RunRule Type="none" FileName="CommercialPropertyPollutantCleanUpAndRemovalAdditionalAggregateLimitOfInsuranceLocationRules" Rule="SetEQBlanketIndicator" ClearCache="true" />
+			<rul:RunRule Type="none" FileName="CommercialPropertyPollutantCleanUpAndRemovalAdditionalAggregateLimitOfInsuranceLocationRules" Rule="SetUsePersPropPollutantRateIndicator" ClearCache="true" />
+			<rul:RunRule Type="none" FileName="CommercialPropertyPollutantCleanUpAndRemovalAdditionalAggregateLimitOfInsuranceLocationRules" Rule="SetDeductibleByLocationFactor" ClearCache="true" />
+			<rul:RunRule Type="none" FileName="CommercialPropertyPollutantCleanUpAndRemovalAdditionalAggregateLimitOfInsuranceLocationRules" Rule="SetBGIRatesAndFactors" ClearCache="true" />
+			<rul:RunRule Type="none" FileName="CommercialPropertyPollutantCleanUpAndRemovalAdditionalAggregateLimitOfInsuranceLocationRules" Rule="SetBGIIRatesAndFactors" ClearCache="true" />
+			<rul:RunRule Type="none" FileName="CommercialPropertyPollutantCleanUpAndRemovalAdditionalAggregateLimitOfInsuranceLocationRules" Rule="SetBroadRatesAndFactors" ClearCache="true" />
+			<rul:RunRule Type="none" FileName="CommercialPropertyPollutantCleanUpAndRemovalAdditionalAggregateLimitOfInsuranceLocationRules" Rule="SetSpecialRatesAndFactors" ClearCache="true" />
+			<rul:RunRule Type="none" FileName="CommercialPropertyPollutantCleanUpAndRemovalAdditionalAggregateLimitOfInsuranceLocationRules" Rule="SetEQRatesAndFactors" ClearCache="true" />
+			<rul:RunRule Type="none" FileName="CommercialPropertyPollutantCleanUpAndRemovalAdditionalAggregateLimitOfInsuranceLocationRules" Rule="SetDeductibleFactor" ClearCache="true" />
+		</rul:Sequence>
+	</rul:Rule>
+	<rul:Rule Name="SetBlanketIndicator" Type="none" DataDefGroup="CommercialPropertyPollutantCleanUpAndRemovalAdditionalAggregateLimitOfInsuranceLocation">
+		<rul:Sequence>
+			<rul:ForEach AtInputDataDef="../../CommercialPropertyStructureTable/CommercialPropertyStructure">
+				<rul:If>
+					<rul:Test>
+						<rul:Or>
+							<rul:Equal>
+								<rul:FirstValue Type="string" FromConstant="" FromDataDef="@CovType" Order="DataDefInputParamConstant" />
+								<rul:Constant Type="string">No Coverage</rul:Constant>
+							</rul:Equal>
+							<rul:Equal>
+								<rul:FirstValue Type="string" FromConstant="" FromDataDef="@IncludedInBlkt" Order="DataDefInputParamConstant" />
+								<rul:Constant Type="string">Yes</rul:Constant>
+							</rul:Equal>
+						</rul:Or>
+					</rul:Test>
+					<rul:Then>
+						<rul:Sequence>
+							<rul:WithArgs>
+								<rul:Arg Type="decimal" Param="bldgBlktIndicator">
+									<rul:FirstNonNull Type="decimal">
+										<rul:ForEach AtDataDef="../../CommercialPropertyStructureTable/CommercialPropertyStructure">
+											<rul:ForEach AtDataDef="CommercialPropertyOccupClassTable/CommercialPropertyOccupClass">
+												<rul:ForEach AtDataDef="CommercialPropertyPersonalPropertyTable/CommercialPropertyPersonalProperty">
+													<rul:If>
+														<rul:Test>
+															<rul:Equal>
+																<rul:FirstValue Type="string" FromConstant="" FromDataDef="@IncludedInBlkt" Order="DataDefInputParamConstant" />
+																<rul:Constant Type="string">No</rul:Constant>
+															</rul:Equal>
+														</rul:Test>
+														<rul:Then>
+															<rul:Sum>
+																<rul:Constant Type="decimal">0</rul:Constant>
+																<rul:Break />
+															</rul:Sum>
+														</rul:Then>
+													</rul:If>
+												</rul:ForEach>
+											</rul:ForEach>
+										</rul:ForEach>
+										<rul:Constant Type="decimal">1</rul:Constant>
+									</rul:FirstNonNull>
+								</rul:Arg>
+								<rul:If>
+									<rul:Test>
+										<rul:Equal>
+											<rul:Value Type="decimal" FromParam="bldgBlktIndicator" />
+											<rul:Constant Type="integer">0</rul:Constant>
+										</rul:Equal>
+									</rul:Test>
+									<rul:Then>
+										<rul:Sequence>
+											<rul:Break />
+										</rul:Sequence>
+									</rul:Then>
+								</rul:If>
+							</rul:WithArgs>
+						</rul:Sequence>
+					</rul:Then>
+				</rul:If>
+			</rul:ForEach>
+			<rul:WithArgs>
+				<rul:Arg Type="decimal" Param="bldgBlktIndicator">
+					<rul:FirstNonNull Type="decimal">
+						<rul:ForEach AtDataDef="../../CommercialPropertyStructureTable/CommercialPropertyStructure">
+							<rul:Choose>
+								<rul:When>
+									<rul:Test>
+										<rul:And>
+											<rul:Equal>
+												<rul:FirstValue Type="string" FromConstant="" FromDataDef="@IncludedInBlkt" Order="DataDefInputParamConstant" />
+												<rul:Constant Type="string">No</rul:Constant>
+											</rul:Equal>
+											<rul:NotEqual>
+												<rul:FirstValue Type="string" FromConstant="" FromDataDef="@CovType" Order="DataDefInputParamConstant" />
+												<rul:Constant Type="string">No Coverage</rul:Constant>
+											</rul:NotEqual>
+										</rul:And>
+									</rul:Test>
+									<rul:Then>
+										<rul:Sum>
+											<rul:Constant Type="decimal">0</rul:Constant>
+											<rul:Break />
+										</rul:Sum>
+									</rul:Then>
+								</rul:When>
+								<rul:When>
+									<rul:Test>
+										<rul:Or>
+											<rul:Equal>
+												<rul:FirstValue Type="string" FromConstant="" FromDataDef="@CovType" Order="DataDefInputParamConstant" />
+												<rul:Constant Type="string">No Coverage</rul:Constant>
+											</rul:Equal>
+											<rul:Equal>
+												<rul:FirstValue Type="string" FromConstant="" FromDataDef="@IncludedInBlkt" Order="DataDefInputParamConstant" />
+												<rul:Constant Type="string">Yes</rul:Constant>
+											</rul:Equal>
+										</rul:Or>
+									</rul:Test>
+									<rul:Then>
+										<rul:ForEach AtDataDef="../../CommercialPropertyStructureTable/CommercialPropertyStructure">
+											<rul:ForEach AtDataDef="CommercialPropertyOccupClassTable/CommercialPropertyOccupClass">
+												<rul:ForEach AtDataDef="CommercialPropertyPersonalPropertyTable/CommercialPropertyPersonalProperty">
+													<rul:If>
+														<rul:Test>
+															<rul:Equal>
+																<rul:FirstValue Type="string" FromConstant="" FromDataDef="@IncludedInBlkt" Order="DataDefInputParamConstant" />
+																<rul:Constant Type="string">No</rul:Constant>
+															</rul:Equal>
+														</rul:Test>
+														<rul:Then>
+															<rul:Sum>
+																<rul:Constant Type="decimal">0</rul:Constant>
+																<rul:Break />
+															</rul:Sum>
+														</rul:Then>
+													</rul:If>
+												</rul:ForEach>
+											</rul:ForEach>
+										</rul:ForEach>
+									</rul:Then>
+								</rul:When>
+								<rul:Otherwise>
+									<rul:Constant Type="decimal">1</rul:Constant>
+								</rul:Otherwise>
+							</rul:Choose>
+						</rul:ForEach>
+						<rul:Constant Type="decimal">1</rul:Constant>
+					</rul:FirstNonNull>
+				</rul:Arg>
+				<rul:Arg Type="decimal" Param="specialBlktIndicator">
+					<rul:FirstNonNull Type="decimal">
+						<rul:ForEach AtDataDef="../../CommercialPropertySpecialClassTable/CommercialPropertySpecialClass">
+							<rul:If>
+								<rul:Test>
+									<rul:Equal>
+										<rul:FirstValue Type="string" FromConstant="" FromDataDef="@IncludedInBlkt" Order="DataDefInputParamConstant" />
+										<rul:Constant Type="string">No</rul:Constant>
+									</rul:Equal>
+								</rul:Test>
+								<rul:Then>
+									<rul:Sum>
+										<rul:Constant Type="decimal">0</rul:Constant>
+										<rul:Break />
+									</rul:Sum>
+								</rul:Then>
+							</rul:If>
+						</rul:ForEach>
+						<rul:Constant Type="decimal">1</rul:Constant>
+					</rul:FirstNonNull>
+				</rul:Arg>
+				<rul:If>
+					<rul:Test>
+						<rul:And>
+							<rul:Equal>
+								<rul:Value Type="decimal" FromParam="bldgBlktIndicator" />
+								<rul:Constant Type="integer">1</rul:Constant>
+							</rul:Equal>
+							<rul:Equal>
+								<rul:Value Type="decimal" FromParam="specialBlktIndicator" />
+								<rul:Constant Type="integer">1</rul:Constant>
+							</rul:Equal>
+						</rul:And>
+					</rul:Test>
+					<rul:Then>
+						<rul:Sequence>
+							<rul:Constant Type="integer" ToDataDef="@BlanketIndicator">1</rul:Constant>
+						</rul:Sequence>
+					</rul:Then>
+					<rul:Else>
+						<rul:Sequence>
+							<rul:Constant Type="integer" ToDataDef="@BlanketIndicator">0</rul:Constant>
+						</rul:Sequence>
+					</rul:Else>
+				</rul:If>
+			</rul:WithArgs>
+		</rul:Sequence>
+	</rul:Rule>
+	<rul:Rule Name="SetEQBlanketIndicator" Type="none" DataDefGroup="CommercialPropertyPollutantCleanUpAndRemovalAdditionalAggregateLimitOfInsuranceLocation">
+		<rul:Sequence>
+			<rul:ForEach AtInputDataDef="../../CommercialPropertyStructureTable/CommercialPropertyStructure">
+				<rul:If>
+					<rul:Test>
+						<rul:Equal>
+							<rul:FirstValue Type="string" FromConstant="" FromDataDef="@EQCovIndicator" Order="DataDefInputParamConstant" />
+							<rul:Constant Type="string">Not Applicable</rul:Constant>
+						</rul:Equal>
+					</rul:Test>
+					<rul:Then>
+						<rul:Sequence>
+							<rul:WithArgs>
+								<rul:Arg Type="decimal" Param="bldgEQBlktIndicator">
+									<rul:FirstNonNull Type="decimal">
+										<rul:ForEach AtDataDef="../../CommercialPropertyStructureTable/CommercialPropertyStructure">
+											<rul:ForEach AtDataDef="CommercialPropertyOccupClassTable/CommercialPropertyOccupClass">
+												<rul:ForEach AtDataDef="CommercialPropertyPersonalPropertyTable/CommercialPropertyPersonalProperty">
+													<rul:If>
+														<rul:Test>
+															<rul:NotEqual>
+																<rul:FirstValue Type="string" FromConstant="" FromDataDef="@EQCovIndicator" Order="DataDefInputParamConstant" />
+																<rul:Constant Type="string">Yes, Included in Blanket</rul:Constant>
+															</rul:NotEqual>
+														</rul:Test>
+														<rul:Then>
+															<rul:Sum>
+																<rul:Constant Type="decimal">0</rul:Constant>
+																<rul:Break />
+															</rul:Sum>
+														</rul:Then>
+													</rul:If>
+												</rul:ForEach>
+											</rul:ForEach>
+										</rul:ForEach>
+										<rul:Constant Type="decimal">1</rul:Constant>
+									</rul:FirstNonNull>
+								</rul:Arg>
+								<rul:If>
+									<rul:Test>
+										<rul:Equal>
+											<rul:Value Type="decimal" FromParam="bldgEQBlktIndicator" />
+											<rul:Constant Type="integer">0</rul:Constant>
+										</rul:Equal>
+									</rul:Test>
+									<rul:Then>
+										<rul:Sequence>
+											<rul:Break />
+										</rul:Sequence>
+									</rul:Then>
+								</rul:If>
+							</rul:WithArgs>
+						</rul:Sequence>
+					</rul:Then>
+				</rul:If>
+			</rul:ForEach>
+			<rul:WithArgs>
+				<rul:Arg Type="decimal" Param="bldgEQBlktIndicator">
+					<rul:FirstNonNull Type="decimal">
+						<rul:ForEach AtDataDef="../../CommercialPropertyStructureTable/CommercialPropertyStructure">
+							<rul:Choose>
+								<rul:When>
+									<rul:Test>
+										<rul:And>
+											<rul:NotEqual>
+												<rul:FirstValue Type="string" FromConstant="" FromDataDef="@EQCovIndicator" Order="DataDefInputParamConstant" />
+												<rul:Constant Type="string">Yes, Included in Blanket</rul:Constant>
+											</rul:NotEqual>
+											<rul:NotEqual>
+												<rul:FirstValue Type="string" FromConstant="" FromDataDef="@EQCovIndicator" Order="DataDefInputParamConstant" />
+												<rul:Constant Type="string">Not Applicable</rul:Constant>
+											</rul:NotEqual>
+										</rul:And>
+									</rul:Test>
+									<rul:Then>
+										<rul:Sum>
+											<rul:Constant Type="decimal">0</rul:Constant>
+											<rul:Break />
+										</rul:Sum>
+									</rul:Then>
+								</rul:When>
+								<rul:When>
+									<rul:Test>
+										<rul:Equal>
+											<rul:FirstValue Type="string" FromConstant="" FromDataDef="@EQCovIndicator" Order="DataDefInputParamConstant" />
+											<rul:Constant Type="string">Not Applicable</rul:Constant>
+										</rul:Equal>
+									</rul:Test>
+									<rul:Then>
+										<rul:ForEach AtDataDef="../../CommercialPropertyStructureTable/CommercialPropertyStructure">
+											<rul:ForEach AtDataDef="CommercialPropertyOccupClassTable/CommercialPropertyOccupClass">
+												<rul:ForEach AtDataDef="CommercialPropertyPersonalPropertyTable/CommercialPropertyPersonalProperty">
+													<rul:If>
+														<rul:Test>
+															<rul:NotEqual>
+																<rul:FirstValue Type="string" FromConstant="" FromDataDef="@EQCovIndicator" Order="DataDefInputParamConstant" />
+																<rul:Constant Type="string">Yes, Included in Blanket</rul:Constant>
+															</rul:NotEqual>
+														</rul:Test>
+														<rul:Then>
+															<rul:Sum>
+																<rul:Constant Type="decimal">0</rul:Constant>
+																<rul:Break />
+															</rul:Sum>
+														</rul:Then>
+													</rul:If>
+												</rul:ForEach>
+											</rul:ForEach>
+										</rul:ForEach>
+									</rul:Then>
+								</rul:When>
+								<rul:Otherwise>
+									<rul:Constant Type="decimal">1</rul:Constant>
+								</rul:Otherwise>
+							</rul:Choose>
+						</rul:ForEach>
+						<rul:Constant Type="decimal">1</rul:Constant>
+					</rul:FirstNonNull>
+				</rul:Arg>
+				<rul:Arg Type="decimal" Param="specialEQBlktIndicator">
+					<rul:FirstNonNull Type="decimal">
+						<rul:ForEach AtDataDef="../../CommercialPropertySpecialClassTable/CommercialPropertySpecialClass">
+							<rul:If>
+								<rul:Test>
+									<rul:NotEqual>
+										<rul:FirstValue Type="string" FromConstant="" FromDataDef="@EQCovIndicator" Order="DataDefInputParamConstant" />
+										<rul:Constant Type="string">Yes, Included in Blanket</rul:Constant>
+									</rul:NotEqual>
+								</rul:Test>
+								<rul:Then>
+									<rul:Sum>
+										<rul:Constant Type="decimal">0</rul:Constant>
+										<rul:Break />
+									</rul:Sum>
+								</rul:Then>
+							</rul:If>
+						</rul:ForEach>
+						<rul:Constant Type="decimal">1</rul:Constant>
+					</rul:FirstNonNull>
+				</rul:Arg>
+				<rul:If>
+					<rul:Test>
+						<rul:And>
+							<rul:Equal>
+								<rul:Value Type="decimal" FromParam="bldgEQBlktIndicator" />
+								<rul:Constant Type="integer">1</rul:Constant>
+							</rul:Equal>
+							<rul:Equal>
+								<rul:Value Type="decimal" FromParam="specialEQBlktIndicator" />
+								<rul:Constant Type="integer">1</rul:Constant>
+							</rul:Equal>
+						</rul:And>
+					</rul:Test>
+					<rul:Then>
+						<rul:Sequence>
+							<rul:Constant Type="integer" ToDataDef="@EQBlanketIndicator">1</rul:Constant>
+						</rul:Sequence>
+					</rul:Then>
+					<rul:Else>
+						<rul:Sequence>
+							<rul:Constant Type="integer" ToDataDef="@EQBlanketIndicator">0</rul:Constant>
+						</rul:Sequence>
+					</rul:Else>
+				</rul:If>
+			</rul:WithArgs>
+		</rul:Sequence>
+	</rul:Rule>
+	<rul:Rule Name="SetUsePersPropPollutantRateIndicator" Type="none" DataDefGroup="CommercialPropertyPollutantCleanUpAndRemovalAdditionalAggregateLimitOfInsuranceLocation">
+		<rul:Sequence>
+			<rul:WithArgs>
+				<rul:Arg Type="decimal" Param="usePersPropRatesIndicator">
+					<rul:FirstNonNull Type="decimal">
+						<rul:ForEach AtDataDef="../../CommercialPropertyStructureTable/CommercialPropertyStructure">
+							<rul:If>
+								<rul:Test>
+									<rul:Or>
+										<rul:NotEqual>
+											<rul:FirstValue Type="string" FromConstant="" FromDataDef="@CovType" Order="DataDefInputParamConstant" />
+											<rul:Constant Type="string">No Coverage</rul:Constant>
+										</rul:NotEqual>
+										<rul:And>
+											<rul:Equal>
+												<rul:FirstValue Type="string" FromConstant="" FromDataDef="@CovType" Order="DataDefInputParamConstant" />
+												<rul:Constant Type="string">No Coverage</rul:Constant>
+											</rul:Equal>
+											<rul:NotExist AtInputDataDef="CommercialPropertyOccupClassTable/CommercialPropertyOccupClass[1]/CommercialPropertyPersonalPropertyTable/CommercialPropertyPersonalProperty" />
+										</rul:And>
+									</rul:Or>
+								</rul:Test>
+								<rul:Then>
+									<rul:Sum>
+										<rul:Constant Type="decimal">0</rul:Constant>
+										<rul:Break />
+									</rul:Sum>
+								</rul:Then>
+							</rul:If>
+						</rul:ForEach>
+						<rul:Constant Type="decimal">1</rul:Constant>
+					</rul:FirstNonNull>
+				</rul:Arg>
+				<rul:If>
+					<rul:Test>
+						<rul:And>
+							<rul:Equal>
+								<rul:Value Type="decimal" FromParam="usePersPropRatesIndicator" />
+								<rul:Constant Type="integer">1</rul:Constant>
+							</rul:Equal>
+							<rul:NotExist AtInputDataDef="../../CommercialPropertySpecialClassTable/CommercialPropertySpecialClass" />
+						</rul:And>
+					</rul:Test>
+					<rul:Then>
+						<rul:Sequence>
+							<rul:Constant Type="integer" ToDataDef="@UsePersPropPollutantRateIndicator">1</rul:Constant>
+						</rul:Sequence>
+					</rul:Then>
+					<rul:Else>
+						<rul:Sequence>
+							<rul:Constant Type="integer" ToDataDef="@UsePersPropPollutantRateIndicator">0</rul:Constant>
+						</rul:Sequence>
+					</rul:Else>
+				</rul:If>
+			</rul:WithArgs>
+		</rul:Sequence>
+	</rul:Rule>
+	<rul:Rule Name="SetDeductibleByLocationFactor" Type="none" DataDefGroup="CommercialPropertyPollutantCleanUpAndRemovalAdditionalAggregateLimitOfInsuranceLocation">
+		<rul:Sequence>
+			<rul:WithArgs>
+				<rul:Arg Type="integer" Param="DeductibleByLocationIndicator">
+					<rul:FirstNonNull Type="integer">
+						<rul:Sum>
+							<rul:ForEach AtDataDef="../../CommercialPropertyStructureTable/CommercialPropertyStructure">
+								<rul:If>
+									<rul:Test>
+										<rul:NotEqual>
+											<rul:FirstValue Type="decimal" FromConstant="0" FromDataDef="@DeductibleByLocationFactor" Order="DataDefInputParamConstant" />
+											<rul:Constant Type="decimal">1</rul:Constant>
+										</rul:NotEqual>
+									</rul:Test>
+									<rul:Then>
+										<rul:Sum>
+											<rul:Constant Type="integer">1</rul:Constant>
+											<rul:Break />
+										</rul:Sum>
+									</rul:Then>
+								</rul:If>
+							</rul:ForEach>
+							<rul:ForEach AtDataDef="../../CommercialPropertySpecialClassTable/CommercialPropertySpecialClass">
+								<rul:If>
+									<rul:Test>
+										<rul:NotEqual>
+											<rul:FirstValue Type="decimal" FromConstant="0" FromDataDef="@DeductibleByLocationFactor" Order="DataDefInputParamConstant" />
+											<rul:Constant Type="decimal">1</rul:Constant>
+										</rul:NotEqual>
+									</rul:Test>
+									<rul:Then>
+										<rul:Sum>
+											<rul:Constant Type="integer">1</rul:Constant>
+											<rul:Break />
+										</rul:Sum>
+									</rul:Then>
+								</rul:If>
+							</rul:ForEach>
+						</rul:Sum>
+						<rul:Constant Type="integer">0</rul:Constant>
+					</rul:FirstNonNull>
+				</rul:Arg>
+				<rul:If>
+					<rul:Test>
+						<rul:Equal>
+							<rul:Value Type="integer" FromParam="DeductibleByLocationIndicator" />
+							<rul:Constant Type="integer">1</rul:Constant>
+						</rul:Equal>
+					</rul:Test>
+					<rul:Then>
+						<rul:Sequence>
+							<rul:RunRule Type="decimal" ToDataDef="@DeductibleByLocationFactor" FileName="CommercialPropertyPollutantCleanUpAndRemovalAdditionalAggregateLimitOfInsuranceLocationRules" Rule="LookupDeductibleByLocationFactor" ClearCache="true" />
+						</rul:Sequence>
+					</rul:Then>
+					<rul:Else>
+						<rul:Sequence>
+							<rul:Constant Type="decimal" ToDataDef="@DeductibleByLocationFactor">1.0</rul:Constant>
+						</rul:Sequence>
+					</rul:Else>
+				</rul:If>
+			</rul:WithArgs>
+		</rul:Sequence>
+	</rul:Rule>
+	<rul:Rule Name="SetBGIRatesAndFactors" Type="none" DataDefGroup="CommercialPropertyPollutantCleanUpAndRemovalAdditionalAggregateLimitOfInsuranceLocation">
+		<rul:Sequence>
+			<rul:RunRule Type="none" FileName="CommercialPropertyPollutantCleanUpAndRemovalAdditionalAggregateLimitOfInsuranceLocationRules" Rule="SetHighestBlanketPollutantBGIAvgRate" ClearCache="true" />
+			<rul:RunRule Type="none" FileName="CommercialPropertyPollutantCleanUpAndRemovalAdditionalAggregateLimitOfInsuranceLocationRules" Rule="SetHighestBldgPollutantBGIRate" ClearCache="true" />
+			<rul:RunRule Type="none" FileName="CommercialPropertyPollutantCleanUpAndRemovalAdditionalAggregateLimitOfInsuranceLocationRules" Rule="SetHighestPersPropPollutantBGIRate" ClearCache="true" />
+			<rul:RunRule Type="none" FileName="CommercialPropertyPollutantCleanUpAndRemovalAdditionalAggregateLimitOfInsuranceLocationRules" Rule="SetHighestSpecialPollutantBGIRate" ClearCache="true" />
+			<rul:RunRule Type="none" FileName="CommercialPropertyPollutantCleanUpAndRemovalAdditionalAggregateLimitOfInsuranceLocationRules" Rule="SetHighestPollutantBGIRate" ClearCache="true" />
+			<rul:RunRule Type="none" FileName="CommercialPropertyPollutantCleanUpAndRemovalAdditionalAggregateLimitOfInsuranceLocationRules" Rule="SetBasicGroupIFactor" ClearCache="true" />
+		</rul:Sequence>
+	</rul:Rule>
+	<rul:Rule Name="SetHighestBlanketPollutantBGIAvgRate" Type="none" DataDefGroup="CommercialPropertyPollutantCleanUpAndRemovalAdditionalAggregateLimitOfInsuranceLocation">
+		<rul:Sequence>
+			<rul:Constant Type="decimal" ToDataDef="@HighestBlktPollutantBGIAvgRate">0.0</rul:Constant>
+			<rul:If>
+				<rul:Test>
+					<rul:Equal>
+						<rul:FirstValue Type="integer" FromConstant="0" FromDataDef="@BlanketIndicator" Order="DataDefInputParamConstant" />
+						<rul:Constant Type="integer">1</rul:Constant>
+					</rul:Equal>
+				</rul:Test>
+				<rul:Then>
+					<rul:Sequence>
+						<rul:Max ToDataDef="@HighestBlktPollutantBGIAvgRate">
+							<rul:ForEach AtInputDataDef="../../../../CommercialPropertyBlanketRatingTable/CommercialPropertyBlanketRating">
+								<rul:ForEach AtInputDataDef="CommercialPropertyBlanketRatingDetailTable/CommercialPropertyBlanketRatingDetail">
+									<rul:FirstValue Type="decimal" FromConstant="0" FromDataDef="@BasicGroupIAvgRate" Order="DataDefInputParamConstant" />
+								</rul:ForEach>
+							</rul:ForEach>
+							<rul:Constant Type="decimal">0</rul:Constant>
+						</rul:Max>
+					</rul:Sequence>
+				</rul:Then>
+			</rul:If>
+		</rul:Sequence>
+	</rul:Rule>
+	<rul:Rule Name="SetHighestBldgPollutantBGIRate" Type="none" DataDefGroup="CommercialPropertyPollutantCleanUpAndRemovalAdditionalAggregateLimitOfInsuranceLocation">
+		<rul:Sequence>
+			<rul:Constant Type="decimal" ToDataDef="@HighestBldgPollutantBGIRate">0.0</rul:Constant>
+			<rul:WithArgs>
+				<rul:Arg Type="decimal" Param="HighestBldgPollutantBGIRateParam">
+					<rul:FirstValue Type="decimal" FromConstant="0" FromDataDef="@HighestBldgPollutantBGIRate" Order="DataDefInputParamConstant" />
+				</rul:Arg>
+				<rul:ForEach AtInputDataDef="../../CommercialPropertyStructureTable/CommercialPropertyStructure">
+					<rul:If>
+						<rul:Test>
+							<rul:GreaterThan>
+								<rul:Product DecimalPlaces="3">
+									<rul:FirstValue Type="decimal" FromConstant="0" FromDataDef="@BasicGroupICauseOfLossAdjustment" Order="DataDefInputParamConstant" />
+									<rul:FirstValue Type="decimal" FromConstant="0" FromDataDef="@BasicGroupILOIFactor" Order="DataDefInputParamConstant" />
+								</rul:Product>
+								<rul:Value Type="decimal" FromParam="HighestBldgPollutantBGIRateParam" />
+							</rul:GreaterThan>
+						</rul:Test>
+						<rul:Then>
+							<rul:Sequence>
+								<rul:Product ToDataDef="@HighestBldgPollutantBGIRate" DecimalPlaces="3">
+									<rul:FirstValue Type="decimal" FromConstant="0" FromDataDef="@BasicGroupICauseOfLossAdjustment" Order="DataDefInputParamConstant" />
+									<rul:FirstValue Type="decimal" FromConstant="0" FromDataDef="@BasicGroupILOIFactor" Order="DataDefInputParamConstant" />
+								</rul:Product>
+							</rul:Sequence>
+						</rul:Then>
+					</rul:If>
+				</rul:ForEach>
+			</rul:WithArgs>
+		</rul:Sequence>
+	</rul:Rule>
+	<rul:Rule Name="SetHighestPersPropPollutantBGIRate" Type="none" DataDefGroup="CommercialPropertyPollutantCleanUpAndRemovalAdditionalAggregateLimitOfInsuranceLocation">
+		<rul:Sequence>
+			<rul:Constant Type="decimal" ToDataDef="@HighestPersPropPollutantBGIRate">0.0</rul:Constant>
+			<rul:If>
+				<rul:Test>
+					<rul:Equal>
+						<rul:FirstValue Type="integer" FromConstant="0" FromDataDef="@UsePersPropPollutantRateIndicator" Order="DataDefInputParamConstant" />
+						<rul:Constant Type="integer">1</rul:Constant>
+					</rul:Equal>
+				</rul:Test>
+				<rul:Then>
+					<rul:Sequence>
+						<rul:WithArgs>
+							<rul:Arg Type="decimal" Param="HighestPersPropPollutantBGIRateParam">
+								<rul:FirstValue Type="decimal" FromConstant="0" FromDataDef="@HighestPersPropPollutantBGIRate" Order="DataDefInputParamConstant" />
+							</rul:Arg>
+							<rul:ForEach AtInputDataDef="../../CommercialPropertyStructureTable/CommercialPropertyStructure">
+								<rul:ForEach AtInputDataDef="CommercialPropertyOccupClassTable/CommercialPropertyOccupClass">
+									<rul:ForEach AtInputDataDef="CommercialPropertyPersonalPropertyTable/CommercialPropertyPersonalProperty">
+										<rul:If>
+											<rul:Test>
+												<rul:GreaterThan>
+													<rul:Product DecimalPlaces="3">
+														<rul:FirstValue Type="decimal" FromConstant="0" FromDataDef="@BasicGroupICauseOfLossAdjustment" Order="DataDefInputParamConstant" />
+														<rul:FirstValue Type="decimal" FromConstant="0" FromDataDef="@BasicGroupILOIFactor" Order="DataDefInputParamConstant" />
+													</rul:Product>
+													<rul:Value Type="decimal" FromParam="HighestPersPropPollutantBGIRateParam" />
+												</rul:GreaterThan>
+											</rul:Test>
+											<rul:Then>
+												<rul:Sequence>
+													<rul:Product ToDataDef="@HighestPersPropPollutantBGIRate" DecimalPlaces="3">
+														<rul:FirstValue Type="decimal" FromConstant="0" FromDataDef="@BasicGroupICauseOfLossAdjustment" Order="DataDefInputParamConstant" />
+														<rul:FirstValue Type="decimal" FromConstant="0" FromDataDef="@BasicGroupILOIFactor" Order="DataDefInputParamConstant" />
+													</rul:Product>
+												</rul:Sequence>
+											</rul:Then>
+										</rul:If>
+									</rul:ForEach>
+								</rul:ForEach>
+							</rul:ForEach>
+						</rul:WithArgs>
+					</rul:Sequence>
+				</rul:Then>
+			</rul:If>
+		</rul:Sequence>
+	</rul:Rule>
+	<rul:Rule Name="SetHighestSpecialPollutantBGIRate" Type="none" DataDefGroup="CommercialPropertyPollutantCleanUpAndRemovalAdditionalAggregateLimitOfInsuranceLocation">
+		<rul:Sequence>
+			<rul:Constant Type="decimal" ToDataDef="@HighestSpecialPollutantBGIRate">0.0</rul:Constant>
+			<rul:Max ToDataDef="@HighestSpecialPollutantBGIRate">
+				<rul:ForEach AtInputDataDef="../../CommercialPropertySpecialClassTable/CommercialPropertySpecialClass">
+					<rul:FirstValue Type="decimal" FromConstant="0" FromDataDef="@BasicGroupICauseOfLossAdjustment" Order="DataDefInputParamConstant" />
+				</rul:ForEach>
+				<rul:Constant Type="decimal">0</rul:Constant>
+			</rul:Max>
+		</rul:Sequence>
+	</rul:Rule>
+	<rul:Rule Name="SetHighestPollutantBGIRate" Type="none" DataDefGroup="CommercialPropertyPollutantCleanUpAndRemovalAdditionalAggregateLimitOfInsuranceLocation">
+		<rul:Sequence>
+			<rul:Choose>
+				<rul:When>
+					<rul:Test>
+						<rul:Equal>
+							<rul:FirstValue Type="integer" FromConstant="0" FromDataDef="@BlanketIndicator" Order="DataDefInputParamConstant" />
+							<rul:Constant Type="integer">1</rul:Constant>
+						</rul:Equal>
+					</rul:Test>
+					<rul:Then>
+						<rul:Copy Type="decimal" ToDataDef="@HighestPollutantBGIRate" FromDataDef="@HighestBlktPollutantBGIAvgRate" />
+					</rul:Then>
+				</rul:When>
+				<rul:When>
+					<rul:Test>
+						<rul:Equal>
+							<rul:FirstValue Type="integer" FromConstant="0" FromDataDef="@UsePersPropPollutantRateIndicator" Order="DataDefInputParamConstant" />
+							<rul:Constant Type="integer">1</rul:Constant>
+						</rul:Equal>
+					</rul:Test>
+					<rul:Then>
+						<rul:Copy Type="decimal" ToDataDef="@HighestPollutantBGIRate" FromDataDef="@HighestPersPropPollutantBGIRate" />
+					</rul:Then>
+				</rul:When>
+				<rul:Otherwise>
+					<rul:Sequence>
+						<rul:If>
+							<rul:Test>
+								<rul:GreaterThanOrEqual>
+									<rul:FirstValue Type="decimal" FromConstant="0" FromDataDef="@HighestBldgPollutantBGIRate" Order="DataDefInputParamConstant" />
+									<rul:FirstValue Type="decimal" FromConstant="0" FromDataDef="@HighestSpecialPollutantBGIRate" Order="DataDefInputParamConstant" />
+								</rul:GreaterThanOrEqual>
+							</rul:Test>
+							<rul:Then>
+								<rul:Copy Type="decimal" ToDataDef="@HighestPollutantBGIRate" FromDataDef="@HighestBldgPollutantBGIRate" />
+							</rul:Then>
+							<rul:Else>
+								<rul:Copy Type="decimal" ToDataDef="@HighestPollutantBGIRate" FromDataDef="@HighestSpecialPollutantBGIRate" />
+							</rul:Else>
+						</rul:If>
+					</rul:Sequence>
+				</rul:Otherwise>
+			</rul:Choose>
+		</rul:Sequence>
+	</rul:Rule>
+	<rul:Rule Name="SetBasicGroupIFactor" Type="none" DataDefGroup="CommercialPropertyPollutantCleanUpAndRemovalAdditionalAggregateLimitOfInsuranceLocation">
+		<rul:Sequence>
+			<rul:RunRule Type="decimal" ToDataDef="@BasicGroupIFactor" FileName="CommercialPropertyPollutantCleanUpAndRemovalAdditionalAggregateLimitOfInsuranceLocationRules" Rule="LookupPollutantCleanUpAndRemovalRate" ClearCache="true">
+				<rul:Arg Type="string" Param="tempOptionalForm">
+					<rul:Constant Type="string">GroupI</rul:Constant>
+				</rul:Arg>
+			</rul:RunRule>
+		</rul:Sequence>
+	</rul:Rule>
+	<rul:Rule Name="SetBGIIRatesAndFactors" Type="none" DataDefGroup="CommercialPropertyPollutantCleanUpAndRemovalAdditionalAggregateLimitOfInsuranceLocation">
+		<rul:Sequence>
+			<rul:RunRule Type="none" FileName="CommercialPropertyPollutantCleanUpAndRemovalAdditionalAggregateLimitOfInsuranceLocationRules" Rule="SetBGIIDeductibleByLocationFactor" ClearCache="true" />
+			<rul:RunRule Type="none" FileName="CommercialPropertyPollutantCleanUpAndRemovalAdditionalAggregateLimitOfInsuranceLocationRules" Rule="SetHighestBlanketPollutantBGIIAvgRate" ClearCache="true" />
+			<rul:RunRule Type="none" FileName="CommercialPropertyPollutantCleanUpAndRemovalAdditionalAggregateLimitOfInsuranceLocationRules" Rule="SetHighestBldgPollutantBGIIRate" ClearCache="true" />
+			<rul:RunRule Type="none" FileName="CommercialPropertyPollutantCleanUpAndRemovalAdditionalAggregateLimitOfInsuranceLocationRules" Rule="SetHighestPersPropPollutantBGIIRate" ClearCache="true" />
+			<rul:RunRule Type="none" FileName="CommercialPropertyPollutantCleanUpAndRemovalAdditionalAggregateLimitOfInsuranceLocationRules" Rule="SetHighestSpecialPollutantBGIIRate" ClearCache="true" />
+			<rul:RunRule Type="none" FileName="CommercialPropertyPollutantCleanUpAndRemovalAdditionalAggregateLimitOfInsuranceLocationRules" Rule="SetHighestPollutantBGIIRate" ClearCache="true" />
+			<rul:RunRule Type="none" FileName="CommercialPropertyPollutantCleanUpAndRemovalAdditionalAggregateLimitOfInsuranceLocationRules" Rule="SetBasicGroupIIFactor" ClearCache="true" />
+		</rul:Sequence>
+	</rul:Rule>
+	<rul:Rule Name="SetBGIIDeductibleByLocationFactor" Type="none" DataDefGroup="CommercialPropertyPollutantCleanUpAndRemovalAdditionalAggregateLimitOfInsuranceLocation">
+		<rul:Sequence>
+			<rul:WithArgs>
+				<rul:Arg Type="boolean" Param="buildingValidation">
+					<rul:FirstNonNull Type="boolean">
+						<rul:ForEach AtDataDef="../../CommercialPropertyStructureTable/CommercialPropertyStructure">
+							<rul:If>
+								<rul:Test>
+									<rul:NotEqual>
+										<rul:FirstValue Type="decimal" FromConstant="0" FromDataDef="@BGIIDeductibleByLocationFactor" Order="DataDefInputParamConstant" />
+										<rul:Constant Type="decimal">1</rul:Constant>
+									</rul:NotEqual>
+								</rul:Test>
+								<rul:Then>
+									<rul:GetList>
+										<rul:Constant Type="boolean">true</rul:Constant>
+										<rul:Break />
+									</rul:GetList>
+								</rul:Then>
+							</rul:If>
+						</rul:ForEach>
+						<rul:Constant Type="boolean">false</rul:Constant>
+					</rul:FirstNonNull>
+				</rul:Arg>
+				<rul:Arg Type="boolean" Param="personalpropValidation">
+					<rul:FirstNonNull Type="boolean">
+						<rul:ForEach AtDataDef="../../CommercialPropertyStructureTable/CommercialPropertyStructure">
+							<rul:ForEach AtDataDef="CommercialPropertyOccupClassTable/CommercialPropertyOccupClass">
+								<rul:ForEach AtDataDef="CommercialPropertyPersonalPropertyTable/CommercialPropertyPersonalProperty">
+									<rul:If>
+										<rul:Test>
+											<rul:NotEqual>
+												<rul:FirstValue Type="decimal" FromConstant="0" FromDataDef="@BGIIDeductibleByLocationFactor" Order="DataDefInputParamConstant" />
+												<rul:Constant Type="decimal">1</rul:Constant>
+											</rul:NotEqual>
+										</rul:Test>
+										<rul:Then>
+											<rul:GetList>
+												<rul:Constant Type="boolean">true</rul:Constant>
+												<rul:Break />
+											</rul:GetList>
+										</rul:Then>
+									</rul:If>
+								</rul:ForEach>
+							</rul:ForEach>
+						</rul:ForEach>
+						<rul:Constant Type="boolean">false</rul:Constant>
+					</rul:FirstNonNull>
+				</rul:Arg>
+				<rul:Arg Type="boolean" Param="specialValidation">
+					<rul:FirstNonNull Type="boolean">
+						<rul:ForEach AtDataDef="../../CommercialPropertySpecialClassTable/CommercialPropertySpecialClass">
+							<rul:If>
+								<rul:Test>
+									<rul:NotEqual>
+										<rul:FirstValue Type="decimal" FromConstant="0" FromDataDef="@BGIIDeductibleByLocationFactor" Order="DataDefInputParamConstant" />
+										<rul:Constant Type="decimal">1</rul:Constant>
+									</rul:NotEqual>
+								</rul:Test>
+								<rul:Then>
+									<rul:GetList>
+										<rul:Constant Type="boolean">true</rul:Constant>
+										<rul:Break />
+									</rul:GetList>
+								</rul:Then>
+							</rul:If>
+						</rul:ForEach>
+						<rul:Constant Type="boolean">false</rul:Constant>
+					</rul:FirstNonNull>
+				</rul:Arg>
+				<rul:If>
+					<rul:Test>
+						<rul:Or>
+							<rul:Equal>
+								<rul:Value Type="boolean" FromParam="buildingValidation" />
+								<rul:Constant Type="boolean">true</rul:Constant>
+							</rul:Equal>
+							<rul:Equal>
+								<rul:Value Type="boolean" FromParam="personalpropValidation" />
+								<rul:Constant Type="boolean">true</rul:Constant>
+							</rul:Equal>
+							<rul:Equal>
+								<rul:Value Type="boolean" FromParam="specialValidation" />
+								<rul:Constant Type="boolean">true</rul:Constant>
+							</rul:Equal>
+						</rul:Or>
+					</rul:Test>
+					<rul:Then>
+						<rul:Sequence>
+							<rul:RunRule Type="decimal" ToDataDef="@BGIIDeductibleByLocationFactor" FileName="CommercialPropertyPollutantCleanUpAndRemovalAdditionalAggregateLimitOfInsuranceLocationRules" Rule="LookupDeductibleByLocationFactor" ClearCache="true" />
+						</rul:Sequence>
+					</rul:Then>
+					<rul:Else>
+						<rul:Sequence>
+							<rul:Constant Type="decimal" ToDataDef="@BGIIDeductibleByLocationFactor">1.0</rul:Constant>
+						</rul:Sequence>
+					</rul:Else>
+				</rul:If>
+			</rul:WithArgs>
+		</rul:Sequence>
+	</rul:Rule>
+	<rul:Rule Name="SetHighestBlanketPollutantBGIIAvgRate" Type="none" DataDefGroup="CommercialPropertyPollutantCleanUpAndRemovalAdditionalAggregateLimitOfInsuranceLocation">
+		<rul:Sequence>
+			<rul:Constant Type="decimal" ToDataDef="@HighestBlktPollutantBGIIAvgRate">0.0</rul:Constant>
+			<rul:If>
+				<rul:Test>
+					<rul:Equal>
+						<rul:FirstValue Type="integer" FromConstant="0" FromDataDef="@BlanketIndicator" Order="DataDefInputParamConstant" />
+						<rul:Constant Type="integer">1</rul:Constant>
+					</rul:Equal>
+				</rul:Test>
+				<rul:Then>
+					<rul:Sequence>
+						<rul:Max ToDataDef="@HighestBlktPollutantBGIIAvgRate">
+							<rul:ForEach AtInputDataDef="../../../../CommercialPropertyBlanketRatingTable/CommercialPropertyBlanketRating">
+								<rul:ForEach AtInputDataDef="CommercialPropertyBlanketRatingDetailTable/CommercialPropertyBlanketRatingDetail">
+									<rul:FirstValue Type="decimal" FromConstant="0" FromDataDef="@BasicGroupIIAvgRate" Order="DataDefInputParamConstant" />
+								</rul:ForEach>
+							</rul:ForEach>
+							<rul:Constant Type="decimal">0</rul:Constant>
+						</rul:Max>
+					</rul:Sequence>
+				</rul:Then>
+			</rul:If>
+		</rul:Sequence>
+	</rul:Rule>
+	<rul:Rule Name="SetHighestBldgPollutantBGIIRate" Type="none" DataDefGroup="CommercialPropertyPollutantCleanUpAndRemovalAdditionalAggregateLimitOfInsuranceLocation">
+		<rul:Sequence>
+			<rul:Constant Type="decimal" ToDataDef="@HighestBldgPollutantBGIIRate">0.0</rul:Constant>
+			<rul:WithArgs>
+				<rul:Arg Type="decimal" Param="HighestBldgPollutantBGIIRateParam">
+					<rul:FirstValue Type="decimal" FromConstant="0" FromDataDef="@HighestBldgPollutantBGIIRate" Order="DataDefInputParamConstant" />
+				</rul:Arg>
+				<rul:ForEach AtInputDataDef="../../CommercialPropertyStructureTable/CommercialPropertyStructure">
+					<rul:If>
+						<rul:Test>
+							<rul:GreaterThan>
+								<rul:Product DecimalPlaces="3">
+									<rul:FirstValue Type="decimal" FromConstant="0" FromDataDef="@BasicGroupIICauseOfLossAdjustment" Order="DataDefInputParamConstant" />
+									<rul:FirstValue Type="decimal" FromConstant="0" FromDataDef="@BasicGroupIILOIFactor" Order="DataDefInputParamConstant" />
+								</rul:Product>
+								<rul:Value Type="decimal" FromParam="HighestBldgPollutantBGIIRateParam" />
+							</rul:GreaterThan>
+						</rul:Test>
+						<rul:Then>
+							<rul:Sequence>
+								<rul:Product ToDataDef="@HighestBldgPollutantBGIIRate" DecimalPlaces="3">
+									<rul:FirstValue Type="decimal" FromConstant="0" FromDataDef="@BasicGroupIICauseOfLossAdjustment" Order="DataDefInputParamConstant" />
+									<rul:FirstValue Type="decimal" FromConstant="0" FromDataDef="@BasicGroupIILOIFactor" Order="DataDefInputParamConstant" />
+								</rul:Product>
+							</rul:Sequence>
+						</rul:Then>
+					</rul:If>
+				</rul:ForEach>
+			</rul:WithArgs>
+		</rul:Sequence>
+	</rul:Rule>
+	<rul:Rule Name="SetHighestPersPropPollutantBGIIRate" Type="none" DataDefGroup="CommercialPropertyPollutantCleanUpAndRemovalAdditionalAggregateLimitOfInsuranceLocation">
+		<rul:Sequence>
+			<rul:Constant Type="decimal" ToDataDef="@HighestPersPropPollutantBGIIRate">0.0</rul:Constant>
+			<rul:If>
+				<rul:Test>
+					<rul:Equal>
+						<rul:FirstValue Type="integer" FromConstant="0" FromDataDef="@UsePersPropPollutantRateIndicator" Order="DataDefInputParamConstant" />
+						<rul:Constant Type="integer">1</rul:Constant>
+					</rul:Equal>
+				</rul:Test>
+				<rul:Then>
+					<rul:Sequence>
+						<rul:WithArgs>
+							<rul:Arg Type="decimal" Param="HighestPersPropPollutantBGIIRateParam">
+								<rul:FirstValue Type="decimal" FromConstant="0" FromDataDef="@HighestPersPropPollutantBGIIRate" Order="DataDefInputParamConstant" />
+							</rul:Arg>
+							<rul:ForEach AtInputDataDef="../../CommercialPropertyStructureTable/CommercialPropertyStructure">
+								<rul:ForEach AtInputDataDef="CommercialPropertyOccupClassTable/CommercialPropertyOccupClass">
+									<rul:ForEach AtInputDataDef="CommercialPropertyPersonalPropertyTable/CommercialPropertyPersonalProperty">
+										<rul:If>
+											<rul:Test>
+												<rul:GreaterThan>
+													<rul:Product DecimalPlaces="3">
+														<rul:FirstValue Type="decimal" FromConstant="0" FromDataDef="@BasicGroupIICauseOfLossAdjustment" Order="DataDefInputParamConstant" />
+														<rul:FirstValue Type="decimal" FromConstant="0" FromDataDef="@BasicGroupIILOIFactor" Order="DataDefInputParamConstant" />
+													</rul:Product>
+													<rul:Value Type="decimal" FromParam="HighestPersPropPollutantBGIIRateParam" />
+												</rul:GreaterThan>
+											</rul:Test>
+											<rul:Then>
+												<rul:Sequence>
+													<rul:Product ToDataDef="@HighestPersPropPollutantBGIIRate" DecimalPlaces="3">
+														<rul:FirstValue Type="decimal" FromConstant="0" FromDataDef="@BasicGroupIICauseOfLossAdjustment" Order="DataDefInputParamConstant" />
+														<rul:FirstValue Type="decimal" FromConstant="0" FromDataDef="@BasicGroupIILOIFactor" Order="DataDefInputParamConstant" />
+													</rul:Product>
+												</rul:Sequence>
+											</rul:Then>
+										</rul:If>
+									</rul:ForEach>
+								</rul:ForEach>
+							</rul:ForEach>
+						</rul:WithArgs>
+					</rul:Sequence>
+				</rul:Then>
+			</rul:If>
+		</rul:Sequence>
+	</rul:Rule>
+	<rul:Rule Name="SetHighestSpecialPollutantBGIIRate" Type="none" DataDefGroup="CommercialPropertyPollutantCleanUpAndRemovalAdditionalAggregateLimitOfInsuranceLocation">
+		<rul:Sequence>
+			<rul:Constant Type="decimal" ToDataDef="@HighestSpecialPollutantBGIIRate">0.0</rul:Constant>
+			<rul:Max ToDataDef="@HighestSpecialPollutantBGIIRate">
+				<rul:ForEach AtInputDataDef="../../CommercialPropertySpecialClassTable/CommercialPropertySpecialClass">
+					<rul:FirstValue Type="decimal" FromConstant="0" FromDataDef="@BasicGroupIICauseOfLossAdjustment" Order="DataDefInputParamConstant" />
+				</rul:ForEach>
+				<rul:Constant Type="decimal">0</rul:Constant>
+			</rul:Max>
+		</rul:Sequence>
+	</rul:Rule>
+	<rul:Rule Name="SetHighestPollutantBGIIRate" Type="none" DataDefGroup="CommercialPropertyPollutantCleanUpAndRemovalAdditionalAggregateLimitOfInsuranceLocation">
+		<rul:Sequence>
+			<rul:Choose>
+				<rul:When>
+					<rul:Test>
+						<rul:Equal>
+							<rul:FirstValue Type="integer" FromConstant="0" FromDataDef="@BlanketIndicator" Order="DataDefInputParamConstant" />
+							<rul:Constant Type="integer">1</rul:Constant>
+						</rul:Equal>
+					</rul:Test>
+					<rul:Then>
+						<rul:Copy Type="decimal" ToDataDef="@HighestPollutantBGIIRate" FromDataDef="@HighestBlktPollutantBGIIAvgRate" />
+					</rul:Then>
+				</rul:When>
+				<rul:When>
+					<rul:Test>
+						<rul:Equal>
+							<rul:FirstValue Type="integer" FromConstant="0" FromDataDef="@UsePersPropPollutantRateIndicator" Order="DataDefInputParamConstant" />
+							<rul:Constant Type="integer">1</rul:Constant>
+						</rul:Equal>
+					</rul:Test>
+					<rul:Then>
+						<rul:Copy Type="decimal" ToDataDef="@HighestPollutantBGIIRate" FromDataDef="@HighestPersPropPollutantBGIIRate" />
+					</rul:Then>
+				</rul:When>
+				<rul:Otherwise>
+					<rul:Sequence>
+						<rul:If>
+							<rul:Test>
+								<rul:GreaterThanOrEqual>
+									<rul:FirstValue Type="decimal" FromConstant="0" FromDataDef="@HighestBldgPollutantBGIIRate" Order="DataDefInputParamConstant" />
+									<rul:FirstValue Type="decimal" FromConstant="0" FromDataDef="@HighestSpecialPollutantBGIIRate" Order="DataDefInputParamConstant" />
+								</rul:GreaterThanOrEqual>
+							</rul:Test>
+							<rul:Then>
+								<rul:Copy Type="decimal" ToDataDef="@HighestPollutantBGIIRate" FromDataDef="@HighestBldgPollutantBGIIRate" />
+							</rul:Then>
+							<rul:Else>
+								<rul:Copy Type="decimal" ToDataDef="@HighestPollutantBGIIRate" FromDataDef="@HighestSpecialPollutantBGIIRate" />
+							</rul:Else>
+						</rul:If>
+					</rul:Sequence>
+				</rul:Otherwise>
+			</rul:Choose>
+		</rul:Sequence>
+	</rul:Rule>
+	<rul:Rule Name="SetBasicGroupIIFactor" Type="none" DataDefGroup="CommercialPropertyPollutantCleanUpAndRemovalAdditionalAggregateLimitOfInsuranceLocation">
+		<rul:Sequence>
+			<rul:RunRule Type="decimal" ToDataDef="@BasicGroupIIFactor" FileName="CommercialPropertyPollutantCleanUpAndRemovalAdditionalAggregateLimitOfInsuranceLocationRules" Rule="LookupPollutantCleanUpAndRemovalRate" ClearCache="true">
+				<rul:Arg Type="string" Param="tempOptionalForm">
+					<rul:Constant Type="string">GroupII</rul:Constant>
+				</rul:Arg>
+			</rul:RunRule>
+		</rul:Sequence>
+	</rul:Rule>
+	<rul:Rule Name="SetBroadRatesAndFactors" Type="none" DataDefGroup="CommercialPropertyPollutantCleanUpAndRemovalAdditionalAggregateLimitOfInsuranceLocation">
+		<rul:Sequence>
+			<rul:RunRule Type="none" FileName="CommercialPropertyPollutantCleanUpAndRemovalAdditionalAggregateLimitOfInsuranceLocationRules" Rule="SetBroadIndicator" ClearCache="true" />
+			<rul:RunRule Type="none" FileName="CommercialPropertyPollutantCleanUpAndRemovalAdditionalAggregateLimitOfInsuranceLocationRules" Rule="SetHighestBroadLOIFactor" ClearCache="true" />
+			<rul:RunRule Type="none" FileName="CommercialPropertyPollutantCleanUpAndRemovalAdditionalAggregateLimitOfInsuranceLocationRules" Rule="SetBroadRate" ClearCache="true" />
+		</rul:Sequence>
+	</rul:Rule>
+	<rul:Rule Name="SetBroadIndicator" Type="none" DataDefGroup="CommercialPropertyPollutantCleanUpAndRemovalAdditionalAggregateLimitOfInsuranceLocation">
+		<rul:Sequence>
+			<!--Logic for bldgBroadIndicator moved to be inline where used.-->
+			<!--Logic for perspropBroadIndicator moved to be inline where used.-->
+			<!--Logic for specialBroadIndicator moved to be inline where used.-->
+			<!--Logic for bldgBroadIndicator moved to be inline where used.-->
+			<!--Logic for specialBroadIndicator moved to be inline where used.-->
+			<!--Logic for perspropBroadIndicator moved to be inline where used.-->
+			<rul:If>
+				<rul:Test>
+					<rul:Or>
+						<rul:Equal>
+							<rul:FirstNonNull Type="decimal">
+								<rul:ForEach AtDataDef="../../CommercialPropertyStructureTable/CommercialPropertyStructure">
+									<rul:If>
+										<rul:Test>
+											<rul:Equal>
+												<rul:FirstValue Type="string" FromConstant="" FromDataDef="@CauseOfLossToUse" Order="DataDefInputParamConstant" />
+												<rul:Constant Type="string">Broad</rul:Constant>
+											</rul:Equal>
+										</rul:Test>
+										<rul:Then>
+											<rul:GetList>
+												<rul:Constant Type="decimal">1</rul:Constant>
+												<rul:Break />
+											</rul:GetList>
+										</rul:Then>
+									</rul:If>
+								</rul:ForEach>
+								<rul:Constant Type="decimal">0</rul:Constant>
+							</rul:FirstNonNull>
+							<rul:Constant Type="integer">1</rul:Constant>
+						</rul:Equal>
+						<rul:Equal>
+							<rul:If>
+								<rul:Test>
+									<rul:Equal>
+										<rul:FirstValue Type="integer" FromConstant="0" FromDataDef="@UsePersPropPollutantRateIndicator" Order="DataDefInputParamConstant" />
+										<rul:Constant Type="integer">1</rul:Constant>
+									</rul:Equal>
+								</rul:Test>
+								<rul:Then>
+									<rul:ForEach AtDataDef="../../CommercialPropertyStructureTable/CommercialPropertyStructure">
+										<rul:ForEach AtDataDef="CommercialPropertyOccupClassTable/CommercialPropertyOccupClass">
+											<rul:ForEach AtDataDef="CommercialPropertyPersonalPropertyTable/CommercialPropertyPersonalProperty">
+												<rul:If>
+													<rul:Test>
+														<rul:Equal>
+															<rul:FirstValue Type="string" FromConstant="" FromDataDef="@CauseOfLossToUse" Order="DataDefInputParamConstant" />
+															<rul:Constant Type="string">Broad</rul:Constant>
+														</rul:Equal>
+													</rul:Test>
+													<rul:Then>
+														<rul:GetList>
+															<rul:Constant Type="decimal">1</rul:Constant>
+															<rul:Break />
+														</rul:GetList>
+													</rul:Then>
+												</rul:If>
+											</rul:ForEach>
+										</rul:ForEach>
+									</rul:ForEach>
+								</rul:Then>
+							</rul:If>
+							<rul:Constant Type="integer">1</rul:Constant>
+						</rul:Equal>
+						<rul:Equal>
+							<rul:FirstNonNull Type="decimal">
+								<rul:ForEach AtDataDef="../../CommercialPropertySpecialClassTable/CommercialPropertySpecialClass">
+									<rul:If>
+										<rul:Test>
+											<rul:Equal>
+												<rul:FirstValue Type="string" FromConstant="" FromDataDef="@CauseOfLossToUse" Order="DataDefInputParamConstant" />
+												<rul:Constant Type="string">Broad</rul:Constant>
+											</rul:Equal>
+										</rul:Test>
+										<rul:Then>
+											<rul:GetList>
+												<rul:Constant Type="decimal">1</rul:Constant>
+												<rul:Break />
+											</rul:GetList>
+										</rul:Then>
+									</rul:If>
+								</rul:ForEach>
+								<rul:Constant Type="decimal">0</rul:Constant>
+							</rul:FirstNonNull>
+							<rul:Constant Type="integer">1</rul:Constant>
+						</rul:Equal>
+					</rul:Or>
+				</rul:Test>
+				<rul:Then>
+					<rul:Sequence>
+						<rul:Constant Type="integer" ToDataDef="@BroadIndicator">1</rul:Constant>
+					</rul:Sequence>
+				</rul:Then>
+				<rul:Else>
+					<rul:Sequence>
+						<rul:Constant Type="integer" ToDataDef="@BroadIndicator">0</rul:Constant>
+					</rul:Sequence>
+				</rul:Else>
+			</rul:If>
+			<rul:If>
+				<rul:Test>
+					<rul:Exist AtInputDataDef="CommercialPropertyPollutantCleanUpAndRemovalAdditionalAggregateLimitOfInsuranceLocationBroadCoverage" />
+				</rul:Test>
+				<rul:Then>
+					<rul:Locate AtDataDef="CommercialPropertyPollutantCleanUpAndRemovalAdditionalAggregateLimitOfInsuranceLocationBroadCoverage">
+						<rul:RunRule Type="none" FileName="CommercialPropertyPollutantCleanUpAndRemovalAdditionalAggregateLimitOfInsuranceLocationBroadCoverageRules" Rule="InitializeRuleSet" ClearCache="true" />
+					</rul:Locate>
+				</rul:Then>
+				<rul:Else>
+					<rul:Locate Type="none" AtOutputDataDef="CommercialPropertyPollutantCleanUpAndRemovalAdditionalAggregateLimitOfInsuranceLocationBroadCoverage" OutputAction="Append">
+						<rul:Sequence>
+							<rul:RunRule Type="none" FileName="CommercialPropertyPollutantCleanUpAndRemovalAdditionalAggregateLimitOfInsuranceLocationBroadCoverageRules" Rule="InitializeRuleSet" ClearCache="true" />
+						</rul:Sequence>
+					</rul:Locate>
+				</rul:Else>
+			</rul:If>
+		</rul:Sequence>
+	</rul:Rule>
+	<rul:Rule Name="SetHighestBroadLOIFactor" Type="none" DataDefGroup="CommercialPropertyPollutantCleanUpAndRemovalAdditionalAggregateLimitOfInsuranceLocation">
+		<rul:Sequence>
+			<rul:Constant Type="decimal" ToDataDef="@HighestBroadLOIFactor">0.0</rul:Constant>
+			<rul:WithArgs>
+				<rul:Arg Type="decimal" Param="bldgBroadIndicatorParam">
+					<rul:RunRule Type="decimal" FileName="CommercialPropertyPollutantCleanUpAndRemovalAdditionalAggregateLimitOfInsuranceLocationRules" Rule="bldgBroadIndicator" ClearCache="true" />
+				</rul:Arg>
+				<rul:Arg Type="decimal" Param="perspropBroadIndicatorParam">
+					<rul:RunRule Type="decimal" FileName="CommercialPropertyPollutantCleanUpAndRemovalAdditionalAggregateLimitOfInsuranceLocationRules" Rule="perspropBroadIndicator" ClearCache="true" />
+				</rul:Arg>
+				<rul:Arg Type="decimal" Param="specialBroadIndicatorParam">
+					<rul:RunRule Type="decimal" FileName="CommercialPropertyPollutantCleanUpAndRemovalAdditionalAggregateLimitOfInsuranceLocationRules" Rule="specialBroadIndicator" ClearCache="true" />
+				</rul:Arg>
+				<rul:Choose>
+					<rul:When>
+						<rul:Test>
+							<rul:And>
+								<rul:Equal>
+									<rul:Value Type="decimal" FromParam="bldgBroadIndicatorParam" />
+									<rul:Constant Type="integer">0</rul:Constant>
+								</rul:Equal>
+								<rul:Equal>
+									<rul:Value Type="decimal" FromParam="perspropBroadIndicatorParam" />
+									<rul:Constant Type="integer">0</rul:Constant>
+								</rul:Equal>
+								<rul:Equal>
+									<rul:Value Type="decimal" FromParam="specialBroadIndicatorParam" />
+									<rul:Constant Type="integer">1</rul:Constant>
+								</rul:Equal>
+							</rul:And>
+						</rul:Test>
+						<rul:Then>
+							<rul:Sequence>
+								<rul:Constant Type="decimal" ToDataDef="@HighestBroadLOIFactor">1.0</rul:Constant>
+							</rul:Sequence>
+						</rul:Then>
+					</rul:When>
+					<rul:When>
+						<rul:Test>
+							<rul:Equal>
+								<rul:FirstValue Type="integer" FromConstant="0" FromDataDef="@UsePersPropPollutantRateIndicator" Order="DataDefInputParamConstant" />
+								<rul:Constant Type="integer">1</rul:Constant>
+							</rul:Equal>
+						</rul:Test>
+						<rul:Then>
+							<rul:Sequence>
+								<rul:Max ToDataDef="@HighestBroadLOIFactor">
+									<rul:ForEach AtInputDataDef="../../CommercialPropertyStructureTable/CommercialPropertyStructure">
+										<rul:ForEach AtInputDataDef="CommercialPropertyOccupClassTable/CommercialPropertyOccupClass">
+											<rul:ForEach AtInputDataDef="CommercialPropertyPersonalPropertyTable/CommercialPropertyPersonalProperty">
+												<rul:If>
+													<rul:Test>
+														<rul:Equal>
+															<rul:FirstValue Type="string" FromConstant="" FromDataDef="@CauseOfLossToUse" Order="DataDefInputParamConstant" />
+															<rul:Constant Type="string">Broad</rul:Constant>
+														</rul:Equal>
+													</rul:Test>
+													<rul:Then>
+														<rul:FirstValue Type="decimal" FromConstant="0" FromDataDef="@BroadLOIFactor" Order="DataDefInputParamConstant" />
+													</rul:Then>
+												</rul:If>
+											</rul:ForEach>
+										</rul:ForEach>
+									</rul:ForEach>
+									<rul:Constant Type="decimal">0</rul:Constant>
+								</rul:Max>
+							</rul:Sequence>
+						</rul:Then>
+					</rul:When>
+					<rul:Otherwise>
+						<rul:Sequence>
+							<rul:Max ToDataDef="@HighestBroadLOIFactor">
+								<rul:ForEach AtInputDataDef="../../CommercialPropertyStructureTable/CommercialPropertyStructure">
+									<rul:If>
+										<rul:Test>
+											<rul:Equal>
+												<rul:FirstValue Type="string" FromConstant="" FromDataDef="@CauseOfLossToUse" Order="DataDefInputParamConstant" />
+												<rul:Constant Type="string">Broad</rul:Constant>
+											</rul:Equal>
+										</rul:Test>
+										<rul:Then>
+											<rul:FirstValue Type="decimal" FromConstant="0" FromDataDef="@BroadLOIFactor" Order="DataDefInputParamConstant" />
+										</rul:Then>
+									</rul:If>
+								</rul:ForEach>
+								<rul:Constant Type="decimal">0</rul:Constant>
+							</rul:Max>
+						</rul:Sequence>
+					</rul:Otherwise>
+				</rul:Choose>
+			</rul:WithArgs>
+		</rul:Sequence>
+	</rul:Rule>
+	<rul:Rule Name="SetBroadRate" Type="none" DataDefGroup="CommercialPropertyPollutantCleanUpAndRemovalAdditionalAggregateLimitOfInsuranceLocation">
+		<rul:Sequence>
+			<rul:RunRule Type="decimal" ToDataDef="@BroadRate" FileName="CommercialPropertyPollutantCleanUpAndRemovalAdditionalAggregateLimitOfInsuranceLocationRules" Rule="LookupPollutantCleanUpAndRemovalRate" ClearCache="true">
+				<rul:Arg Type="string" Param="tempOptionalForm">
+					<rul:Constant Type="string">Broad</rul:Constant>
+				</rul:Arg>
+			</rul:RunRule>
+		</rul:Sequence>
+	</rul:Rule>
+	<rul:Rule Name="SetSpecialRatesAndFactors" Type="none" DataDefGroup="CommercialPropertyPollutantCleanUpAndRemovalAdditionalAggregateLimitOfInsuranceLocation">
+		<rul:Sequence>
+			<rul:RunRule Type="none" FileName="CommercialPropertyPollutantCleanUpAndRemovalAdditionalAggregateLimitOfInsuranceLocationRules" Rule="SetSpecialIndicator" ClearCache="true" />
+			<rul:RunRule Type="none" FileName="CommercialPropertyPollutantCleanUpAndRemovalAdditionalAggregateLimitOfInsuranceLocationRules" Rule="SetHighestSpecialLOIFactor" ClearCache="true" />
+			<rul:RunRule Type="none" FileName="CommercialPropertyPollutantCleanUpAndRemovalAdditionalAggregateLimitOfInsuranceLocationRules" Rule="SetSpecialDeductibleByLocationFactor" ClearCache="true" />
+			<rul:RunRule Type="none" FileName="CommercialPropertyPollutantCleanUpAndRemovalAdditionalAggregateLimitOfInsuranceLocationRules" Rule="SetSpecialRate" ClearCache="true" />
+		</rul:Sequence>
+	</rul:Rule>
+	<rul:Rule Name="SetSpecialIndicator" Type="none" DataDefGroup="CommercialPropertyPollutantCleanUpAndRemovalAdditionalAggregateLimitOfInsuranceLocation">
+		<rul:Sequence>
+			<!--Logic for bldgSpecialIndicator moved to be inline where used.-->
+			<!--Logic for perspropSpecialIndicator moved to be inline where used.-->
+			<!--Logic for specialSpecialIndicator moved to be inline where used.-->
+			<!--Logic for bldgSpecialIndicator moved to be inline where used.-->
+			<!--Logic for specialSpecialIndicator moved to be inline where used.-->
+			<!--Logic for perspropSpecialIndicator moved to be inline where used.-->
+			<rul:If>
+				<rul:Test>
+					<rul:Or>
+						<rul:Equal>
+							<rul:FirstNonNull Type="decimal">
+								<rul:ForEach AtDataDef="../../CommercialPropertyStructureTable/CommercialPropertyStructure">
+									<rul:If>
+										<rul:Test>
+											<rul:Equal>
+												<rul:FirstValue Type="string" FromConstant="" FromDataDef="@CauseOfLossToUse" Order="DataDefInputParamConstant" />
+												<rul:Constant Type="string">Special</rul:Constant>
+											</rul:Equal>
+										</rul:Test>
+										<rul:Then>
+											<rul:GetList>
+												<rul:Constant Type="decimal">1</rul:Constant>
+												<rul:Break />
+											</rul:GetList>
+										</rul:Then>
+									</rul:If>
+								</rul:ForEach>
+								<rul:Constant Type="decimal">0</rul:Constant>
+							</rul:FirstNonNull>
+							<rul:Constant Type="integer">1</rul:Constant>
+						</rul:Equal>
+						<rul:Equal>
+							<rul:If>
+								<rul:Test>
+									<rul:Equal>
+										<rul:FirstValue Type="integer" FromConstant="0" FromDataDef="@UsePersPropPollutantRateIndicator" Order="DataDefInputParamConstant" />
+										<rul:Constant Type="integer">1</rul:Constant>
+									</rul:Equal>
+								</rul:Test>
+								<rul:Then>
+									<rul:ForEach AtDataDef="../../CommercialPropertyStructureTable/CommercialPropertyStructure">
+										<rul:ForEach AtDataDef="CommercialPropertyOccupClassTable/CommercialPropertyOccupClass">
+											<rul:ForEach AtDataDef="CommercialPropertyPersonalPropertyTable/CommercialPropertyPersonalProperty">
+												<rul:If>
+													<rul:Test>
+														<rul:Equal>
+															<rul:FirstValue Type="string" FromConstant="" FromDataDef="@CauseOfLossToUse" Order="DataDefInputParamConstant" />
+															<rul:Constant Type="string">Special</rul:Constant>
+														</rul:Equal>
+													</rul:Test>
+													<rul:Then>
+														<rul:GetList>
+															<rul:Constant Type="decimal">1</rul:Constant>
+															<rul:Break />
+														</rul:GetList>
+													</rul:Then>
+												</rul:If>
+											</rul:ForEach>
+										</rul:ForEach>
+									</rul:ForEach>
+								</rul:Then>
+							</rul:If>
+							<rul:Constant Type="integer">1</rul:Constant>
+						</rul:Equal>
+						<rul:Equal>
+							<rul:FirstNonNull Type="decimal">
+								<rul:ForEach AtDataDef="../../CommercialPropertySpecialClassTable/CommercialPropertySpecialClass">
+									<rul:If>
+										<rul:Test>
+											<rul:Equal>
+												<rul:FirstValue Type="string" FromConstant="" FromDataDef="@CauseOfLossToUse" Order="DataDefInputParamConstant" />
+												<rul:Constant Type="string">Special</rul:Constant>
+											</rul:Equal>
+										</rul:Test>
+										<rul:Then>
+											<rul:GetList>
+												<rul:Constant Type="decimal">1</rul:Constant>
+												<rul:Break />
+											</rul:GetList>
+										</rul:Then>
+									</rul:If>
+								</rul:ForEach>
+								<rul:Constant Type="decimal">0</rul:Constant>
+							</rul:FirstNonNull>
+							<rul:Constant Type="integer">1</rul:Constant>
+						</rul:Equal>
+					</rul:Or>
+				</rul:Test>
+				<rul:Then>
+					<rul:Sequence>
+						<rul:Constant Type="integer" ToDataDef="@SpecialIndicator">1</rul:Constant>
+					</rul:Sequence>
+				</rul:Then>
+				<rul:Else>
+					<rul:Sequence>
+						<rul:Constant Type="integer" ToDataDef="@SpecialIndicator">0</rul:Constant>
+					</rul:Sequence>
+				</rul:Else>
+			</rul:If>
+			<rul:If>
+				<rul:Test>
+					<rul:Exist AtInputDataDef="CommercialPropertyPollutantCleanUpAndRemovalAdditionalAggregateLimitOfInsuranceLocationSpecialCoverage" />
+				</rul:Test>
+				<rul:Then>
+					<rul:Locate AtDataDef="CommercialPropertyPollutantCleanUpAndRemovalAdditionalAggregateLimitOfInsuranceLocationSpecialCoverage">
+						<rul:RunRule Type="none" FileName="CommercialPropertyPollutantCleanUpAndRemovalAdditionalAggregateLimitOfInsuranceLocationSpecialCoverageRules" Rule="InitializeRuleSet" ClearCache="true" />
+					</rul:Locate>
+				</rul:Then>
+				<rul:Else>
+					<rul:Locate Type="none" AtOutputDataDef="CommercialPropertyPollutantCleanUpAndRemovalAdditionalAggregateLimitOfInsuranceLocationSpecialCoverage" OutputAction="Append">
+						<rul:Sequence>
+							<rul:RunRule Type="none" FileName="CommercialPropertyPollutantCleanUpAndRemovalAdditionalAggregateLimitOfInsuranceLocationSpecialCoverageRules" Rule="InitializeRuleSet" ClearCache="true" />
+						</rul:Sequence>
+					</rul:Locate>
+				</rul:Else>
+			</rul:If>
+		</rul:Sequence>
+	</rul:Rule>
+	<rul:Rule Name="SetHighestSpecialLOIFactor" Type="none" DataDefGroup="CommercialPropertyPollutantCleanUpAndRemovalAdditionalAggregateLimitOfInsuranceLocation">
+		<rul:Sequence>
+			<rul:Constant Type="decimal" ToDataDef="@HighestSpecialLOIFactor">0.0</rul:Constant>
+			<rul:WithArgs>
+				<rul:Arg Type="decimal" Param="bldgSpecialIndicatorParam">
+					<rul:RunRule Type="decimal" FileName="CommercialPropertyPollutantCleanUpAndRemovalAdditionalAggregateLimitOfInsuranceLocationRules" Rule="bldgSpecialIndicator" ClearCache="true" />
+				</rul:Arg>
+				<rul:Arg Type="decimal" Param="perspropSpecialIndicatorParam">
+					<rul:RunRule Type="decimal" FileName="CommercialPropertyPollutantCleanUpAndRemovalAdditionalAggregateLimitOfInsuranceLocationRules" Rule="perspropSpecialIndicator" ClearCache="true" />
+				</rul:Arg>
+				<rul:Arg Type="decimal" Param="specialSpecialIndicatorParam">
+					<rul:RunRule Type="decimal" FileName="CommercialPropertyPollutantCleanUpAndRemovalAdditionalAggregateLimitOfInsuranceLocationRules" Rule="specialSpecialIndicator" ClearCache="true" />
+				</rul:Arg>
+				<rul:Choose>
+					<rul:When>
+						<rul:Test>
+							<rul:And>
+								<rul:Equal>
+									<rul:Value Type="decimal" FromParam="bldgSpecialIndicatorParam" />
+									<rul:Constant Type="integer">0</rul:Constant>
+								</rul:Equal>
+								<rul:Equal>
+									<rul:Value Type="decimal" FromParam="perspropSpecialIndicatorParam" />
+									<rul:Constant Type="integer">0</rul:Constant>
+								</rul:Equal>
+								<rul:Equal>
+									<rul:Value Type="decimal" FromParam="specialSpecialIndicatorParam" />
+									<rul:Constant Type="integer">1</rul:Constant>
+								</rul:Equal>
+							</rul:And>
+						</rul:Test>
+						<rul:Then>
+							<rul:Sequence>
+								<rul:Constant Type="decimal" ToDataDef="@HighestSpecialLOIFactor">1.0</rul:Constant>
+							</rul:Sequence>
+						</rul:Then>
+					</rul:When>
+					<rul:When>
+						<rul:Test>
+							<rul:Equal>
+								<rul:FirstValue Type="integer" FromConstant="0" FromDataDef="@UsePersPropPollutantRateIndicator" Order="DataDefInputParamConstant" />
+								<rul:Constant Type="integer">1</rul:Constant>
+							</rul:Equal>
+						</rul:Test>
+						<rul:Then>
+							<rul:Sequence>
+								<rul:Max ToDataDef="@HighestSpecialLOIFactor">
+									<rul:ForEach AtInputDataDef="../../CommercialPropertyStructureTable/CommercialPropertyStructure">
+										<rul:ForEach AtInputDataDef="CommercialPropertyOccupClassTable/CommercialPropertyOccupClass">
+											<rul:ForEach AtInputDataDef="CommercialPropertyPersonalPropertyTable/CommercialPropertyPersonalProperty">
+												<rul:If>
+													<rul:Test>
+														<rul:Equal>
+															<rul:FirstValue Type="string" FromConstant="" FromDataDef="@CauseOfLossToUse" Order="DataDefInputParamConstant" />
+															<rul:Constant Type="string">Special</rul:Constant>
+														</rul:Equal>
+													</rul:Test>
+													<rul:Then>
+														<rul:FirstValue Type="decimal" FromConstant="0" FromDataDef="@SpecialLOIFactor" Order="DataDefInputParamConstant" />
+													</rul:Then>
+												</rul:If>
+											</rul:ForEach>
+										</rul:ForEach>
+									</rul:ForEach>
+									<rul:Constant Type="decimal">0</rul:Constant>
+								</rul:Max>
+							</rul:Sequence>
+						</rul:Then>
+					</rul:When>
+					<rul:Otherwise>
+						<rul:Sequence>
+							<rul:Max ToDataDef="@HighestSpecialLOIFactor">
+								<rul:ForEach AtInputDataDef="../../CommercialPropertyStructureTable/CommercialPropertyStructure">
+									<rul:If>
+										<rul:Test>
+											<rul:Equal>
+												<rul:FirstValue Type="string" FromConstant="" FromDataDef="@CauseOfLossToUse" Order="DataDefInputParamConstant" />
+												<rul:Constant Type="string">Special</rul:Constant>
+											</rul:Equal>
+										</rul:Test>
+										<rul:Then>
+											<rul:FirstValue Type="decimal" FromConstant="0" FromDataDef="@SpecialLOIFactor" Order="DataDefInputParamConstant" />
+										</rul:Then>
+									</rul:If>
+								</rul:ForEach>
+								<rul:Constant Type="decimal">0</rul:Constant>
+							</rul:Max>
+						</rul:Sequence>
+					</rul:Otherwise>
+				</rul:Choose>
+			</rul:WithArgs>
+		</rul:Sequence>
+	</rul:Rule>
+	<rul:Rule Name="SetSpecialDeductibleByLocationFactor" Type="none" DataDefGroup="CommercialPropertyPollutantCleanUpAndRemovalAdditionalAggregateLimitOfInsuranceLocation">
+		<rul:Sequence>
+			<rul:WithArgs>
+				<rul:Arg Type="integer" Param="specialDeductibleByLocationIndicator">
+					<rul:FirstNonNull Type="integer">
+						<rul:Sum>
+							<rul:ForEach AtDataDef="../../CommercialPropertyStructureTable/CommercialPropertyStructure">
+								<rul:If>
+									<rul:Test>
+										<rul:NotEqual>
+											<rul:FirstValue Type="decimal" FromConstant="0" FromDataDef="@SpecialDeductibleByLocationFactor" Order="DataDefInputParamConstant" />
+											<rul:Constant Type="decimal">1</rul:Constant>
+										</rul:NotEqual>
+									</rul:Test>
+									<rul:Then>
+										<rul:Sum>
+											<rul:Constant Type="integer">1</rul:Constant>
+											<rul:Break />
+										</rul:Sum>
+									</rul:Then>
+								</rul:If>
+							</rul:ForEach>
+							<rul:ForEach AtDataDef="../../CommercialPropertySpecialClassTable/CommercialPropertySpecialClass">
+								<rul:If>
+									<rul:Test>
+										<rul:NotEqual>
+											<rul:FirstValue Type="decimal" FromConstant="0" FromDataDef="@SpecialDeductibleByLocationFactor" Order="DataDefInputParamConstant" />
+											<rul:Constant Type="decimal">1</rul:Constant>
+										</rul:NotEqual>
+									</rul:Test>
+									<rul:Then>
+										<rul:Sum>
+											<rul:Constant Type="integer">1</rul:Constant>
+											<rul:Break />
+										</rul:Sum>
+									</rul:Then>
+								</rul:If>
+							</rul:ForEach>
+						</rul:Sum>
+						<rul:Constant Type="integer">0</rul:Constant>
+					</rul:FirstNonNull>
+				</rul:Arg>
+				<rul:If>
+					<rul:Test>
+						<rul:Equal>
+							<rul:Value Type="integer" FromParam="specialDeductibleByLocationIndicator" />
+							<rul:Constant Type="integer">1</rul:Constant>
+						</rul:Equal>
+					</rul:Test>
+					<rul:Then>
+						<rul:Sequence>
+							<rul:RunRule Type="decimal" ToDataDef="@SpecialDeductibleByLocationFactor" FileName="CommercialPropertyPollutantCleanUpAndRemovalAdditionalAggregateLimitOfInsuranceLocationRules" Rule="LookupDeductibleByLocationFactor" ClearCache="true" />
+						</rul:Sequence>
+					</rul:Then>
+					<rul:Else>
+						<rul:Sequence>
+							<rul:Constant Type="decimal" ToDataDef="@SpecialDeductibleByLocationFactor">1.0</rul:Constant>
+						</rul:Sequence>
+					</rul:Else>
+				</rul:If>
+			</rul:WithArgs>
+		</rul:Sequence>
+	</rul:Rule>
+	<rul:Rule Name="SetSpecialRate" Type="none" DataDefGroup="CommercialPropertyPollutantCleanUpAndRemovalAdditionalAggregateLimitOfInsuranceLocation">
+		<rul:Sequence>
+			<rul:RunRule Type="decimal" ToDataDef="@SpecialRate" FileName="CommercialPropertyPollutantCleanUpAndRemovalAdditionalAggregateLimitOfInsuranceLocationRules" Rule="LookupPollutantCleanUpAndRemovalRate" ClearCache="true">
+				<rul:Arg Type="string" Param="tempOptionalForm">
+					<rul:Constant Type="string">Special</rul:Constant>
+				</rul:Arg>
+			</rul:RunRule>
+		</rul:Sequence>
+	</rul:Rule>
+	<rul:Rule Name="SetEQRatesAndFactors" Type="none" DataDefGroup="CommercialPropertyPollutantCleanUpAndRemovalAdditionalAggregateLimitOfInsuranceLocation">
+		<rul:Sequence>
+			<rul:RunRule Type="none" FileName="CommercialPropertyPollutantCleanUpAndRemovalAdditionalAggregateLimitOfInsuranceLocationRules" Rule="SetEQIndicator" ClearCache="true" />
+			<rul:RunRule Type="none" FileName="CommercialPropertyPollutantCleanUpAndRemovalAdditionalAggregateLimitOfInsuranceLocationRules" Rule="SetEQDeductibleByLocationFactor" ClearCache="true" />
+			<rul:RunRule Type="none" FileName="CommercialPropertyPollutantCleanUpAndRemovalAdditionalAggregateLimitOfInsuranceLocationRules" Rule="SetHighestBlanketPollutantEQAvgRate" ClearCache="true" />
+			<rul:RunRule Type="none" FileName="CommercialPropertyPollutantCleanUpAndRemovalAdditionalAggregateLimitOfInsuranceLocationRules" Rule="SetHighestBldgPollutantEQRate" ClearCache="true" />
+			<rul:RunRule Type="none" FileName="CommercialPropertyPollutantCleanUpAndRemovalAdditionalAggregateLimitOfInsuranceLocationRules" Rule="SetHighestPersPropPollutantEQRate" ClearCache="true" />
+			<rul:RunRule Type="none" FileName="CommercialPropertyPollutantCleanUpAndRemovalAdditionalAggregateLimitOfInsuranceLocationRules" Rule="SetHighestSpecialPollutantEQRate" ClearCache="true" />
+			<rul:RunRule Type="none" FileName="CommercialPropertyPollutantCleanUpAndRemovalAdditionalAggregateLimitOfInsuranceLocationRules" Rule="SetHighestPollutantEQRate" ClearCache="true" />
+			<rul:RunRule Type="none" FileName="CommercialPropertyPollutantCleanUpAndRemovalAdditionalAggregateLimitOfInsuranceLocationRules" Rule="SetEQFactor" ClearCache="true" />
+		</rul:Sequence>
+	</rul:Rule>
+	<rul:Rule Name="SetEQIndicator" Type="none" DataDefGroup="CommercialPropertyPollutantCleanUpAndRemovalAdditionalAggregateLimitOfInsuranceLocation">
+		<rul:Sequence>
+			<!--Logic for bldgEQIndicator moved to be inline where used.-->
+			<!--Logic for perspropEQIndicator moved to be inline where used.-->
+			<!--Logic for specialEQIndicator moved to be inline where used.-->
+			<!--Logic for bldgEQIndicator moved to be inline where used.-->
+			<!--Logic for specialEQIndicator moved to be inline where used.-->
+			<!--Logic for perspropEQIndicator moved to be inline where used.-->
+			<rul:If>
+				<rul:Test>
+					<rul:Or>
+						<rul:Equal>
+							<rul:FirstNonNull Type="decimal">
+								<rul:ForEach AtDataDef="../../CommercialPropertyStructureTable/CommercialPropertyStructure">
+									<rul:If>
+										<rul:Test>
+											<rul:Or>
+												<rul:Equal>
+													<rul:FirstValue Type="string" FromConstant="" FromDataDef="@EQCovIndicator" Order="DataDefInputParamConstant" />
+													<rul:Constant Type="string">Yes, Included in Blanket</rul:Constant>
+												</rul:Equal>
+												<rul:Equal>
+													<rul:FirstValue Type="string" FromConstant="" FromDataDef="@EQCovIndicator" Order="DataDefInputParamConstant" />
+													<rul:Constant Type="string">Yes, Not Included in Blanket</rul:Constant>
+												</rul:Equal>
+											</rul:Or>
+										</rul:Test>
+										<rul:Then>
+											<rul:GetList>
+												<rul:Constant Type="decimal">1</rul:Constant>
+												<rul:Break />
+											</rul:GetList>
+										</rul:Then>
+									</rul:If>
+								</rul:ForEach>
+								<rul:Constant Type="decimal">0</rul:Constant>
+							</rul:FirstNonNull>
+							<rul:Constant Type="integer">1</rul:Constant>
+						</rul:Equal>
+						<rul:Equal>
+							<rul:If>
+								<rul:Test>
+									<rul:Equal>
+										<rul:FirstValue Type="integer" FromConstant="0" FromDataDef="@UsePersPropPollutantRateIndicator" Order="DataDefInputParamConstant" />
+										<rul:Constant Type="integer">1</rul:Constant>
+									</rul:Equal>
+								</rul:Test>
+								<rul:Then>
+									<rul:ForEach AtDataDef="../../CommercialPropertyStructureTable/CommercialPropertyStructure">
+										<rul:ForEach AtDataDef="CommercialPropertyOccupClassTable/CommercialPropertyOccupClass">
+											<rul:ForEach AtDataDef="CommercialPropertyPersonalPropertyTable/CommercialPropertyPersonalProperty">
+												<rul:If>
+													<rul:Test>
+														<rul:Or>
+															<rul:Equal>
+																<rul:FirstValue Type="string" FromConstant="" FromDataDef="@EQCovIndicator" Order="DataDefInputParamConstant" />
+																<rul:Constant Type="string">Yes, Included in Blanket</rul:Constant>
+															</rul:Equal>
+															<rul:Equal>
+																<rul:FirstValue Type="string" FromConstant="" FromDataDef="@EQCovIndicator" Order="DataDefInputParamConstant" />
+																<rul:Constant Type="string">Yes, Not Included in Blanket</rul:Constant>
+															</rul:Equal>
+														</rul:Or>
+													</rul:Test>
+													<rul:Then>
+														<rul:GetList>
+															<rul:Constant Type="decimal">1</rul:Constant>
+															<rul:Break />
+														</rul:GetList>
+													</rul:Then>
+												</rul:If>
+											</rul:ForEach>
+										</rul:ForEach>
+									</rul:ForEach>
+								</rul:Then>
+							</rul:If>
+							<rul:Constant Type="integer">1</rul:Constant>
+						</rul:Equal>
+						<rul:Equal>
+							<rul:FirstNonNull Type="decimal">
+								<rul:ForEach AtDataDef="../../CommercialPropertySpecialClassTable/CommercialPropertySpecialClass">
+									<rul:If>
+										<rul:Test>
+											<rul:Or>
+												<rul:Equal>
+													<rul:FirstValue Type="string" FromConstant="" FromDataDef="@EQCovIndicator" Order="DataDefInputParamConstant" />
+													<rul:Constant Type="string">Yes, Included in Blanket</rul:Constant>
+												</rul:Equal>
+												<rul:Equal>
+													<rul:FirstValue Type="string" FromConstant="" FromDataDef="@EQCovIndicator" Order="DataDefInputParamConstant" />
+													<rul:Constant Type="string">Yes, Not Included in Blanket</rul:Constant>
+												</rul:Equal>
+											</rul:Or>
+										</rul:Test>
+										<rul:Then>
+											<rul:GetList>
+												<rul:Constant Type="decimal">1</rul:Constant>
+												<rul:Break />
+											</rul:GetList>
+										</rul:Then>
+									</rul:If>
+								</rul:ForEach>
+								<rul:Constant Type="decimal">0</rul:Constant>
+							</rul:FirstNonNull>
+							<rul:Constant Type="integer">1</rul:Constant>
+						</rul:Equal>
+					</rul:Or>
+				</rul:Test>
+				<rul:Then>
+					<rul:Sequence>
+						<rul:Constant Type="integer" ToDataDef="@EQIndicator">1</rul:Constant>
+					</rul:Sequence>
+				</rul:Then>
+				<rul:Else>
+					<rul:Sequence>
+						<rul:Constant Type="integer" ToDataDef="@EQIndicator">0</rul:Constant>
+					</rul:Sequence>
+				</rul:Else>
+			</rul:If>
+			<rul:If>
+				<rul:Test>
+					<rul:Exist AtInputDataDef="CommercialPropertyPollutantCleanUpAndRemovalAdditionalAggregateLimitOfInsuranceLocationEarthquakeCoverage" />
+				</rul:Test>
+				<rul:Then>
+					<rul:Locate AtDataDef="CommercialPropertyPollutantCleanUpAndRemovalAdditionalAggregateLimitOfInsuranceLocationEarthquakeCoverage">
+						<rul:RunRule Type="none" FileName="CommercialPropertyPollutantCleanUpAndRemovalAdditionalAggregateLimitOfInsuranceLocationEarthquakeCoverageRules" Rule="InitializeRuleSet" ClearCache="true" />
+					</rul:Locate>
+				</rul:Then>
+				<rul:Else>
+					<rul:Locate Type="none" AtOutputDataDef="CommercialPropertyPollutantCleanUpAndRemovalAdditionalAggregateLimitOfInsuranceLocationEarthquakeCoverage" OutputAction="Append">
+						<rul:Sequence>
+							<rul:RunRule Type="none" FileName="CommercialPropertyPollutantCleanUpAndRemovalAdditionalAggregateLimitOfInsuranceLocationEarthquakeCoverageRules" Rule="InitializeRuleSet" ClearCache="true" />
+						</rul:Sequence>
+					</rul:Locate>
+				</rul:Else>
+			</rul:If>
+		</rul:Sequence>
+	</rul:Rule>
+	<rul:Rule Name="SetEQDeductibleByLocationFactor" Type="none" DataDefGroup="CommercialPropertyPollutantCleanUpAndRemovalAdditionalAggregateLimitOfInsuranceLocation">
+		<rul:Sequence>
+			<rul:WithArgs>
+				<rul:Arg Type="boolean" Param="buildingValidationEQDeductibleByLocationFactor">
+					<rul:FirstNonNull Type="boolean">
+						<rul:ForEach AtDataDef="../../CommercialPropertyStructureTable/CommercialPropertyStructure">
+							<rul:If>
+								<rul:Test>
+									<rul:Equal>
+										<rul:FirstValue Type="string" FromConstant="" FromDataDef="@EQSprinklerLeakageOnly" Order="DataDefInputParamConstant" />
+										<rul:Constant Type="string">Yes</rul:Constant>
+									</rul:Equal>
+								</rul:Test>
+								<rul:Then>
+									<rul:GetList>
+										<rul:Constant Type="boolean">true</rul:Constant>
+										<rul:Break />
+									</rul:GetList>
+								</rul:Then>
+							</rul:If>
+						</rul:ForEach>
+						<rul:Constant Type="boolean">false</rul:Constant>
+					</rul:FirstNonNull>
+				</rul:Arg>
+				<rul:Arg Type="boolean" Param="personalpropValidationEQDeductibleByLocationFactor">
+					<rul:FirstNonNull Type="boolean">
+						<rul:ForEach AtDataDef="../../CommercialPropertyStructureTable/CommercialPropertyStructure">
+							<rul:ForEach AtDataDef="CommercialPropertyOccupClassTable/CommercialPropertyOccupClass">
+								<rul:ForEach AtDataDef="CommercialPropertyPersonalPropertyTable/CommercialPropertyPersonalProperty">
+									<rul:If>
+										<rul:Test>
+											<rul:Equal>
+												<rul:FirstValue Type="string" FromConstant="" FromDataDef="@EQSprinklerLeakageOnly" Order="DataDefInputParamConstant" />
+												<rul:Constant Type="string">Yes</rul:Constant>
+											</rul:Equal>
+										</rul:Test>
+										<rul:Then>
+											<rul:GetList>
+												<rul:Constant Type="boolean">true</rul:Constant>
+												<rul:Break />
+											</rul:GetList>
+										</rul:Then>
+									</rul:If>
+								</rul:ForEach>
+							</rul:ForEach>
+						</rul:ForEach>
+						<rul:Constant Type="boolean">false</rul:Constant>
+					</rul:FirstNonNull>
+				</rul:Arg>
+				<rul:If>
+					<rul:Test>
+						<rul:Or>
+							<rul:Equal>
+								<rul:Value Type="boolean" FromParam="buildingValidationEQDeductibleByLocationFactor" />
+								<rul:Constant Type="boolean">true</rul:Constant>
+							</rul:Equal>
+							<rul:Equal>
+								<rul:Value Type="boolean" FromParam="personalpropValidationEQDeductibleByLocationFactor" />
+								<rul:Constant Type="boolean">true</rul:Constant>
+							</rul:Equal>
+						</rul:Or>
+					</rul:Test>
+					<rul:Then>
+						<rul:Copy Type="decimal" ToDataDef="@EQDeductibleByLocationFactor" FromDataDef="@DeductibleByLocationFactor" />
+					</rul:Then>
+					<rul:Else>
+						<rul:Sequence>
+							<rul:Constant Type="decimal" ToDataDef="@EQDeductibleByLocationFactor">1.0</rul:Constant>
+						</rul:Sequence>
+					</rul:Else>
+				</rul:If>
+			</rul:WithArgs>
+		</rul:Sequence>
+	</rul:Rule>
+	<rul:Rule Name="SetHighestBlanketPollutantEQAvgRate" Type="none" DataDefGroup="CommercialPropertyPollutantCleanUpAndRemovalAdditionalAggregateLimitOfInsuranceLocation">
+		<rul:Sequence>
+			<rul:Constant Type="decimal" ToDataDef="@HighestBlktPollutantEQAvgRate">0.0</rul:Constant>
+			<rul:If>
+				<rul:Test>
+					<rul:Equal>
+						<rul:FirstValue Type="integer" FromConstant="0" FromDataDef="@EQBlanketIndicator" Order="DataDefInputParamConstant" />
+						<rul:Constant Type="integer">1</rul:Constant>
+					</rul:Equal>
+				</rul:Test>
+				<rul:Then>
+					<rul:Sequence>
+						<rul:Max ToDataDef="@HighestBlktPollutantEQAvgRate">
+							<rul:ForEach AtInputDataDef="../../../../CommercialPropertyBlanketRatingTable/CommercialPropertyBlanketRating">
+								<rul:ForEach AtInputDataDef="CommercialPropertyBlanketRatingDetailTable/CommercialPropertyBlanketRatingDetail">
+									<rul:FirstValue Type="decimal" FromConstant="0" FromDataDef="@EQAvgRate" Order="DataDefInputParamConstant" />
+								</rul:ForEach>
+							</rul:ForEach>
+							<rul:Constant Type="decimal">0</rul:Constant>
+						</rul:Max>
+					</rul:Sequence>
+				</rul:Then>
+			</rul:If>
+		</rul:Sequence>
+	</rul:Rule>
+	<rul:Rule Name="SetHighestBldgPollutantEQRate" Type="none" DataDefGroup="CommercialPropertyPollutantCleanUpAndRemovalAdditionalAggregateLimitOfInsuranceLocation">
+		<rul:Sequence>
+			<rul:Constant Type="decimal" ToDataDef="@HighestBldgPollutantEQRate">0.0</rul:Constant>
+			<rul:Max ToDataDef="@HighestBldgPollutantEQRate">
+				<rul:ForEach AtInputDataDef="../../CommercialPropertyStructureTable/CommercialPropertyStructure">
+					<rul:FirstValue Type="decimal" FromConstant="0" FromDataDef="@EQCauseOfLossAdjustment" Order="DataDefInputParamConstant" />
+				</rul:ForEach>
+				<rul:Constant Type="decimal">0</rul:Constant>
+			</rul:Max>
+		</rul:Sequence>
+	</rul:Rule>
+	<rul:Rule Name="SetHighestPersPropPollutantEQRate" Type="none" DataDefGroup="CommercialPropertyPollutantCleanUpAndRemovalAdditionalAggregateLimitOfInsuranceLocation">
+		<rul:Sequence>
+			<rul:Constant Type="decimal" ToDataDef="@HighestPersPropPollutantEQRate">0.0</rul:Constant>
+			<rul:WithArgs>
+				<rul:Arg Type="decimal" Param="perspropEQIndicatorParam">
+					<rul:RunRule Type="decimal" FileName="CommercialPropertyPollutantCleanUpAndRemovalAdditionalAggregateLimitOfInsuranceLocationRules" Rule="perspropEQIndicator" ClearCache="true" />
+				</rul:Arg>
+				<rul:If>
+					<rul:Test>
+						<rul:And>
+							<rul:Equal>
+								<rul:FirstValue Type="integer" FromConstant="0" FromDataDef="@UsePersPropPollutantRateIndicator" Order="DataDefInputParamConstant" />
+								<rul:Constant Type="integer">1</rul:Constant>
+							</rul:Equal>
+							<rul:Equal>
+								<rul:Value Type="decimal" FromParam="perspropEQIndicatorParam" />
+								<rul:Constant Type="integer">1</rul:Constant>
+							</rul:Equal>
+						</rul:And>
+					</rul:Test>
+					<rul:Then>
+						<rul:Sequence>
+							<rul:Max ToDataDef="@HighestPersPropPollutantEQRate">
+								<rul:ForEach AtInputDataDef="../../CommercialPropertyStructureTable/CommercialPropertyStructure">
+									<rul:ForEach AtInputDataDef="CommercialPropertyOccupClassTable/CommercialPropertyOccupClass">
+										<rul:ForEach AtInputDataDef="CommercialPropertyPersonalPropertyTable/CommercialPropertyPersonalProperty">
+											<rul:FirstValue Type="decimal" FromConstant="0" FromDataDef="@EQCauseOfLossAdjustment" Order="DataDefInputParamConstant" />
+										</rul:ForEach>
+									</rul:ForEach>
+								</rul:ForEach>
+								<rul:Constant Type="decimal">0</rul:Constant>
+							</rul:Max>
+						</rul:Sequence>
+					</rul:Then>
+				</rul:If>
+			</rul:WithArgs>
+		</rul:Sequence>
+	</rul:Rule>
+	<rul:Rule Name="SetHighestSpecialPollutantEQRate" Type="none" DataDefGroup="CommercialPropertyPollutantCleanUpAndRemovalAdditionalAggregateLimitOfInsuranceLocation">
+		<rul:Sequence>
+			<rul:Constant Type="decimal" ToDataDef="@HighestSpecialPollutantEQRate">0.0</rul:Constant>
+			<rul:Max ToDataDef="@HighestSpecialPollutantEQRate">
+				<rul:ForEach AtInputDataDef="../../CommercialPropertySpecialClassTable/CommercialPropertySpecialClass">
+					<rul:FirstValue Type="decimal" FromConstant="0" FromDataDef="@EQCauseOfLossAdjustment" Order="DataDefInputParamConstant" />
+				</rul:ForEach>
+				<rul:Constant Type="decimal">0</rul:Constant>
+			</rul:Max>
+		</rul:Sequence>
+	</rul:Rule>
+	<rul:Rule Name="SetHighestPollutantEQRate" Type="none" DataDefGroup="CommercialPropertyPollutantCleanUpAndRemovalAdditionalAggregateLimitOfInsuranceLocation">
+		<rul:Sequence>
+			<rul:Choose>
+				<rul:When>
+					<rul:Test>
+						<rul:Equal>
+							<rul:FirstValue Type="integer" FromConstant="0" FromDataDef="@EQBlanketIndicator" Order="DataDefInputParamConstant" />
+							<rul:Constant Type="integer">1</rul:Constant>
+						</rul:Equal>
+					</rul:Test>
+					<rul:Then>
+						<rul:Copy Type="decimal" ToDataDef="@HighestPollutantEQRate" FromDataDef="@HighestBlktPollutantEQAvgRate" />
+					</rul:Then>
+				</rul:When>
+				<rul:When>
+					<rul:Test>
+						<rul:Equal>
+							<rul:FirstValue Type="integer" FromConstant="0" FromDataDef="@UsePersPropPollutantRateIndicator" Order="DataDefInputParamConstant" />
+							<rul:Constant Type="integer">1</rul:Constant>
+						</rul:Equal>
+					</rul:Test>
+					<rul:Then>
+						<rul:Copy Type="decimal" ToDataDef="@HighestPollutantEQRate" FromDataDef="@HighestPersPropPollutantEQRate" />
+					</rul:Then>
+				</rul:When>
+				<rul:Otherwise>
+					<rul:Sequence>
+						<rul:If>
+							<rul:Test>
+								<rul:GreaterThanOrEqual>
+									<rul:FirstValue Type="decimal" FromConstant="0" FromDataDef="@HighestBldgPollutantEQRate" Order="DataDefInputParamConstant" />
+									<rul:FirstValue Type="decimal" FromConstant="0" FromDataDef="@HighestSpecialPollutantEQRate" Order="DataDefInputParamConstant" />
+								</rul:GreaterThanOrEqual>
+							</rul:Test>
+							<rul:Then>
+								<rul:Copy Type="decimal" ToDataDef="@HighestPollutantEQRate" FromDataDef="@HighestBldgPollutantEQRate" />
+							</rul:Then>
+							<rul:Else>
+								<rul:Copy Type="decimal" ToDataDef="@HighestPollutantEQRate" FromDataDef="@HighestSpecialPollutantEQRate" />
+							</rul:Else>
+						</rul:If>
+					</rul:Sequence>
+				</rul:Otherwise>
+			</rul:Choose>
+		</rul:Sequence>
+	</rul:Rule>
+	<rul:Rule Name="SetEQFactor" Type="none" DataDefGroup="CommercialPropertyPollutantCleanUpAndRemovalAdditionalAggregateLimitOfInsuranceLocation">
+		<rul:Sequence>
+			<rul:RunRule Type="decimal" ToDataDef="@EQFactor" FileName="CommercialPropertyPollutantCleanUpAndRemovalAdditionalAggregateLimitOfInsuranceLocationRules" Rule="LookupPollutantCleanUpAndRemovalRate" ClearCache="true">
+				<rul:Arg Type="string" Param="tempOptionalForm">
+					<rul:Constant Type="string">Earthquake</rul:Constant>
+				</rul:Arg>
+			</rul:RunRule>
+		</rul:Sequence>
+	</rul:Rule>
+	<rul:Rule Name="SetDeductibleFactor" Type="none" DataDefGroup="CommercialPropertyPollutantCleanUpAndRemovalAdditionalAggregateLimitOfInsuranceLocation">
+		<rul:Sequence>
+			<rul:If>
+				<rul:Test>
+					<rul:NotEqual>
+						<rul:FirstValue Type="string" FromConstant="" FromDataDef="@Deductible" Order="DataDefInputParamConstant" />
+						<rul:Constant Type="string"></rul:Constant>
+					</rul:NotEqual>
+				</rul:Test>
+				<rul:Then>
+					<rul:Sequence>
+						<rul:RunRule Type="decimal" ToDataDef="@DeductibleFactor" FileName="CommercialPropertyPollutantCleanUpAndRemovalAdditionalAggregateLimitOfInsuranceLocationRules" Rule="LookupPollutantCleanUpAndRemovalDeductibleFactor" ClearCache="true" />
+					</rul:Sequence>
+				</rul:Then>
+				<rul:Else>
+					<rul:Sequence>
+						<rul:Constant Type="decimal" ToDataDef="@DeductibleFactor">0.0</rul:Constant>
+					</rul:Sequence>
+				</rul:Else>
+			</rul:If>
+		</rul:Sequence>
+	</rul:Rule>
+	<rul:Rule Name="ErcSetStatisticalCodes" Type="none" DataDefGroup="CommercialPropertyPollutantCleanUpAndRemovalAdditionalAggregateLimitOfInsuranceLocation">
+		<rul:Sequence>
+			<rul:If>
+				<rul:Test>
+					<rul:Exist AtInputDataDef="ancestor::MasterCFCW/Policy" />
+				</rul:Test>
+				<rul:Then>
+					<rul:Sequence>
+						<rul:RunRule Type="none" FileName="CommercialPropertyPollutantCleanUpAndRemovalAdditionalAggregateLimitOfInsuranceLocationRules" Rule="SetAllOtherDeductibleStatCode" ClearCache="true" />
+						<rul:RunRule Type="none" FileName="CommercialPropertyPollutantCleanUpAndRemovalAdditionalAggregateLimitOfInsuranceLocationRules" Rule="SetBasicGroupIDeductibleStatCode" ClearCache="true" />
+						<rul:RunRule Type="none" FileName="CommercialPropertyPollutantCleanUpAndRemovalAdditionalAggregateLimitOfInsuranceLocationRules" Rule="SetCoverageCode" ClearCache="true" />
+						<rul:RunRule Type="none" FileName="CommercialPropertyPollutantCleanUpAndRemovalAdditionalAggregateLimitOfInsuranceLocationRules" Rule="SetExposureStatAmount" ClearCache="true" />
+					</rul:Sequence>
+				</rul:Then>
+			</rul:If>
+		</rul:Sequence>
+	</rul:Rule>
+	<rul:Rule Name="SetAllOtherDeductibleStatCode" Type="none" DataDefGroup="CommercialPropertyPollutantCleanUpAndRemovalAdditionalAggregateLimitOfInsuranceLocation">
+		<rul:Sequence>
+			<rul:If>
+				<rul:Test>
+					<rul:NotEqual>
+						<rul:FirstValue Type="string" FromConstant="" FromDataDef="@Deductible" Order="DataDefInputParamConstant" />
+						<rul:Constant Type="string"></rul:Constant>
+					</rul:NotEqual>
+				</rul:Test>
+				<rul:Then>
+					<rul:Sequence>
+						<rul:RunRule Type="string" ToDataDef="@AllOtherDeductibleStatCode" FileName="CommercialPropertyPollutantCleanUpAndRemovalAdditionalAggregateLimitOfInsuranceLocationRules" Rule="LookupAllOtherDeductibleStatCode" ClearCache="true" />
+					</rul:Sequence>
+				</rul:Then>
+				<rul:Else>
+					<rul:Sequence>
+						<rul:Constant Type="string" ToDataDef="@AllOtherDeductibleStatCode"></rul:Constant>
+					</rul:Sequence>
+				</rul:Else>
+			</rul:If>
+		</rul:Sequence>
+	</rul:Rule>
+	<rul:Rule Name="SetBasicGroupIDeductibleStatCode" Type="none" DataDefGroup="CommercialPropertyPollutantCleanUpAndRemovalAdditionalAggregateLimitOfInsuranceLocation">
+		<rul:Sequence>
+			<rul:If>
+				<rul:Test>
+					<rul:NotEqual>
+						<rul:FirstValue Type="string" FromConstant="" FromDataDef="@Deductible" Order="DataDefInputParamConstant" />
+						<rul:Constant Type="string"></rul:Constant>
+					</rul:NotEqual>
+				</rul:Test>
+				<rul:Then>
+					<rul:Sequence>
+						<rul:RunRule Type="string" ToDataDef="@BasicGroupIDeductibleStatCode" FileName="CommercialPropertyPollutantCleanUpAndRemovalAdditionalAggregateLimitOfInsuranceLocationRules" Rule="LookupBGIDeductibleStatCode" ClearCache="true" />
+					</rul:Sequence>
+				</rul:Then>
+				<rul:Else>
+					<rul:Sequence>
+						<rul:Constant Type="string" ToDataDef="@BasicGroupIDeductibleStatCode"></rul:Constant>
+					</rul:Sequence>
+				</rul:Else>
+			</rul:If>
+		</rul:Sequence>
+	</rul:Rule>
+	<rul:Rule Name="SetCoverageCode" Type="none" DataDefGroup="CommercialPropertyPollutantCleanUpAndRemovalAdditionalAggregateLimitOfInsuranceLocation">
+		<rul:Sequence>
+			<rul:RunRule Type="string" ToDataDef="@CoverageCode" FileName="CommercialPropertyPollutantCleanUpAndRemovalAdditionalAggregateLimitOfInsuranceLocationRules" Rule="LookupPollutantCleanUpAndRemovalCoverageCode" ClearCache="true" />
+		</rul:Sequence>
+	</rul:Rule>
+	<rul:Rule Name="SetExposureStatAmount" Type="none" DataDefGroup="CommercialPropertyPollutantCleanUpAndRemovalAdditionalAggregateLimitOfInsuranceLocation">
+		<rul:Sequence>
+			<rul:WithArgs>
+				<rul:Arg Type="integer" Param="calcExposureStatAmount">
+					<rul:FirstNonNull Type="integer">
+						<rul:Convert Type="integer">
+							<rul:Truncate>
+								<rul:Divide>
+									<rul:Value Type="integer" FromDataDef="@Limit" />
+									<rul:Constant Type="integer">1000</rul:Constant>
+								</rul:Divide>
+							</rul:Truncate>
+						</rul:Convert>
+						<rul:Constant Type="integer">0</rul:Constant>
+					</rul:FirstNonNull>
+				</rul:Arg>
+				<rul:Value Type="integer" ToDataDef="@ExposureStatAmount" FromParam="calcExposureStatAmount" />
+			</rul:WithArgs>
+		</rul:Sequence>
+	</rul:Rule>
+	<rul:Rule Name="ErcProcess" Type="none" DataDefGroup="CommercialPropertyPollutantCleanUpAndRemovalAdditionalAggregateLimitOfInsuranceLocation">
+		<rul:Sequence>
+			<rul:RunRule Type="none" FileName="CommercialPropertyPollutantCleanUpAndRemovalAdditionalAggregateLimitOfInsuranceLocationRules" Rule="ErcSetRatesAndFactors" ClearCache="true" />
+			<rul:Locate AtDataDef="CommercialPropertyPollutantCleanUpAndRemovalAdditionalAggregateLimitOfInsuranceLocationBasicGroupICoverage">
+				<rul:RunRule Type="none" FileName="CommercialPropertyPollutantCleanUpAndRemovalAdditionalAggregateLimitOfInsuranceLocationBasicGroupICoverageRules" Rule="ErcProcess" ClearCache="true" />
+			</rul:Locate>
+			<rul:Locate AtDataDef="CommercialPropertyPollutantCleanUpAndRemovalAdditionalAggregateLimitOfInsuranceLocationBasicGroupIICoverage">
+				<rul:RunRule Type="none" FileName="CommercialPropertyPollutantCleanUpAndRemovalAdditionalAggregateLimitOfInsuranceLocationBasicGroupIICoverageRules" Rule="ErcProcess" ClearCache="true" />
+			</rul:Locate>
+			<rul:Locate AtDataDef="CommercialPropertyPollutantCleanUpAndRemovalAdditionalAggregateLimitOfInsuranceLocationBroadCoverage">
+				<rul:RunRule Type="none" FileName="CommercialPropertyPollutantCleanUpAndRemovalAdditionalAggregateLimitOfInsuranceLocationBroadCoverageRules" Rule="ErcProcess" ClearCache="true" />
+			</rul:Locate>
+			<rul:Locate AtDataDef="CommercialPropertyPollutantCleanUpAndRemovalAdditionalAggregateLimitOfInsuranceLocationEarthquakeCoverage">
+				<rul:RunRule Type="none" FileName="CommercialPropertyPollutantCleanUpAndRemovalAdditionalAggregateLimitOfInsuranceLocationEarthquakeCoverageRules" Rule="ErcProcess" ClearCache="true" />
+			</rul:Locate>
+			<rul:Locate AtDataDef="CommercialPropertyPollutantCleanUpAndRemovalAdditionalAggregateLimitOfInsuranceLocationSpecialCoverage">
+				<rul:RunRule Type="none" FileName="CommercialPropertyPollutantCleanUpAndRemovalAdditionalAggregateLimitOfInsuranceLocationSpecialCoverageRules" Rule="ErcProcess" ClearCache="true" />
+			</rul:Locate>
+			<rul:RunRule Type="none" FileName="CommercialPropertyPollutantCleanUpAndRemovalAdditionalAggregateLimitOfInsuranceLocationRules" Rule="ErcSetStatisticalCodes" ClearCache="true" />
+		</rul:Sequence>
+	</rul:Rule>
+	<rul:Rule Name="bldgBroadIndicator" Type="decimal" DataDefGroup="CommercialPropertyPollutantCleanUpAndRemovalAdditionalAggregateLimitOfInsuranceLocation">
+		<rul:FirstNonNull Type="decimal">
+			<rul:ForEach AtDataDef="../../CommercialPropertyStructureTable/CommercialPropertyStructure">
+				<rul:If>
+					<rul:Test>
+						<rul:Equal>
+							<rul:FirstValue Type="string" FromConstant="" FromDataDef="@CauseOfLossToUse" Order="DataDefInputParamConstant" />
+							<rul:Constant Type="string">Broad</rul:Constant>
+						</rul:Equal>
+					</rul:Test>
+					<rul:Then>
+						<rul:Sum>
+							<rul:Constant Type="decimal">1</rul:Constant>
+							<rul:Break />
+						</rul:Sum>
+					</rul:Then>
+				</rul:If>
+			</rul:ForEach>
+			<rul:Constant Type="decimal">0</rul:Constant>
+		</rul:FirstNonNull>
+	</rul:Rule>
+	<rul:Rule Name="perspropBroadIndicator" Type="decimal" DataDefGroup="CommercialPropertyPollutantCleanUpAndRemovalAdditionalAggregateLimitOfInsuranceLocation">
+		<rul:FirstNonNull Type="decimal">
+			<rul:If>
+				<rul:Test>
+					<rul:Equal>
+						<rul:FirstValue Type="integer" FromConstant="0" FromDataDef="@UsePersPropPollutantRateIndicator" Order="DataDefInputParamConstant" />
+						<rul:Constant Type="integer">1</rul:Constant>
+					</rul:Equal>
+				</rul:Test>
+				<rul:Then>
+					<rul:ForEach AtDataDef="../../CommercialPropertyStructureTable/CommercialPropertyStructure">
+						<rul:ForEach AtDataDef="CommercialPropertyOccupClassTable/CommercialPropertyOccupClass">
+							<rul:ForEach AtDataDef="CommercialPropertyPersonalPropertyTable/CommercialPropertyPersonalProperty">
+								<rul:If>
+									<rul:Test>
+										<rul:Equal>
+											<rul:FirstValue Type="string" FromConstant="" FromDataDef="@CauseOfLossToUse" Order="DataDefInputParamConstant" />
+											<rul:Constant Type="string">Broad</rul:Constant>
+										</rul:Equal>
+									</rul:Test>
+									<rul:Then>
+										<rul:Sum>
+											<rul:Constant Type="decimal">1</rul:Constant>
+											<rul:Break />
+										</rul:Sum>
+									</rul:Then>
+								</rul:If>
+							</rul:ForEach>
+						</rul:ForEach>
+					</rul:ForEach>
+				</rul:Then>
+			</rul:If>
+			<rul:Constant Type="decimal">0</rul:Constant>
+		</rul:FirstNonNull>
+	</rul:Rule>
+	<rul:Rule Name="specialBroadIndicator" Type="decimal" DataDefGroup="CommercialPropertyPollutantCleanUpAndRemovalAdditionalAggregateLimitOfInsuranceLocation">
+		<rul:FirstNonNull Type="decimal">
+			<rul:ForEach AtDataDef="../../CommercialPropertySpecialClassTable/CommercialPropertySpecialClass">
+				<rul:If>
+					<rul:Test>
+						<rul:Equal>
+							<rul:FirstValue Type="string" FromConstant="" FromDataDef="@CauseOfLossToUse" Order="DataDefInputParamConstant" />
+							<rul:Constant Type="string">Broad</rul:Constant>
+						</rul:Equal>
+					</rul:Test>
+					<rul:Then>
+						<rul:Sum>
+							<rul:Constant Type="decimal">1</rul:Constant>
+							<rul:Break />
+						</rul:Sum>
+					</rul:Then>
+				</rul:If>
+			</rul:ForEach>
+			<rul:Constant Type="decimal">0</rul:Constant>
+		</rul:FirstNonNull>
+	</rul:Rule>
+	<rul:Rule Name="bldgSpecialIndicator" Type="decimal" DataDefGroup="CommercialPropertyPollutantCleanUpAndRemovalAdditionalAggregateLimitOfInsuranceLocation">
+		<rul:FirstNonNull Type="decimal">
+			<rul:ForEach AtDataDef="../../CommercialPropertyStructureTable/CommercialPropertyStructure">
+				<rul:If>
+					<rul:Test>
+						<rul:Equal>
+							<rul:FirstValue Type="string" FromConstant="" FromDataDef="@CauseOfLossToUse" Order="DataDefInputParamConstant" />
+							<rul:Constant Type="string">Special</rul:Constant>
+						</rul:Equal>
+					</rul:Test>
+					<rul:Then>
+						<rul:Sum>
+							<rul:Constant Type="decimal">1</rul:Constant>
+							<rul:Break />
+						</rul:Sum>
+					</rul:Then>
+				</rul:If>
+			</rul:ForEach>
+			<rul:Constant Type="decimal">0</rul:Constant>
+		</rul:FirstNonNull>
+	</rul:Rule>
+	<rul:Rule Name="perspropSpecialIndicator" Type="decimal" DataDefGroup="CommercialPropertyPollutantCleanUpAndRemovalAdditionalAggregateLimitOfInsuranceLocation">
+		<rul:FirstNonNull Type="decimal">
+			<rul:If>
+				<rul:Test>
+					<rul:Equal>
+						<rul:FirstValue Type="integer" FromConstant="0" FromDataDef="@UsePersPropPollutantRateIndicator" Order="DataDefInputParamConstant" />
+						<rul:Constant Type="integer">1</rul:Constant>
+					</rul:Equal>
+				</rul:Test>
+				<rul:Then>
+					<rul:ForEach AtDataDef="../../CommercialPropertyStructureTable/CommercialPropertyStructure">
+						<rul:ForEach AtDataDef="CommercialPropertyOccupClassTable/CommercialPropertyOccupClass">
+							<rul:ForEach AtDataDef="CommercialPropertyPersonalPropertyTable/CommercialPropertyPersonalProperty">
+								<rul:If>
+									<rul:Test>
+										<rul:Equal>
+											<rul:FirstValue Type="string" FromConstant="" FromDataDef="@CauseOfLossToUse" Order="DataDefInputParamConstant" />
+											<rul:Constant Type="string">Special</rul:Constant>
+										</rul:Equal>
+									</rul:Test>
+									<rul:Then>
+										<rul:Sum>
+											<rul:Constant Type="decimal">1</rul:Constant>
+											<rul:Break />
+										</rul:Sum>
+									</rul:Then>
+								</rul:If>
+							</rul:ForEach>
+						</rul:ForEach>
+					</rul:ForEach>
+				</rul:Then>
+			</rul:If>
+			<rul:Constant Type="decimal">0</rul:Constant>
+		</rul:FirstNonNull>
+	</rul:Rule>
+	<rul:Rule Name="specialSpecialIndicator" Type="decimal" DataDefGroup="CommercialPropertyPollutantCleanUpAndRemovalAdditionalAggregateLimitOfInsuranceLocation">
+		<rul:FirstNonNull Type="decimal">
+			<rul:ForEach AtDataDef="../../CommercialPropertySpecialClassTable/CommercialPropertySpecialClass">
+				<rul:If>
+					<rul:Test>
+						<rul:Equal>
+							<rul:FirstValue Type="string" FromConstant="" FromDataDef="@CauseOfLossToUse" Order="DataDefInputParamConstant" />
+							<rul:Constant Type="string">Special</rul:Constant>
+						</rul:Equal>
+					</rul:Test>
+					<rul:Then>
+						<rul:Sum>
+							<rul:Constant Type="decimal">1</rul:Constant>
+							<rul:Break />
+						</rul:Sum>
+					</rul:Then>
+				</rul:If>
+			</rul:ForEach>
+			<rul:Constant Type="decimal">0</rul:Constant>
+		</rul:FirstNonNull>
+	</rul:Rule>
+	<rul:Rule Name="bldgEQIndicator" Type="decimal" DataDefGroup="CommercialPropertyPollutantCleanUpAndRemovalAdditionalAggregateLimitOfInsuranceLocation">
+		<rul:FirstNonNull Type="decimal">
+			<rul:ForEach AtDataDef="../../CommercialPropertyStructureTable/CommercialPropertyStructure">
+				<rul:If>
+					<rul:Test>
+						<rul:Or>
+							<rul:Equal>
+								<rul:FirstValue Type="string" FromConstant="" FromDataDef="@EQCovIndicator" Order="DataDefInputParamConstant" />
+								<rul:Constant Type="string">Yes, Included in Blanket</rul:Constant>
+							</rul:Equal>
+							<rul:Equal>
+								<rul:FirstValue Type="string" FromConstant="" FromDataDef="@EQCovIndicator" Order="DataDefInputParamConstant" />
+								<rul:Constant Type="string">Yes, Not Included in Blanket</rul:Constant>
+							</rul:Equal>
+						</rul:Or>
+					</rul:Test>
+					<rul:Then>
+						<rul:Sum>
+							<rul:Constant Type="decimal">1</rul:Constant>
+							<rul:Break />
+						</rul:Sum>
+					</rul:Then>
+				</rul:If>
+			</rul:ForEach>
+			<rul:Constant Type="decimal">0</rul:Constant>
+		</rul:FirstNonNull>
+	</rul:Rule>
+	<rul:Rule Name="perspropEQIndicator" Type="decimal" DataDefGroup="CommercialPropertyPollutantCleanUpAndRemovalAdditionalAggregateLimitOfInsuranceLocation">
+		<rul:FirstNonNull Type="decimal">
+			<rul:If>
+				<rul:Test>
+					<rul:Equal>
+						<rul:FirstValue Type="integer" FromConstant="0" FromDataDef="@UsePersPropPollutantRateIndicator" Order="DataDefInputParamConstant" />
+						<rul:Constant Type="integer">1</rul:Constant>
+					</rul:Equal>
+				</rul:Test>
+				<rul:Then>
+					<rul:ForEach AtDataDef="../../CommercialPropertyStructureTable/CommercialPropertyStructure">
+						<rul:ForEach AtDataDef="CommercialPropertyOccupClassTable/CommercialPropertyOccupClass">
+							<rul:ForEach AtDataDef="CommercialPropertyPersonalPropertyTable/CommercialPropertyPersonalProperty">
+								<rul:If>
+									<rul:Test>
+										<rul:Or>
+											<rul:Equal>
+												<rul:FirstValue Type="string" FromConstant="" FromDataDef="@EQCovIndicator" Order="DataDefInputParamConstant" />
+												<rul:Constant Type="string">Yes, Included in Blanket</rul:Constant>
+											</rul:Equal>
+											<rul:Equal>
+												<rul:FirstValue Type="string" FromConstant="" FromDataDef="@EQCovIndicator" Order="DataDefInputParamConstant" />
+												<rul:Constant Type="string">Yes, Not Included in Blanket</rul:Constant>
+											</rul:Equal>
+										</rul:Or>
+									</rul:Test>
+									<rul:Then>
+										<rul:Sum>
+											<rul:Constant Type="decimal">1</rul:Constant>
+											<rul:Break />
+										</rul:Sum>
+									</rul:Then>
+								</rul:If>
+							</rul:ForEach>
+						</rul:ForEach>
+					</rul:ForEach>
+				</rul:Then>
+			</rul:If>
+			<rul:Constant Type="decimal">0</rul:Constant>
+		</rul:FirstNonNull>
+	</rul:Rule>
+	<rul:Rule Name="specialEQIndicator" Type="decimal" DataDefGroup="CommercialPropertyPollutantCleanUpAndRemovalAdditionalAggregateLimitOfInsuranceLocation">
+		<rul:FirstNonNull Type="decimal">
+			<rul:ForEach AtDataDef="../../CommercialPropertySpecialClassTable/CommercialPropertySpecialClass">
+				<rul:If>
+					<rul:Test>
+						<rul:Or>
+							<rul:Equal>
+								<rul:FirstValue Type="string" FromConstant="" FromDataDef="@EQCovIndicator" Order="DataDefInputParamConstant" />
+								<rul:Constant Type="string">Yes, Included in Blanket</rul:Constant>
+							</rul:Equal>
+							<rul:Equal>
+								<rul:FirstValue Type="string" FromConstant="" FromDataDef="@EQCovIndicator" Order="DataDefInputParamConstant" />
+								<rul:Constant Type="string">Yes, Not Included in Blanket</rul:Constant>
+							</rul:Equal>
+						</rul:Or>
+					</rul:Test>
+					<rul:Then>
+						<rul:Sum>
+							<rul:Constant Type="decimal">1</rul:Constant>
+							<rul:Break />
+						</rul:Sum>
+					</rul:Then>
+				</rul:If>
+			</rul:ForEach>
+			<rul:Constant Type="decimal">0</rul:Constant>
+		</rul:FirstNonNull>
+	</rul:Rule>
+	<rul:Rule Name="LookupPollutantCleanUpAndRemovalRate" Type="decimal" DataDefGroup="CommercialPropertyPollutantCleanUpAndRemovalAdditionalAggregateLimitOfInsuranceLocation">
+		<rul:Param Name="tempOptionalForm" Type="string" />
+		<rul:FirstNonNull Type="decimal">
+			<rul:Lookup Type="decimal" MatrixCol="Rate" MatrixDef="PollutantCleanUpAndRemovalRateDef" MatrixFromConstant="PollutantCleanUpAndRemovalRate" ResultMode="FirstResult">
+				<rul:Keys>
+					<rul:Value Type="string" FromDataDef="/State/@Code" />
+					<rul:Value Type="string" FromParam="tempOptionalForm" />
+				</rul:Keys>
+			</rul:Lookup>
+			<rul:Lookup Type="decimal" MatrixCol="Rate" MatrixDef="PollutantCleanUpAndRemovalRateDef" MatrixFromConstant="PollutantCleanUpAndRemovalRate" ResultMode="SingleResult">
+				<rul:Keys>
+					<rul:Constant Type="string">CW</rul:Constant>
+					<rul:Value Type="string" FromParam="tempOptionalForm" />
+				</rul:Keys>
+			</rul:Lookup>
+		</rul:FirstNonNull>
+	</rul:Rule>
+	<rul:Rule Name="LookupPollutantCleanUpAndRemovalDeductibleFactor" Type="decimal" DataDefGroup="CommercialPropertyPollutantCleanUpAndRemovalAdditionalAggregateLimitOfInsuranceLocation">
+		<rul:FirstNonNull Type="decimal">
+			<rul:Lookup Type="decimal" MatrixCol="Factor" MatrixDef="PollutantCleanUpAndRemovalDeductibleFactorDef" MatrixFromConstant="PollutantCleanUpAndRemovalDeductibleFactor" ResultMode="FirstResult">
+				<rul:Keys>
+					<rul:Value Type="string" FromDataDef="/State/@Code" />
+					<rul:FirstValue Type="string" FromConstant="" FromDataDef="@Deductible" Order="DataDefInputParamConstant" />
+				</rul:Keys>
+			</rul:Lookup>
+			<rul:Lookup Type="decimal" MatrixCol="Factor" MatrixDef="PollutantCleanUpAndRemovalDeductibleFactorDef" MatrixFromConstant="PollutantCleanUpAndRemovalDeductibleFactor" ResultMode="SingleResult">
+				<rul:Keys>
+					<rul:Constant Type="string">CW</rul:Constant>
+					<rul:FirstValue Type="string" FromConstant="" FromDataDef="@Deductible" Order="DataDefInputParamConstant" />
+				</rul:Keys>
+			</rul:Lookup>
+		</rul:FirstNonNull>
+	</rul:Rule>
+	<rul:Rule Name="LookupAllOtherDeductibleStatCode" Type="string" DataDefGroup="CommercialPropertyPollutantCleanUpAndRemovalAdditionalAggregateLimitOfInsuranceLocation">
+		<rul:FirstNonNull Type="string">
+			<rul:Lookup Type="string" MatrixCol="Code" MatrixDef="AllOtherDeductibleStatCodeDef" MatrixFromConstant="AllOtherDeductibleStatCode" ResultMode="FirstResult">
+				<rul:Keys>
+					<rul:Value Type="string" FromDataDef="/State/@Code" />
+					<rul:FirstValue Type="string" FromConstant="" FromDataDef="@Deductible" Order="DataDefInputParamConstant" />
+				</rul:Keys>
+			</rul:Lookup>
+			<rul:Lookup Type="string" MatrixCol="Code" MatrixDef="AllOtherDeductibleStatCodeDef" MatrixFromConstant="AllOtherDeductibleStatCode" ResultMode="SingleResult">
+				<rul:Keys>
+					<rul:Constant Type="string">CW</rul:Constant>
+					<rul:FirstValue Type="string" FromConstant="" FromDataDef="@Deductible" Order="DataDefInputParamConstant" />
+				</rul:Keys>
+			</rul:Lookup>
+		</rul:FirstNonNull>
+	</rul:Rule>
+	<rul:Rule Name="LookupBGIDeductibleStatCode" Type="string" DataDefGroup="CommercialPropertyPollutantCleanUpAndRemovalAdditionalAggregateLimitOfInsuranceLocation">
+		<rul:FirstNonNull Type="string">
+			<rul:Lookup Type="string" MatrixCol="Code" MatrixDef="AllOtherDeductibleStatCodeDef" MatrixFromConstant="AllOtherDeductibleStatCode" ResultMode="FirstResult">
+				<rul:Keys>
+					<rul:Value Type="string" FromDataDef="/State/@Code" />
+					<rul:FirstValue Type="string" FromConstant="" FromDataDef="@Deductible" Order="DataDefInputParamConstant" />
+				</rul:Keys>
+			</rul:Lookup>
+			<rul:Lookup Type="string" MatrixCol="Code" MatrixDef="AllOtherDeductibleStatCodeDef" MatrixFromConstant="AllOtherDeductibleStatCode" ResultMode="SingleResult">
+				<rul:Keys>
+					<rul:Constant Type="string">CW</rul:Constant>
+					<rul:FirstValue Type="string" FromConstant="" FromDataDef="@Deductible" Order="DataDefInputParamConstant" />
+				</rul:Keys>
+			</rul:Lookup>
+		</rul:FirstNonNull>
+	</rul:Rule>
+	<rul:Rule Name="LookupPollutantCleanUpAndRemovalCoverageCode" Type="string" DataDefGroup="CommercialPropertyPollutantCleanUpAndRemovalAdditionalAggregateLimitOfInsuranceLocation">
+		<rul:FirstNonNull Type="string">
+			<rul:Lookup Type="string" MatrixCol="Code" MatrixDef="PollutantCleanUpAndRemovalCoverageCodeDef" MatrixFromConstant="PollutantCleanUpAndRemovalCoverageCode" ResultMode="FirstResult">
+				<rul:Keys>
+					<rul:Value Type="string" FromDataDef="/State/@Code" />
+					<rul:Constant Type="string">Y</rul:Constant>
+				</rul:Keys>
+			</rul:Lookup>
+			<rul:Lookup Type="string" MatrixCol="Code" MatrixDef="PollutantCleanUpAndRemovalCoverageCodeDef" MatrixFromConstant="PollutantCleanUpAndRemovalCoverageCode" ResultMode="SingleResult">
+				<rul:Keys>
+					<rul:Constant Type="string">CW</rul:Constant>
+					<rul:Constant Type="string">Y</rul:Constant>
+				</rul:Keys>
+			</rul:Lookup>
+		</rul:FirstNonNull>
+	</rul:Rule>
+	<rul:Rule Name="LookupDeductibleByLocationFactor" Type="decimal" DataDefGroup="CommercialPropertyPollutantCleanUpAndRemovalAdditionalAggregateLimitOfInsuranceLocation">
+		<rul:FirstNonNull Type="decimal">
+			<rul:Lookup Type="decimal" MatrixCol="Factor" MatrixDef="DeductibleByLocationFactorDef" MatrixFromConstant="DeductibleByLocationFactor" ResultMode="FirstResult">
+				<rul:Keys>
+					<rul:Value Type="string" FromDataDef="/State/@Code" />
+					<rul:Constant Type="string">Y</rul:Constant>
+				</rul:Keys>
+			</rul:Lookup>
+			<rul:Lookup Type="decimal" MatrixCol="Factor" MatrixDef="DeductibleByLocationFactorDef" MatrixFromConstant="DeductibleByLocationFactor" ResultMode="SingleResult">
+				<rul:Keys>
+					<rul:Constant Type="string">CW</rul:Constant>
+					<rul:Constant Type="string">Y</rul:Constant>
+				</rul:Keys>
+			</rul:Lookup>
+		</rul:FirstNonNull>
+	</rul:Rule>
+</rul:Rules>

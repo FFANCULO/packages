@@ -1,0 +1,376 @@
+<rul:Rules xmlns:rul="http://www.verisk.com/iso/erc/Rule">
+	<rul:Rule Name="InitializeRuleSet" DataDefGroup="CommercialPropertyHigherLimitsPersonalProperty">
+		<rul:Sequence />
+	</rul:Rule>
+	<rul:Rule Name="CalculateTotalPremium" Type="decimal" DataDefGroup="CommercialPropertyHigherLimitsPersonalProperty">
+		<rul:If>
+			<rul:Test>
+				<rul:And>
+					<rul:Equal>
+						<rul:FirstValue Type="integer" FromConstant="0" FromDataDef="@PremiumIndicator" Order="DataDefInputParamConstant" />
+						<rul:Constant Type="integer">1</rul:Constant>
+					</rul:Equal>
+					<rul:NotEqual>
+						<rul:FirstValue Type="decimal" FromConstant="0" FromDataDef="@Premium" Order="DataDefInputParamConstant" />
+						<rul:Constant Type="decimal">0</rul:Constant>
+					</rul:NotEqual>
+				</rul:And>
+			</rul:Test>
+			<rul:Then>
+				<rul:FirstValue Type="decimal" FromConstant="0" FromDataDef="@Premium" Order="DataDefInputParamConstant" />
+			</rul:Then>
+			<rul:Else>
+				<rul:Constant Type="decimal">0</rul:Constant>
+			</rul:Else>
+		</rul:If>
+	</rul:Rule>
+	<rul:Rule Name="SetValues" Type="none" DataDefGroup="CommercialPropertyHigherLimitsPersonalProperty">
+		<rul:Sequence>
+			<rul:RunRule Type="none" FileName="CommercialPropertyHigherLimitsPersonalPropertyRules" Rule="SetNonOwnedTrailersValues" ClearCache="true" />
+			<rul:RunRule Type="none" FileName="CommercialPropertyHigherLimitsPersonalPropertyRules" Rule="SetValuablePapersAndRecordsOtherThanElectronicDataValues" ClearCache="true" />
+			<rul:RunRule Type="none" FileName="CommercialPropertyHigherLimitsPersonalPropertyRules" Rule="SetSpecialCOLFursFurGarmentsAndGarmentsTrimmedWithFurValues" ClearCache="true" />
+			<rul:RunRule Type="none" FileName="CommercialPropertyHigherLimitsPersonalPropertyRules" Rule="SetSpecialCOLJewelryWatchesPearlsBullionGoldSilverPlatinumAndOtherPreciousMetalValues" ClearCache="true" />
+			<rul:RunRule Type="none" FileName="CommercialPropertyHigherLimitsPersonalPropertyRules" Rule="SetSpecialCOLPatternsDiesMoldsAndFormsValues" ClearCache="true" />
+			<rul:RunRule Type="none" FileName="CommercialPropertyHigherLimitsPersonalPropertyRules" Rule="SetSpecialCOLStampsTicketsAndLettersOfCreditValues" ClearCache="true" />
+		</rul:Sequence>
+	</rul:Rule>
+	<rul:Rule Name="SetNonOwnedTrailersValues" Type="none" DataDefGroup="CommercialPropertyHigherLimitsPersonalProperty">
+		<rul:Sequence>
+			<rul:RunRule Type="none" FileName="CommercialPropertyHigherLimitsPersonalPropertyRules" Rule="SetNonOwnedTrailersIndicator" ClearCache="true" />
+			<rul:If>
+				<rul:Test>
+					<rul:Equal>
+						<rul:FirstValue Type="string" FromConstant="" FromDataDef="@NonOwnedTrailersIndicator" Order="DataDefInputParamConstant" />
+						<rul:Constant Type="string">Yes</rul:Constant>
+					</rul:Equal>
+				</rul:Test>
+				<rul:Then>
+					<rul:Sequence>
+						<rul:RunRule Type="none" FileName="CommercialPropertyHigherLimitsPersonalPropertyRules" Rule="SetNonOwnerdTrailersCoverage" ClearCache="true" />
+						<rul:RunRule Type="none" FileName="CommercialPropertyHigherLimitsPersonalPropertyRules" Rule="SetNonOwnedTrailersLimit" ClearCache="true" />
+						<rul:RunRule Type="none" FileName="CommercialPropertyHigherLimitsPersonalPropertyRules" Rule="SetNonOwnedTrailersGeneratedPremium" ClearCache="true" />
+					</rul:Sequence>
+				</rul:Then>
+			</rul:If>
+		</rul:Sequence>
+	</rul:Rule>
+	<rul:Rule Name="SetNonOwnedTrailersIndicator" Type="none" DataDefGroup="CommercialPropertyHigherLimitsPersonalProperty">
+		<rul:Sequence>
+			<rul:If>
+				<rul:Test>
+					<rul:And>
+						<rul:Equal>
+							<rul:FirstValue Type="string" FromConstant="" FromDataDef="../../@CovType" Order="DataDefInputParamConstant" />
+							<rul:Constant Type="string">Non-Owned Trailers</rul:Constant>
+						</rul:Equal>
+						<rul:GreaterThan>
+							<rul:FirstValue Type="integer" FromConstant="0" FromDataDef="../../@LimitToUse" Order="DataDefInputParamConstant" />
+							<rul:Constant Type="integer">5000</rul:Constant>
+						</rul:GreaterThan>
+						<rul:Or>
+							<rul:Equal>
+								<rul:FirstValue Type="string" FromConstant="" FromDataDef="../../@Coinsurance" Order="DataDefInputParamConstant" />
+								<rul:Constant Type="string">80%</rul:Constant>
+							</rul:Equal>
+							<rul:Equal>
+								<rul:FirstValue Type="string" FromConstant="" FromDataDef="../../@Coinsurance" Order="DataDefInputParamConstant" />
+								<rul:Constant Type="string">90%</rul:Constant>
+							</rul:Equal>
+							<rul:Equal>
+								<rul:FirstValue Type="string" FromConstant="" FromDataDef="../../@Coinsurance" Order="DataDefInputParamConstant" />
+								<rul:Constant Type="string">100%</rul:Constant>
+							</rul:Equal>
+						</rul:Or>
+					</rul:And>
+				</rul:Test>
+				<rul:Then>
+					<rul:Sequence>
+						<rul:Constant Type="string" ToDataDef="@NonOwnedTrailersIndicator">Yes</rul:Constant>
+					</rul:Sequence>
+				</rul:Then>
+				<rul:Else>
+					<rul:Sequence>
+						<rul:Constant Type="string" ToDataDef="@NonOwnedTrailersIndicator">No</rul:Constant>
+					</rul:Sequence>
+				</rul:Else>
+			</rul:If>
+		</rul:Sequence>
+	</rul:Rule>
+	<rul:Rule Name="SetNonOwnerdTrailersCoverage" Type="none" DataDefGroup="CommercialPropertyHigherLimitsPersonalProperty">
+		<rul:Sequence>
+			<rul:Constant Type="string" ToDataDef="@NonOwnedTrailersCoverage">Non-Owned Trailers</rul:Constant>
+		</rul:Sequence>
+	</rul:Rule>
+	<rul:Rule Name="SetNonOwnedTrailersLimit" Type="none" DataDefGroup="CommercialPropertyHigherLimitsPersonalProperty">
+		<rul:Sequence>
+			<rul:Copy Type="integer" ToDataDef="@NonOwnedTrailersLimit" FromDataDef="../../@LimitToUse" />
+		</rul:Sequence>
+	</rul:Rule>
+	<rul:Rule Name="SetNonOwnedTrailersGeneratedPremium" Type="none" DataDefGroup="CommercialPropertyHigherLimitsPersonalProperty">
+		<rul:Sequence>
+			<rul:If>
+				<rul:Test>
+					<rul:And>
+						<rul:Exist AtInputDataDef="../../CommercialPropertyNonOwnedTrailersCoverage" />
+						<rul:IsNotNull>
+							<rul:Value Type="decimal" FromDataDef="../../CommercialPropertyNonOwnedTrailersCoverage/@Premium" />
+						</rul:IsNotNull>
+					</rul:And>
+				</rul:Test>
+				<rul:Then>
+					<rul:Copy Type="decimal" ToDataDef="@NonOwnedTrailersGeneratedPremium" FromDataDef="../../CommercialPropertyNonOwnedTrailersCoverage/@Premium" />
+				</rul:Then>
+				<rul:Else>
+					<rul:Sequence>
+						<rul:Constant Type="decimal" ToDataDef="@NonOwnedTrailersGeneratedPremium">0.0</rul:Constant>
+					</rul:Sequence>
+				</rul:Else>
+			</rul:If>
+		</rul:Sequence>
+	</rul:Rule>
+	<rul:Rule Name="SetValuablePapersAndRecordsOtherThanElectronicDataValues" Type="none" DataDefGroup="CommercialPropertyHigherLimitsPersonalProperty">
+		<rul:Sequence>
+			<rul:RunRule Type="none" FileName="CommercialPropertyHigherLimitsPersonalPropertyRules" Rule="SetValuablePapersAndRecordsOtherThanElectronicDataIndicator" ClearCache="true" />
+			<rul:If>
+				<rul:Test>
+					<rul:Equal>
+						<rul:FirstValue Type="string" FromConstant="" FromDataDef="@ValuablePapersAndRecordsOtherThanElectronicDataIndicator" Order="DataDefInputParamConstant" />
+						<rul:Constant Type="string">Yes</rul:Constant>
+					</rul:Equal>
+				</rul:Test>
+				<rul:Then>
+					<rul:Sequence>
+						<rul:RunRule Type="none" FileName="CommercialPropertyHigherLimitsPersonalPropertyRules" Rule="SetValuablePapersAndRecordsOtherThanElectronicDataCoverage" ClearCache="true" />
+						<rul:RunRule Type="none" FileName="CommercialPropertyHigherLimitsPersonalPropertyRules" Rule="SetValuablePapersAndRecordsOtherThanElectronicDataLimit" ClearCache="true" />
+						<rul:RunRule Type="none" FileName="CommercialPropertyHigherLimitsPersonalPropertyRules" Rule="SetValuablePapersAndRecordsOtherThanElectronicDataGeneratedPremium" ClearCache="true" />
+					</rul:Sequence>
+				</rul:Then>
+			</rul:If>
+		</rul:Sequence>
+	</rul:Rule>
+	<rul:Rule Name="SetValuablePapersAndRecordsOtherThanElectronicDataIndicator" Type="none" DataDefGroup="CommercialPropertyHigherLimitsPersonalProperty">
+		<rul:Sequence>
+			<rul:If>
+				<rul:Test>
+					<rul:And>
+						<rul:Equal>
+							<rul:FirstValue Type="string" FromConstant="" FromDataDef="../../@CovType" Order="DataDefInputParamConstant" />
+							<rul:Constant Type="string">Valuable Papers and Records - Other Than Electronic Data</rul:Constant>
+						</rul:Equal>
+						<rul:GreaterThan>
+							<rul:FirstValue Type="integer" FromConstant="0" FromDataDef="../../@LimitToUse" Order="DataDefInputParamConstant" />
+							<rul:Constant Type="integer">2500</rul:Constant>
+						</rul:GreaterThan>
+					</rul:And>
+				</rul:Test>
+				<rul:Then>
+					<rul:Sequence>
+						<rul:Constant Type="string" ToDataDef="@ValuablePapersAndRecordsOtherThanElectronicDataIndicator">Yes</rul:Constant>
+					</rul:Sequence>
+				</rul:Then>
+				<rul:Else>
+					<rul:Sequence>
+						<rul:Constant Type="string" ToDataDef="@ValuablePapersAndRecordsOtherThanElectronicDataIndicator">No</rul:Constant>
+					</rul:Sequence>
+				</rul:Else>
+			</rul:If>
+		</rul:Sequence>
+	</rul:Rule>
+	<rul:Rule Name="SetValuablePapersAndRecordsOtherThanElectronicDataCoverage" Type="none" DataDefGroup="CommercialPropertyHigherLimitsPersonalProperty">
+		<rul:Sequence>
+			<rul:Constant Type="string" ToDataDef="@ValuablePapersAndRecordsOtherThanElectronicDataCoverage">Valuable Papers And Records - Other Than Electronic Data</rul:Constant>
+		</rul:Sequence>
+	</rul:Rule>
+	<rul:Rule Name="SetValuablePapersAndRecordsOtherThanElectronicDataLimit" Type="none" DataDefGroup="CommercialPropertyHigherLimitsPersonalProperty">
+		<rul:Sequence>
+			<rul:Copy Type="integer" ToDataDef="@ValuablePapersAndRecordsOtherThanElectronicDataLimit" FromDataDef="../../@LimitToUse" />
+		</rul:Sequence>
+	</rul:Rule>
+	<rul:Rule Name="SetValuablePapersAndRecordsOtherThanElectronicDataGeneratedPremium" Type="none" DataDefGroup="CommercialPropertyHigherLimitsPersonalProperty">
+		<rul:Sequence>
+			<rul:If>
+				<rul:Test>
+					<rul:And>
+						<rul:Exist AtInputDataDef="../../CommercialPropertyValuablePapersAndRecsOTElectronicDataCoverage" />
+						<rul:IsNotNull>
+							<rul:Value Type="decimal" FromDataDef="../../CommercialPropertyValuablePapersAndRecsOTElectronicDataCoverage/@Premium" />
+						</rul:IsNotNull>
+					</rul:And>
+				</rul:Test>
+				<rul:Then>
+					<rul:Copy Type="decimal" ToDataDef="@ValuablePapersAndRecordsOtherThanElectronicDataGeneratedPremium" FromDataDef="../../CommercialPropertyValuablePapersAndRecsOTElectronicDataCoverage/@Premium" />
+				</rul:Then>
+				<rul:Else>
+					<rul:Sequence>
+						<rul:Constant Type="decimal" ToDataDef="@ValuablePapersAndRecordsOtherThanElectronicDataGeneratedPremium">0.0</rul:Constant>
+					</rul:Sequence>
+				</rul:Else>
+			</rul:If>
+		</rul:Sequence>
+	</rul:Rule>
+	<rul:Rule Name="SetSpecialCOLFursFurGarmentsAndGarmentsTrimmedWithFurValues" Type="none" DataDefGroup="CommercialPropertyHigherLimitsPersonalProperty">
+		<rul:Sequence>
+			<rul:RunRule Type="none" FileName="CommercialPropertyHigherLimitsPersonalPropertyRules" Rule="SetSpecialCOLFursFurGarmentsAndGarmentsTrimmedWithFurIndicator" ClearCache="true" />
+			<rul:If>
+				<rul:Test>
+					<rul:Equal>
+						<rul:FirstValue Type="string" FromConstant="" FromDataDef="@SpecialCOLFursFurGarmentsAndGarmentsTrimmedWithFurIndicator" Order="DataDefInputParamConstant" />
+						<rul:Constant Type="string">Yes</rul:Constant>
+					</rul:Equal>
+				</rul:Test>
+				<rul:Then>
+					<rul:Sequence>
+						<rul:RunRule Type="none" FileName="CommercialPropertyHigherLimitsPersonalPropertyRules" Rule="SetSpecialCOLFursFurGarmentsAndGarmentsTrimmedWithFurCoverage" ClearCache="true" />
+						<rul:RunRule Type="none" FileName="CommercialPropertyHigherLimitsPersonalPropertyRules" Rule="SetSpecialCOLFursFurGarmentsAndGarmentsTrimmedWithFurLimit" ClearCache="true" />
+						<rul:RunRule Type="none" FileName="CommercialPropertyHigherLimitsPersonalPropertyRules" Rule="SetSpecialCOLFursFurGarmentsAndGarmentsTrimmedWithFurGeneratedPremium" ClearCache="true" />
+					</rul:Sequence>
+				</rul:Then>
+			</rul:If>
+		</rul:Sequence>
+	</rul:Rule>
+	<rul:Rule Name="SetSpecialCOLFursFurGarmentsAndGarmentsTrimmedWithFurIndicator" Type="none" DataDefGroup="CommercialPropertyHigherLimitsPersonalProperty">
+		<rul:Sequence>
+			<rul:Copy Type="string" ToDataDef="@SpecialCOLFursFurGarmentsAndGarmentsTrimmedWithFurIndicator" FromDataDef="../../CommercialPropertyPersonalPropertySpecialCOLFursFurGarmentsAndGarmentsTrimmedWithFur/@Indicator" />
+		</rul:Sequence>
+	</rul:Rule>
+	<rul:Rule Name="SetSpecialCOLFursFurGarmentsAndGarmentsTrimmedWithFurCoverage" Type="none" DataDefGroup="CommercialPropertyHigherLimitsPersonalProperty">
+		<rul:Sequence>
+			<rul:Constant Type="string" ToDataDef="@SpecialCOLFursFurGarmentsAndGarmentsTrimmedWithFurCoverage">Furs, Furs Garments and Garments trimmed with Fur</rul:Constant>
+		</rul:Sequence>
+	</rul:Rule>
+	<rul:Rule Name="SetSpecialCOLFursFurGarmentsAndGarmentsTrimmedWithFurLimit" Type="none" DataDefGroup="CommercialPropertyHigherLimitsPersonalProperty">
+		<rul:Sequence>
+			<rul:Copy Type="integer" ToDataDef="@SpecialCOLFursFurGarmentsAndGarmentsTrimmedWithFurLimit" FromDataDef="../../CommercialPropertyPersonalPropertySpecialCOLFursFurGarmentsAndGarmentsTrimmedWithFur/@Limit" />
+		</rul:Sequence>
+	</rul:Rule>
+	<rul:Rule Name="SetSpecialCOLFursFurGarmentsAndGarmentsTrimmedWithFurGeneratedPremium" Type="none" DataDefGroup="CommercialPropertyHigherLimitsPersonalProperty">
+		<rul:Sequence>
+			<rul:Copy Type="decimal" ToDataDef="@SpecialCOLFursFurGarmentsAndGarmentsTrimmedWithFurGeneratedPremium" FromDataDef="../../CommercialPropertyPersonalPropertySpecialCOLFursFurGarmentsAndGarmentsTrimmedWithFur/@Premium" />
+		</rul:Sequence>
+	</rul:Rule>
+	<rul:Rule Name="SetSpecialCOLJewelryWatchesPearlsBullionGoldSilverPlatinumAndOtherPreciousMetalValues" Type="none" DataDefGroup="CommercialPropertyHigherLimitsPersonalProperty">
+		<rul:Sequence>
+			<rul:RunRule Type="none" FileName="CommercialPropertyHigherLimitsPersonalPropertyRules" Rule="SetSpecialCOLJewelryWatchesPearlsBullionGoldSilverPlatinumAndOtherPreciousMetalIndicator" ClearCache="true" />
+			<rul:If>
+				<rul:Test>
+					<rul:Equal>
+						<rul:FirstValue Type="string" FromConstant="" FromDataDef="@SpecialCOLJewelryWatchesPearlsBullionGoldSilverPlatinumAndOtherPreciousMetalIndicator" Order="DataDefInputParamConstant" />
+						<rul:Constant Type="string">Yes</rul:Constant>
+					</rul:Equal>
+				</rul:Test>
+				<rul:Then>
+					<rul:Sequence>
+						<rul:RunRule Type="none" FileName="CommercialPropertyHigherLimitsPersonalPropertyRules" Rule="SetSpecialCOLJewelryWatchesPearlsBullionGoldSilverPlatinumAndOtherPreciousMetalCoverage" ClearCache="true" />
+						<rul:RunRule Type="none" FileName="CommercialPropertyHigherLimitsPersonalPropertyRules" Rule="SetSpecialCOLJewelryWatchesPearlsBullionGoldSilverPlatinumAndOtherPreciousMetalLimit" ClearCache="true" />
+						<rul:RunRule Type="none" FileName="CommercialPropertyHigherLimitsPersonalPropertyRules" Rule="SetSpecialCOLJewelryWatchesPearlsBullionGoldSilverPlatinumAndOtherPreciousMetalGeneratedPremium" ClearCache="true" />
+					</rul:Sequence>
+				</rul:Then>
+			</rul:If>
+		</rul:Sequence>
+	</rul:Rule>
+	<rul:Rule Name="SetSpecialCOLJewelryWatchesPearlsBullionGoldSilverPlatinumAndOtherPreciousMetalIndicator" Type="none" DataDefGroup="CommercialPropertyHigherLimitsPersonalProperty">
+		<rul:Sequence>
+			<rul:Copy Type="string" ToDataDef="@SpecialCOLJewelryWatchesPearlsBullionGoldSilverPlatinumAndOtherPreciousMetalIndicator" FromDataDef="../../CommercialPropertyPersonalPropertySpecialCOLJewelryWatchesPearlsBullionGoldSilverPlatinumAndOtherPreciousMetals/@Indicator" />
+		</rul:Sequence>
+	</rul:Rule>
+	<rul:Rule Name="SetSpecialCOLJewelryWatchesPearlsBullionGoldSilverPlatinumAndOtherPreciousMetalCoverage" Type="none" DataDefGroup="CommercialPropertyHigherLimitsPersonalProperty">
+		<rul:Sequence>
+			<rul:Constant Type="string" ToDataDef="@SpecialCOLJewelryWatchesPearlsBullionGoldSilverPlatinumAndOtherPreciousMetalCoverage">Jewelry,Watches,Watch movements,Jewels,Pearls,Precious&amp;Semiprecious Stones,Bullion,Gold,Silver,Platinum&amp;Other Precious Metals</rul:Constant>
+		</rul:Sequence>
+	</rul:Rule>
+	<rul:Rule Name="SetSpecialCOLJewelryWatchesPearlsBullionGoldSilverPlatinumAndOtherPreciousMetalLimit" Type="none" DataDefGroup="CommercialPropertyHigherLimitsPersonalProperty">
+		<rul:Sequence>
+			<rul:Copy Type="integer" ToDataDef="@SpecialCOLJewelryWatchesPearlsBullionGoldSilverPlatinumAndOtherPreciousMetalLimit" FromDataDef="../../CommercialPropertyPersonalPropertySpecialCOLJewelryWatchesPearlsBullionGoldSilverPlatinumAndOtherPreciousMetals/@Limit" />
+		</rul:Sequence>
+	</rul:Rule>
+	<rul:Rule Name="SetSpecialCOLJewelryWatchesPearlsBullionGoldSilverPlatinumAndOtherPreciousMetalGeneratedPremium" Type="none" DataDefGroup="CommercialPropertyHigherLimitsPersonalProperty">
+		<rul:Sequence>
+			<rul:Copy Type="decimal" ToDataDef="@SpecialCOLJewelryWatchesPearlsBullionGoldSilverPlatinumAndOtherPreciousMetalGeneratedPremium" FromDataDef="../../CommercialPropertyPersonalPropertySpecialCOLJewelryWatchesPearlsBullionGoldSilverPlatinumAndOtherPreciousMetals/@Premium" />
+		</rul:Sequence>
+	</rul:Rule>
+	<rul:Rule Name="SetSpecialCOLPatternsDiesMoldsAndFormsValues" Type="none" DataDefGroup="CommercialPropertyHigherLimitsPersonalProperty">
+		<rul:Sequence>
+			<rul:RunRule Type="none" FileName="CommercialPropertyHigherLimitsPersonalPropertyRules" Rule="SetSpecialCOLPatternsDiesMoldsAndFormsIndicator" ClearCache="true" />
+			<rul:If>
+				<rul:Test>
+					<rul:Equal>
+						<rul:FirstValue Type="string" FromConstant="" FromDataDef="@SpecialCOLPatternsDiesMoldsAndFormsIndicator" Order="DataDefInputParamConstant" />
+						<rul:Constant Type="string">Yes</rul:Constant>
+					</rul:Equal>
+				</rul:Test>
+				<rul:Then>
+					<rul:Sequence>
+						<rul:RunRule Type="none" FileName="CommercialPropertyHigherLimitsPersonalPropertyRules" Rule="SetSpecialCOLPatternsDiesMoldsAndFormsCoverage" ClearCache="true" />
+						<rul:RunRule Type="none" FileName="CommercialPropertyHigherLimitsPersonalPropertyRules" Rule="SetSpecialCOLPatternsDiesMoldsAndFormsLimit" ClearCache="true" />
+						<rul:RunRule Type="none" FileName="CommercialPropertyHigherLimitsPersonalPropertyRules" Rule="SetSpecialCOLPatternsDiesMoldsAndFormsGeneratedPremium" ClearCache="true" />
+					</rul:Sequence>
+				</rul:Then>
+			</rul:If>
+		</rul:Sequence>
+	</rul:Rule>
+	<rul:Rule Name="SetSpecialCOLPatternsDiesMoldsAndFormsIndicator" Type="none" DataDefGroup="CommercialPropertyHigherLimitsPersonalProperty">
+		<rul:Sequence>
+			<rul:Copy Type="string" ToDataDef="@SpecialCOLPatternsDiesMoldsAndFormsIndicator" FromDataDef="../../CommercialPropertyPersonalPropertySpecialCOLPatternsDiesMoldsAndForms/@Indicator" />
+		</rul:Sequence>
+	</rul:Rule>
+	<rul:Rule Name="SetSpecialCOLPatternsDiesMoldsAndFormsCoverage" Type="none" DataDefGroup="CommercialPropertyHigherLimitsPersonalProperty">
+		<rul:Sequence>
+			<rul:Constant Type="string" ToDataDef="@SpecialCOLPatternsDiesMoldsAndFormsCoverage">Patterns, Dies, Molds and Forms</rul:Constant>
+		</rul:Sequence>
+	</rul:Rule>
+	<rul:Rule Name="SetSpecialCOLPatternsDiesMoldsAndFormsLimit" Type="none" DataDefGroup="CommercialPropertyHigherLimitsPersonalProperty">
+		<rul:Sequence>
+			<rul:Copy Type="integer" ToDataDef="@SpecialCOLPatternsDiesMoldsAndFormsLimit" FromDataDef="../../CommercialPropertyPersonalPropertySpecialCOLPatternsDiesMoldsAndForms/@Limit" />
+		</rul:Sequence>
+	</rul:Rule>
+	<rul:Rule Name="SetSpecialCOLPatternsDiesMoldsAndFormsGeneratedPremium" Type="none" DataDefGroup="CommercialPropertyHigherLimitsPersonalProperty">
+		<rul:Sequence>
+			<rul:Copy Type="decimal" ToDataDef="@SpecialCOLPatternsDiesMoldsAndFormsGeneratedPremium" FromDataDef="../../CommercialPropertyPersonalPropertySpecialCOLPatternsDiesMoldsAndForms/@Premium" />
+		</rul:Sequence>
+	</rul:Rule>
+	<rul:Rule Name="SetSpecialCOLStampsTicketsAndLettersOfCreditValues" Type="none" DataDefGroup="CommercialPropertyHigherLimitsPersonalProperty">
+		<rul:Sequence>
+			<rul:RunRule Type="none" FileName="CommercialPropertyHigherLimitsPersonalPropertyRules" Rule="SetSpecialCOLStampsTicketsAndLettersOfCreditIndicator" ClearCache="true" />
+			<rul:If>
+				<rul:Test>
+					<rul:Equal>
+						<rul:FirstValue Type="string" FromConstant="" FromDataDef="@SpecialCOLStampsTicketsAndLettersOfCreditIndicator" Order="DataDefInputParamConstant" />
+						<rul:Constant Type="string">Yes</rul:Constant>
+					</rul:Equal>
+				</rul:Test>
+				<rul:Then>
+					<rul:Sequence>
+						<rul:RunRule Type="none" FileName="CommercialPropertyHigherLimitsPersonalPropertyRules" Rule="SetSpecialCOLStampsTicketsAndLettersOfCreditCoverage" ClearCache="true" />
+						<rul:RunRule Type="none" FileName="CommercialPropertyHigherLimitsPersonalPropertyRules" Rule="SetSpecialCOLStampsTicketsAndLettersOfCreditLimit" ClearCache="true" />
+						<rul:RunRule Type="none" FileName="CommercialPropertyHigherLimitsPersonalPropertyRules" Rule="SetSpecialCOLStampsTicketsAndLettersOfCreditGeneratedPremium" ClearCache="true" />
+					</rul:Sequence>
+				</rul:Then>
+			</rul:If>
+		</rul:Sequence>
+	</rul:Rule>
+	<rul:Rule Name="SetSpecialCOLStampsTicketsAndLettersOfCreditIndicator" Type="none" DataDefGroup="CommercialPropertyHigherLimitsPersonalProperty">
+		<rul:Sequence>
+			<rul:Copy Type="string" ToDataDef="@SpecialCOLStampsTicketsAndLettersOfCreditIndicator" FromDataDef="../../CommercialPropertyPersonalPropertySpecialCOLStampsTicketsAndLettersOfCredit/@Indicator" />
+		</rul:Sequence>
+	</rul:Rule>
+	<rul:Rule Name="SetSpecialCOLStampsTicketsAndLettersOfCreditCoverage" Type="none" DataDefGroup="CommercialPropertyHigherLimitsPersonalProperty">
+		<rul:Sequence>
+			<rul:Constant Type="string" ToDataDef="@SpecialCOLStampsTicketsAndLettersOfCreditCoverage">Stamps, Tickets, including Lottery Tickets held for sale,and Letters of Credit</rul:Constant>
+		</rul:Sequence>
+	</rul:Rule>
+	<rul:Rule Name="SetSpecialCOLStampsTicketsAndLettersOfCreditLimit" Type="none" DataDefGroup="CommercialPropertyHigherLimitsPersonalProperty">
+		<rul:Sequence>
+			<rul:Copy Type="integer" ToDataDef="@SpecialCOLStampsTicketsAndLettersOfCreditLimit" FromDataDef="../../CommercialPropertyPersonalPropertySpecialCOLStampsTicketsAndLettersOfCredit/@Limit" />
+		</rul:Sequence>
+	</rul:Rule>
+	<rul:Rule Name="SetSpecialCOLStampsTicketsAndLettersOfCreditGeneratedPremium" Type="none" DataDefGroup="CommercialPropertyHigherLimitsPersonalProperty">
+		<rul:Sequence>
+			<rul:Copy Type="decimal" ToDataDef="@SpecialCOLStampsTicketsAndLettersOfCreditGeneratedPremium" FromDataDef="../../CommercialPropertyPersonalPropertySpecialCOLStampsTicketsAndLettersOfCredit/@Premium" />
+		</rul:Sequence>
+	</rul:Rule>
+	<rul:Rule Name="ErcProcess" Type="none" DataDefGroup="CommercialPropertyHigherLimitsPersonalProperty">
+		<rul:Sequence>
+			<rul:RunRule Type="none" FileName="CommercialPropertyHigherLimitsPersonalPropertyRules" Rule="SetValues" ClearCache="true" />
+		</rul:Sequence>
+	</rul:Rule>
+</rul:Rules>

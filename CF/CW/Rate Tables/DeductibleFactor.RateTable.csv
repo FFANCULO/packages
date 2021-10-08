@@ -1,0 +1,241 @@
+"StateCode","Deductible","Limit_FromGreaterThan","Limit_To","CauseOfLossDeductible","Factor"
+"CW","500",-2147483648,50000,"Basic Group I",1
+"CW","500",50000,100000,"Basic Group I",1
+"CW","500",100000,250000,"Basic Group I",1
+"CW","500",250000,500000,"Basic Group I",1
+"CW","500",500000,1000000,"Basic Group I",1
+"CW","500",1000000,3500000,"Basic Group I",1
+"CW","500",3500000,5000000,"Basic Group I",1
+"CW","500",5000000,5500000,"Basic Group I",1
+"CW","500",5500000,10000000,"Basic Group I",1
+"CW","500",10000000,999999999,"Basic Group I",1
+"CW","500",-2147483648,50000,"Basic Group II",1
+"CW","500",50000,100000,"Basic Group II",1
+"CW","500",100000,250000,"Basic Group II",1
+"CW","500",250000,500000,"Basic Group II",1
+"CW","500",500000,1000000,"Basic Group II",1
+"CW","500",1000000,3500000,"Basic Group II",1
+"CW","500",3500000,5000000,"Basic Group II",1
+"CW","500",5000000,5500000,"Basic Group II",1
+"CW","500",5500000,10000000,"Basic Group II",1
+"CW","500",10000000,999999999,"Basic Group II",1
+"CW","500",-2147483648,50000,"Other Cause Of Loss",1
+"CW","500",50000,100000,"Other Cause Of Loss",1
+"CW","500",100000,250000,"Other Cause Of Loss",1
+"CW","500",250000,500000,"Other Cause Of Loss",1
+"CW","500",500000,1000000,"Other Cause Of Loss",1
+"CW","500",1000000,3500000,"Other Cause Of Loss",1
+"CW","500",3500000,5000000,"Other Cause Of Loss",1
+"CW","500",5000000,5500000,"Other Cause Of Loss",1
+"CW","500",5500000,10000000,"Other Cause Of Loss",1
+"CW","500",10000000,999999999,"Other Cause Of Loss",1
+"CW","1,000",-2147483648,50000,"Basic Group I",0.94
+"CW","1,000",50000,100000,"Basic Group I",0.96
+"CW","1,000",100000,250000,"Basic Group I",0.97
+"CW","1,000",250000,500000,"Basic Group I",0.99
+"CW","1,000",500000,1000000,"Basic Group I",0.99
+"CW","1,000",1000000,3500000,"Basic Group I",0.99
+"CW","1,000",3500000,5000000,"Basic Group I",0.99
+"CW","1,000",5000000,5500000,"Basic Group I",0.99
+"CW","1,000",5500000,10000000,"Basic Group I",0.99
+"CW","1,000",10000000,999999999,"Basic Group I",0.99
+"CW","1,000",-2147483648,50000,"Basic Group II",0.89
+"CW","1,000",50000,100000,"Basic Group II",0.92
+"CW","1,000",100000,250000,"Basic Group II",0.93
+"CW","1,000",250000,500000,"Basic Group II",0.96
+"CW","1,000",500000,1000000,"Basic Group II",0.96
+"CW","1,000",1000000,3500000,"Basic Group II",0.96
+"CW","1,000",3500000,5000000,"Basic Group II",0.96
+"CW","1,000",5000000,5500000,"Basic Group II",0.96
+"CW","1,000",5500000,10000000,"Basic Group II",0.96
+"CW","1,000",10000000,999999999,"Basic Group II",0.96
+"CW","1,000",-2147483648,50000,"Other Cause Of Loss",0.89
+"CW","1,000",50000,100000,"Other Cause Of Loss",0.92
+"CW","1,000",100000,250000,"Other Cause Of Loss",0.93
+"CW","1,000",250000,500000,"Other Cause Of Loss",0.96
+"CW","1,000",500000,1000000,"Other Cause Of Loss",0.96
+"CW","1,000",1000000,3500000,"Other Cause Of Loss",0.96
+"CW","1,000",3500000,5000000,"Other Cause Of Loss",0.96
+"CW","1,000",5000000,5500000,"Other Cause Of Loss",0.96
+"CW","1,000",5500000,10000000,"Other Cause Of Loss",0.96
+"CW","1,000",10000000,999999999,"Other Cause Of Loss",0.96
+"CW","2,500",-2147483648,50000,"Basic Group I",0.84
+"CW","2,500",50000,100000,"Basic Group I",0.84
+"CW","2,500",100000,250000,"Basic Group I",0.9
+"CW","2,500",250000,500000,"Basic Group I",0.93
+"CW","2,500",500000,1000000,"Basic Group I",0.96
+"CW","2,500",1000000,3500000,"Basic Group I",0.96
+"CW","2,500",3500000,5000000,"Basic Group I",0.96
+"CW","2,500",5000000,5500000,"Basic Group I",0.96
+"CW","2,500",5500000,10000000,"Basic Group I",0.96
+"CW","2,500",10000000,999999999,"Basic Group I",0.96
+"CW","2,500",-2147483648,50000,"Basic Group II",0.71
+"CW","2,500",50000,100000,"Basic Group II",0.71
+"CW","2,500",100000,250000,"Basic Group II",0.79
+"CW","2,500",250000,500000,"Basic Group II",0.82
+"CW","2,500",500000,1000000,"Basic Group II",0.89
+"CW","2,500",1000000,3500000,"Basic Group II",0.89
+"CW","2,500",3500000,5000000,"Basic Group II",0.89
+"CW","2,500",5000000,5500000,"Basic Group II",0.89
+"CW","2,500",5500000,10000000,"Basic Group II",0.89
+"CW","2,500",10000000,999999999,"Basic Group II",0.89
+"CW","2,500",-2147483648,50000,"Other Cause Of Loss",0.71
+"CW","2,500",50000,100000,"Other Cause Of Loss",0.71
+"CW","2,500",100000,250000,"Other Cause Of Loss",0.79
+"CW","2,500",250000,500000,"Other Cause Of Loss",0.82
+"CW","2,500",500000,1000000,"Other Cause Of Loss",0.89
+"CW","2,500",1000000,3500000,"Other Cause Of Loss",0.89
+"CW","2,500",3500000,5000000,"Other Cause Of Loss",0.89
+"CW","2,500",5000000,5500000,"Other Cause Of Loss",0.89
+"CW","2,500",5500000,10000000,"Other Cause Of Loss",0.89
+"CW","2,500",10000000,999999999,"Other Cause Of Loss",0.89
+"CW","5,000",-2147483648,50000,"Basic Group I",0.79
+"CW","5,000",50000,100000,"Basic Group I",0.79
+"CW","5,000",100000,250000,"Basic Group I",0.79
+"CW","5,000",250000,500000,"Basic Group I",0.87
+"CW","5,000",500000,1000000,"Basic Group I",0.9
+"CW","5,000",1000000,3500000,"Basic Group I",0.95
+"CW","5,000",3500000,5000000,"Basic Group I",0.95
+"CW","5,000",5000000,5500000,"Basic Group I",0.95
+"CW","5,000",5500000,10000000,"Basic Group I",0.95
+"CW","5,000",10000000,999999999,"Basic Group I",0.95
+"CW","5,000",-2147483648,50000,"Basic Group II",0.59
+"CW","5,000",50000,100000,"Basic Group II",0.59
+"CW","5,000",100000,250000,"Basic Group II",0.59
+"CW","5,000",250000,500000,"Basic Group II",0.69
+"CW","5,000",500000,1000000,"Basic Group II",0.74
+"CW","5,000",1000000,3500000,"Basic Group II",0.84
+"CW","5,000",3500000,5000000,"Basic Group II",0.84
+"CW","5,000",5000000,5500000,"Basic Group II",0.84
+"CW","5,000",5500000,10000000,"Basic Group II",0.84
+"CW","5,000",10000000,999999999,"Basic Group II",0.84
+"CW","5,000",-2147483648,50000,"Other Cause Of Loss",0.59
+"CW","5,000",50000,100000,"Other Cause Of Loss",0.59
+"CW","5,000",100000,250000,"Other Cause Of Loss",0.59
+"CW","5,000",250000,500000,"Other Cause Of Loss",0.69
+"CW","5,000",500000,1000000,"Other Cause Of Loss",0.74
+"CW","5,000",1000000,3500000,"Other Cause Of Loss",0.84
+"CW","5,000",3500000,5000000,"Other Cause Of Loss",0.84
+"CW","5,000",5000000,5500000,"Other Cause Of Loss",0.84
+"CW","5,000",5500000,10000000,"Other Cause Of Loss",0.84
+"CW","5,000",10000000,999999999,"Other Cause Of Loss",0.84
+"CW","10,000",-2147483648,50000,"Basic Group I",0.67
+"CW","10,000",50000,100000,"Basic Group I",0.67
+"CW","10,000",100000,250000,"Basic Group I",0.67
+"CW","10,000",250000,500000,"Basic Group I",0.78
+"CW","10,000",500000,1000000,"Basic Group I",0.83
+"CW","10,000",1000000,3500000,"Basic Group I",0.89
+"CW","10,000",3500000,5000000,"Basic Group I",0.89
+"CW","10,000",5000000,5500000,"Basic Group I",0.94
+"CW","10,000",5500000,10000000,"Basic Group I",0.94
+"CW","10,000",10000000,999999999,"Basic Group I",0.94
+"CW","10,000",-2147483648,50000,"Basic Group II",0.44
+"CW","10,000",50000,100000,"Basic Group II",0.44
+"CW","10,000",100000,250000,"Basic Group II",0.44
+"CW","10,000",250000,500000,"Basic Group II",0.54
+"CW","10,000",500000,1000000,"Basic Group II",0.6
+"CW","10,000",1000000,3500000,"Basic Group II",0.69
+"CW","10,000",3500000,5000000,"Basic Group II",0.69
+"CW","10,000",5000000,5500000,"Basic Group II",0.81
+"CW","10,000",5500000,10000000,"Basic Group II",0.81
+"CW","10,000",10000000,999999999,"Basic Group II",0.81
+"CW","10,000",-2147483648,50000,"Other Cause Of Loss",0.44
+"CW","10,000",50000,100000,"Other Cause Of Loss",0.44
+"CW","10,000",100000,250000,"Other Cause Of Loss",0.44
+"CW","10,000",250000,500000,"Other Cause Of Loss",0.54
+"CW","10,000",500000,1000000,"Other Cause Of Loss",0.6
+"CW","10,000",1000000,3500000,"Other Cause Of Loss",0.69
+"CW","10,000",3500000,5000000,"Other Cause Of Loss",0.69
+"CW","10,000",5000000,5500000,"Other Cause Of Loss",0.81
+"CW","10,000",5500000,10000000,"Other Cause Of Loss",0.81
+"CW","10,000",10000000,999999999,"Other Cause Of Loss",0.81
+"CW","25,000",-2147483648,50000,"Basic Group I",0.6
+"CW","25,000",50000,100000,"Basic Group I",0.6
+"CW","25,000",100000,250000,"Basic Group I",0.6
+"CW","25,000",250000,500000,"Basic Group I",0.6
+"CW","25,000",500000,1000000,"Basic Group I",0.71
+"CW","25,000",1000000,3500000,"Basic Group I",0.81
+"CW","25,000",3500000,5000000,"Basic Group I",0.81
+"CW","25,000",5000000,5500000,"Basic Group I",0.87
+"CW","25,000",5500000,10000000,"Basic Group I",0.87
+"CW","25,000",10000000,999999999,"Basic Group I",0.93
+"CW","25,000",-2147483648,50000,"Basic Group II",0.32
+"CW","25,000",50000,100000,"Basic Group II",0.32
+"CW","25,000",100000,250000,"Basic Group II",0.32
+"CW","25,000",250000,500000,"Basic Group II",0.32
+"CW","25,000",500000,1000000,"Basic Group II",0.42
+"CW","25,000",1000000,3500000,"Basic Group II",0.52
+"CW","25,000",3500000,5000000,"Basic Group II",0.52
+"CW","25,000",5000000,5500000,"Basic Group II",0.6
+"CW","25,000",5500000,10000000,"Basic Group II",0.6
+"CW","25,000",10000000,999999999,"Basic Group II",0.71
+"CW","25,000",-2147483648,50000,"Other Cause Of Loss",0.32
+"CW","25,000",50000,100000,"Other Cause Of Loss",0.32
+"CW","25,000",100000,250000,"Other Cause Of Loss",0.32
+"CW","25,000",250000,500000,"Other Cause Of Loss",0.32
+"CW","25,000",500000,1000000,"Other Cause Of Loss",0.42
+"CW","25,000",1000000,3500000,"Other Cause Of Loss",0.52
+"CW","25,000",3500000,5000000,"Other Cause Of Loss",0.52
+"CW","25,000",5000000,5500000,"Other Cause Of Loss",0.6
+"CW","25,000",5500000,10000000,"Other Cause Of Loss",0.6
+"CW","25,000",10000000,999999999,"Other Cause Of Loss",0.71
+"CW","50,000",-2147483648,50000,"Basic Group I",0.53
+"CW","50,000",50000,100000,"Basic Group I",0.53
+"CW","50,000",100000,250000,"Basic Group I",0.53
+"CW","50,000",250000,500000,"Basic Group I",0.53
+"CW","50,000",500000,1000000,"Basic Group I",0.53
+"CW","50,000",1000000,3500000,"Basic Group I",0.72
+"CW","50,000",3500000,5000000,"Basic Group I",0.77
+"CW","50,000",5000000,5500000,"Basic Group I",0.77
+"CW","50,000",5500000,10000000,"Basic Group I",0.81
+"CW","50,000",10000000,999999999,"Basic Group I",0.9
+"CW","50,000",-2147483648,50000,"Basic Group II",0.27
+"CW","50,000",50000,100000,"Basic Group II",0.27
+"CW","50,000",100000,250000,"Basic Group II",0.27
+"CW","50,000",250000,500000,"Basic Group II",0.27
+"CW","50,000",500000,1000000,"Basic Group II",0.27
+"CW","50,000",1000000,3500000,"Basic Group II",0.39
+"CW","50,000",3500000,5000000,"Basic Group II",0.44
+"CW","50,000",5000000,5500000,"Basic Group II",0.44
+"CW","50,000",5500000,10000000,"Basic Group II",0.48
+"CW","50,000",10000000,999999999,"Basic Group II",0.6
+"CW","50,000",-2147483648,50000,"Other Cause Of Loss",0.27
+"CW","50,000",50000,100000,"Other Cause Of Loss",0.27
+"CW","50,000",100000,250000,"Other Cause Of Loss",0.27
+"CW","50,000",250000,500000,"Other Cause Of Loss",0.27
+"CW","50,000",500000,1000000,"Other Cause Of Loss",0.27
+"CW","50,000",1000000,3500000,"Other Cause Of Loss",0.39
+"CW","50,000",3500000,5000000,"Other Cause Of Loss",0.44
+"CW","50,000",5000000,5500000,"Other Cause Of Loss",0.44
+"CW","50,000",5500000,10000000,"Other Cause Of Loss",0.48
+"CW","50,000",10000000,999999999,"Other Cause Of Loss",0.6
+"CW","75,000",-2147483648,50000,"Basic Group I",0.5
+"CW","75,000",50000,100000,"Basic Group I",0.5
+"CW","75,000",100000,250000,"Basic Group I",0.5
+"CW","75,000",250000,500000,"Basic Group I",0.5
+"CW","75,000",500000,1000000,"Basic Group I",0.5
+"CW","75,000",1000000,3500000,"Basic Group I",0.66
+"CW","75,000",3500000,5000000,"Basic Group I",0.73
+"CW","75,000",5000000,5500000,"Basic Group I",0.73
+"CW","75,000",5500000,10000000,"Basic Group I",0.77
+"CW","75,000",10000000,999999999,"Basic Group I",0.87
+"CW","75,000",-2147483648,50000,"Basic Group II",0.25
+"CW","75,000",50000,100000,"Basic Group II",0.25
+"CW","75,000",100000,250000,"Basic Group II",0.25
+"CW","75,000",250000,500000,"Basic Group II",0.25
+"CW","75,000",500000,1000000,"Basic Group II",0.25
+"CW","75,000",1000000,3500000,"Basic Group II",0.33
+"CW","75,000",3500000,5000000,"Basic Group II",0.38
+"CW","75,000",5000000,5500000,"Basic Group II",0.38
+"CW","75,000",5500000,10000000,"Basic Group II",0.42
+"CW","75,000",10000000,999999999,"Basic Group II",0.54
+"CW","75,000",-2147483648,50000,"Other Cause Of Loss",0.25
+"CW","75,000",50000,100000,"Other Cause Of Loss",0.25
+"CW","75,000",100000,250000,"Other Cause Of Loss",0.25
+"CW","75,000",250000,500000,"Other Cause Of Loss",0.25
+"CW","75,000",500000,1000000,"Other Cause Of Loss",0.25
+"CW","75,000",1000000,3500000,"Other Cause Of Loss",0.33
+"CW","75,000",3500000,5000000,"Other Cause Of Loss",0.38
+"CW","75,000",5000000,5500000,"Other Cause Of Loss",0.38
+"CW","75,000",5500000,10000000,"Other Cause Of Loss",0.42
+"CW","75,000",10000000,999999999,"Other Cause Of Loss",0.54

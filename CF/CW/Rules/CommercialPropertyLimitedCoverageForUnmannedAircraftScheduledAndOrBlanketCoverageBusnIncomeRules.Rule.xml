@@ -1,0 +1,106 @@
+<rul:Rules xmlns:rul="http://www.verisk.com/iso/erc/Rule">
+	<rul:Rule Name="InitializeRuleSet" DataDefGroup="CommercialPropertyLimitedCoverageForUnmannedAircraftScheduledAndOrBlanketCoverageBusnIncome">
+		<rul:Sequence>
+			<rul:ForEach AtDataDef="CommercialPropertyLimitedCoverageForUnmannedAircraftScheduledAndOrBlanketCoverageBusnIncomeDetailTable/CommercialPropertyLimitedCoverageForUnmannedAircraftScheduledAndOrBlanketCoverageBusnIncomeDetail">
+				<rul:RunRule Type="none" FileName="CommercialPropertyLimitedCoverageForUnmannedAircraftScheduledAndOrBlanketCoverageBusnIncomeDetailRules" Rule="InitializeRuleSet" ClearCache="true" />
+			</rul:ForEach>
+		</rul:Sequence>
+	</rul:Rule>
+	<rul:Rule Name="CalculateTotalPremium" Type="decimal" DataDefGroup="CommercialPropertyLimitedCoverageForUnmannedAircraftScheduledAndOrBlanketCoverageBusnIncome">
+		<rul:Sum>
+			<rul:ForEach AtDataDef="CommercialPropertyLimitedCoverageForUnmannedAircraftScheduledAndOrBlanketCoverageBusnIncomeDetailTable/CommercialPropertyLimitedCoverageForUnmannedAircraftScheduledAndOrBlanketCoverageBusnIncomeDetail">
+				<rul:RunRule Type="decimal" FileName="CommercialPropertyLimitedCoverageForUnmannedAircraftScheduledAndOrBlanketCoverageBusnIncomeDetailRules" Rule="CalculateTotalPremium" ClearCache="true" />
+			</rul:ForEach>
+			<rul:If>
+				<rul:Test>
+					<rul:And>
+						<rul:Equal>
+							<rul:FirstValue Type="integer" FromConstant="0" FromDataDef="@PremiumIndicator" Order="DataDefInputParamConstant" />
+							<rul:Constant Type="integer">1</rul:Constant>
+						</rul:Equal>
+						<rul:NotEqual>
+							<rul:FirstValue Type="decimal" FromConstant="0" FromDataDef="@Premium" Order="DataDefInputParamConstant" />
+							<rul:Constant Type="decimal">0</rul:Constant>
+						</rul:NotEqual>
+					</rul:And>
+				</rul:Test>
+				<rul:Then>
+					<rul:FirstValue Type="decimal" FromConstant="0" FromDataDef="@Premium" Order="DataDefInputParamConstant" />
+				</rul:Then>
+				<rul:Else>
+					<rul:Constant Type="decimal">0</rul:Constant>
+				</rul:Else>
+			</rul:If>
+		</rul:Sum>
+	</rul:Rule>
+	<rul:Rule Name="ErcSetRatesAndFactors" Type="none" DataDefGroup="CommercialPropertyLimitedCoverageForUnmannedAircraftScheduledAndOrBlanketCoverageBusnIncome">
+		<rul:Sequence />
+	</rul:Rule>
+	<rul:Rule Name="ErcRunPostUnderwritingLogic" Type="none" DataDefGroup="CommercialPropertyLimitedCoverageForUnmannedAircraftScheduledAndOrBlanketCoverageBusnIncome">
+		<rul:Sequence>
+			<rul:RunRule Type="none" FileName="CommercialPropertyLimitedCoverageForUnmannedAircraftScheduledAndOrBlanketCoverageBusnIncomeRules" Rule="DoMessageThereCanOnlyBeOneDetailPageForTheEndorsementTimeElementPart" ClearCache="true" />
+		</rul:Sequence>
+	</rul:Rule>
+	<rul:Rule Name="DoMessageThereCanOnlyBeOneDetailPageForTheEndorsementTimeElementPart" Type="none" DataDefGroup="CommercialPropertyLimitedCoverageForUnmannedAircraftScheduledAndOrBlanketCoverageBusnIncome">
+		<rul:Sequence>
+			<rul:If>
+				<rul:Test>
+					<rul:GreaterThan>
+						<rul:Count AtInputDataDef="CommercialPropertyLimitedCoverageForUnmannedAircraftScheduledAndOrBlanketCoverageBusnIncomeDetailTable/CommercialPropertyLimitedCoverageForUnmannedAircraftScheduledAndOrBlanketCoverageBusnIncomeDetail" />
+						<rul:Constant Type="integer">1</rul:Constant>
+					</rul:GreaterThan>
+				</rul:Test>
+				<rul:Then>
+					<rul:RunRule Type="none" FileName="MessageHelper" Rule="AddErrorMessage" ClearCache="true">
+						<rul:Arg Type="string" Param="Message">
+							<rul:Constant Type="string">There can only be one Detail page for the Endorsement Time Element part</rul:Constant>
+						</rul:Arg>
+					</rul:RunRule>
+				</rul:Then>
+			</rul:If>
+		</rul:Sequence>
+	</rul:Rule>
+	<rul:Rule Name="ErcSetStatisticalCodes" Type="none" DataDefGroup="CommercialPropertyLimitedCoverageForUnmannedAircraftScheduledAndOrBlanketCoverageBusnIncome">
+		<rul:Sequence>
+			<rul:If>
+				<rul:Test>
+					<rul:Exist AtInputDataDef="ancestor::MasterCFCW/Policy" />
+				</rul:Test>
+				<rul:Then>
+					<rul:RunRule Type="none" FileName="CommercialPropertyLimitedCoverageForUnmannedAircraftScheduledAndOrBlanketCoverageBusnIncomeRules" Rule="SetSublineUnmannedAircraftDrones" ClearCache="true" />
+				</rul:Then>
+			</rul:If>
+		</rul:Sequence>
+	</rul:Rule>
+	<rul:Rule Name="SetSublineUnmannedAircraftDrones" Type="none" DataDefGroup="CommercialPropertyLimitedCoverageForUnmannedAircraftScheduledAndOrBlanketCoverageBusnIncome">
+		<rul:Sequence>
+			<rul:RunRule Type="string" ToDataDef="@SublineUnmannedAircraftDrones" FileName="CommercialPropertyLimitedCoverageForUnmannedAircraftScheduledAndOrBlanketCoverageBusnIncomeRules" Rule="LookupSublineUnmannedAircraftDrones" ClearCache="true" />
+		</rul:Sequence>
+	</rul:Rule>
+	<rul:Rule Name="ErcProcess" Type="none" DataDefGroup="CommercialPropertyLimitedCoverageForUnmannedAircraftScheduledAndOrBlanketCoverageBusnIncome">
+		<rul:Sequence>
+			<rul:RunRule Type="none" FileName="CommercialPropertyLimitedCoverageForUnmannedAircraftScheduledAndOrBlanketCoverageBusnIncomeRules" Rule="ErcSetRatesAndFactors" ClearCache="true" />
+			<rul:ForEach AtDataDef="CommercialPropertyLimitedCoverageForUnmannedAircraftScheduledAndOrBlanketCoverageBusnIncomeDetailTable/CommercialPropertyLimitedCoverageForUnmannedAircraftScheduledAndOrBlanketCoverageBusnIncomeDetail">
+				<rul:RunRule Type="none" FileName="CommercialPropertyLimitedCoverageForUnmannedAircraftScheduledAndOrBlanketCoverageBusnIncomeDetailRules" Rule="ErcProcess" ClearCache="true" />
+			</rul:ForEach>
+			<rul:RunRule Type="none" FileName="CommercialPropertyLimitedCoverageForUnmannedAircraftScheduledAndOrBlanketCoverageBusnIncomeRules" Rule="ErcRunPostUnderwritingLogic" ClearCache="true" />
+			<rul:RunRule Type="none" FileName="CommercialPropertyLimitedCoverageForUnmannedAircraftScheduledAndOrBlanketCoverageBusnIncomeRules" Rule="ErcSetStatisticalCodes" ClearCache="true" />
+		</rul:Sequence>
+	</rul:Rule>
+	<rul:Rule Name="LookupSublineUnmannedAircraftDrones" Type="string" DataDefGroup="CommercialPropertyLimitedCoverageForUnmannedAircraftScheduledAndOrBlanketCoverageBusnIncome">
+		<rul:FirstNonNull Type="string">
+			<rul:Lookup Type="string" MatrixCol="Code" MatrixDef="SublineUnmannedAircraftDronesDef" MatrixFromConstant="SublineUnmannedAircraftDrones" ResultMode="FirstResult">
+				<rul:Keys>
+					<rul:Value Type="string" FromDataDef="/State/@Code" />
+					<rul:Constant Type="string">Y</rul:Constant>
+				</rul:Keys>
+			</rul:Lookup>
+			<rul:Lookup Type="string" MatrixCol="Code" MatrixDef="SublineUnmannedAircraftDronesDef" MatrixFromConstant="SublineUnmannedAircraftDrones" ResultMode="SingleResult">
+				<rul:Keys>
+					<rul:Constant Type="string">CW</rul:Constant>
+					<rul:Constant Type="string">Y</rul:Constant>
+				</rul:Keys>
+			</rul:Lookup>
+		</rul:FirstNonNull>
+	</rul:Rule>
+</rul:Rules>

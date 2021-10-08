@@ -1,0 +1,113 @@
+"StateCode","IncludedInBlktPrsnlProp","EQCovIndicatorPrsnlProp","CovType","DisplayValue","DataValue","MinimumValue","MaximumValue"
+"CW","Yes","No Coverage","All Other Personal Property","","",0,0
+"CW","Yes","Yes, Included in Blanket","All Other Personal Property","","",0,0
+"CW","Yes","Yes, Not Included in Blanket","All Other Personal Property","","",1,99999999
+"CW","No","No Coverage","All Other Personal Property","","",1,99999999
+"CW","No","Yes, Included in Blanket","All Other Personal Property","","",1,99999999
+"CW","No","Yes, Not Included in Blanket","All Other Personal Property","","",1,99999999
+"CW","Not Applicable","No Coverage","All Other Personal Property","","",0,0
+"CW","Yes","No Coverage","All Personal Property","","",0,0
+"CW","Yes","Yes, Included in Blanket","All Personal Property","","",0,0
+"CW","Yes","Yes, Not Included in Blanket","All Personal Property","","",1,99999999
+"CW","No","No Coverage","All Personal Property","","",1,99999999
+"CW","No","Yes, Included in Blanket","All Personal Property","","",1,99999999
+"CW","No","Yes, Not Included in Blanket","All Personal Property","","",1,99999999
+"CW","Not Applicable","No Coverage","All Personal Property","","",0,0
+"CW","Yes","No Coverage","Contents Except Stock","","",0,0
+"CW","Yes","Yes, Included in Blanket","Contents Except Stock","","",0,0
+"CW","Yes","Yes, Not Included in Blanket","Contents Except Stock","","",1,99999999
+"CW","No","No Coverage","Contents Except Stock","","",1,99999999
+"CW","No","Yes, Included in Blanket","Contents Except Stock","","",1,99999999
+"CW","No","Yes, Not Included in Blanket","Contents Except Stock","","",1,99999999
+"CW","Not Applicable","No Coverage","Contents Except Stock","","",0,0
+"CW","Yes","No Coverage","Fixtures","","",0,0
+"CW","Yes","Yes, Included in Blanket","Fixtures","","",0,0
+"CW","Yes","Yes, Not Included in Blanket","Fixtures","","",1,99999999
+"CW","No","No Coverage","Fixtures","","",1,99999999
+"CW","No","Yes, Included in Blanket","Fixtures","","",1,99999999
+"CW","No","Yes, Not Included in Blanket","Fixtures","","",1,99999999
+"CW","Not Applicable","No Coverage","Fixtures","","",0,0
+"CW","Yes","No Coverage","Furniture","","",0,0
+"CW","Yes","Yes, Included in Blanket","Furniture","","",0,0
+"CW","Yes","Yes, Not Included in Blanket","Furniture","","",1,99999999
+"CW","No","No Coverage","Furniture","","",1,99999999
+"CW","No","Yes, Included in Blanket","Furniture","","",1,99999999
+"CW","No","Yes, Not Included in Blanket","Furniture","","",1,99999999
+"CW","Not Applicable","No Coverage","Furniture","","",0,0
+"CW","Yes","No Coverage","Machinery and Equipment","","",0,0
+"CW","Yes","Yes, Included in Blanket","Machinery and Equipment","","",0,0
+"CW","Yes","Yes, Not Included in Blanket","Machinery and Equipment","","",1,99999999
+"CW","No","No Coverage","Machinery and Equipment","","",1,99999999
+"CW","No","Yes, Included in Blanket","Machinery and Equipment","","",1,99999999
+"CW","No","Yes, Not Included in Blanket","Machinery and Equipment","","",1,99999999
+"CW","Not Applicable","No Coverage","Machinery and Equipment","","",0,0
+"CW","Yes","No Coverage","Non-Owned Trailers","","",0,0
+"CW","Yes","Yes, Included in Blanket","Non-Owned Trailers","","",0,0
+"CW","Yes","Yes, Not Included in Blanket","Non-Owned Trailers","","",5001,99999999
+"CW","No","No Coverage","Non-Owned Trailers","","",5001,99999999
+"CW","No","Yes, Included in Blanket","Non-Owned Trailers","","",5001,99999999
+"CW","No","Yes, Not Included in Blanket","Non-Owned Trailers","","",5001,99999999
+"CW","Not Applicable","No Coverage","Non-Owned Trailers","","",0,0
+"CW","Yes","No Coverage","Personal Property in a Vault with an Approved Fire Rating","","",0,0
+"CW","Yes","Yes, Included in Blanket","Personal Property in a Vault with an Approved Fire Rating","","",0,0
+"CW","Yes","Yes, Not Included in Blanket","Personal Property in a Vault with an Approved Fire Rating","","",1,99999999
+"CW","No","No Coverage","Personal Property in a Vault with an Approved Fire Rating","","",1,99999999
+"CW","No","Yes, Included in Blanket","Personal Property in a Vault with an Approved Fire Rating","","",1,99999999
+"CW","No","Yes, Not Included in Blanket","Personal Property in a Vault with an Approved Fire Rating","","",1,99999999
+"CW","Not Applicable","No Coverage","Personal Property in a Vault with an Approved Fire Rating","","",0,0
+"CW","Yes","No Coverage","Property of Others","","",0,0
+"CW","Yes","Yes, Included in Blanket","Property of Others","","",0,0
+"CW","Yes","Yes, Not Included in Blanket","Property of Others","","",1,99999999
+"CW","No","No Coverage","Property of Others","","",1,99999999
+"CW","No","Yes, Included in Blanket","Property of Others","","",1,99999999
+"CW","No","Yes, Not Included in Blanket","Property of Others","","",1,99999999
+"CW","Not Applicable","No Coverage","Property of Others","","",0,0
+"CW","Yes","No Coverage","Property Other than Categories Listed Above","","",0,0
+"CW","Yes","Yes, Included in Blanket","Property Other than Categories Listed Above","","",0,0
+"CW","Yes","Yes, Not Included in Blanket","Property Other than Categories Listed Above","","",1,99999999
+"CW","No","No Coverage","Property Other than Categories Listed Above","","",1,99999999
+"CW","No","Yes, Included in Blanket","Property Other than Categories Listed Above","","",1,99999999
+"CW","No","Yes, Not Included in Blanket","Property Other than Categories Listed Above","","",1,99999999
+"CW","Not Applicable","No Coverage","Property Other than Categories Listed Above","","",0,0
+"CW","Yes","No Coverage","Stock","","",0,0
+"CW","Yes","Yes, Included in Blanket","Stock","","",0,0
+"CW","Yes","Yes, Not Included in Blanket","Stock","","",1,99999999
+"CW","No","No Coverage","Stock","","",1,99999999
+"CW","No","Yes, Included in Blanket","Stock","","",1,99999999
+"CW","No","Yes, Not Included in Blanket","Stock","","",1,99999999
+"CW","Not Applicable","No Coverage","Stock","","",0,0
+"CW","Yes","No Coverage","Tenants Improvements and Betterments","","",0,0
+"CW","Yes","Yes, Included in Blanket","Tenants Improvements and Betterments","","",0,0
+"CW","Yes","Yes, Not Included in Blanket","Tenants Improvements and Betterments","","",1,99999999
+"CW","No","No Coverage","Tenants Improvements and Betterments","","",1,99999999
+"CW","No","Yes, Included in Blanket","Tenants Improvements and Betterments","","",1,99999999
+"CW","No","Yes, Not Included in Blanket","Tenants Improvements and Betterments","","",1,99999999
+"CW","Not Applicable","No Coverage","Tenants Improvements and Betterments","","",0,0
+"CW","Yes","No Coverage","Valuable Papers and Records - Other Than Electronic Data","","",0,0
+"CW","Yes","Yes, Included in Blanket","Valuable Papers and Records - Other Than Electronic Data","","",0,0
+"CW","Yes","Yes, Not Included in Blanket","Valuable Papers and Records - Other Than Electronic Data","","",2501,99999999
+"CW","No","No Coverage","Valuable Papers and Records - Other Than Electronic Data","","",2501,99999999
+"CW","No","Yes, Included in Blanket","Valuable Papers and Records - Other Than Electronic Data","","",2501,99999999
+"CW","No","Yes, Not Included in Blanket","Valuable Papers and Records - Other Than Electronic Data","","",2501,99999999
+"CW","Not Applicable","No Coverage","Valuable Papers and Records - Other Than Electronic Data","","",0,0
+"CW","Yes","No Coverage","Fixtures, Improvements and Alterations","","",0,0
+"CW","Yes","Yes, Included in Blanket","Fixtures, Improvements and Alterations","","",0,0
+"CW","Yes","Yes, Not Included in Blanket","Fixtures, Improvements and Alterations","","",1,99999999
+"CW","No","No Coverage","Fixtures, Improvements and Alterations","","",1,99999999
+"CW","No","Yes, Included in Blanket","Fixtures, Improvements and Alterations","","",1,99999999
+"CW","No","Yes, Not Included in Blanket","Fixtures, Improvements and Alterations","","",1,99999999
+"CW","Not Applicable","No Coverage","Fixtures, Improvements and Alterations","","",0,0
+"CW","Yes","No Coverage","Personal Property of Others","","",0,0
+"CW","Yes","Yes, Included in Blanket","Personal Property of Others","","",0,0
+"CW","Yes","Yes, Not Included in Blanket","Personal Property of Others","","",1,99999999
+"CW","No","No Coverage","Personal Property of Others","","",1,99999999
+"CW","No","Yes, Included in Blanket","Personal Property of Others","","",1,99999999
+"CW","No","Yes, Not Included in Blanket","Personal Property of Others","","",1,99999999
+"CW","Not Applicable","No Coverage","Personal Property of Others","","",0,0
+"CW","Yes","No Coverage","Not Applicable","","",0,0
+"CW","Yes","Yes, Included in Blanket","Not Applicable","","",0,0
+"CW","Yes","Yes, Not Included in Blanket","Not Applicable","","",1,99999999
+"CW","No","No Coverage","Not Applicable","","",1,99999999
+"CW","No","Yes, Included in Blanket","Not Applicable","","",1,99999999
+"CW","No","Yes, Not Included in Blanket","Not Applicable","","",1,99999999
+"CW","Not Applicable","No Coverage","Not Applicable","","",0,0

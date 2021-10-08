@@ -1,0 +1,79 @@
+<rul:Rules xmlns:rul="http://www.verisk.com/iso/erc/Rule">
+	<rul:Rule Name="InitializeRuleSet" DataDefGroup="CommercialPropertyAdditionalLocationsSpecialCoinsuranceProvisions">
+		<rul:Sequence>
+			<rul:Locate AtDataDef="CommercialPropertyAdditionalLocationsSpecialCoinsuranceProvisionsBasicGroupICoverage">
+				<rul:RunRule Type="none" FileName="CommercialPropertyAdditionalLocationsSpecialCoinsuranceProvisionsBasicGroupICoverageRules" Rule="InitializeRuleSet" ClearCache="true" />
+			</rul:Locate>
+			<rul:Locate AtDataDef="CommercialPropertyAdditionalLocationsSpecialCoinsuranceProvisionsBasicGroupIICoverage">
+				<rul:RunRule Type="none" FileName="CommercialPropertyAdditionalLocationsSpecialCoinsuranceProvisionsBasicGroupIICoverageRules" Rule="InitializeRuleSet" ClearCache="true" />
+			</rul:Locate>
+			<rul:Locate AtDataDef="CommercialPropertyAdditionalLocationsSpecialCoinsuranceProvisionsBroadCoverage">
+				<rul:RunRule Type="none" FileName="CommercialPropertyAdditionalLocationsSpecialCoinsuranceProvisionsBroadCoverageRules" Rule="InitializeRuleSet" ClearCache="true" />
+			</rul:Locate>
+			<rul:Locate AtDataDef="CommercialPropertyAdditionalLocationsSpecialCoinsuranceProvisionsEarthquakeCoverage">
+				<rul:RunRule Type="none" FileName="CommercialPropertyAdditionalLocationsSpecialCoinsuranceProvisionsEarthquakeCoverageRules" Rule="InitializeRuleSet" ClearCache="true" />
+			</rul:Locate>
+			<rul:Locate AtDataDef="CommercialPropertyAdditionalLocationsSpecialCoinsuranceProvisionsSpecialCoverage">
+				<rul:RunRule Type="none" FileName="CommercialPropertyAdditionalLocationsSpecialCoinsuranceProvisionsSpecialCoverageRules" Rule="InitializeRuleSet" ClearCache="true" />
+			</rul:Locate>
+		</rul:Sequence>
+	</rul:Rule>
+	<rul:Rule Name="CalculateTotalPremium" Type="decimal" DataDefGroup="CommercialPropertyAdditionalLocationsSpecialCoinsuranceProvisions">
+		<rul:Sum>
+			<rul:Locate AtDataDef="CommercialPropertyAdditionalLocationsSpecialCoinsuranceProvisionsBasicGroupICoverage">
+				<rul:RunRule Type="decimal" FileName="CommercialPropertyAdditionalLocationsSpecialCoinsuranceProvisionsBasicGroupICoverageRules" Rule="CalculateTotalPremium" ClearCache="true" />
+			</rul:Locate>
+			<rul:Locate AtDataDef="CommercialPropertyAdditionalLocationsSpecialCoinsuranceProvisionsBasicGroupIICoverage">
+				<rul:RunRule Type="decimal" FileName="CommercialPropertyAdditionalLocationsSpecialCoinsuranceProvisionsBasicGroupIICoverageRules" Rule="CalculateTotalPremium" ClearCache="true" />
+			</rul:Locate>
+			<rul:Locate AtDataDef="CommercialPropertyAdditionalLocationsSpecialCoinsuranceProvisionsBroadCoverage">
+				<rul:RunRule Type="decimal" FileName="CommercialPropertyAdditionalLocationsSpecialCoinsuranceProvisionsBroadCoverageRules" Rule="CalculateTotalPremium" ClearCache="true" />
+			</rul:Locate>
+			<rul:Locate AtDataDef="CommercialPropertyAdditionalLocationsSpecialCoinsuranceProvisionsEarthquakeCoverage">
+				<rul:RunRule Type="decimal" FileName="CommercialPropertyAdditionalLocationsSpecialCoinsuranceProvisionsEarthquakeCoverageRules" Rule="CalculateTotalPremium" ClearCache="true" />
+			</rul:Locate>
+			<rul:Locate AtDataDef="CommercialPropertyAdditionalLocationsSpecialCoinsuranceProvisionsSpecialCoverage">
+				<rul:RunRule Type="decimal" FileName="CommercialPropertyAdditionalLocationsSpecialCoinsuranceProvisionsSpecialCoverageRules" Rule="CalculateTotalPremium" ClearCache="true" />
+			</rul:Locate>
+			<rul:If>
+				<rul:Test>
+					<rul:And>
+						<rul:Equal>
+							<rul:FirstValue Type="integer" FromConstant="0" FromDataDef="@PremiumIndicator" Order="DataDefInputParamConstant" />
+							<rul:Constant Type="integer">1</rul:Constant>
+						</rul:Equal>
+						<rul:NotEqual>
+							<rul:FirstValue Type="decimal" FromConstant="0" FromDataDef="@Premium" Order="DataDefInputParamConstant" />
+							<rul:Constant Type="decimal">0</rul:Constant>
+						</rul:NotEqual>
+					</rul:And>
+				</rul:Test>
+				<rul:Then>
+					<rul:FirstValue Type="decimal" FromConstant="0" FromDataDef="@Premium" Order="DataDefInputParamConstant" />
+				</rul:Then>
+				<rul:Else>
+					<rul:Constant Type="decimal">0</rul:Constant>
+				</rul:Else>
+			</rul:If>
+		</rul:Sum>
+	</rul:Rule>
+	<rul:Rule Name="ErcProcess" Type="none" DataDefGroup="CommercialPropertyAdditionalLocationsSpecialCoinsuranceProvisions">
+		<rul:Sequence>
+			<rul:Locate AtDataDef="CommercialPropertyAdditionalLocationsSpecialCoinsuranceProvisionsBasicGroupICoverage">
+				<rul:RunRule Type="none" FileName="CommercialPropertyAdditionalLocationsSpecialCoinsuranceProvisionsBasicGroupICoverageRules" Rule="ErcProcess" ClearCache="true" />
+			</rul:Locate>
+			<rul:Locate AtDataDef="CommercialPropertyAdditionalLocationsSpecialCoinsuranceProvisionsBasicGroupIICoverage">
+				<rul:RunRule Type="none" FileName="CommercialPropertyAdditionalLocationsSpecialCoinsuranceProvisionsBasicGroupIICoverageRules" Rule="ErcProcess" ClearCache="true" />
+			</rul:Locate>
+			<rul:Locate AtDataDef="CommercialPropertyAdditionalLocationsSpecialCoinsuranceProvisionsBroadCoverage">
+				<rul:RunRule Type="none" FileName="CommercialPropertyAdditionalLocationsSpecialCoinsuranceProvisionsBroadCoverageRules" Rule="ErcProcess" ClearCache="true" />
+			</rul:Locate>
+			<rul:Locate AtDataDef="CommercialPropertyAdditionalLocationsSpecialCoinsuranceProvisionsEarthquakeCoverage">
+				<rul:RunRule Type="none" FileName="CommercialPropertyAdditionalLocationsSpecialCoinsuranceProvisionsEarthquakeCoverageRules" Rule="ErcProcess" ClearCache="true" />
+			</rul:Locate>
+			<rul:Locate AtDataDef="CommercialPropertyAdditionalLocationsSpecialCoinsuranceProvisionsSpecialCoverage">
+				<rul:RunRule Type="none" FileName="CommercialPropertyAdditionalLocationsSpecialCoinsuranceProvisionsSpecialCoverageRules" Rule="ErcProcess" ClearCache="true" />
+			</rul:Locate>
+		</rul:Sequence>
+	</rul:Rule>
+</rul:Rules>

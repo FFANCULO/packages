@@ -1,0 +1,7 @@
+"StateCode","AdditionalFloodConstructionType","Code"
+"CW","Elevated Premises/Structures","E"
+"CW","Non-Elevated Premises/Structures with No Basement","N"
+"CW","Non-Elevated Premises/Structures with Unfinished Basement - Masonry","G"
+"CW","Non-Elevated Premises/Structures with Unfinished Basement - Concrete","H"
+"CW","Non-Elevated Premises/Structures with Finished Basement - Masonry","J"
+"CW","Non-Elevated Premises/Structures with Finished Basement - Concrete","K"

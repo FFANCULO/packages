@@ -1,0 +1,813 @@
+<rul:Rules xmlns:rul="http://www.verisk.com/iso/erc/Rule">
+	<rul:Rule Name="InitializeRuleSet" DataDefGroup="CommercialPropertyChangesFungusWetRotDryRotBacteria">
+		<rul:Sequence />
+	</rul:Rule>
+	<rul:Rule Name="CalculateTotalPremium" Type="decimal" DataDefGroup="CommercialPropertyChangesFungusWetRotDryRotBacteria">
+		<rul:If>
+			<rul:Test>
+				<rul:And>
+					<rul:Equal>
+						<rul:FirstValue Type="integer" FromConstant="0" FromDataDef="@PremiumIndicator" Order="DataDefInputParamConstant" />
+						<rul:Constant Type="integer">1</rul:Constant>
+					</rul:Equal>
+					<rul:NotEqual>
+						<rul:FirstValue Type="decimal" FromConstant="0" FromDataDef="@Premium" Order="DataDefInputParamConstant" />
+						<rul:Constant Type="decimal">0</rul:Constant>
+					</rul:NotEqual>
+				</rul:And>
+			</rul:Test>
+			<rul:Then>
+				<rul:FirstValue Type="decimal" FromConstant="0" FromDataDef="@Premium" Order="DataDefInputParamConstant" />
+			</rul:Then>
+			<rul:Else>
+				<rul:Constant Type="decimal">0</rul:Constant>
+			</rul:Else>
+		</rul:If>
+	</rul:Rule>
+	<rul:Rule Name="SetBusinessIncomeFungusPremium" Type="decimal" DataDefGroup="CommercialPropertyChangesFungusWetRotDryRotBacteria">
+		<rul:WithArgs>
+			<rul:Arg Type="decimal" Param="tempFinalBusinessIncomeFungusPremium">
+				<rul:FirstNonNull Type="decimal">
+					<rul:Sum>
+						<rul:ForEach AtDataDef="ancestor::CommercialProperty/CommercialPropertyLocationTable/CommercialPropertyLocation">
+							<rul:ForEach AtDataDef="CommercialPropertyStructureTable/CommercialPropertyStructure">
+								<rul:ForEach AtDataDef="CommercialPropertyBusinessIncomeTable/CommercialPropertyBusinessIncome">
+									<rul:If>
+										<rul:Test>
+											<rul:And>
+												<rul:Equal>
+													<rul:FirstValue Type="string" FromConstant="" FromDataDef="@FungusWetRotDryRotBacteriaCovIncrdPeriodRestorationIndicator" Order="DataDefInputParamConstant" />
+													<rul:Constant Type="string">Yes</rul:Constant>
+												</rul:Equal>
+												<rul:Exist AtInputDataDef="CommercialPropertyBusinessIncomeChangesFungusWetRotDryRotBacteriaCoverageBasicGroupICoverage" />
+												<rul:Exist AtInputDataDef="CommercialPropertyBusinessIncomeChangesFungusWetRotDryRotBacteriaCoverageBasicGroupIICoverage" />
+												<rul:Exist AtInputDataDef="CommercialPropertyBusinessIncomeChangesFungusWetRotDryRotBacteriaCoverageEarthquakeCoverage" />
+											</rul:And>
+										</rul:Test>
+										<rul:Then>
+											<rul:Sum>
+												<rul:Value Type="decimal" FromDataDef="CommercialPropertyBusinessIncomeChangesFungusWetRotDryRotBacteriaCoverageBasicGroupICoverage/@TotalPremium" />
+												<rul:Value Type="decimal" FromDataDef="CommercialPropertyBusinessIncomeChangesFungusWetRotDryRotBacteriaCoverageBasicGroupIICoverage/@TotalPremium" />
+												<rul:Value Type="decimal" FromDataDef="CommercialPropertyBusinessIncomeChangesFungusWetRotDryRotBacteriaCoverageEarthquakeCoverage/@TotalPremium" />
+											</rul:Sum>
+										</rul:Then>
+									</rul:If>
+								</rul:ForEach>
+							</rul:ForEach>
+						</rul:ForEach>
+					</rul:Sum>
+					<rul:Constant Type="decimal">0</rul:Constant>
+				</rul:FirstNonNull>
+			</rul:Arg>
+			<rul:Value Type="decimal" FromParam="tempFinalBusinessIncomeFungusPremium" />
+		</rul:WithArgs>
+	</rul:Rule>
+	<rul:Rule Name="ErcSetRatesAndFactors" Type="none" DataDefGroup="CommercialPropertyChangesFungusWetRotDryRotBacteria">
+		<rul:Sequence>
+			<rul:RunRule Type="none" FileName="CommercialPropertyChangesFungusWetRotDryRotBacteriaRules" Rule="SetFungusWetRotDryRotBacteriaCov" ClearCache="true" />
+			<rul:RunRule Type="none" FileName="CommercialPropertyChangesFungusWetRotDryRotBacteriaRules" Rule="SetExcessOfSubLimitRate" ClearCache="true" />
+			<rul:RunRule Type="none" FileName="CommercialPropertyChangesFungusWetRotDryRotBacteriaRules" Rule="SetIncrementalRate" ClearCache="true" />
+		</rul:Sequence>
+	</rul:Rule>
+	<rul:Rule Name="SetFungusWetRotDryRotBacteriaCov" Type="none" DataDefGroup="CommercialPropertyChangesFungusWetRotDryRotBacteria">
+		<rul:Sequence>
+			<rul:Copy Type="string" ToDataDef="@FungusWetRotDryRotBacteriaCov" FromDataDef="ancestor::CommercialProperty/@FungusWetRotDryRotBacteriaCov" />
+		</rul:Sequence>
+	</rul:Rule>
+	<rul:Rule Name="SetExcessOfSubLimitRate" Type="none" DataDefGroup="CommercialPropertyChangesFungusWetRotDryRotBacteria">
+		<rul:Sequence>
+			<rul:RunRule Type="decimal" ToDataDef="@ExcessOfSubLimitRate" FileName="CommercialPropertyChangesFungusWetRotDryRotBacteriaRules" Rule="LookupFungusExcessOfSubLimitRate" ClearCache="true" />
+		</rul:Sequence>
+	</rul:Rule>
+	<rul:Rule Name="SetIncrementalRate" Type="none" DataDefGroup="CommercialPropertyChangesFungusWetRotDryRotBacteria">
+		<rul:Sequence>
+			<rul:RunRule Type="decimal" ToDataDef="@IncrementalRate" FileName="CommercialPropertyChangesFungusWetRotDryRotBacteriaRules" Rule="LookupFungusIncrementalRate" ClearCache="true" />
+		</rul:Sequence>
+	</rul:Rule>
+	<rul:Rule Name="ErcRate" Type="none" DataDefGroup="CommercialPropertyChangesFungusWetRotDryRotBacteria">
+		<rul:Sequence>
+			<rul:RunRule Type="none" FileName="CommercialPropertyChangesFungusWetRotDryRotBacteriaRules" Rule="SetTotalLimits" ClearCache="true" />
+			<rul:RunRule Type="none" FileName="CommercialPropertyChangesFungusWetRotDryRotBacteriaRules" Rule="SetPremium" ClearCache="true" />
+			<rul:RunRule Type="none" FileName="CommercialPropertyChangesFungusWetRotDryRotBacteriaRules" Rule="SetPremiumIndicator" ClearCache="true" />
+		</rul:Sequence>
+	</rul:Rule>
+	<rul:Rule Name="SetTotalLimits" Type="none" DataDefGroup="CommercialPropertyChangesFungusWetRotDryRotBacteria">
+		<rul:Sequence>
+			<rul:Choose>
+				<rul:When>
+					<rul:Test>
+						<rul:NotEqual>
+							<rul:FirstValue Type="string" FromConstant="" FromDataDef="@FungusWetRotDryRotBacteriaCov" Order="DataDefInputParamConstant" />
+							<rul:Constant Type="string">Separate Limits</rul:Constant>
+						</rul:NotEqual>
+					</rul:Test>
+					<rul:Then>
+						<rul:Sequence>
+							<rul:Constant Type="integer" ToDataDef="@TotalLocationLimit">0</rul:Constant>
+							<rul:Constant Type="integer" ToDataDef="@TotalStructureLimit">0</rul:Constant>
+						</rul:Sequence>
+					</rul:Then>
+				</rul:When>
+				<rul:When>
+					<rul:Test>
+						<rul:Equal>
+							<rul:FirstValue Type="string" FromConstant="" FromDataDef="@FungusWetRotDryRotBacteriaCov" Order="DataDefInputParamConstant" />
+							<rul:Constant Type="string">Separate Limits</rul:Constant>
+						</rul:Equal>
+					</rul:Test>
+					<rul:Then>
+						<rul:Sequence>
+							<rul:Constant Type="integer" ToDataDef="@TotalLocationLimit">0</rul:Constant>
+							<rul:Constant Type="integer" ToDataDef="@TotalStructureLimit">0</rul:Constant>
+							<rul:WithArgs>
+								<rul:Arg Type="integer" Param="TotalLocationLimitIncrementParam">
+									<rul:Sum>
+										<rul:ForEach AtInputDataDef="ancestor::CommercialProperty/CommercialPropertyLocationTable/CommercialPropertyLocation">
+											<rul:If>
+												<rul:Test>
+													<rul:GreaterThanOrEqual>
+														<rul:FirstValue Type="integer" FromConstant="0" FromDataDef="@FungusWetRotDryRotBacteriaCovSubLimit" Order="DataDefInputParamConstant" />
+														<rul:Constant Type="integer">15000</rul:Constant>
+													</rul:GreaterThanOrEqual>
+												</rul:Test>
+												<rul:Then>
+													<rul:Convert Type="integer">
+														<rul:Subtract>
+															<rul:Value Type="integer" FromDataDef="@FungusWetRotDryRotBacteriaCovSubLimit" />
+															<rul:Constant Type="integer">15000</rul:Constant>
+														</rul:Subtract>
+													</rul:Convert>
+												</rul:Then>
+											</rul:If>
+										</rul:ForEach>
+										<rul:FirstValue Type="integer" FromConstant="0" FromDataDef="@TotalLocationLimit" Order="DataDefInputParamConstant" />
+									</rul:Sum>
+								</rul:Arg>
+								<rul:Value Type="integer" ToDataDef="@TotalLocationLimit" FromParam="TotalLocationLimitIncrementParam" />
+							</rul:WithArgs>
+							<rul:WithArgs>
+								<rul:Arg Type="integer" Param="TotalStructureLimitIncrementParam">
+									<rul:Sum>
+										<rul:ForEach AtInputDataDef="ancestor::CommercialProperty/CommercialPropertyLocationTable/CommercialPropertyLocation">
+											<rul:ForEach AtInputDataDef="CommercialPropertyStructureTable/CommercialPropertyStructure">
+												<rul:If>
+													<rul:Test>
+														<rul:GreaterThanOrEqual>
+															<rul:FirstValue Type="integer" FromConstant="0" FromDataDef="@FungusWetRotDryRotBacteriaCovSubLimit" Order="DataDefInputParamConstant" />
+															<rul:Constant Type="integer">15000</rul:Constant>
+														</rul:GreaterThanOrEqual>
+													</rul:Test>
+													<rul:Then>
+														<rul:Convert Type="integer">
+															<rul:Subtract>
+																<rul:Value Type="integer" FromDataDef="@FungusWetRotDryRotBacteriaCovSubLimit" />
+																<rul:Constant Type="integer">15000</rul:Constant>
+															</rul:Subtract>
+														</rul:Convert>
+													</rul:Then>
+												</rul:If>
+											</rul:ForEach>
+										</rul:ForEach>
+										<rul:FirstValue Type="integer" FromConstant="0" FromDataDef="@TotalStructureLimit" Order="DataDefInputParamConstant" />
+									</rul:Sum>
+								</rul:Arg>
+								<rul:Value Type="integer" ToDataDef="@TotalStructureLimit" FromParam="TotalStructureLimitIncrementParam" />
+							</rul:WithArgs>
+						</rul:Sequence>
+					</rul:Then>
+				</rul:When>
+			</rul:Choose>
+		</rul:Sequence>
+	</rul:Rule>
+	<rul:Rule Name="SetPremium" Type="none" DataDefGroup="CommercialPropertyChangesFungusWetRotDryRotBacteria">
+		<rul:Sequence>
+			<rul:RunRule Type="none" FileName="CommercialPropertyChangesFungusWetRotDryRotBacteriaRules" Rule="SetExcessOfSublimit" ClearCache="true" />
+			<rul:RunRule Type="none" FileName="CommercialPropertyChangesFungusWetRotDryRotBacteriaRules" Rule="SetIncrementalCalc" ClearCache="true" />
+			<rul:RunRule Type="decimal" ToDataDef="@FinalBusinessIncomeFungusPremium" FileName="CommercialPropertyChangesFungusWetRotDryRotBacteriaRules" Rule="SetBusinessIncomeFungusPremium" ClearCache="true" />
+			<rul:WithArgs>
+				<rul:Arg Type="decimal" Param="calcPremium">
+					<rul:FirstNonNull Type="decimal">
+						<rul:Sum>
+							<rul:Value Type="decimal" FromDataDef="@ExcessOfSublimitCalc" />
+							<rul:Value Type="decimal" FromDataDef="@IncrementalCalc" />
+							<rul:Value Type="decimal" FromDataDef="@FinalBusinessIncomeFungusPremium" />
+						</rul:Sum>
+						<rul:Constant Type="decimal">0</rul:Constant>
+					</rul:FirstNonNull>
+				</rul:Arg>
+				<rul:Value Type="decimal" ToDataDef="@Premium" FromParam="calcPremium" />
+			</rul:WithArgs>
+		</rul:Sequence>
+	</rul:Rule>
+	<rul:Rule Name="SetExcessOfSublimit" Type="none" DataDefGroup="CommercialPropertyChangesFungusWetRotDryRotBacteria">
+		<rul:Sequence>
+			<rul:WithArgs>
+				<rul:Arg Type="decimal" Param="tempExcessOfSublimitCalc">
+					<rul:FirstNonNull Type="decimal">
+						<rul:Choose>
+							<rul:When>
+								<rul:Test>
+									<rul:And>
+										<rul:Equal>
+											<rul:FirstValue Type="string" FromConstant="" FromDataDef="@FungusWetRotDryRotBacteriaCov" Order="DataDefInputParamConstant" />
+											<rul:Constant Type="string">Policy Limit</rul:Constant>
+										</rul:Equal>
+										<rul:GreaterThan>
+											<rul:FirstValue Type="integer" FromConstant="0" FromDataDef="@SubLimit" Order="DataDefInputParamConstant" />
+											<rul:Constant Type="integer">15000</rul:Constant>
+										</rul:GreaterThan>
+									</rul:And>
+								</rul:Test>
+								<rul:Then>
+									<rul:WithArgs>
+										<rul:Arg Type="integer" Param="formCountforExcessOfSublimit">
+											<rul:FirstNonNull Type="integer">
+												<rul:WithArgs>
+													<rul:Arg Type="integer" Param="locationCountforExcessOfSublimit">
+														<rul:FirstNonNull Type="integer">
+															<rul:Sum>
+																<rul:ForEach AtDataDef="ancestor::CommercialProperty/CommercialPropertyLocationTable/CommercialPropertyLocation">
+																	<rul:If>
+																		<rul:Test>
+																			<rul:Equal>
+																				<rul:FirstValue Type="string" FromConstant="" FromDataDef="@FungusWetRotDryRotBacteriaCovLocApply" Order="DataDefInputParamConstant" />
+																				<rul:Constant Type="string">Yes</rul:Constant>
+																			</rul:Equal>
+																		</rul:Test>
+																		<rul:Then>
+																			<rul:Constant Type="integer">1</rul:Constant>
+																		</rul:Then>
+																	</rul:If>
+																</rul:ForEach>
+															</rul:Sum>
+															<rul:Constant Type="integer">0</rul:Constant>
+														</rul:FirstNonNull>
+													</rul:Arg>
+													<rul:Arg Type="integer" Param="structureCountforExcessOfSublimit">
+														<rul:FirstNonNull Type="integer">
+															<rul:If>
+																<rul:Test>
+																	<rul:Equal>
+																		<rul:FirstValue Type="string" FromConstant="" FromDataDef="../../@FungusWetRotDryRotBacteriaCov" Order="DataDefInputParamConstant" />
+																		<rul:Constant Type="string">Separate Limits</rul:Constant>
+																	</rul:Equal>
+																</rul:Test>
+																<rul:Then>
+																	<rul:Sum>
+																		<rul:ForEach AtDataDef="ancestor::CommercialProperty/CommercialPropertyLocationTable/CommercialPropertyLocation">
+																			<rul:ForEach AtDataDef="CommercialPropertyStructureTable/CommercialPropertyStructure">
+																				<rul:If>
+																					<rul:Test>
+																						<rul:Equal>
+																							<rul:FirstValue Type="string" FromConstant="" FromDataDef="../../@FungusWetRotDryRotBacteriaCovLocApply" Order="DataDefInputParamConstant" />
+																							<rul:Constant Type="string">No</rul:Constant>
+																						</rul:Equal>
+																					</rul:Test>
+																					<rul:Then>
+																						<rul:If>
+																							<rul:Test>
+																								<rul:Equal>
+																									<rul:FirstValue Type="string" FromConstant="" FromDataDef="@FungusWetRotDryRotBacteriaCovStructApply" Order="DataDefInputParamConstant" />
+																									<rul:Constant Type="string">Yes</rul:Constant>
+																								</rul:Equal>
+																							</rul:Test>
+																							<rul:Then>
+																								<rul:Constant Type="integer">1</rul:Constant>
+																							</rul:Then>
+																						</rul:If>
+																					</rul:Then>
+																				</rul:If>
+																			</rul:ForEach>
+																		</rul:ForEach>
+																	</rul:Sum>
+																</rul:Then>
+															</rul:If>
+															<rul:Constant Type="integer">0</rul:Constant>
+														</rul:FirstNonNull>
+													</rul:Arg>
+													<rul:Choose>
+														<rul:When>
+															<rul:Test>
+																<rul:Equal>
+																	<rul:Sum>
+																		<rul:Value Type="integer" FromParam="locationCountforExcessOfSublimit" />
+																		<rul:Value Type="integer" FromParam="structureCountforExcessOfSublimit" />
+																	</rul:Sum>
+																	<rul:Constant Type="decimal">0</rul:Constant>
+																</rul:Equal>
+															</rul:Test>
+															<rul:Then>
+																<rul:Constant Type="integer">1</rul:Constant>
+															</rul:Then>
+														</rul:When>
+														<rul:When>
+															<rul:Test>
+																<rul:GreaterThan>
+																	<rul:Sum>
+																		<rul:Value Type="integer" FromParam="locationCountforExcessOfSublimit" />
+																		<rul:Value Type="integer" FromParam="structureCountforExcessOfSublimit" />
+																	</rul:Sum>
+																	<rul:Constant Type="decimal">0</rul:Constant>
+																</rul:GreaterThan>
+															</rul:Test>
+															<rul:Then>
+																<rul:Convert Type="integer">
+																	<rul:Sum>
+																		<rul:Value Type="integer" FromParam="locationCountforExcessOfSublimit" />
+																		<rul:Value Type="integer" FromParam="structureCountforExcessOfSublimit" />
+																	</rul:Sum>
+																</rul:Convert>
+															</rul:Then>
+														</rul:When>
+														<rul:Otherwise>
+															<rul:Constant Type="integer">0</rul:Constant>
+														</rul:Otherwise>
+													</rul:Choose>
+												</rul:WithArgs>
+												<rul:Constant Type="integer">0</rul:Constant>
+											</rul:FirstNonNull>
+										</rul:Arg>
+										<rul:Product DecimalPlaces="0">
+											<rul:Product DecimalPlaces="0">
+												<rul:Product DecimalPlaces="0">
+													<rul:Product DecimalPlaces="0">
+														<rul:Product DecimalPlaces="3">
+															<rul:FirstValue Type="decimal" FromConstant="0" FromDataDef="@ExcessOfSubLimitRate" Order="DataDefInputParamConstant" />
+															<rul:FirstValue Type="decimal" FromConstant="0" FromDataDef="ancestor::CommercialProperty/@LossCostMultiplier" Order="DataDefInputParamConstant" />
+														</rul:Product>
+														<rul:Value Type="integer" FromParam="formCountforExcessOfSublimit" />
+														<rul:Divide>
+															<rul:Convert Type="decimal">
+																<rul:Subtract>
+																	<rul:Value Type="integer" FromDataDef="@SubLimit" />
+																	<rul:Constant Type="integer">15000</rul:Constant>
+																</rul:Subtract>
+															</rul:Convert>
+															<rul:Constant Type="integer">100</rul:Constant>
+														</rul:Divide>
+													</rul:Product>
+													<rul:FirstValue Type="decimal" FromConstant="0" FromDataDef="ancestor::CommercialProperty/@PackageModFactor" Order="DataDefInputParamConstant" />
+												</rul:Product>
+												<rul:FirstValue Type="decimal" FromConstant="0" FromDataDef="ancestor::CommercialProperty/@MultiPremiumAndDispersionCreditFactor" Order="DataDefInputParamConstant" />
+											</rul:Product>
+											<rul:FirstValue Type="decimal" FromConstant="0" FromDataDef="ancestor::CommercialProperty/@IRPMFactor" Order="DataDefInputParamConstant" />
+										</rul:Product>
+									</rul:WithArgs>
+								</rul:Then>
+							</rul:When>
+							<rul:When>
+								<rul:Test>
+									<rul:Equal>
+										<rul:FirstValue Type="string" FromConstant="" FromDataDef="@FungusWetRotDryRotBacteriaCov" Order="DataDefInputParamConstant" />
+										<rul:Constant Type="string">Separate Limits</rul:Constant>
+									</rul:Equal>
+								</rul:Test>
+								<rul:Then>
+									<rul:Product DecimalPlaces="0">
+										<rul:Product DecimalPlaces="0">
+											<rul:Product DecimalPlaces="0">
+												<rul:Product DecimalPlaces="0">
+													<rul:Product DecimalPlaces="3">
+														<rul:FirstValue Type="decimal" FromConstant="0" FromDataDef="@ExcessOfSubLimitRate" Order="DataDefInputParamConstant" />
+														<rul:FirstValue Type="decimal" FromConstant="0" FromDataDef="ancestor::CommercialProperty/@LossCostMultiplier" Order="DataDefInputParamConstant" />
+													</rul:Product>
+													<rul:Divide>
+														<rul:Convert Type="decimal">
+															<rul:Sum>
+																<rul:Value Type="integer" FromDataDef="@TotalStructureLimit" />
+																<rul:Value Type="integer" FromDataDef="@TotalLocationLimit" />
+															</rul:Sum>
+														</rul:Convert>
+														<rul:Constant Type="integer">100</rul:Constant>
+													</rul:Divide>
+												</rul:Product>
+												<rul:FirstValue Type="decimal" FromConstant="0" FromDataDef="ancestor::CommercialProperty/@PackageModFactor" Order="DataDefInputParamConstant" />
+											</rul:Product>
+											<rul:FirstValue Type="decimal" FromConstant="0" FromDataDef="ancestor::CommercialProperty/@MultiPremiumAndDispersionCreditFactor" Order="DataDefInputParamConstant" />
+										</rul:Product>
+										<rul:FirstValue Type="decimal" FromConstant="0" FromDataDef="ancestor::CommercialProperty/@IRPMFactor" Order="DataDefInputParamConstant" />
+									</rul:Product>
+								</rul:Then>
+							</rul:When>
+							<rul:When>
+								<rul:Test>
+									<rul:Or>
+										<rul:Equal>
+											<rul:FirstValue Type="string" FromConstant="" FromDataDef="@FungusWetRotDryRotBacteriaCov" Order="DataDefInputParamConstant" />
+											<rul:Constant Type="string">15,000 Sub Limit</rul:Constant>
+										</rul:Equal>
+										<rul:And>
+											<rul:Equal>
+												<rul:FirstValue Type="string" FromConstant="" FromDataDef="@FungusWetRotDryRotBacteriaCov" Order="DataDefInputParamConstant" />
+												<rul:Constant Type="string">Policy Limit</rul:Constant>
+											</rul:Equal>
+											<rul:LessThanOrEqual>
+												<rul:FirstValue Type="integer" FromConstant="0" FromDataDef="@SubLimit" Order="DataDefInputParamConstant" />
+												<rul:Constant Type="integer">15000</rul:Constant>
+											</rul:LessThanOrEqual>
+										</rul:And>
+									</rul:Or>
+								</rul:Test>
+								<rul:Then>
+									<rul:Constant Type="decimal">0</rul:Constant>
+								</rul:Then>
+							</rul:When>
+							<rul:Otherwise>
+								<rul:Constant Type="decimal">0</rul:Constant>
+							</rul:Otherwise>
+						</rul:Choose>
+						<rul:Constant Type="decimal">0</rul:Constant>
+					</rul:FirstNonNull>
+				</rul:Arg>
+				<rul:Value Type="decimal" ToDataDef="@ExcessOfSublimitCalc" FromParam="tempExcessOfSublimitCalc" />
+			</rul:WithArgs>
+		</rul:Sequence>
+	</rul:Rule>
+	<rul:Rule Name="SetIncrementalCalc" Type="none" DataDefGroup="CommercialPropertyChangesFungusWetRotDryRotBacteria">
+		<rul:Sequence>
+			<rul:WithArgs>
+				<rul:Arg Type="decimal" Param="tempIncrementalCalc">
+					<rul:FirstNonNull Type="decimal">
+						<rul:WithArgs>
+							<rul:Arg Type="string" Param="cppGoverningState">
+								<rul:FirstNonNull Type="string">
+									<rul:If>
+										<rul:Test>
+											<rul:And>
+												<rul:IsNotNull>
+													<rul:Value Type="string" FromDataDef="../../@CPPGoverningState" />
+												</rul:IsNotNull>
+												<rul:NotEqual>
+													<rul:FirstValue Type="string" FromConstant="" FromDataDef="../../@CPPGoverningState" Order="DataDefInputParamConstant" />
+													<rul:Constant Type="string"></rul:Constant>
+												</rul:NotEqual>
+											</rul:And>
+										</rul:Test>
+										<rul:Then>
+											<rul:FirstValue Type="string" FromConstant="" FromDataDef="../../@CPPGoverningState" Order="DataDefInputParamConstant" />
+										</rul:Then>
+									</rul:If>
+									<rul:Constant Type="string"></rul:Constant>
+								</rul:FirstNonNull>
+							</rul:Arg>
+							<rul:Arg Type="string" Param="stateFullName">
+								<rul:FirstNonNull Type="string">
+									<rul:If>
+										<rul:Test>
+											<rul:And>
+												<rul:IsNotNull>
+													<rul:Value Type="string" FromDataDef="../../@StateFullName" />
+												</rul:IsNotNull>
+												<rul:NotEqual>
+													<rul:FirstValue Type="string" FromConstant="" FromDataDef="../../@StateFullName" Order="DataDefInputParamConstant" />
+													<rul:Constant Type="string"></rul:Constant>
+												</rul:NotEqual>
+											</rul:And>
+										</rul:Test>
+										<rul:Then>
+											<rul:FirstValue Type="string" FromConstant="" FromDataDef="../../@StateFullName" Order="DataDefInputParamConstant" />
+										</rul:Then>
+									</rul:If>
+									<rul:Constant Type="string"></rul:Constant>
+								</rul:FirstNonNull>
+							</rul:Arg>
+							<rul:If>
+								<rul:Test>
+									<rul:And>
+										<rul:NotEqual>
+											<rul:Value Type="string" FromParam="cppGoverningState" />
+											<rul:Constant Type="string"></rul:Constant>
+										</rul:NotEqual>
+										<rul:NotEqual>
+											<rul:Value Type="string" FromParam="cppGoverningState" />
+											<rul:Value Type="string" FromParam="stateFullName" />
+										</rul:NotEqual>
+									</rul:And>
+								</rul:Test>
+								<rul:Then>
+									<rul:WithArgs>
+										<rul:Arg Type="integer" Param="formCount">
+											<rul:FirstNonNull Type="integer">
+												<rul:WithArgs>
+													<rul:Arg Type="integer" Param="locationCount">
+														<rul:FirstNonNull Type="integer">
+															<rul:Sum>
+																<rul:ForEach AtDataDef="ancestor::CommercialProperty/CommercialPropertyLocationTable/CommercialPropertyLocation">
+																	<rul:If>
+																		<rul:Test>
+																			<rul:Equal>
+																				<rul:FirstValue Type="string" FromConstant="" FromDataDef="@FungusWetRotDryRotBacteriaCovLocApply" Order="DataDefInputParamConstant" />
+																				<rul:Constant Type="string">Yes</rul:Constant>
+																			</rul:Equal>
+																		</rul:Test>
+																		<rul:Then>
+																			<rul:Constant Type="integer">1</rul:Constant>
+																		</rul:Then>
+																	</rul:If>
+																</rul:ForEach>
+															</rul:Sum>
+															<rul:Constant Type="integer">0</rul:Constant>
+														</rul:FirstNonNull>
+													</rul:Arg>
+													<rul:Arg Type="integer" Param="structureCount">
+														<rul:FirstNonNull Type="integer">
+															<rul:If>
+																<rul:Test>
+																	<rul:Equal>
+																		<rul:FirstValue Type="string" FromConstant="" FromDataDef="../../@FungusWetRotDryRotBacteriaCov" Order="DataDefInputParamConstant" />
+																		<rul:Constant Type="string">Separate Limits</rul:Constant>
+																	</rul:Equal>
+																</rul:Test>
+																<rul:Then>
+																	<rul:Sum>
+																		<rul:ForEach AtDataDef="ancestor::CommercialProperty/CommercialPropertyLocationTable/CommercialPropertyLocation">
+																			<rul:ForEach AtDataDef="CommercialPropertyStructureTable/CommercialPropertyStructure">
+																				<rul:If>
+																					<rul:Test>
+																						<rul:Equal>
+																							<rul:FirstValue Type="string" FromConstant="" FromDataDef="../../@FungusWetRotDryRotBacteriaCovLocApply" Order="DataDefInputParamConstant" />
+																							<rul:Constant Type="string">No</rul:Constant>
+																						</rul:Equal>
+																					</rul:Test>
+																					<rul:Then>
+																						<rul:If>
+																							<rul:Test>
+																								<rul:Equal>
+																									<rul:FirstValue Type="string" FromConstant="" FromDataDef="@FungusWetRotDryRotBacteriaCovStructApply" Order="DataDefInputParamConstant" />
+																									<rul:Constant Type="string">Yes</rul:Constant>
+																								</rul:Equal>
+																							</rul:Test>
+																							<rul:Then>
+																								<rul:Constant Type="integer">1</rul:Constant>
+																							</rul:Then>
+																						</rul:If>
+																					</rul:Then>
+																				</rul:If>
+																			</rul:ForEach>
+																		</rul:ForEach>
+																	</rul:Sum>
+																</rul:Then>
+															</rul:If>
+															<rul:Constant Type="integer">0</rul:Constant>
+														</rul:FirstNonNull>
+													</rul:Arg>
+													<rul:Choose>
+														<rul:When>
+															<rul:Test>
+																<rul:Equal>
+																	<rul:Sum>
+																		<rul:Value Type="integer" FromParam="locationCount" />
+																		<rul:Value Type="integer" FromParam="structureCount" />
+																	</rul:Sum>
+																	<rul:Constant Type="decimal">0</rul:Constant>
+																</rul:Equal>
+															</rul:Test>
+															<rul:Then>
+																<rul:Constant Type="integer">1</rul:Constant>
+															</rul:Then>
+														</rul:When>
+														<rul:When>
+															<rul:Test>
+																<rul:GreaterThan>
+																	<rul:Sum>
+																		<rul:Value Type="integer" FromParam="locationCount" />
+																		<rul:Value Type="integer" FromParam="structureCount" />
+																	</rul:Sum>
+																	<rul:Constant Type="decimal">0</rul:Constant>
+																</rul:GreaterThan>
+															</rul:Test>
+															<rul:Then>
+																<rul:Convert Type="integer">
+																	<rul:Sum>
+																		<rul:Value Type="integer" FromParam="locationCount" />
+																		<rul:Value Type="integer" FromParam="structureCount" />
+																	</rul:Sum>
+																</rul:Convert>
+															</rul:Then>
+														</rul:When>
+														<rul:Otherwise>
+															<rul:Constant Type="integer">0</rul:Constant>
+														</rul:Otherwise>
+													</rul:Choose>
+												</rul:WithArgs>
+												<rul:Constant Type="integer">0</rul:Constant>
+											</rul:FirstNonNull>
+										</rul:Arg>
+										<rul:Product DecimalPlaces="0">
+											<rul:Product DecimalPlaces="0">
+												<rul:Product DecimalPlaces="0">
+													<rul:Product DecimalPlaces="0">
+														<rul:Product DecimalPlaces="3">
+															<rul:FirstValue Type="decimal" FromConstant="0" FromDataDef="@IncrementalRate" Order="DataDefInputParamConstant" />
+															<rul:FirstValue Type="decimal" FromConstant="0" FromDataDef="ancestor::CommercialProperty/@LossCostMultiplier" Order="DataDefInputParamConstant" />
+														</rul:Product>
+														<rul:Value Type="integer" FromParam="formCount" />
+													</rul:Product>
+													<rul:FirstValue Type="decimal" FromConstant="0" FromDataDef="ancestor::CommercialProperty/@PackageModFactor" Order="DataDefInputParamConstant" />
+												</rul:Product>
+												<rul:FirstValue Type="decimal" FromConstant="0" FromDataDef="ancestor::CommercialProperty/@MultiPremiumAndDispersionCreditFactor" Order="DataDefInputParamConstant" />
+											</rul:Product>
+											<rul:FirstValue Type="decimal" FromConstant="0" FromDataDef="ancestor::CommercialProperty/@IRPMFactor" Order="DataDefInputParamConstant" />
+										</rul:Product>
+									</rul:WithArgs>
+								</rul:Then>
+								<rul:Else>
+									<rul:WithArgs>
+										<rul:Arg Type="integer" Param="formCount">
+											<rul:FirstNonNull Type="integer">
+												<rul:WithArgs>
+													<rul:Arg Type="integer" Param="locationCount">
+														<rul:FirstNonNull Type="integer">
+															<rul:Sum>
+																<rul:ForEach AtDataDef="ancestor::CommercialProperty/CommercialPropertyLocationTable/CommercialPropertyLocation">
+																	<rul:If>
+																		<rul:Test>
+																			<rul:Equal>
+																				<rul:FirstValue Type="string" FromConstant="" FromDataDef="@FungusWetRotDryRotBacteriaCovLocApply" Order="DataDefInputParamConstant" />
+																				<rul:Constant Type="string">Yes</rul:Constant>
+																			</rul:Equal>
+																		</rul:Test>
+																		<rul:Then>
+																			<rul:Constant Type="integer">1</rul:Constant>
+																		</rul:Then>
+																	</rul:If>
+																</rul:ForEach>
+															</rul:Sum>
+															<rul:Constant Type="integer">0</rul:Constant>
+														</rul:FirstNonNull>
+													</rul:Arg>
+													<rul:Arg Type="integer" Param="structureCount">
+														<rul:FirstNonNull Type="integer">
+															<rul:If>
+																<rul:Test>
+																	<rul:Equal>
+																		<rul:FirstValue Type="string" FromConstant="" FromDataDef="../../@FungusWetRotDryRotBacteriaCov" Order="DataDefInputParamConstant" />
+																		<rul:Constant Type="string">Separate Limits</rul:Constant>
+																	</rul:Equal>
+																</rul:Test>
+																<rul:Then>
+																	<rul:Sum>
+																		<rul:ForEach AtDataDef="ancestor::CommercialProperty/CommercialPropertyLocationTable/CommercialPropertyLocation">
+																			<rul:ForEach AtDataDef="CommercialPropertyStructureTable/CommercialPropertyStructure">
+																				<rul:If>
+																					<rul:Test>
+																						<rul:Equal>
+																							<rul:FirstValue Type="string" FromConstant="" FromDataDef="../../@FungusWetRotDryRotBacteriaCovLocApply" Order="DataDefInputParamConstant" />
+																							<rul:Constant Type="string">No</rul:Constant>
+																						</rul:Equal>
+																					</rul:Test>
+																					<rul:Then>
+																						<rul:If>
+																							<rul:Test>
+																								<rul:Equal>
+																									<rul:FirstValue Type="string" FromConstant="" FromDataDef="@FungusWetRotDryRotBacteriaCovStructApply" Order="DataDefInputParamConstant" />
+																									<rul:Constant Type="string">Yes</rul:Constant>
+																								</rul:Equal>
+																							</rul:Test>
+																							<rul:Then>
+																								<rul:Constant Type="integer">1</rul:Constant>
+																							</rul:Then>
+																						</rul:If>
+																					</rul:Then>
+																				</rul:If>
+																			</rul:ForEach>
+																		</rul:ForEach>
+																	</rul:Sum>
+																</rul:Then>
+															</rul:If>
+															<rul:Constant Type="integer">0</rul:Constant>
+														</rul:FirstNonNull>
+													</rul:Arg>
+													<rul:Choose>
+														<rul:When>
+															<rul:Test>
+																<rul:Equal>
+																	<rul:Sum>
+																		<rul:Value Type="integer" FromParam="locationCount" />
+																		<rul:Value Type="integer" FromParam="structureCount" />
+																	</rul:Sum>
+																	<rul:Constant Type="decimal">0</rul:Constant>
+																</rul:Equal>
+															</rul:Test>
+															<rul:Then>
+																<rul:Constant Type="integer">1</rul:Constant>
+															</rul:Then>
+														</rul:When>
+														<rul:When>
+															<rul:Test>
+																<rul:GreaterThan>
+																	<rul:Sum>
+																		<rul:Value Type="integer" FromParam="locationCount" />
+																		<rul:Value Type="integer" FromParam="structureCount" />
+																	</rul:Sum>
+																	<rul:Constant Type="decimal">0</rul:Constant>
+																</rul:GreaterThan>
+															</rul:Test>
+															<rul:Then>
+																<rul:Convert Type="integer">
+																	<rul:Sum>
+																		<rul:Value Type="integer" FromParam="locationCount" />
+																		<rul:Value Type="integer" FromParam="structureCount" />
+																	</rul:Sum>
+																</rul:Convert>
+															</rul:Then>
+														</rul:When>
+														<rul:Otherwise>
+															<rul:Constant Type="integer">0</rul:Constant>
+														</rul:Otherwise>
+													</rul:Choose>
+												</rul:WithArgs>
+												<rul:Constant Type="integer">0</rul:Constant>
+											</rul:FirstNonNull>
+										</rul:Arg>
+										<rul:Product DecimalPlaces="0">
+											<rul:Product DecimalPlaces="0">
+												<rul:Product DecimalPlaces="0">
+													<rul:Product DecimalPlaces="0">
+														<rul:Product DecimalPlaces="3">
+															<rul:FirstValue Type="decimal" FromConstant="0" FromDataDef="@IncrementalRate" Order="DataDefInputParamConstant" />
+															<rul:FirstValue Type="decimal" FromConstant="0" FromDataDef="ancestor::CommercialProperty/@LossCostMultiplier" Order="DataDefInputParamConstant" />
+														</rul:Product>
+														<rul:Subtract>
+															<rul:Value Type="integer" FromParam="formCount" />
+															<rul:Constant Type="integer">1</rul:Constant>
+														</rul:Subtract>
+													</rul:Product>
+													<rul:FirstValue Type="decimal" FromConstant="0" FromDataDef="ancestor::CommercialProperty/@PackageModFactor" Order="DataDefInputParamConstant" />
+												</rul:Product>
+												<rul:FirstValue Type="decimal" FromConstant="0" FromDataDef="ancestor::CommercialProperty/@MultiPremiumAndDispersionCreditFactor" Order="DataDefInputParamConstant" />
+											</rul:Product>
+											<rul:FirstValue Type="decimal" FromConstant="0" FromDataDef="ancestor::CommercialProperty/@IRPMFactor" Order="DataDefInputParamConstant" />
+										</rul:Product>
+									</rul:WithArgs>
+								</rul:Else>
+							</rul:If>
+						</rul:WithArgs>
+						<rul:Constant Type="decimal">0</rul:Constant>
+					</rul:FirstNonNull>
+				</rul:Arg>
+				<rul:Value Type="decimal" ToDataDef="@IncrementalCalc" FromParam="tempIncrementalCalc" />
+			</rul:WithArgs>
+		</rul:Sequence>
+	</rul:Rule>
+	<rul:Rule Name="SetPremiumIndicator" Type="none" DataDefGroup="CommercialPropertyChangesFungusWetRotDryRotBacteria">
+		<rul:Sequence>
+			<rul:If>
+				<rul:Test>
+					<rul:NotEqual>
+						<rul:FirstValue Type="decimal" FromConstant="0" FromDataDef="@Premium" Order="DataDefInputParamConstant" />
+						<rul:Constant Type="decimal">0</rul:Constant>
+					</rul:NotEqual>
+				</rul:Test>
+				<rul:Then>
+					<rul:Sequence>
+						<rul:Constant Type="integer" ToDataDef="@PremiumIndicator">1</rul:Constant>
+					</rul:Sequence>
+				</rul:Then>
+				<rul:Else>
+					<rul:Sequence>
+						<rul:Constant Type="integer" ToDataDef="@PremiumIndicator">0</rul:Constant>
+					</rul:Sequence>
+				</rul:Else>
+			</rul:If>
+		</rul:Sequence>
+	</rul:Rule>
+	<rul:Rule Name="ErcProcess" Type="none" DataDefGroup="CommercialPropertyChangesFungusWetRotDryRotBacteria">
+		<rul:Sequence>
+			<rul:RunRule Type="none" FileName="CommercialPropertyChangesFungusWetRotDryRotBacteriaRules" Rule="ErcSetRatesAndFactors" ClearCache="true" />
+			<rul:RunRule Type="none" FileName="CommercialPropertyChangesFungusWetRotDryRotBacteriaRules" Rule="ErcRate" ClearCache="true" />
+		</rul:Sequence>
+	</rul:Rule>
+	<rul:Rule Name="LookupFungusExcessOfSubLimitRate" Type="decimal" DataDefGroup="CommercialPropertyChangesFungusWetRotDryRotBacteria">
+		<rul:FirstNonNull Type="decimal">
+			<rul:Lookup Type="decimal" MatrixCol="Rate" MatrixDef="FungusExcessOfSubLimitRateDef" MatrixFromConstant="FungusExcessOfSubLimitRate" ResultMode="FirstResult">
+				<rul:Keys>
+					<rul:Value Type="string" FromDataDef="/State/@Code" />
+					<rul:Constant Type="string">Y</rul:Constant>
+				</rul:Keys>
+			</rul:Lookup>
+			<rul:Lookup Type="decimal" MatrixCol="Rate" MatrixDef="FungusExcessOfSubLimitRateDef" MatrixFromConstant="FungusExcessOfSubLimitRate" ResultMode="SingleResult">
+				<rul:Keys>
+					<rul:Constant Type="string">CW</rul:Constant>
+					<rul:Constant Type="string">Y</rul:Constant>
+				</rul:Keys>
+			</rul:Lookup>
+		</rul:FirstNonNull>
+	</rul:Rule>
+	<rul:Rule Name="LookupFungusIncrementalRate" Type="decimal" DataDefGroup="CommercialPropertyChangesFungusWetRotDryRotBacteria">
+		<rul:FirstNonNull Type="decimal">
+			<rul:Lookup Type="decimal" MatrixCol="Rate" MatrixDef="FungusIncrementalRateDef" MatrixFromConstant="FungusIncrementalRate" ResultMode="FirstResult">
+				<rul:Keys>
+					<rul:Value Type="string" FromDataDef="/State/@Code" />
+					<rul:Constant Type="string">Y</rul:Constant>
+				</rul:Keys>
+			</rul:Lookup>
+			<rul:Lookup Type="decimal" MatrixCol="Rate" MatrixDef="FungusIncrementalRateDef" MatrixFromConstant="FungusIncrementalRate" ResultMode="SingleResult">
+				<rul:Keys>
+					<rul:Constant Type="string">CW</rul:Constant>
+					<rul:Constant Type="string">Y</rul:Constant>
+				</rul:Keys>
+			</rul:Lookup>
+		</rul:FirstNonNull>
+	</rul:Rule>
+</rul:Rules>

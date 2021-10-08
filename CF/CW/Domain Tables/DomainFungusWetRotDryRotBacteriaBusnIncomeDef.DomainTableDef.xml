@@ -1,0 +1,15 @@
+<dt:DomainTable xmlns:dt="http://www.verisk.com/iso/erc/DomainTable">
+	<dt:MetaData>
+		<dt:MetaDataCode>DomainTableFungusWetRotDryRotBacteriaBusnIncome</dt:MetaDataCode>
+		<dt:MetaDataCode>BureauRuleNumberA7B2c</dt:MetaDataCode>
+	</dt:MetaData>
+	<dt:KeyCols>
+		<dt:KeyCol Name="StateCode" Type="string" CaseInsensitive="false" />
+		<dt:KeyCol Name="FungusWetRotDryRotBacteriaPolicy" Type="string" CaseInsensitive="false" />
+		<dt:KeyCol Name="FungusWetRotDryRotBacteriaIncrdPeriodRestoration" Type="string" CaseInsensitive="false" />
+	</dt:KeyCols>
+	<dt:ValueCols>
+		<dt:ValueCol Name="DisplayValue" Type="string" />
+		<dt:ValueCol Name="DataValue" Type="string" />
+	</dt:ValueCols>
+</dt:DomainTable>

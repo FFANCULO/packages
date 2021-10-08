@@ -1,0 +1,1428 @@
+<rul:Rules xmlns:rul="http://www.verisk.com/iso/erc/Rule">
+	<rul:Rule Name="InitializeRuleSet" DataDefGroup="CommercialPropertyUtilityServicesTimeElementSpclClassBusnIncomeDetail">
+		<rul:Sequence>
+			<rul:Locate AtDataDef="CommercialPropertyUtilityServicesTimeElementSpclClassBusnIncomeDetailBasicGroupICoverage">
+				<rul:RunRule Type="none" FileName="CommercialPropertyUtilityServicesTimeElementSpclClassBusnIncomeDetailBasicGroupICoverageRules" Rule="InitializeRuleSet" ClearCache="true" />
+			</rul:Locate>
+			<rul:Locate AtDataDef="CommercialPropertyUtilityServicesTimeElementSpclClassBusnIncomeDetailBasicGroupIICoverage">
+				<rul:RunRule Type="none" FileName="CommercialPropertyUtilityServicesTimeElementSpclClassBusnIncomeDetailBasicGroupIICoverageRules" Rule="InitializeRuleSet" ClearCache="true" />
+			</rul:Locate>
+			<rul:Locate AtDataDef="CommercialPropertyUtilityServicesTimeElementSpclClassBusnIncomeDetailBroadCoverage">
+				<rul:RunRule Type="none" FileName="CommercialPropertyUtilityServicesTimeElementSpclClassBusnIncomeDetailBroadCoverageRules" Rule="InitializeRuleSet" ClearCache="true" />
+			</rul:Locate>
+			<rul:Locate AtDataDef="CommercialPropertyUtilityServicesTimeElementSpclClassBusnIncomeDetailEarthquakeCoverage">
+				<rul:RunRule Type="none" FileName="CommercialPropertyUtilityServicesTimeElementSpclClassBusnIncomeDetailEarthquakeCoverageRules" Rule="InitializeRuleSet" ClearCache="true" />
+			</rul:Locate>
+			<rul:Locate AtDataDef="CommercialPropertyUtilityServicesTimeElementSpclClassBusnIncomeDetailSpecialCoverage">
+				<rul:RunRule Type="none" FileName="CommercialPropertyUtilityServicesTimeElementSpclClassBusnIncomeDetailSpecialCoverageRules" Rule="InitializeRuleSet" ClearCache="true" />
+			</rul:Locate>
+		</rul:Sequence>
+	</rul:Rule>
+	<rul:Rule Name="CalculateTotalPremium" Type="decimal" DataDefGroup="CommercialPropertyUtilityServicesTimeElementSpclClassBusnIncomeDetail">
+		<rul:Sum>
+			<rul:Locate AtDataDef="CommercialPropertyUtilityServicesTimeElementSpclClassBusnIncomeDetailBasicGroupICoverage">
+				<rul:RunRule Type="decimal" FileName="CommercialPropertyUtilityServicesTimeElementSpclClassBusnIncomeDetailBasicGroupICoverageRules" Rule="CalculateTotalPremium" ClearCache="true" />
+			</rul:Locate>
+			<rul:Locate AtDataDef="CommercialPropertyUtilityServicesTimeElementSpclClassBusnIncomeDetailBasicGroupIICoverage">
+				<rul:RunRule Type="decimal" FileName="CommercialPropertyUtilityServicesTimeElementSpclClassBusnIncomeDetailBasicGroupIICoverageRules" Rule="CalculateTotalPremium" ClearCache="true" />
+			</rul:Locate>
+			<rul:Locate AtDataDef="CommercialPropertyUtilityServicesTimeElementSpclClassBusnIncomeDetailBroadCoverage">
+				<rul:RunRule Type="decimal" FileName="CommercialPropertyUtilityServicesTimeElementSpclClassBusnIncomeDetailBroadCoverageRules" Rule="CalculateTotalPremium" ClearCache="true" />
+			</rul:Locate>
+			<rul:Locate AtDataDef="CommercialPropertyUtilityServicesTimeElementSpclClassBusnIncomeDetailEarthquakeCoverage">
+				<rul:RunRule Type="decimal" FileName="CommercialPropertyUtilityServicesTimeElementSpclClassBusnIncomeDetailEarthquakeCoverageRules" Rule="CalculateTotalPremium" ClearCache="true" />
+			</rul:Locate>
+			<rul:Locate AtDataDef="CommercialPropertyUtilityServicesTimeElementSpclClassBusnIncomeDetailSpecialCoverage">
+				<rul:RunRule Type="decimal" FileName="CommercialPropertyUtilityServicesTimeElementSpclClassBusnIncomeDetailSpecialCoverageRules" Rule="CalculateTotalPremium" ClearCache="true" />
+			</rul:Locate>
+			<rul:If>
+				<rul:Test>
+					<rul:And>
+						<rul:Equal>
+							<rul:FirstValue Type="integer" FromConstant="0" FromDataDef="@PremiumIndicator" Order="DataDefInputParamConstant" />
+							<rul:Constant Type="integer">1</rul:Constant>
+						</rul:Equal>
+						<rul:NotEqual>
+							<rul:FirstValue Type="decimal" FromConstant="0" FromDataDef="@Premium" Order="DataDefInputParamConstant" />
+							<rul:Constant Type="decimal">0</rul:Constant>
+						</rul:NotEqual>
+					</rul:And>
+				</rul:Test>
+				<rul:Then>
+					<rul:FirstValue Type="decimal" FromConstant="0" FromDataDef="@Premium" Order="DataDefInputParamConstant" />
+				</rul:Then>
+				<rul:Else>
+					<rul:Constant Type="decimal">0</rul:Constant>
+				</rul:Else>
+			</rul:If>
+		</rul:Sum>
+	</rul:Rule>
+	<rul:Rule Name="ErcSetRatesAndFactors" Type="none" DataDefGroup="CommercialPropertyUtilityServicesTimeElementSpclClassBusnIncomeDetail">
+		<rul:Sequence>
+			<rul:Copy Type="string" ToDataDef="@PolicyType" FromDataDef="ancestor::CommercialProperty/@PolicyType" />
+			<rul:Copy Type="string" ToDataDef="@EQCovIndicatorFromRisk" FromDataDef="../../../../../../CommercialPropertySpecialClassBusnIncomeTable/CommercialPropertySpecialClassBusnIncome[1]/@EQCovIndicator" />
+			<rul:RunRule Type="none" FileName="CommercialPropertyUtilityServicesTimeElementSpclClassBusnIncomeDetailRules" Rule="SetLimitToUse" ClearCache="true" />
+			<rul:RunRule Type="none" FileName="CommercialPropertyUtilityServicesTimeElementSpclClassBusnIncomeDetailRules" Rule="SetEQLimitToUse" ClearCache="true" />
+			<rul:RunRule Type="none" FileName="CommercialPropertyUtilityServicesTimeElementSpclClassBusnIncomeDetailRules" Rule="SetWaitingPeriodFactor" ClearCache="true" />
+			<rul:RunRule Type="none" FileName="CommercialPropertyUtilityServicesTimeElementSpclClassBusnIncomeDetailRules" Rule="SetBGIRatesAndFactors" ClearCache="true" />
+			<rul:RunRule Type="none" FileName="CommercialPropertyUtilityServicesTimeElementSpclClassBusnIncomeDetailRules" Rule="SetBGIIRatesAndFactors" ClearCache="true" />
+			<rul:RunRule Type="none" FileName="CommercialPropertyUtilityServicesTimeElementSpclClassBusnIncomeDetailRules" Rule="SetBroadRatesAndFactors" ClearCache="true" />
+			<rul:RunRule Type="none" FileName="CommercialPropertyUtilityServicesTimeElementSpclClassBusnIncomeDetailRules" Rule="SetSpecialRatesAndFactors" ClearCache="true" />
+			<rul:RunRule Type="none" FileName="CommercialPropertyUtilityServicesTimeElementSpclClassBusnIncomeDetailRules" Rule="SetEQRatesAndFactors" ClearCache="true" />
+		</rul:Sequence>
+	</rul:Rule>
+	<rul:Rule Name="SetLimitToUse" Type="none" DataDefGroup="CommercialPropertyUtilityServicesTimeElementSpclClassBusnIncomeDetail">
+		<rul:Sequence>
+			<rul:If>
+				<rul:Test>
+					<rul:GreaterThan>
+						<rul:FirstValue Type="integer" FromConstant="0" FromDataDef="@Limit" Order="DataDefInputParamConstant" />
+						<rul:Constant Type="integer">0</rul:Constant>
+					</rul:GreaterThan>
+				</rul:Test>
+				<rul:Then>
+					<rul:Copy Type="integer" ToDataDef="@LimitToUse" FromDataDef="@Limit" />
+				</rul:Then>
+				<rul:Else>
+					<rul:Copy Type="integer" ToDataDef="@LimitToUse" FromDataDef="../../../../../../CommercialPropertySpecialClassBusnIncomeTable/CommercialPropertySpecialClassBusnIncome[1]/@LimitToUse" />
+				</rul:Else>
+			</rul:If>
+		</rul:Sequence>
+	</rul:Rule>
+	<rul:Rule Name="SetEQLimitToUse" Type="none" DataDefGroup="CommercialPropertyUtilityServicesTimeElementSpclClassBusnIncomeDetail">
+		<rul:Sequence>
+			<rul:If>
+				<rul:Test>
+					<rul:And>
+						<rul:Or>
+							<rul:Exist AtInputDataDef="../../../../../../CommercialPropertySpecialClassBusnIncomeTable/CommercialPropertySpecialClassBusnIncome[1]/CommercialPropertyEarthquakeAndVolcanicEruptionEndorsementSubLimitFormSpclClassBusnIncomeTable/CommercialPropertyEarthquakeAndVolcanicEruptionEndorsementSubLimitFormSpclClassBusnIncome" />
+							<rul:Exist AtInputDataDef="../../../../../../CommercialPropertySpecialClassBusnIncomeTable/CommercialPropertySpecialClassBusnIncome[1]/CommercialPropertyEarthquakeAndVolcanicEruptionCoverageSubLimitFormWithFlatDollarDeductibleSpclClassBusnIncomeTable/CommercialPropertyEarthquakeAndVolcanicEruptionCoverageSubLimitFormWithFlatDollarDeductibleSpclClassBusnIncome" />
+						</rul:Or>
+						<rul:LessThan>
+							<rul:FirstValue Type="integer" FromConstant="0" FromDataDef="../../../../../../CommercialPropertySpecialClassBusnIncomeTable/CommercialPropertySpecialClassBusnIncome[1]/@EQLimitToUse" Order="DataDefInputParamConstant" />
+							<rul:FirstValue Type="integer" FromConstant="0" FromDataDef="@LimitToUse" Order="DataDefInputParamConstant" />
+						</rul:LessThan>
+					</rul:And>
+				</rul:Test>
+				<rul:Then>
+					<rul:Copy Type="integer" ToDataDef="@EQLimitToUse" FromDataDef="../../../../../../CommercialPropertySpecialClassBusnIncomeTable/CommercialPropertySpecialClassBusnIncome[1]/@EQLimitToUse" />
+				</rul:Then>
+				<rul:Else>
+					<rul:Copy Type="integer" ToDataDef="@EQLimitToUse" FromDataDef="@LimitToUse" />
+				</rul:Else>
+			</rul:If>
+		</rul:Sequence>
+	</rul:Rule>
+	<rul:Rule Name="SetWaitingPeriodFactor" Type="none" DataDefGroup="CommercialPropertyUtilityServicesTimeElementSpclClassBusnIncomeDetail">
+		<rul:Sequence>
+			<rul:If>
+				<rul:Test>
+					<rul:NotEqual>
+						<rul:FirstValue Type="string" FromConstant="" FromDataDef="@WaitingPeriod" Order="DataDefInputParamConstant" />
+						<rul:Constant Type="string"></rul:Constant>
+					</rul:NotEqual>
+				</rul:Test>
+				<rul:Then>
+					<rul:Sequence>
+						<rul:RunRule Type="decimal" ToDataDef="@WaitingPeriodFactor" FileName="CommercialPropertyUtilityServicesTimeElementSpclClassBusnIncomeDetailRules" Rule="LookupUtilityServicesTimeElementWaitingPeriodFactor" ClearCache="true" />
+					</rul:Sequence>
+				</rul:Then>
+				<rul:Else>
+					<rul:Sequence>
+						<rul:Constant Type="decimal" ToDataDef="@WaitingPeriodFactor">0.0</rul:Constant>
+					</rul:Sequence>
+				</rul:Else>
+			</rul:If>
+		</rul:Sequence>
+	</rul:Rule>
+	<rul:Rule Name="SetBGIRatesAndFactors" Type="none" DataDefGroup="CommercialPropertyUtilityServicesTimeElementSpclClassBusnIncomeDetail">
+		<rul:Sequence>
+			<rul:RunRule Type="none" FileName="CommercialPropertyUtilityServicesTimeElementSpclClassBusnIncomeDetailRules" Rule="SetBGINonOverheadBaseRate" ClearCache="true" />
+			<rul:RunRule Type="none" FileName="CommercialPropertyUtilityServicesTimeElementSpclClassBusnIncomeDetailRules" Rule="SetBGIOverheadBaseRate" ClearCache="true" />
+			<rul:RunRule Type="none" FileName="CommercialPropertyUtilityServicesTimeElementSpclClassBusnIncomeDetailRules" Rule="SetBGINonOverheadRate" ClearCache="true" />
+			<rul:RunRule Type="none" FileName="CommercialPropertyUtilityServicesTimeElementSpclClassBusnIncomeDetailRules" Rule="SetBGIOverheadRate" ClearCache="true" />
+			<rul:RunRule Type="none" FileName="CommercialPropertyUtilityServicesTimeElementSpclClassBusnIncomeDetailRules" Rule="SetBGIRate" ClearCache="true" />
+		</rul:Sequence>
+	</rul:Rule>
+	<rul:Rule Name="SetBGINonOverheadBaseRate" Type="none" DataDefGroup="CommercialPropertyUtilityServicesTimeElementSpclClassBusnIncomeDetail">
+		<rul:Sequence>
+			<rul:Choose>
+				<rul:When>
+					<rul:Test>
+						<rul:Or>
+							<rul:Equal>
+								<rul:FirstValue Type="string" FromConstant="" FromDataDef="@Utility" Order="DataDefInputParamConstant" />
+								<rul:Constant Type="string">Water Supply</rul:Constant>
+							</rul:Equal>
+							<rul:Equal>
+								<rul:FirstValue Type="string" FromConstant="" FromDataDef="@Utility" Order="DataDefInputParamConstant" />
+								<rul:Constant Type="string">Wastewater Removal</rul:Constant>
+							</rul:Equal>
+							<rul:Equal>
+								<rul:FirstValue Type="string" FromConstant="" FromDataDef="@Utility" Order="DataDefInputParamConstant" />
+								<rul:Constant Type="string">Power Supply - Not Including Overhead Transmission Lines</rul:Constant>
+							</rul:Equal>
+							<rul:Equal>
+								<rul:FirstValue Type="string" FromConstant="" FromDataDef="@Utility" Order="DataDefInputParamConstant" />
+								<rul:Constant Type="string">Power Supply - Including Overhead Transmission Lines</rul:Constant>
+							</rul:Equal>
+						</rul:Or>
+					</rul:Test>
+					<rul:Then>
+						<rul:Sequence>
+							<rul:If>
+								<rul:Test>
+									<rul:Equal>
+										<rul:FirstValue Type="string" FromConstant="" FromDataDef="@UtilityType" Order="DataDefInputParamConstant" />
+										<rul:Constant Type="string">Other Than Public Utilities</rul:Constant>
+									</rul:Equal>
+								</rul:Test>
+								<rul:Then>
+									<rul:Sequence>
+										<rul:RunRule Type="decimal" ToDataDef="@BasicGroupINonOverheadBaseRate" FileName="CommercialPropertyUtilityServicesTimeElementSpclClassBusnIncomeDetailRules" Rule="LookupUtilitySrvcTimeElementWaterAndPowerSupplyNonPublic" ClearCache="true">
+											<rul:Arg Type="string" Param="causeOfLoss">
+												<rul:Constant Type="string">GroupI</rul:Constant>
+											</rul:Arg>
+										</rul:RunRule>
+									</rul:Sequence>
+								</rul:Then>
+								<rul:Else>
+									<rul:Sequence>
+										<rul:RunRule Type="decimal" ToDataDef="@BasicGroupINonOverheadBaseRate" FileName="CommercialPropertyUtilityServicesTimeElementSpclClassBusnIncomeDetailRules" Rule="LookupUtilitySrvcTimeElementWaterAndPowerSupply" ClearCache="true">
+											<rul:Arg Type="string" Param="causeOfLoss">
+												<rul:Constant Type="string">GroupI</rul:Constant>
+											</rul:Arg>
+										</rul:RunRule>
+									</rul:Sequence>
+								</rul:Else>
+							</rul:If>
+						</rul:Sequence>
+					</rul:Then>
+				</rul:When>
+				<rul:When>
+					<rul:Test>
+						<rul:And>
+							<rul:NotEqual>
+								<rul:FirstValue Type="string" FromConstant="" FromDataDef="@Utility" Order="DataDefInputParamConstant" />
+								<rul:Constant Type="string"></rul:Constant>
+							</rul:NotEqual>
+							<rul:NotEqual>
+								<rul:FirstValue Type="string" FromConstant="" FromDataDef="@Utility" Order="DataDefInputParamConstant" />
+								<rul:Constant Type="string">Water Supply</rul:Constant>
+							</rul:NotEqual>
+							<rul:NotEqual>
+								<rul:FirstValue Type="string" FromConstant="" FromDataDef="@Utility" Order="DataDefInputParamConstant" />
+								<rul:Constant Type="string">Wastewater Removal</rul:Constant>
+							</rul:NotEqual>
+							<rul:NotEqual>
+								<rul:FirstValue Type="string" FromConstant="" FromDataDef="@Utility" Order="DataDefInputParamConstant" />
+								<rul:Constant Type="string">Power Supply - Not Including Overhead Transmission Lines</rul:Constant>
+							</rul:NotEqual>
+							<rul:NotEqual>
+								<rul:FirstValue Type="string" FromConstant="" FromDataDef="@Utility" Order="DataDefInputParamConstant" />
+								<rul:Constant Type="string">Power Supply - Including Overhead Transmission Lines</rul:Constant>
+							</rul:NotEqual>
+						</rul:And>
+					</rul:Test>
+					<rul:Then>
+						<rul:Sequence>
+							<rul:If>
+								<rul:Test>
+									<rul:Equal>
+										<rul:FirstValue Type="string" FromConstant="" FromDataDef="@UtilityType" Order="DataDefInputParamConstant" />
+										<rul:Constant Type="string">Other Than Public Utilities</rul:Constant>
+									</rul:Equal>
+								</rul:Test>
+								<rul:Then>
+									<rul:Sequence>
+										<rul:RunRule Type="decimal" ToDataDef="@BasicGroupINonOverheadBaseRate" FileName="CommercialPropertyUtilityServicesTimeElementSpclClassBusnIncomeDetailRules" Rule="LookupUtilitySrvcTimeElementCommunicationsSupplyNonPublic" ClearCache="true">
+											<rul:Arg Type="string" Param="causeOfLoss">
+												<rul:Constant Type="string">GroupI</rul:Constant>
+											</rul:Arg>
+										</rul:RunRule>
+									</rul:Sequence>
+								</rul:Then>
+								<rul:Else>
+									<rul:Sequence>
+										<rul:RunRule Type="decimal" ToDataDef="@BasicGroupINonOverheadBaseRate" FileName="CommercialPropertyUtilityServicesTimeElementSpclClassBusnIncomeDetailRules" Rule="LookupUtilitySrvcTimeElementCommunicationsSupply" ClearCache="true">
+											<rul:Arg Type="string" Param="causeOfLoss">
+												<rul:Constant Type="string">GroupI</rul:Constant>
+											</rul:Arg>
+										</rul:RunRule>
+									</rul:Sequence>
+								</rul:Else>
+							</rul:If>
+						</rul:Sequence>
+					</rul:Then>
+				</rul:When>
+			</rul:Choose>
+		</rul:Sequence>
+	</rul:Rule>
+	<rul:Rule Name="SetBGIOverheadBaseRate" Type="none" DataDefGroup="CommercialPropertyUtilityServicesTimeElementSpclClassBusnIncomeDetail">
+		<rul:Sequence>
+			<rul:Choose>
+				<rul:When>
+					<rul:Test>
+						<rul:Or>
+							<rul:Equal>
+								<rul:FirstValue Type="string" FromConstant="" FromDataDef="@Utility" Order="DataDefInputParamConstant" />
+								<rul:Constant Type="string">Communications Supply - Including Overhead Transmission Lines</rul:Constant>
+							</rul:Equal>
+							<rul:Equal>
+								<rul:FirstValue Type="string" FromConstant="" FromDataDef="@Utility" Order="DataDefInputParamConstant" />
+								<rul:Constant Type="string">Power Supply - Including Overhead Transmission Lines</rul:Constant>
+							</rul:Equal>
+						</rul:Or>
+					</rul:Test>
+					<rul:Then>
+						<rul:Sequence>
+							<rul:If>
+								<rul:Test>
+									<rul:Equal>
+										<rul:FirstValue Type="string" FromConstant="" FromDataDef="@UtilityType" Order="DataDefInputParamConstant" />
+										<rul:Constant Type="string">Other Than Public Utilities</rul:Constant>
+									</rul:Equal>
+								</rul:Test>
+								<rul:Then>
+									<rul:Sequence>
+										<rul:RunRule Type="decimal" ToDataDef="@BasicGroupIOverheadBaseRate" FileName="CommercialPropertyUtilityServicesTimeElementSpclClassBusnIncomeDetailRules" Rule="LookupUtilitySrvcTimeElementOverheadPowerTransmissionAndCommunicationLinesNonPublic" ClearCache="true">
+											<rul:Arg Type="string" Param="causeOfLoss">
+												<rul:Constant Type="string">GroupI</rul:Constant>
+											</rul:Arg>
+										</rul:RunRule>
+									</rul:Sequence>
+								</rul:Then>
+								<rul:Else>
+									<rul:Sequence>
+										<rul:RunRule Type="decimal" ToDataDef="@BasicGroupIOverheadBaseRate" FileName="CommercialPropertyUtilityServicesTimeElementSpclClassBusnIncomeDetailRules" Rule="LookupUtilitySrvcTimeElementOverheadPowerTransmissionAndCommunicationLines" ClearCache="true">
+											<rul:Arg Type="string" Param="causeOfLoss">
+												<rul:Constant Type="string">GroupI</rul:Constant>
+											</rul:Arg>
+										</rul:RunRule>
+									</rul:Sequence>
+								</rul:Else>
+							</rul:If>
+						</rul:Sequence>
+					</rul:Then>
+				</rul:When>
+				<rul:When>
+					<rul:Test>
+						<rul:And>
+							<rul:NotEqual>
+								<rul:FirstValue Type="string" FromConstant="" FromDataDef="@Utility" Order="DataDefInputParamConstant" />
+								<rul:Constant Type="string"></rul:Constant>
+							</rul:NotEqual>
+							<rul:NotEqual>
+								<rul:FirstValue Type="string" FromConstant="" FromDataDef="@Utility" Order="DataDefInputParamConstant" />
+								<rul:Constant Type="string">Communications Supply - Including Overhead Transmission Lines</rul:Constant>
+							</rul:NotEqual>
+							<rul:NotEqual>
+								<rul:FirstValue Type="string" FromConstant="" FromDataDef="@Utility" Order="DataDefInputParamConstant" />
+								<rul:Constant Type="string">Power Supply - Including Overhead Transmission Lines</rul:Constant>
+							</rul:NotEqual>
+						</rul:And>
+					</rul:Test>
+					<rul:Then>
+						<rul:Sequence>
+							<rul:Constant Type="decimal" ToDataDef="@BasicGroupIOverheadBaseRate">0.0</rul:Constant>
+						</rul:Sequence>
+					</rul:Then>
+				</rul:When>
+			</rul:Choose>
+		</rul:Sequence>
+	</rul:Rule>
+	<rul:Rule Name="SetBGINonOverheadRate" Type="none" DataDefGroup="CommercialPropertyUtilityServicesTimeElementSpclClassBusnIncomeDetail">
+		<rul:Sequence>
+			<rul:WithArgs>
+				<rul:Arg Type="decimal" Param="calcBasicGroupINonOverheadRate">
+					<rul:FirstNonNull Type="decimal">
+						<rul:Product DecimalPlaces="3">
+							<rul:FirstValue Type="decimal" FromConstant="0" FromDataDef="@BasicGroupINonOverheadBaseRate" Order="DataDefInputParamConstant" />
+							<rul:FirstValue Type="decimal" FromConstant="0" FromDataDef="ancestor::CommercialProperty/@LossCostMultiplier" Order="DataDefInputParamConstant" />
+						</rul:Product>
+						<rul:Constant Type="decimal">0</rul:Constant>
+					</rul:FirstNonNull>
+				</rul:Arg>
+				<rul:Value Type="decimal" ToDataDef="@BasicGroupINonOverheadRate" FromParam="calcBasicGroupINonOverheadRate" />
+			</rul:WithArgs>
+		</rul:Sequence>
+	</rul:Rule>
+	<rul:Rule Name="SetBGIOverheadRate" Type="none" DataDefGroup="CommercialPropertyUtilityServicesTimeElementSpclClassBusnIncomeDetail">
+		<rul:Sequence>
+			<rul:WithArgs>
+				<rul:Arg Type="decimal" Param="calcBasicGroupIOverheadRate">
+					<rul:FirstNonNull Type="decimal">
+						<rul:Product DecimalPlaces="3">
+							<rul:FirstValue Type="decimal" FromConstant="0" FromDataDef="@BasicGroupIOverheadBaseRate" Order="DataDefInputParamConstant" />
+							<rul:FirstValue Type="decimal" FromConstant="0" FromDataDef="ancestor::CommercialProperty/@LossCostMultiplier" Order="DataDefInputParamConstant" />
+						</rul:Product>
+						<rul:Constant Type="decimal">0</rul:Constant>
+					</rul:FirstNonNull>
+				</rul:Arg>
+				<rul:Value Type="decimal" ToDataDef="@BasicGroupIOverheadRate" FromParam="calcBasicGroupIOverheadRate" />
+			</rul:WithArgs>
+		</rul:Sequence>
+	</rul:Rule>
+	<rul:Rule Name="SetBGIRate" Type="none" DataDefGroup="CommercialPropertyUtilityServicesTimeElementSpclClassBusnIncomeDetail">
+		<rul:Sequence>
+			<rul:Round ToDataDef="@BasicGroupIRate" DecimalPlaces="3">
+				<rul:Sum>
+					<rul:Value Type="decimal" FromDataDef="@BasicGroupINonOverheadRate" />
+					<rul:Value Type="decimal" FromDataDef="@BasicGroupIOverheadRate" />
+				</rul:Sum>
+			</rul:Round>
+		</rul:Sequence>
+	</rul:Rule>
+	<rul:Rule Name="SetBGIIRatesAndFactors" Type="none" DataDefGroup="CommercialPropertyUtilityServicesTimeElementSpclClassBusnIncomeDetail">
+		<rul:Sequence>
+			<rul:RunRule Type="none" FileName="CommercialPropertyUtilityServicesTimeElementSpclClassBusnIncomeDetailRules" Rule="SetBGIINonOverheadBaseRate" ClearCache="true" />
+			<rul:RunRule Type="none" FileName="CommercialPropertyUtilityServicesTimeElementSpclClassBusnIncomeDetailRules" Rule="SetBGIIOverheadBaseRate" ClearCache="true" />
+			<rul:RunRule Type="none" FileName="CommercialPropertyUtilityServicesTimeElementSpclClassBusnIncomeDetailRules" Rule="SetBGIIOverheadRate" ClearCache="true" />
+			<rul:RunRule Type="none" FileName="CommercialPropertyUtilityServicesTimeElementSpclClassBusnIncomeDetailRules" Rule="SetBGIINonOverheadRate" ClearCache="true" />
+			<rul:RunRule Type="none" FileName="CommercialPropertyUtilityServicesTimeElementSpclClassBusnIncomeDetailRules" Rule="SetBGIIRate" ClearCache="true" />
+		</rul:Sequence>
+	</rul:Rule>
+	<rul:Rule Name="SetBGIINonOverheadBaseRate" Type="none" DataDefGroup="CommercialPropertyUtilityServicesTimeElementSpclClassBusnIncomeDetail">
+		<rul:Sequence>
+			<rul:Choose>
+				<rul:When>
+					<rul:Test>
+						<rul:Or>
+							<rul:Equal>
+								<rul:FirstValue Type="string" FromConstant="" FromDataDef="@Utility" Order="DataDefInputParamConstant" />
+								<rul:Constant Type="string">Water Supply</rul:Constant>
+							</rul:Equal>
+							<rul:Equal>
+								<rul:FirstValue Type="string" FromConstant="" FromDataDef="@Utility" Order="DataDefInputParamConstant" />
+								<rul:Constant Type="string">Wastewater Removal</rul:Constant>
+							</rul:Equal>
+							<rul:Equal>
+								<rul:FirstValue Type="string" FromConstant="" FromDataDef="@Utility" Order="DataDefInputParamConstant" />
+								<rul:Constant Type="string">Power Supply - Not Including Overhead Transmission Lines</rul:Constant>
+							</rul:Equal>
+							<rul:Equal>
+								<rul:FirstValue Type="string" FromConstant="" FromDataDef="@Utility" Order="DataDefInputParamConstant" />
+								<rul:Constant Type="string">Power Supply - Including Overhead Transmission Lines</rul:Constant>
+							</rul:Equal>
+						</rul:Or>
+					</rul:Test>
+					<rul:Then>
+						<rul:Sequence>
+							<rul:If>
+								<rul:Test>
+									<rul:Equal>
+										<rul:FirstValue Type="string" FromConstant="" FromDataDef="@UtilityType" Order="DataDefInputParamConstant" />
+										<rul:Constant Type="string">Other Than Public Utilities</rul:Constant>
+									</rul:Equal>
+								</rul:Test>
+								<rul:Then>
+									<rul:Sequence>
+										<rul:RunRule Type="decimal" ToDataDef="@BasicGroupIINonOverheadBaseRate" FileName="CommercialPropertyUtilityServicesTimeElementSpclClassBusnIncomeDetailRules" Rule="LookupUtilitySrvcTimeElementWaterAndPowerSupplyNonPublic" ClearCache="true">
+											<rul:Arg Type="string" Param="causeOfLoss">
+												<rul:Constant Type="string">GroupII</rul:Constant>
+											</rul:Arg>
+										</rul:RunRule>
+									</rul:Sequence>
+								</rul:Then>
+								<rul:Else>
+									<rul:Sequence>
+										<rul:RunRule Type="decimal" ToDataDef="@BasicGroupIINonOverheadBaseRate" FileName="CommercialPropertyUtilityServicesTimeElementSpclClassBusnIncomeDetailRules" Rule="LookupUtilitySrvcTimeElementWaterAndPowerSupply" ClearCache="true">
+											<rul:Arg Type="string" Param="causeOfLoss">
+												<rul:Constant Type="string">GroupII</rul:Constant>
+											</rul:Arg>
+										</rul:RunRule>
+									</rul:Sequence>
+								</rul:Else>
+							</rul:If>
+						</rul:Sequence>
+					</rul:Then>
+				</rul:When>
+				<rul:When>
+					<rul:Test>
+						<rul:And>
+							<rul:NotEqual>
+								<rul:FirstValue Type="string" FromConstant="" FromDataDef="@Utility" Order="DataDefInputParamConstant" />
+								<rul:Constant Type="string"></rul:Constant>
+							</rul:NotEqual>
+							<rul:NotEqual>
+								<rul:FirstValue Type="string" FromConstant="" FromDataDef="@Utility" Order="DataDefInputParamConstant" />
+								<rul:Constant Type="string">Water Supply</rul:Constant>
+							</rul:NotEqual>
+							<rul:NotEqual>
+								<rul:FirstValue Type="string" FromConstant="" FromDataDef="@Utility" Order="DataDefInputParamConstant" />
+								<rul:Constant Type="string">Wastewater Removal</rul:Constant>
+							</rul:NotEqual>
+							<rul:NotEqual>
+								<rul:FirstValue Type="string" FromConstant="" FromDataDef="@Utility" Order="DataDefInputParamConstant" />
+								<rul:Constant Type="string">Power Supply - Not Including Overhead Transmission Lines</rul:Constant>
+							</rul:NotEqual>
+							<rul:NotEqual>
+								<rul:FirstValue Type="string" FromConstant="" FromDataDef="@Utility" Order="DataDefInputParamConstant" />
+								<rul:Constant Type="string">Power Supply - Including Overhead Transmission Lines</rul:Constant>
+							</rul:NotEqual>
+						</rul:And>
+					</rul:Test>
+					<rul:Then>
+						<rul:Sequence>
+							<rul:If>
+								<rul:Test>
+									<rul:Equal>
+										<rul:FirstValue Type="string" FromConstant="" FromDataDef="@UtilityType" Order="DataDefInputParamConstant" />
+										<rul:Constant Type="string">Other Than Public Utilities</rul:Constant>
+									</rul:Equal>
+								</rul:Test>
+								<rul:Then>
+									<rul:Sequence>
+										<rul:RunRule Type="decimal" ToDataDef="@BasicGroupIINonOverheadBaseRate" FileName="CommercialPropertyUtilityServicesTimeElementSpclClassBusnIncomeDetailRules" Rule="LookupUtilitySrvcTimeElementCommunicationsSupplyNonPublic" ClearCache="true">
+											<rul:Arg Type="string" Param="causeOfLoss">
+												<rul:Constant Type="string">GroupII</rul:Constant>
+											</rul:Arg>
+										</rul:RunRule>
+									</rul:Sequence>
+								</rul:Then>
+								<rul:Else>
+									<rul:Sequence>
+										<rul:RunRule Type="decimal" ToDataDef="@BasicGroupIINonOverheadBaseRate" FileName="CommercialPropertyUtilityServicesTimeElementSpclClassBusnIncomeDetailRules" Rule="LookupUtilitySrvcTimeElementCommunicationsSupply" ClearCache="true">
+											<rul:Arg Type="string" Param="causeOfLoss">
+												<rul:Constant Type="string">GroupII</rul:Constant>
+											</rul:Arg>
+										</rul:RunRule>
+									</rul:Sequence>
+								</rul:Else>
+							</rul:If>
+						</rul:Sequence>
+					</rul:Then>
+				</rul:When>
+			</rul:Choose>
+		</rul:Sequence>
+	</rul:Rule>
+	<rul:Rule Name="SetBGIIOverheadBaseRate" Type="none" DataDefGroup="CommercialPropertyUtilityServicesTimeElementSpclClassBusnIncomeDetail">
+		<rul:Sequence>
+			<rul:If>
+				<rul:Test>
+					<rul:Or>
+						<rul:Equal>
+							<rul:FirstValue Type="string" FromConstant="" FromDataDef="@Utility" Order="DataDefInputParamConstant" />
+							<rul:Constant Type="string">Communications Supply - Including Overhead Transmission Lines</rul:Constant>
+						</rul:Equal>
+						<rul:Equal>
+							<rul:FirstValue Type="string" FromConstant="" FromDataDef="@Utility" Order="DataDefInputParamConstant" />
+							<rul:Constant Type="string">Power Supply - Including Overhead Transmission Lines</rul:Constant>
+						</rul:Equal>
+					</rul:Or>
+				</rul:Test>
+				<rul:Then>
+					<rul:Sequence>
+						<rul:If>
+							<rul:Test>
+								<rul:Equal>
+									<rul:FirstValue Type="string" FromConstant="" FromDataDef="@UtilityType" Order="DataDefInputParamConstant" />
+									<rul:Constant Type="string">Other Than Public Utilities</rul:Constant>
+								</rul:Equal>
+							</rul:Test>
+							<rul:Then>
+								<rul:Sequence>
+									<rul:RunRule Type="decimal" ToDataDef="@BasicGroupIIOverheadBaseRate" FileName="CommercialPropertyUtilityServicesTimeElementSpclClassBusnIncomeDetailRules" Rule="LookupUtilitySrvcTimeElementOverheadPowerTransmissionAndCommunicationLinesNonPublic" ClearCache="true">
+										<rul:Arg Type="string" Param="causeOfLoss">
+											<rul:Constant Type="string">GroupII</rul:Constant>
+										</rul:Arg>
+									</rul:RunRule>
+								</rul:Sequence>
+							</rul:Then>
+							<rul:Else>
+								<rul:Sequence>
+									<rul:RunRule Type="decimal" ToDataDef="@BasicGroupIIOverheadBaseRate" FileName="CommercialPropertyUtilityServicesTimeElementSpclClassBusnIncomeDetailRules" Rule="LookupUtilitySrvcTimeElementOverheadPowerTransmissionAndCommunicationLines" ClearCache="true">
+										<rul:Arg Type="string" Param="causeOfLoss">
+											<rul:Constant Type="string">GroupII</rul:Constant>
+										</rul:Arg>
+									</rul:RunRule>
+								</rul:Sequence>
+							</rul:Else>
+						</rul:If>
+					</rul:Sequence>
+				</rul:Then>
+				<rul:Else>
+					<rul:Sequence>
+						<rul:Constant Type="decimal" ToDataDef="@BasicGroupIIOverheadBaseRate">0.0</rul:Constant>
+					</rul:Sequence>
+				</rul:Else>
+			</rul:If>
+		</rul:Sequence>
+	</rul:Rule>
+	<rul:Rule Name="SetBGIINonOverheadRate" Type="none" DataDefGroup="CommercialPropertyUtilityServicesTimeElementSpclClassBusnIncomeDetail">
+		<rul:Sequence>
+			<rul:WithArgs>
+				<rul:Arg Type="decimal" Param="calcBasicGroupIINonOverheadRate">
+					<rul:FirstNonNull Type="decimal">
+						<rul:Product DecimalPlaces="3">
+							<rul:FirstValue Type="decimal" FromConstant="0" FromDataDef="@BasicGroupIINonOverheadBaseRate" Order="DataDefInputParamConstant" />
+							<rul:FirstValue Type="decimal" FromConstant="0" FromDataDef="ancestor::CommercialProperty/@LossCostMultiplier" Order="DataDefInputParamConstant" />
+						</rul:Product>
+						<rul:Constant Type="decimal">0</rul:Constant>
+					</rul:FirstNonNull>
+				</rul:Arg>
+				<rul:Value Type="decimal" ToDataDef="@BasicGroupIINonOverheadRate" FromParam="calcBasicGroupIINonOverheadRate" />
+			</rul:WithArgs>
+		</rul:Sequence>
+	</rul:Rule>
+	<rul:Rule Name="SetBGIIOverheadRate" Type="none" DataDefGroup="CommercialPropertyUtilityServicesTimeElementSpclClassBusnIncomeDetail">
+		<rul:Sequence>
+			<rul:WithArgs>
+				<rul:Arg Type="decimal" Param="calcBasicGroupIIOverheadRate">
+					<rul:FirstNonNull Type="decimal">
+						<rul:Product DecimalPlaces="3">
+							<rul:FirstValue Type="decimal" FromConstant="0" FromDataDef="@BasicGroupIIOverheadBaseRate" Order="DataDefInputParamConstant" />
+							<rul:FirstValue Type="decimal" FromConstant="0" FromDataDef="ancestor::CommercialProperty/@LossCostMultiplier" Order="DataDefInputParamConstant" />
+						</rul:Product>
+						<rul:Constant Type="decimal">0</rul:Constant>
+					</rul:FirstNonNull>
+				</rul:Arg>
+				<rul:Value Type="decimal" ToDataDef="@BasicGroupIIOverheadRate" FromParam="calcBasicGroupIIOverheadRate" />
+			</rul:WithArgs>
+		</rul:Sequence>
+	</rul:Rule>
+	<rul:Rule Name="SetBGIIRate" Type="none" DataDefGroup="CommercialPropertyUtilityServicesTimeElementSpclClassBusnIncomeDetail">
+		<rul:Sequence>
+			<rul:Round ToDataDef="@BasicGroupIIRate" DecimalPlaces="3">
+				<rul:Sum>
+					<rul:Value Type="decimal" FromDataDef="@BasicGroupIINonOverheadRate" />
+					<rul:Value Type="decimal" FromDataDef="@BasicGroupIIOverheadRate" />
+				</rul:Sum>
+			</rul:Round>
+		</rul:Sequence>
+	</rul:Rule>
+	<rul:Rule Name="SetBroadRatesAndFactors" Type="none" DataDefGroup="CommercialPropertyUtilityServicesTimeElementSpclClassBusnIncomeDetail">
+		<rul:Sequence>
+			<rul:RunRule Type="none" FileName="CommercialPropertyUtilityServicesTimeElementSpclClassBusnIncomeDetailRules" Rule="SetBroadNonOverheadBaseRate" ClearCache="true" />
+			<rul:RunRule Type="none" FileName="CommercialPropertyUtilityServicesTimeElementSpclClassBusnIncomeDetailRules" Rule="SetBroadOverheadBaseRate" ClearCache="true" />
+			<rul:RunRule Type="none" FileName="CommercialPropertyUtilityServicesTimeElementSpclClassBusnIncomeDetailRules" Rule="SetBroadNonOverheadRate" ClearCache="true" />
+			<rul:RunRule Type="none" FileName="CommercialPropertyUtilityServicesTimeElementSpclClassBusnIncomeDetailRules" Rule="SetBroadOverheadRate" ClearCache="true" />
+			<rul:RunRule Type="none" FileName="CommercialPropertyUtilityServicesTimeElementSpclClassBusnIncomeDetailRules" Rule="SetBroadRate" ClearCache="true" />
+		</rul:Sequence>
+	</rul:Rule>
+	<rul:Rule Name="SetBroadNonOverheadBaseRate" Type="none" DataDefGroup="CommercialPropertyUtilityServicesTimeElementSpclClassBusnIncomeDetail">
+		<rul:Sequence>
+			<rul:Choose>
+				<rul:When>
+					<rul:Test>
+						<rul:Or>
+							<rul:Equal>
+								<rul:FirstValue Type="string" FromConstant="" FromDataDef="@Utility" Order="DataDefInputParamConstant" />
+								<rul:Constant Type="string">Water Supply</rul:Constant>
+							</rul:Equal>
+							<rul:Equal>
+								<rul:FirstValue Type="string" FromConstant="" FromDataDef="@Utility" Order="DataDefInputParamConstant" />
+								<rul:Constant Type="string">Wastewater Removal</rul:Constant>
+							</rul:Equal>
+							<rul:Equal>
+								<rul:FirstValue Type="string" FromConstant="" FromDataDef="@Utility" Order="DataDefInputParamConstant" />
+								<rul:Constant Type="string">Power Supply - Not Including Overhead Transmission Lines</rul:Constant>
+							</rul:Equal>
+							<rul:Equal>
+								<rul:FirstValue Type="string" FromConstant="" FromDataDef="@Utility" Order="DataDefInputParamConstant" />
+								<rul:Constant Type="string">Power Supply - Including Overhead Transmission Lines</rul:Constant>
+							</rul:Equal>
+						</rul:Or>
+					</rul:Test>
+					<rul:Then>
+						<rul:Sequence>
+							<rul:If>
+								<rul:Test>
+									<rul:Equal>
+										<rul:FirstValue Type="string" FromConstant="" FromDataDef="@UtilityType" Order="DataDefInputParamConstant" />
+										<rul:Constant Type="string">Other Than Public Utilities</rul:Constant>
+									</rul:Equal>
+								</rul:Test>
+								<rul:Then>
+									<rul:Sequence>
+										<rul:RunRule Type="decimal" ToDataDef="@BroadNonOverheadBaseRate" FileName="CommercialPropertyUtilityServicesTimeElementSpclClassBusnIncomeDetailRules" Rule="LookupUtilitySrvcTimeElementWaterAndPowerSupplyNonPublic" ClearCache="true">
+											<rul:Arg Type="string" Param="causeOfLoss">
+												<rul:Constant Type="string">Broad</rul:Constant>
+											</rul:Arg>
+										</rul:RunRule>
+									</rul:Sequence>
+								</rul:Then>
+								<rul:Else>
+									<rul:Sequence>
+										<rul:RunRule Type="decimal" ToDataDef="@BroadNonOverheadBaseRate" FileName="CommercialPropertyUtilityServicesTimeElementSpclClassBusnIncomeDetailRules" Rule="LookupUtilitySrvcTimeElementWaterAndPowerSupply" ClearCache="true">
+											<rul:Arg Type="string" Param="causeOfLoss">
+												<rul:Constant Type="string">Broad</rul:Constant>
+											</rul:Arg>
+										</rul:RunRule>
+									</rul:Sequence>
+								</rul:Else>
+							</rul:If>
+						</rul:Sequence>
+					</rul:Then>
+				</rul:When>
+				<rul:When>
+					<rul:Test>
+						<rul:And>
+							<rul:NotEqual>
+								<rul:FirstValue Type="string" FromConstant="" FromDataDef="@Utility" Order="DataDefInputParamConstant" />
+								<rul:Constant Type="string"></rul:Constant>
+							</rul:NotEqual>
+							<rul:NotEqual>
+								<rul:FirstValue Type="string" FromConstant="" FromDataDef="@Utility" Order="DataDefInputParamConstant" />
+								<rul:Constant Type="string">Water Supply</rul:Constant>
+							</rul:NotEqual>
+							<rul:NotEqual>
+								<rul:FirstValue Type="string" FromConstant="" FromDataDef="@Utility" Order="DataDefInputParamConstant" />
+								<rul:Constant Type="string">Wastewater Removal</rul:Constant>
+							</rul:NotEqual>
+							<rul:NotEqual>
+								<rul:FirstValue Type="string" FromConstant="" FromDataDef="@Utility" Order="DataDefInputParamConstant" />
+								<rul:Constant Type="string">Power Supply - Not Including Overhead Transmission Lines</rul:Constant>
+							</rul:NotEqual>
+							<rul:NotEqual>
+								<rul:FirstValue Type="string" FromConstant="" FromDataDef="@Utility" Order="DataDefInputParamConstant" />
+								<rul:Constant Type="string">Power Supply - Including Overhead Transmission Lines</rul:Constant>
+							</rul:NotEqual>
+						</rul:And>
+					</rul:Test>
+					<rul:Then>
+						<rul:Sequence>
+							<rul:If>
+								<rul:Test>
+									<rul:Equal>
+										<rul:FirstValue Type="string" FromConstant="" FromDataDef="@UtilityType" Order="DataDefInputParamConstant" />
+										<rul:Constant Type="string">Other Than Public Utilities</rul:Constant>
+									</rul:Equal>
+								</rul:Test>
+								<rul:Then>
+									<rul:Sequence>
+										<rul:RunRule Type="decimal" ToDataDef="@BroadNonOverheadBaseRate" FileName="CommercialPropertyUtilityServicesTimeElementSpclClassBusnIncomeDetailRules" Rule="LookupUtilitySrvcTimeElementCommunicationsSupplyNonPublic" ClearCache="true">
+											<rul:Arg Type="string" Param="causeOfLoss">
+												<rul:Constant Type="string">Broad</rul:Constant>
+											</rul:Arg>
+										</rul:RunRule>
+									</rul:Sequence>
+								</rul:Then>
+								<rul:Else>
+									<rul:Sequence>
+										<rul:RunRule Type="decimal" ToDataDef="@BroadNonOverheadBaseRate" FileName="CommercialPropertyUtilityServicesTimeElementSpclClassBusnIncomeDetailRules" Rule="LookupUtilitySrvcTimeElementCommunicationsSupply" ClearCache="true">
+											<rul:Arg Type="string" Param="causeOfLoss">
+												<rul:Constant Type="string">Broad</rul:Constant>
+											</rul:Arg>
+										</rul:RunRule>
+									</rul:Sequence>
+								</rul:Else>
+							</rul:If>
+						</rul:Sequence>
+					</rul:Then>
+				</rul:When>
+			</rul:Choose>
+		</rul:Sequence>
+	</rul:Rule>
+	<rul:Rule Name="SetBroadOverheadBaseRate" Type="none" DataDefGroup="CommercialPropertyUtilityServicesTimeElementSpclClassBusnIncomeDetail">
+		<rul:Sequence>
+			<rul:If>
+				<rul:Test>
+					<rul:Or>
+						<rul:Equal>
+							<rul:FirstValue Type="string" FromConstant="" FromDataDef="@Utility" Order="DataDefInputParamConstant" />
+							<rul:Constant Type="string">Communications Supply - Including Overhead Transmission Lines</rul:Constant>
+						</rul:Equal>
+						<rul:Equal>
+							<rul:FirstValue Type="string" FromConstant="" FromDataDef="@Utility" Order="DataDefInputParamConstant" />
+							<rul:Constant Type="string">Power Supply - Including Overhead Transmission Lines</rul:Constant>
+						</rul:Equal>
+					</rul:Or>
+				</rul:Test>
+				<rul:Then>
+					<rul:Sequence>
+						<rul:If>
+							<rul:Test>
+								<rul:Equal>
+									<rul:FirstValue Type="string" FromConstant="" FromDataDef="@UtilityType" Order="DataDefInputParamConstant" />
+									<rul:Constant Type="string">Other Than Public Utilities</rul:Constant>
+								</rul:Equal>
+							</rul:Test>
+							<rul:Then>
+								<rul:Sequence>
+									<rul:RunRule Type="decimal" ToDataDef="@BroadOverheadBaseRate" FileName="CommercialPropertyUtilityServicesTimeElementSpclClassBusnIncomeDetailRules" Rule="LookupUtilitySrvcTimeElementOverheadPowerTransmissionAndCommunicationLinesNonPublic" ClearCache="true">
+										<rul:Arg Type="string" Param="causeOfLoss">
+											<rul:Constant Type="string">Broad</rul:Constant>
+										</rul:Arg>
+									</rul:RunRule>
+								</rul:Sequence>
+							</rul:Then>
+							<rul:Else>
+								<rul:Sequence>
+									<rul:RunRule Type="decimal" ToDataDef="@BroadOverheadBaseRate" FileName="CommercialPropertyUtilityServicesTimeElementSpclClassBusnIncomeDetailRules" Rule="LookupUtilitySrvcTimeElementOverheadPowerTransmissionAndCommunicationLines" ClearCache="true">
+										<rul:Arg Type="string" Param="causeOfLoss">
+											<rul:Constant Type="string">Broad</rul:Constant>
+										</rul:Arg>
+									</rul:RunRule>
+								</rul:Sequence>
+							</rul:Else>
+						</rul:If>
+					</rul:Sequence>
+				</rul:Then>
+				<rul:Else>
+					<rul:Sequence>
+						<rul:Constant Type="decimal" ToDataDef="@BroadOverheadBaseRate">0.0</rul:Constant>
+					</rul:Sequence>
+				</rul:Else>
+			</rul:If>
+		</rul:Sequence>
+	</rul:Rule>
+	<rul:Rule Name="SetBroadNonOverheadRate" Type="none" DataDefGroup="CommercialPropertyUtilityServicesTimeElementSpclClassBusnIncomeDetail">
+		<rul:Sequence>
+			<rul:WithArgs>
+				<rul:Arg Type="decimal" Param="calcBroadNonOverheadRate">
+					<rul:FirstNonNull Type="decimal">
+						<rul:Product DecimalPlaces="3">
+							<rul:FirstValue Type="decimal" FromConstant="0" FromDataDef="@BroadNonOverheadBaseRate" Order="DataDefInputParamConstant" />
+							<rul:FirstValue Type="decimal" FromConstant="0" FromDataDef="ancestor::CommercialProperty/@LossCostMultiplier" Order="DataDefInputParamConstant" />
+						</rul:Product>
+						<rul:Constant Type="decimal">0</rul:Constant>
+					</rul:FirstNonNull>
+				</rul:Arg>
+				<rul:Value Type="decimal" ToDataDef="@BroadNonOverheadRate" FromParam="calcBroadNonOverheadRate" />
+			</rul:WithArgs>
+		</rul:Sequence>
+	</rul:Rule>
+	<rul:Rule Name="SetBroadOverheadRate" Type="none" DataDefGroup="CommercialPropertyUtilityServicesTimeElementSpclClassBusnIncomeDetail">
+		<rul:Sequence>
+			<rul:WithArgs>
+				<rul:Arg Type="decimal" Param="calcBroadOverheadRate">
+					<rul:FirstNonNull Type="decimal">
+						<rul:Product DecimalPlaces="3">
+							<rul:FirstValue Type="decimal" FromConstant="0" FromDataDef="@BroadOverheadBaseRate" Order="DataDefInputParamConstant" />
+							<rul:FirstValue Type="decimal" FromConstant="0" FromDataDef="ancestor::CommercialProperty/@LossCostMultiplier" Order="DataDefInputParamConstant" />
+						</rul:Product>
+						<rul:Constant Type="decimal">0</rul:Constant>
+					</rul:FirstNonNull>
+				</rul:Arg>
+				<rul:Value Type="decimal" ToDataDef="@BroadOverheadRate" FromParam="calcBroadOverheadRate" />
+			</rul:WithArgs>
+		</rul:Sequence>
+	</rul:Rule>
+	<rul:Rule Name="SetBroadRate" Type="none" DataDefGroup="CommercialPropertyUtilityServicesTimeElementSpclClassBusnIncomeDetail">
+		<rul:Sequence>
+			<rul:Round ToDataDef="@BroadRate" DecimalPlaces="3">
+				<rul:Sum>
+					<rul:Value Type="decimal" FromDataDef="@BroadNonOverheadRate" />
+					<rul:Value Type="decimal" FromDataDef="@BroadOverheadRate" />
+				</rul:Sum>
+			</rul:Round>
+		</rul:Sequence>
+	</rul:Rule>
+	<rul:Rule Name="SetSpecialRatesAndFactors" Type="none" DataDefGroup="CommercialPropertyUtilityServicesTimeElementSpclClassBusnIncomeDetail">
+		<rul:Sequence>
+			<rul:RunRule Type="none" FileName="CommercialPropertyUtilityServicesTimeElementSpclClassBusnIncomeDetailRules" Rule="SetSpecialNonOverheadBaseRate" ClearCache="true" />
+			<rul:RunRule Type="none" FileName="CommercialPropertyUtilityServicesTimeElementSpclClassBusnIncomeDetailRules" Rule="SetSpecialOverheadBaseRate" ClearCache="true" />
+			<rul:RunRule Type="none" FileName="CommercialPropertyUtilityServicesTimeElementSpclClassBusnIncomeDetailRules" Rule="SetSpecialNonOverheadRate" ClearCache="true" />
+			<rul:RunRule Type="none" FileName="CommercialPropertyUtilityServicesTimeElementSpclClassBusnIncomeDetailRules" Rule="SetSpecialOverheadRate" ClearCache="true" />
+			<rul:RunRule Type="none" FileName="CommercialPropertyUtilityServicesTimeElementSpclClassBusnIncomeDetailRules" Rule="SetSpecialRate" ClearCache="true" />
+		</rul:Sequence>
+	</rul:Rule>
+	<rul:Rule Name="SetSpecialNonOverheadBaseRate" Type="none" DataDefGroup="CommercialPropertyUtilityServicesTimeElementSpclClassBusnIncomeDetail">
+		<rul:Sequence>
+			<rul:Choose>
+				<rul:When>
+					<rul:Test>
+						<rul:Or>
+							<rul:Equal>
+								<rul:FirstValue Type="string" FromConstant="" FromDataDef="@Utility" Order="DataDefInputParamConstant" />
+								<rul:Constant Type="string">Water Supply</rul:Constant>
+							</rul:Equal>
+							<rul:Equal>
+								<rul:FirstValue Type="string" FromConstant="" FromDataDef="@Utility" Order="DataDefInputParamConstant" />
+								<rul:Constant Type="string">Wastewater Removal</rul:Constant>
+							</rul:Equal>
+							<rul:Equal>
+								<rul:FirstValue Type="string" FromConstant="" FromDataDef="@Utility" Order="DataDefInputParamConstant" />
+								<rul:Constant Type="string">Power Supply - Not Including Overhead Transmission Lines</rul:Constant>
+							</rul:Equal>
+							<rul:Equal>
+								<rul:FirstValue Type="string" FromConstant="" FromDataDef="@Utility" Order="DataDefInputParamConstant" />
+								<rul:Constant Type="string">Power Supply - Including Overhead Transmission Lines</rul:Constant>
+							</rul:Equal>
+						</rul:Or>
+					</rul:Test>
+					<rul:Then>
+						<rul:Sequence>
+							<rul:If>
+								<rul:Test>
+									<rul:Equal>
+										<rul:FirstValue Type="string" FromConstant="" FromDataDef="@UtilityType" Order="DataDefInputParamConstant" />
+										<rul:Constant Type="string">Other Than Public Utilities</rul:Constant>
+									</rul:Equal>
+								</rul:Test>
+								<rul:Then>
+									<rul:Sequence>
+										<rul:RunRule Type="decimal" ToDataDef="@SpecialNonOverheadBaseRate" FileName="CommercialPropertyUtilityServicesTimeElementSpclClassBusnIncomeDetailRules" Rule="LookupUtilitySrvcTimeElementWaterAndPowerSupplyNonPublic" ClearCache="true">
+											<rul:Arg Type="string" Param="causeOfLoss">
+												<rul:Constant Type="string">Special</rul:Constant>
+											</rul:Arg>
+										</rul:RunRule>
+									</rul:Sequence>
+								</rul:Then>
+								<rul:Else>
+									<rul:Sequence>
+										<rul:RunRule Type="decimal" ToDataDef="@SpecialNonOverheadBaseRate" FileName="CommercialPropertyUtilityServicesTimeElementSpclClassBusnIncomeDetailRules" Rule="LookupUtilitySrvcTimeElementWaterAndPowerSupply" ClearCache="true">
+											<rul:Arg Type="string" Param="causeOfLoss">
+												<rul:Constant Type="string">Special</rul:Constant>
+											</rul:Arg>
+										</rul:RunRule>
+									</rul:Sequence>
+								</rul:Else>
+							</rul:If>
+						</rul:Sequence>
+					</rul:Then>
+				</rul:When>
+				<rul:When>
+					<rul:Test>
+						<rul:And>
+							<rul:NotEqual>
+								<rul:FirstValue Type="string" FromConstant="" FromDataDef="@Utility" Order="DataDefInputParamConstant" />
+								<rul:Constant Type="string"></rul:Constant>
+							</rul:NotEqual>
+							<rul:NotEqual>
+								<rul:FirstValue Type="string" FromConstant="" FromDataDef="@Utility" Order="DataDefInputParamConstant" />
+								<rul:Constant Type="string">Water Supply</rul:Constant>
+							</rul:NotEqual>
+							<rul:NotEqual>
+								<rul:FirstValue Type="string" FromConstant="" FromDataDef="@Utility" Order="DataDefInputParamConstant" />
+								<rul:Constant Type="string">Wastewater Removal</rul:Constant>
+							</rul:NotEqual>
+							<rul:NotEqual>
+								<rul:FirstValue Type="string" FromConstant="" FromDataDef="@Utility" Order="DataDefInputParamConstant" />
+								<rul:Constant Type="string">Power Supply - Not Including Overhead Transmission Lines</rul:Constant>
+							</rul:NotEqual>
+							<rul:NotEqual>
+								<rul:FirstValue Type="string" FromConstant="" FromDataDef="@Utility" Order="DataDefInputParamConstant" />
+								<rul:Constant Type="string">Power Supply - Including Overhead Transmission Lines</rul:Constant>
+							</rul:NotEqual>
+						</rul:And>
+					</rul:Test>
+					<rul:Then>
+						<rul:Sequence>
+							<rul:If>
+								<rul:Test>
+									<rul:Equal>
+										<rul:FirstValue Type="string" FromConstant="" FromDataDef="@UtilityType" Order="DataDefInputParamConstant" />
+										<rul:Constant Type="string">Other Than Public Utilities</rul:Constant>
+									</rul:Equal>
+								</rul:Test>
+								<rul:Then>
+									<rul:Sequence>
+										<rul:RunRule Type="decimal" ToDataDef="@SpecialNonOverheadBaseRate" FileName="CommercialPropertyUtilityServicesTimeElementSpclClassBusnIncomeDetailRules" Rule="LookupUtilitySrvcTimeElementCommunicationsSupplyNonPublic" ClearCache="true">
+											<rul:Arg Type="string" Param="causeOfLoss">
+												<rul:Constant Type="string">Special</rul:Constant>
+											</rul:Arg>
+										</rul:RunRule>
+									</rul:Sequence>
+								</rul:Then>
+								<rul:Else>
+									<rul:Sequence>
+										<rul:RunRule Type="decimal" ToDataDef="@SpecialNonOverheadBaseRate" FileName="CommercialPropertyUtilityServicesTimeElementSpclClassBusnIncomeDetailRules" Rule="LookupUtilitySrvcTimeElementCommunicationsSupply" ClearCache="true">
+											<rul:Arg Type="string" Param="causeOfLoss">
+												<rul:Constant Type="string">Special</rul:Constant>
+											</rul:Arg>
+										</rul:RunRule>
+									</rul:Sequence>
+								</rul:Else>
+							</rul:If>
+						</rul:Sequence>
+					</rul:Then>
+				</rul:When>
+			</rul:Choose>
+		</rul:Sequence>
+	</rul:Rule>
+	<rul:Rule Name="SetSpecialOverheadBaseRate" Type="none" DataDefGroup="CommercialPropertyUtilityServicesTimeElementSpclClassBusnIncomeDetail">
+		<rul:Sequence>
+			<rul:If>
+				<rul:Test>
+					<rul:Or>
+						<rul:Equal>
+							<rul:FirstValue Type="string" FromConstant="" FromDataDef="@Utility" Order="DataDefInputParamConstant" />
+							<rul:Constant Type="string">Communications Supply - Including Overhead Transmission Lines</rul:Constant>
+						</rul:Equal>
+						<rul:Equal>
+							<rul:FirstValue Type="string" FromConstant="" FromDataDef="@Utility" Order="DataDefInputParamConstant" />
+							<rul:Constant Type="string">Power Supply - Including Overhead Transmission Lines</rul:Constant>
+						</rul:Equal>
+					</rul:Or>
+				</rul:Test>
+				<rul:Then>
+					<rul:Sequence>
+						<rul:If>
+							<rul:Test>
+								<rul:Equal>
+									<rul:FirstValue Type="string" FromConstant="" FromDataDef="@UtilityType" Order="DataDefInputParamConstant" />
+									<rul:Constant Type="string">Other Than Public Utilities</rul:Constant>
+								</rul:Equal>
+							</rul:Test>
+							<rul:Then>
+								<rul:Sequence>
+									<rul:RunRule Type="decimal" ToDataDef="@SpecialOverheadBaseRate" FileName="CommercialPropertyUtilityServicesTimeElementSpclClassBusnIncomeDetailRules" Rule="LookupUtilitySrvcTimeElementOverheadPowerTransmissionAndCommunicationLinesNonPublic" ClearCache="true">
+										<rul:Arg Type="string" Param="causeOfLoss">
+											<rul:Constant Type="string">Special</rul:Constant>
+										</rul:Arg>
+									</rul:RunRule>
+								</rul:Sequence>
+							</rul:Then>
+							<rul:Else>
+								<rul:Sequence>
+									<rul:RunRule Type="decimal" ToDataDef="@SpecialOverheadBaseRate" FileName="CommercialPropertyUtilityServicesTimeElementSpclClassBusnIncomeDetailRules" Rule="LookupUtilitySrvcTimeElementOverheadPowerTransmissionAndCommunicationLines" ClearCache="true">
+										<rul:Arg Type="string" Param="causeOfLoss">
+											<rul:Constant Type="string">Special</rul:Constant>
+										</rul:Arg>
+									</rul:RunRule>
+								</rul:Sequence>
+							</rul:Else>
+						</rul:If>
+					</rul:Sequence>
+				</rul:Then>
+				<rul:Else>
+					<rul:Sequence>
+						<rul:Constant Type="decimal" ToDataDef="@SpecialOverheadBaseRate">0.0</rul:Constant>
+					</rul:Sequence>
+				</rul:Else>
+			</rul:If>
+		</rul:Sequence>
+	</rul:Rule>
+	<rul:Rule Name="SetSpecialNonOverheadRate" Type="none" DataDefGroup="CommercialPropertyUtilityServicesTimeElementSpclClassBusnIncomeDetail">
+		<rul:Sequence>
+			<rul:WithArgs>
+				<rul:Arg Type="decimal" Param="calcSpecialNonOverheadRate">
+					<rul:FirstNonNull Type="decimal">
+						<rul:Product DecimalPlaces="3">
+							<rul:FirstValue Type="decimal" FromConstant="0" FromDataDef="@SpecialNonOverheadBaseRate" Order="DataDefInputParamConstant" />
+							<rul:FirstValue Type="decimal" FromConstant="0" FromDataDef="ancestor::CommercialProperty/@LossCostMultiplier" Order="DataDefInputParamConstant" />
+						</rul:Product>
+						<rul:Constant Type="decimal">0</rul:Constant>
+					</rul:FirstNonNull>
+				</rul:Arg>
+				<rul:Value Type="decimal" ToDataDef="@SpecialNonOverheadRate" FromParam="calcSpecialNonOverheadRate" />
+			</rul:WithArgs>
+		</rul:Sequence>
+	</rul:Rule>
+	<rul:Rule Name="SetSpecialOverheadRate" Type="none" DataDefGroup="CommercialPropertyUtilityServicesTimeElementSpclClassBusnIncomeDetail">
+		<rul:Sequence>
+			<rul:WithArgs>
+				<rul:Arg Type="decimal" Param="calcSpecialOverheadRate">
+					<rul:FirstNonNull Type="decimal">
+						<rul:Product DecimalPlaces="3">
+							<rul:FirstValue Type="decimal" FromConstant="0" FromDataDef="@SpecialOverheadBaseRate" Order="DataDefInputParamConstant" />
+							<rul:FirstValue Type="decimal" FromConstant="0" FromDataDef="ancestor::CommercialProperty/@LossCostMultiplier" Order="DataDefInputParamConstant" />
+						</rul:Product>
+						<rul:Constant Type="decimal">0</rul:Constant>
+					</rul:FirstNonNull>
+				</rul:Arg>
+				<rul:Value Type="decimal" ToDataDef="@SpecialOverheadRate" FromParam="calcSpecialOverheadRate" />
+			</rul:WithArgs>
+		</rul:Sequence>
+	</rul:Rule>
+	<rul:Rule Name="SetSpecialRate" Type="none" DataDefGroup="CommercialPropertyUtilityServicesTimeElementSpclClassBusnIncomeDetail">
+		<rul:Sequence>
+			<rul:Round ToDataDef="@SpecialRate" DecimalPlaces="3">
+				<rul:Sum>
+					<rul:Value Type="decimal" FromDataDef="@SpecialNonOverheadRate" />
+					<rul:Value Type="decimal" FromDataDef="@SpecialOverheadRate" />
+				</rul:Sum>
+			</rul:Round>
+		</rul:Sequence>
+	</rul:Rule>
+	<rul:Rule Name="SetEQRatesAndFactors" Type="none" DataDefGroup="CommercialPropertyUtilityServicesTimeElementSpclClassBusnIncomeDetail">
+		<rul:Sequence>
+			<rul:RunRule Type="none" FileName="CommercialPropertyUtilityServicesTimeElementSpclClassBusnIncomeDetailRules" Rule="SetEQNonOverheadBaseRate" ClearCache="true" />
+			<rul:RunRule Type="none" FileName="CommercialPropertyUtilityServicesTimeElementSpclClassBusnIncomeDetailRules" Rule="SetEQOverheadBaseRate" ClearCache="true" />
+			<rul:RunRule Type="none" FileName="CommercialPropertyUtilityServicesTimeElementSpclClassBusnIncomeDetailRules" Rule="SetEQNonOverheadRate" ClearCache="true" />
+			<rul:RunRule Type="none" FileName="CommercialPropertyUtilityServicesTimeElementSpclClassBusnIncomeDetailRules" Rule="SetEQOverheadRate" ClearCache="true" />
+			<rul:RunRule Type="none" FileName="CommercialPropertyUtilityServicesTimeElementSpclClassBusnIncomeDetailRules" Rule="SetEQRate" ClearCache="true" />
+		</rul:Sequence>
+	</rul:Rule>
+	<rul:Rule Name="SetEQNonOverheadBaseRate" Type="none" DataDefGroup="CommercialPropertyUtilityServicesTimeElementSpclClassBusnIncomeDetail">
+		<rul:Sequence>
+			<rul:Choose>
+				<rul:When>
+					<rul:Test>
+						<rul:Or>
+							<rul:Equal>
+								<rul:FirstValue Type="string" FromConstant="" FromDataDef="@Utility" Order="DataDefInputParamConstant" />
+								<rul:Constant Type="string">Water Supply</rul:Constant>
+							</rul:Equal>
+							<rul:Equal>
+								<rul:FirstValue Type="string" FromConstant="" FromDataDef="@Utility" Order="DataDefInputParamConstant" />
+								<rul:Constant Type="string">Wastewater Removal</rul:Constant>
+							</rul:Equal>
+							<rul:Equal>
+								<rul:FirstValue Type="string" FromConstant="" FromDataDef="@Utility" Order="DataDefInputParamConstant" />
+								<rul:Constant Type="string">Power Supply - Not Including Overhead Transmission Lines</rul:Constant>
+							</rul:Equal>
+							<rul:Equal>
+								<rul:FirstValue Type="string" FromConstant="" FromDataDef="@Utility" Order="DataDefInputParamConstant" />
+								<rul:Constant Type="string">Power Supply - Including Overhead Transmission Lines</rul:Constant>
+							</rul:Equal>
+						</rul:Or>
+					</rul:Test>
+					<rul:Then>
+						<rul:Sequence>
+							<rul:If>
+								<rul:Test>
+									<rul:Equal>
+										<rul:FirstValue Type="string" FromConstant="" FromDataDef="@UtilityType" Order="DataDefInputParamConstant" />
+										<rul:Constant Type="string">Other Than Public Utilities</rul:Constant>
+									</rul:Equal>
+								</rul:Test>
+								<rul:Then>
+									<rul:Sequence>
+										<rul:RunRule Type="decimal" ToDataDef="@EQNonOverheadBaseRate" FileName="CommercialPropertyUtilityServicesTimeElementSpclClassBusnIncomeDetailRules" Rule="LookupUtilitySrvcTimeElementWaterAndPowerSupplyNonPublic" ClearCache="true">
+											<rul:Arg Type="string" Param="causeOfLoss">
+												<rul:Constant Type="string">Earthquake</rul:Constant>
+											</rul:Arg>
+										</rul:RunRule>
+									</rul:Sequence>
+								</rul:Then>
+								<rul:Else>
+									<rul:Sequence>
+										<rul:RunRule Type="decimal" ToDataDef="@EQNonOverheadBaseRate" FileName="CommercialPropertyUtilityServicesTimeElementSpclClassBusnIncomeDetailRules" Rule="LookupUtilitySrvcTimeElementWaterAndPowerSupply" ClearCache="true">
+											<rul:Arg Type="string" Param="causeOfLoss">
+												<rul:Constant Type="string">Earthquake</rul:Constant>
+											</rul:Arg>
+										</rul:RunRule>
+									</rul:Sequence>
+								</rul:Else>
+							</rul:If>
+						</rul:Sequence>
+					</rul:Then>
+				</rul:When>
+				<rul:When>
+					<rul:Test>
+						<rul:And>
+							<rul:NotEqual>
+								<rul:FirstValue Type="string" FromConstant="" FromDataDef="@Utility" Order="DataDefInputParamConstant" />
+								<rul:Constant Type="string"></rul:Constant>
+							</rul:NotEqual>
+							<rul:NotEqual>
+								<rul:FirstValue Type="string" FromConstant="" FromDataDef="@Utility" Order="DataDefInputParamConstant" />
+								<rul:Constant Type="string">Water Supply</rul:Constant>
+							</rul:NotEqual>
+							<rul:NotEqual>
+								<rul:FirstValue Type="string" FromConstant="" FromDataDef="@Utility" Order="DataDefInputParamConstant" />
+								<rul:Constant Type="string">Wastewater Removal</rul:Constant>
+							</rul:NotEqual>
+							<rul:NotEqual>
+								<rul:FirstValue Type="string" FromConstant="" FromDataDef="@Utility" Order="DataDefInputParamConstant" />
+								<rul:Constant Type="string">Power Supply - Not Including Overhead Transmission Lines</rul:Constant>
+							</rul:NotEqual>
+							<rul:NotEqual>
+								<rul:FirstValue Type="string" FromConstant="" FromDataDef="@Utility" Order="DataDefInputParamConstant" />
+								<rul:Constant Type="string">Power Supply - Including Overhead Transmission Lines</rul:Constant>
+							</rul:NotEqual>
+						</rul:And>
+					</rul:Test>
+					<rul:Then>
+						<rul:Sequence>
+							<rul:If>
+								<rul:Test>
+									<rul:Equal>
+										<rul:FirstValue Type="string" FromConstant="" FromDataDef="@UtilityType" Order="DataDefInputParamConstant" />
+										<rul:Constant Type="string">Other Than Public Utilities</rul:Constant>
+									</rul:Equal>
+								</rul:Test>
+								<rul:Then>
+									<rul:Sequence>
+										<rul:RunRule Type="decimal" ToDataDef="@EQNonOverheadBaseRate" FileName="CommercialPropertyUtilityServicesTimeElementSpclClassBusnIncomeDetailRules" Rule="LookupUtilitySrvcTimeElementCommunicationsSupplyNonPublic" ClearCache="true">
+											<rul:Arg Type="string" Param="causeOfLoss">
+												<rul:Constant Type="string">Earthquake</rul:Constant>
+											</rul:Arg>
+										</rul:RunRule>
+									</rul:Sequence>
+								</rul:Then>
+								<rul:Else>
+									<rul:Sequence>
+										<rul:RunRule Type="decimal" ToDataDef="@EQNonOverheadBaseRate" FileName="CommercialPropertyUtilityServicesTimeElementSpclClassBusnIncomeDetailRules" Rule="LookupUtilitySrvcTimeElementCommunicationsSupply" ClearCache="true">
+											<rul:Arg Type="string" Param="causeOfLoss">
+												<rul:Constant Type="string">Earthquake</rul:Constant>
+											</rul:Arg>
+										</rul:RunRule>
+									</rul:Sequence>
+								</rul:Else>
+							</rul:If>
+						</rul:Sequence>
+					</rul:Then>
+				</rul:When>
+			</rul:Choose>
+		</rul:Sequence>
+	</rul:Rule>
+	<rul:Rule Name="SetEQOverheadBaseRate" Type="none" DataDefGroup="CommercialPropertyUtilityServicesTimeElementSpclClassBusnIncomeDetail">
+		<rul:Sequence>
+			<rul:If>
+				<rul:Test>
+					<rul:Or>
+						<rul:Equal>
+							<rul:FirstValue Type="string" FromConstant="" FromDataDef="@Utility" Order="DataDefInputParamConstant" />
+							<rul:Constant Type="string">Communications Supply - Including Overhead Transmission Lines</rul:Constant>
+						</rul:Equal>
+						<rul:Equal>
+							<rul:FirstValue Type="string" FromConstant="" FromDataDef="@Utility" Order="DataDefInputParamConstant" />
+							<rul:Constant Type="string">Power Supply - Including Overhead Transmission Lines</rul:Constant>
+						</rul:Equal>
+					</rul:Or>
+				</rul:Test>
+				<rul:Then>
+					<rul:Sequence>
+						<rul:If>
+							<rul:Test>
+								<rul:Equal>
+									<rul:FirstValue Type="string" FromConstant="" FromDataDef="@UtilityType" Order="DataDefInputParamConstant" />
+									<rul:Constant Type="string">Other Than Public Utilities</rul:Constant>
+								</rul:Equal>
+							</rul:Test>
+							<rul:Then>
+								<rul:Sequence>
+									<rul:RunRule Type="decimal" ToDataDef="@EQOverheadBaseRate" FileName="CommercialPropertyUtilityServicesTimeElementSpclClassBusnIncomeDetailRules" Rule="LookupUtilitySrvcTimeElementOverheadPowerTransmissionAndCommunicationLinesNonPublic" ClearCache="true">
+										<rul:Arg Type="string" Param="causeOfLoss">
+											<rul:Constant Type="string">Earthquake</rul:Constant>
+										</rul:Arg>
+									</rul:RunRule>
+								</rul:Sequence>
+							</rul:Then>
+							<rul:Else>
+								<rul:Sequence>
+									<rul:RunRule Type="decimal" ToDataDef="@EQOverheadBaseRate" FileName="CommercialPropertyUtilityServicesTimeElementSpclClassBusnIncomeDetailRules" Rule="LookupUtilitySrvcTimeElementOverheadPowerTransmissionAndCommunicationLines" ClearCache="true">
+										<rul:Arg Type="string" Param="causeOfLoss">
+											<rul:Constant Type="string">Earthquake</rul:Constant>
+										</rul:Arg>
+									</rul:RunRule>
+								</rul:Sequence>
+							</rul:Else>
+						</rul:If>
+					</rul:Sequence>
+				</rul:Then>
+				<rul:Else>
+					<rul:Sequence>
+						<rul:Constant Type="decimal" ToDataDef="@EQOverheadBaseRate">0.0</rul:Constant>
+					</rul:Sequence>
+				</rul:Else>
+			</rul:If>
+		</rul:Sequence>
+	</rul:Rule>
+	<rul:Rule Name="SetEQNonOverheadRate" Type="none" DataDefGroup="CommercialPropertyUtilityServicesTimeElementSpclClassBusnIncomeDetail">
+		<rul:Sequence>
+			<rul:WithArgs>
+				<rul:Arg Type="decimal" Param="calcEQNonOverheadRate">
+					<rul:FirstNonNull Type="decimal">
+						<rul:Product DecimalPlaces="3">
+							<rul:FirstValue Type="decimal" FromConstant="0" FromDataDef="@EQNonOverheadBaseRate" Order="DataDefInputParamConstant" />
+							<rul:FirstValue Type="decimal" FromConstant="0" FromDataDef="ancestor::CommercialProperty/@LossCostMultiplier" Order="DataDefInputParamConstant" />
+						</rul:Product>
+						<rul:Constant Type="decimal">0</rul:Constant>
+					</rul:FirstNonNull>
+				</rul:Arg>
+				<rul:Value Type="decimal" ToDataDef="@EQNonOverheadRate" FromParam="calcEQNonOverheadRate" />
+			</rul:WithArgs>
+		</rul:Sequence>
+	</rul:Rule>
+	<rul:Rule Name="SetEQOverheadRate" Type="none" DataDefGroup="CommercialPropertyUtilityServicesTimeElementSpclClassBusnIncomeDetail">
+		<rul:Sequence>
+			<rul:WithArgs>
+				<rul:Arg Type="decimal" Param="calcEQOverheadRate">
+					<rul:FirstNonNull Type="decimal">
+						<rul:Product DecimalPlaces="3">
+							<rul:FirstValue Type="decimal" FromConstant="0" FromDataDef="@EQOverheadBaseRate" Order="DataDefInputParamConstant" />
+							<rul:FirstValue Type="decimal" FromConstant="0" FromDataDef="ancestor::CommercialProperty/@LossCostMultiplier" Order="DataDefInputParamConstant" />
+						</rul:Product>
+						<rul:Constant Type="decimal">0</rul:Constant>
+					</rul:FirstNonNull>
+				</rul:Arg>
+				<rul:Value Type="decimal" ToDataDef="@EQOverheadRate" FromParam="calcEQOverheadRate" />
+			</rul:WithArgs>
+		</rul:Sequence>
+	</rul:Rule>
+	<rul:Rule Name="SetEQRate" Type="none" DataDefGroup="CommercialPropertyUtilityServicesTimeElementSpclClassBusnIncomeDetail">
+		<rul:Sequence>
+			<rul:Round ToDataDef="@EQRate" DecimalPlaces="3">
+				<rul:Sum>
+					<rul:Value Type="decimal" FromDataDef="@EQNonOverheadRate" />
+					<rul:Value Type="decimal" FromDataDef="@EQOverheadRate" />
+				</rul:Sum>
+			</rul:Round>
+		</rul:Sequence>
+	</rul:Rule>
+	<rul:Rule Name="ErcSetStatisticalCodes" Type="none" DataDefGroup="CommercialPropertyUtilityServicesTimeElementSpclClassBusnIncomeDetail">
+		<rul:Sequence>
+			<rul:If>
+				<rul:Test>
+					<rul:Exist AtInputDataDef="ancestor::MasterCFCW/Policy" />
+				</rul:Test>
+				<rul:Then>
+					<rul:RunRule Type="none" FileName="CommercialPropertyUtilityServicesTimeElementSpclClassBusnIncomeDetailRules" Rule="SetExposureStatAmount" ClearCache="true" />
+				</rul:Then>
+			</rul:If>
+		</rul:Sequence>
+	</rul:Rule>
+	<rul:Rule Name="SetExposureStatAmount" Type="none" DataDefGroup="CommercialPropertyUtilityServicesTimeElementSpclClassBusnIncomeDetail">
+		<rul:Sequence>
+			<rul:If>
+				<rul:Test>
+					<rul:GreaterThan>
+						<rul:FirstValue Type="integer" FromConstant="0" FromDataDef="@LimitToUse" Order="DataDefInputParamConstant" />
+						<rul:Constant Type="integer">0</rul:Constant>
+					</rul:GreaterThan>
+				</rul:Test>
+				<rul:Then>
+					<rul:Sequence>
+						<rul:Convert Type="integer" ToDataDef="@ExposureStatAmount">
+							<rul:Truncate>
+								<rul:Divide>
+									<rul:Value Type="integer" FromDataDef="@LimitToUse" />
+									<rul:Constant Type="integer">1000</rul:Constant>
+								</rul:Divide>
+							</rul:Truncate>
+						</rul:Convert>
+					</rul:Sequence>
+				</rul:Then>
+				<rul:Else>
+					<rul:Sequence>
+						<rul:Constant Type="integer" ToDataDef="@ExposureStatAmount">0</rul:Constant>
+					</rul:Sequence>
+				</rul:Else>
+			</rul:If>
+		</rul:Sequence>
+	</rul:Rule>
+	<rul:Rule Name="ErcProcess" Type="none" DataDefGroup="CommercialPropertyUtilityServicesTimeElementSpclClassBusnIncomeDetail">
+		<rul:Sequence>
+			<rul:RunRule Type="none" FileName="CommercialPropertyUtilityServicesTimeElementSpclClassBusnIncomeDetailRules" Rule="ErcSetRatesAndFactors" ClearCache="true" />
+			<rul:Locate AtDataDef="CommercialPropertyUtilityServicesTimeElementSpclClassBusnIncomeDetailBasicGroupICoverage">
+				<rul:RunRule Type="none" FileName="CommercialPropertyUtilityServicesTimeElementSpclClassBusnIncomeDetailBasicGroupICoverageRules" Rule="ErcProcess" ClearCache="true" />
+			</rul:Locate>
+			<rul:Locate AtDataDef="CommercialPropertyUtilityServicesTimeElementSpclClassBusnIncomeDetailBasicGroupIICoverage">
+				<rul:RunRule Type="none" FileName="CommercialPropertyUtilityServicesTimeElementSpclClassBusnIncomeDetailBasicGroupIICoverageRules" Rule="ErcProcess" ClearCache="true" />
+			</rul:Locate>
+			<rul:Locate AtDataDef="CommercialPropertyUtilityServicesTimeElementSpclClassBusnIncomeDetailBroadCoverage">
+				<rul:RunRule Type="none" FileName="CommercialPropertyUtilityServicesTimeElementSpclClassBusnIncomeDetailBroadCoverageRules" Rule="ErcProcess" ClearCache="true" />
+			</rul:Locate>
+			<rul:Locate AtDataDef="CommercialPropertyUtilityServicesTimeElementSpclClassBusnIncomeDetailEarthquakeCoverage">
+				<rul:RunRule Type="none" FileName="CommercialPropertyUtilityServicesTimeElementSpclClassBusnIncomeDetailEarthquakeCoverageRules" Rule="ErcProcess" ClearCache="true" />
+			</rul:Locate>
+			<rul:Locate AtDataDef="CommercialPropertyUtilityServicesTimeElementSpclClassBusnIncomeDetailSpecialCoverage">
+				<rul:RunRule Type="none" FileName="CommercialPropertyUtilityServicesTimeElementSpclClassBusnIncomeDetailSpecialCoverageRules" Rule="ErcProcess" ClearCache="true" />
+			</rul:Locate>
+			<rul:RunRule Type="none" FileName="CommercialPropertyUtilityServicesTimeElementSpclClassBusnIncomeDetailRules" Rule="ErcSetStatisticalCodes" ClearCache="true" />
+		</rul:Sequence>
+	</rul:Rule>
+	<rul:Rule Name="LookupUtilitySrvcTimeElementCommunicationsSupply" Type="decimal" DataDefGroup="CommercialPropertyUtilityServicesTimeElementSpclClassBusnIncomeDetail">
+		<rul:Param Name="causeOfLoss" Type="string" />
+		<rul:FirstNonNull Type="decimal">
+			<rul:Lookup Type="decimal" MatrixCol="Rate" MatrixDef="UtilitySrvcTimeElementCommunicationsSupplyDef" MatrixFromConstant="UtilitySrvcTimeElementCommunicationsSupply" ResultMode="FirstResult">
+				<rul:Keys>
+					<rul:Value Type="string" FromDataDef="/State/@Code" />
+					<rul:Value Type="string" FromParam="causeOfLoss" />
+				</rul:Keys>
+			</rul:Lookup>
+			<rul:Lookup Type="decimal" MatrixCol="Rate" MatrixDef="UtilitySrvcTimeElementCommunicationsSupplyDef" MatrixFromConstant="UtilitySrvcTimeElementCommunicationsSupply" ResultMode="SingleResult">
+				<rul:Keys>
+					<rul:Constant Type="string">CW</rul:Constant>
+					<rul:Value Type="string" FromParam="causeOfLoss" />
+				</rul:Keys>
+			</rul:Lookup>
+		</rul:FirstNonNull>
+	</rul:Rule>
+	<rul:Rule Name="LookupUtilitySrvcTimeElementOverheadPowerTransmissionAndCommunicationLines" Type="decimal" DataDefGroup="CommercialPropertyUtilityServicesTimeElementSpclClassBusnIncomeDetail">
+		<rul:Param Name="causeOfLoss" Type="string" />
+		<rul:FirstNonNull Type="decimal">
+			<rul:Lookup Type="decimal" MatrixCol="Rate" MatrixDef="UtilitySrvcTimeElementOverheadPowerTransmissionAndCommunicationLinesDef" MatrixFromConstant="UtilitySrvcTimeElementOverheadPowerTransmissionAndCommunicationLines" ResultMode="FirstResult">
+				<rul:Keys>
+					<rul:Value Type="string" FromDataDef="/State/@Code" />
+					<rul:Value Type="string" FromParam="causeOfLoss" />
+				</rul:Keys>
+			</rul:Lookup>
+			<rul:Lookup Type="decimal" MatrixCol="Rate" MatrixDef="UtilitySrvcTimeElementOverheadPowerTransmissionAndCommunicationLinesDef" MatrixFromConstant="UtilitySrvcTimeElementOverheadPowerTransmissionAndCommunicationLines" ResultMode="SingleResult">
+				<rul:Keys>
+					<rul:Constant Type="string">CW</rul:Constant>
+					<rul:Value Type="string" FromParam="causeOfLoss" />
+				</rul:Keys>
+			</rul:Lookup>
+		</rul:FirstNonNull>
+	</rul:Rule>
+	<rul:Rule Name="LookupUtilitySrvcTimeElementWaterAndPowerSupply" Type="decimal" DataDefGroup="CommercialPropertyUtilityServicesTimeElementSpclClassBusnIncomeDetail">
+		<rul:Param Name="causeOfLoss" Type="string" />
+		<rul:FirstNonNull Type="decimal">
+			<rul:Lookup Type="decimal" MatrixCol="Rate" MatrixDef="UtilitySrvcTimeElementWaterAndPowerSupplyDef" MatrixFromConstant="UtilitySrvcTimeElementWaterAndPowerSupply" ResultMode="FirstResult">
+				<rul:Keys>
+					<rul:Value Type="string" FromDataDef="/State/@Code" />
+					<rul:Value Type="string" FromParam="causeOfLoss" />
+				</rul:Keys>
+			</rul:Lookup>
+			<rul:Lookup Type="decimal" MatrixCol="Rate" MatrixDef="UtilitySrvcTimeElementWaterAndPowerSupplyDef" MatrixFromConstant="UtilitySrvcTimeElementWaterAndPowerSupply" ResultMode="SingleResult">
+				<rul:Keys>
+					<rul:Constant Type="string">CW</rul:Constant>
+					<rul:Value Type="string" FromParam="causeOfLoss" />
+				</rul:Keys>
+			</rul:Lookup>
+		</rul:FirstNonNull>
+	</rul:Rule>
+	<rul:Rule Name="LookupUtilitySrvcTimeElementCommunicationsSupplyNonPublic" Type="decimal" DataDefGroup="CommercialPropertyUtilityServicesTimeElementSpclClassBusnIncomeDetail">
+		<rul:Param Name="causeOfLoss" Type="string" />
+		<rul:FirstNonNull Type="decimal">
+			<rul:Lookup Type="decimal" MatrixCol="Rate" MatrixDef="UtilitySrvcTimeElementCommunicationsSupplyNonPublicDef" MatrixFromConstant="UtilitySrvcTimeElementCommunicationsSupplyNonPublic" ResultMode="FirstResult">
+				<rul:Keys>
+					<rul:Value Type="string" FromDataDef="/State/@Code" />
+					<rul:Value Type="string" FromParam="causeOfLoss" />
+				</rul:Keys>
+			</rul:Lookup>
+			<rul:Lookup Type="decimal" MatrixCol="Rate" MatrixDef="UtilitySrvcTimeElementCommunicationsSupplyNonPublicDef" MatrixFromConstant="UtilitySrvcTimeElementCommunicationsSupplyNonPublic" ResultMode="SingleResult">
+				<rul:Keys>
+					<rul:Constant Type="string">CW</rul:Constant>
+					<rul:Value Type="string" FromParam="causeOfLoss" />
+				</rul:Keys>
+			</rul:Lookup>
+		</rul:FirstNonNull>
+	</rul:Rule>
+	<rul:Rule Name="LookupUtilitySrvcTimeElementOverheadPowerTransmissionAndCommunicationLinesNonPublic" Type="decimal" DataDefGroup="CommercialPropertyUtilityServicesTimeElementSpclClassBusnIncomeDetail">
+		<rul:Param Name="causeOfLoss" Type="string" />
+		<rul:FirstNonNull Type="decimal">
+			<rul:Lookup Type="decimal" MatrixCol="Rate" MatrixDef="UtilitySrvcTimeElementOverheadPowerTransmissionAndCommunicationLinesNonPublicDef" MatrixFromConstant="UtilitySrvcTimeElementOverheadPowerTransmissionAndCommunicationLinesNonPublic" ResultMode="FirstResult">
+				<rul:Keys>
+					<rul:Value Type="string" FromDataDef="/State/@Code" />
+					<rul:Value Type="string" FromParam="causeOfLoss" />
+				</rul:Keys>
+			</rul:Lookup>
+			<rul:Lookup Type="decimal" MatrixCol="Rate" MatrixDef="UtilitySrvcTimeElementOverheadPowerTransmissionAndCommunicationLinesNonPublicDef" MatrixFromConstant="UtilitySrvcTimeElementOverheadPowerTransmissionAndCommunicationLinesNonPublic" ResultMode="SingleResult">
+				<rul:Keys>
+					<rul:Constant Type="string">CW</rul:Constant>
+					<rul:Value Type="string" FromParam="causeOfLoss" />
+				</rul:Keys>
+			</rul:Lookup>
+		</rul:FirstNonNull>
+	</rul:Rule>
+	<rul:Rule Name="LookupUtilitySrvcTimeElementWaterAndPowerSupplyNonPublic" Type="decimal" DataDefGroup="CommercialPropertyUtilityServicesTimeElementSpclClassBusnIncomeDetail">
+		<rul:Param Name="causeOfLoss" Type="string" />
+		<rul:FirstNonNull Type="decimal">
+			<rul:Lookup Type="decimal" MatrixCol="Rate" MatrixDef="UtilitySrvcTimeElementWaterAndPowerSupplyNonPublicDef" MatrixFromConstant="UtilitySrvcTimeElementWaterAndPowerSupplyNonPublic" ResultMode="FirstResult">
+				<rul:Keys>
+					<rul:Value Type="string" FromDataDef="/State/@Code" />
+					<rul:Value Type="string" FromParam="causeOfLoss" />
+				</rul:Keys>
+			</rul:Lookup>
+			<rul:Lookup Type="decimal" MatrixCol="Rate" MatrixDef="UtilitySrvcTimeElementWaterAndPowerSupplyNonPublicDef" MatrixFromConstant="UtilitySrvcTimeElementWaterAndPowerSupplyNonPublic" ResultMode="SingleResult">
+				<rul:Keys>
+					<rul:Constant Type="string">CW</rul:Constant>
+					<rul:Value Type="string" FromParam="causeOfLoss" />
+				</rul:Keys>
+			</rul:Lookup>
+		</rul:FirstNonNull>
+	</rul:Rule>
+	<rul:Rule Name="LookupUtilityServicesTimeElementWaitingPeriodFactor" Type="decimal" DataDefGroup="CommercialPropertyUtilityServicesTimeElementSpclClassBusnIncomeDetail">
+		<rul:FirstNonNull Type="decimal">
+			<rul:Lookup Type="decimal" MatrixCol="Factor" MatrixDef="UtilityServicesTimeElementWaitingPeriodFactorDef" MatrixFromConstant="UtilityServicesTimeElementWaitingPeriodFactor" ResultMode="FirstResult">
+				<rul:Keys>
+					<rul:Value Type="string" FromDataDef="/State/@Code" />
+					<rul:FirstValue Type="string" FromConstant="" FromDataDef="@WaitingPeriod" Order="DataDefInputParamConstant" />
+				</rul:Keys>
+			</rul:Lookup>
+			<rul:Lookup Type="decimal" MatrixCol="Factor" MatrixDef="UtilityServicesTimeElementWaitingPeriodFactorDef" MatrixFromConstant="UtilityServicesTimeElementWaitingPeriodFactor" ResultMode="SingleResult">
+				<rul:Keys>
+					<rul:Constant Type="string">CW</rul:Constant>
+					<rul:FirstValue Type="string" FromConstant="" FromDataDef="@WaitingPeriod" Order="DataDefInputParamConstant" />
+				</rul:Keys>
+			</rul:Lookup>
+		</rul:FirstNonNull>
+	</rul:Rule>
+</rul:Rules>

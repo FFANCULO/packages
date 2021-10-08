@@ -1,0 +1,196 @@
+<rul:Rules xmlns:rul="http://www.verisk.com/iso/erc/Rule">
+	<rul:Rule Name="InitializeRuleSet" DataDefGroup="CommercialPropertyFunctionalBuildingValuation">
+		<rul:Sequence>
+			<rul:Locate AtDataDef="CommercialPropertyFunctionalBuildingValuationBasicGroupICoverage">
+				<rul:RunRule Type="none" FileName="CommercialPropertyFunctionalBuildingValuationBasicGroupICoverageRules" Rule="InitializeRuleSet" ClearCache="true" />
+			</rul:Locate>
+			<rul:Locate AtDataDef="CommercialPropertyFunctionalBuildingValuationBasicGroupIICoverage">
+				<rul:RunRule Type="none" FileName="CommercialPropertyFunctionalBuildingValuationBasicGroupIICoverageRules" Rule="InitializeRuleSet" ClearCache="true" />
+			</rul:Locate>
+			<rul:Locate AtDataDef="CommercialPropertyFunctionalBuildingValuationBroadCoverage">
+				<rul:RunRule Type="none" FileName="CommercialPropertyFunctionalBuildingValuationBroadCoverageRules" Rule="InitializeRuleSet" ClearCache="true" />
+			</rul:Locate>
+			<rul:Locate AtDataDef="CommercialPropertyFunctionalBuildingValuationEarthquakeCoverage">
+				<rul:RunRule Type="none" FileName="CommercialPropertyFunctionalBuildingValuationEarthquakeCoverageRules" Rule="InitializeRuleSet" ClearCache="true" />
+			</rul:Locate>
+			<rul:Locate AtDataDef="CommercialPropertyFunctionalBuildingValuationSpecialCoverage">
+				<rul:RunRule Type="none" FileName="CommercialPropertyFunctionalBuildingValuationSpecialCoverageRules" Rule="InitializeRuleSet" ClearCache="true" />
+			</rul:Locate>
+		</rul:Sequence>
+	</rul:Rule>
+	<rul:Rule Name="CalculateTotalPremium" Type="decimal" DataDefGroup="CommercialPropertyFunctionalBuildingValuation">
+		<rul:Sum>
+			<rul:Locate AtDataDef="CommercialPropertyFunctionalBuildingValuationBasicGroupICoverage">
+				<rul:RunRule Type="decimal" FileName="CommercialPropertyFunctionalBuildingValuationBasicGroupICoverageRules" Rule="CalculateTotalPremium" ClearCache="true" />
+			</rul:Locate>
+			<rul:Locate AtDataDef="CommercialPropertyFunctionalBuildingValuationBasicGroupIICoverage">
+				<rul:RunRule Type="decimal" FileName="CommercialPropertyFunctionalBuildingValuationBasicGroupIICoverageRules" Rule="CalculateTotalPremium" ClearCache="true" />
+			</rul:Locate>
+			<rul:Locate AtDataDef="CommercialPropertyFunctionalBuildingValuationBroadCoverage">
+				<rul:RunRule Type="decimal" FileName="CommercialPropertyFunctionalBuildingValuationBroadCoverageRules" Rule="CalculateTotalPremium" ClearCache="true" />
+			</rul:Locate>
+			<rul:Locate AtDataDef="CommercialPropertyFunctionalBuildingValuationEarthquakeCoverage">
+				<rul:RunRule Type="decimal" FileName="CommercialPropertyFunctionalBuildingValuationEarthquakeCoverageRules" Rule="CalculateTotalPremium" ClearCache="true" />
+			</rul:Locate>
+			<rul:Locate AtDataDef="CommercialPropertyFunctionalBuildingValuationSpecialCoverage">
+				<rul:RunRule Type="decimal" FileName="CommercialPropertyFunctionalBuildingValuationSpecialCoverageRules" Rule="CalculateTotalPremium" ClearCache="true" />
+			</rul:Locate>
+			<rul:If>
+				<rul:Test>
+					<rul:And>
+						<rul:Equal>
+							<rul:FirstValue Type="integer" FromConstant="0" FromDataDef="@PremiumIndicator" Order="DataDefInputParamConstant" />
+							<rul:Constant Type="integer">1</rul:Constant>
+						</rul:Equal>
+						<rul:NotEqual>
+							<rul:FirstValue Type="decimal" FromConstant="0" FromDataDef="@Premium" Order="DataDefInputParamConstant" />
+							<rul:Constant Type="decimal">0</rul:Constant>
+						</rul:NotEqual>
+					</rul:And>
+				</rul:Test>
+				<rul:Then>
+					<rul:FirstValue Type="decimal" FromConstant="0" FromDataDef="@Premium" Order="DataDefInputParamConstant" />
+				</rul:Then>
+				<rul:Else>
+					<rul:Constant Type="decimal">0</rul:Constant>
+				</rul:Else>
+			</rul:If>
+		</rul:Sum>
+	</rul:Rule>
+	<rul:Rule Name="ErcSetRatesAndFactors" Type="none" DataDefGroup="CommercialPropertyFunctionalBuildingValuation">
+		<rul:Sequence>
+			<rul:RunRule Type="none" FileName="CommercialPropertyFunctionalBuildingValuationRules" Rule="SetLimit" ClearCache="true" />
+			<rul:RunRule Type="none" FileName="CommercialPropertyFunctionalBuildingValuationRules" Rule="SetFactor" ClearCache="true" />
+			<rul:RunRule Type="none" FileName="CommercialPropertyFunctionalBuildingValuationRules" Rule="SetPostLossFactor" ClearCache="true" />
+		</rul:Sequence>
+	</rul:Rule>
+	<rul:Rule Name="SetLimit" Type="none" DataDefGroup="CommercialPropertyFunctionalBuildingValuation">
+		<rul:Sequence>
+			<rul:Copy Type="integer" ToDataDef="@Limit" FromDataDef="ancestor::CommercialPropertyStructure/@Limit" />
+		</rul:Sequence>
+	</rul:Rule>
+	<rul:Rule Name="SetFactor" Type="none" DataDefGroup="CommercialPropertyFunctionalBuildingValuation">
+		<rul:Sequence>
+			<rul:RunRule Type="decimal" ToDataDef="@Factor" FileName="CommercialPropertyFunctionalBuildingValuationRules" Rule="LookupFunctionalValuationFactor" ClearCache="true">
+				<rul:Arg Type="string" Param="covType">
+					<rul:Constant Type="string">Building</rul:Constant>
+				</rul:Arg>
+			</rul:RunRule>
+		</rul:Sequence>
+	</rul:Rule>
+	<rul:Rule Name="SetPostLossFactor" Type="none" DataDefGroup="CommercialPropertyFunctionalBuildingValuation">
+		<rul:Sequence>
+			<rul:If>
+				<rul:Test>
+					<rul:Equal>
+						<rul:FirstValue Type="string" FromConstant="" FromDataDef="@PostLossOrdinanceOrLawOption" Order="DataDefInputParamConstant" />
+						<rul:Constant Type="string">Yes</rul:Constant>
+					</rul:Equal>
+				</rul:Test>
+				<rul:Then>
+					<rul:Sequence>
+						<rul:RunRule Type="decimal" ToDataDef="@PostLossFactor" FileName="CommercialPropertyFunctionalBuildingValuationRules" Rule="LookupPostLossOrdinanceOrLawOptionFactor" ClearCache="true" />
+					</rul:Sequence>
+				</rul:Then>
+				<rul:Else>
+					<rul:Sequence>
+						<rul:Constant Type="decimal" ToDataDef="@PostLossFactor">1.0</rul:Constant>
+					</rul:Sequence>
+				</rul:Else>
+			</rul:If>
+		</rul:Sequence>
+	</rul:Rule>
+	<rul:Rule Name="ErcSetStatisticalCodes" Type="none" DataDefGroup="CommercialPropertyFunctionalBuildingValuation">
+		<rul:Sequence>
+			<rul:If>
+				<rul:Test>
+					<rul:Exist AtInputDataDef="ancestor::MasterCFCW/Policy" />
+				</rul:Test>
+				<rul:Then>
+					<rul:Sequence>
+						<rul:WithArgs>
+							<rul:Arg Type="integer" Param="calcExposureStatAmount">
+								<rul:FirstNonNull Type="integer">
+									<rul:If>
+										<rul:Test>
+											<rul:GreaterThan>
+												<rul:FirstValue Type="integer" FromConstant="0" FromDataDef="ancestor::CommercialPropertyStructure/@Limit" Order="DataDefInputParamConstant" />
+												<rul:Constant Type="integer">0</rul:Constant>
+											</rul:GreaterThan>
+										</rul:Test>
+										<rul:Then>
+											<rul:Convert Type="integer">
+												<rul:Truncate>
+													<rul:Divide>
+														<rul:Value Type="integer" FromDataDef="ancestor::CommercialPropertyStructure/@Limit" />
+														<rul:Constant Type="integer">1000</rul:Constant>
+													</rul:Divide>
+												</rul:Truncate>
+											</rul:Convert>
+										</rul:Then>
+									</rul:If>
+									<rul:Constant Type="integer">0</rul:Constant>
+								</rul:FirstNonNull>
+							</rul:Arg>
+							<rul:Value Type="integer" ToDataDef="@ExposureStatAmount" FromParam="calcExposureStatAmount" />
+						</rul:WithArgs>
+					</rul:Sequence>
+				</rul:Then>
+			</rul:If>
+		</rul:Sequence>
+	</rul:Rule>
+	<rul:Rule Name="ErcProcess" Type="none" DataDefGroup="CommercialPropertyFunctionalBuildingValuation">
+		<rul:Sequence>
+			<rul:RunRule Type="none" FileName="CommercialPropertyFunctionalBuildingValuationRules" Rule="ErcSetRatesAndFactors" ClearCache="true" />
+			<rul:Locate AtDataDef="CommercialPropertyFunctionalBuildingValuationBasicGroupICoverage">
+				<rul:RunRule Type="none" FileName="CommercialPropertyFunctionalBuildingValuationBasicGroupICoverageRules" Rule="ErcProcess" ClearCache="true" />
+			</rul:Locate>
+			<rul:Locate AtDataDef="CommercialPropertyFunctionalBuildingValuationBasicGroupIICoverage">
+				<rul:RunRule Type="none" FileName="CommercialPropertyFunctionalBuildingValuationBasicGroupIICoverageRules" Rule="ErcProcess" ClearCache="true" />
+			</rul:Locate>
+			<rul:Locate AtDataDef="CommercialPropertyFunctionalBuildingValuationBroadCoverage">
+				<rul:RunRule Type="none" FileName="CommercialPropertyFunctionalBuildingValuationBroadCoverageRules" Rule="ErcProcess" ClearCache="true" />
+			</rul:Locate>
+			<rul:Locate AtDataDef="CommercialPropertyFunctionalBuildingValuationEarthquakeCoverage">
+				<rul:RunRule Type="none" FileName="CommercialPropertyFunctionalBuildingValuationEarthquakeCoverageRules" Rule="ErcProcess" ClearCache="true" />
+			</rul:Locate>
+			<rul:Locate AtDataDef="CommercialPropertyFunctionalBuildingValuationSpecialCoverage">
+				<rul:RunRule Type="none" FileName="CommercialPropertyFunctionalBuildingValuationSpecialCoverageRules" Rule="ErcProcess" ClearCache="true" />
+			</rul:Locate>
+			<rul:RunRule Type="none" FileName="CommercialPropertyFunctionalBuildingValuationRules" Rule="ErcSetStatisticalCodes" ClearCache="true" />
+		</rul:Sequence>
+	</rul:Rule>
+	<rul:Rule Name="LookupFunctionalValuationFactor" Type="decimal" DataDefGroup="CommercialPropertyFunctionalBuildingValuation">
+		<rul:Param Name="covType" Type="string" />
+		<rul:FirstNonNull Type="decimal">
+			<rul:Lookup Type="decimal" MatrixCol="Factor" MatrixDef="FunctionalValuationFactorDef" MatrixFromConstant="FunctionalValuationFactor" ResultMode="FirstResult">
+				<rul:Keys>
+					<rul:Value Type="string" FromDataDef="/State/@Code" />
+					<rul:Value Type="string" FromParam="covType" />
+				</rul:Keys>
+			</rul:Lookup>
+			<rul:Lookup Type="decimal" MatrixCol="Factor" MatrixDef="FunctionalValuationFactorDef" MatrixFromConstant="FunctionalValuationFactor" ResultMode="SingleResult">
+				<rul:Keys>
+					<rul:Constant Type="string">CW</rul:Constant>
+					<rul:Value Type="string" FromParam="covType" />
+				</rul:Keys>
+			</rul:Lookup>
+		</rul:FirstNonNull>
+	</rul:Rule>
+	<rul:Rule Name="LookupPostLossOrdinanceOrLawOptionFactor" Type="decimal" DataDefGroup="CommercialPropertyFunctionalBuildingValuation">
+		<rul:FirstNonNull Type="decimal">
+			<rul:Lookup Type="decimal" MatrixCol="Factor" MatrixDef="PostLossOrdinanceOrLawOptionFactorDef" MatrixFromConstant="PostLossOrdinanceOrLawOptionFactor" ResultMode="FirstResult">
+				<rul:Keys>
+					<rul:Value Type="string" FromDataDef="/State/@Code" />
+					<rul:Constant Type="string">Y</rul:Constant>
+				</rul:Keys>
+			</rul:Lookup>
+			<rul:Lookup Type="decimal" MatrixCol="Factor" MatrixDef="PostLossOrdinanceOrLawOptionFactorDef" MatrixFromConstant="PostLossOrdinanceOrLawOptionFactor" ResultMode="SingleResult">
+				<rul:Keys>
+					<rul:Constant Type="string">CW</rul:Constant>
+					<rul:Constant Type="string">Y</rul:Constant>
+				</rul:Keys>
+			</rul:Lookup>
+		</rul:FirstNonNull>
+	</rul:Rule>
+</rul:Rules>

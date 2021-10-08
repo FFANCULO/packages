@@ -1,0 +1,145 @@
+<rul:Rules xmlns:rul="http://www.verisk.com/iso/erc/Rule">
+	<rul:Rule Name="InitializeRuleSet" DataDefGroup="CommercialPropertyMiningPropertiesSpclClassBusnIncome">
+		<rul:Sequence>
+			<rul:Locate AtDataDef="CommercialPropertyMiningPropertiesSpclClassBusnIncomeBasicGroupICoverage">
+				<rul:RunRule Type="none" FileName="CommercialPropertyMiningPropertiesSpclClassBusnIncomeBasicGroupICoverageRules" Rule="InitializeRuleSet" ClearCache="true" />
+			</rul:Locate>
+			<rul:Locate AtDataDef="CommercialPropertyMiningPropertiesSpclClassBusnIncomeBasicGroupIICoverage">
+				<rul:RunRule Type="none" FileName="CommercialPropertyMiningPropertiesSpclClassBusnIncomeBasicGroupIICoverageRules" Rule="InitializeRuleSet" ClearCache="true" />
+			</rul:Locate>
+		</rul:Sequence>
+	</rul:Rule>
+	<rul:Rule Name="CalculateTotalPremium" Type="decimal" DataDefGroup="CommercialPropertyMiningPropertiesSpclClassBusnIncome">
+		<rul:Sum>
+			<rul:Locate AtDataDef="CommercialPropertyMiningPropertiesSpclClassBusnIncomeBasicGroupICoverage">
+				<rul:RunRule Type="decimal" FileName="CommercialPropertyMiningPropertiesSpclClassBusnIncomeBasicGroupICoverageRules" Rule="CalculateTotalPremium" ClearCache="true" />
+			</rul:Locate>
+			<rul:Locate AtDataDef="CommercialPropertyMiningPropertiesSpclClassBusnIncomeBasicGroupIICoverage">
+				<rul:RunRule Type="decimal" FileName="CommercialPropertyMiningPropertiesSpclClassBusnIncomeBasicGroupIICoverageRules" Rule="CalculateTotalPremium" ClearCache="true" />
+			</rul:Locate>
+			<rul:If>
+				<rul:Test>
+					<rul:And>
+						<rul:Equal>
+							<rul:FirstValue Type="integer" FromConstant="0" FromDataDef="@PremiumIndicator" Order="DataDefInputParamConstant" />
+							<rul:Constant Type="integer">1</rul:Constant>
+						</rul:Equal>
+						<rul:NotEqual>
+							<rul:FirstValue Type="decimal" FromConstant="0" FromDataDef="@Premium" Order="DataDefInputParamConstant" />
+							<rul:Constant Type="decimal">0</rul:Constant>
+						</rul:NotEqual>
+					</rul:And>
+				</rul:Test>
+				<rul:Then>
+					<rul:FirstValue Type="decimal" FromConstant="0" FromDataDef="@Premium" Order="DataDefInputParamConstant" />
+				</rul:Then>
+				<rul:Else>
+					<rul:Constant Type="decimal">0</rul:Constant>
+				</rul:Else>
+			</rul:If>
+		</rul:Sum>
+	</rul:Rule>
+	<rul:Rule Name="ErcSetRatesAndFactors" Type="none" DataDefGroup="CommercialPropertyMiningPropertiesSpclClassBusnIncome">
+		<rul:Sequence>
+			<rul:Copy Type="string" ToDataDef="@IncludedInBlkt" FromDataDef="ancestor::CommercialPropertySpecialClassBusnIncome/@IncludedInBlkt" />
+			<rul:If>
+				<rul:Test>
+					<rul:NotEqual>
+						<rul:FirstValue Type="string" FromConstant="" FromDataDef="@MiningCoverageOption" Order="DataDefInputParamConstant" />
+						<rul:Constant Type="string"></rul:Constant>
+					</rul:NotEqual>
+				</rul:Test>
+				<rul:Then>
+					<rul:Sequence>
+						<rul:RunRule Type="decimal" ToDataDef="@BasicGroupIRate" FileName="CommercialPropertyMiningPropertiesSpclClassBusnIncomeRules" Rule="LookupMiningPropertiesBusnIncomeRate" ClearCache="true">
+							<rul:Arg Type="string" Param="causeOfLoss">
+								<rul:Constant Type="string">Basic Group I</rul:Constant>
+							</rul:Arg>
+						</rul:RunRule>
+						<rul:RunRule Type="decimal" ToDataDef="@BasicGroupIIRate" FileName="CommercialPropertyMiningPropertiesSpclClassBusnIncomeRules" Rule="LookupMiningPropertiesBusnIncomeRate" ClearCache="true">
+							<rul:Arg Type="string" Param="causeOfLoss">
+								<rul:Constant Type="string">Basic Group II</rul:Constant>
+							</rul:Arg>
+						</rul:RunRule>
+					</rul:Sequence>
+				</rul:Then>
+				<rul:Else>
+					<rul:Sequence>
+						<rul:Constant Type="decimal" ToDataDef="@BasicGroupIRate">0.0</rul:Constant>
+						<rul:Constant Type="decimal" ToDataDef="@BasicGroupIIRate">0.0</rul:Constant>
+					</rul:Sequence>
+				</rul:Else>
+			</rul:If>
+		</rul:Sequence>
+	</rul:Rule>
+	<rul:Rule Name="ErcSetStatisticalCodes" Type="none" DataDefGroup="CommercialPropertyMiningPropertiesSpclClassBusnIncome">
+		<rul:Sequence>
+			<rul:If>
+				<rul:Test>
+					<rul:Exist AtInputDataDef="ancestor::MasterCFCW/Policy" />
+				</rul:Test>
+				<rul:Then>
+					<rul:Sequence>
+						<rul:WithArgs>
+							<rul:Arg Type="integer" Param="calcExposureStatAmount">
+								<rul:FirstNonNull Type="integer">
+									<rul:If>
+										<rul:Test>
+											<rul:GreaterThan>
+												<rul:FirstValue Type="integer" FromConstant="0" FromDataDef="../../@Limit" Order="DataDefInputParamConstant" />
+												<rul:Constant Type="integer">0</rul:Constant>
+											</rul:GreaterThan>
+										</rul:Test>
+										<rul:Then>
+											<rul:Convert Type="integer">
+												<rul:Truncate>
+													<rul:Divide>
+														<rul:Value Type="integer" FromDataDef="../../@Limit" />
+														<rul:Constant Type="integer">1000</rul:Constant>
+													</rul:Divide>
+												</rul:Truncate>
+											</rul:Convert>
+										</rul:Then>
+									</rul:If>
+									<rul:Constant Type="integer">0</rul:Constant>
+								</rul:FirstNonNull>
+							</rul:Arg>
+							<rul:Value Type="integer" ToDataDef="@ExposureStatAmount" FromParam="calcExposureStatAmount" />
+						</rul:WithArgs>
+					</rul:Sequence>
+				</rul:Then>
+			</rul:If>
+		</rul:Sequence>
+	</rul:Rule>
+	<rul:Rule Name="ErcProcess" Type="none" DataDefGroup="CommercialPropertyMiningPropertiesSpclClassBusnIncome">
+		<rul:Sequence>
+			<rul:RunRule Type="none" FileName="CommercialPropertyMiningPropertiesSpclClassBusnIncomeRules" Rule="ErcSetRatesAndFactors" ClearCache="true" />
+			<rul:Locate AtDataDef="CommercialPropertyMiningPropertiesSpclClassBusnIncomeBasicGroupICoverage">
+				<rul:RunRule Type="none" FileName="CommercialPropertyMiningPropertiesSpclClassBusnIncomeBasicGroupICoverageRules" Rule="ErcProcess" ClearCache="true" />
+			</rul:Locate>
+			<rul:Locate AtDataDef="CommercialPropertyMiningPropertiesSpclClassBusnIncomeBasicGroupIICoverage">
+				<rul:RunRule Type="none" FileName="CommercialPropertyMiningPropertiesSpclClassBusnIncomeBasicGroupIICoverageRules" Rule="ErcProcess" ClearCache="true" />
+			</rul:Locate>
+			<rul:RunRule Type="none" FileName="CommercialPropertyMiningPropertiesSpclClassBusnIncomeRules" Rule="ErcSetStatisticalCodes" ClearCache="true" />
+		</rul:Sequence>
+	</rul:Rule>
+	<rul:Rule Name="LookupMiningPropertiesBusnIncomeRate" Type="decimal" DataDefGroup="CommercialPropertyMiningPropertiesSpclClassBusnIncome">
+		<rul:Param Name="causeOfLoss" Type="string" />
+		<rul:FirstNonNull Type="decimal">
+			<rul:Lookup Type="decimal" MatrixCol="Rate" MatrixDef="MiningPropertiesBusnIncomeRateDef" MatrixFromConstant="MiningPropertiesBusnIncomeRate" ResultMode="FirstResult">
+				<rul:Keys>
+					<rul:Value Type="string" FromDataDef="/State/@Code" />
+					<rul:FirstValue Type="string" FromConstant="" FromDataDef="@MiningCoverageOption" Order="DataDefInputParamConstant" />
+					<rul:Value Type="string" FromParam="causeOfLoss" />
+				</rul:Keys>
+			</rul:Lookup>
+			<rul:Lookup Type="decimal" MatrixCol="Rate" MatrixDef="MiningPropertiesBusnIncomeRateDef" MatrixFromConstant="MiningPropertiesBusnIncomeRate" ResultMode="SingleResult">
+				<rul:Keys>
+					<rul:Constant Type="string">CW</rul:Constant>
+					<rul:FirstValue Type="string" FromConstant="" FromDataDef="@MiningCoverageOption" Order="DataDefInputParamConstant" />
+					<rul:Value Type="string" FromParam="causeOfLoss" />
+				</rul:Keys>
+			</rul:Lookup>
+		</rul:FirstNonNull>
+	</rul:Rule>
+</rul:Rules>

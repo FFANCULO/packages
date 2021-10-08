@@ -1,0 +1,64 @@
+"StateCode","CovTypeBldg","IncludedInBlktBldg","EQCovIndicatorBldg","DisplayValue","DataValue","MinimumValue","MaximumValue"
+"CW","Builders Risk","Yes","Not Applicable","","",0,0
+"CW","Building","Yes","Not Applicable","","",0,0
+"CW","Condominium Association","Yes","Not Applicable","","",0,0
+"CW","Improvements and Betterments","Yes","Not Applicable","","",0,0
+"CW","Leasehold Interest","Yes","Not Applicable","","",0,0
+"CW","Legal Liability","Yes","Not Applicable","","",0,0
+"CW","No Coverage","Yes","Not Applicable","","",0,0
+"CW","Builders Risk","Yes","No Coverage","","",0,0
+"CW","Building","Yes","No Coverage","","",0,0
+"CW","Condominium Association","Yes","No Coverage","","",0,0
+"CW","Improvements and Betterments","Yes","No Coverage","","",0,0
+"CW","Leasehold Interest","Yes","No Coverage","","",0,0
+"CW","Legal Liability","Yes","No Coverage","","",0,0
+"CW","No Coverage","Yes","No Coverage","","",0,0
+"CW","Builders Risk","Yes","Yes, Included in Blanket","","",0,0
+"CW","Building","Yes","Yes, Included in Blanket","","",0,0
+"CW","Condominium Association","Yes","Yes, Included in Blanket","","",0,0
+"CW","Improvements and Betterments","Yes","Yes, Included in Blanket","","",0,0
+"CW","Leasehold Interest","Yes","Yes, Included in Blanket","","",0,0
+"CW","Legal Liability","Yes","Yes, Included in Blanket","","",0,0
+"CW","No Coverage","Yes","Yes, Included in Blanket","","",0,0
+"CW","Builders Risk","Yes","Yes, Not Included in Blanket","","",0,99999999
+"CW","Building","Yes","Yes, Not Included in Blanket","","",1,99999999
+"CW","Condominium Association","Yes","Yes, Not Included in Blanket","","",1,99999999
+"CW","Improvements and Betterments","Yes","Yes, Not Included in Blanket","","",1,99999999
+"CW","Leasehold Interest","Yes","Yes, Not Included in Blanket","","",0,0
+"CW","Legal Liability","Yes","Yes, Not Included in Blanket","","",1,99999999
+"CW","No Coverage","Yes","Yes, Not Included in Blanket","","",0,0
+"CW","Builders Risk","No","Not Applicable","","",0,99999999
+"CW","Building","No","Not Applicable","","",1,99999999
+"CW","Condominium Association","No","Not Applicable","","",1,99999999
+"CW","Improvements and Betterments","No","Not Applicable","","",1,99999999
+"CW","Leasehold Interest","No","Not Applicable","","",0,0
+"CW","Legal Liability","No","Not Applicable","","",1,99999999
+"CW","No Coverage","No","Not Applicable","","",0,0
+"CW","Builders Risk","No","No Coverage","","",0,99999999
+"CW","Building","No","No Coverage","","",1,99999999
+"CW","Condominium Association","No","No Coverage","","",1,99999999
+"CW","Improvements and Betterments","No","No Coverage","","",1,99999999
+"CW","Leasehold Interest","No","No Coverage","","",0,0
+"CW","Legal Liability","No","No Coverage","","",1,99999999
+"CW","No Coverage","No","No Coverage","","",0,0
+"CW","Builders Risk","No","Yes, Included in Blanket","","",0,99999999
+"CW","Building","No","Yes, Included in Blanket","","",1,99999999
+"CW","Condominium Association","No","Yes, Included in Blanket","","",1,99999999
+"CW","Improvements and Betterments","No","Yes, Included in Blanket","","",1,99999999
+"CW","Leasehold Interest","No","Yes, Included in Blanket","","",0,0
+"CW","Legal Liability","No","Yes, Included in Blanket","","",1,99999999
+"CW","No Coverage","No","Yes, Included in Blanket","","",0,0
+"CW","Builders Risk","No","Yes, Not Included in Blanket","","",0,99999999
+"CW","Building","No","Yes, Not Included in Blanket","","",1,99999999
+"CW","Condominium Association","No","Yes, Not Included in Blanket","","",1,99999999
+"CW","Improvements and Betterments","No","Yes, Not Included in Blanket","","",1,99999999
+"CW","Leasehold Interest","No","Yes, Not Included in Blanket","","",0,0
+"CW","Legal Liability","No","Yes, Not Included in Blanket","","",1,99999999
+"CW","No Coverage","No","Yes, Not Included in Blanket","","",0,0
+"CW","Builders Risk","Not Applicable","Not Applicable","","",0,0
+"CW","Building","Not Applicable","Not Applicable","","",0,0
+"CW","Condominium Association","Not Applicable","Not Applicable","","",0,0
+"CW","Improvements and Betterments","Not Applicable","Not Applicable","","",0,0
+"CW","Leasehold Interest","Not Applicable","Not Applicable","","",0,0
+"CW","Legal Liability","Not Applicable","Not Applicable","","",0,0
+"CW","No Coverage","Not Applicable","Not Applicable","","",0,0

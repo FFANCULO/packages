@@ -1,0 +1,20 @@
+<rt:RateTable xmlns:rt="http://www.verisk.com/iso/erc/RateTable">
+	<rt:MetaData>
+		<rt:MetaDataCode>RateTableBasicGroupILOIFactorPersProp</rt:MetaDataCode>
+		<rt:MetaDataCode>BureauRuleNumber70E1f2</rt:MetaDataCode>
+	</rt:MetaData>
+	<rt:KeyCols>
+		<rt:KeyCol Name="StateCode" Type="string" CaseInsensitive="false" />
+		<rt:Range Name="Limit" Type="decimal" RangeType="FromInclusiveToExclusive">
+			<rt:KeyCol Name="Limit_From" />
+			<rt:KeyCol Name="Limit_ToLessThan" />
+		</rt:Range>
+		<rt:KeyCol Name="ConstructionCode" Type="integer" CaseInsensitive="false" />
+	</rt:KeyCols>
+	<rt:ValueCols>
+		<rt:Range Name="Factor" RangeKeyCol="Limit" InterpolateMode="Linear" Type="decimal">
+			<rt:ValueCol Name="Factor_From" />
+			<rt:ValueCol Name="Factor_ToLessThan" />
+		</rt:Range>
+	</rt:ValueCols>
+</rt:RateTable>

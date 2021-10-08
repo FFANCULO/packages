@@ -1,0 +1,918 @@
+<rul:Rules xmlns:rul="http://www.verisk.com/iso/erc/Rule">
+	<rul:Rule Name="InitializeRuleSet" DataDefGroup="CommercialPropertyLeaseholdInterestCoverageForm">
+		<rul:Sequence>
+			<rul:Locate AtDataDef="CommercialPropertyLeaseholdInterestCoverageFormBonusPaymentsCoverageBasicGroupICoverage">
+				<rul:RunRule Type="none" FileName="CommercialPropertyLeaseholdInterestCoverageFormBonusPaymentsCoverageBasicGroupICoverageRules" Rule="InitializeRuleSet" ClearCache="true" />
+			</rul:Locate>
+			<rul:Locate AtDataDef="CommercialPropertyLeaseholdInterestCoverageFormBonusPaymentsCoverageBasicGroupIICoverage">
+				<rul:RunRule Type="none" FileName="CommercialPropertyLeaseholdInterestCoverageFormBonusPaymentsCoverageBasicGroupIICoverageRules" Rule="InitializeRuleSet" ClearCache="true" />
+			</rul:Locate>
+			<rul:Locate AtDataDef="CommercialPropertyLeaseholdInterestCoverageFormBonusPaymentsCoverageBroadCoverage">
+				<rul:RunRule Type="none" FileName="CommercialPropertyLeaseholdInterestCoverageFormBonusPaymentsCoverageBroadCoverageRules" Rule="InitializeRuleSet" ClearCache="true" />
+			</rul:Locate>
+			<rul:Locate AtDataDef="CommercialPropertyLeaseholdInterestCoverageFormBonusPaymentsCoverageEarthquakeCoverage">
+				<rul:RunRule Type="none" FileName="CommercialPropertyLeaseholdInterestCoverageFormBonusPaymentsCoverageEarthquakeCoverageRules" Rule="InitializeRuleSet" ClearCache="true" />
+			</rul:Locate>
+			<rul:Locate AtDataDef="CommercialPropertyLeaseholdInterestCoverageFormBonusPaymentsCoverageSpecialCoverage">
+				<rul:RunRule Type="none" FileName="CommercialPropertyLeaseholdInterestCoverageFormBonusPaymentsCoverageSpecialCoverageRules" Rule="InitializeRuleSet" ClearCache="true" />
+			</rul:Locate>
+			<rul:Locate AtDataDef="CommercialPropertyLeaseholdInterestCoverageFormImprovementsCoverageBasicGroupICoverage">
+				<rul:RunRule Type="none" FileName="CommercialPropertyLeaseholdInterestCoverageFormImprovementsCoverageBasicGroupICoverageRules" Rule="InitializeRuleSet" ClearCache="true" />
+			</rul:Locate>
+			<rul:Locate AtDataDef="CommercialPropertyLeaseholdInterestCoverageFormImprovementsCoverageBasicGroupIICoverage">
+				<rul:RunRule Type="none" FileName="CommercialPropertyLeaseholdInterestCoverageFormImprovementsCoverageBasicGroupIICoverageRules" Rule="InitializeRuleSet" ClearCache="true" />
+			</rul:Locate>
+			<rul:Locate AtDataDef="CommercialPropertyLeaseholdInterestCoverageFormImprovementsCoverageBroadCoverage">
+				<rul:RunRule Type="none" FileName="CommercialPropertyLeaseholdInterestCoverageFormImprovementsCoverageBroadCoverageRules" Rule="InitializeRuleSet" ClearCache="true" />
+			</rul:Locate>
+			<rul:Locate AtDataDef="CommercialPropertyLeaseholdInterestCoverageFormImprovementsCoverageEarthquakeCoverage">
+				<rul:RunRule Type="none" FileName="CommercialPropertyLeaseholdInterestCoverageFormImprovementsCoverageEarthquakeCoverageRules" Rule="InitializeRuleSet" ClearCache="true" />
+			</rul:Locate>
+			<rul:Locate AtDataDef="CommercialPropertyLeaseholdInterestCoverageFormImprovementsCoverageSpecialCoverage">
+				<rul:RunRule Type="none" FileName="CommercialPropertyLeaseholdInterestCoverageFormImprovementsCoverageSpecialCoverageRules" Rule="InitializeRuleSet" ClearCache="true" />
+			</rul:Locate>
+			<rul:Locate AtDataDef="CommercialPropertyLeaseholdInterestCoverageFormPrepaidRentCoverageBasicGroupICoverage">
+				<rul:RunRule Type="none" FileName="CommercialPropertyLeaseholdInterestCoverageFormPrepaidRentCoverageBasicGroupICoverageRules" Rule="InitializeRuleSet" ClearCache="true" />
+			</rul:Locate>
+			<rul:Locate AtDataDef="CommercialPropertyLeaseholdInterestCoverageFormPrepaidRentCoverageBasicGroupIICoverage">
+				<rul:RunRule Type="none" FileName="CommercialPropertyLeaseholdInterestCoverageFormPrepaidRentCoverageBasicGroupIICoverageRules" Rule="InitializeRuleSet" ClearCache="true" />
+			</rul:Locate>
+			<rul:Locate AtDataDef="CommercialPropertyLeaseholdInterestCoverageFormPrepaidRentCoverageBroadCoverage">
+				<rul:RunRule Type="none" FileName="CommercialPropertyLeaseholdInterestCoverageFormPrepaidRentCoverageBroadCoverageRules" Rule="InitializeRuleSet" ClearCache="true" />
+			</rul:Locate>
+			<rul:Locate AtDataDef="CommercialPropertyLeaseholdInterestCoverageFormPrepaidRentCoverageEarthquakeCoverage">
+				<rul:RunRule Type="none" FileName="CommercialPropertyLeaseholdInterestCoverageFormPrepaidRentCoverageEarthquakeCoverageRules" Rule="InitializeRuleSet" ClearCache="true" />
+			</rul:Locate>
+			<rul:Locate AtDataDef="CommercialPropertyLeaseholdInterestCoverageFormPrepaidRentCoverageSpecialCoverage">
+				<rul:RunRule Type="none" FileName="CommercialPropertyLeaseholdInterestCoverageFormPrepaidRentCoverageSpecialCoverageRules" Rule="InitializeRuleSet" ClearCache="true" />
+			</rul:Locate>
+			<rul:Locate AtDataDef="CommercialPropertyLeaseholdInterestCoverageFormTenantsLeaseCoverageBasicGroupICoverage">
+				<rul:RunRule Type="none" FileName="CommercialPropertyLeaseholdInterestCoverageFormTenantsLeaseCoverageBasicGroupICoverageRules" Rule="InitializeRuleSet" ClearCache="true" />
+			</rul:Locate>
+			<rul:Locate AtDataDef="CommercialPropertyLeaseholdInterestCoverageFormTenantsLeaseCoverageBasicGroupIICoverage">
+				<rul:RunRule Type="none" FileName="CommercialPropertyLeaseholdInterestCoverageFormTenantsLeaseCoverageBasicGroupIICoverageRules" Rule="InitializeRuleSet" ClearCache="true" />
+			</rul:Locate>
+			<rul:Locate AtDataDef="CommercialPropertyLeaseholdInterestCoverageFormTenantsLeaseCoverageBroadCoverage">
+				<rul:RunRule Type="none" FileName="CommercialPropertyLeaseholdInterestCoverageFormTenantsLeaseCoverageBroadCoverageRules" Rule="InitializeRuleSet" ClearCache="true" />
+			</rul:Locate>
+			<rul:Locate AtDataDef="CommercialPropertyLeaseholdInterestCoverageFormTenantsLeaseCoverageEarthquakeCoverage">
+				<rul:RunRule Type="none" FileName="CommercialPropertyLeaseholdInterestCoverageFormTenantsLeaseCoverageEarthquakeCoverageRules" Rule="InitializeRuleSet" ClearCache="true" />
+			</rul:Locate>
+			<rul:Locate AtDataDef="CommercialPropertyLeaseholdInterestCoverageFormTenantsLeaseCoverageSpecialCoverage">
+				<rul:RunRule Type="none" FileName="CommercialPropertyLeaseholdInterestCoverageFormTenantsLeaseCoverageSpecialCoverageRules" Rule="InitializeRuleSet" ClearCache="true" />
+			</rul:Locate>
+		</rul:Sequence>
+	</rul:Rule>
+	<rul:Rule Name="CalculateTotalPremium" Type="decimal" DataDefGroup="CommercialPropertyLeaseholdInterestCoverageForm">
+		<rul:Sum>
+			<rul:Locate AtDataDef="CommercialPropertyLeaseholdInterestCoverageFormBonusPaymentsCoverageBasicGroupICoverage">
+				<rul:RunRule Type="decimal" FileName="CommercialPropertyLeaseholdInterestCoverageFormBonusPaymentsCoverageBasicGroupICoverageRules" Rule="CalculateTotalPremium" ClearCache="true" />
+			</rul:Locate>
+			<rul:Locate AtDataDef="CommercialPropertyLeaseholdInterestCoverageFormBonusPaymentsCoverageBasicGroupIICoverage">
+				<rul:RunRule Type="decimal" FileName="CommercialPropertyLeaseholdInterestCoverageFormBonusPaymentsCoverageBasicGroupIICoverageRules" Rule="CalculateTotalPremium" ClearCache="true" />
+			</rul:Locate>
+			<rul:Locate AtDataDef="CommercialPropertyLeaseholdInterestCoverageFormBonusPaymentsCoverageBroadCoverage">
+				<rul:RunRule Type="decimal" FileName="CommercialPropertyLeaseholdInterestCoverageFormBonusPaymentsCoverageBroadCoverageRules" Rule="CalculateTotalPremium" ClearCache="true" />
+			</rul:Locate>
+			<rul:Locate AtDataDef="CommercialPropertyLeaseholdInterestCoverageFormBonusPaymentsCoverageEarthquakeCoverage">
+				<rul:RunRule Type="decimal" FileName="CommercialPropertyLeaseholdInterestCoverageFormBonusPaymentsCoverageEarthquakeCoverageRules" Rule="CalculateTotalPremium" ClearCache="true" />
+			</rul:Locate>
+			<rul:Locate AtDataDef="CommercialPropertyLeaseholdInterestCoverageFormBonusPaymentsCoverageSpecialCoverage">
+				<rul:RunRule Type="decimal" FileName="CommercialPropertyLeaseholdInterestCoverageFormBonusPaymentsCoverageSpecialCoverageRules" Rule="CalculateTotalPremium" ClearCache="true" />
+			</rul:Locate>
+			<rul:Locate AtDataDef="CommercialPropertyLeaseholdInterestCoverageFormImprovementsCoverageBasicGroupICoverage">
+				<rul:RunRule Type="decimal" FileName="CommercialPropertyLeaseholdInterestCoverageFormImprovementsCoverageBasicGroupICoverageRules" Rule="CalculateTotalPremium" ClearCache="true" />
+			</rul:Locate>
+			<rul:Locate AtDataDef="CommercialPropertyLeaseholdInterestCoverageFormImprovementsCoverageBasicGroupIICoverage">
+				<rul:RunRule Type="decimal" FileName="CommercialPropertyLeaseholdInterestCoverageFormImprovementsCoverageBasicGroupIICoverageRules" Rule="CalculateTotalPremium" ClearCache="true" />
+			</rul:Locate>
+			<rul:Locate AtDataDef="CommercialPropertyLeaseholdInterestCoverageFormImprovementsCoverageBroadCoverage">
+				<rul:RunRule Type="decimal" FileName="CommercialPropertyLeaseholdInterestCoverageFormImprovementsCoverageBroadCoverageRules" Rule="CalculateTotalPremium" ClearCache="true" />
+			</rul:Locate>
+			<rul:Locate AtDataDef="CommercialPropertyLeaseholdInterestCoverageFormImprovementsCoverageEarthquakeCoverage">
+				<rul:RunRule Type="decimal" FileName="CommercialPropertyLeaseholdInterestCoverageFormImprovementsCoverageEarthquakeCoverageRules" Rule="CalculateTotalPremium" ClearCache="true" />
+			</rul:Locate>
+			<rul:Locate AtDataDef="CommercialPropertyLeaseholdInterestCoverageFormImprovementsCoverageSpecialCoverage">
+				<rul:RunRule Type="decimal" FileName="CommercialPropertyLeaseholdInterestCoverageFormImprovementsCoverageSpecialCoverageRules" Rule="CalculateTotalPremium" ClearCache="true" />
+			</rul:Locate>
+			<rul:Locate AtDataDef="CommercialPropertyLeaseholdInterestCoverageFormPrepaidRentCoverageBasicGroupICoverage">
+				<rul:RunRule Type="decimal" FileName="CommercialPropertyLeaseholdInterestCoverageFormPrepaidRentCoverageBasicGroupICoverageRules" Rule="CalculateTotalPremium" ClearCache="true" />
+			</rul:Locate>
+			<rul:Locate AtDataDef="CommercialPropertyLeaseholdInterestCoverageFormPrepaidRentCoverageBasicGroupIICoverage">
+				<rul:RunRule Type="decimal" FileName="CommercialPropertyLeaseholdInterestCoverageFormPrepaidRentCoverageBasicGroupIICoverageRules" Rule="CalculateTotalPremium" ClearCache="true" />
+			</rul:Locate>
+			<rul:Locate AtDataDef="CommercialPropertyLeaseholdInterestCoverageFormPrepaidRentCoverageBroadCoverage">
+				<rul:RunRule Type="decimal" FileName="CommercialPropertyLeaseholdInterestCoverageFormPrepaidRentCoverageBroadCoverageRules" Rule="CalculateTotalPremium" ClearCache="true" />
+			</rul:Locate>
+			<rul:Locate AtDataDef="CommercialPropertyLeaseholdInterestCoverageFormPrepaidRentCoverageEarthquakeCoverage">
+				<rul:RunRule Type="decimal" FileName="CommercialPropertyLeaseholdInterestCoverageFormPrepaidRentCoverageEarthquakeCoverageRules" Rule="CalculateTotalPremium" ClearCache="true" />
+			</rul:Locate>
+			<rul:Locate AtDataDef="CommercialPropertyLeaseholdInterestCoverageFormPrepaidRentCoverageSpecialCoverage">
+				<rul:RunRule Type="decimal" FileName="CommercialPropertyLeaseholdInterestCoverageFormPrepaidRentCoverageSpecialCoverageRules" Rule="CalculateTotalPremium" ClearCache="true" />
+			</rul:Locate>
+			<rul:Locate AtDataDef="CommercialPropertyLeaseholdInterestCoverageFormTenantsLeaseCoverageBasicGroupICoverage">
+				<rul:RunRule Type="decimal" FileName="CommercialPropertyLeaseholdInterestCoverageFormTenantsLeaseCoverageBasicGroupICoverageRules" Rule="CalculateTotalPremium" ClearCache="true" />
+			</rul:Locate>
+			<rul:Locate AtDataDef="CommercialPropertyLeaseholdInterestCoverageFormTenantsLeaseCoverageBasicGroupIICoverage">
+				<rul:RunRule Type="decimal" FileName="CommercialPropertyLeaseholdInterestCoverageFormTenantsLeaseCoverageBasicGroupIICoverageRules" Rule="CalculateTotalPremium" ClearCache="true" />
+			</rul:Locate>
+			<rul:Locate AtDataDef="CommercialPropertyLeaseholdInterestCoverageFormTenantsLeaseCoverageBroadCoverage">
+				<rul:RunRule Type="decimal" FileName="CommercialPropertyLeaseholdInterestCoverageFormTenantsLeaseCoverageBroadCoverageRules" Rule="CalculateTotalPremium" ClearCache="true" />
+			</rul:Locate>
+			<rul:Locate AtDataDef="CommercialPropertyLeaseholdInterestCoverageFormTenantsLeaseCoverageEarthquakeCoverage">
+				<rul:RunRule Type="decimal" FileName="CommercialPropertyLeaseholdInterestCoverageFormTenantsLeaseCoverageEarthquakeCoverageRules" Rule="CalculateTotalPremium" ClearCache="true" />
+			</rul:Locate>
+			<rul:Locate AtDataDef="CommercialPropertyLeaseholdInterestCoverageFormTenantsLeaseCoverageSpecialCoverage">
+				<rul:RunRule Type="decimal" FileName="CommercialPropertyLeaseholdInterestCoverageFormTenantsLeaseCoverageSpecialCoverageRules" Rule="CalculateTotalPremium" ClearCache="true" />
+			</rul:Locate>
+			<rul:If>
+				<rul:Test>
+					<rul:And>
+						<rul:Equal>
+							<rul:FirstValue Type="integer" FromConstant="0" FromDataDef="@PremiumIndicator" Order="DataDefInputParamConstant" />
+							<rul:Constant Type="integer">1</rul:Constant>
+						</rul:Equal>
+						<rul:NotEqual>
+							<rul:FirstValue Type="decimal" FromConstant="0" FromDataDef="@Premium" Order="DataDefInputParamConstant" />
+							<rul:Constant Type="decimal">0</rul:Constant>
+						</rul:NotEqual>
+					</rul:And>
+				</rul:Test>
+				<rul:Then>
+					<rul:FirstValue Type="decimal" FromConstant="0" FromDataDef="@Premium" Order="DataDefInputParamConstant" />
+				</rul:Then>
+				<rul:Else>
+					<rul:Constant Type="decimal">0</rul:Constant>
+				</rul:Else>
+			</rul:If>
+		</rul:Sum>
+	</rul:Rule>
+	<rul:Rule Name="ErcSetRatesAndFactors" Type="none" DataDefGroup="CommercialPropertyLeaseholdInterestCoverageForm">
+		<rul:Sequence>
+			<rul:Copy Type="decimal" ToDataDef="@BasicGroupICauseOfLossAdjmt" FromDataDef="ancestor::CommercialPropertyStructure/@BasicGroupICauseOfLossAdjustment" />
+			<rul:Copy Type="decimal" ToDataDef="@BasicGroupIICauseOfLossAdjmt" FromDataDef="ancestor::CommercialPropertyStructure/@BasicGroupIICauseOfLossAdjustment" />
+			<rul:If>
+				<rul:Test>
+					<rul:NotEqual>
+						<rul:FirstValue Type="string" FromConstant="" FromDataDef="ancestor::CommercialPropertyStructure/@ConstructionTypeToUse" Order="DataDefInputParamConstant" />
+						<rul:Constant Type="string"></rul:Constant>
+					</rul:NotEqual>
+				</rul:Test>
+				<rul:Then>
+					<rul:Sequence>
+						<rul:RunRule Type="decimal" ToDataDef="@BroadRate" FileName="CommercialPropertyLeaseholdInterestCoverageFormRules" Rule="LookupLeaseholdInterestBroadSpecialRate" ClearCache="true" />
+					</rul:Sequence>
+				</rul:Then>
+				<rul:Else>
+					<rul:Sequence>
+						<rul:Constant Type="decimal" ToDataDef="@BroadRate">0.0</rul:Constant>
+					</rul:Sequence>
+				</rul:Else>
+			</rul:If>
+			<rul:Copy Type="decimal" ToDataDef="@EQCauseOfLossAdjustment" FromDataDef="ancestor::CommercialPropertyStructure/@EQCauseOfLossAdjustment" />
+			<rul:Copy Type="string" ToDataDef="@CauseOfLoss" FromDataDef="ancestor::CommercialPropertyStructure/@CauseOfLoss" />
+			<rul:If>
+				<rul:Test>
+					<rul:NotEqual>
+						<rul:FirstValue Type="string" FromConstant="" FromDataDef="@PercentInterest" Order="DataDefInputParamConstant" />
+						<rul:Constant Type="string"></rul:Constant>
+					</rul:NotEqual>
+				</rul:Test>
+				<rul:Then>
+					<rul:Sequence>
+						<rul:RunRule Type="decimal" ToDataDef="@AnnuityConstant" FileName="CommercialPropertyLeaseholdInterestCoverageFormRules" Rule="LookupLeaseholdInterestAnnuityConstant" ClearCache="true" />
+					</rul:Sequence>
+				</rul:Then>
+				<rul:Else>
+					<rul:Sequence>
+						<rul:Constant Type="decimal" ToDataDef="@AnnuityConstant">0.0</rul:Constant>
+					</rul:Sequence>
+				</rul:Else>
+			</rul:If>
+			<rul:If>
+				<rul:Test>
+					<rul:NotEqual>
+						<rul:FirstValue Type="string" FromConstant="" FromDataDef="@PercentInterest" Order="DataDefInputParamConstant" />
+						<rul:Constant Type="string"></rul:Constant>
+					</rul:NotEqual>
+				</rul:Test>
+				<rul:Then>
+					<rul:Sequence>
+						<rul:RunRule Type="decimal" ToDataDef="@DiscFactor" FileName="CommercialPropertyLeaseholdInterestCoverageFormRules" Rule="LookupLeaseholdInterestDiscFactor" ClearCache="true" />
+					</rul:Sequence>
+				</rul:Then>
+				<rul:Else>
+					<rul:Sequence>
+						<rul:Constant Type="decimal" ToDataDef="@DiscFactor">0.0</rul:Constant>
+					</rul:Sequence>
+				</rul:Else>
+			</rul:If>
+			<rul:If>
+				<rul:Test>
+					<rul:And>
+						<rul:Equal>
+							<rul:FirstValue Type="string" FromConstant="" FromDataDef="@CauseOfLoss" Order="DataDefInputParamConstant" />
+							<rul:Constant Type="string">Special</rul:Constant>
+						</rul:Equal>
+						<rul:NotEqual>
+							<rul:FirstValue Type="string" FromConstant="" FromDataDef="ancestor::CommercialPropertyStructure/@ConstructionTypeToUse" Order="DataDefInputParamConstant" />
+							<rul:Constant Type="string"></rul:Constant>
+						</rul:NotEqual>
+					</rul:And>
+				</rul:Test>
+				<rul:Then>
+					<rul:Sequence>
+						<rul:RunRule Type="decimal" ToDataDef="@SpecialRate" FileName="CommercialPropertyLeaseholdInterestCoverageFormRules" Rule="LookupSpecialFormIncldgTheftLeaseHoldBaseRate" ClearCache="true" />
+					</rul:Sequence>
+				</rul:Then>
+				<rul:Else>
+					<rul:Sequence>
+						<rul:Constant Type="decimal" ToDataDef="@SpecialRate">0.0</rul:Constant>
+					</rul:Sequence>
+				</rul:Else>
+			</rul:If>
+			<rul:If>
+				<rul:Test>
+					<rul:And>
+						<rul:Equal>
+							<rul:FirstValue Type="string" FromConstant="" FromDataDef="ancestor::CommercialPropertyStructure/@CauseOfLossToUse" Order="DataDefInputParamConstant" />
+							<rul:Constant Type="string">Special</rul:Constant>
+						</rul:Equal>
+						<rul:Equal>
+							<rul:FirstValue Type="integer" FromConstant="0" FromDataDef="ancestor::CommercialPropertyStructure/@SpecialTheftExclusionIndicator" Order="DataDefInputParamConstant" />
+							<rul:Constant Type="integer">1</rul:Constant>
+						</rul:Equal>
+						<rul:NotEqual>
+							<rul:FirstValue Type="string" FromConstant="" FromDataDef="ancestor::CommercialPropertyStructure/@ApartmentCondoIndicator" Order="DataDefInputParamConstant" />
+							<rul:Constant Type="string"></rul:Constant>
+						</rul:NotEqual>
+					</rul:And>
+				</rul:Test>
+				<rul:Then>
+					<rul:Sequence>
+						<rul:RunRule Type="decimal" ToDataDef="@SpecialTheftExclusionFactor" FileName="CommercialPropertyLeaseholdInterestCoverageFormRules" Rule="LookupSpecialLeaseHoldTimeElementTheftExclusionFactor" ClearCache="true" />
+					</rul:Sequence>
+				</rul:Then>
+			</rul:If>
+			<rul:Product ToDataDef="@SpecialCauseOfLossAdjustment" DecimalPlaces="3">
+				<rul:FirstValue Type="decimal" FromConstant="0" FromDataDef="@SpecialRate" Order="DataDefInputParamConstant" />
+				<rul:FirstValue Type="decimal" FromConstant="0" FromDataDef="@SpecialTheftExclusionFactor" Order="DataDefInputParamConstant" />
+			</rul:Product>
+			<rul:If>
+				<rul:Test>
+					<rul:IsNotNull>
+						<rul:Value Type="dateTime" FromDataDef="@LeaseExpDate" />
+					</rul:IsNotNull>
+				</rul:Test>
+				<rul:Then>
+					<rul:Sequence>
+						<rul:If>
+							<rul:Test>
+								<rul:And>
+									<rul:GreaterThan>
+										<rul:FirstValue Type="dateTime" FromConstant="01/01/0001" FromDataDef="@LeaseExpDate" Order="DataDefInputParamConstant" />
+										<rul:FirstValue Type="dateTime" FromConstant="01/01/0001" FromDataDef="../../../../../../../../@EffDate" Order="DataDefInputParamConstant" />
+									</rul:GreaterThan>
+									<rul:LessThan>
+										<rul:FirstValue Type="dateTime" FromConstant="01/01/0001" FromDataDef="@LeaseEffDate" Order="DataDefInputParamConstant" />
+										<rul:FirstValue Type="dateTime" FromConstant="01/01/0001" FromDataDef="../../../../../../../../@ExpDate" Order="DataDefInputParamConstant" />
+									</rul:LessThan>
+								</rul:And>
+							</rul:Test>
+							<rul:Then>
+								<rul:Sequence>
+									<rul:WithArgs>
+										<rul:Arg Type="integer" Param="monthForDaysInception">
+											<rul:FirstNonNull Type="integer">
+												<rul:If>
+													<rul:Test>
+														<rul:LessThan>
+															<rul:DatePart UnitType="Days">
+																<rul:FirstValue Type="dateTime" FromConstant="01/01/0001" FromDataDef="@LeaseExpDate" Order="DataDefInputParamConstant" />
+															</rul:DatePart>
+															<rul:DatePart UnitType="Days">
+																<rul:FirstValue Type="dateTime" FromConstant="01/01/0001" FromDataDef="../../../../../../../../@EffDate" Order="DataDefInputParamConstant" />
+															</rul:DatePart>
+														</rul:LessThan>
+													</rul:Test>
+													<rul:Then>
+														<rul:Constant Type="integer">1</rul:Constant>
+													</rul:Then>
+												</rul:If>
+												<rul:Constant Type="integer">0</rul:Constant>
+											</rul:FirstNonNull>
+										</rul:Arg>
+										<rul:Subtract ToDataDef="@NumOfMonthsRemainingAtInception">
+											<rul:Sum>
+												<rul:Product>
+													<rul:Subtract>
+														<rul:DatePart UnitType="Years">
+															<rul:FirstValue Type="dateTime" FromConstant="01/01/0001" FromDataDef="@LeaseExpDate" Order="DataDefInputParamConstant" />
+														</rul:DatePart>
+														<rul:DatePart UnitType="Years">
+															<rul:FirstValue Type="dateTime" FromConstant="01/01/0001" FromDataDef="../../../../../../../../@EffDate" Order="DataDefInputParamConstant" />
+														</rul:DatePart>
+													</rul:Subtract>
+													<rul:Constant Type="integer">12</rul:Constant>
+												</rul:Product>
+												<rul:Subtract>
+													<rul:DatePart UnitType="Months">
+														<rul:FirstValue Type="dateTime" FromConstant="01/01/0001" FromDataDef="@LeaseExpDate" Order="DataDefInputParamConstant" />
+													</rul:DatePart>
+													<rul:DatePart UnitType="Months">
+														<rul:FirstValue Type="dateTime" FromConstant="01/01/0001" FromDataDef="../../../../../../../../@EffDate" Order="DataDefInputParamConstant" />
+													</rul:DatePart>
+												</rul:Subtract>
+											</rul:Sum>
+											<rul:Value Type="integer" FromParam="monthForDaysInception" />
+										</rul:Subtract>
+									</rul:WithArgs>
+								</rul:Sequence>
+							</rul:Then>
+							<rul:Else>
+								<rul:Sequence>
+									<rul:Constant Type="integer" ToDataDef="@NumOfMonthsRemainingAtInception">0</rul:Constant>
+								</rul:Sequence>
+							</rul:Else>
+						</rul:If>
+						<rul:If>
+							<rul:Test>
+								<rul:And>
+									<rul:GreaterThan>
+										<rul:FirstValue Type="dateTime" FromConstant="01/01/0001" FromDataDef="@LeaseExpDate" Order="DataDefInputParamConstant" />
+										<rul:FirstValue Type="dateTime" FromConstant="01/01/0001" FromDataDef="../../../../../../../../@ExpDate" Order="DataDefInputParamConstant" />
+									</rul:GreaterThan>
+									<rul:LessThan>
+										<rul:FirstValue Type="dateTime" FromConstant="01/01/0001" FromDataDef="@LeaseEffDate" Order="DataDefInputParamConstant" />
+										<rul:FirstValue Type="dateTime" FromConstant="01/01/0001" FromDataDef="../../../../../../../../@ExpDate" Order="DataDefInputParamConstant" />
+									</rul:LessThan>
+								</rul:And>
+							</rul:Test>
+							<rul:Then>
+								<rul:Sequence>
+									<rul:WithArgs>
+										<rul:Arg Type="integer" Param="monthForDaysExpiration">
+											<rul:FirstNonNull Type="integer">
+												<rul:If>
+													<rul:Test>
+														<rul:LessThan>
+															<rul:DatePart UnitType="Days">
+																<rul:FirstValue Type="dateTime" FromConstant="01/01/0001" FromDataDef="@LeaseExpDate" Order="DataDefInputParamConstant" />
+															</rul:DatePart>
+															<rul:DatePart UnitType="Days">
+																<rul:FirstValue Type="dateTime" FromConstant="01/01/0001" FromDataDef="../../../../../../../../@ExpDate" Order="DataDefInputParamConstant" />
+															</rul:DatePart>
+														</rul:LessThan>
+													</rul:Test>
+													<rul:Then>
+														<rul:Constant Type="integer">1</rul:Constant>
+													</rul:Then>
+												</rul:If>
+												<rul:Constant Type="integer">0</rul:Constant>
+											</rul:FirstNonNull>
+										</rul:Arg>
+										<rul:Subtract ToDataDef="@NumOfMonthsRemainingAtExpiration">
+											<rul:Sum>
+												<rul:Product>
+													<rul:Subtract>
+														<rul:DatePart UnitType="Years">
+															<rul:FirstValue Type="dateTime" FromConstant="01/01/0001" FromDataDef="@LeaseExpDate" Order="DataDefInputParamConstant" />
+														</rul:DatePart>
+														<rul:DatePart UnitType="Years">
+															<rul:FirstValue Type="dateTime" FromConstant="01/01/0001" FromDataDef="../../../../../../../../@ExpDate" Order="DataDefInputParamConstant" />
+														</rul:DatePart>
+													</rul:Subtract>
+													<rul:Constant Type="integer">12</rul:Constant>
+												</rul:Product>
+												<rul:Subtract>
+													<rul:DatePart UnitType="Months">
+														<rul:FirstValue Type="dateTime" FromConstant="01/01/0001" FromDataDef="@LeaseExpDate" Order="DataDefInputParamConstant" />
+													</rul:DatePart>
+													<rul:DatePart UnitType="Months">
+														<rul:FirstValue Type="dateTime" FromConstant="01/01/0001" FromDataDef="../../../../../../../../@ExpDate" Order="DataDefInputParamConstant" />
+													</rul:DatePart>
+												</rul:Subtract>
+											</rul:Sum>
+											<rul:Value Type="integer" FromParam="monthForDaysExpiration" />
+										</rul:Subtract>
+									</rul:WithArgs>
+								</rul:Sequence>
+							</rul:Then>
+							<rul:Else>
+								<rul:Sequence>
+									<rul:Constant Type="integer" ToDataDef="@NumOfMonthsRemainingAtExpiration">0</rul:Constant>
+								</rul:Sequence>
+							</rul:Else>
+						</rul:If>
+					</rul:Sequence>
+				</rul:Then>
+				<rul:Else>
+					<rul:Sequence>
+						<rul:Constant Type="integer" ToDataDef="@NumOfMonthsRemainingAtInception">0</rul:Constant>
+						<rul:Constant Type="integer" ToDataDef="@NumOfMonthsRemainingAtExpiration">0</rul:Constant>
+					</rul:Sequence>
+				</rul:Else>
+			</rul:If>
+			<rul:Power ToDataDef="@DiscFactorRaisedToNumOfMonthsRemainingAtInception">
+				<rul:FirstValue Type="decimal" FromConstant="0" FromDataDef="@DiscFactor" Order="DataDefInputParamConstant" />
+				<rul:Convert Type="decimal">
+					<rul:FirstValue Type="integer" FromConstant="0" FromDataDef="@NumOfMonthsRemainingAtInception" Order="DataDefInputParamConstant" />
+				</rul:Convert>
+			</rul:Power>
+			<rul:Subtract ToDataDef="@ComplimentOfDiscFactorIncep">
+				<rul:Constant Type="integer">1</rul:Constant>
+				<rul:Value Type="decimal" FromDataDef="@DiscFactorRaisedToNumOfMonthsRemainingAtInception" />
+			</rul:Subtract>
+			<rul:Power ToDataDef="@DiscFactorRaisedToNumOfMonthsRemainingAtExpiration">
+				<rul:FirstValue Type="decimal" FromConstant="0" FromDataDef="@DiscFactor" Order="DataDefInputParamConstant" />
+				<rul:Convert Type="decimal">
+					<rul:FirstValue Type="integer" FromConstant="0" FromDataDef="@NumOfMonthsRemainingAtExpiration" Order="DataDefInputParamConstant" />
+				</rul:Convert>
+			</rul:Power>
+			<rul:Subtract ToDataDef="@ComplimentOfDiscFactorExpir">
+				<rul:Constant Type="integer">1</rul:Constant>
+				<rul:Value Type="decimal" FromDataDef="@DiscFactorRaisedToNumOfMonthsRemainingAtExpiration" />
+			</rul:Subtract>
+			<rul:WithArgs>
+				<rul:Arg Type="decimal" Param="calcNetAtInception">
+					<rul:FirstNonNull Type="decimal">
+						<rul:Product DecimalPlaces="4">
+							<rul:FirstValue Type="decimal" FromConstant="0" FromDataDef="@AnnuityConstant" Order="DataDefInputParamConstant" />
+							<rul:FirstValue Type="decimal" FromConstant="0" FromDataDef="@ComplimentOfDiscFactorIncep" Order="DataDefInputParamConstant" />
+						</rul:Product>
+						<rul:Constant Type="decimal">0</rul:Constant>
+					</rul:FirstNonNull>
+				</rul:Arg>
+				<rul:Value Type="decimal" ToDataDef="@NetLeaseholdInterestFactorAtInception" FromParam="calcNetAtInception" />
+			</rul:WithArgs>
+			<rul:WithArgs>
+				<rul:Arg Type="decimal" Param="calcNetAtExpiration">
+					<rul:FirstNonNull Type="decimal">
+						<rul:Product DecimalPlaces="4">
+							<rul:FirstValue Type="decimal" FromConstant="0" FromDataDef="@AnnuityConstant" Order="DataDefInputParamConstant" />
+							<rul:FirstValue Type="decimal" FromConstant="0" FromDataDef="@ComplimentOfDiscFactorExpir" Order="DataDefInputParamConstant" />
+						</rul:Product>
+						<rul:Constant Type="decimal">0</rul:Constant>
+					</rul:FirstNonNull>
+				</rul:Arg>
+				<rul:Value Type="decimal" ToDataDef="@NetLeaseholdInterestFactorAtExpiration" FromParam="calcNetAtExpiration" />
+			</rul:WithArgs>
+			<rul:WithArgs>
+				<rul:Arg Type="decimal" Param="calcNetInception">
+					<rul:FirstNonNull Type="decimal">
+						<rul:Product DecimalPlaces="0">
+							<rul:FirstValue Type="integer" FromConstant="0" FromDataDef="@TenantsGrossLeaseholdInt" Order="DataDefInputParamConstant" />
+							<rul:FirstValue Type="decimal" FromConstant="0" FromDataDef="@NetLeaseholdInterestFactorAtInception" Order="DataDefInputParamConstant" />
+						</rul:Product>
+						<rul:Constant Type="decimal">0</rul:Constant>
+					</rul:FirstNonNull>
+				</rul:Arg>
+				<rul:Value Type="decimal" ToDataDef="@TenantsNetLeaseholdInterestAtInception" FromParam="calcNetInception" />
+			</rul:WithArgs>
+			<rul:WithArgs>
+				<rul:Arg Type="decimal" Param="calcNetExpiration">
+					<rul:FirstNonNull Type="decimal">
+						<rul:Product DecimalPlaces="0">
+							<rul:FirstValue Type="integer" FromConstant="0" FromDataDef="@TenantsGrossLeaseholdInt" Order="DataDefInputParamConstant" />
+							<rul:FirstValue Type="decimal" FromConstant="0" FromDataDef="@NetLeaseholdInterestFactorAtExpiration" Order="DataDefInputParamConstant" />
+						</rul:Product>
+						<rul:Constant Type="decimal">0</rul:Constant>
+					</rul:FirstNonNull>
+				</rul:Arg>
+				<rul:Value Type="decimal" ToDataDef="@TenantsNetLeaseholdInterestAtExpiration" FromParam="calcNetExpiration" />
+			</rul:WithArgs>
+			<rul:WithArgs>
+				<rul:Arg Type="decimal" Param="calcTenantsNetLeaseholdInt">
+					<rul:FirstNonNull Type="decimal">
+						<rul:Choose>
+							<rul:When>
+								<rul:Test>
+									<rul:Equal>
+										<rul:FirstValue Type="integer" FromConstant="0" FromDataDef="@TenantsGrossLeaseholdInt" Order="DataDefInputParamConstant" />
+										<rul:Constant Type="integer">0</rul:Constant>
+									</rul:Equal>
+								</rul:Test>
+								<rul:Then>
+									<rul:Constant Type="decimal">0</rul:Constant>
+								</rul:Then>
+							</rul:When>
+							<rul:When>
+								<rul:Test>
+									<rul:GreaterThan>
+										<rul:FirstValue Type="integer" FromConstant="0" FromDataDef="@TenantsGrossLeaseholdInt" Order="DataDefInputParamConstant" />
+										<rul:Constant Type="integer">0</rul:Constant>
+									</rul:GreaterThan>
+								</rul:Test>
+								<rul:Then>
+									<rul:Divide DecimalPlaces="0">
+										<rul:Sum>
+											<rul:Value Type="decimal" FromDataDef="@TenantsNetLeaseholdInterestAtExpiration" />
+											<rul:Value Type="decimal" FromDataDef="@TenantsNetLeaseholdInterestAtInception" />
+										</rul:Sum>
+										<rul:Constant Type="integer">2</rul:Constant>
+									</rul:Divide>
+								</rul:Then>
+							</rul:When>
+							<rul:Otherwise>
+								<rul:Constant Type="decimal">0</rul:Constant>
+							</rul:Otherwise>
+						</rul:Choose>
+						<rul:Constant Type="decimal">0</rul:Constant>
+					</rul:FirstNonNull>
+				</rul:Arg>
+				<rul:Value Type="decimal" ToDataDef="@TenantsNetLeaseholdInt" FromParam="calcTenantsNetLeaseholdInt" />
+			</rul:WithArgs>
+			<rul:WithArgs>
+				<rul:Arg Type="decimal" Param="calcBonusAtIncep">
+					<rul:FirstNonNull Type="decimal">
+						<rul:Product DecimalPlaces="0">
+							<rul:FirstValue Type="integer" FromConstant="0" FromDataDef="@BonusPaymentsMonthlyLeaseholdInt" Order="DataDefInputParamConstant" />
+							<rul:FirstValue Type="integer" FromConstant="0" FromDataDef="@NumOfMonthsRemainingAtInception" Order="DataDefInputParamConstant" />
+						</rul:Product>
+						<rul:Constant Type="decimal">0</rul:Constant>
+					</rul:FirstNonNull>
+				</rul:Arg>
+				<rul:Value Type="decimal" ToDataDef="@BonusPaymentsNetLeaseholdInterestAtInception" FromParam="calcBonusAtIncep" />
+			</rul:WithArgs>
+			<rul:WithArgs>
+				<rul:Arg Type="decimal" Param="calcBonusAtExpir">
+					<rul:FirstNonNull Type="decimal">
+						<rul:Product DecimalPlaces="0">
+							<rul:FirstValue Type="integer" FromConstant="0" FromDataDef="@BonusPaymentsMonthlyLeaseholdInt" Order="DataDefInputParamConstant" />
+							<rul:FirstValue Type="integer" FromConstant="0" FromDataDef="@NumOfMonthsRemainingAtExpiration" Order="DataDefInputParamConstant" />
+						</rul:Product>
+						<rul:Constant Type="decimal">0</rul:Constant>
+					</rul:FirstNonNull>
+				</rul:Arg>
+				<rul:Value Type="decimal" ToDataDef="@BonusPaymentsNetLeaseholdInterestAtExpiration" FromParam="calcBonusAtExpir" />
+			</rul:WithArgs>
+			<rul:WithArgs>
+				<rul:Arg Type="decimal" Param="calcBonusPaymentsNetLeaseholdInt">
+					<rul:FirstNonNull Type="decimal">
+						<rul:Choose>
+							<rul:When>
+								<rul:Test>
+									<rul:Equal>
+										<rul:FirstValue Type="integer" FromConstant="0" FromDataDef="@BonusPaymentsMonthlyLeaseholdInt" Order="DataDefInputParamConstant" />
+										<rul:Constant Type="integer">0</rul:Constant>
+									</rul:Equal>
+								</rul:Test>
+								<rul:Then>
+									<rul:Constant Type="decimal">0</rul:Constant>
+								</rul:Then>
+							</rul:When>
+							<rul:When>
+								<rul:Test>
+									<rul:GreaterThan>
+										<rul:FirstValue Type="integer" FromConstant="0" FromDataDef="@BonusPaymentsMonthlyLeaseholdInt" Order="DataDefInputParamConstant" />
+										<rul:Constant Type="integer">0</rul:Constant>
+									</rul:GreaterThan>
+								</rul:Test>
+								<rul:Then>
+									<rul:Divide DecimalPlaces="0">
+										<rul:Sum>
+											<rul:Value Type="decimal" FromDataDef="@BonusPaymentsNetLeaseholdInterestAtInception" />
+											<rul:Value Type="decimal" FromDataDef="@BonusPaymentsNetLeaseholdInterestAtExpiration" />
+										</rul:Sum>
+										<rul:Constant Type="integer">2</rul:Constant>
+									</rul:Divide>
+								</rul:Then>
+							</rul:When>
+							<rul:Otherwise>
+								<rul:Constant Type="decimal">0</rul:Constant>
+							</rul:Otherwise>
+						</rul:Choose>
+						<rul:Constant Type="decimal">0</rul:Constant>
+					</rul:FirstNonNull>
+				</rul:Arg>
+				<rul:Value Type="decimal" ToDataDef="@BonusPaymentsNetLeaseholdInt" FromParam="calcBonusPaymentsNetLeaseholdInt" />
+			</rul:WithArgs>
+			<rul:WithArgs>
+				<rul:Arg Type="decimal" Param="calcImprovBetterIncep">
+					<rul:FirstNonNull Type="decimal">
+						<rul:Product DecimalPlaces="0">
+							<rul:FirstValue Type="integer" FromConstant="0" FromDataDef="@ImprovementsAndBettermentsMonthly" Order="DataDefInputParamConstant" />
+							<rul:FirstValue Type="integer" FromConstant="0" FromDataDef="@NumOfMonthsRemainingAtInception" Order="DataDefInputParamConstant" />
+						</rul:Product>
+						<rul:Constant Type="decimal">0</rul:Constant>
+					</rul:FirstNonNull>
+				</rul:Arg>
+				<rul:Value Type="decimal" ToDataDef="@ImprovAndBettermentsNetLeaseholdInterestAtInception" FromParam="calcImprovBetterIncep" />
+			</rul:WithArgs>
+			<rul:WithArgs>
+				<rul:Arg Type="decimal" Param="calcImprovBetterExpir">
+					<rul:FirstNonNull Type="decimal">
+						<rul:Product DecimalPlaces="0">
+							<rul:FirstValue Type="integer" FromConstant="0" FromDataDef="@ImprovementsAndBettermentsMonthly" Order="DataDefInputParamConstant" />
+							<rul:FirstValue Type="integer" FromConstant="0" FromDataDef="@NumOfMonthsRemainingAtExpiration" Order="DataDefInputParamConstant" />
+						</rul:Product>
+						<rul:Constant Type="decimal">0</rul:Constant>
+					</rul:FirstNonNull>
+				</rul:Arg>
+				<rul:Value Type="decimal" ToDataDef="@ImprovAndBettermentsNetLeaseholdInterestAtExpiration" FromParam="calcImprovBetterExpir" />
+			</rul:WithArgs>
+			<rul:WithArgs>
+				<rul:Arg Type="decimal" Param="calcImprovBetterments">
+					<rul:FirstNonNull Type="decimal">
+						<rul:Choose>
+							<rul:When>
+								<rul:Test>
+									<rul:Equal>
+										<rul:FirstValue Type="integer" FromConstant="0" FromDataDef="@ImprovementsAndBettermentsMonthly" Order="DataDefInputParamConstant" />
+										<rul:Constant Type="integer">0</rul:Constant>
+									</rul:Equal>
+								</rul:Test>
+								<rul:Then>
+									<rul:Constant Type="decimal">0</rul:Constant>
+								</rul:Then>
+							</rul:When>
+							<rul:When>
+								<rul:Test>
+									<rul:GreaterThan>
+										<rul:FirstValue Type="integer" FromConstant="0" FromDataDef="@ImprovementsAndBettermentsMonthly" Order="DataDefInputParamConstant" />
+										<rul:Constant Type="integer">0</rul:Constant>
+									</rul:GreaterThan>
+								</rul:Test>
+								<rul:Then>
+									<rul:Divide DecimalPlaces="0">
+										<rul:Sum>
+											<rul:Value Type="decimal" FromDataDef="@ImprovAndBettermentsNetLeaseholdInterestAtInception" />
+											<rul:Value Type="decimal" FromDataDef="@ImprovAndBettermentsNetLeaseholdInterestAtExpiration" />
+										</rul:Sum>
+										<rul:Constant Type="integer">2</rul:Constant>
+									</rul:Divide>
+								</rul:Then>
+							</rul:When>
+							<rul:Otherwise>
+								<rul:Constant Type="decimal">0</rul:Constant>
+							</rul:Otherwise>
+						</rul:Choose>
+						<rul:Constant Type="decimal">0</rul:Constant>
+					</rul:FirstNonNull>
+				</rul:Arg>
+				<rul:Value Type="decimal" ToDataDef="@ImprovementsAndBettermentsNetLeaseholdInt" FromParam="calcImprovBetterments" />
+			</rul:WithArgs>
+			<rul:WithArgs>
+				<rul:Arg Type="decimal" Param="calcPrepaidAtIncep">
+					<rul:FirstNonNull Type="decimal">
+						<rul:Product DecimalPlaces="0">
+							<rul:FirstValue Type="integer" FromConstant="0" FromDataDef="@PrepaidRentMonthly" Order="DataDefInputParamConstant" />
+							<rul:FirstValue Type="integer" FromConstant="0" FromDataDef="@NumOfMonthsRemainingAtInception" Order="DataDefInputParamConstant" />
+						</rul:Product>
+						<rul:Constant Type="decimal">0</rul:Constant>
+					</rul:FirstNonNull>
+				</rul:Arg>
+				<rul:Value Type="decimal" ToDataDef="@PrepaidRentNetLeaseholdInterestAtInception" FromParam="calcPrepaidAtIncep" />
+			</rul:WithArgs>
+			<rul:WithArgs>
+				<rul:Arg Type="decimal" Param="calcPrepaidAtExpir">
+					<rul:FirstNonNull Type="decimal">
+						<rul:Product DecimalPlaces="0">
+							<rul:FirstValue Type="integer" FromConstant="0" FromDataDef="@PrepaidRentMonthly" Order="DataDefInputParamConstant" />
+							<rul:FirstValue Type="integer" FromConstant="0" FromDataDef="@NumOfMonthsRemainingAtExpiration" Order="DataDefInputParamConstant" />
+						</rul:Product>
+						<rul:Constant Type="decimal">0</rul:Constant>
+					</rul:FirstNonNull>
+				</rul:Arg>
+				<rul:Value Type="decimal" ToDataDef="@PrepaidRentNetLeaseholdInterestAtExpiration" FromParam="calcPrepaidAtExpir" />
+			</rul:WithArgs>
+			<rul:WithArgs>
+				<rul:Arg Type="decimal" Param="calcPrepaidRentInt">
+					<rul:FirstNonNull Type="decimal">
+						<rul:Choose>
+							<rul:When>
+								<rul:Test>
+									<rul:Equal>
+										<rul:FirstValue Type="integer" FromConstant="0" FromDataDef="@PrepaidRentMonthly" Order="DataDefInputParamConstant" />
+										<rul:Constant Type="integer">0</rul:Constant>
+									</rul:Equal>
+								</rul:Test>
+								<rul:Then>
+									<rul:Constant Type="decimal">0</rul:Constant>
+								</rul:Then>
+							</rul:When>
+							<rul:When>
+								<rul:Test>
+									<rul:GreaterThan>
+										<rul:FirstValue Type="integer" FromConstant="0" FromDataDef="@PrepaidRentMonthly" Order="DataDefInputParamConstant" />
+										<rul:Constant Type="integer">0</rul:Constant>
+									</rul:GreaterThan>
+								</rul:Test>
+								<rul:Then>
+									<rul:Divide DecimalPlaces="0">
+										<rul:Sum>
+											<rul:Value Type="decimal" FromDataDef="@PrepaidRentNetLeaseholdInterestAtInception" />
+											<rul:Value Type="decimal" FromDataDef="@PrepaidRentNetLeaseholdInterestAtExpiration" />
+										</rul:Sum>
+										<rul:Constant Type="integer">2</rul:Constant>
+									</rul:Divide>
+								</rul:Then>
+							</rul:When>
+							<rul:Otherwise>
+								<rul:Constant Type="decimal">0</rul:Constant>
+							</rul:Otherwise>
+						</rul:Choose>
+						<rul:Constant Type="decimal">0</rul:Constant>
+					</rul:FirstNonNull>
+				</rul:Arg>
+				<rul:Value Type="decimal" ToDataDef="@PrepaidRentNetLeaseholdInt" FromParam="calcPrepaidRentInt" />
+			</rul:WithArgs>
+			<rul:WithArgs>
+				<rul:Arg Type="integer" Param="calcTotCoveredLeaseholdIntNet">
+					<rul:FirstNonNull Type="integer">
+						<rul:Convert Type="integer">
+							<rul:Round DecimalPlaces="0">
+								<rul:Sum>
+									<rul:Value Type="decimal" FromDataDef="@TenantsNetLeaseholdInt" />
+									<rul:Value Type="decimal" FromDataDef="@BonusPaymentsNetLeaseholdInt" />
+									<rul:Value Type="decimal" FromDataDef="@ImprovementsAndBettermentsNetLeaseholdInt" />
+									<rul:Value Type="decimal" FromDataDef="@PrepaidRentNetLeaseholdInt" />
+								</rul:Sum>
+							</rul:Round>
+						</rul:Convert>
+						<rul:Constant Type="integer">0</rul:Constant>
+					</rul:FirstNonNull>
+				</rul:Arg>
+				<rul:Value Type="integer" ToDataDef="@TotCoveredLeaseholdIntNet" FromParam="calcTotCoveredLeaseholdIntNet" />
+			</rul:WithArgs>
+		</rul:Sequence>
+	</rul:Rule>
+	<rul:Rule Name="ErcSetStatisticalCodes" Type="none" DataDefGroup="CommercialPropertyLeaseholdInterestCoverageForm">
+		<rul:Sequence>
+			<rul:If>
+				<rul:Test>
+					<rul:Exist AtInputDataDef="ancestor::MasterCFCW/Policy" />
+				</rul:Test>
+				<rul:Then>
+					<rul:Sequence>
+						<rul:RunRule Type="string" ToDataDef="@SublineAllOtherAlliedLines" FileName="CommercialPropertyLeaseholdInterestCoverageFormRules" Rule="LookupSublineAllOtherAlliedLines" ClearCache="true" />
+					</rul:Sequence>
+				</rul:Then>
+			</rul:If>
+		</rul:Sequence>
+	</rul:Rule>
+	<rul:Rule Name="ErcProcess" Type="none" DataDefGroup="CommercialPropertyLeaseholdInterestCoverageForm">
+		<rul:Sequence>
+			<rul:RunRule Type="none" FileName="CommercialPropertyLeaseholdInterestCoverageFormRules" Rule="ErcSetRatesAndFactors" ClearCache="true" />
+			<rul:Locate AtDataDef="CommercialPropertyLeaseholdInterestCoverageFormBonusPaymentsCoverageBasicGroupICoverage">
+				<rul:RunRule Type="none" FileName="CommercialPropertyLeaseholdInterestCoverageFormBonusPaymentsCoverageBasicGroupICoverageRules" Rule="ErcProcess" ClearCache="true" />
+			</rul:Locate>
+			<rul:Locate AtDataDef="CommercialPropertyLeaseholdInterestCoverageFormBonusPaymentsCoverageBasicGroupIICoverage">
+				<rul:RunRule Type="none" FileName="CommercialPropertyLeaseholdInterestCoverageFormBonusPaymentsCoverageBasicGroupIICoverageRules" Rule="ErcProcess" ClearCache="true" />
+			</rul:Locate>
+			<rul:Locate AtDataDef="CommercialPropertyLeaseholdInterestCoverageFormBonusPaymentsCoverageBroadCoverage">
+				<rul:RunRule Type="none" FileName="CommercialPropertyLeaseholdInterestCoverageFormBonusPaymentsCoverageBroadCoverageRules" Rule="ErcProcess" ClearCache="true" />
+			</rul:Locate>
+			<rul:Locate AtDataDef="CommercialPropertyLeaseholdInterestCoverageFormBonusPaymentsCoverageEarthquakeCoverage">
+				<rul:RunRule Type="none" FileName="CommercialPropertyLeaseholdInterestCoverageFormBonusPaymentsCoverageEarthquakeCoverageRules" Rule="ErcProcess" ClearCache="true" />
+			</rul:Locate>
+			<rul:Locate AtDataDef="CommercialPropertyLeaseholdInterestCoverageFormBonusPaymentsCoverageSpecialCoverage">
+				<rul:RunRule Type="none" FileName="CommercialPropertyLeaseholdInterestCoverageFormBonusPaymentsCoverageSpecialCoverageRules" Rule="ErcProcess" ClearCache="true" />
+			</rul:Locate>
+			<rul:Locate AtDataDef="CommercialPropertyLeaseholdInterestCoverageFormImprovementsCoverageBasicGroupICoverage">
+				<rul:RunRule Type="none" FileName="CommercialPropertyLeaseholdInterestCoverageFormImprovementsCoverageBasicGroupICoverageRules" Rule="ErcProcess" ClearCache="true" />
+			</rul:Locate>
+			<rul:Locate AtDataDef="CommercialPropertyLeaseholdInterestCoverageFormImprovementsCoverageBasicGroupIICoverage">
+				<rul:RunRule Type="none" FileName="CommercialPropertyLeaseholdInterestCoverageFormImprovementsCoverageBasicGroupIICoverageRules" Rule="ErcProcess" ClearCache="true" />
+			</rul:Locate>
+			<rul:Locate AtDataDef="CommercialPropertyLeaseholdInterestCoverageFormImprovementsCoverageBroadCoverage">
+				<rul:RunRule Type="none" FileName="CommercialPropertyLeaseholdInterestCoverageFormImprovementsCoverageBroadCoverageRules" Rule="ErcProcess" ClearCache="true" />
+			</rul:Locate>
+			<rul:Locate AtDataDef="CommercialPropertyLeaseholdInterestCoverageFormImprovementsCoverageEarthquakeCoverage">
+				<rul:RunRule Type="none" FileName="CommercialPropertyLeaseholdInterestCoverageFormImprovementsCoverageEarthquakeCoverageRules" Rule="ErcProcess" ClearCache="true" />
+			</rul:Locate>
+			<rul:Locate AtDataDef="CommercialPropertyLeaseholdInterestCoverageFormImprovementsCoverageSpecialCoverage">
+				<rul:RunRule Type="none" FileName="CommercialPropertyLeaseholdInterestCoverageFormImprovementsCoverageSpecialCoverageRules" Rule="ErcProcess" ClearCache="true" />
+			</rul:Locate>
+			<rul:Locate AtDataDef="CommercialPropertyLeaseholdInterestCoverageFormPrepaidRentCoverageBasicGroupICoverage">
+				<rul:RunRule Type="none" FileName="CommercialPropertyLeaseholdInterestCoverageFormPrepaidRentCoverageBasicGroupICoverageRules" Rule="ErcProcess" ClearCache="true" />
+			</rul:Locate>
+			<rul:Locate AtDataDef="CommercialPropertyLeaseholdInterestCoverageFormPrepaidRentCoverageBasicGroupIICoverage">
+				<rul:RunRule Type="none" FileName="CommercialPropertyLeaseholdInterestCoverageFormPrepaidRentCoverageBasicGroupIICoverageRules" Rule="ErcProcess" ClearCache="true" />
+			</rul:Locate>
+			<rul:Locate AtDataDef="CommercialPropertyLeaseholdInterestCoverageFormPrepaidRentCoverageBroadCoverage">
+				<rul:RunRule Type="none" FileName="CommercialPropertyLeaseholdInterestCoverageFormPrepaidRentCoverageBroadCoverageRules" Rule="ErcProcess" ClearCache="true" />
+			</rul:Locate>
+			<rul:Locate AtDataDef="CommercialPropertyLeaseholdInterestCoverageFormPrepaidRentCoverageEarthquakeCoverage">
+				<rul:RunRule Type="none" FileName="CommercialPropertyLeaseholdInterestCoverageFormPrepaidRentCoverageEarthquakeCoverageRules" Rule="ErcProcess" ClearCache="true" />
+			</rul:Locate>
+			<rul:Locate AtDataDef="CommercialPropertyLeaseholdInterestCoverageFormPrepaidRentCoverageSpecialCoverage">
+				<rul:RunRule Type="none" FileName="CommercialPropertyLeaseholdInterestCoverageFormPrepaidRentCoverageSpecialCoverageRules" Rule="ErcProcess" ClearCache="true" />
+			</rul:Locate>
+			<rul:Locate AtDataDef="CommercialPropertyLeaseholdInterestCoverageFormTenantsLeaseCoverageBasicGroupICoverage">
+				<rul:RunRule Type="none" FileName="CommercialPropertyLeaseholdInterestCoverageFormTenantsLeaseCoverageBasicGroupICoverageRules" Rule="ErcProcess" ClearCache="true" />
+			</rul:Locate>
+			<rul:Locate AtDataDef="CommercialPropertyLeaseholdInterestCoverageFormTenantsLeaseCoverageBasicGroupIICoverage">
+				<rul:RunRule Type="none" FileName="CommercialPropertyLeaseholdInterestCoverageFormTenantsLeaseCoverageBasicGroupIICoverageRules" Rule="ErcProcess" ClearCache="true" />
+			</rul:Locate>
+			<rul:Locate AtDataDef="CommercialPropertyLeaseholdInterestCoverageFormTenantsLeaseCoverageBroadCoverage">
+				<rul:RunRule Type="none" FileName="CommercialPropertyLeaseholdInterestCoverageFormTenantsLeaseCoverageBroadCoverageRules" Rule="ErcProcess" ClearCache="true" />
+			</rul:Locate>
+			<rul:Locate AtDataDef="CommercialPropertyLeaseholdInterestCoverageFormTenantsLeaseCoverageEarthquakeCoverage">
+				<rul:RunRule Type="none" FileName="CommercialPropertyLeaseholdInterestCoverageFormTenantsLeaseCoverageEarthquakeCoverageRules" Rule="ErcProcess" ClearCache="true" />
+			</rul:Locate>
+			<rul:Locate AtDataDef="CommercialPropertyLeaseholdInterestCoverageFormTenantsLeaseCoverageSpecialCoverage">
+				<rul:RunRule Type="none" FileName="CommercialPropertyLeaseholdInterestCoverageFormTenantsLeaseCoverageSpecialCoverageRules" Rule="ErcProcess" ClearCache="true" />
+			</rul:Locate>
+			<rul:RunRule Type="none" FileName="CommercialPropertyLeaseholdInterestCoverageFormRules" Rule="ErcSetStatisticalCodes" ClearCache="true" />
+		</rul:Sequence>
+	</rul:Rule>
+	<rul:Rule Name="LookupLeaseholdInterestAnnuityConstant" Type="decimal" DataDefGroup="CommercialPropertyLeaseholdInterestCoverageForm">
+		<rul:FirstNonNull Type="decimal">
+			<rul:Lookup Type="decimal" MatrixCol="Factor" MatrixDef="LeaseholdInterestAnnuityConstantDef" MatrixFromConstant="LeaseholdInterestAnnuityConstant" ResultMode="FirstResult">
+				<rul:Keys>
+					<rul:Value Type="string" FromDataDef="/State/@Code" />
+					<rul:FirstValue Type="string" FromConstant="" FromDataDef="@PercentInterest" Order="DataDefInputParamConstant" />
+				</rul:Keys>
+			</rul:Lookup>
+			<rul:Lookup Type="decimal" MatrixCol="Factor" MatrixDef="LeaseholdInterestAnnuityConstantDef" MatrixFromConstant="LeaseholdInterestAnnuityConstant" ResultMode="SingleResult">
+				<rul:Keys>
+					<rul:Constant Type="string">CW</rul:Constant>
+					<rul:FirstValue Type="string" FromConstant="" FromDataDef="@PercentInterest" Order="DataDefInputParamConstant" />
+				</rul:Keys>
+			</rul:Lookup>
+		</rul:FirstNonNull>
+	</rul:Rule>
+	<rul:Rule Name="LookupLeaseholdInterestBroadSpecialRate" Type="decimal" DataDefGroup="CommercialPropertyLeaseholdInterestCoverageForm">
+		<rul:FirstNonNull Type="decimal">
+			<rul:Lookup Type="decimal" MatrixCol="Rate" MatrixDef="LeaseholdInterestBroadSpecialRateDef" MatrixFromConstant="LeaseholdInterestBroadSpecialRate" ResultMode="FirstResult">
+				<rul:Keys>
+					<rul:Value Type="string" FromDataDef="/State/@Code" />
+					<rul:FirstValue Type="string" FromConstant="" FromDataDef="ancestor::CommercialPropertyStructure/@ConstructionTypeToUse" Order="DataDefInputParamConstant" />
+				</rul:Keys>
+			</rul:Lookup>
+			<rul:Lookup Type="decimal" MatrixCol="Rate" MatrixDef="LeaseholdInterestBroadSpecialRateDef" MatrixFromConstant="LeaseholdInterestBroadSpecialRate" ResultMode="SingleResult">
+				<rul:Keys>
+					<rul:Constant Type="string">CW</rul:Constant>
+					<rul:FirstValue Type="string" FromConstant="" FromDataDef="ancestor::CommercialPropertyStructure/@ConstructionTypeToUse" Order="DataDefInputParamConstant" />
+				</rul:Keys>
+			</rul:Lookup>
+		</rul:FirstNonNull>
+	</rul:Rule>
+	<rul:Rule Name="LookupLeaseholdInterestDiscFactor" Type="decimal" DataDefGroup="CommercialPropertyLeaseholdInterestCoverageForm">
+		<rul:FirstNonNull Type="decimal">
+			<rul:Lookup Type="decimal" MatrixCol="Factor" MatrixDef="LeaseholdInterestDiscFactorDef" MatrixFromConstant="LeaseholdInterestDiscFactor" ResultMode="FirstResult">
+				<rul:Keys>
+					<rul:Value Type="string" FromDataDef="/State/@Code" />
+					<rul:FirstValue Type="string" FromConstant="" FromDataDef="@PercentInterest" Order="DataDefInputParamConstant" />
+				</rul:Keys>
+			</rul:Lookup>
+			<rul:Lookup Type="decimal" MatrixCol="Factor" MatrixDef="LeaseholdInterestDiscFactorDef" MatrixFromConstant="LeaseholdInterestDiscFactor" ResultMode="SingleResult">
+				<rul:Keys>
+					<rul:Constant Type="string">CW</rul:Constant>
+					<rul:FirstValue Type="string" FromConstant="" FromDataDef="@PercentInterest" Order="DataDefInputParamConstant" />
+				</rul:Keys>
+			</rul:Lookup>
+		</rul:FirstNonNull>
+	</rul:Rule>
+	<rul:Rule Name="LookupSpecialFormIncldgTheftLeaseHoldBaseRate" Type="decimal" DataDefGroup="CommercialPropertyLeaseholdInterestCoverageForm">
+		<rul:FirstNonNull Type="decimal">
+			<rul:Lookup Type="decimal" MatrixCol="Rate" MatrixDef="SpecialFormIncldgTheftLeaseHoldBaseRateDef" MatrixFromConstant="SpecialFormIncldgTheftLeaseHoldBaseRate" ResultMode="FirstResult">
+				<rul:Keys>
+					<rul:Value Type="string" FromDataDef="/State/@Code" />
+					<rul:FirstValue Type="string" FromConstant="" FromDataDef="ancestor::CommercialPropertyStructure/@ConstructionTypeToUse" Order="DataDefInputParamConstant" />
+					<rul:FirstValue Type="string" FromConstant="" FromDataDef="ancestor::CommercialPropertyStructure/@ApartmentCondoIndicator" Order="DataDefInputParamConstant" />
+				</rul:Keys>
+			</rul:Lookup>
+			<rul:Lookup Type="decimal" MatrixCol="Rate" MatrixDef="SpecialFormIncldgTheftLeaseHoldBaseRateDef" MatrixFromConstant="SpecialFormIncldgTheftLeaseHoldBaseRate" ResultMode="SingleResult">
+				<rul:Keys>
+					<rul:Constant Type="string">CW</rul:Constant>
+					<rul:FirstValue Type="string" FromConstant="" FromDataDef="ancestor::CommercialPropertyStructure/@ConstructionTypeToUse" Order="DataDefInputParamConstant" />
+					<rul:FirstValue Type="string" FromConstant="" FromDataDef="ancestor::CommercialPropertyStructure/@ApartmentCondoIndicator" Order="DataDefInputParamConstant" />
+				</rul:Keys>
+			</rul:Lookup>
+		</rul:FirstNonNull>
+	</rul:Rule>
+	<rul:Rule Name="LookupSublineAllOtherAlliedLines" Type="string" DataDefGroup="CommercialPropertyLeaseholdInterestCoverageForm">
+		<rul:FirstNonNull Type="string">
+			<rul:Lookup Type="string" MatrixCol="Code" MatrixDef="SublineAllOtherAlliedLinesDef" MatrixFromConstant="SublineAllOtherAlliedLines" ResultMode="FirstResult">
+				<rul:Keys>
+					<rul:Value Type="string" FromDataDef="/State/@Code" />
+					<rul:Constant Type="string">Y</rul:Constant>
+				</rul:Keys>
+			</rul:Lookup>
+			<rul:Lookup Type="string" MatrixCol="Code" MatrixDef="SublineAllOtherAlliedLinesDef" MatrixFromConstant="SublineAllOtherAlliedLines" ResultMode="SingleResult">
+				<rul:Keys>
+					<rul:Constant Type="string">CW</rul:Constant>
+					<rul:Constant Type="string">Y</rul:Constant>
+				</rul:Keys>
+			</rul:Lookup>
+		</rul:FirstNonNull>
+	</rul:Rule>
+	<rul:Rule Name="LookupSpecialLeaseHoldTimeElementTheftExclusionFactor" Type="decimal" DataDefGroup="CommercialPropertyLeaseholdInterestCoverageForm">
+		<rul:FirstNonNull Type="decimal">
+			<rul:Lookup Type="decimal" MatrixCol="Factor" MatrixDef="SpecialLeaseHoldTimeElementTheftExclusionFactorDef" MatrixFromConstant="SpecialLeaseHoldTimeElementTheftExclusionFactor" ResultMode="FirstResult">
+				<rul:Keys>
+					<rul:Value Type="string" FromDataDef="/State/@Code" />
+					<rul:FirstValue Type="string" FromConstant="" FromDataDef="ancestor::CommercialPropertyStructure/@ApartmentCondoIndicator" Order="DataDefInputParamConstant" />
+				</rul:Keys>
+			</rul:Lookup>
+			<rul:Lookup Type="decimal" MatrixCol="Factor" MatrixDef="SpecialLeaseHoldTimeElementTheftExclusionFactorDef" MatrixFromConstant="SpecialLeaseHoldTimeElementTheftExclusionFactor" ResultMode="SingleResult">
+				<rul:Keys>
+					<rul:Constant Type="string">CW</rul:Constant>
+					<rul:FirstValue Type="string" FromConstant="" FromDataDef="ancestor::CommercialPropertyStructure/@ApartmentCondoIndicator" Order="DataDefInputParamConstant" />
+				</rul:Keys>
+			</rul:Lookup>
+		</rul:FirstNonNull>
+	</rul:Rule>
+</rul:Rules>

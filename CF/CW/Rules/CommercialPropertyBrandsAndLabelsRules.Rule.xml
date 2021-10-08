@@ -1,0 +1,356 @@
+<rul:Rules xmlns:rul="http://www.verisk.com/iso/erc/Rule">
+	<rul:Rule Name="InitializeRuleSet" DataDefGroup="CommercialPropertyBrandsAndLabels">
+		<rul:Sequence>
+			<rul:Locate AtDataDef="CommercialPropertyBrandsAndLabelsBasicGroupICoverage">
+				<rul:RunRule Type="none" FileName="CommercialPropertyBrandsAndLabelsBasicGroupICoverageRules" Rule="InitializeRuleSet" ClearCache="true" />
+			</rul:Locate>
+			<rul:Locate AtDataDef="CommercialPropertyBrandsAndLabelsBasicGroupIICoverage">
+				<rul:RunRule Type="none" FileName="CommercialPropertyBrandsAndLabelsBasicGroupIICoverageRules" Rule="InitializeRuleSet" ClearCache="true" />
+			</rul:Locate>
+			<rul:Locate AtDataDef="CommercialPropertyBrandsAndLabelsBroadCoverage">
+				<rul:RunRule Type="none" FileName="CommercialPropertyBrandsAndLabelsBroadCoverageRules" Rule="InitializeRuleSet" ClearCache="true" />
+			</rul:Locate>
+			<rul:Locate AtDataDef="CommercialPropertyBrandsAndLabelsEarthquakeCoverage">
+				<rul:RunRule Type="none" FileName="CommercialPropertyBrandsAndLabelsEarthquakeCoverageRules" Rule="InitializeRuleSet" ClearCache="true" />
+			</rul:Locate>
+			<rul:Locate AtDataDef="CommercialPropertyBrandsAndLabelsSpecialCoverage">
+				<rul:RunRule Type="none" FileName="CommercialPropertyBrandsAndLabelsSpecialCoverageRules" Rule="InitializeRuleSet" ClearCache="true" />
+			</rul:Locate>
+		</rul:Sequence>
+	</rul:Rule>
+	<rul:Rule Name="CalculateTotalPremium" Type="decimal" DataDefGroup="CommercialPropertyBrandsAndLabels">
+		<rul:Sum>
+			<rul:Locate AtDataDef="CommercialPropertyBrandsAndLabelsBasicGroupICoverage">
+				<rul:RunRule Type="decimal" FileName="CommercialPropertyBrandsAndLabelsBasicGroupICoverageRules" Rule="CalculateTotalPremium" ClearCache="true" />
+			</rul:Locate>
+			<rul:Locate AtDataDef="CommercialPropertyBrandsAndLabelsBasicGroupIICoverage">
+				<rul:RunRule Type="decimal" FileName="CommercialPropertyBrandsAndLabelsBasicGroupIICoverageRules" Rule="CalculateTotalPremium" ClearCache="true" />
+			</rul:Locate>
+			<rul:Locate AtDataDef="CommercialPropertyBrandsAndLabelsBroadCoverage">
+				<rul:RunRule Type="decimal" FileName="CommercialPropertyBrandsAndLabelsBroadCoverageRules" Rule="CalculateTotalPremium" ClearCache="true" />
+			</rul:Locate>
+			<rul:Locate AtDataDef="CommercialPropertyBrandsAndLabelsEarthquakeCoverage">
+				<rul:RunRule Type="decimal" FileName="CommercialPropertyBrandsAndLabelsEarthquakeCoverageRules" Rule="CalculateTotalPremium" ClearCache="true" />
+			</rul:Locate>
+			<rul:Locate AtDataDef="CommercialPropertyBrandsAndLabelsSpecialCoverage">
+				<rul:RunRule Type="decimal" FileName="CommercialPropertyBrandsAndLabelsSpecialCoverageRules" Rule="CalculateTotalPremium" ClearCache="true" />
+			</rul:Locate>
+			<rul:If>
+				<rul:Test>
+					<rul:And>
+						<rul:Equal>
+							<rul:FirstValue Type="integer" FromConstant="0" FromDataDef="@PremiumIndicator" Order="DataDefInputParamConstant" />
+							<rul:Constant Type="integer">1</rul:Constant>
+						</rul:Equal>
+						<rul:NotEqual>
+							<rul:FirstValue Type="decimal" FromConstant="0" FromDataDef="@Premium" Order="DataDefInputParamConstant" />
+							<rul:Constant Type="decimal">0</rul:Constant>
+						</rul:NotEqual>
+					</rul:And>
+				</rul:Test>
+				<rul:Then>
+					<rul:FirstValue Type="decimal" FromConstant="0" FromDataDef="@Premium" Order="DataDefInputParamConstant" />
+				</rul:Then>
+				<rul:Else>
+					<rul:Constant Type="decimal">0</rul:Constant>
+				</rul:Else>
+			</rul:If>
+		</rul:Sum>
+	</rul:Rule>
+	<rul:Rule Name="ErcSetRatesAndFactors" Type="none" DataDefGroup="CommercialPropertyBrandsAndLabels">
+		<rul:Sequence>
+			<rul:RunRule Type="decimal" ToDataDef="@MaxIncrease" FileName="CommercialPropertyBrandsAndLabelsRules" Rule="LookupBrandsAndLabelsMaxIncrease" ClearCache="true" />
+			<rul:WithArgs>
+				<rul:Arg Type="decimal" Param="calcFactor">
+					<rul:FirstNonNull Type="decimal">
+						<rul:Round DecimalPlaces="3">
+							<rul:Subtract>
+								<rul:RunRule Type="decimal" FileName="CommercialPropertyBrandsAndLabelsRules" Rule="LookupBrandsAndLabelsFactor" ClearCache="true" />
+								<rul:Constant Type="integer">1</rul:Constant>
+							</rul:Subtract>
+						</rul:Round>
+						<rul:Constant Type="decimal">0</rul:Constant>
+					</rul:FirstNonNull>
+				</rul:Arg>
+				<rul:Value Type="decimal" ToDataDef="@Factor" FromParam="calcFactor" />
+			</rul:WithArgs>
+			<rul:WithArgs>
+				<rul:Arg Type="decimal" Param="tempBGIMinValue">
+					<rul:FirstNonNull Type="decimal">
+						<rul:Product DecimalPlaces="3">
+							<rul:FirstValue Type="decimal" FromConstant="0" FromDataDef="ancestor::CommercialPropertyPersonalProperty/@FinalBasicGroupIRate" Order="DataDefInputParamConstant" />
+							<rul:FirstValue Type="decimal" FromConstant="0" FromDataDef="@Factor" Order="DataDefInputParamConstant" />
+						</rul:Product>
+						<rul:Constant Type="decimal">0</rul:Constant>
+					</rul:FirstNonNull>
+				</rul:Arg>
+				<rul:Choose>
+					<rul:When>
+						<rul:Test>
+							<rul:LessThanOrEqual>
+								<rul:FirstValue Type="decimal" FromConstant="0" FromDataDef="@MaxIncrease" Order="DataDefInputParamConstant" />
+								<rul:Value Type="decimal" FromParam="tempBGIMinValue" />
+							</rul:LessThanOrEqual>
+						</rul:Test>
+						<rul:Then>
+							<rul:Copy Type="decimal" ToDataDef="@BasicGroupIRate" FromDataDef="@MaxIncrease" />
+						</rul:Then>
+					</rul:When>
+					<rul:When>
+						<rul:Test>
+							<rul:GreaterThan>
+								<rul:FirstValue Type="decimal" FromConstant="0" FromDataDef="@MaxIncrease" Order="DataDefInputParamConstant" />
+								<rul:Value Type="decimal" FromParam="tempBGIMinValue" />
+							</rul:GreaterThan>
+						</rul:Test>
+						<rul:Then>
+							<rul:Sequence>
+								<rul:Value Type="decimal" ToDataDef="@BasicGroupIRate" FromParam="tempBGIMinValue" />
+							</rul:Sequence>
+						</rul:Then>
+					</rul:When>
+				</rul:Choose>
+			</rul:WithArgs>
+			<rul:WithArgs>
+				<rul:Arg Type="decimal" Param="tempBGIIMinValue">
+					<rul:FirstNonNull Type="decimal">
+						<rul:Product DecimalPlaces="3">
+							<rul:FirstValue Type="decimal" FromConstant="0" FromDataDef="ancestor::CommercialPropertyPersonalProperty/@FinalBasicGroupIIRate" Order="DataDefInputParamConstant" />
+							<rul:FirstValue Type="decimal" FromConstant="0" FromDataDef="@Factor" Order="DataDefInputParamConstant" />
+						</rul:Product>
+						<rul:Constant Type="decimal">0</rul:Constant>
+					</rul:FirstNonNull>
+				</rul:Arg>
+				<rul:Choose>
+					<rul:When>
+						<rul:Test>
+							<rul:LessThanOrEqual>
+								<rul:FirstValue Type="decimal" FromConstant="0" FromDataDef="@MaxIncrease" Order="DataDefInputParamConstant" />
+								<rul:Value Type="decimal" FromParam="tempBGIIMinValue" />
+							</rul:LessThanOrEqual>
+						</rul:Test>
+						<rul:Then>
+							<rul:Copy Type="decimal" ToDataDef="@BasicGroupIIRate" FromDataDef="@MaxIncrease" />
+						</rul:Then>
+					</rul:When>
+					<rul:When>
+						<rul:Test>
+							<rul:GreaterThan>
+								<rul:FirstValue Type="decimal" FromConstant="0" FromDataDef="@MaxIncrease" Order="DataDefInputParamConstant" />
+								<rul:Value Type="decimal" FromParam="tempBGIIMinValue" />
+							</rul:GreaterThan>
+						</rul:Test>
+						<rul:Then>
+							<rul:Sequence>
+								<rul:Value Type="decimal" ToDataDef="@BasicGroupIIRate" FromParam="tempBGIIMinValue" />
+							</rul:Sequence>
+						</rul:Then>
+					</rul:When>
+				</rul:Choose>
+			</rul:WithArgs>
+			<rul:WithArgs>
+				<rul:Arg Type="decimal" Param="tempBroadMinValue">
+					<rul:FirstNonNull Type="decimal">
+						<rul:Product DecimalPlaces="3">
+							<rul:FirstValue Type="decimal" FromConstant="0" FromDataDef="ancestor::CommercialPropertyPersonalProperty/@FinalBroadRate" Order="DataDefInputParamConstant" />
+							<rul:FirstValue Type="decimal" FromConstant="0" FromDataDef="@Factor" Order="DataDefInputParamConstant" />
+						</rul:Product>
+						<rul:Constant Type="decimal">0</rul:Constant>
+					</rul:FirstNonNull>
+				</rul:Arg>
+				<rul:Choose>
+					<rul:When>
+						<rul:Test>
+							<rul:LessThanOrEqual>
+								<rul:FirstValue Type="decimal" FromConstant="0" FromDataDef="@MaxIncrease" Order="DataDefInputParamConstant" />
+								<rul:Value Type="decimal" FromParam="tempBroadMinValue" />
+							</rul:LessThanOrEqual>
+						</rul:Test>
+						<rul:Then>
+							<rul:Copy Type="decimal" ToDataDef="@BroadRate" FromDataDef="@MaxIncrease" />
+						</rul:Then>
+					</rul:When>
+					<rul:When>
+						<rul:Test>
+							<rul:GreaterThan>
+								<rul:FirstValue Type="decimal" FromConstant="0" FromDataDef="@MaxIncrease" Order="DataDefInputParamConstant" />
+								<rul:Value Type="decimal" FromParam="tempBroadMinValue" />
+							</rul:GreaterThan>
+						</rul:Test>
+						<rul:Then>
+							<rul:Sequence>
+								<rul:Value Type="decimal" ToDataDef="@BroadRate" FromParam="tempBroadMinValue" />
+							</rul:Sequence>
+						</rul:Then>
+					</rul:When>
+				</rul:Choose>
+			</rul:WithArgs>
+			<rul:WithArgs>
+				<rul:Arg Type="decimal" Param="tempSpecialMinValue">
+					<rul:FirstNonNull Type="decimal">
+						<rul:Product DecimalPlaces="3">
+							<rul:FirstValue Type="decimal" FromConstant="0" FromDataDef="ancestor::CommercialPropertyPersonalProperty/@FinalSpecialRate" Order="DataDefInputParamConstant" />
+							<rul:FirstValue Type="decimal" FromConstant="0" FromDataDef="@Factor" Order="DataDefInputParamConstant" />
+						</rul:Product>
+						<rul:Constant Type="decimal">0</rul:Constant>
+					</rul:FirstNonNull>
+				</rul:Arg>
+				<rul:Choose>
+					<rul:When>
+						<rul:Test>
+							<rul:LessThanOrEqual>
+								<rul:FirstValue Type="decimal" FromConstant="0" FromDataDef="@MaxIncrease" Order="DataDefInputParamConstant" />
+								<rul:Value Type="decimal" FromParam="tempSpecialMinValue" />
+							</rul:LessThanOrEqual>
+						</rul:Test>
+						<rul:Then>
+							<rul:Copy Type="decimal" ToDataDef="@SpecialRate" FromDataDef="@MaxIncrease" />
+						</rul:Then>
+					</rul:When>
+					<rul:When>
+						<rul:Test>
+							<rul:GreaterThan>
+								<rul:FirstValue Type="decimal" FromConstant="0" FromDataDef="@MaxIncrease" Order="DataDefInputParamConstant" />
+								<rul:Value Type="decimal" FromParam="tempSpecialMinValue" />
+							</rul:GreaterThan>
+						</rul:Test>
+						<rul:Then>
+							<rul:Sequence>
+								<rul:Value Type="decimal" ToDataDef="@SpecialRate" FromParam="tempSpecialMinValue" />
+							</rul:Sequence>
+						</rul:Then>
+					</rul:When>
+				</rul:Choose>
+			</rul:WithArgs>
+			<rul:WithArgs>
+				<rul:Arg Type="decimal" Param="tempEQMinValue">
+					<rul:FirstNonNull Type="decimal">
+						<rul:Product DecimalPlaces="3">
+							<rul:FirstValue Type="decimal" FromConstant="0" FromDataDef="ancestor::CommercialPropertyPersonalProperty/@FinalEQRate" Order="DataDefInputParamConstant" />
+							<rul:FirstValue Type="decimal" FromConstant="0" FromDataDef="@Factor" Order="DataDefInputParamConstant" />
+						</rul:Product>
+						<rul:Constant Type="decimal">0</rul:Constant>
+					</rul:FirstNonNull>
+				</rul:Arg>
+				<rul:Choose>
+					<rul:When>
+						<rul:Test>
+							<rul:LessThanOrEqual>
+								<rul:FirstValue Type="decimal" FromConstant="0" FromDataDef="@MaxIncrease" Order="DataDefInputParamConstant" />
+								<rul:Value Type="decimal" FromParam="tempEQMinValue" />
+							</rul:LessThanOrEqual>
+						</rul:Test>
+						<rul:Then>
+							<rul:Copy Type="decimal" ToDataDef="@EQRate" FromDataDef="@MaxIncrease" />
+						</rul:Then>
+					</rul:When>
+					<rul:When>
+						<rul:Test>
+							<rul:GreaterThan>
+								<rul:FirstValue Type="decimal" FromConstant="0" FromDataDef="@MaxIncrease" Order="DataDefInputParamConstant" />
+								<rul:Value Type="decimal" FromParam="tempEQMinValue" />
+							</rul:GreaterThan>
+						</rul:Test>
+						<rul:Then>
+							<rul:Sequence>
+								<rul:Value Type="decimal" ToDataDef="@EQRate" FromParam="tempEQMinValue" />
+							</rul:Sequence>
+						</rul:Then>
+					</rul:When>
+				</rul:Choose>
+			</rul:WithArgs>
+		</rul:Sequence>
+	</rul:Rule>
+	<rul:Rule Name="ErcSetStatisticalCodes" Type="none" DataDefGroup="CommercialPropertyBrandsAndLabels">
+		<rul:Sequence>
+			<rul:If>
+				<rul:Test>
+					<rul:Exist AtInputDataDef="ancestor::MasterCFCW/Policy" />
+				</rul:Test>
+				<rul:Then>
+					<rul:Sequence>
+						<rul:WithArgs>
+							<rul:Arg Type="integer" Param="calcExposureStatAmount">
+								<rul:FirstNonNull Type="integer">
+									<rul:If>
+										<rul:Test>
+											<rul:GreaterThan>
+												<rul:FirstValue Type="integer" FromConstant="0" FromDataDef="../../@LimitToUse" Order="DataDefInputParamConstant" />
+												<rul:Constant Type="integer">0</rul:Constant>
+											</rul:GreaterThan>
+										</rul:Test>
+										<rul:Then>
+											<rul:Convert Type="integer">
+												<rul:Truncate>
+													<rul:Divide>
+														<rul:Value Type="integer" FromDataDef="../../@LimitToUse" />
+														<rul:Constant Type="integer">1000</rul:Constant>
+													</rul:Divide>
+												</rul:Truncate>
+											</rul:Convert>
+										</rul:Then>
+									</rul:If>
+									<rul:Constant Type="integer">0</rul:Constant>
+								</rul:FirstNonNull>
+							</rul:Arg>
+							<rul:Value Type="integer" ToDataDef="@ExposureStatAmount" FromParam="calcExposureStatAmount" />
+						</rul:WithArgs>
+					</rul:Sequence>
+				</rul:Then>
+			</rul:If>
+		</rul:Sequence>
+	</rul:Rule>
+	<rul:Rule Name="ErcProcess" Type="none" DataDefGroup="CommercialPropertyBrandsAndLabels">
+		<rul:Sequence>
+			<rul:RunRule Type="none" FileName="CommercialPropertyBrandsAndLabelsRules" Rule="ErcSetRatesAndFactors" ClearCache="true" />
+			<rul:Locate AtDataDef="CommercialPropertyBrandsAndLabelsBasicGroupICoverage">
+				<rul:RunRule Type="none" FileName="CommercialPropertyBrandsAndLabelsBasicGroupICoverageRules" Rule="ErcProcess" ClearCache="true" />
+			</rul:Locate>
+			<rul:Locate AtDataDef="CommercialPropertyBrandsAndLabelsBasicGroupIICoverage">
+				<rul:RunRule Type="none" FileName="CommercialPropertyBrandsAndLabelsBasicGroupIICoverageRules" Rule="ErcProcess" ClearCache="true" />
+			</rul:Locate>
+			<rul:Locate AtDataDef="CommercialPropertyBrandsAndLabelsBroadCoverage">
+				<rul:RunRule Type="none" FileName="CommercialPropertyBrandsAndLabelsBroadCoverageRules" Rule="ErcProcess" ClearCache="true" />
+			</rul:Locate>
+			<rul:Locate AtDataDef="CommercialPropertyBrandsAndLabelsEarthquakeCoverage">
+				<rul:RunRule Type="none" FileName="CommercialPropertyBrandsAndLabelsEarthquakeCoverageRules" Rule="ErcProcess" ClearCache="true" />
+			</rul:Locate>
+			<rul:Locate AtDataDef="CommercialPropertyBrandsAndLabelsSpecialCoverage">
+				<rul:RunRule Type="none" FileName="CommercialPropertyBrandsAndLabelsSpecialCoverageRules" Rule="ErcProcess" ClearCache="true" />
+			</rul:Locate>
+			<rul:RunRule Type="none" FileName="CommercialPropertyBrandsAndLabelsRules" Rule="ErcSetStatisticalCodes" ClearCache="true" />
+		</rul:Sequence>
+	</rul:Rule>
+	<rul:Rule Name="LookupBrandsAndLabelsFactor" Type="decimal" DataDefGroup="CommercialPropertyBrandsAndLabels">
+		<rul:FirstNonNull Type="decimal">
+			<rul:Lookup Type="decimal" MatrixCol="Factor" MatrixDef="BrandsAndLabelsFactorDef" MatrixFromConstant="BrandsAndLabelsFactor" ResultMode="FirstResult">
+				<rul:Keys>
+					<rul:Value Type="string" FromDataDef="/State/@Code" />
+					<rul:Constant Type="string">Y</rul:Constant>
+				</rul:Keys>
+			</rul:Lookup>
+			<rul:Lookup Type="decimal" MatrixCol="Factor" MatrixDef="BrandsAndLabelsFactorDef" MatrixFromConstant="BrandsAndLabelsFactor" ResultMode="SingleResult">
+				<rul:Keys>
+					<rul:Constant Type="string">CW</rul:Constant>
+					<rul:Constant Type="string">Y</rul:Constant>
+				</rul:Keys>
+			</rul:Lookup>
+		</rul:FirstNonNull>
+	</rul:Rule>
+	<rul:Rule Name="LookupBrandsAndLabelsMaxIncrease" Type="decimal" DataDefGroup="CommercialPropertyBrandsAndLabels">
+		<rul:FirstNonNull Type="decimal">
+			<rul:Lookup Type="decimal" MatrixCol="Rate" MatrixDef="BrandsAndLabelsMaxIncreaseDef" MatrixFromConstant="BrandsAndLabelsMaxIncrease" ResultMode="FirstResult">
+				<rul:Keys>
+					<rul:Value Type="string" FromDataDef="/State/@Code" />
+					<rul:Constant Type="string">Y</rul:Constant>
+				</rul:Keys>
+			</rul:Lookup>
+			<rul:Lookup Type="decimal" MatrixCol="Rate" MatrixDef="BrandsAndLabelsMaxIncreaseDef" MatrixFromConstant="BrandsAndLabelsMaxIncrease" ResultMode="SingleResult">
+				<rul:Keys>
+					<rul:Constant Type="string">CW</rul:Constant>
+					<rul:Constant Type="string">Y</rul:Constant>
+				</rul:Keys>
+			</rul:Lookup>
+		</rul:FirstNonNull>
+	</rul:Rule>
+</rul:Rules>

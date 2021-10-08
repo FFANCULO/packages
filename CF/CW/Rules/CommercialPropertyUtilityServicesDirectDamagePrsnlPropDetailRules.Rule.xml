@@ -1,0 +1,957 @@
+<rul:Rules xmlns:rul="http://www.verisk.com/iso/erc/Rule">
+	<rul:Rule Name="InitializeRuleSet" DataDefGroup="CommercialPropertyUtilityServicesDirectDamagePrsnlPropDetail">
+		<rul:Sequence>
+			<rul:Locate AtDataDef="CommercialPropertyUtilityServicesDirectDamagePrsnlPropDetailBasicGroupICoverage">
+				<rul:RunRule Type="none" FileName="CommercialPropertyUtilityServicesDirectDamagePrsnlPropDetailBasicGroupICoverageRules" Rule="InitializeRuleSet" ClearCache="true" />
+			</rul:Locate>
+			<rul:Locate AtDataDef="CommercialPropertyUtilityServicesDirectDamagePrsnlPropDetailBasicGroupIICoverage">
+				<rul:RunRule Type="none" FileName="CommercialPropertyUtilityServicesDirectDamagePrsnlPropDetailBasicGroupIICoverageRules" Rule="InitializeRuleSet" ClearCache="true" />
+			</rul:Locate>
+			<rul:Locate AtDataDef="CommercialPropertyUtilityServicesDirectDamagePrsnlPropDetailBroadCoverage">
+				<rul:RunRule Type="none" FileName="CommercialPropertyUtilityServicesDirectDamagePrsnlPropDetailBroadCoverageRules" Rule="InitializeRuleSet" ClearCache="true" />
+			</rul:Locate>
+			<rul:Locate AtDataDef="CommercialPropertyUtilityServicesDirectDamagePrsnlPropDetailEarthquakeCoverage">
+				<rul:RunRule Type="none" FileName="CommercialPropertyUtilityServicesDirectDamagePrsnlPropDetailEarthquakeCoverageRules" Rule="InitializeRuleSet" ClearCache="true" />
+			</rul:Locate>
+			<rul:Locate AtDataDef="CommercialPropertyUtilityServicesDirectDamagePrsnlPropDetailSpecialCoverage">
+				<rul:RunRule Type="none" FileName="CommercialPropertyUtilityServicesDirectDamagePrsnlPropDetailSpecialCoverageRules" Rule="InitializeRuleSet" ClearCache="true" />
+			</rul:Locate>
+		</rul:Sequence>
+	</rul:Rule>
+	<rul:Rule Name="CalculateTotalPremium" Type="decimal" DataDefGroup="CommercialPropertyUtilityServicesDirectDamagePrsnlPropDetail">
+		<rul:Sum>
+			<rul:Locate AtDataDef="CommercialPropertyUtilityServicesDirectDamagePrsnlPropDetailBasicGroupICoverage">
+				<rul:RunRule Type="decimal" FileName="CommercialPropertyUtilityServicesDirectDamagePrsnlPropDetailBasicGroupICoverageRules" Rule="CalculateTotalPremium" ClearCache="true" />
+			</rul:Locate>
+			<rul:Locate AtDataDef="CommercialPropertyUtilityServicesDirectDamagePrsnlPropDetailBasicGroupIICoverage">
+				<rul:RunRule Type="decimal" FileName="CommercialPropertyUtilityServicesDirectDamagePrsnlPropDetailBasicGroupIICoverageRules" Rule="CalculateTotalPremium" ClearCache="true" />
+			</rul:Locate>
+			<rul:Locate AtDataDef="CommercialPropertyUtilityServicesDirectDamagePrsnlPropDetailBroadCoverage">
+				<rul:RunRule Type="decimal" FileName="CommercialPropertyUtilityServicesDirectDamagePrsnlPropDetailBroadCoverageRules" Rule="CalculateTotalPremium" ClearCache="true" />
+			</rul:Locate>
+			<rul:Locate AtDataDef="CommercialPropertyUtilityServicesDirectDamagePrsnlPropDetailEarthquakeCoverage">
+				<rul:RunRule Type="decimal" FileName="CommercialPropertyUtilityServicesDirectDamagePrsnlPropDetailEarthquakeCoverageRules" Rule="CalculateTotalPremium" ClearCache="true" />
+			</rul:Locate>
+			<rul:Locate AtDataDef="CommercialPropertyUtilityServicesDirectDamagePrsnlPropDetailSpecialCoverage">
+				<rul:RunRule Type="decimal" FileName="CommercialPropertyUtilityServicesDirectDamagePrsnlPropDetailSpecialCoverageRules" Rule="CalculateTotalPremium" ClearCache="true" />
+			</rul:Locate>
+			<rul:If>
+				<rul:Test>
+					<rul:And>
+						<rul:Equal>
+							<rul:FirstValue Type="integer" FromConstant="0" FromDataDef="@PremiumIndicator" Order="DataDefInputParamConstant" />
+							<rul:Constant Type="integer">1</rul:Constant>
+						</rul:Equal>
+						<rul:NotEqual>
+							<rul:FirstValue Type="decimal" FromConstant="0" FromDataDef="@Premium" Order="DataDefInputParamConstant" />
+							<rul:Constant Type="decimal">0</rul:Constant>
+						</rul:NotEqual>
+					</rul:And>
+				</rul:Test>
+				<rul:Then>
+					<rul:FirstValue Type="decimal" FromConstant="0" FromDataDef="@Premium" Order="DataDefInputParamConstant" />
+				</rul:Then>
+				<rul:Else>
+					<rul:Constant Type="decimal">0</rul:Constant>
+				</rul:Else>
+			</rul:If>
+		</rul:Sum>
+	</rul:Rule>
+	<rul:Rule Name="ErcSetRatesAndFactors" Type="none" DataDefGroup="CommercialPropertyUtilityServicesDirectDamagePrsnlPropDetail">
+		<rul:Sequence>
+			<rul:Copy Type="string" ToDataDef="@PolicyType" FromDataDef="ancestor::CommercialProperty/@PolicyType" />
+			<rul:Copy Type="string" ToDataDef="@CauseOfLossValueFromRiskLevel" FromDataDef="ancestor::CommercialPropertyPersonalProperty/@CauseOfLoss" />
+			<rul:Copy Type="string" ToDataDef="@BlktCauseOfLossValueFromRiskLevel" FromDataDef="ancestor::CommercialPropertyPersonalProperty/@BlktCauseOfLossValue" />
+			<rul:Copy Type="string" ToDataDef="@EQCovIndicatorFromRisk" FromDataDef="ancestor::CommercialPropertyPersonalProperty/@EQCovIndicator" />
+			<rul:RunRule Type="none" FileName="CommercialPropertyUtilityServicesDirectDamagePrsnlPropDetailRules" Rule="SetLimitToUse" ClearCache="true" />
+			<rul:RunRule Type="none" FileName="CommercialPropertyUtilityServicesDirectDamagePrsnlPropDetailRules" Rule="SetEQLimitToUse" ClearCache="true" />
+			<rul:RunRule Type="none" FileName="CommercialPropertyUtilityServicesDirectDamagePrsnlPropDetailRules" Rule="SetBGINonOverheadRate" ClearCache="true" />
+			<rul:RunRule Type="none" FileName="CommercialPropertyUtilityServicesDirectDamagePrsnlPropDetailRules" Rule="SetBGIOverheadRate" ClearCache="true" />
+			<rul:RunRule Type="none" FileName="CommercialPropertyUtilityServicesDirectDamagePrsnlPropDetailRules" Rule="SetBGIRate" ClearCache="true" />
+			<rul:RunRule Type="none" FileName="CommercialPropertyUtilityServicesDirectDamagePrsnlPropDetailRules" Rule="SetBGIINonOverheadRate" ClearCache="true" />
+			<rul:RunRule Type="none" FileName="CommercialPropertyUtilityServicesDirectDamagePrsnlPropDetailRules" Rule="SetBGIIOverheadRate" ClearCache="true" />
+			<rul:RunRule Type="none" FileName="CommercialPropertyUtilityServicesDirectDamagePrsnlPropDetailRules" Rule="SetBGIIRate" ClearCache="true" />
+			<rul:RunRule Type="none" FileName="CommercialPropertyUtilityServicesDirectDamagePrsnlPropDetailRules" Rule="SetBroadNonOverheadRate" ClearCache="true" />
+			<rul:RunRule Type="none" FileName="CommercialPropertyUtilityServicesDirectDamagePrsnlPropDetailRules" Rule="SetBroadOverheadRate" ClearCache="true" />
+			<rul:RunRule Type="none" FileName="CommercialPropertyUtilityServicesDirectDamagePrsnlPropDetailRules" Rule="SetBroadRate" ClearCache="true" />
+			<rul:RunRule Type="none" FileName="CommercialPropertyUtilityServicesDirectDamagePrsnlPropDetailRules" Rule="SetSpecialNonOverheadRate" ClearCache="true" />
+			<rul:RunRule Type="none" FileName="CommercialPropertyUtilityServicesDirectDamagePrsnlPropDetailRules" Rule="SetSpecialOverheadRate" ClearCache="true" />
+			<rul:RunRule Type="none" FileName="CommercialPropertyUtilityServicesDirectDamagePrsnlPropDetailRules" Rule="SetSpecialRate" ClearCache="true" />
+			<rul:RunRule Type="none" FileName="CommercialPropertyUtilityServicesDirectDamagePrsnlPropDetailRules" Rule="SetEQNonOverheadRate" ClearCache="true" />
+			<rul:RunRule Type="none" FileName="CommercialPropertyUtilityServicesDirectDamagePrsnlPropDetailRules" Rule="SetEQOverheadRate" ClearCache="true" />
+			<rul:RunRule Type="none" FileName="CommercialPropertyUtilityServicesDirectDamagePrsnlPropDetailRules" Rule="SetEQRate" ClearCache="true" />
+		</rul:Sequence>
+	</rul:Rule>
+	<rul:Rule Name="SetLimitToUse" Type="none" DataDefGroup="CommercialPropertyUtilityServicesDirectDamagePrsnlPropDetail">
+		<rul:Sequence>
+			<rul:If>
+				<rul:Test>
+					<rul:GreaterThan>
+						<rul:FirstValue Type="integer" FromConstant="0" FromDataDef="@Limit" Order="DataDefInputParamConstant" />
+						<rul:Constant Type="integer">0</rul:Constant>
+					</rul:GreaterThan>
+				</rul:Test>
+				<rul:Then>
+					<rul:Copy Type="integer" ToDataDef="@LimitToUse" FromDataDef="@Limit" />
+				</rul:Then>
+				<rul:Else>
+					<rul:Copy Type="integer" ToDataDef="@LimitToUse" FromDataDef="ancestor::CommercialPropertyPersonalProperty/@LimitToUse" />
+				</rul:Else>
+			</rul:If>
+		</rul:Sequence>
+	</rul:Rule>
+	<rul:Rule Name="SetEQLimitToUse" Type="none" DataDefGroup="CommercialPropertyUtilityServicesDirectDamagePrsnlPropDetail">
+		<rul:Sequence>
+			<rul:If>
+				<rul:Test>
+					<rul:And>
+						<rul:Or>
+							<rul:Exist AtInputDataDef="ancestor::CommercialPropertyPersonalProperty/CommercialPropertyEarthquakeAndVolcanicEruptionEndorsementSubLimitFormPrsnlPropTable/CommercialPropertyEarthquakeAndVolcanicEruptionEndorsementSubLimitFormPrsnlProp" />
+							<rul:Exist AtInputDataDef="ancestor::CommercialPropertyPersonalProperty/CommercialPropertyEarthquakeAndVolcanicEruptionCoverageSubLimitFormWithFlatDollarDeductiblePrsnlPropTable/CommercialPropertyEarthquakeAndVolcanicEruptionCoverageSubLimitFormWithFlatDollarDeductiblePrsnlProp" />
+						</rul:Or>
+						<rul:LessThan>
+							<rul:FirstValue Type="integer" FromConstant="0" FromDataDef="ancestor::CommercialPropertyPersonalProperty/@EQLimitToUse" Order="DataDefInputParamConstant" />
+							<rul:FirstValue Type="integer" FromConstant="0" FromDataDef="@LimitToUse" Order="DataDefInputParamConstant" />
+						</rul:LessThan>
+					</rul:And>
+				</rul:Test>
+				<rul:Then>
+					<rul:Copy Type="integer" ToDataDef="@EQLimitToUse" FromDataDef="ancestor::CommercialPropertyPersonalProperty/@EQLimitToUse" />
+				</rul:Then>
+				<rul:Else>
+					<rul:Copy Type="integer" ToDataDef="@EQLimitToUse" FromDataDef="@LimitToUse" />
+				</rul:Else>
+			</rul:If>
+		</rul:Sequence>
+	</rul:Rule>
+	<rul:Rule Name="SetBGIRate" Type="none" DataDefGroup="CommercialPropertyUtilityServicesDirectDamagePrsnlPropDetail">
+		<rul:Sequence>
+			<rul:Sum ToDataDef="@BasicGroupIRate">
+				<rul:Value Type="decimal" FromDataDef="@BasicGroupINonOverheadRate" />
+				<rul:Value Type="decimal" FromDataDef="@BasicGroupIOverheadRate" />
+			</rul:Sum>
+		</rul:Sequence>
+	</rul:Rule>
+	<rul:Rule Name="SetBGINonOverheadRate" Type="none" DataDefGroup="CommercialPropertyUtilityServicesDirectDamagePrsnlPropDetail">
+		<rul:Sequence>
+			<!--Logic for BasicGroupINonOverheadBaseRate moved to be inline where used.-->
+			<rul:WithArgs>
+				<rul:Arg Type="decimal" Param="calcBasicGroupINonOverheadRate">
+					<rul:FirstNonNull Type="decimal">
+						<rul:Product DecimalPlaces="3">
+							<rul:If>
+								<rul:Test>
+									<rul:NotEqual>
+										<rul:FirstValue Type="string" FromConstant="" FromDataDef="@UtilityType" Order="DataDefInputParamConstant" />
+										<rul:Constant Type="string"></rul:Constant>
+									</rul:NotEqual>
+								</rul:Test>
+								<rul:Then>
+									<rul:RunRule Type="decimal" FileName="CommercialPropertyUtilityServicesDirectDamagePrsnlPropDetailRules" Rule="LookupUtilitySrvcDirectDamageWaterPowerAndCommunicationSupply" ClearCache="true">
+										<rul:Arg Type="string" Param="utilitySrvcCauseOfLoss">
+											<rul:Constant Type="string">GroupI</rul:Constant>
+										</rul:Arg>
+									</rul:RunRule>
+								</rul:Then>
+								<rul:Else>
+									<rul:Constant Type="decimal">0</rul:Constant>
+								</rul:Else>
+							</rul:If>
+							<rul:FirstValue Type="decimal" FromConstant="0" FromDataDef="ancestor::CommercialProperty/@LossCostMultiplier" Order="DataDefInputParamConstant" />
+						</rul:Product>
+						<rul:Constant Type="decimal">0</rul:Constant>
+					</rul:FirstNonNull>
+				</rul:Arg>
+				<rul:Value Type="decimal" ToDataDef="@BasicGroupINonOverheadRate" FromParam="calcBasicGroupINonOverheadRate" />
+			</rul:WithArgs>
+		</rul:Sequence>
+	</rul:Rule>
+	<rul:Rule Name="SetBGIOverheadRate" Type="none" DataDefGroup="CommercialPropertyUtilityServicesDirectDamagePrsnlPropDetail">
+		<rul:Sequence>
+			<!--Logic for BasicGroupIOverheadBaseRate moved to be inline where used.-->
+			<rul:WithArgs>
+				<rul:Arg Type="decimal" Param="calcBasicGroupIOverheadRate">
+					<rul:FirstNonNull Type="decimal">
+						<rul:Product DecimalPlaces="3">
+							<rul:If>
+								<rul:Test>
+									<rul:Or>
+										<rul:Equal>
+											<rul:FirstValue Type="string" FromConstant="" FromDataDef="@Utility" Order="DataDefInputParamConstant" />
+											<rul:Constant Type="string">Communications Supply - Including Overhead Transmission Lines</rul:Constant>
+										</rul:Equal>
+										<rul:Equal>
+											<rul:FirstValue Type="string" FromConstant="" FromDataDef="@Utility" Order="DataDefInputParamConstant" />
+											<rul:Constant Type="string">Power Supply - Including Overhead Transmission Lines</rul:Constant>
+										</rul:Equal>
+									</rul:Or>
+								</rul:Test>
+								<rul:Then>
+									<rul:RunRule Type="decimal" FileName="CommercialPropertyUtilityServicesDirectDamagePrsnlPropDetailRules" Rule="LookupUtilitySrvcDirectDamageOverheadPowerTransmissionAndCommunicationLines" ClearCache="true">
+										<rul:Arg Type="string" Param="utilitySrvcCauseOfLoss">
+											<rul:Constant Type="string">GroupI</rul:Constant>
+										</rul:Arg>
+									</rul:RunRule>
+								</rul:Then>
+								<rul:Else>
+									<rul:Constant Type="decimal">0</rul:Constant>
+								</rul:Else>
+							</rul:If>
+							<rul:FirstValue Type="decimal" FromConstant="0" FromDataDef="ancestor::CommercialProperty/@LossCostMultiplier" Order="DataDefInputParamConstant" />
+						</rul:Product>
+						<rul:Constant Type="decimal">0</rul:Constant>
+					</rul:FirstNonNull>
+				</rul:Arg>
+				<rul:Value Type="decimal" ToDataDef="@BasicGroupIOverheadRate" FromParam="calcBasicGroupIOverheadRate" />
+			</rul:WithArgs>
+		</rul:Sequence>
+	</rul:Rule>
+	<rul:Rule Name="SetBGIIRate" Type="none" DataDefGroup="CommercialPropertyUtilityServicesDirectDamagePrsnlPropDetail">
+		<rul:Sequence>
+			<rul:WithArgs>
+				<rul:Arg Type="decimal" Param="calcBasicGroupIIRate">
+					<rul:FirstNonNull Type="decimal">
+						<rul:Choose>
+							<rul:When>
+								<rul:Test>
+									<rul:Or>
+										<rul:Equal>
+											<rul:FirstValue Type="string" FromConstant="" FromDataDef="@CauseOfLoss" Order="DataDefInputParamConstant" />
+											<rul:Constant Type="string">Fire</rul:Constant>
+										</rul:Equal>
+										<rul:Equal>
+											<rul:FirstValue Type="string" FromConstant="" FromDataDef="@CauseOfLoss" Order="DataDefInputParamConstant" />
+											<rul:Constant Type="string">Fire and Vandalism</rul:Constant>
+										</rul:Equal>
+										<rul:Equal>
+											<rul:FirstValue Type="string" FromConstant="" FromDataDef="@CauseOfLoss" Order="DataDefInputParamConstant" />
+											<rul:Constant Type="string">Fire and Sprinkler Leakage</rul:Constant>
+										</rul:Equal>
+										<rul:Equal>
+											<rul:FirstValue Type="string" FromConstant="" FromDataDef="@CauseOfLoss" Order="DataDefInputParamConstant" />
+											<rul:Constant Type="string">Fire, Vandalism and Sprinkler Leakage</rul:Constant>
+										</rul:Equal>
+									</rul:Or>
+								</rul:Test>
+								<rul:Then>
+									<rul:Constant Type="decimal">0</rul:Constant>
+								</rul:Then>
+							</rul:When>
+							<rul:When>
+								<rul:Test>
+									<rul:And>
+										<rul:NotEqual>
+											<rul:FirstValue Type="string" FromConstant="" FromDataDef="@CauseOfLoss" Order="DataDefInputParamConstant" />
+											<rul:Constant Type="string">Fire</rul:Constant>
+										</rul:NotEqual>
+										<rul:NotEqual>
+											<rul:FirstValue Type="string" FromConstant="" FromDataDef="@CauseOfLoss" Order="DataDefInputParamConstant" />
+											<rul:Constant Type="string">Fire and Vandalism</rul:Constant>
+										</rul:NotEqual>
+										<rul:NotEqual>
+											<rul:FirstValue Type="string" FromConstant="" FromDataDef="@CauseOfLoss" Order="DataDefInputParamConstant" />
+											<rul:Constant Type="string">Fire and Sprinkler Leakage</rul:Constant>
+										</rul:NotEqual>
+										<rul:NotEqual>
+											<rul:FirstValue Type="string" FromConstant="" FromDataDef="@CauseOfLoss" Order="DataDefInputParamConstant" />
+											<rul:Constant Type="string">Fire, Vandalism and Sprinkler Leakage</rul:Constant>
+										</rul:NotEqual>
+									</rul:And>
+								</rul:Test>
+								<rul:Then>
+									<rul:Sum>
+										<rul:Value Type="decimal" FromDataDef="@BasicGroupIINonOverheadRate" />
+										<rul:Value Type="decimal" FromDataDef="@BasicGroupIIOverheadRate" />
+									</rul:Sum>
+								</rul:Then>
+							</rul:When>
+							<rul:Otherwise>
+								<rul:Constant Type="decimal">0</rul:Constant>
+							</rul:Otherwise>
+						</rul:Choose>
+						<rul:Constant Type="decimal">0</rul:Constant>
+					</rul:FirstNonNull>
+				</rul:Arg>
+				<rul:Value Type="decimal" ToDataDef="@BasicGroupIIRate" FromParam="calcBasicGroupIIRate" />
+			</rul:WithArgs>
+		</rul:Sequence>
+	</rul:Rule>
+	<rul:Rule Name="SetBGIINonOverheadRate" Type="none" DataDefGroup="CommercialPropertyUtilityServicesDirectDamagePrsnlPropDetail">
+		<rul:Sequence>
+			<!--Logic for BasicGroupIINonOverheadBaseRate moved to be inline where used.-->
+			<rul:WithArgs>
+				<rul:Arg Type="decimal" Param="calcBasicGroupIINonOverheadRate">
+					<rul:FirstNonNull Type="decimal">
+						<rul:Product DecimalPlaces="3">
+							<rul:If>
+								<rul:Test>
+									<rul:NotEqual>
+										<rul:FirstValue Type="string" FromConstant="" FromDataDef="@UtilityType" Order="DataDefInputParamConstant" />
+										<rul:Constant Type="string"></rul:Constant>
+									</rul:NotEqual>
+								</rul:Test>
+								<rul:Then>
+									<rul:RunRule Type="decimal" FileName="CommercialPropertyUtilityServicesDirectDamagePrsnlPropDetailRules" Rule="LookupUtilitySrvcDirectDamageWaterPowerAndCommunicationSupply" ClearCache="true">
+										<rul:Arg Type="string" Param="utilitySrvcCauseOfLoss">
+											<rul:Constant Type="string">GroupII</rul:Constant>
+										</rul:Arg>
+									</rul:RunRule>
+								</rul:Then>
+								<rul:Else>
+									<rul:Constant Type="decimal">0</rul:Constant>
+								</rul:Else>
+							</rul:If>
+							<rul:FirstValue Type="decimal" FromConstant="0" FromDataDef="ancestor::CommercialProperty/@LossCostMultiplier" Order="DataDefInputParamConstant" />
+						</rul:Product>
+						<rul:Constant Type="decimal">0</rul:Constant>
+					</rul:FirstNonNull>
+				</rul:Arg>
+				<rul:Value Type="decimal" ToDataDef="@BasicGroupIINonOverheadRate" FromParam="calcBasicGroupIINonOverheadRate" />
+			</rul:WithArgs>
+		</rul:Sequence>
+	</rul:Rule>
+	<rul:Rule Name="SetBGIIOverheadRate" Type="none" DataDefGroup="CommercialPropertyUtilityServicesDirectDamagePrsnlPropDetail">
+		<rul:Sequence>
+			<!--Logic for BasicGroupIIOverheadBaseRate moved to be inline where used.-->
+			<rul:WithArgs>
+				<rul:Arg Type="decimal" Param="calcBasicGroupIIOverheadRate">
+					<rul:FirstNonNull Type="decimal">
+						<rul:Product DecimalPlaces="3">
+							<rul:If>
+								<rul:Test>
+									<rul:Or>
+										<rul:Equal>
+											<rul:FirstValue Type="string" FromConstant="" FromDataDef="@Utility" Order="DataDefInputParamConstant" />
+											<rul:Constant Type="string">Communications Supply - Including Overhead Transmission Lines</rul:Constant>
+										</rul:Equal>
+										<rul:Equal>
+											<rul:FirstValue Type="string" FromConstant="" FromDataDef="@Utility" Order="DataDefInputParamConstant" />
+											<rul:Constant Type="string">Power Supply - Including Overhead Transmission Lines</rul:Constant>
+										</rul:Equal>
+									</rul:Or>
+								</rul:Test>
+								<rul:Then>
+									<rul:RunRule Type="decimal" FileName="CommercialPropertyUtilityServicesDirectDamagePrsnlPropDetailRules" Rule="LookupUtilitySrvcDirectDamageOverheadPowerTransmissionAndCommunicationLines" ClearCache="true">
+										<rul:Arg Type="string" Param="utilitySrvcCauseOfLoss">
+											<rul:Constant Type="string">GroupII</rul:Constant>
+										</rul:Arg>
+									</rul:RunRule>
+								</rul:Then>
+								<rul:Else>
+									<rul:Constant Type="decimal">0</rul:Constant>
+								</rul:Else>
+							</rul:If>
+							<rul:FirstValue Type="decimal" FromConstant="0" FromDataDef="ancestor::CommercialProperty/@LossCostMultiplier" Order="DataDefInputParamConstant" />
+						</rul:Product>
+						<rul:Constant Type="decimal">0</rul:Constant>
+					</rul:FirstNonNull>
+				</rul:Arg>
+				<rul:Value Type="decimal" ToDataDef="@BasicGroupIIOverheadRate" FromParam="calcBasicGroupIIOverheadRate" />
+			</rul:WithArgs>
+		</rul:Sequence>
+	</rul:Rule>
+	<rul:Rule Name="SetSpecialRate" Type="none" DataDefGroup="CommercialPropertyUtilityServicesDirectDamagePrsnlPropDetail">
+		<rul:Sequence>
+			<rul:Sum ToDataDef="@SpecialRate">
+				<rul:Value Type="decimal" FromDataDef="@SpecialNonOverheadRate" />
+				<rul:Value Type="decimal" FromDataDef="@SpecialOverheadRate" />
+			</rul:Sum>
+		</rul:Sequence>
+	</rul:Rule>
+	<rul:Rule Name="SetSpecialNonOverheadRate" Type="none" DataDefGroup="CommercialPropertyUtilityServicesDirectDamagePrsnlPropDetail">
+		<rul:Sequence>
+			<!--Logic for SpecialNonOverheadBaseRate moved to be inline where used.-->
+			<rul:WithArgs>
+				<rul:Arg Type="decimal" Param="calcSpecialNonOverheadRate">
+					<rul:FirstNonNull Type="decimal">
+						<rul:Product DecimalPlaces="3">
+							<rul:If>
+								<rul:Test>
+									<rul:NotEqual>
+										<rul:FirstValue Type="string" FromConstant="" FromDataDef="@UtilityType" Order="DataDefInputParamConstant" />
+										<rul:Constant Type="string"></rul:Constant>
+									</rul:NotEqual>
+								</rul:Test>
+								<rul:Then>
+									<rul:RunRule Type="decimal" FileName="CommercialPropertyUtilityServicesDirectDamagePrsnlPropDetailRules" Rule="LookupUtilitySrvcDirectDamageWaterPowerAndCommunicationSupply" ClearCache="true">
+										<rul:Arg Type="string" Param="utilitySrvcCauseOfLoss">
+											<rul:Constant Type="string">SpecialPersProp</rul:Constant>
+										</rul:Arg>
+									</rul:RunRule>
+								</rul:Then>
+								<rul:Else>
+									<rul:Constant Type="decimal">0</rul:Constant>
+								</rul:Else>
+							</rul:If>
+							<rul:FirstValue Type="decimal" FromConstant="0" FromDataDef="ancestor::CommercialProperty/@LossCostMultiplier" Order="DataDefInputParamConstant" />
+						</rul:Product>
+						<rul:Constant Type="decimal">0</rul:Constant>
+					</rul:FirstNonNull>
+				</rul:Arg>
+				<rul:Value Type="decimal" ToDataDef="@SpecialNonOverheadRate" FromParam="calcSpecialNonOverheadRate" />
+			</rul:WithArgs>
+		</rul:Sequence>
+	</rul:Rule>
+	<rul:Rule Name="SetSpecialOverheadRate" Type="none" DataDefGroup="CommercialPropertyUtilityServicesDirectDamagePrsnlPropDetail">
+		<rul:Sequence>
+			<!--Logic for SpecialOverheadBaseRate moved to be inline where used.-->
+			<rul:WithArgs>
+				<rul:Arg Type="decimal" Param="calcSpecialOverheadRate">
+					<rul:FirstNonNull Type="decimal">
+						<rul:Product DecimalPlaces="3">
+							<rul:If>
+								<rul:Test>
+									<rul:Or>
+										<rul:Equal>
+											<rul:FirstValue Type="string" FromConstant="" FromDataDef="@Utility" Order="DataDefInputParamConstant" />
+											<rul:Constant Type="string">Communications Supply - Including Overhead Transmission Lines</rul:Constant>
+										</rul:Equal>
+										<rul:Equal>
+											<rul:FirstValue Type="string" FromConstant="" FromDataDef="@Utility" Order="DataDefInputParamConstant" />
+											<rul:Constant Type="string">Power Supply - Including Overhead Transmission Lines</rul:Constant>
+										</rul:Equal>
+									</rul:Or>
+								</rul:Test>
+								<rul:Then>
+									<rul:RunRule Type="decimal" FileName="CommercialPropertyUtilityServicesDirectDamagePrsnlPropDetailRules" Rule="LookupUtilitySrvcDirectDamageOverheadPowerTransmissionAndCommunicationLines" ClearCache="true">
+										<rul:Arg Type="string" Param="utilitySrvcCauseOfLoss">
+											<rul:Constant Type="string">SpecialPersProp</rul:Constant>
+										</rul:Arg>
+									</rul:RunRule>
+								</rul:Then>
+								<rul:Else>
+									<rul:Constant Type="decimal">0</rul:Constant>
+								</rul:Else>
+							</rul:If>
+							<rul:FirstValue Type="decimal" FromConstant="0" FromDataDef="ancestor::CommercialProperty/@LossCostMultiplier" Order="DataDefInputParamConstant" />
+						</rul:Product>
+						<rul:Constant Type="decimal">0</rul:Constant>
+					</rul:FirstNonNull>
+				</rul:Arg>
+				<rul:Value Type="decimal" ToDataDef="@SpecialOverheadRate" FromParam="calcSpecialOverheadRate" />
+			</rul:WithArgs>
+		</rul:Sequence>
+	</rul:Rule>
+	<rul:Rule Name="SetBroadRate" Type="none" DataDefGroup="CommercialPropertyUtilityServicesDirectDamagePrsnlPropDetail">
+		<rul:Sequence>
+			<rul:Sum ToDataDef="@BroadRate">
+				<rul:Value Type="decimal" FromDataDef="@BroadNonOverheadRate" />
+				<rul:Value Type="decimal" FromDataDef="@BroadOverheadRate" />
+			</rul:Sum>
+		</rul:Sequence>
+	</rul:Rule>
+	<rul:Rule Name="SetBroadNonOverheadRate" Type="none" DataDefGroup="CommercialPropertyUtilityServicesDirectDamagePrsnlPropDetail">
+		<rul:Sequence>
+			<!--Logic for BroadNonOverheadBaseRate moved to be inline where used.-->
+			<rul:WithArgs>
+				<rul:Arg Type="decimal" Param="calcBroadNonOverheadRate">
+					<rul:FirstNonNull Type="decimal">
+						<rul:Product DecimalPlaces="3">
+							<rul:If>
+								<rul:Test>
+									<rul:NotEqual>
+										<rul:FirstValue Type="string" FromConstant="" FromDataDef="@UtilityType" Order="DataDefInputParamConstant" />
+										<rul:Constant Type="string"></rul:Constant>
+									</rul:NotEqual>
+								</rul:Test>
+								<rul:Then>
+									<rul:RunRule Type="decimal" FileName="CommercialPropertyUtilityServicesDirectDamagePrsnlPropDetailRules" Rule="LookupUtilitySrvcDirectDamageWaterPowerAndCommunicationSupply" ClearCache="true">
+										<rul:Arg Type="string" Param="utilitySrvcCauseOfLoss">
+											<rul:Constant Type="string">Broad</rul:Constant>
+										</rul:Arg>
+									</rul:RunRule>
+								</rul:Then>
+								<rul:Else>
+									<rul:Constant Type="decimal">0</rul:Constant>
+								</rul:Else>
+							</rul:If>
+							<rul:FirstValue Type="decimal" FromConstant="0" FromDataDef="ancestor::CommercialProperty/@LossCostMultiplier" Order="DataDefInputParamConstant" />
+						</rul:Product>
+						<rul:Constant Type="decimal">0</rul:Constant>
+					</rul:FirstNonNull>
+				</rul:Arg>
+				<rul:Value Type="decimal" ToDataDef="@BroadNonOverheadRate" FromParam="calcBroadNonOverheadRate" />
+			</rul:WithArgs>
+		</rul:Sequence>
+	</rul:Rule>
+	<rul:Rule Name="SetBroadOverheadRate" Type="none" DataDefGroup="CommercialPropertyUtilityServicesDirectDamagePrsnlPropDetail">
+		<rul:Sequence>
+			<!--Logic for BroadOverheadBaseRate moved to be inline where used.-->
+			<rul:WithArgs>
+				<rul:Arg Type="decimal" Param="calcBroadOverheadRate">
+					<rul:FirstNonNull Type="decimal">
+						<rul:Product DecimalPlaces="3">
+							<rul:If>
+								<rul:Test>
+									<rul:Or>
+										<rul:Equal>
+											<rul:FirstValue Type="string" FromConstant="" FromDataDef="@Utility" Order="DataDefInputParamConstant" />
+											<rul:Constant Type="string">Communications Supply - Including Overhead Transmission Lines</rul:Constant>
+										</rul:Equal>
+										<rul:Equal>
+											<rul:FirstValue Type="string" FromConstant="" FromDataDef="@Utility" Order="DataDefInputParamConstant" />
+											<rul:Constant Type="string">Power Supply - Including Overhead Transmission Lines</rul:Constant>
+										</rul:Equal>
+									</rul:Or>
+								</rul:Test>
+								<rul:Then>
+									<rul:RunRule Type="decimal" FileName="CommercialPropertyUtilityServicesDirectDamagePrsnlPropDetailRules" Rule="LookupUtilitySrvcDirectDamageOverheadPowerTransmissionAndCommunicationLines" ClearCache="true">
+										<rul:Arg Type="string" Param="utilitySrvcCauseOfLoss">
+											<rul:Constant Type="string">Broad</rul:Constant>
+										</rul:Arg>
+									</rul:RunRule>
+								</rul:Then>
+								<rul:Else>
+									<rul:Constant Type="decimal">0</rul:Constant>
+								</rul:Else>
+							</rul:If>
+							<rul:FirstValue Type="decimal" FromConstant="0" FromDataDef="ancestor::CommercialProperty/@LossCostMultiplier" Order="DataDefInputParamConstant" />
+						</rul:Product>
+						<rul:Constant Type="decimal">0</rul:Constant>
+					</rul:FirstNonNull>
+				</rul:Arg>
+				<rul:Value Type="decimal" ToDataDef="@BroadOverheadRate" FromParam="calcBroadOverheadRate" />
+			</rul:WithArgs>
+		</rul:Sequence>
+	</rul:Rule>
+	<rul:Rule Name="SetEQRate" Type="none" DataDefGroup="CommercialPropertyUtilityServicesDirectDamagePrsnlPropDetail">
+		<rul:Sequence>
+			<rul:Sum ToDataDef="@EQRate">
+				<rul:Value Type="decimal" FromDataDef="@EQNonOverheadRate" />
+				<rul:Value Type="decimal" FromDataDef="@EQOverheadRate" />
+			</rul:Sum>
+		</rul:Sequence>
+	</rul:Rule>
+	<rul:Rule Name="SetEQNonOverheadRate" Type="none" DataDefGroup="CommercialPropertyUtilityServicesDirectDamagePrsnlPropDetail">
+		<rul:Sequence>
+			<!--Logic for EQNonOverheadBaseRate moved to be inline where used.-->
+			<rul:WithArgs>
+				<rul:Arg Type="decimal" Param="calcEQNonOverheadRate">
+					<rul:FirstNonNull Type="decimal">
+						<rul:Product DecimalPlaces="3">
+							<rul:If>
+								<rul:Test>
+									<rul:NotEqual>
+										<rul:FirstValue Type="string" FromConstant="" FromDataDef="@UtilityType" Order="DataDefInputParamConstant" />
+										<rul:Constant Type="string"></rul:Constant>
+									</rul:NotEqual>
+								</rul:Test>
+								<rul:Then>
+									<rul:RunRule Type="decimal" FileName="CommercialPropertyUtilityServicesDirectDamagePrsnlPropDetailRules" Rule="LookupUtilitySrvcDirectDamageWaterPowerAndCommunicationSupply" ClearCache="true">
+										<rul:Arg Type="string" Param="utilitySrvcCauseOfLoss">
+											<rul:Constant Type="string">Earthquake</rul:Constant>
+										</rul:Arg>
+									</rul:RunRule>
+								</rul:Then>
+								<rul:Else>
+									<rul:Constant Type="decimal">0</rul:Constant>
+								</rul:Else>
+							</rul:If>
+							<rul:FirstValue Type="decimal" FromConstant="0" FromDataDef="ancestor::CommercialProperty/@LossCostMultiplier" Order="DataDefInputParamConstant" />
+						</rul:Product>
+						<rul:Constant Type="decimal">0</rul:Constant>
+					</rul:FirstNonNull>
+				</rul:Arg>
+				<rul:Value Type="decimal" ToDataDef="@EQNonOverheadRate" FromParam="calcEQNonOverheadRate" />
+			</rul:WithArgs>
+		</rul:Sequence>
+	</rul:Rule>
+	<rul:Rule Name="SetEQOverheadRate" Type="none" DataDefGroup="CommercialPropertyUtilityServicesDirectDamagePrsnlPropDetail">
+		<rul:Sequence>
+			<!--Logic for EQOverheadBaseRate moved to be inline where used.-->
+			<rul:WithArgs>
+				<rul:Arg Type="decimal" Param="calcEQOverheadRate">
+					<rul:FirstNonNull Type="decimal">
+						<rul:Product DecimalPlaces="3">
+							<rul:If>
+								<rul:Test>
+									<rul:Or>
+										<rul:Equal>
+											<rul:FirstValue Type="string" FromConstant="" FromDataDef="@Utility" Order="DataDefInputParamConstant" />
+											<rul:Constant Type="string">Communications Supply - Including Overhead Transmission Lines</rul:Constant>
+										</rul:Equal>
+										<rul:Equal>
+											<rul:FirstValue Type="string" FromConstant="" FromDataDef="@Utility" Order="DataDefInputParamConstant" />
+											<rul:Constant Type="string">Power Supply - Including Overhead Transmission Lines</rul:Constant>
+										</rul:Equal>
+									</rul:Or>
+								</rul:Test>
+								<rul:Then>
+									<rul:RunRule Type="decimal" FileName="CommercialPropertyUtilityServicesDirectDamagePrsnlPropDetailRules" Rule="LookupUtilitySrvcDirectDamageOverheadPowerTransmissionAndCommunicationLines" ClearCache="true">
+										<rul:Arg Type="string" Param="utilitySrvcCauseOfLoss">
+											<rul:Constant Type="string">Earthquake</rul:Constant>
+										</rul:Arg>
+									</rul:RunRule>
+								</rul:Then>
+								<rul:Else>
+									<rul:Constant Type="decimal">0</rul:Constant>
+								</rul:Else>
+							</rul:If>
+							<rul:FirstValue Type="decimal" FromConstant="0" FromDataDef="ancestor::CommercialProperty/@LossCostMultiplier" Order="DataDefInputParamConstant" />
+						</rul:Product>
+						<rul:Constant Type="decimal">0</rul:Constant>
+					</rul:FirstNonNull>
+				</rul:Arg>
+				<rul:Value Type="decimal" ToDataDef="@EQOverheadRate" FromParam="calcEQOverheadRate" />
+			</rul:WithArgs>
+		</rul:Sequence>
+	</rul:Rule>
+	<rul:Rule Name="ErcSetStatisticalCodes" Type="none" DataDefGroup="CommercialPropertyUtilityServicesDirectDamagePrsnlPropDetail">
+		<rul:Sequence>
+			<rul:If>
+				<rul:Test>
+					<rul:Exist AtInputDataDef="ancestor::MasterCFCW/Policy" />
+				</rul:Test>
+				<rul:Then>
+					<rul:RunRule Type="none" FileName="CommercialPropertyUtilityServicesDirectDamagePrsnlPropDetailRules" Rule="SetExposureStatAmount" ClearCache="true" />
+				</rul:Then>
+			</rul:If>
+		</rul:Sequence>
+	</rul:Rule>
+	<rul:Rule Name="SetExposureStatAmount" Type="none" DataDefGroup="CommercialPropertyUtilityServicesDirectDamagePrsnlPropDetail">
+		<rul:Sequence>
+			<rul:If>
+				<rul:Test>
+					<rul:GreaterThan>
+						<rul:FirstValue Type="integer" FromConstant="0" FromDataDef="@LimitToUse" Order="DataDefInputParamConstant" />
+						<rul:Constant Type="integer">0</rul:Constant>
+					</rul:GreaterThan>
+				</rul:Test>
+				<rul:Then>
+					<rul:Sequence>
+						<rul:Convert Type="integer" ToDataDef="@ExposureStatAmount">
+							<rul:Truncate>
+								<rul:Divide>
+									<rul:Value Type="integer" FromDataDef="@LimitToUse" />
+									<rul:Constant Type="integer">1000</rul:Constant>
+								</rul:Divide>
+							</rul:Truncate>
+						</rul:Convert>
+					</rul:Sequence>
+				</rul:Then>
+				<rul:Else>
+					<rul:Sequence>
+						<rul:Constant Type="integer" ToDataDef="@ExposureStatAmount">0</rul:Constant>
+					</rul:Sequence>
+				</rul:Else>
+			</rul:If>
+		</rul:Sequence>
+	</rul:Rule>
+	<rul:Rule Name="ErcProcess" Type="none" DataDefGroup="CommercialPropertyUtilityServicesDirectDamagePrsnlPropDetail">
+		<rul:Sequence>
+			<rul:RunRule Type="none" FileName="CommercialPropertyUtilityServicesDirectDamagePrsnlPropDetailRules" Rule="ErcSetRatesAndFactors" ClearCache="true" />
+			<rul:Locate AtDataDef="CommercialPropertyUtilityServicesDirectDamagePrsnlPropDetailBasicGroupICoverage">
+				<rul:RunRule Type="none" FileName="CommercialPropertyUtilityServicesDirectDamagePrsnlPropDetailBasicGroupICoverageRules" Rule="ErcProcess" ClearCache="true" />
+			</rul:Locate>
+			<rul:Locate AtDataDef="CommercialPropertyUtilityServicesDirectDamagePrsnlPropDetailBasicGroupIICoverage">
+				<rul:RunRule Type="none" FileName="CommercialPropertyUtilityServicesDirectDamagePrsnlPropDetailBasicGroupIICoverageRules" Rule="ErcProcess" ClearCache="true" />
+			</rul:Locate>
+			<rul:Locate AtDataDef="CommercialPropertyUtilityServicesDirectDamagePrsnlPropDetailBroadCoverage">
+				<rul:RunRule Type="none" FileName="CommercialPropertyUtilityServicesDirectDamagePrsnlPropDetailBroadCoverageRules" Rule="ErcProcess" ClearCache="true" />
+			</rul:Locate>
+			<rul:Locate AtDataDef="CommercialPropertyUtilityServicesDirectDamagePrsnlPropDetailEarthquakeCoverage">
+				<rul:RunRule Type="none" FileName="CommercialPropertyUtilityServicesDirectDamagePrsnlPropDetailEarthquakeCoverageRules" Rule="ErcProcess" ClearCache="true" />
+			</rul:Locate>
+			<rul:Locate AtDataDef="CommercialPropertyUtilityServicesDirectDamagePrsnlPropDetailSpecialCoverage">
+				<rul:RunRule Type="none" FileName="CommercialPropertyUtilityServicesDirectDamagePrsnlPropDetailSpecialCoverageRules" Rule="ErcProcess" ClearCache="true" />
+			</rul:Locate>
+			<rul:RunRule Type="none" FileName="CommercialPropertyUtilityServicesDirectDamagePrsnlPropDetailRules" Rule="ErcSetStatisticalCodes" ClearCache="true" />
+		</rul:Sequence>
+	</rul:Rule>
+	<rul:Rule Name="BasicGroupINonOverheadBaseRate" Type="decimal" DataDefGroup="CommercialPropertyUtilityServicesDirectDamagePrsnlPropDetail">
+		<rul:FirstNonNull Type="decimal">
+			<rul:If>
+				<rul:Test>
+					<rul:NotEqual>
+						<rul:FirstValue Type="string" FromConstant="" FromDataDef="@UtilityType" Order="DataDefInputParamConstant" />
+						<rul:Constant Type="string"></rul:Constant>
+					</rul:NotEqual>
+				</rul:Test>
+				<rul:Then>
+					<rul:RunRule Type="decimal" FileName="CommercialPropertyUtilityServicesDirectDamagePrsnlPropDetailRules" Rule="LookupUtilitySrvcDirectDamageWaterPowerAndCommunicationSupply" ClearCache="true">
+						<rul:Arg Type="string" Param="utilitySrvcCauseOfLoss">
+							<rul:Constant Type="string">GroupI</rul:Constant>
+						</rul:Arg>
+					</rul:RunRule>
+				</rul:Then>
+				<rul:Else>
+					<rul:Constant Type="decimal">0</rul:Constant>
+				</rul:Else>
+			</rul:If>
+			<rul:Constant Type="decimal">0</rul:Constant>
+		</rul:FirstNonNull>
+	</rul:Rule>
+	<rul:Rule Name="BasicGroupIINonOverheadBaseRate" Type="decimal" DataDefGroup="CommercialPropertyUtilityServicesDirectDamagePrsnlPropDetail">
+		<rul:FirstNonNull Type="decimal">
+			<rul:If>
+				<rul:Test>
+					<rul:NotEqual>
+						<rul:FirstValue Type="string" FromConstant="" FromDataDef="@UtilityType" Order="DataDefInputParamConstant" />
+						<rul:Constant Type="string"></rul:Constant>
+					</rul:NotEqual>
+				</rul:Test>
+				<rul:Then>
+					<rul:RunRule Type="decimal" FileName="CommercialPropertyUtilityServicesDirectDamagePrsnlPropDetailRules" Rule="LookupUtilitySrvcDirectDamageWaterPowerAndCommunicationSupply" ClearCache="true">
+						<rul:Arg Type="string" Param="utilitySrvcCauseOfLoss">
+							<rul:Constant Type="string">GroupII</rul:Constant>
+						</rul:Arg>
+					</rul:RunRule>
+				</rul:Then>
+				<rul:Else>
+					<rul:Constant Type="decimal">0</rul:Constant>
+				</rul:Else>
+			</rul:If>
+			<rul:Constant Type="decimal">0</rul:Constant>
+		</rul:FirstNonNull>
+	</rul:Rule>
+	<rul:Rule Name="BasicGroupIOverheadBaseRate" Type="decimal" DataDefGroup="CommercialPropertyUtilityServicesDirectDamagePrsnlPropDetail">
+		<rul:FirstNonNull Type="decimal">
+			<rul:If>
+				<rul:Test>
+					<rul:Or>
+						<rul:Equal>
+							<rul:FirstValue Type="string" FromConstant="" FromDataDef="@Utility" Order="DataDefInputParamConstant" />
+							<rul:Constant Type="string">Communications Supply - Including Overhead Transmission Lines</rul:Constant>
+						</rul:Equal>
+						<rul:Equal>
+							<rul:FirstValue Type="string" FromConstant="" FromDataDef="@Utility" Order="DataDefInputParamConstant" />
+							<rul:Constant Type="string">Power Supply - Including Overhead Transmission Lines</rul:Constant>
+						</rul:Equal>
+					</rul:Or>
+				</rul:Test>
+				<rul:Then>
+					<rul:RunRule Type="decimal" FileName="CommercialPropertyUtilityServicesDirectDamagePrsnlPropDetailRules" Rule="LookupUtilitySrvcDirectDamageOverheadPowerTransmissionAndCommunicationLines" ClearCache="true">
+						<rul:Arg Type="string" Param="utilitySrvcCauseOfLoss">
+							<rul:Constant Type="string">GroupI</rul:Constant>
+						</rul:Arg>
+					</rul:RunRule>
+				</rul:Then>
+				<rul:Else>
+					<rul:Constant Type="decimal">0</rul:Constant>
+				</rul:Else>
+			</rul:If>
+			<rul:Constant Type="decimal">0</rul:Constant>
+		</rul:FirstNonNull>
+	</rul:Rule>
+	<rul:Rule Name="BasicGroupIIOverheadBaseRate" Type="decimal" DataDefGroup="CommercialPropertyUtilityServicesDirectDamagePrsnlPropDetail">
+		<rul:FirstNonNull Type="decimal">
+			<rul:If>
+				<rul:Test>
+					<rul:Or>
+						<rul:Equal>
+							<rul:FirstValue Type="string" FromConstant="" FromDataDef="@Utility" Order="DataDefInputParamConstant" />
+							<rul:Constant Type="string">Communications Supply - Including Overhead Transmission Lines</rul:Constant>
+						</rul:Equal>
+						<rul:Equal>
+							<rul:FirstValue Type="string" FromConstant="" FromDataDef="@Utility" Order="DataDefInputParamConstant" />
+							<rul:Constant Type="string">Power Supply - Including Overhead Transmission Lines</rul:Constant>
+						</rul:Equal>
+					</rul:Or>
+				</rul:Test>
+				<rul:Then>
+					<rul:RunRule Type="decimal" FileName="CommercialPropertyUtilityServicesDirectDamagePrsnlPropDetailRules" Rule="LookupUtilitySrvcDirectDamageOverheadPowerTransmissionAndCommunicationLines" ClearCache="true">
+						<rul:Arg Type="string" Param="utilitySrvcCauseOfLoss">
+							<rul:Constant Type="string">GroupII</rul:Constant>
+						</rul:Arg>
+					</rul:RunRule>
+				</rul:Then>
+				<rul:Else>
+					<rul:Constant Type="decimal">0</rul:Constant>
+				</rul:Else>
+			</rul:If>
+			<rul:Constant Type="decimal">0</rul:Constant>
+		</rul:FirstNonNull>
+	</rul:Rule>
+	<rul:Rule Name="BroadNonOverheadBaseRate" Type="decimal" DataDefGroup="CommercialPropertyUtilityServicesDirectDamagePrsnlPropDetail">
+		<rul:FirstNonNull Type="decimal">
+			<rul:If>
+				<rul:Test>
+					<rul:NotEqual>
+						<rul:FirstValue Type="string" FromConstant="" FromDataDef="@UtilityType" Order="DataDefInputParamConstant" />
+						<rul:Constant Type="string"></rul:Constant>
+					</rul:NotEqual>
+				</rul:Test>
+				<rul:Then>
+					<rul:RunRule Type="decimal" FileName="CommercialPropertyUtilityServicesDirectDamagePrsnlPropDetailRules" Rule="LookupUtilitySrvcDirectDamageWaterPowerAndCommunicationSupply" ClearCache="true">
+						<rul:Arg Type="string" Param="utilitySrvcCauseOfLoss">
+							<rul:Constant Type="string">Broad</rul:Constant>
+						</rul:Arg>
+					</rul:RunRule>
+				</rul:Then>
+				<rul:Else>
+					<rul:Constant Type="decimal">0</rul:Constant>
+				</rul:Else>
+			</rul:If>
+			<rul:Constant Type="decimal">0</rul:Constant>
+		</rul:FirstNonNull>
+	</rul:Rule>
+	<rul:Rule Name="BroadOverheadBaseRate" Type="decimal" DataDefGroup="CommercialPropertyUtilityServicesDirectDamagePrsnlPropDetail">
+		<rul:FirstNonNull Type="decimal">
+			<rul:If>
+				<rul:Test>
+					<rul:Or>
+						<rul:Equal>
+							<rul:FirstValue Type="string" FromConstant="" FromDataDef="@Utility" Order="DataDefInputParamConstant" />
+							<rul:Constant Type="string">Communications Supply - Including Overhead Transmission Lines</rul:Constant>
+						</rul:Equal>
+						<rul:Equal>
+							<rul:FirstValue Type="string" FromConstant="" FromDataDef="@Utility" Order="DataDefInputParamConstant" />
+							<rul:Constant Type="string">Power Supply - Including Overhead Transmission Lines</rul:Constant>
+						</rul:Equal>
+					</rul:Or>
+				</rul:Test>
+				<rul:Then>
+					<rul:RunRule Type="decimal" FileName="CommercialPropertyUtilityServicesDirectDamagePrsnlPropDetailRules" Rule="LookupUtilitySrvcDirectDamageOverheadPowerTransmissionAndCommunicationLines" ClearCache="true">
+						<rul:Arg Type="string" Param="utilitySrvcCauseOfLoss">
+							<rul:Constant Type="string">Broad</rul:Constant>
+						</rul:Arg>
+					</rul:RunRule>
+				</rul:Then>
+				<rul:Else>
+					<rul:Constant Type="decimal">0</rul:Constant>
+				</rul:Else>
+			</rul:If>
+			<rul:Constant Type="decimal">0</rul:Constant>
+		</rul:FirstNonNull>
+	</rul:Rule>
+	<rul:Rule Name="EQNonOverheadBaseRate" Type="decimal" DataDefGroup="CommercialPropertyUtilityServicesDirectDamagePrsnlPropDetail">
+		<rul:FirstNonNull Type="decimal">
+			<rul:If>
+				<rul:Test>
+					<rul:NotEqual>
+						<rul:FirstValue Type="string" FromConstant="" FromDataDef="@UtilityType" Order="DataDefInputParamConstant" />
+						<rul:Constant Type="string"></rul:Constant>
+					</rul:NotEqual>
+				</rul:Test>
+				<rul:Then>
+					<rul:RunRule Type="decimal" FileName="CommercialPropertyUtilityServicesDirectDamagePrsnlPropDetailRules" Rule="LookupUtilitySrvcDirectDamageWaterPowerAndCommunicationSupply" ClearCache="true">
+						<rul:Arg Type="string" Param="utilitySrvcCauseOfLoss">
+							<rul:Constant Type="string">Earthquake</rul:Constant>
+						</rul:Arg>
+					</rul:RunRule>
+				</rul:Then>
+				<rul:Else>
+					<rul:Constant Type="decimal">0</rul:Constant>
+				</rul:Else>
+			</rul:If>
+			<rul:Constant Type="decimal">0</rul:Constant>
+		</rul:FirstNonNull>
+	</rul:Rule>
+	<rul:Rule Name="EQOverheadBaseRate" Type="decimal" DataDefGroup="CommercialPropertyUtilityServicesDirectDamagePrsnlPropDetail">
+		<rul:FirstNonNull Type="decimal">
+			<rul:If>
+				<rul:Test>
+					<rul:Or>
+						<rul:Equal>
+							<rul:FirstValue Type="string" FromConstant="" FromDataDef="@Utility" Order="DataDefInputParamConstant" />
+							<rul:Constant Type="string">Communications Supply - Including Overhead Transmission Lines</rul:Constant>
+						</rul:Equal>
+						<rul:Equal>
+							<rul:FirstValue Type="string" FromConstant="" FromDataDef="@Utility" Order="DataDefInputParamConstant" />
+							<rul:Constant Type="string">Power Supply - Including Overhead Transmission Lines</rul:Constant>
+						</rul:Equal>
+					</rul:Or>
+				</rul:Test>
+				<rul:Then>
+					<rul:RunRule Type="decimal" FileName="CommercialPropertyUtilityServicesDirectDamagePrsnlPropDetailRules" Rule="LookupUtilitySrvcDirectDamageOverheadPowerTransmissionAndCommunicationLines" ClearCache="true">
+						<rul:Arg Type="string" Param="utilitySrvcCauseOfLoss">
+							<rul:Constant Type="string">Earthquake</rul:Constant>
+						</rul:Arg>
+					</rul:RunRule>
+				</rul:Then>
+				<rul:Else>
+					<rul:Constant Type="decimal">0</rul:Constant>
+				</rul:Else>
+			</rul:If>
+			<rul:Constant Type="decimal">0</rul:Constant>
+		</rul:FirstNonNull>
+	</rul:Rule>
+	<rul:Rule Name="SpecialNonOverheadBaseRate" Type="decimal" DataDefGroup="CommercialPropertyUtilityServicesDirectDamagePrsnlPropDetail">
+		<rul:FirstNonNull Type="decimal">
+			<rul:If>
+				<rul:Test>
+					<rul:NotEqual>
+						<rul:FirstValue Type="string" FromConstant="" FromDataDef="@UtilityType" Order="DataDefInputParamConstant" />
+						<rul:Constant Type="string"></rul:Constant>
+					</rul:NotEqual>
+				</rul:Test>
+				<rul:Then>
+					<rul:RunRule Type="decimal" FileName="CommercialPropertyUtilityServicesDirectDamagePrsnlPropDetailRules" Rule="LookupUtilitySrvcDirectDamageWaterPowerAndCommunicationSupply" ClearCache="true">
+						<rul:Arg Type="string" Param="utilitySrvcCauseOfLoss">
+							<rul:Constant Type="string">SpecialPersProp</rul:Constant>
+						</rul:Arg>
+					</rul:RunRule>
+				</rul:Then>
+				<rul:Else>
+					<rul:Constant Type="decimal">0</rul:Constant>
+				</rul:Else>
+			</rul:If>
+			<rul:Constant Type="decimal">0</rul:Constant>
+		</rul:FirstNonNull>
+	</rul:Rule>
+	<rul:Rule Name="SpecialOverheadBaseRate" Type="decimal" DataDefGroup="CommercialPropertyUtilityServicesDirectDamagePrsnlPropDetail">
+		<rul:FirstNonNull Type="decimal">
+			<rul:If>
+				<rul:Test>
+					<rul:Or>
+						<rul:Equal>
+							<rul:FirstValue Type="string" FromConstant="" FromDataDef="@Utility" Order="DataDefInputParamConstant" />
+							<rul:Constant Type="string">Communications Supply - Including Overhead Transmission Lines</rul:Constant>
+						</rul:Equal>
+						<rul:Equal>
+							<rul:FirstValue Type="string" FromConstant="" FromDataDef="@Utility" Order="DataDefInputParamConstant" />
+							<rul:Constant Type="string">Power Supply - Including Overhead Transmission Lines</rul:Constant>
+						</rul:Equal>
+					</rul:Or>
+				</rul:Test>
+				<rul:Then>
+					<rul:RunRule Type="decimal" FileName="CommercialPropertyUtilityServicesDirectDamagePrsnlPropDetailRules" Rule="LookupUtilitySrvcDirectDamageOverheadPowerTransmissionAndCommunicationLines" ClearCache="true">
+						<rul:Arg Type="string" Param="utilitySrvcCauseOfLoss">
+							<rul:Constant Type="string">SpecialPersProp</rul:Constant>
+						</rul:Arg>
+					</rul:RunRule>
+				</rul:Then>
+				<rul:Else>
+					<rul:Constant Type="decimal">0</rul:Constant>
+				</rul:Else>
+			</rul:If>
+			<rul:Constant Type="decimal">0</rul:Constant>
+		</rul:FirstNonNull>
+	</rul:Rule>
+	<rul:Rule Name="LookupUtilitySrvcDirectDamageOverheadPowerTransmissionAndCommunicationLines" Type="decimal" DataDefGroup="CommercialPropertyUtilityServicesDirectDamagePrsnlPropDetail">
+		<rul:Param Name="utilitySrvcCauseOfLoss" Type="string" />
+		<rul:FirstNonNull Type="decimal">
+			<rul:Lookup Type="decimal" MatrixCol="Rate" MatrixDef="UtilitySrvcDirectDamageOverheadPowerTransmissionAndCommunicationLinesDef" MatrixFromConstant="UtilitySrvcDirectDamageOverheadPowerTransmissionAndCommunicationLines" ResultMode="FirstResult">
+				<rul:Keys>
+					<rul:Value Type="string" FromDataDef="/State/@Code" />
+					<rul:Value Type="string" FromParam="utilitySrvcCauseOfLoss" />
+				</rul:Keys>
+			</rul:Lookup>
+			<rul:Lookup Type="decimal" MatrixCol="Rate" MatrixDef="UtilitySrvcDirectDamageOverheadPowerTransmissionAndCommunicationLinesDef" MatrixFromConstant="UtilitySrvcDirectDamageOverheadPowerTransmissionAndCommunicationLines" ResultMode="SingleResult">
+				<rul:Keys>
+					<rul:Constant Type="string">CW</rul:Constant>
+					<rul:Value Type="string" FromParam="utilitySrvcCauseOfLoss" />
+				</rul:Keys>
+			</rul:Lookup>
+		</rul:FirstNonNull>
+	</rul:Rule>
+	<rul:Rule Name="LookupUtilitySrvcDirectDamageWaterPowerAndCommunicationSupply" Type="decimal" DataDefGroup="CommercialPropertyUtilityServicesDirectDamagePrsnlPropDetail">
+		<rul:Param Name="utilitySrvcCauseOfLoss" Type="string" />
+		<rul:FirstNonNull Type="decimal">
+			<rul:Lookup Type="decimal" MatrixCol="Rate" MatrixDef="UtilitySrvcDirectDamageWaterPowerAndCommunicationSupplyDef" MatrixFromConstant="UtilitySrvcDirectDamageWaterPowerAndCommunicationSupply" ResultMode="FirstResult">
+				<rul:Keys>
+					<rul:Value Type="string" FromDataDef="/State/@Code" />
+					<rul:FirstValue Type="string" FromConstant="" FromDataDef="@UtilityType" Order="DataDefInputParamConstant" />
+					<rul:Value Type="string" FromParam="utilitySrvcCauseOfLoss" />
+				</rul:Keys>
+			</rul:Lookup>
+			<rul:Lookup Type="decimal" MatrixCol="Rate" MatrixDef="UtilitySrvcDirectDamageWaterPowerAndCommunicationSupplyDef" MatrixFromConstant="UtilitySrvcDirectDamageWaterPowerAndCommunicationSupply" ResultMode="SingleResult">
+				<rul:Keys>
+					<rul:Constant Type="string">CW</rul:Constant>
+					<rul:FirstValue Type="string" FromConstant="" FromDataDef="@UtilityType" Order="DataDefInputParamConstant" />
+					<rul:Value Type="string" FromParam="utilitySrvcCauseOfLoss" />
+				</rul:Keys>
+			</rul:Lookup>
+		</rul:FirstNonNull>
+	</rul:Rule>
+</rul:Rules>

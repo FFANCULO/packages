@@ -1,0 +1,19 @@
+<rt:RateTable xmlns:rt="http://www.verisk.com/iso/erc/RateTable">
+	<rt:MetaData>
+		<rt:MetaDataCode>RateTableEQSprinklerLeakageCoinsuranceFactor</rt:MetaDataCode>
+		<rt:MetaDataCode>BureauRuleNumber74F4c1a</rt:MetaDataCode>
+	</rt:MetaData>
+	<rt:KeyCols>
+		<rt:KeyCol Name="StateCode" Type="string" CaseInsensitive="false" />
+		<rt:Range Name="EQSprinklerLeakageCoinsurance" Type="decimal" RangeType="FromInclusiveToExclusive">
+			<rt:KeyCol Name="EQSprinklerLeakageCoinsurance_From" />
+			<rt:KeyCol Name="EQSprinklerLeakageCoinsurance_ToLessThan" />
+		</rt:Range>
+	</rt:KeyCols>
+	<rt:ValueCols>
+		<rt:Range Name="Factor" RangeKeyCol="EQSprinklerLeakageCoinsurance" InterpolateMode="Linear" Type="decimal">
+			<rt:ValueCol Name="Factor_From" />
+			<rt:ValueCol Name="Factor_ToLessThan" />
+		</rt:Range>
+	</rt:ValueCols>
+</rt:RateTable>

@@ -1,0 +1,13 @@
+<rt:RateTable xmlns:rt="http://www.verisk.com/iso/erc/RateTable">
+	<rt:MetaData>
+		<rt:MetaDataCode>RateTableStateTerrorismTNumber</rt:MetaDataCode>
+		<rt:MetaDataCode>BureauRuleNumberTERDIVVCFRU</rt:MetaDataCode>
+	</rt:MetaData>
+	<rt:KeyCols>
+		<rt:KeyCol Name="StateCode" Type="string" CaseInsensitive="false" />
+		<rt:KeyCol Name="State" Type="string" CaseInsensitive="false" />
+	</rt:KeyCols>
+	<rt:ValueCols>
+		<rt:ValueCol Name="Value" Type="string" />
+	</rt:ValueCols>
+</rt:RateTable>

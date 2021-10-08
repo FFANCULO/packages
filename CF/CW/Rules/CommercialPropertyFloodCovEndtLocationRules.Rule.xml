@@ -1,0 +1,633 @@
+<rul:Rules xmlns:rul="http://www.verisk.com/iso/erc/Rule">
+	<rul:Rule Name="InitializeRuleSet" DataDefGroup="CommercialPropertyFloodCovEndtLocation">
+		<rul:Sequence />
+	</rul:Rule>
+	<rul:Rule Name="CalculateTotalPremium" Type="decimal" DataDefGroup="CommercialPropertyFloodCovEndtLocation">
+		<rul:If>
+			<rul:Test>
+				<rul:And>
+					<rul:Equal>
+						<rul:FirstValue Type="integer" FromConstant="0" FromDataDef="@PremiumIndicator" Order="DataDefInputParamConstant" />
+						<rul:Constant Type="integer">1</rul:Constant>
+					</rul:Equal>
+					<rul:NotEqual>
+						<rul:FirstValue Type="decimal" FromConstant="0" FromDataDef="@Premium" Order="DataDefInputParamConstant" />
+						<rul:Constant Type="decimal">0</rul:Constant>
+					</rul:NotEqual>
+				</rul:And>
+			</rul:Test>
+			<rul:Then>
+				<rul:FirstValue Type="decimal" FromConstant="0" FromDataDef="@Premium" Order="DataDefInputParamConstant" />
+			</rul:Then>
+			<rul:Else>
+				<rul:Constant Type="decimal">0</rul:Constant>
+			</rul:Else>
+		</rul:If>
+	</rul:Rule>
+	<rul:Rule Name="ProcessCall" Type="none" DataDefGroup="CommercialPropertyFloodCovEndtLocation">
+		<rul:Sequence>
+			<rul:RunRule Type="none" FileName="CommercialPropertyFloodCovEndtLocationRules" Rule="SetCommunityRatingSystemFactor" ClearCache="true" />
+			<rul:RunRule Type="none" FileName="CommercialPropertyFloodCovEndtLocationRules" Rule="SetDeductibleInt" ClearCache="true" />
+			<rul:RunRule Type="none" FileName="CommercialPropertyFloodCovEndtLocationRules" Rule="SetMaxNFIPBuildingCoverageAmount" ClearCache="true" />
+			<rul:RunRule Type="none" FileName="CommercialPropertyFloodCovEndtLocationRules" Rule="SetMaxNFIPContentCoverageAmount" ClearCache="true" />
+		</rul:Sequence>
+	</rul:Rule>
+	<rul:Rule Name="SetCommunityRatingSystemFactor" Type="none" DataDefGroup="CommercialPropertyFloodCovEndtLocation">
+		<rul:Sequence>
+			<rul:If>
+				<rul:Test>
+					<rul:NotEqual>
+						<rul:FirstValue Type="string" FromConstant="" FromDataDef="@CommunityRatingSystemCRSGrade" Order="DataDefInputParamConstant" />
+						<rul:Constant Type="string"></rul:Constant>
+					</rul:NotEqual>
+				</rul:Test>
+				<rul:Then>
+					<rul:Sequence>
+						<rul:RunRule Type="decimal" ToDataDef="@CommunityRatingSystemFactor" FileName="CommercialPropertyFloodCovEndtLocationRules" Rule="LookupCommunityRatingSystemFactor" ClearCache="true" />
+					</rul:Sequence>
+				</rul:Then>
+				<rul:Else>
+					<rul:Sequence>
+						<rul:Constant Type="decimal" ToDataDef="@CommunityRatingSystemFactor">0.0</rul:Constant>
+					</rul:Sequence>
+				</rul:Else>
+			</rul:If>
+		</rul:Sequence>
+	</rul:Rule>
+	<rul:Rule Name="SetDeductibleInt" Type="none" DataDefGroup="CommercialPropertyFloodCovEndtLocation">
+		<rul:Sequence>
+			<rul:If>
+				<rul:Test>
+					<rul:NotEqual>
+						<rul:FirstValue Type="string" FromConstant="" FromDataDef="@Deductible" Order="DataDefInputParamConstant" />
+						<rul:Constant Type="string"></rul:Constant>
+					</rul:NotEqual>
+				</rul:Test>
+				<rul:Then>
+					<rul:Sequence>
+						<rul:RunRule Type="integer" ToDataDef="@DeductibleInt" FileName="CommercialPropertyFloodCovEndtLocationRules" Rule="LookupDeductibleNumberConversion" ClearCache="true" />
+					</rul:Sequence>
+				</rul:Then>
+				<rul:Else>
+					<rul:Sequence>
+						<rul:Constant Type="integer" ToDataDef="@DeductibleInt">0</rul:Constant>
+					</rul:Sequence>
+				</rul:Else>
+			</rul:If>
+		</rul:Sequence>
+	</rul:Rule>
+	<rul:Rule Name="SetMaxNFIPBuildingCoverageAmount" Type="none" DataDefGroup="CommercialPropertyFloodCovEndtLocation">
+		<rul:Sequence>
+			<rul:RunRule Type="integer" ToDataDef="@MaxNFIPBuildingCoverageAmount" FileName="CommercialPropertyFloodCovEndtLocationRules" Rule="LookupMaxNFIPCoverageAmount" ClearCache="true">
+				<rul:Arg Type="string" Param="coverage">
+					<rul:Constant Type="string">Building</rul:Constant>
+				</rul:Arg>
+			</rul:RunRule>
+		</rul:Sequence>
+	</rul:Rule>
+	<rul:Rule Name="SetMaxNFIPContentCoverageAmount" Type="none" DataDefGroup="CommercialPropertyFloodCovEndtLocation">
+		<rul:Sequence>
+			<rul:RunRule Type="integer" ToDataDef="@MaxNFIPContentCoverageAmount" FileName="CommercialPropertyFloodCovEndtLocationRules" Rule="LookupMaxNFIPCoverageAmount" ClearCache="true">
+				<rul:Arg Type="string" Param="coverage">
+					<rul:Constant Type="string">Content</rul:Constant>
+				</rul:Arg>
+			</rul:RunRule>
+		</rul:Sequence>
+	</rul:Rule>
+	<rul:Rule Name="ErcRunPostUnderwritingLogic" Type="none" DataDefGroup="CommercialPropertyFloodCovEndtLocation">
+		<rul:Sequence>
+			<rul:RunRule Type="none" FileName="CommercialPropertyFloodCovEndtLocationRules" Rule="DoMessagePleaseCompleteAllOtherFloodInsuranceFieldsToIssuePolicy" ClearCache="true" />
+			<rul:RunRule Type="none" FileName="CommercialPropertyFloodCovEndtLocationRules" Rule="DoMessageLocationFloodInceptionDateDoesNotEqualTheDateInCorrespondingBlanket" ClearCache="true" />
+		</rul:Sequence>
+	</rul:Rule>
+	<rul:Rule Name="DoMessagePleaseCompleteAllOtherFloodInsuranceFieldsToIssuePolicy" Type="none" DataDefGroup="CommercialPropertyFloodCovEndtLocation">
+		<rul:Sequence>
+			<rul:If>
+				<rul:Test>
+					<rul:And>
+						<rul:Exist AtInputDataDef="ancestor::MasterCFCW/Policy" />
+						<rul:Or>
+							<rul:Equal>
+								<rul:FirstValue Type="string" FromConstant="" FromDataDef="@OtherFloodInsurance" Order="DataDefInputParamConstant" />
+								<rul:Constant Type="string">Other</rul:Constant>
+							</rul:Equal>
+							<rul:Equal>
+								<rul:FirstValue Type="string" FromConstant="" FromDataDef="@OtherFloodInsurance" Order="DataDefInputParamConstant" />
+								<rul:Constant Type="string">Primary (NFIP)</rul:Constant>
+							</rul:Equal>
+						</rul:Or>
+						<rul:Or>
+							<rul:Equal>
+								<rul:FirstValue Type="string" FromConstant="" FromDataDef="@OtherFloodInsuranceInsurer" Order="DataDefInputParamConstant" />
+								<rul:Constant Type="string"></rul:Constant>
+							</rul:Equal>
+							<rul:Equal>
+								<rul:FirstValue Type="string" FromConstant="" FromDataDef="@OtherFloodInsurancePolNum" Order="DataDefInputParamConstant" />
+								<rul:Constant Type="string"></rul:Constant>
+							</rul:Equal>
+						</rul:Or>
+					</rul:And>
+				</rul:Test>
+				<rul:Then>
+					<rul:RunRule Type="none" FileName="MessageHelper" Rule="AddErrorMessage" ClearCache="true">
+						<rul:Arg Type="string" Param="Message">
+							<rul:Constant Type="string">Please complete all Other Flood Insurance fields to issue policy</rul:Constant>
+						</rul:Arg>
+					</rul:RunRule>
+				</rul:Then>
+			</rul:If>
+		</rul:Sequence>
+	</rul:Rule>
+	<rul:Rule Name="DoMessageLocationFloodInceptionDateDoesNotEqualTheDateInCorrespondingBlanket" Type="none" DataDefGroup="CommercialPropertyFloodCovEndtLocation">
+		<rul:Sequence>
+			<rul:WithArgs>
+				<rul:Arg Type="integer" Param="sendMessageDoMessageLocationFloodInceptionDateDoesNotEqualTheDateInCorrespondingBlanket">
+					<rul:FirstNonNull Type="integer">
+						<rul:If>
+							<rul:Test>
+								<rul:Exist AtInputDataDef="../../../../CommercialPropertyFloodCovEndtBlanketRatingTable/CommercialPropertyFloodCovEndtBlanketRating[1]/CommercialPropertyFloodCovEndtBlanketRatingDetailTable/CommercialPropertyFloodCovEndtBlanketRatingDetail" />
+							</rul:Test>
+							<rul:Then>
+								<rul:WithArgs>
+									<rul:Arg Type="dateTime" Param="ISOSSINodeFloodEffDateParam">
+										<rul:FirstValue Type="dateTime" FromConstant="01/01/0001" FromDataDef="@FloodEffDate" Order="DataDefInputParamConstant" />
+									</rul:Arg>
+									<rul:Arg Type="dateTime" Param="FloodEffDateParam">
+										<rul:FirstValue Type="dateTime" FromConstant="01/01/0001" FromDataDef="@FloodEffDate" Order="DataDefInputParamConstant" />
+									</rul:Arg>
+									<rul:FirstNonNull Type="integer">
+										<rul:ForEach AtDataDef="../../../../CommercialPropertyFloodCovEndtBlanketRatingTable/CommercialPropertyFloodCovEndtBlanketRating">
+											<rul:ForEach AtDataDef="CommercialPropertyFloodCovEndtBlanketRatingDetailTable/CommercialPropertyFloodCovEndtBlanketRatingDetail">
+												<rul:If>
+													<rul:Test>
+														<rul:And>
+															<rul:IsNotNull>
+																<rul:Value Type="dateTime" FromDataDef="@FloodEffDate" />
+															</rul:IsNotNull>
+															<rul:NotEqual>
+																<rul:Value Type="dateTime" FromParam="ISOSSINodeFloodEffDateParam" />
+																<rul:Constant Type="dateTime">01/01/0001</rul:Constant>
+															</rul:NotEqual>
+															<rul:NotEqual>
+																<rul:Value Type="dateTime" FromParam="FloodEffDateParam" />
+																<rul:FirstValue Type="dateTime" FromConstant="01/01/0001" FromDataDef="@FloodEffDate" Order="DataDefInputParamConstant" />
+															</rul:NotEqual>
+														</rul:And>
+													</rul:Test>
+													<rul:Then>
+														<rul:Sum>
+															<rul:WithArgs>
+																<rul:Arg Type="integer" Param="commercialPropertyStructureParam">
+																	<rul:Sum>
+																		<rul:ForEach AtDataDef="../../../../CommercialPropertyLocationTable/CommercialPropertyLocation">
+																			<rul:ForEach AtDataDef="CommercialPropertyStructureTable/CommercialPropertyStructure">
+																				<rul:If>
+																					<rul:Test>
+																						<rul:And>
+																							<rul:Exist AtInputDataDef="CommercialPropertyFloodCoverageEndorsementTable/CommercialPropertyFloodCoverageEndorsement" />
+																							<rul:Equal>
+																								<rul:FirstValue Type="string" FromConstant="" FromDataDef="CommercialPropertyFloodCoverageEndorsementTable/CommercialPropertyFloodCoverageEndorsement[1]/@IncludedInBlkt" Order="DataDefInputParamConstant" />
+																								<rul:Constant Type="string">Yes</rul:Constant>
+																							</rul:Equal>
+																							<rul:Equal>
+																								<rul:FirstValue Type="integer" FromConstant="0" FromDataDef="CommercialPropertyFloodCoverageEndorsementTable/CommercialPropertyFloodCoverageEndorsement[1]/@BlanketIDNum" Order="DataDefInputParamConstant" />
+																								<rul:FirstValue Type="integer" FromConstant="0" FromDataDef="@UnitNumber" Order="DataDefInputParamConstant" />
+																							</rul:Equal>
+																						</rul:And>
+																					</rul:Test>
+																					<rul:Then>
+																						<rul:Sum>
+																							<rul:Constant Type="integer">1</rul:Constant>
+																							<rul:Break />
+																						</rul:Sum>
+																					</rul:Then>
+																				</rul:If>
+																			</rul:ForEach>
+																		</rul:ForEach>
+																	</rul:Sum>
+																</rul:Arg>
+																<rul:If>
+																	<rul:Test>
+																		<rul:GreaterThan>
+																			<rul:Value Type="integer" FromParam="commercialPropertyStructureParam" />
+																			<rul:Constant Type="integer">0</rul:Constant>
+																		</rul:GreaterThan>
+																	</rul:Test>
+																	<rul:Then>
+																		<rul:Sum>
+																			<rul:Constant Type="integer">1</rul:Constant>
+																			<rul:Break />
+																		</rul:Sum>
+																	</rul:Then>
+																</rul:If>
+															</rul:WithArgs>
+															<rul:WithArgs>
+																<rul:Arg Type="integer" Param="commercialPropertyPersonalPropertyParam">
+																	<rul:Sum>
+																		<rul:ForEach AtDataDef="../../../../CommercialPropertyLocationTable/CommercialPropertyLocation">
+																			<rul:ForEach AtDataDef="CommercialPropertyStructureTable/CommercialPropertyStructure">
+																				<rul:ForEach AtDataDef="CommercialPropertyOccupClassTable/CommercialPropertyOccupClass">
+																					<rul:ForEach AtDataDef="CommercialPropertyPersonalPropertyTable/CommercialPropertyPersonalProperty">
+																						<rul:If>
+																							<rul:Test>
+																								<rul:And>
+																									<rul:Exist AtInputDataDef="CommercialPropertyFloodCoverageEndorsementPrsnlPropTable/CommercialPropertyFloodCoverageEndorsementPrsnlProp" />
+																									<rul:Equal>
+																										<rul:FirstValue Type="string" FromConstant="" FromDataDef="CommercialPropertyFloodCoverageEndorsementPrsnlPropTable/CommercialPropertyFloodCoverageEndorsementPrsnlProp[1]/@IncludedInBlkt" Order="DataDefInputParamConstant" />
+																										<rul:Constant Type="string">Yes</rul:Constant>
+																									</rul:Equal>
+																									<rul:Equal>
+																										<rul:FirstValue Type="integer" FromConstant="0" FromDataDef="CommercialPropertyFloodCoverageEndorsementPrsnlPropTable/CommercialPropertyFloodCoverageEndorsementPrsnlProp[1]/@BlanketIDNum" Order="DataDefInputParamConstant" />
+																										<rul:FirstValue Type="integer" FromConstant="0" FromDataDef="@UnitNumber" Order="DataDefInputParamConstant" />
+																									</rul:Equal>
+																								</rul:And>
+																							</rul:Test>
+																							<rul:Then>
+																								<rul:Sum>
+																									<rul:Constant Type="integer">1</rul:Constant>
+																									<rul:Break />
+																								</rul:Sum>
+																							</rul:Then>
+																						</rul:If>
+																					</rul:ForEach>
+																				</rul:ForEach>
+																			</rul:ForEach>
+																		</rul:ForEach>
+																	</rul:Sum>
+																</rul:Arg>
+																<rul:If>
+																	<rul:Test>
+																		<rul:GreaterThan>
+																			<rul:Value Type="integer" FromParam="commercialPropertyPersonalPropertyParam" />
+																			<rul:Constant Type="integer">0</rul:Constant>
+																		</rul:GreaterThan>
+																	</rul:Test>
+																	<rul:Then>
+																		<rul:Sum>
+																			<rul:Constant Type="integer">1</rul:Constant>
+																			<rul:Break />
+																		</rul:Sum>
+																	</rul:Then>
+																</rul:If>
+															</rul:WithArgs>
+															<rul:WithArgs>
+																<rul:Arg Type="integer" Param="commercialPropertySpecialClassParam">
+																	<rul:Sum>
+																		<rul:ForEach AtDataDef="../../../../CommercialPropertyLocationTable/CommercialPropertyLocation">
+																			<rul:ForEach AtDataDef="CommercialPropertySpecialClassTable/CommercialPropertySpecialClass">
+																				<rul:If>
+																					<rul:Test>
+																						<rul:And>
+																							<rul:Exist AtInputDataDef="CommercialPropertyFloodCoverageEndorsementSpecialClassTable/CommercialPropertyFloodCoverageEndorsementSpecialClass" />
+																							<rul:Equal>
+																								<rul:FirstValue Type="string" FromConstant="" FromDataDef="CommercialPropertyFloodCoverageEndorsementSpecialClassTable/CommercialPropertyFloodCoverageEndorsementSpecialClass[1]/@IncludedInBlkt" Order="DataDefInputParamConstant" />
+																								<rul:Constant Type="string">Yes</rul:Constant>
+																							</rul:Equal>
+																							<rul:Equal>
+																								<rul:FirstValue Type="integer" FromConstant="0" FromDataDef="CommercialPropertyFloodCoverageEndorsementSpecialClassTable/CommercialPropertyFloodCoverageEndorsementSpecialClass[1]/@BlanketIDNum" Order="DataDefInputParamConstant" />
+																								<rul:FirstValue Type="integer" FromConstant="0" FromDataDef="@UnitNumber" Order="DataDefInputParamConstant" />
+																							</rul:Equal>
+																						</rul:And>
+																					</rul:Test>
+																					<rul:Then>
+																						<rul:Sum>
+																							<rul:Constant Type="integer">1</rul:Constant>
+																							<rul:Break />
+																						</rul:Sum>
+																					</rul:Then>
+																				</rul:If>
+																			</rul:ForEach>
+																		</rul:ForEach>
+																	</rul:Sum>
+																</rul:Arg>
+																<rul:If>
+																	<rul:Test>
+																		<rul:GreaterThan>
+																			<rul:Value Type="integer" FromParam="commercialPropertySpecialClassParam" />
+																			<rul:Constant Type="integer">0</rul:Constant>
+																		</rul:GreaterThan>
+																	</rul:Test>
+																	<rul:Then>
+																		<rul:Sum>
+																			<rul:Constant Type="integer">1</rul:Constant>
+																			<rul:Break />
+																		</rul:Sum>
+																	</rul:Then>
+																</rul:If>
+															</rul:WithArgs>
+															<rul:WithArgs>
+																<rul:Arg Type="integer" Param="commercialPropertyBusinessIncomeParam">
+																	<rul:Sum>
+																		<rul:ForEach AtDataDef="../../../../CommercialPropertyLocationTable/CommercialPropertyLocation">
+																			<rul:ForEach AtDataDef="CommercialPropertyStructureTable/CommercialPropertyStructure">
+																				<rul:ForEach AtDataDef="CommercialPropertyBusinessIncomeTable/CommercialPropertyBusinessIncome">
+																					<rul:If>
+																						<rul:Test>
+																							<rul:And>
+																								<rul:Exist AtInputDataDef="CommercialPropertyFloodCoverageEndorsementBusnIncomeTable/CommercialPropertyFloodCoverageEndorsementBusnIncome" />
+																								<rul:Equal>
+																									<rul:FirstValue Type="string" FromConstant="" FromDataDef="CommercialPropertyFloodCoverageEndorsementBusnIncomeTable/CommercialPropertyFloodCoverageEndorsementBusnIncome[1]/@IncludedInBlkt" Order="DataDefInputParamConstant" />
+																									<rul:Constant Type="string">Yes</rul:Constant>
+																								</rul:Equal>
+																								<rul:Equal>
+																									<rul:FirstValue Type="integer" FromConstant="0" FromDataDef="CommercialPropertyFloodCoverageEndorsementBusnIncomeTable/CommercialPropertyFloodCoverageEndorsementBusnIncome[1]/@BlanketIDNum" Order="DataDefInputParamConstant" />
+																									<rul:FirstValue Type="integer" FromConstant="0" FromDataDef="@UnitNumber" Order="DataDefInputParamConstant" />
+																								</rul:Equal>
+																							</rul:And>
+																						</rul:Test>
+																						<rul:Then>
+																							<rul:Sum>
+																								<rul:Constant Type="integer">1</rul:Constant>
+																								<rul:Break />
+																							</rul:Sum>
+																						</rul:Then>
+																					</rul:If>
+																				</rul:ForEach>
+																			</rul:ForEach>
+																		</rul:ForEach>
+																	</rul:Sum>
+																</rul:Arg>
+																<rul:If>
+																	<rul:Test>
+																		<rul:GreaterThan>
+																			<rul:Value Type="integer" FromParam="commercialPropertyBusinessIncomeParam" />
+																			<rul:Constant Type="integer">0</rul:Constant>
+																		</rul:GreaterThan>
+																	</rul:Test>
+																	<rul:Then>
+																		<rul:Sum>
+																			<rul:Constant Type="integer">1</rul:Constant>
+																			<rul:Break />
+																		</rul:Sum>
+																	</rul:Then>
+																</rul:If>
+															</rul:WithArgs>
+															<rul:WithArgs>
+																<rul:Arg Type="integer" Param="CommercialPropertySpecialClassBusnIncomeParam">
+																	<rul:Sum>
+																		<rul:ForEach AtDataDef="../../../../CommercialPropertyLocationTable/CommercialPropertyLocation">
+																			<rul:ForEach AtDataDef="CommercialPropertySpecialClassTable/CommercialPropertySpecialClass">
+																				<rul:ForEach AtDataDef="CommercialPropertySpecialClassBusnIncomeTable/CommercialPropertySpecialClassBusnIncome">
+																					<rul:If>
+																						<rul:Test>
+																							<rul:And>
+																								<rul:Exist AtInputDataDef="CommercialPropertyFloodCoverageEndorsementSpclClassBusnIncomeTable/CommercialPropertyFloodCoverageEndorsementSpclClassBusnIncome" />
+																								<rul:Equal>
+																									<rul:FirstValue Type="string" FromConstant="" FromDataDef="CommercialPropertyFloodCoverageEndorsementSpclClassBusnIncomeTable/CommercialPropertyFloodCoverageEndorsementSpclClassBusnIncome[1]/@IncludedInBlkt" Order="DataDefInputParamConstant" />
+																									<rul:Constant Type="string">Yes</rul:Constant>
+																								</rul:Equal>
+																								<rul:Equal>
+																									<rul:FirstValue Type="integer" FromConstant="0" FromDataDef="CommercialPropertyFloodCoverageEndorsementSpclClassBusnIncomeTable/CommercialPropertyFloodCoverageEndorsementSpclClassBusnIncome[1]/@BlanketIDNum" Order="DataDefInputParamConstant" />
+																									<rul:FirstValue Type="integer" FromConstant="0" FromDataDef="@UnitNumber" Order="DataDefInputParamConstant" />
+																								</rul:Equal>
+																							</rul:And>
+																						</rul:Test>
+																						<rul:Then>
+																							<rul:Sum>
+																								<rul:Constant Type="integer">1</rul:Constant>
+																								<rul:Break />
+																							</rul:Sum>
+																						</rul:Then>
+																					</rul:If>
+																				</rul:ForEach>
+																			</rul:ForEach>
+																		</rul:ForEach>
+																	</rul:Sum>
+																</rul:Arg>
+																<rul:If>
+																	<rul:Test>
+																		<rul:GreaterThan>
+																			<rul:Value Type="integer" FromParam="CommercialPropertySpecialClassBusnIncomeParam" />
+																			<rul:Constant Type="integer">0</rul:Constant>
+																		</rul:GreaterThan>
+																	</rul:Test>
+																	<rul:Then>
+																		<rul:Sum>
+																			<rul:Constant Type="integer">1</rul:Constant>
+																			<rul:Break />
+																		</rul:Sum>
+																	</rul:Then>
+																</rul:If>
+															</rul:WithArgs>
+														</rul:Sum>
+													</rul:Then>
+												</rul:If>
+											</rul:ForEach>
+										</rul:ForEach>
+									</rul:FirstNonNull>
+								</rul:WithArgs>
+							</rul:Then>
+						</rul:If>
+						<rul:Constant Type="integer">0</rul:Constant>
+					</rul:FirstNonNull>
+				</rul:Arg>
+				<rul:If>
+					<rul:Test>
+						<rul:GreaterThan>
+							<rul:Value Type="integer" FromParam="sendMessageDoMessageLocationFloodInceptionDateDoesNotEqualTheDateInCorrespondingBlanket" />
+							<rul:Constant Type="integer">0</rul:Constant>
+						</rul:GreaterThan>
+					</rul:Test>
+					<rul:Then>
+						<rul:RunRule Type="none" FileName="MessageHelper" Rule="AddErrorMessage">
+							<rul:Arg Type="string" Param="Message">
+								<rul:Constant Type="string">Location flood inception date does not equal the date in corresponding blanket</rul:Constant>
+							</rul:Arg>
+						</rul:RunRule>
+					</rul:Then>
+				</rul:If>
+			</rul:WithArgs>
+		</rul:Sequence>
+	</rul:Rule>
+	<rul:Rule Name="ErcSetStatisticalCodes" Type="none" DataDefGroup="CommercialPropertyFloodCovEndtLocation">
+		<rul:Sequence>
+			<rul:If>
+				<rul:Test>
+					<rul:Exist AtInputDataDef="ancestor::MasterCFCW/Policy" />
+				</rul:Test>
+				<rul:Then>
+					<rul:Sequence>
+						<rul:RunRule Type="none" FileName="CommercialPropertyFloodCovEndtLocationRules" Rule="SetFloodDeductibleStatCode" ClearCache="true" />
+						<rul:RunRule Type="none" FileName="CommercialPropertyFloodCovEndtLocationRules" Rule="SetFloodCommunityRatingSystemClassCode" ClearCache="true" />
+						<rul:RunRule Type="none" FileName="CommercialPropertyFloodCovEndtLocationRules" Rule="SetNFIPFloodZoneCode" ClearCache="true" />
+					</rul:Sequence>
+				</rul:Then>
+			</rul:If>
+		</rul:Sequence>
+	</rul:Rule>
+	<rul:Rule Name="SetFloodDeductibleStatCode" Type="none" DataDefGroup="CommercialPropertyFloodCovEndtLocation">
+		<rul:Sequence>
+			<rul:If>
+				<rul:Test>
+					<rul:NotEqual>
+						<rul:FirstValue Type="string" FromConstant="" FromDataDef="@Deductible" Order="DataDefInputParamConstant" />
+						<rul:Constant Type="string"></rul:Constant>
+					</rul:NotEqual>
+				</rul:Test>
+				<rul:Then>
+					<rul:Sequence>
+						<rul:RunRule Type="string" ToDataDef="@FloodDeductibleStatCode" FileName="CommercialPropertyFloodCovEndtLocationRules" Rule="LookupAllOtherDeductibleStatCode" ClearCache="true" />
+					</rul:Sequence>
+				</rul:Then>
+				<rul:Else>
+					<rul:Sequence>
+						<rul:Constant Type="string" ToDataDef="@FloodDeductibleStatCode"></rul:Constant>
+					</rul:Sequence>
+				</rul:Else>
+			</rul:If>
+		</rul:Sequence>
+	</rul:Rule>
+	<rul:Rule Name="SetFloodCommunityRatingSystemClassCode" Type="none" DataDefGroup="CommercialPropertyFloodCovEndtLocation">
+		<rul:Sequence>
+			<rul:If>
+				<rul:Test>
+					<rul:And>
+						<rul:NotEqual>
+							<rul:FirstValue Type="string" FromConstant="" FromDataDef="@CommunityRatingSystemCRSGrade" Order="DataDefInputParamConstant" />
+							<rul:Constant Type="string"></rul:Constant>
+						</rul:NotEqual>
+						<rul:NotEqual>
+							<rul:FirstValue Type="string" FromConstant="" FromDataDef="@CommunityRatingSystemCRSGrade" Order="DataDefInputParamConstant" />
+							<rul:Constant Type="string">Not Applicable</rul:Constant>
+						</rul:NotEqual>
+					</rul:And>
+				</rul:Test>
+				<rul:Then>
+					<rul:Sequence>
+						<rul:RunRule Type="string" ToDataDef="@FloodCommunityRatingSystemClassCode" FileName="CommercialPropertyFloodCovEndtLocationRules" Rule="LookupFloodCommunityRatingSystemClassCode" ClearCache="true" />
+					</rul:Sequence>
+				</rul:Then>
+				<rul:Else>
+					<rul:Sequence>
+						<rul:Constant Type="string" ToDataDef="@FloodCommunityRatingSystemClassCode"></rul:Constant>
+					</rul:Sequence>
+				</rul:Else>
+			</rul:If>
+		</rul:Sequence>
+	</rul:Rule>
+	<rul:Rule Name="SetNFIPFloodZoneCode" Type="none" DataDefGroup="CommercialPropertyFloodCovEndtLocation">
+		<rul:Sequence>
+			<rul:If>
+				<rul:Test>
+					<rul:NotEqual>
+						<rul:FirstValue Type="string" FromConstant="" FromDataDef="@NFIPFloodZone" Order="DataDefInputParamConstant" />
+						<rul:Constant Type="string"></rul:Constant>
+					</rul:NotEqual>
+				</rul:Test>
+				<rul:Then>
+					<rul:Sequence>
+						<rul:RunRule Type="string" ToDataDef="@NFIPFloodZoneCode" FileName="CommercialPropertyFloodCovEndtLocationRules" Rule="LookupNFIPFloodZoneCode" ClearCache="true" />
+					</rul:Sequence>
+				</rul:Then>
+				<rul:Else>
+					<rul:Sequence>
+						<rul:Constant Type="string" ToDataDef="@NFIPFloodZoneCode"></rul:Constant>
+					</rul:Sequence>
+				</rul:Else>
+			</rul:If>
+		</rul:Sequence>
+	</rul:Rule>
+	<rul:Rule Name="ErcProcess" Type="none" DataDefGroup="CommercialPropertyFloodCovEndtLocation">
+		<rul:Sequence>
+			<rul:RunRule Type="none" FileName="CommercialPropertyFloodCovEndtLocationRules" Rule="ErcRunPostUnderwritingLogic" ClearCache="true" />
+			<rul:RunRule Type="none" FileName="CommercialPropertyFloodCovEndtLocationRules" Rule="ErcSetStatisticalCodes" ClearCache="true" />
+		</rul:Sequence>
+	</rul:Rule>
+	<rul:Rule Name="LookupCommunityRatingSystemFactor" Type="decimal" DataDefGroup="CommercialPropertyFloodCovEndtLocation">
+		<rul:FirstNonNull Type="decimal">
+			<rul:Lookup Type="decimal" MatrixCol="Factor" MatrixDef="CommunityRatingSystemFactorDef" MatrixFromConstant="CommunityRatingSystemFactor" ResultMode="FirstResult">
+				<rul:Keys>
+					<rul:Value Type="string" FromDataDef="/State/@Code" />
+					<rul:FirstValue Type="string" FromConstant="" FromDataDef="@CommunityRatingSystemCRSGrade" Order="DataDefInputParamConstant" />
+				</rul:Keys>
+			</rul:Lookup>
+			<rul:Lookup Type="decimal" MatrixCol="Factor" MatrixDef="CommunityRatingSystemFactorDef" MatrixFromConstant="CommunityRatingSystemFactor" ResultMode="SingleResult">
+				<rul:Keys>
+					<rul:Constant Type="string">CW</rul:Constant>
+					<rul:FirstValue Type="string" FromConstant="" FromDataDef="@CommunityRatingSystemCRSGrade" Order="DataDefInputParamConstant" />
+				</rul:Keys>
+			</rul:Lookup>
+		</rul:FirstNonNull>
+	</rul:Rule>
+	<rul:Rule Name="LookupDeductibleNumberConversion" Type="integer" DataDefGroup="CommercialPropertyFloodCovEndtLocation">
+		<rul:FirstNonNull Type="integer">
+			<rul:Lookup Type="integer" MatrixCol="DeductibleNumber" MatrixDef="DeductibleNumberConversionDef" MatrixFromConstant="DeductibleNumberConversion" ResultMode="FirstResult">
+				<rul:Keys>
+					<rul:Value Type="string" FromDataDef="/State/@Code" />
+					<rul:FirstValue Type="string" FromConstant="" FromDataDef="@Deductible" Order="DataDefInputParamConstant" />
+				</rul:Keys>
+			</rul:Lookup>
+			<rul:Lookup Type="integer" MatrixCol="DeductibleNumber" MatrixDef="DeductibleNumberConversionDef" MatrixFromConstant="DeductibleNumberConversion" ResultMode="SingleResult">
+				<rul:Keys>
+					<rul:Constant Type="string">CW</rul:Constant>
+					<rul:FirstValue Type="string" FromConstant="" FromDataDef="@Deductible" Order="DataDefInputParamConstant" />
+				</rul:Keys>
+			</rul:Lookup>
+		</rul:FirstNonNull>
+	</rul:Rule>
+	<rul:Rule Name="LookupMaxNFIPCoverageAmount" Type="integer" DataDefGroup="CommercialPropertyFloodCovEndtLocation">
+		<rul:Param Name="coverage" Type="string" />
+		<rul:FirstNonNull Type="integer">
+			<rul:Lookup Type="integer" MatrixCol="Amount" MatrixDef="MaxNFIPCoverageAmountDef" MatrixFromConstant="MaxNFIPCoverageAmount" ResultMode="FirstResult">
+				<rul:Keys>
+					<rul:Value Type="string" FromDataDef="/State/@Code" />
+					<rul:Value Type="string" FromParam="coverage" />
+				</rul:Keys>
+			</rul:Lookup>
+			<rul:Lookup Type="integer" MatrixCol="Amount" MatrixDef="MaxNFIPCoverageAmountDef" MatrixFromConstant="MaxNFIPCoverageAmount" ResultMode="SingleResult">
+				<rul:Keys>
+					<rul:Constant Type="string">CW</rul:Constant>
+					<rul:Value Type="string" FromParam="coverage" />
+				</rul:Keys>
+			</rul:Lookup>
+		</rul:FirstNonNull>
+	</rul:Rule>
+	<rul:Rule Name="LookupAllOtherDeductibleStatCode" Type="string" DataDefGroup="CommercialPropertyFloodCovEndtLocation">
+		<rul:FirstNonNull Type="string">
+			<rul:Lookup Type="string" MatrixCol="Code" MatrixDef="AllOtherDeductibleStatCodeDef" MatrixFromConstant="AllOtherDeductibleStatCode" ResultMode="FirstResult">
+				<rul:Keys>
+					<rul:Value Type="string" FromDataDef="/State/@Code" />
+					<rul:FirstValue Type="string" FromConstant="" FromDataDef="@Deductible" Order="DataDefInputParamConstant" />
+				</rul:Keys>
+			</rul:Lookup>
+			<rul:Lookup Type="string" MatrixCol="Code" MatrixDef="AllOtherDeductibleStatCodeDef" MatrixFromConstant="AllOtherDeductibleStatCode" ResultMode="SingleResult">
+				<rul:Keys>
+					<rul:Constant Type="string">CW</rul:Constant>
+					<rul:FirstValue Type="string" FromConstant="" FromDataDef="@Deductible" Order="DataDefInputParamConstant" />
+				</rul:Keys>
+			</rul:Lookup>
+		</rul:FirstNonNull>
+	</rul:Rule>
+	<rul:Rule Name="LookupFloodCommunityRatingSystemClassCode" Type="string" DataDefGroup="CommercialPropertyFloodCovEndtLocation">
+		<rul:FirstNonNull Type="string">
+			<rul:Lookup Type="string" MatrixCol="Code" MatrixDef="FloodCommunityRatingSystemClassCodeDef" MatrixFromConstant="FloodCommunityRatingSystemClassCode" ResultMode="FirstResult">
+				<rul:Keys>
+					<rul:Value Type="string" FromDataDef="/State/@Code" />
+					<rul:FirstValue Type="string" FromConstant="" FromDataDef="@CommunityRatingSystemCRSGrade" Order="DataDefInputParamConstant" />
+				</rul:Keys>
+			</rul:Lookup>
+			<rul:Lookup Type="string" MatrixCol="Code" MatrixDef="FloodCommunityRatingSystemClassCodeDef" MatrixFromConstant="FloodCommunityRatingSystemClassCode" ResultMode="SingleResult">
+				<rul:Keys>
+					<rul:Constant Type="string">CW</rul:Constant>
+					<rul:FirstValue Type="string" FromConstant="" FromDataDef="@CommunityRatingSystemCRSGrade" Order="DataDefInputParamConstant" />
+				</rul:Keys>
+			</rul:Lookup>
+		</rul:FirstNonNull>
+	</rul:Rule>
+	<rul:Rule Name="LookupNFIPFloodZoneCode" Type="string" DataDefGroup="CommercialPropertyFloodCovEndtLocation">
+		<rul:FirstNonNull Type="string">
+			<rul:Lookup Type="string" MatrixCol="Code" MatrixDef="NFIPFloodZoneCodeDef" MatrixFromConstant="NFIPFloodZoneCode" ResultMode="FirstResult">
+				<rul:Keys>
+					<rul:Value Type="string" FromDataDef="/State/@Code" />
+					<rul:FirstValue Type="string" FromConstant="" FromDataDef="@NFIPFloodZone" Order="DataDefInputParamConstant" />
+				</rul:Keys>
+			</rul:Lookup>
+			<rul:Lookup Type="string" MatrixCol="Code" MatrixDef="NFIPFloodZoneCodeDef" MatrixFromConstant="NFIPFloodZoneCode" ResultMode="SingleResult">
+				<rul:Keys>
+					<rul:Constant Type="string">CW</rul:Constant>
+					<rul:FirstValue Type="string" FromConstant="" FromDataDef="@NFIPFloodZone" Order="DataDefInputParamConstant" />
+				</rul:Keys>
+			</rul:Lookup>
+		</rul:FirstNonNull>
+	</rul:Rule>
+</rul:Rules>

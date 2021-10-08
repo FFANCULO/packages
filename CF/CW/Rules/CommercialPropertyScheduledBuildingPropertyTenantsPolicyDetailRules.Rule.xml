@@ -1,0 +1,79 @@
+<rul:Rules xmlns:rul="http://www.verisk.com/iso/erc/Rule">
+	<rul:Rule Name="InitializeRuleSet" DataDefGroup="CommercialPropertyScheduledBuildingPropertyTenantsPolicyDetail">
+		<rul:Sequence>
+			<rul:Locate AtDataDef="CommercialPropertyScheduledBuildingPropertyTenantsPolicyDetailBuildingPropertyOtherThanGlassBasicGroupICov">
+				<rul:RunRule Type="none" FileName="CommercialPropertyScheduledBuildingPropertyTenantsPolicyDetailBuildingPropertyOtherThanGlassBasicGroupICovRules" Rule="InitializeRuleSet" ClearCache="true" />
+			</rul:Locate>
+			<rul:Locate AtDataDef="CommercialPropertyScheduledBuildingPropertyTenantsPolicyDetailBuildingPropertyOtherThanGlassBasicGroupIICov">
+				<rul:RunRule Type="none" FileName="CommercialPropertyScheduledBuildingPropertyTenantsPolicyDetailBuildingPropertyOtherThanGlassBasicGroupIICovRules" Rule="InitializeRuleSet" ClearCache="true" />
+			</rul:Locate>
+			<rul:Locate AtDataDef="CommercialPropertyScheduledBuildingPropertyTenantsPolicyDetailBuildingPropertyOtherThanGlassBroadCov">
+				<rul:RunRule Type="none" FileName="CommercialPropertyScheduledBuildingPropertyTenantsPolicyDetailBuildingPropertyOtherThanGlassBroadCovRules" Rule="InitializeRuleSet" ClearCache="true" />
+			</rul:Locate>
+			<rul:Locate AtDataDef="CommercialPropertyScheduledBuildingPropertyTenantsPolicyDetailBuildingPropertyOtherThanGlassEQCov">
+				<rul:RunRule Type="none" FileName="CommercialPropertyScheduledBuildingPropertyTenantsPolicyDetailBuildingPropertyOtherThanGlassEQCovRules" Rule="InitializeRuleSet" ClearCache="true" />
+			</rul:Locate>
+			<rul:Locate AtDataDef="CommercialPropertyScheduledBuildingPropertyTenantsPolicyDetailBuildingPropertyOtherThanGlassSpecialCov">
+				<rul:RunRule Type="none" FileName="CommercialPropertyScheduledBuildingPropertyTenantsPolicyDetailBuildingPropertyOtherThanGlassSpecialCovRules" Rule="InitializeRuleSet" ClearCache="true" />
+			</rul:Locate>
+		</rul:Sequence>
+	</rul:Rule>
+	<rul:Rule Name="CalculateTotalPremium" Type="decimal" DataDefGroup="CommercialPropertyScheduledBuildingPropertyTenantsPolicyDetail">
+		<rul:Sum>
+			<rul:Locate AtDataDef="CommercialPropertyScheduledBuildingPropertyTenantsPolicyDetailBuildingPropertyOtherThanGlassBasicGroupICov">
+				<rul:RunRule Type="decimal" FileName="CommercialPropertyScheduledBuildingPropertyTenantsPolicyDetailBuildingPropertyOtherThanGlassBasicGroupICovRules" Rule="CalculateTotalPremium" ClearCache="true" />
+			</rul:Locate>
+			<rul:Locate AtDataDef="CommercialPropertyScheduledBuildingPropertyTenantsPolicyDetailBuildingPropertyOtherThanGlassBasicGroupIICov">
+				<rul:RunRule Type="decimal" FileName="CommercialPropertyScheduledBuildingPropertyTenantsPolicyDetailBuildingPropertyOtherThanGlassBasicGroupIICovRules" Rule="CalculateTotalPremium" ClearCache="true" />
+			</rul:Locate>
+			<rul:Locate AtDataDef="CommercialPropertyScheduledBuildingPropertyTenantsPolicyDetailBuildingPropertyOtherThanGlassBroadCov">
+				<rul:RunRule Type="decimal" FileName="CommercialPropertyScheduledBuildingPropertyTenantsPolicyDetailBuildingPropertyOtherThanGlassBroadCovRules" Rule="CalculateTotalPremium" ClearCache="true" />
+			</rul:Locate>
+			<rul:Locate AtDataDef="CommercialPropertyScheduledBuildingPropertyTenantsPolicyDetailBuildingPropertyOtherThanGlassEQCov">
+				<rul:RunRule Type="decimal" FileName="CommercialPropertyScheduledBuildingPropertyTenantsPolicyDetailBuildingPropertyOtherThanGlassEQCovRules" Rule="CalculateTotalPremium" ClearCache="true" />
+			</rul:Locate>
+			<rul:Locate AtDataDef="CommercialPropertyScheduledBuildingPropertyTenantsPolicyDetailBuildingPropertyOtherThanGlassSpecialCov">
+				<rul:RunRule Type="decimal" FileName="CommercialPropertyScheduledBuildingPropertyTenantsPolicyDetailBuildingPropertyOtherThanGlassSpecialCovRules" Rule="CalculateTotalPremium" ClearCache="true" />
+			</rul:Locate>
+			<rul:If>
+				<rul:Test>
+					<rul:And>
+						<rul:Equal>
+							<rul:FirstValue Type="integer" FromConstant="0" FromDataDef="@PremiumIndicator" Order="DataDefInputParamConstant" />
+							<rul:Constant Type="integer">1</rul:Constant>
+						</rul:Equal>
+						<rul:NotEqual>
+							<rul:FirstValue Type="decimal" FromConstant="0" FromDataDef="@Premium" Order="DataDefInputParamConstant" />
+							<rul:Constant Type="decimal">0</rul:Constant>
+						</rul:NotEqual>
+					</rul:And>
+				</rul:Test>
+				<rul:Then>
+					<rul:FirstValue Type="decimal" FromConstant="0" FromDataDef="@Premium" Order="DataDefInputParamConstant" />
+				</rul:Then>
+				<rul:Else>
+					<rul:Constant Type="decimal">0</rul:Constant>
+				</rul:Else>
+			</rul:If>
+		</rul:Sum>
+	</rul:Rule>
+	<rul:Rule Name="ErcProcess" Type="none" DataDefGroup="CommercialPropertyScheduledBuildingPropertyTenantsPolicyDetail">
+		<rul:Sequence>
+			<rul:Locate AtDataDef="CommercialPropertyScheduledBuildingPropertyTenantsPolicyDetailBuildingPropertyOtherThanGlassBasicGroupICov">
+				<rul:RunRule Type="none" FileName="CommercialPropertyScheduledBuildingPropertyTenantsPolicyDetailBuildingPropertyOtherThanGlassBasicGroupICovRules" Rule="ErcProcess" ClearCache="true" />
+			</rul:Locate>
+			<rul:Locate AtDataDef="CommercialPropertyScheduledBuildingPropertyTenantsPolicyDetailBuildingPropertyOtherThanGlassBasicGroupIICov">
+				<rul:RunRule Type="none" FileName="CommercialPropertyScheduledBuildingPropertyTenantsPolicyDetailBuildingPropertyOtherThanGlassBasicGroupIICovRules" Rule="ErcProcess" ClearCache="true" />
+			</rul:Locate>
+			<rul:Locate AtDataDef="CommercialPropertyScheduledBuildingPropertyTenantsPolicyDetailBuildingPropertyOtherThanGlassBroadCov">
+				<rul:RunRule Type="none" FileName="CommercialPropertyScheduledBuildingPropertyTenantsPolicyDetailBuildingPropertyOtherThanGlassBroadCovRules" Rule="ErcProcess" ClearCache="true" />
+			</rul:Locate>
+			<rul:Locate AtDataDef="CommercialPropertyScheduledBuildingPropertyTenantsPolicyDetailBuildingPropertyOtherThanGlassEQCov">
+				<rul:RunRule Type="none" FileName="CommercialPropertyScheduledBuildingPropertyTenantsPolicyDetailBuildingPropertyOtherThanGlassEQCovRules" Rule="ErcProcess" ClearCache="true" />
+			</rul:Locate>
+			<rul:Locate AtDataDef="CommercialPropertyScheduledBuildingPropertyTenantsPolicyDetailBuildingPropertyOtherThanGlassSpecialCov">
+				<rul:RunRule Type="none" FileName="CommercialPropertyScheduledBuildingPropertyTenantsPolicyDetailBuildingPropertyOtherThanGlassSpecialCovRules" Rule="ErcProcess" ClearCache="true" />
+			</rul:Locate>
+		</rul:Sequence>
+	</rul:Rule>
+</rul:Rules>

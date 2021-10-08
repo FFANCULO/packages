@@ -1,0 +1,8 @@
+"StateCode","CauseOfLoss","Factor"
+"CW","BGI",0.1
+"CW","BGII",0.1
+"CW","Broad",0.1
+"CW","SpecialWhenTheftIsExcluded",0.1
+"CW","SpecialWhenTheftIsCovered",0.2
+"CW","EQ",0.1
+"CW","Other",0.1

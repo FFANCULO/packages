@@ -1,0 +1,4 @@
+"StateCode","RatingType","DisplayValue","DataValue","MinimumValue","MaximumValue"
+"CW","Class","","",0,0
+"CW","Specific","","",0.001,9.999
+"CW","Tentative","","",0.001,9.999

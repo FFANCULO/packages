@@ -1,0 +1,4 @@
+"StateCode","TimePeriod","Factor"
+"CW","72 Hours",1
+"CW","Replace By 24 Hours",1.17
+"CW","Eliminate",1.25

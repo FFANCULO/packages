@@ -1,0 +1,9 @@
+"StateCode","IncludedInBlktBldg","BlktRadioactiveContaminationValue","DisplayValue","DataValue","MinimumValue","MaximumValue"
+"CW","No","No","","",0,0
+"CW","No","Yes","","",0,0
+"CW","No","Not Applicable","","",0,0
+"CW","Yes","No","","",1,99999999
+"CW","Yes","Yes","","",0,0
+"CW","Not Applicable","No","","",0,0
+"CW","Not Applicable","Yes","","",0,0
+"CW","Not Applicable","Not Applicable","","",0,0

@@ -1,0 +1,7 @@
+"StateCode","Type","DisplayValue","DataValue","MinimumValue","MaximumValue"
+"CW","Building Only","","",1,99999999
+"CW","Personal Property Only","","",1,99999999
+"CW","Building & Personal Property Combined","","",1,99999999
+"CW","Business Income With Extra Expense","","",1,99999999
+"CW","Business Income Without Extra Expense","","",1,99999999
+"CW","Builders Risk","","",1,99999999

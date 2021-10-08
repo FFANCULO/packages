@@ -1,0 +1,2124 @@
+<rul:Rules xmlns:rul="http://www.verisk.com/iso/erc/Rule">
+	<rul:Rule Name="InitializeRuleSet" DataDefGroup="CommercialPropertyOutsideSignsDetail">
+		<rul:Sequence>
+			<rul:Locate AtDataDef="CommercialPropertyOutsideSignsDetailBasicGroupICoverage">
+				<rul:RunRule Type="none" FileName="CommercialPropertyOutsideSignsDetailBasicGroupICoverageRules" Rule="InitializeRuleSet" ClearCache="true" />
+			</rul:Locate>
+			<rul:Locate AtDataDef="CommercialPropertyOutsideSignsDetailBasicGroupIICoverage">
+				<rul:RunRule Type="none" FileName="CommercialPropertyOutsideSignsDetailBasicGroupIICoverageRules" Rule="InitializeRuleSet" ClearCache="true" />
+			</rul:Locate>
+			<rul:Locate AtDataDef="CommercialPropertyOutsideSignsDetailBroadCoverage">
+				<rul:RunRule Type="none" FileName="CommercialPropertyOutsideSignsDetailBroadCoverageRules" Rule="InitializeRuleSet" ClearCache="true" />
+			</rul:Locate>
+			<rul:Locate AtDataDef="CommercialPropertyOutsideSignsDetailEarthquakeCoverage">
+				<rul:RunRule Type="none" FileName="CommercialPropertyOutsideSignsDetailEarthquakeCoverageRules" Rule="InitializeRuleSet" ClearCache="true" />
+			</rul:Locate>
+			<rul:Locate AtDataDef="CommercialPropertyOutsideSignsDetailSpecialCoverage">
+				<rul:RunRule Type="none" FileName="CommercialPropertyOutsideSignsDetailSpecialCoverageRules" Rule="InitializeRuleSet" ClearCache="true" />
+			</rul:Locate>
+		</rul:Sequence>
+	</rul:Rule>
+	<rul:Rule Name="CalculateTotalPremium" Type="decimal" DataDefGroup="CommercialPropertyOutsideSignsDetail">
+		<rul:Sum>
+			<rul:Locate AtDataDef="CommercialPropertyOutsideSignsDetailBasicGroupICoverage">
+				<rul:RunRule Type="decimal" FileName="CommercialPropertyOutsideSignsDetailBasicGroupICoverageRules" Rule="CalculateTotalPremium" ClearCache="true" />
+			</rul:Locate>
+			<rul:Locate AtDataDef="CommercialPropertyOutsideSignsDetailBasicGroupIICoverage">
+				<rul:RunRule Type="decimal" FileName="CommercialPropertyOutsideSignsDetailBasicGroupIICoverageRules" Rule="CalculateTotalPremium" ClearCache="true" />
+			</rul:Locate>
+			<rul:Locate AtDataDef="CommercialPropertyOutsideSignsDetailBroadCoverage">
+				<rul:RunRule Type="decimal" FileName="CommercialPropertyOutsideSignsDetailBroadCoverageRules" Rule="CalculateTotalPremium" ClearCache="true" />
+			</rul:Locate>
+			<rul:Locate AtDataDef="CommercialPropertyOutsideSignsDetailEarthquakeCoverage">
+				<rul:RunRule Type="decimal" FileName="CommercialPropertyOutsideSignsDetailEarthquakeCoverageRules" Rule="CalculateTotalPremium" ClearCache="true" />
+			</rul:Locate>
+			<rul:Locate AtDataDef="CommercialPropertyOutsideSignsDetailSpecialCoverage">
+				<rul:RunRule Type="decimal" FileName="CommercialPropertyOutsideSignsDetailSpecialCoverageRules" Rule="CalculateTotalPremium" ClearCache="true" />
+			</rul:Locate>
+			<rul:If>
+				<rul:Test>
+					<rul:And>
+						<rul:Equal>
+							<rul:FirstValue Type="integer" FromConstant="0" FromDataDef="@PremiumIndicator" Order="DataDefInputParamConstant" />
+							<rul:Constant Type="integer">1</rul:Constant>
+						</rul:Equal>
+						<rul:NotEqual>
+							<rul:FirstValue Type="decimal" FromConstant="0" FromDataDef="@Premium" Order="DataDefInputParamConstant" />
+							<rul:Constant Type="decimal">0</rul:Constant>
+						</rul:NotEqual>
+					</rul:And>
+				</rul:Test>
+				<rul:Then>
+					<rul:FirstValue Type="decimal" FromConstant="0" FromDataDef="@Premium" Order="DataDefInputParamConstant" />
+				</rul:Then>
+				<rul:Else>
+					<rul:Constant Type="decimal">0</rul:Constant>
+				</rul:Else>
+			</rul:If>
+		</rul:Sum>
+	</rul:Rule>
+	<rul:Rule Name="ErcSetRatesAndFactors" Type="none" DataDefGroup="CommercialPropertyOutsideSignsDetail">
+		<rul:Sequence>
+			<rul:RunRule Type="none" FileName="CommercialPropertyOutsideSignsDetailRules" Rule="SetPolicyType" ClearCache="true" />
+			<rul:RunRule Type="none" FileName="CommercialPropertyOutsideSignsDetailRules" Rule="SetEQCauseOfLossForm" ClearCache="true" />
+			<rul:RunRule Type="none" FileName="CommercialPropertyOutsideSignsDetailRules" Rule="SetVandalismExclFactor" ClearCache="true" />
+			<rul:RunRule Type="none" FileName="CommercialPropertyOutsideSignsDetailRules" Rule="SetBGIRatesAndCoinsuranceFactor" ClearCache="true" />
+			<rul:RunRule Type="none" FileName="CommercialPropertyOutsideSignsDetailRules" Rule="SetEQDeductibleAndCoinsuranceFactors" ClearCache="true" />
+			<rul:RunRule Type="none" FileName="CommercialPropertyOutsideSignsDetailRules" Rule="SetEQBaseRate" ClearCache="true" />
+			<rul:RunRule Type="none" FileName="CommercialPropertyOutsideSignsDetailRules" Rule="SetBGIIRatesAndFactors" ClearCache="true" />
+			<rul:RunRule Type="none" FileName="CommercialPropertyOutsideSignsDetailRules" Rule="SetBroadRatesAndFactors" ClearCache="true" />
+			<rul:RunRule Type="none" FileName="CommercialPropertyOutsideSignsDetailRules" Rule="SetSpecialRatesAndFactors" ClearCache="true" />
+		</rul:Sequence>
+	</rul:Rule>
+	<rul:Rule Name="SetPolicyType" Type="none" DataDefGroup="CommercialPropertyOutsideSignsDetail">
+		<rul:Sequence>
+			<rul:Copy Type="string" ToDataDef="@PolicyType" FromDataDef="ancestor::CommercialProperty/@PolicyType" />
+		</rul:Sequence>
+	</rul:Rule>
+	<rul:Rule Name="SetEQCauseOfLossForm" Type="none" DataDefGroup="CommercialPropertyOutsideSignsDetail">
+		<rul:Sequence>
+			<rul:If>
+				<rul:Test>
+					<rul:IsNotNull>
+						<rul:Value Type="string" FromDataDef="ancestor::CommercialPropertyLocation/@EQCauseOfLossForm" />
+					</rul:IsNotNull>
+				</rul:Test>
+				<rul:Then>
+					<rul:Copy Type="string" ToDataDef="@EQCauseOfLossForm" FromDataDef="ancestor::CommercialPropertyLocation/@EQCauseOfLossForm" />
+				</rul:Then>
+			</rul:If>
+		</rul:Sequence>
+	</rul:Rule>
+	<rul:Rule Name="SetVandalismExclFactor" Type="none" DataDefGroup="CommercialPropertyOutsideSignsDetail">
+		<rul:Sequence>
+			<rul:WithArgs>
+				<rul:Arg Type="decimal" Param="calcVandalismExclFactor">
+					<rul:FirstNonNull Type="decimal">
+						<rul:If>
+							<rul:Test>
+								<rul:Or>
+									<rul:And>
+										<rul:Equal>
+											<rul:FirstValue Type="string" FromConstant="" FromDataDef="@PolicyType" Order="DataDefInputParamConstant" />
+											<rul:Constant Type="string">Commercial Property Policy</rul:Constant>
+										</rul:Equal>
+										<rul:Exist AtInputDataDef="ancestor::CommercialPropertyStructure/CommercialPropertyVandalismExclusionTable/CommercialPropertyVandalismExclusion" />
+									</rul:And>
+									<rul:And>
+										<rul:Equal>
+											<rul:FirstValue Type="string" FromConstant="" FromDataDef="@PolicyType" Order="DataDefInputParamConstant" />
+											<rul:Constant Type="string">Standard Property Policy</rul:Constant>
+										</rul:Equal>
+										<rul:Or>
+											<rul:Equal>
+												<rul:FirstValue Type="string" FromConstant="" FromDataDef="ancestor::CommercialPropertyStructure/@CauseOfLossToUse" Order="DataDefInputParamConstant" />
+												<rul:Constant Type="string">Fire</rul:Constant>
+											</rul:Equal>
+											<rul:Equal>
+												<rul:FirstValue Type="string" FromConstant="" FromDataDef="ancestor::CommercialPropertyStructure/@CauseOfLossToUse" Order="DataDefInputParamConstant" />
+												<rul:Constant Type="string">Fire and Sprinkler Leakage</rul:Constant>
+											</rul:Equal>
+											<rul:Equal>
+												<rul:FirstValue Type="string" FromConstant="" FromDataDef="ancestor::CommercialPropertyStructure/@CauseOfLossToUse" Order="DataDefInputParamConstant" />
+												<rul:Constant Type="string">Fire and Allied Lines</rul:Constant>
+											</rul:Equal>
+											<rul:Equal>
+												<rul:FirstValue Type="string" FromConstant="" FromDataDef="ancestor::CommercialPropertyStructure/@CauseOfLossToUse" Order="DataDefInputParamConstant" />
+												<rul:Constant Type="string">Fire, Sprinkler Leakage and Allied Lines</rul:Constant>
+											</rul:Equal>
+										</rul:Or>
+									</rul:And>
+								</rul:Or>
+							</rul:Test>
+							<rul:Then>
+								<rul:RunRule Type="decimal" FileName="CommercialPropertyOutsideSignsDetailRules" Rule="LookupVandalismExclusionFactor" ClearCache="true" />
+							</rul:Then>
+						</rul:If>
+						<rul:Constant Type="decimal">1</rul:Constant>
+					</rul:FirstNonNull>
+				</rul:Arg>
+				<rul:Value Type="decimal" ToDataDef="@VandalismExclFactor" FromParam="calcVandalismExclFactor" />
+			</rul:WithArgs>
+		</rul:Sequence>
+	</rul:Rule>
+	<rul:Rule Name="SetBGIRatesAndCoinsuranceFactor" Type="none" DataDefGroup="CommercialPropertyOutsideSignsDetail">
+		<rul:Sequence>
+			<rul:RunRule Type="none" FileName="CommercialPropertyOutsideSignsDetailRules" Rule="SetBasicGroupIRate" ClearCache="true" />
+			<rul:RunRule Type="none" FileName="CommercialPropertyOutsideSignsDetailRules" Rule="SetBasicGroupICauseOfLossAdjustment" ClearCache="true" />
+			<rul:RunRule Type="none" FileName="CommercialPropertyOutsideSignsDetailRules" Rule="SetCoinsuranceFactor" ClearCache="true" />
+		</rul:Sequence>
+	</rul:Rule>
+	<rul:Rule Name="SetBasicGroupIRate" Type="none" DataDefGroup="CommercialPropertyOutsideSignsDetail">
+		<rul:Sequence>
+			<rul:WithArgs>
+				<rul:Arg Type="decimal" Param="calcBasicGroupIRate">
+					<rul:FirstNonNull Type="decimal">
+						<rul:Choose>
+							<rul:When>
+								<rul:Test>
+									<rul:And>
+										<rul:Equal>
+											<rul:FirstValue Type="string" FromConstant="" FromDataDef="@SignPlacement" Order="DataDefInputParamConstant" />
+											<rul:Constant Type="string">Detached</rul:Constant>
+										</rul:Equal>
+										<rul:Equal>
+											<rul:FirstValue Type="string" FromConstant="" FromDataDef="@ConstructionType" Order="DataDefInputParamConstant" />
+											<rul:Constant Type="string">Entirely Metal</rul:Constant>
+										</rul:Equal>
+									</rul:And>
+								</rul:Test>
+								<rul:Then>
+									<rul:RunRule Type="decimal" FileName="CommercialPropertyOutsideSignsDetailRules" Rule="LookupBasicGroupIRateSpecialClass" ClearCache="true">
+										<rul:Arg Type="string" Param="option">
+											<rul:Constant Type="string">Option12</rul:Constant>
+										</rul:Arg>
+									</rul:RunRule>
+								</rul:Then>
+							</rul:When>
+							<rul:When>
+								<rul:Test>
+									<rul:And>
+										<rul:Equal>
+											<rul:FirstValue Type="string" FromConstant="" FromDataDef="@SignPlacement" Order="DataDefInputParamConstant" />
+											<rul:Constant Type="string">Detached</rul:Constant>
+										</rul:Equal>
+										<rul:NotEqual>
+											<rul:FirstValue Type="string" FromConstant="" FromDataDef="@ConstructionType" Order="DataDefInputParamConstant" />
+											<rul:Constant Type="string">Entirely Metal</rul:Constant>
+										</rul:NotEqual>
+									</rul:And>
+								</rul:Test>
+								<rul:Then>
+									<rul:RunRule Type="decimal" FileName="CommercialPropertyOutsideSignsDetailRules" Rule="LookupBasicGroupIRateSpecialClass" ClearCache="true">
+										<rul:Arg Type="string" Param="option">
+											<rul:Constant Type="string">Option13</rul:Constant>
+										</rul:Arg>
+									</rul:RunRule>
+								</rul:Then>
+							</rul:When>
+							<rul:When>
+								<rul:Test>
+									<rul:Equal>
+										<rul:FirstValue Type="string" FromConstant="" FromDataDef="@SignPlacement" Order="DataDefInputParamConstant" />
+										<rul:Constant Type="string">Attached</rul:Constant>
+									</rul:Equal>
+								</rul:Test>
+								<rul:Then>
+									<rul:FirstValue Type="decimal" FromConstant="0" FromDataDef="ancestor::CommercialPropertyStructure/@BasicGroupICauseOfLossAdjustment" Order="DataDefInputParamConstant" />
+								</rul:Then>
+							</rul:When>
+							<rul:Otherwise>
+								<rul:Constant Type="decimal">0</rul:Constant>
+							</rul:Otherwise>
+						</rul:Choose>
+						<rul:Constant Type="decimal">0</rul:Constant>
+					</rul:FirstNonNull>
+				</rul:Arg>
+				<rul:Value Type="decimal" ToDataDef="@BasicGroupIRate" FromParam="calcBasicGroupIRate" />
+			</rul:WithArgs>
+		</rul:Sequence>
+	</rul:Rule>
+	<rul:Rule Name="SetBasicGroupICauseOfLossAdjustment" Type="none" DataDefGroup="CommercialPropertyOutsideSignsDetail">
+		<rul:Sequence>
+			<rul:WithArgs>
+				<rul:Arg Type="decimal" Param="calcBasicGroupICauseOfLossAdjustment">
+					<rul:FirstNonNull Type="decimal">
+						<rul:Choose>
+							<rul:When>
+								<rul:Test>
+									<rul:Equal>
+										<rul:FirstValue Type="string" FromConstant="" FromDataDef="@SignPlacement" Order="DataDefInputParamConstant" />
+										<rul:Constant Type="string">Attached</rul:Constant>
+									</rul:Equal>
+								</rul:Test>
+								<rul:Then>
+									<rul:FirstValue Type="decimal" FromConstant="0" FromDataDef="@BasicGroupIRate" Order="DataDefInputParamConstant" />
+								</rul:Then>
+							</rul:When>
+							<rul:When>
+								<rul:Test>
+									<rul:Equal>
+										<rul:FirstValue Type="string" FromConstant="" FromDataDef="@SignPlacement" Order="DataDefInputParamConstant" />
+										<rul:Constant Type="string">Detached</rul:Constant>
+									</rul:Equal>
+								</rul:Test>
+								<rul:Then>
+									<rul:Product DecimalPlaces="3">
+										<rul:Product DecimalPlaces="3">
+											<rul:FirstValue Type="decimal" FromConstant="0" FromDataDef="@BasicGroupIRate" Order="DataDefInputParamConstant" />
+											<rul:FirstValue Type="decimal" FromConstant="0" FromDataDef="@VandalismExclFactor" Order="DataDefInputParamConstant" />
+										</rul:Product>
+										<rul:FirstValue Type="decimal" FromConstant="0" FromDataDef="ancestor::CommercialProperty/@StdPropPolBasicGroupIFactor" Order="DataDefInputParamConstant" />
+									</rul:Product>
+								</rul:Then>
+							</rul:When>
+							<rul:Otherwise>
+								<rul:Constant Type="decimal">0</rul:Constant>
+							</rul:Otherwise>
+						</rul:Choose>
+						<rul:Constant Type="decimal">0</rul:Constant>
+					</rul:FirstNonNull>
+				</rul:Arg>
+				<rul:Value Type="decimal" ToDataDef="@BasicGroupICauseOfLossAdjustment" FromParam="calcBasicGroupICauseOfLossAdjustment" />
+			</rul:WithArgs>
+		</rul:Sequence>
+	</rul:Rule>
+	<rul:Rule Name="SetCoinsuranceFactor" Type="none" DataDefGroup="CommercialPropertyOutsideSignsDetail">
+		<rul:Sequence>
+			<rul:Choose>
+				<rul:When>
+					<rul:Test>
+						<rul:Or>
+							<rul:Equal>
+								<rul:FirstValue Type="string" FromConstant="" FromDataDef="@Coinsurance" Order="DataDefInputParamConstant" />
+								<rul:Constant Type="string">80%</rul:Constant>
+							</rul:Equal>
+							<rul:Equal>
+								<rul:FirstValue Type="string" FromConstant="" FromDataDef="@Coinsurance" Order="DataDefInputParamConstant" />
+								<rul:Constant Type="string">90%</rul:Constant>
+							</rul:Equal>
+							<rul:Equal>
+								<rul:FirstValue Type="string" FromConstant="" FromDataDef="@Coinsurance" Order="DataDefInputParamConstant" />
+								<rul:Constant Type="string">100%</rul:Constant>
+							</rul:Equal>
+						</rul:Or>
+					</rul:Test>
+					<rul:Then>
+						<rul:Sequence>
+							<rul:RunRule Type="decimal" ToDataDef="@CoinsuranceFactor" FileName="CommercialPropertyOutsideSignsDetailRules" Rule="LookupCoinsuranceFactor" ClearCache="true" />
+						</rul:Sequence>
+					</rul:Then>
+				</rul:When>
+				<rul:When>
+					<rul:Test>
+						<rul:Or>
+							<rul:Equal>
+								<rul:FirstValue Type="string" FromConstant="" FromDataDef="@Coinsurance" Order="DataDefInputParamConstant" />
+								<rul:Constant Type="string">50%</rul:Constant>
+							</rul:Equal>
+							<rul:Equal>
+								<rul:FirstValue Type="string" FromConstant="" FromDataDef="@Coinsurance" Order="DataDefInputParamConstant" />
+								<rul:Constant Type="string">60%</rul:Constant>
+							</rul:Equal>
+							<rul:Equal>
+								<rul:FirstValue Type="string" FromConstant="" FromDataDef="@Coinsurance" Order="DataDefInputParamConstant" />
+								<rul:Constant Type="string">70%</rul:Constant>
+							</rul:Equal>
+							<rul:Equal>
+								<rul:FirstValue Type="string" FromConstant="" FromDataDef="@Coinsurance" Order="DataDefInputParamConstant" />
+								<rul:Constant Type="string">None</rul:Constant>
+							</rul:Equal>
+						</rul:Or>
+					</rul:Test>
+					<rul:Then>
+						<rul:Sequence>
+							<rul:RunRule Type="decimal" ToDataDef="@CoinsuranceFactor" FileName="CommercialPropertyOutsideSignsDetailRules" Rule="LookupLessThan80PctMultiplicativeFactor" ClearCache="true" />
+						</rul:Sequence>
+					</rul:Then>
+				</rul:When>
+				<rul:Otherwise>
+					<rul:Sequence>
+						<rul:Constant Type="decimal" ToDataDef="@CoinsuranceFactor">1.0</rul:Constant>
+					</rul:Sequence>
+				</rul:Otherwise>
+			</rul:Choose>
+		</rul:Sequence>
+	</rul:Rule>
+	<rul:Rule Name="SetBGIIRatesAndFactors" Type="none" DataDefGroup="CommercialPropertyOutsideSignsDetail">
+		<rul:Sequence>
+			<rul:RunRule Type="none" FileName="CommercialPropertyOutsideSignsDetailRules" Rule="SetWindstormOrHailExclFactor" ClearCache="true" />
+			<rul:RunRule Type="none" FileName="CommercialPropertyOutsideSignsDetailRules" Rule="SetBasicGroupIICoinsuranceFactor" ClearCache="true" />
+			<rul:RunRule Type="none" FileName="CommercialPropertyOutsideSignsDetailRules" Rule="SetBasicGroupIIBaseRate" ClearCache="true" />
+			<rul:RunRule Type="none" FileName="CommercialPropertyOutsideSignsDetailRules" Rule="SetBasicGroupIISymbolNum" ClearCache="true" />
+			<rul:RunRule Type="none" FileName="CommercialPropertyOutsideSignsDetailRules" Rule="SetBasicGroupIIRate" ClearCache="true" />
+		</rul:Sequence>
+	</rul:Rule>
+	<rul:Rule Name="SetWindstormOrHailExclFactor" Type="none" DataDefGroup="CommercialPropertyOutsideSignsDetail">
+		<rul:Sequence>
+			<rul:If>
+				<rul:Test>
+					<rul:NotExist AtInputDataDef="../../../../CommercialPropertyWindstormOrHailExclusionTable/CommercialPropertyWindstormOrHailExclusion" />
+				</rul:Test>
+				<rul:Then>
+					<rul:Sequence>
+						<rul:Constant Type="decimal" ToDataDef="@WindstormOrHailExclFactor">1.0</rul:Constant>
+					</rul:Sequence>
+				</rul:Then>
+				<rul:Else>
+					<rul:Sequence>
+						<rul:RunRule Type="decimal" ToDataDef="@WindstormOrHailExclFactor" FileName="CommercialPropertyOutsideSignsDetailRules" Rule="LookupWindstormOrHailExclFactor" ClearCache="true">
+							<rul:Arg Type="string" Param="symbol">
+								<rul:Constant Type="string">B</rul:Constant>
+							</rul:Arg>
+						</rul:RunRule>
+					</rul:Sequence>
+				</rul:Else>
+			</rul:If>
+		</rul:Sequence>
+	</rul:Rule>
+	<rul:Rule Name="SetBasicGroupIICoinsuranceFactor" Type="none" DataDefGroup="CommercialPropertyOutsideSignsDetail">
+		<rul:Sequence>
+			<rul:If>
+				<rul:Test>
+					<rul:Or>
+						<rul:Equal>
+							<rul:FirstValue Type="string" FromConstant="" FromDataDef="@Coinsurance" Order="DataDefInputParamConstant" />
+							<rul:Constant Type="string">80%</rul:Constant>
+						</rul:Equal>
+						<rul:Equal>
+							<rul:FirstValue Type="string" FromConstant="" FromDataDef="@Coinsurance" Order="DataDefInputParamConstant" />
+							<rul:Constant Type="string">90%</rul:Constant>
+						</rul:Equal>
+						<rul:Equal>
+							<rul:FirstValue Type="string" FromConstant="" FromDataDef="@Coinsurance" Order="DataDefInputParamConstant" />
+							<rul:Constant Type="string">100%</rul:Constant>
+						</rul:Equal>
+					</rul:Or>
+				</rul:Test>
+				<rul:Then>
+					<rul:Copy Type="decimal" ToDataDef="@BasicGroupIICoinsuranceFactor" FromDataDef="@CoinsuranceFactor" />
+				</rul:Then>
+				<rul:Else>
+					<rul:Sequence>
+						<rul:RunRule Type="decimal" ToDataDef="@BasicGroupIICoinsuranceFactor" FileName="CommercialPropertyOutsideSignsDetailRules" Rule="LookupBasicGroupIIFlatCoinsuranceFactor" ClearCache="true" />
+					</rul:Sequence>
+				</rul:Else>
+			</rul:If>
+		</rul:Sequence>
+	</rul:Rule>
+	<rul:Rule Name="SetBasicGroupIIBaseRate" Type="none" DataDefGroup="CommercialPropertyOutsideSignsDetail">
+		<rul:Sequence>
+			<rul:Choose>
+				<rul:When>
+					<rul:Test>
+						<rul:NotExist AtInputDataDef="ancestor::CommercialPropertyStructure/CommercialPropertyWindstormOrHailExclusionTable/CommercialPropertyWindstormOrHailExclusion" />
+					</rul:Test>
+					<rul:Then>
+						<rul:Sequence>
+							<rul:If>
+								<rul:Test>
+									<rul:And>
+										<rul:NotEqual>
+											<rul:FirstValue Type="string" FromConstant="" FromDataDef="ancestor::CommercialPropertyStructure/@BasicGroupIIRatingTerr" Order="DataDefInputParamConstant" />
+											<rul:Constant Type="string"></rul:Constant>
+										</rul:NotEqual>
+										<rul:NotEqual>
+											<rul:FirstValue Type="string" FromConstant="" FromDataDef="ancestor::CommercialPropertyStructure/@BasicGroupIISymbolToUse" Order="DataDefInputParamConstant" />
+											<rul:Constant Type="string"></rul:Constant>
+										</rul:NotEqual>
+									</rul:And>
+								</rul:Test>
+								<rul:Then>
+									<rul:Sequence>
+										<rul:RunRule Type="decimal" ToDataDef="@BasicGroupIIBaseRate" FileName="CommercialPropertyOutsideSignsDetailRules" Rule="LookupBasicGroupIIRate" ClearCache="true" />
+									</rul:Sequence>
+								</rul:Then>
+								<rul:Else>
+									<rul:Sequence>
+										<rul:Constant Type="decimal" ToDataDef="@BasicGroupIIBaseRate">0.0</rul:Constant>
+									</rul:Sequence>
+								</rul:Else>
+							</rul:If>
+						</rul:Sequence>
+					</rul:Then>
+				</rul:When>
+				<rul:When>
+					<rul:Test>
+						<rul:Exist AtInputDataDef="ancestor::CommercialPropertyStructure/CommercialPropertyWindstormOrHailExclusionTable/CommercialPropertyWindstormOrHailExclusion" />
+					</rul:Test>
+					<rul:Then>
+						<rul:Sequence>
+							<rul:RunRule Type="decimal" ToDataDef="@BasicGroupIIBaseRate" FileName="CommercialPropertyOutsideSignsDetailRules" Rule="LookupLowestBasicGroupIIRate" ClearCache="true" />
+						</rul:Sequence>
+					</rul:Then>
+				</rul:When>
+			</rul:Choose>
+		</rul:Sequence>
+	</rul:Rule>
+	<rul:Rule Name="SetBasicGroupIISymbolNum" Type="none" DataDefGroup="CommercialPropertyOutsideSignsDetail">
+		<rul:Sequence>
+			<rul:If>
+				<rul:Test>
+					<rul:Exist AtInputDataDef="ancestor::CommercialPropertyStructure/CommercialPropertyWindstormOrHailExclusionTable/CommercialPropertyWindstormOrHailExclusion" />
+				</rul:Test>
+				<rul:Then>
+					<rul:Sequence>
+						<rul:Constant Type="integer" ToDataDef="@BasicGroupIISymbolNum">1</rul:Constant>
+					</rul:Sequence>
+				</rul:Then>
+			</rul:If>
+			<rul:If>
+				<rul:Test>
+					<rul:NotExist AtInputDataDef="ancestor::CommercialPropertyStructure/CommercialPropertyWindstormOrHailExclusionTable/CommercialPropertyWindstormOrHailExclusion" />
+				</rul:Test>
+				<rul:Then>
+					<rul:Sequence>
+						<rul:If>
+							<rul:Test>
+								<rul:Equal>
+									<rul:FirstValue Type="string" FromConstant="" FromDataDef="@ConstructionType" Order="DataDefInputParamConstant" />
+									<rul:Constant Type="string">Entirely Metal</rul:Constant>
+								</rul:Equal>
+							</rul:Test>
+							<rul:Then>
+								<rul:Sequence>
+									<rul:Constant Type="integer" ToDataDef="@BasicGroupIISymbolNum">4</rul:Constant>
+								</rul:Sequence>
+							</rul:Then>
+							<rul:Else>
+								<rul:Sequence>
+									<rul:Constant Type="integer" ToDataDef="@BasicGroupIISymbolNum">8</rul:Constant>
+								</rul:Sequence>
+							</rul:Else>
+						</rul:If>
+					</rul:Sequence>
+				</rul:Then>
+			</rul:If>
+		</rul:Sequence>
+	</rul:Rule>
+	<rul:Rule Name="SetBasicGroupIIRate" Type="none" DataDefGroup="CommercialPropertyOutsideSignsDetail">
+		<rul:Sequence>
+			<rul:WithArgs>
+				<rul:Arg Type="decimal" Param="calcBasicGroupIIRate">
+					<rul:FirstNonNull Type="decimal">
+						<rul:Choose>
+							<rul:When>
+								<rul:Test>
+									<rul:Or>
+										<rul:Equal>
+											<rul:FirstValue Type="string" FromConstant="" FromDataDef="@CauseOfLoss" Order="DataDefInputParamConstant" />
+											<rul:Constant Type="string">Fire</rul:Constant>
+										</rul:Equal>
+										<rul:Equal>
+											<rul:FirstValue Type="string" FromConstant="" FromDataDef="@CauseOfLoss" Order="DataDefInputParamConstant" />
+											<rul:Constant Type="string">Fire and Vandalism</rul:Constant>
+										</rul:Equal>
+										<rul:Equal>
+											<rul:FirstValue Type="string" FromConstant="" FromDataDef="@CauseOfLoss" Order="DataDefInputParamConstant" />
+											<rul:Constant Type="string">Fire and Sprinkler Leakage</rul:Constant>
+										</rul:Equal>
+										<rul:Equal>
+											<rul:FirstValue Type="string" FromConstant="" FromDataDef="@CauseOfLoss" Order="DataDefInputParamConstant" />
+											<rul:Constant Type="string">Fire, Vandalism and Sprinkler Leakage</rul:Constant>
+										</rul:Equal>
+									</rul:Or>
+								</rul:Test>
+								<rul:Then>
+									<rul:Constant Type="decimal">0</rul:Constant>
+								</rul:Then>
+							</rul:When>
+							<rul:When>
+								<rul:Test>
+									<rul:Equal>
+										<rul:FirstValue Type="string" FromConstant="" FromDataDef="@SignPlacement" Order="DataDefInputParamConstant" />
+										<rul:Constant Type="string">Attached</rul:Constant>
+									</rul:Equal>
+								</rul:Test>
+								<rul:Then>
+									<rul:FirstValue Type="decimal" FromConstant="0" FromDataDef="ancestor::CommercialPropertyStructure/@BasicGroupIICauseOfLossAdjustment" Order="DataDefInputParamConstant" />
+								</rul:Then>
+							</rul:When>
+							<rul:When>
+								<rul:Test>
+									<rul:Equal>
+										<rul:FirstValue Type="string" FromConstant="" FromDataDef="@SignPlacement" Order="DataDefInputParamConstant" />
+										<rul:Constant Type="string">Detached</rul:Constant>
+									</rul:Equal>
+								</rul:Test>
+								<rul:Then>
+									<rul:Product DecimalPlaces="3">
+										<rul:Product DecimalPlaces="3">
+											<rul:Product DecimalPlaces="3">
+												<rul:Product DecimalPlaces="3">
+													<rul:FirstValue Type="decimal" FromConstant="0" FromDataDef="@BasicGroupIIBaseRate" Order="DataDefInputParamConstant" />
+													<rul:FirstValue Type="decimal" FromConstant="0" FromDataDef="ancestor::CommercialProperty/@LossCostMultiplier" Order="DataDefInputParamConstant" />
+												</rul:Product>
+												<rul:FirstValue Type="integer" FromConstant="0" FromDataDef="@BasicGroupIISymbolNum" Order="DataDefInputParamConstant" />
+											</rul:Product>
+											<rul:FirstValue Type="decimal" FromConstant="0" FromDataDef="@WindstormOrHailExclFactor" Order="DataDefInputParamConstant" />
+										</rul:Product>
+										<rul:FirstValue Type="decimal" FromConstant="0" FromDataDef="ancestor::CommercialProperty/@StdPropPolBasicGroupIIFactor" Order="DataDefInputParamConstant" />
+									</rul:Product>
+								</rul:Then>
+							</rul:When>
+							<rul:Otherwise>
+								<rul:Constant Type="decimal">0</rul:Constant>
+							</rul:Otherwise>
+						</rul:Choose>
+						<rul:Constant Type="decimal">0</rul:Constant>
+					</rul:FirstNonNull>
+				</rul:Arg>
+				<rul:Value Type="decimal" ToDataDef="@BasicGroupIIRate" FromParam="calcBasicGroupIIRate" />
+			</rul:WithArgs>
+		</rul:Sequence>
+	</rul:Rule>
+	<rul:Rule Name="SetBroadRatesAndFactors" Type="none" DataDefGroup="CommercialPropertyOutsideSignsDetail">
+		<rul:Sequence>
+			<rul:RunRule Type="none" FileName="CommercialPropertyOutsideSignsDetailRules" Rule="SetBroadBaseRate" ClearCache="true" />
+			<rul:RunRule Type="none" FileName="CommercialPropertyOutsideSignsDetailRules" Rule="SetBroadRate" ClearCache="true" />
+			<rul:RunRule Type="none" FileName="CommercialPropertyOutsideSignsDetailRules" Rule="SetAdjustedBroadRate" ClearCache="true" />
+		</rul:Sequence>
+	</rul:Rule>
+	<rul:Rule Name="SetBroadBaseRate" Type="none" DataDefGroup="CommercialPropertyOutsideSignsDetail">
+		<rul:Sequence>
+			<rul:Choose>
+				<rul:When>
+					<rul:Test>
+						<rul:And>
+							<rul:Equal>
+								<rul:FirstValue Type="string" FromConstant="" FromDataDef="@CauseOfLoss" Order="DataDefInputParamConstant" />
+								<rul:Constant Type="string">Broad</rul:Constant>
+							</rul:Equal>
+							<rul:Equal>
+								<rul:FirstValue Type="string" FromConstant="" FromDataDef="@SignPlacement" Order="DataDefInputParamConstant" />
+								<rul:Constant Type="string">Attached</rul:Constant>
+							</rul:Equal>
+						</rul:And>
+					</rul:Test>
+					<rul:Then>
+						<rul:Sequence>
+							<rul:RunRule Type="decimal" ToDataDef="@BroadBaseRate" FileName="CommercialPropertyOutsideSignsDetailRules" Rule="LookupBroadFormBaseRate" ClearCache="true">
+								<rul:Arg Type="string" Param="constructionType">
+									<rul:FirstValue Type="string" FromConstant="" FromDataDef="ancestor::CommercialPropertyStructure/@ConstructionTypeToUse" Order="DataDefInputParamConstant" />
+								</rul:Arg>
+								<rul:Arg Type="string" Param="covType">
+									<rul:Constant Type="string">Bldg</rul:Constant>
+								</rul:Arg>
+							</rul:RunRule>
+						</rul:Sequence>
+					</rul:Then>
+				</rul:When>
+				<rul:When>
+					<rul:Test>
+						<rul:And>
+							<rul:Equal>
+								<rul:FirstValue Type="string" FromConstant="" FromDataDef="@CauseOfLoss" Order="DataDefInputParamConstant" />
+								<rul:Constant Type="string">Broad</rul:Constant>
+							</rul:Equal>
+							<rul:NotEqual>
+								<rul:FirstValue Type="string" FromConstant="" FromDataDef="@SignPlacement" Order="DataDefInputParamConstant" />
+								<rul:Constant Type="string">Attached</rul:Constant>
+							</rul:NotEqual>
+						</rul:And>
+					</rul:Test>
+					<rul:Then>
+						<rul:Sequence>
+							<rul:RunRule Type="decimal" ToDataDef="@BroadBaseRate" FileName="CommercialPropertyOutsideSignsDetailRules" Rule="LookupBroadFormBaseRate" ClearCache="true">
+								<rul:Arg Type="string" Param="constructionType">
+									<rul:Constant Type="string">Frame</rul:Constant>
+								</rul:Arg>
+								<rul:Arg Type="string" Param="covType">
+									<rul:Constant Type="string">Bldg</rul:Constant>
+								</rul:Arg>
+							</rul:RunRule>
+						</rul:Sequence>
+					</rul:Then>
+				</rul:When>
+				<rul:When>
+					<rul:Test>
+						<rul:NotEqual>
+							<rul:FirstValue Type="string" FromConstant="" FromDataDef="@CauseOfLoss" Order="DataDefInputParamConstant" />
+							<rul:Constant Type="string">Broad</rul:Constant>
+						</rul:NotEqual>
+					</rul:Test>
+					<rul:Then>
+						<rul:Sequence>
+							<rul:Constant Type="decimal" ToDataDef="@BroadBaseRate">0.0</rul:Constant>
+						</rul:Sequence>
+					</rul:Then>
+				</rul:When>
+			</rul:Choose>
+		</rul:Sequence>
+	</rul:Rule>
+	<rul:Rule Name="SetBroadRate" Type="none" DataDefGroup="CommercialPropertyOutsideSignsDetail">
+		<rul:Sequence>
+			<rul:WithArgs>
+				<rul:Arg Type="decimal" Param="calcBroadRate">
+					<rul:FirstNonNull Type="decimal">
+						<rul:Choose>
+							<rul:When>
+								<rul:Test>
+									<rul:Or>
+										<rul:Equal>
+											<rul:FirstValue Type="string" FromConstant="" FromDataDef="@PolicyType" Order="DataDefInputParamConstant" />
+											<rul:Constant Type="string">Standard Property Policy</rul:Constant>
+										</rul:Equal>
+										<rul:NotEqual>
+											<rul:FirstValue Type="string" FromConstant="" FromDataDef="@CauseOfLoss" Order="DataDefInputParamConstant" />
+											<rul:Constant Type="string">Broad</rul:Constant>
+										</rul:NotEqual>
+									</rul:Or>
+								</rul:Test>
+								<rul:Then>
+									<rul:Constant Type="decimal">0</rul:Constant>
+								</rul:Then>
+							</rul:When>
+							<rul:When>
+								<rul:Test>
+									<rul:Equal>
+										<rul:FirstValue Type="string" FromConstant="" FromDataDef="@CauseOfLoss" Order="DataDefInputParamConstant" />
+										<rul:Constant Type="string">Broad</rul:Constant>
+									</rul:Equal>
+								</rul:Test>
+								<rul:Then>
+									<rul:Product DecimalPlaces="3">
+										<rul:FirstValue Type="decimal" FromConstant="0" FromDataDef="@BroadBaseRate" Order="DataDefInputParamConstant" />
+										<rul:FirstValue Type="decimal" FromConstant="0" FromDataDef="ancestor::CommercialProperty/@LossCostMultiplier" Order="DataDefInputParamConstant" />
+									</rul:Product>
+								</rul:Then>
+							</rul:When>
+							<rul:Otherwise>
+								<rul:Constant Type="decimal">0</rul:Constant>
+							</rul:Otherwise>
+						</rul:Choose>
+						<rul:Constant Type="decimal">0</rul:Constant>
+					</rul:FirstNonNull>
+				</rul:Arg>
+				<rul:Value Type="decimal" ToDataDef="@BroadRate" FromParam="calcBroadRate" />
+			</rul:WithArgs>
+		</rul:Sequence>
+	</rul:Rule>
+	<rul:Rule Name="SetAdjustedBroadRate" Type="none" DataDefGroup="CommercialPropertyOutsideSignsDetail">
+		<rul:Sequence>
+			<rul:WithArgs>
+				<rul:Arg Type="decimal" Param="calcAdjustedBroadRate">
+					<rul:FirstNonNull Type="decimal">
+						<rul:Product DecimalPlaces="3">
+							<rul:FirstValue Type="decimal" FromConstant="0" FromDataDef="@BroadRate" Order="DataDefInputParamConstant" />
+							<rul:FirstValue Type="decimal" FromConstant="0" FromDataDef="@CoinsuranceFactor" Order="DataDefInputParamConstant" />
+						</rul:Product>
+						<rul:Constant Type="decimal">0</rul:Constant>
+					</rul:FirstNonNull>
+				</rul:Arg>
+				<rul:Value Type="decimal" ToDataDef="@AdjustedBroadRate" FromParam="calcAdjustedBroadRate" />
+			</rul:WithArgs>
+		</rul:Sequence>
+	</rul:Rule>
+	<rul:Rule Name="SetSpecialRatesAndFactors" Type="none" DataDefGroup="CommercialPropertyOutsideSignsDetail">
+		<rul:Sequence>
+			<rul:RunRule Type="none" FileName="CommercialPropertyOutsideSignsDetailRules" Rule="SetSpecialBaseRate" ClearCache="true" />
+			<rul:RunRule Type="none" FileName="CommercialPropertyOutsideSignsDetailRules" Rule="SetSpecialRate" ClearCache="true" />
+			<rul:RunRule Type="none" FileName="CommercialPropertyOutsideSignsDetailRules" Rule="SetAdjustedSpecialRate" ClearCache="true" />
+		</rul:Sequence>
+	</rul:Rule>
+	<rul:Rule Name="SetSpecialBaseRate" Type="none" DataDefGroup="CommercialPropertyOutsideSignsDetail">
+		<rul:Sequence>
+			<rul:If>
+				<rul:Test>
+					<rul:Equal>
+						<rul:FirstValue Type="string" FromConstant="" FromDataDef="@CauseOfLoss" Order="DataDefInputParamConstant" />
+						<rul:Constant Type="string">Special</rul:Constant>
+					</rul:Equal>
+				</rul:Test>
+				<rul:Then>
+					<rul:Sequence>
+						<rul:RunRule Type="decimal" ToDataDef="@SpecialBaseRate" FileName="CommercialPropertyOutsideSignsDetailRules" Rule="LookupSpecialBuildingRate" ClearCache="true" />
+					</rul:Sequence>
+				</rul:Then>
+				<rul:Else>
+					<rul:Sequence>
+						<rul:Constant Type="decimal" ToDataDef="@SpecialBaseRate">0.0</rul:Constant>
+					</rul:Sequence>
+				</rul:Else>
+			</rul:If>
+		</rul:Sequence>
+	</rul:Rule>
+	<rul:Rule Name="SetSpecialRate" Type="none" DataDefGroup="CommercialPropertyOutsideSignsDetail">
+		<rul:Sequence>
+			<rul:WithArgs>
+				<rul:Arg Type="decimal" Param="calcSpecialRate">
+					<rul:FirstNonNull Type="decimal">
+						<rul:Choose>
+							<rul:When>
+								<rul:Test>
+									<rul:Or>
+										<rul:Equal>
+											<rul:FirstValue Type="string" FromConstant="" FromDataDef="@PolicyType" Order="DataDefInputParamConstant" />
+											<rul:Constant Type="string">Standard Property Policy</rul:Constant>
+										</rul:Equal>
+										<rul:NotEqual>
+											<rul:FirstValue Type="string" FromConstant="" FromDataDef="@CauseOfLoss" Order="DataDefInputParamConstant" />
+											<rul:Constant Type="string">Special</rul:Constant>
+										</rul:NotEqual>
+									</rul:Or>
+								</rul:Test>
+								<rul:Then>
+									<rul:Constant Type="decimal">0</rul:Constant>
+								</rul:Then>
+							</rul:When>
+							<rul:When>
+								<rul:Test>
+									<rul:Equal>
+										<rul:FirstValue Type="string" FromConstant="" FromDataDef="@CauseOfLoss" Order="DataDefInputParamConstant" />
+										<rul:Constant Type="string">Special</rul:Constant>
+									</rul:Equal>
+								</rul:Test>
+								<rul:Then>
+									<rul:Product DecimalPlaces="3">
+										<rul:FirstValue Type="decimal" FromConstant="0" FromDataDef="@SpecialBaseRate" Order="DataDefInputParamConstant" />
+										<rul:FirstValue Type="decimal" FromConstant="0" FromDataDef="ancestor::CommercialProperty/@LossCostMultiplier" Order="DataDefInputParamConstant" />
+									</rul:Product>
+								</rul:Then>
+							</rul:When>
+							<rul:Otherwise>
+								<rul:Constant Type="decimal">0</rul:Constant>
+							</rul:Otherwise>
+						</rul:Choose>
+						<rul:Constant Type="decimal">0</rul:Constant>
+					</rul:FirstNonNull>
+				</rul:Arg>
+				<rul:Value Type="decimal" ToDataDef="@SpecialRate" FromParam="calcSpecialRate" />
+			</rul:WithArgs>
+		</rul:Sequence>
+	</rul:Rule>
+	<rul:Rule Name="SetAdjustedSpecialRate" Type="none" DataDefGroup="CommercialPropertyOutsideSignsDetail">
+		<rul:Sequence>
+			<rul:WithArgs>
+				<rul:Arg Type="decimal" Param="calcAdjustedSpecialRate">
+					<rul:FirstNonNull Type="decimal">
+						<rul:Product DecimalPlaces="3">
+							<rul:Product DecimalPlaces="3">
+								<rul:FirstValue Type="decimal" FromConstant="0" FromDataDef="@SpecialRate" Order="DataDefInputParamConstant" />
+								<rul:FirstValue Type="decimal" FromConstant="0" FromDataDef="../../../../@SpecialTheftExclusionFactor" Order="DataDefInputParamConstant" />
+							</rul:Product>
+							<rul:FirstValue Type="decimal" FromConstant="0" FromDataDef="@CoinsuranceFactor" Order="DataDefInputParamConstant" />
+						</rul:Product>
+						<rul:Constant Type="decimal">0</rul:Constant>
+					</rul:FirstNonNull>
+				</rul:Arg>
+				<rul:Value Type="decimal" ToDataDef="@AdjustedSpecialRate" FromParam="calcAdjustedSpecialRate" />
+			</rul:WithArgs>
+		</rul:Sequence>
+	</rul:Rule>
+	<rul:Rule Name="SetEQDeductibleAndCoinsuranceFactors" Type="none" DataDefGroup="CommercialPropertyOutsideSignsDetail">
+		<rul:Sequence>
+			<rul:RunRule Type="none" FileName="CommercialPropertyOutsideSignsDetailRules" Rule="SetEQCoinsuranceFactor" ClearCache="true" />
+			<rul:RunRule Type="none" FileName="CommercialPropertyOutsideSignsDetailRules" Rule="SetEQSubLimitDeductibleFactor" ClearCache="true" />
+		</rul:Sequence>
+	</rul:Rule>
+	<rul:Rule Name="SetEQCoinsuranceFactor" Type="none" DataDefGroup="CommercialPropertyOutsideSignsDetail">
+		<rul:Sequence>
+			<rul:If>
+				<rul:Test>
+					<rul:Or>
+						<rul:Exist AtInputDataDef="ancestor::CommercialPropertyStructure/CommercialPropertyEarthquakeAndVolcanicEruptionEndorsementSubLimitFormTable/CommercialPropertyEarthquakeAndVolcanicEruptionEndorsementSubLimitForm" />
+						<rul:Exist AtInputDataDef="ancestor::CommercialPropertyStructure/CommercialPropertyEarthquakeAndVolcanicEruptionCoverageSubLimitFormWithFlatDollarDeductibleBldgTable/CommercialPropertyEarthquakeAndVolcanicEruptionCoverageSubLimitFormWithFlatDollarDeductibleBldg" />
+					</rul:Or>
+				</rul:Test>
+				<rul:Then>
+					<rul:Sequence>
+						<rul:Constant Type="decimal" ToDataDef="@EQCoinsuranceFactor">1.0</rul:Constant>
+					</rul:Sequence>
+				</rul:Then>
+				<rul:Else>
+					<rul:Copy Type="decimal" ToDataDef="@EQCoinsuranceFactor" FromDataDef="@CoinsuranceFactor" />
+				</rul:Else>
+			</rul:If>
+		</rul:Sequence>
+	</rul:Rule>
+	<rul:Rule Name="SetEQSubLimitDeductibleFactor" Type="none" DataDefGroup="CommercialPropertyOutsideSignsDetail">
+		<rul:Sequence>
+			<rul:Choose>
+				<rul:When>
+					<rul:Test>
+						<rul:And>
+							<rul:Exist AtInputDataDef="../../../../CommercialPropertyEarthquakeAndVolcanicEruptionCoverageSubLimitFormWithFlatDollarDeductibleBldgTable/CommercialPropertyEarthquakeAndVolcanicEruptionCoverageSubLimitFormWithFlatDollarDeductibleBldg" />
+							<rul:GreaterThan>
+								<rul:FirstValue Type="integer" FromConstant="0" FromDataDef="../../../../@EQSubLimitPercent" Order="DataDefInputParamConstant" />
+								<rul:Constant Type="integer">0</rul:Constant>
+							</rul:GreaterThan>
+							<rul:LessThanOrEqual>
+								<rul:FirstValue Type="integer" FromConstant="0" FromDataDef="../../../../@EQSubLimitPercent" Order="DataDefInputParamConstant" />
+								<rul:Constant Type="integer">75</rul:Constant>
+							</rul:LessThanOrEqual>
+							<rul:NotEqual>
+								<rul:FirstValue Type="integer" FromConstant="0" FromDataDef="../../../../@EQDeductibleTier" Order="DataDefInputParamConstant" />
+								<rul:Constant Type="integer">0</rul:Constant>
+							</rul:NotEqual>
+							<rul:NotEqual>
+								<rul:FirstValue Type="string" FromConstant="" FromDataDef="../../../../@EQClass" Order="DataDefInputParamConstant" />
+								<rul:Constant Type="string"></rul:Constant>
+							</rul:NotEqual>
+							<rul:NotEqual>
+								<rul:FirstValue Type="string" FromConstant="" FromDataDef="../../../../@EQDeductible" Order="DataDefInputParamConstant" />
+								<rul:Constant Type="string"></rul:Constant>
+							</rul:NotEqual>
+							<rul:NotEqual>
+								<rul:FirstValue Type="string" FromConstant="" FromDataDef="../../../../@EQDeductible" Order="DataDefInputParamConstant" />
+								<rul:Constant Type="string">Not Applicable</rul:Constant>
+							</rul:NotEqual>
+							<rul:NotEqual>
+								<rul:FirstValue Type="integer" FromConstant="0" FromDataDef="../../../../../../@EarthquakeTotalPropertyValue" Order="DataDefInputParamConstant" />
+								<rul:Constant Type="integer">0</rul:Constant>
+							</rul:NotEqual>
+						</rul:And>
+					</rul:Test>
+					<rul:Then>
+						<rul:Sequence>
+							<rul:Choose>
+								<rul:When>
+									<rul:Test>
+										<rul:Equal>
+											<rul:FirstValue Type="string" FromConstant="" FromDataDef="../../../../@EQDeductible" Order="DataDefInputParamConstant" />
+											<rul:Constant Type="string">500</rul:Constant>
+										</rul:Equal>
+									</rul:Test>
+									<rul:Then>
+										<rul:Sequence>
+											<rul:RunRule Type="decimal" ToDataDef="@EQSubLimitDeductibleFactor" FileName="CommercialPropertyOutsideSignsDetailRules" Rule="LookupEQSubLimit500FlatDeductibleFactor" ClearCache="true" />
+										</rul:Sequence>
+									</rul:Then>
+								</rul:When>
+								<rul:When>
+									<rul:Test>
+										<rul:Equal>
+											<rul:FirstValue Type="string" FromConstant="" FromDataDef="../../../../@EQDeductible" Order="DataDefInputParamConstant" />
+											<rul:Constant Type="string">1,000</rul:Constant>
+										</rul:Equal>
+									</rul:Test>
+									<rul:Then>
+										<rul:Sequence>
+											<rul:RunRule Type="decimal" ToDataDef="@EQSubLimitDeductibleFactor" FileName="CommercialPropertyOutsideSignsDetailRules" Rule="LookupEQSubLimit1000FlatDeductibleFactor" ClearCache="true" />
+										</rul:Sequence>
+									</rul:Then>
+								</rul:When>
+								<rul:When>
+									<rul:Test>
+										<rul:Equal>
+											<rul:FirstValue Type="string" FromConstant="" FromDataDef="../../../../@EQDeductible" Order="DataDefInputParamConstant" />
+											<rul:Constant Type="string">2,500</rul:Constant>
+										</rul:Equal>
+									</rul:Test>
+									<rul:Then>
+										<rul:Sequence>
+											<rul:RunRule Type="decimal" ToDataDef="@EQSubLimitDeductibleFactor" FileName="CommercialPropertyOutsideSignsDetailRules" Rule="LookupEQSubLimit2500FlatDeductibleFactor" ClearCache="true" />
+										</rul:Sequence>
+									</rul:Then>
+								</rul:When>
+								<rul:When>
+									<rul:Test>
+										<rul:Equal>
+											<rul:FirstValue Type="string" FromConstant="" FromDataDef="../../../../@EQDeductible" Order="DataDefInputParamConstant" />
+											<rul:Constant Type="string">5,000</rul:Constant>
+										</rul:Equal>
+									</rul:Test>
+									<rul:Then>
+										<rul:Sequence>
+											<rul:RunRule Type="decimal" ToDataDef="@EQSubLimitDeductibleFactor" FileName="CommercialPropertyOutsideSignsDetailRules" Rule="LookupEQSubLimit5000FlatDeductibleFactor" ClearCache="true" />
+										</rul:Sequence>
+									</rul:Then>
+								</rul:When>
+								<rul:When>
+									<rul:Test>
+										<rul:Equal>
+											<rul:FirstValue Type="string" FromConstant="" FromDataDef="../../../../@EQDeductible" Order="DataDefInputParamConstant" />
+											<rul:Constant Type="string">10,000</rul:Constant>
+										</rul:Equal>
+									</rul:Test>
+									<rul:Then>
+										<rul:Sequence>
+											<rul:RunRule Type="decimal" ToDataDef="@EQSubLimitDeductibleFactor" FileName="CommercialPropertyOutsideSignsDetailRules" Rule="LookupEQSubLimit10000FlatDeductibleFactor" ClearCache="true" />
+										</rul:Sequence>
+									</rul:Then>
+								</rul:When>
+								<rul:When>
+									<rul:Test>
+										<rul:Equal>
+											<rul:FirstValue Type="string" FromConstant="" FromDataDef="../../../../@EQDeductible" Order="DataDefInputParamConstant" />
+											<rul:Constant Type="string">25,000</rul:Constant>
+										</rul:Equal>
+									</rul:Test>
+									<rul:Then>
+										<rul:Sequence>
+											<rul:RunRule Type="decimal" ToDataDef="@EQSubLimitDeductibleFactor" FileName="CommercialPropertyOutsideSignsDetailRules" Rule="LookupEQSubLimit25000FlatDeductibleFactor" ClearCache="true" />
+										</rul:Sequence>
+									</rul:Then>
+								</rul:When>
+								<rul:When>
+									<rul:Test>
+										<rul:Equal>
+											<rul:FirstValue Type="string" FromConstant="" FromDataDef="../../../../@EQDeductible" Order="DataDefInputParamConstant" />
+											<rul:Constant Type="string">50,000</rul:Constant>
+										</rul:Equal>
+									</rul:Test>
+									<rul:Then>
+										<rul:Sequence>
+											<rul:RunRule Type="decimal" ToDataDef="@EQSubLimitDeductibleFactor" FileName="CommercialPropertyOutsideSignsDetailRules" Rule="LookupEQSubLimit50000FlatDeductibleFactor" ClearCache="true" />
+										</rul:Sequence>
+									</rul:Then>
+								</rul:When>
+								<rul:When>
+									<rul:Test>
+										<rul:Equal>
+											<rul:FirstValue Type="string" FromConstant="" FromDataDef="../../../../@EQDeductible" Order="DataDefInputParamConstant" />
+											<rul:Constant Type="string">75,000</rul:Constant>
+										</rul:Equal>
+									</rul:Test>
+									<rul:Then>
+										<rul:Sequence>
+											<rul:RunRule Type="decimal" ToDataDef="@EQSubLimitDeductibleFactor" FileName="CommercialPropertyOutsideSignsDetailRules" Rule="LookupEQSubLimit75000FlatDeductibleFactor" ClearCache="true" />
+										</rul:Sequence>
+									</rul:Then>
+								</rul:When>
+								<rul:When>
+									<rul:Test>
+										<rul:Equal>
+											<rul:FirstValue Type="string" FromConstant="" FromDataDef="../../../../@EQDeductible" Order="DataDefInputParamConstant" />
+											<rul:Constant Type="string">100,000</rul:Constant>
+										</rul:Equal>
+									</rul:Test>
+									<rul:Then>
+										<rul:Sequence>
+											<rul:RunRule Type="decimal" ToDataDef="@EQSubLimitDeductibleFactor" FileName="CommercialPropertyOutsideSignsDetailRules" Rule="LookupEQSubLimit100000FlatDeductibleFactor" ClearCache="true" />
+										</rul:Sequence>
+									</rul:Then>
+								</rul:When>
+								<rul:When>
+									<rul:Test>
+										<rul:Equal>
+											<rul:FirstValue Type="string" FromConstant="" FromDataDef="../../../../@EQDeductible" Order="DataDefInputParamConstant" />
+											<rul:Constant Type="string">250,000</rul:Constant>
+										</rul:Equal>
+									</rul:Test>
+									<rul:Then>
+										<rul:Sequence>
+											<rul:RunRule Type="decimal" ToDataDef="@EQSubLimitDeductibleFactor" FileName="CommercialPropertyOutsideSignsDetailRules" Rule="LookupEQSubLimit250000FlatDeductibleFactor" ClearCache="true" />
+										</rul:Sequence>
+									</rul:Then>
+								</rul:When>
+								<rul:When>
+									<rul:Test>
+										<rul:Equal>
+											<rul:FirstValue Type="string" FromConstant="" FromDataDef="../../../../@EQDeductible" Order="DataDefInputParamConstant" />
+											<rul:Constant Type="string">500,000</rul:Constant>
+										</rul:Equal>
+									</rul:Test>
+									<rul:Then>
+										<rul:Sequence>
+											<rul:RunRule Type="decimal" ToDataDef="@EQSubLimitDeductibleFactor" FileName="CommercialPropertyOutsideSignsDetailRules" Rule="LookupEQSubLimit500000FlatDeductibleFactor" ClearCache="true" />
+										</rul:Sequence>
+									</rul:Then>
+								</rul:When>
+								<rul:When>
+									<rul:Test>
+										<rul:Equal>
+											<rul:FirstValue Type="string" FromConstant="" FromDataDef="../../../../@EQDeductible" Order="DataDefInputParamConstant" />
+											<rul:Constant Type="string">750,000</rul:Constant>
+										</rul:Equal>
+									</rul:Test>
+									<rul:Then>
+										<rul:Sequence>
+											<rul:RunRule Type="decimal" ToDataDef="@EQSubLimitDeductibleFactor" FileName="CommercialPropertyOutsideSignsDetailRules" Rule="LookupEQSubLimit750000FlatDeductibleFactor" ClearCache="true" />
+										</rul:Sequence>
+									</rul:Then>
+								</rul:When>
+								<rul:When>
+									<rul:Test>
+										<rul:Equal>
+											<rul:FirstValue Type="string" FromConstant="" FromDataDef="../../../../@EQDeductible" Order="DataDefInputParamConstant" />
+											<rul:Constant Type="string">1,000,000</rul:Constant>
+										</rul:Equal>
+									</rul:Test>
+									<rul:Then>
+										<rul:Sequence>
+											<rul:RunRule Type="decimal" ToDataDef="@EQSubLimitDeductibleFactor" FileName="CommercialPropertyOutsideSignsDetailRules" Rule="LookupEQSubLimit1000000FlatDeductibleFactor" ClearCache="true" />
+										</rul:Sequence>
+									</rul:Then>
+								</rul:When>
+							</rul:Choose>
+						</rul:Sequence>
+					</rul:Then>
+				</rul:When>
+				<rul:When>
+					<rul:Test>
+						<rul:And>
+							<rul:Exist AtInputDataDef="../../../../CommercialPropertyEarthquakeAndVolcanicEruptionEndorsementSubLimitFormTable/CommercialPropertyEarthquakeAndVolcanicEruptionEndorsementSubLimitForm" />
+							<rul:GreaterThan>
+								<rul:FirstValue Type="integer" FromConstant="0" FromDataDef="../../../../@EQSubLimitPercent" Order="DataDefInputParamConstant" />
+								<rul:Constant Type="integer">0</rul:Constant>
+							</rul:GreaterThan>
+							<rul:LessThanOrEqual>
+								<rul:FirstValue Type="integer" FromConstant="0" FromDataDef="../../../../@EQSubLimitPercent" Order="DataDefInputParamConstant" />
+								<rul:Constant Type="integer">75</rul:Constant>
+							</rul:LessThanOrEqual>
+							<rul:NotEqual>
+								<rul:FirstValue Type="string" FromConstant="" FromDataDef="../../../../@EQClass" Order="DataDefInputParamConstant" />
+								<rul:Constant Type="string"></rul:Constant>
+							</rul:NotEqual>
+							<rul:NotEqual>
+								<rul:FirstValue Type="string" FromConstant="" FromDataDef="../../../../@EQDeductible" Order="DataDefInputParamConstant" />
+								<rul:Constant Type="string"></rul:Constant>
+							</rul:NotEqual>
+							<rul:NotEqual>
+								<rul:FirstValue Type="string" FromConstant="" FromDataDef="../../../../@EQDeductible" Order="DataDefInputParamConstant" />
+								<rul:Constant Type="string">Not Applicable</rul:Constant>
+							</rul:NotEqual>
+							<rul:NotEqual>
+								<rul:FirstValue Type="integer" FromConstant="0" FromDataDef="../../../../@EQDeductibleTier" Order="DataDefInputParamConstant" />
+								<rul:Constant Type="integer">0</rul:Constant>
+							</rul:NotEqual>
+						</rul:And>
+					</rul:Test>
+					<rul:Then>
+						<rul:Sequence>
+							<rul:Choose>
+								<rul:When>
+									<rul:Test>
+										<rul:Or>
+											<rul:Equal>
+												<rul:FirstValue Type="string" FromConstant="" FromDataDef="../../../../@EQClass" Order="DataDefInputParamConstant" />
+												<rul:Constant Type="string">1C</rul:Constant>
+											</rul:Equal>
+											<rul:Equal>
+												<rul:FirstValue Type="string" FromConstant="" FromDataDef="../../../../@EQClass" Order="DataDefInputParamConstant" />
+												<rul:Constant Type="string">1D</rul:Constant>
+											</rul:Equal>
+											<rul:Equal>
+												<rul:FirstValue Type="string" FromConstant="" FromDataDef="../../../../@EQClass" Order="DataDefInputParamConstant" />
+												<rul:Constant Type="string">2A</rul:Constant>
+											</rul:Equal>
+											<rul:Equal>
+												<rul:FirstValue Type="string" FromConstant="" FromDataDef="../../../../@EQClass" Order="DataDefInputParamConstant" />
+												<rul:Constant Type="string">2B</rul:Constant>
+											</rul:Equal>
+											<rul:Equal>
+												<rul:FirstValue Type="string" FromConstant="" FromDataDef="../../../../@EQClass" Order="DataDefInputParamConstant" />
+												<rul:Constant Type="string">3A</rul:Constant>
+											</rul:Equal>
+											<rul:Equal>
+												<rul:FirstValue Type="string" FromConstant="" FromDataDef="../../../../@EQClass" Order="DataDefInputParamConstant" />
+												<rul:Constant Type="string">3B</rul:Constant>
+											</rul:Equal>
+											<rul:Equal>
+												<rul:FirstValue Type="string" FromConstant="" FromDataDef="../../../../@EQClass" Order="DataDefInputParamConstant" />
+												<rul:Constant Type="string">4A</rul:Constant>
+											</rul:Equal>
+										</rul:Or>
+									</rul:Test>
+									<rul:Then>
+										<rul:Sequence>
+											<rul:Choose>
+												<rul:When>
+													<rul:Test>
+														<rul:Equal>
+															<rul:FirstValue Type="integer" FromConstant="0" FromDataDef="../../../../@EQDeductibleTier" Order="DataDefInputParamConstant" />
+															<rul:Constant Type="integer">1</rul:Constant>
+														</rul:Equal>
+													</rul:Test>
+													<rul:Then>
+														<rul:Sequence>
+															<rul:RunRule Type="decimal" ToDataDef="@EQSubLimitDeductibleFactor" FileName="CommercialPropertyOutsideSignsDetailRules" Rule="LookupEQSubLimitDeductibleTier1Table1" ClearCache="true" />
+														</rul:Sequence>
+													</rul:Then>
+												</rul:When>
+												<rul:When>
+													<rul:Test>
+														<rul:Equal>
+															<rul:FirstValue Type="integer" FromConstant="0" FromDataDef="../../../../@EQDeductibleTier" Order="DataDefInputParamConstant" />
+															<rul:Constant Type="integer">2</rul:Constant>
+														</rul:Equal>
+													</rul:Test>
+													<rul:Then>
+														<rul:Sequence>
+															<rul:RunRule Type="decimal" ToDataDef="@EQSubLimitDeductibleFactor" FileName="CommercialPropertyOutsideSignsDetailRules" Rule="LookupEQSubLimitDeductibleTier2Table3" ClearCache="true" />
+														</rul:Sequence>
+													</rul:Then>
+												</rul:When>
+												<rul:When>
+													<rul:Test>
+														<rul:Equal>
+															<rul:FirstValue Type="integer" FromConstant="0" FromDataDef="../../../../@EQDeductibleTier" Order="DataDefInputParamConstant" />
+															<rul:Constant Type="integer">3</rul:Constant>
+														</rul:Equal>
+													</rul:Test>
+													<rul:Then>
+														<rul:Sequence>
+															<rul:RunRule Type="decimal" ToDataDef="@EQSubLimitDeductibleFactor" FileName="CommercialPropertyOutsideSignsDetailRules" Rule="LookupEQSubLimitDeductibleTier3Table5" ClearCache="true" />
+														</rul:Sequence>
+													</rul:Then>
+												</rul:When>
+											</rul:Choose>
+										</rul:Sequence>
+									</rul:Then>
+								</rul:When>
+								<rul:When>
+									<rul:Test>
+										<rul:Or>
+											<rul:Equal>
+												<rul:FirstValue Type="string" FromConstant="" FromDataDef="../../../../@EQClass" Order="DataDefInputParamConstant" />
+												<rul:Constant Type="string">3C</rul:Constant>
+											</rul:Equal>
+											<rul:Equal>
+												<rul:FirstValue Type="string" FromConstant="" FromDataDef="../../../../@EQClass" Order="DataDefInputParamConstant" />
+												<rul:Constant Type="string">4B</rul:Constant>
+											</rul:Equal>
+											<rul:Equal>
+												<rul:FirstValue Type="string" FromConstant="" FromDataDef="../../../../@EQClass" Order="DataDefInputParamConstant" />
+												<rul:Constant Type="string">4C</rul:Constant>
+											</rul:Equal>
+											<rul:Equal>
+												<rul:FirstValue Type="string" FromConstant="" FromDataDef="../../../../@EQClass" Order="DataDefInputParamConstant" />
+												<rul:Constant Type="string">4D</rul:Constant>
+											</rul:Equal>
+											<rul:Equal>
+												<rul:FirstValue Type="string" FromConstant="" FromDataDef="../../../../@EQClass" Order="DataDefInputParamConstant" />
+												<rul:Constant Type="string">5A</rul:Constant>
+											</rul:Equal>
+											<rul:Equal>
+												<rul:FirstValue Type="string" FromConstant="" FromDataDef="../../../../@EQClass" Order="DataDefInputParamConstant" />
+												<rul:Constant Type="string">5B</rul:Constant>
+											</rul:Equal>
+											<rul:Equal>
+												<rul:FirstValue Type="string" FromConstant="" FromDataDef="../../../../@EQClass" Order="DataDefInputParamConstant" />
+												<rul:Constant Type="string">5C</rul:Constant>
+											</rul:Equal>
+											<rul:Equal>
+												<rul:FirstValue Type="string" FromConstant="" FromDataDef="../../../../@EQClass" Order="DataDefInputParamConstant" />
+												<rul:Constant Type="string">5AA</rul:Constant>
+											</rul:Equal>
+										</rul:Or>
+									</rul:Test>
+									<rul:Then>
+										<rul:Sequence>
+											<rul:Choose>
+												<rul:When>
+													<rul:Test>
+														<rul:Equal>
+															<rul:FirstValue Type="integer" FromConstant="0" FromDataDef="../../../../@EQDeductibleTier" Order="DataDefInputParamConstant" />
+															<rul:Constant Type="integer">1</rul:Constant>
+														</rul:Equal>
+													</rul:Test>
+													<rul:Then>
+														<rul:Sequence>
+															<rul:RunRule Type="decimal" ToDataDef="@EQSubLimitDeductibleFactor" FileName="CommercialPropertyOutsideSignsDetailRules" Rule="LookupEQSubLimitDeductibleTier1Table2" ClearCache="true" />
+														</rul:Sequence>
+													</rul:Then>
+												</rul:When>
+												<rul:When>
+													<rul:Test>
+														<rul:Equal>
+															<rul:FirstValue Type="integer" FromConstant="0" FromDataDef="../../../../@EQDeductibleTier" Order="DataDefInputParamConstant" />
+															<rul:Constant Type="integer">2</rul:Constant>
+														</rul:Equal>
+													</rul:Test>
+													<rul:Then>
+														<rul:Sequence>
+															<rul:RunRule Type="decimal" ToDataDef="@EQSubLimitDeductibleFactor" FileName="CommercialPropertyOutsideSignsDetailRules" Rule="LookupEQSubLimitDeductibleTier2Table4" ClearCache="true" />
+														</rul:Sequence>
+													</rul:Then>
+												</rul:When>
+												<rul:When>
+													<rul:Test>
+														<rul:Equal>
+															<rul:FirstValue Type="integer" FromConstant="0" FromDataDef="../../../../@EQDeductibleTier" Order="DataDefInputParamConstant" />
+															<rul:Constant Type="integer">3</rul:Constant>
+														</rul:Equal>
+													</rul:Test>
+													<rul:Then>
+														<rul:Sequence>
+															<rul:RunRule Type="decimal" ToDataDef="@EQSubLimitDeductibleFactor" FileName="CommercialPropertyOutsideSignsDetailRules" Rule="LookupEQSubLimitDeductibleTier3Table6" ClearCache="true" />
+														</rul:Sequence>
+													</rul:Then>
+												</rul:When>
+											</rul:Choose>
+										</rul:Sequence>
+									</rul:Then>
+								</rul:When>
+							</rul:Choose>
+						</rul:Sequence>
+					</rul:Then>
+				</rul:When>
+				<rul:Otherwise>
+					<rul:Sequence>
+						<rul:Constant Type="decimal" ToDataDef="@EQSubLimitDeductibleFactor">1.0</rul:Constant>
+					</rul:Sequence>
+				</rul:Otherwise>
+			</rul:Choose>
+		</rul:Sequence>
+	</rul:Rule>
+	<rul:Rule Name="SetEQBaseRate" Type="none" DataDefGroup="CommercialPropertyOutsideSignsDetail">
+		<rul:Sequence>
+			<rul:If>
+				<rul:Test>
+					<rul:And>
+						<rul:NotEqual>
+							<rul:FirstValue Type="string" FromConstant="" FromDataDef="../../../../../../@EQCauseOfLossForm" Order="DataDefInputParamConstant" />
+							<rul:Constant Type="string">Not Applicable</rul:Constant>
+						</rul:NotEqual>
+						<rul:NotEqual>
+							<rul:FirstValue Type="string" FromConstant="" FromDataDef="../../../../../../@EQCauseOfLossForm" Order="DataDefInputParamConstant" />
+							<rul:Constant Type="string"></rul:Constant>
+						</rul:NotEqual>
+					</rul:And>
+				</rul:Test>
+				<rul:Then>
+					<rul:Sequence>
+						<rul:RunRule Type="decimal" ToDataDef="@EQBaseRate" FileName="CommercialPropertyOutsideSignsDetailRules" Rule="LookupEQLossCostBldg" ClearCache="true" />
+					</rul:Sequence>
+				</rul:Then>
+				<rul:Else>
+					<rul:Sequence>
+						<rul:Constant Type="decimal" ToDataDef="@EQBaseRate">0.0</rul:Constant>
+					</rul:Sequence>
+				</rul:Else>
+			</rul:If>
+		</rul:Sequence>
+	</rul:Rule>
+	<rul:Rule Name="ErcSetStatisticalCodes" Type="none" DataDefGroup="CommercialPropertyOutsideSignsDetail">
+		<rul:Sequence>
+			<rul:If>
+				<rul:Test>
+					<rul:Exist AtInputDataDef="ancestor::MasterCFCW/Policy" />
+				</rul:Test>
+				<rul:Then>
+					<rul:Sequence>
+						<rul:RunRule Type="none" FileName="CommercialPropertyOutsideSignsDetailRules" Rule="SetClassCode" ClearCache="true" />
+						<rul:RunRule Type="none" FileName="CommercialPropertyOutsideSignsDetailRules" Rule="SetCoverageCode" ClearCache="true" />
+						<rul:RunRule Type="none" FileName="CommercialPropertyOutsideSignsDetailRules" Rule="SetConstructionStatCode" ClearCache="true" />
+						<rul:RunRule Type="none" FileName="CommercialPropertyOutsideSignsDetailRules" Rule="SetExposureStatAmount" ClearCache="true" />
+					</rul:Sequence>
+				</rul:Then>
+			</rul:If>
+		</rul:Sequence>
+	</rul:Rule>
+	<rul:Rule Name="SetClassCode" Type="none" DataDefGroup="CommercialPropertyOutsideSignsDetail">
+		<rul:Sequence>
+			<rul:Choose>
+				<rul:When>
+					<rul:Test>
+						<rul:Equal>
+							<rul:FirstValue Type="string" FromConstant="" FromDataDef="@SignPlacement" Order="DataDefInputParamConstant" />
+							<rul:Constant Type="string">Attached</rul:Constant>
+						</rul:Equal>
+					</rul:Test>
+					<rul:Then>
+						<rul:Copy Type="string" ToDataDef="@ClassCode" FromDataDef="ancestor::CommercialPropertyStructure/@ClassCode" />
+					</rul:Then>
+				</rul:When>
+				<rul:When>
+					<rul:Test>
+						<rul:Equal>
+							<rul:FirstValue Type="string" FromConstant="" FromDataDef="@SignPlacement" Order="DataDefInputParamConstant" />
+							<rul:Constant Type="string">Detached</rul:Constant>
+						</rul:Equal>
+					</rul:Test>
+					<rul:Then>
+						<rul:Sequence>
+							<rul:RunRule Type="string" ToDataDef="@ClassCode" FileName="CommercialPropertyOutsideSignsDetailRules" Rule="LookupOutsideSignsClassCode" ClearCache="true" />
+						</rul:Sequence>
+					</rul:Then>
+				</rul:When>
+			</rul:Choose>
+		</rul:Sequence>
+	</rul:Rule>
+	<rul:Rule Name="SetCoverageCode" Type="none" DataDefGroup="CommercialPropertyOutsideSignsDetail">
+		<rul:Sequence>
+			<rul:Choose>
+				<rul:When>
+					<rul:Test>
+						<rul:Equal>
+							<rul:FirstValue Type="string" FromConstant="" FromDataDef="@SignPlacement" Order="DataDefInputParamConstant" />
+							<rul:Constant Type="string">Attached</rul:Constant>
+						</rul:Equal>
+					</rul:Test>
+					<rul:Then>
+						<rul:Sequence>
+							<rul:RunRule Type="string" ToDataDef="@CoverageCode" FileName="CommercialPropertyOutsideSignsDetailRules" Rule="LookupBuildingCoverageCode" ClearCache="true" />
+						</rul:Sequence>
+					</rul:Then>
+				</rul:When>
+				<rul:When>
+					<rul:Test>
+						<rul:Equal>
+							<rul:FirstValue Type="string" FromConstant="" FromDataDef="@SignPlacement" Order="DataDefInputParamConstant" />
+							<rul:Constant Type="string">Detached</rul:Constant>
+						</rul:Equal>
+					</rul:Test>
+					<rul:Then>
+						<rul:Sequence>
+							<rul:RunRule Type="string" ToDataDef="@CoverageCode" FileName="CommercialPropertyOutsideSignsDetailRules" Rule="LookupSpecialClassCoverageCode" ClearCache="true" />
+						</rul:Sequence>
+					</rul:Then>
+				</rul:When>
+			</rul:Choose>
+		</rul:Sequence>
+	</rul:Rule>
+	<rul:Rule Name="SetConstructionStatCode" Type="none" DataDefGroup="CommercialPropertyOutsideSignsDetail">
+		<rul:Sequence>
+			<rul:Choose>
+				<rul:When>
+					<rul:Test>
+						<rul:Equal>
+							<rul:FirstValue Type="string" FromConstant="" FromDataDef="@SignPlacement" Order="DataDefInputParamConstant" />
+							<rul:Constant Type="string">Attached</rul:Constant>
+						</rul:Equal>
+					</rul:Test>
+					<rul:Then>
+						<rul:Copy Type="string" ToDataDef="@ConstructionStatCode" FromDataDef="ancestor::CommercialPropertyStructure/@AllOtherConstructionStatCode" />
+					</rul:Then>
+				</rul:When>
+				<rul:When>
+					<rul:Test>
+						<rul:Equal>
+							<rul:FirstValue Type="string" FromConstant="" FromDataDef="@SignPlacement" Order="DataDefInputParamConstant" />
+							<rul:Constant Type="string">Detached</rul:Constant>
+						</rul:Equal>
+					</rul:Test>
+					<rul:Then>
+						<rul:Copy Type="string" ToDataDef="@ConstructionStatCode" FromDataDef="ancestor::CommercialPropertyStructure/@NoConstructionStatCode" />
+					</rul:Then>
+				</rul:When>
+			</rul:Choose>
+		</rul:Sequence>
+	</rul:Rule>
+	<rul:Rule Name="SetExposureStatAmount" Type="none" DataDefGroup="CommercialPropertyOutsideSignsDetail">
+		<rul:Sequence>
+			<rul:If>
+				<rul:Test>
+					<rul:GreaterThan>
+						<rul:FirstValue Type="integer" FromConstant="0" FromDataDef="@Limit" Order="DataDefInputParamConstant" />
+						<rul:Constant Type="integer">0</rul:Constant>
+					</rul:GreaterThan>
+				</rul:Test>
+				<rul:Then>
+					<rul:Sequence>
+						<rul:Convert Type="integer" ToDataDef="@ExposureStatAmount">
+							<rul:Truncate>
+								<rul:Divide>
+									<rul:Value Type="integer" FromDataDef="@Limit" />
+									<rul:Constant Type="integer">1000</rul:Constant>
+								</rul:Divide>
+							</rul:Truncate>
+						</rul:Convert>
+					</rul:Sequence>
+				</rul:Then>
+				<rul:Else>
+					<rul:Sequence>
+						<rul:Constant Type="integer" ToDataDef="@ExposureStatAmount">0</rul:Constant>
+					</rul:Sequence>
+				</rul:Else>
+			</rul:If>
+		</rul:Sequence>
+	</rul:Rule>
+	<rul:Rule Name="ErcProcess" Type="none" DataDefGroup="CommercialPropertyOutsideSignsDetail">
+		<rul:Sequence>
+			<rul:RunRule Type="none" FileName="CommercialPropertyOutsideSignsDetailRules" Rule="ErcSetRatesAndFactors" ClearCache="true" />
+			<rul:Locate AtDataDef="CommercialPropertyOutsideSignsDetailBasicGroupICoverage">
+				<rul:RunRule Type="none" FileName="CommercialPropertyOutsideSignsDetailBasicGroupICoverageRules" Rule="ErcProcess" ClearCache="true" />
+			</rul:Locate>
+			<rul:Locate AtDataDef="CommercialPropertyOutsideSignsDetailBasicGroupIICoverage">
+				<rul:RunRule Type="none" FileName="CommercialPropertyOutsideSignsDetailBasicGroupIICoverageRules" Rule="ErcProcess" ClearCache="true" />
+			</rul:Locate>
+			<rul:Locate AtDataDef="CommercialPropertyOutsideSignsDetailBroadCoverage">
+				<rul:RunRule Type="none" FileName="CommercialPropertyOutsideSignsDetailBroadCoverageRules" Rule="ErcProcess" ClearCache="true" />
+			</rul:Locate>
+			<rul:Locate AtDataDef="CommercialPropertyOutsideSignsDetailEarthquakeCoverage">
+				<rul:RunRule Type="none" FileName="CommercialPropertyOutsideSignsDetailEarthquakeCoverageRules" Rule="ErcProcess" ClearCache="true" />
+			</rul:Locate>
+			<rul:Locate AtDataDef="CommercialPropertyOutsideSignsDetailSpecialCoverage">
+				<rul:RunRule Type="none" FileName="CommercialPropertyOutsideSignsDetailSpecialCoverageRules" Rule="ErcProcess" ClearCache="true" />
+			</rul:Locate>
+			<rul:RunRule Type="none" FileName="CommercialPropertyOutsideSignsDetailRules" Rule="ErcSetStatisticalCodes" ClearCache="true" />
+		</rul:Sequence>
+	</rul:Rule>
+	<rul:Rule Name="LookupBasicGroupIIFlatCoinsuranceFactor" Type="decimal" DataDefGroup="CommercialPropertyOutsideSignsDetail">
+		<rul:FirstNonNull Type="decimal">
+			<rul:Lookup Type="decimal" MatrixCol="Factor" MatrixDef="BasicGroupIIFlatCoinsuranceFactorDef" MatrixFromConstant="BasicGroupIIFlatCoinsuranceFactor" ResultMode="FirstResult">
+				<rul:Keys>
+					<rul:Value Type="string" FromDataDef="/State/@Code" />
+					<rul:Constant Type="string">Y</rul:Constant>
+				</rul:Keys>
+			</rul:Lookup>
+			<rul:Lookup Type="decimal" MatrixCol="Factor" MatrixDef="BasicGroupIIFlatCoinsuranceFactorDef" MatrixFromConstant="BasicGroupIIFlatCoinsuranceFactor" ResultMode="SingleResult">
+				<rul:Keys>
+					<rul:Constant Type="string">CW</rul:Constant>
+					<rul:Constant Type="string">Y</rul:Constant>
+				</rul:Keys>
+			</rul:Lookup>
+		</rul:FirstNonNull>
+	</rul:Rule>
+	<rul:Rule Name="LookupBasicGroupIIRate" Type="decimal" DataDefGroup="CommercialPropertyOutsideSignsDetail">
+		<rul:FirstNonNull Type="decimal">
+			<rul:Lookup Type="decimal" MatrixCol="Rate" MatrixDef="BasicGroupIIRateDef" MatrixFromConstant="BasicGroupIIRate" ResultMode="FirstResult">
+				<rul:Keys>
+					<rul:Value Type="string" FromDataDef="/State/@Code" />
+					<rul:FirstValue Type="string" FromConstant="" FromDataDef="ancestor::CommercialPropertyStructure/@BasicGroupIIRatingTerr" Order="DataDefInputParamConstant" />
+					<rul:Constant Type="string">B</rul:Constant>
+					<rul:Constant Type="string">Bldg</rul:Constant>
+				</rul:Keys>
+			</rul:Lookup>
+			<rul:Lookup Type="decimal" MatrixCol="Rate" MatrixDef="BasicGroupIIRateDef" MatrixFromConstant="BasicGroupIIRate" ResultMode="SingleResult">
+				<rul:Keys>
+					<rul:Constant Type="string">CW</rul:Constant>
+					<rul:FirstValue Type="string" FromConstant="" FromDataDef="ancestor::CommercialPropertyStructure/@BasicGroupIIRatingTerr" Order="DataDefInputParamConstant" />
+					<rul:Constant Type="string">B</rul:Constant>
+					<rul:Constant Type="string">Bldg</rul:Constant>
+				</rul:Keys>
+			</rul:Lookup>
+		</rul:FirstNonNull>
+	</rul:Rule>
+	<rul:Rule Name="LookupBasicGroupIRateSpecialClass" Type="decimal" DataDefGroup="CommercialPropertyOutsideSignsDetail">
+		<rul:Param Name="option" Type="string" />
+		<rul:FirstNonNull Type="decimal">
+			<rul:Lookup Type="decimal" MatrixCol="Rate" MatrixDef="BasicGroupIRateSpecialClassDef" MatrixFromConstant="BasicGroupIRateSpecialClass" ResultMode="FirstResult">
+				<rul:Keys>
+					<rul:Value Type="string" FromDataDef="/State/@Code" />
+					<rul:Value Type="string" FromParam="option" />
+					<rul:FirstValue Type="string" FromConstant="" FromDataDef="ancestor::CommercialPropertyStructure/@ProtectionClassToUse" Order="DataDefInputParamConstant" />
+				</rul:Keys>
+			</rul:Lookup>
+			<rul:Lookup Type="decimal" MatrixCol="Rate" MatrixDef="BasicGroupIRateSpecialClassDef" MatrixFromConstant="BasicGroupIRateSpecialClass" ResultMode="SingleResult">
+				<rul:Keys>
+					<rul:Constant Type="string">CW</rul:Constant>
+					<rul:Value Type="string" FromParam="option" />
+					<rul:FirstValue Type="string" FromConstant="" FromDataDef="ancestor::CommercialPropertyStructure/@ProtectionClassToUse" Order="DataDefInputParamConstant" />
+				</rul:Keys>
+			</rul:Lookup>
+		</rul:FirstNonNull>
+	</rul:Rule>
+	<rul:Rule Name="LookupBroadFormBaseRate" Type="decimal" DataDefGroup="CommercialPropertyOutsideSignsDetail">
+		<rul:Param Name="constructionType" Type="string" />
+		<rul:Param Name="covType" Type="string" />
+		<rul:FirstNonNull Type="decimal">
+			<rul:Lookup Type="decimal" MatrixCol="Rate" MatrixDef="BroadFormBaseRateDef" MatrixFromConstant="BroadFormBaseRate" ResultMode="FirstResult">
+				<rul:Keys>
+					<rul:Value Type="string" FromDataDef="/State/@Code" />
+					<rul:Value Type="string" FromParam="constructionType" />
+					<rul:Value Type="string" FromParam="covType" />
+				</rul:Keys>
+			</rul:Lookup>
+			<rul:Lookup Type="decimal" MatrixCol="Rate" MatrixDef="BroadFormBaseRateDef" MatrixFromConstant="BroadFormBaseRate" ResultMode="SingleResult">
+				<rul:Keys>
+					<rul:Constant Type="string">CW</rul:Constant>
+					<rul:Value Type="string" FromParam="constructionType" />
+					<rul:Value Type="string" FromParam="covType" />
+				</rul:Keys>
+			</rul:Lookup>
+		</rul:FirstNonNull>
+	</rul:Rule>
+	<rul:Rule Name="LookupBuildingCoverageCode" Type="string" DataDefGroup="CommercialPropertyOutsideSignsDetail">
+		<rul:FirstNonNull Type="string">
+			<rul:Lookup Type="string" MatrixCol="Code" MatrixDef="BuildingCoverageCodeDef" MatrixFromConstant="BuildingCoverageCode" ResultMode="FirstResult">
+				<rul:Keys>
+					<rul:Value Type="string" FromDataDef="/State/@Code" />
+					<rul:Constant Type="string">Y</rul:Constant>
+				</rul:Keys>
+			</rul:Lookup>
+			<rul:Lookup Type="string" MatrixCol="Code" MatrixDef="BuildingCoverageCodeDef" MatrixFromConstant="BuildingCoverageCode" ResultMode="SingleResult">
+				<rul:Keys>
+					<rul:Constant Type="string">CW</rul:Constant>
+					<rul:Constant Type="string">Y</rul:Constant>
+				</rul:Keys>
+			</rul:Lookup>
+		</rul:FirstNonNull>
+	</rul:Rule>
+	<rul:Rule Name="LookupCoinsuranceFactor" Type="decimal" DataDefGroup="CommercialPropertyOutsideSignsDetail">
+		<rul:FirstNonNull Type="decimal">
+			<rul:Lookup Type="decimal" MatrixCol="Factor" MatrixDef="CoinsuranceFactorDef" MatrixFromConstant="CoinsuranceFactor" ResultMode="FirstResult">
+				<rul:Keys>
+					<rul:Value Type="string" FromDataDef="/State/@Code" />
+					<rul:FirstValue Type="string" FromConstant="" FromDataDef="@Coinsurance" Order="DataDefInputParamConstant" />
+				</rul:Keys>
+			</rul:Lookup>
+			<rul:Lookup Type="decimal" MatrixCol="Factor" MatrixDef="CoinsuranceFactorDef" MatrixFromConstant="CoinsuranceFactor" ResultMode="SingleResult">
+				<rul:Keys>
+					<rul:Constant Type="string">CW</rul:Constant>
+					<rul:FirstValue Type="string" FromConstant="" FromDataDef="@Coinsurance" Order="DataDefInputParamConstant" />
+				</rul:Keys>
+			</rul:Lookup>
+		</rul:FirstNonNull>
+	</rul:Rule>
+	<rul:Rule Name="LookupEQLossCostBldg" Type="decimal" DataDefGroup="CommercialPropertyOutsideSignsDetail">
+		<rul:FirstNonNull Type="decimal">
+			<rul:Lookup Type="decimal" MatrixCol="LossCost" MatrixDef="EQLossCostBldgDef" MatrixFromConstant="EQLossCostBldg" ResultMode="FirstResult">
+				<rul:Keys>
+					<rul:Value Type="string" FromDataDef="/State/@Code" />
+					<rul:Constant Type="string">5C</rul:Constant>
+					<rul:FirstValue Type="string" FromConstant="" FromDataDef="ancestor::CommercialPropertyStructure/@EQTerr" Order="DataDefInputParamConstant" />
+				</rul:Keys>
+			</rul:Lookup>
+			<rul:Lookup Type="decimal" MatrixCol="LossCost" MatrixDef="EQLossCostBldgDef" MatrixFromConstant="EQLossCostBldg" ResultMode="SingleResult">
+				<rul:Keys>
+					<rul:Constant Type="string">CW</rul:Constant>
+					<rul:Constant Type="string">5C</rul:Constant>
+					<rul:FirstValue Type="string" FromConstant="" FromDataDef="ancestor::CommercialPropertyStructure/@EQTerr" Order="DataDefInputParamConstant" />
+				</rul:Keys>
+			</rul:Lookup>
+		</rul:FirstNonNull>
+	</rul:Rule>
+	<rul:Rule Name="LookupLessThan80PctMultiplicativeFactor" Type="decimal" DataDefGroup="CommercialPropertyOutsideSignsDetail">
+		<rul:FirstNonNull Type="decimal">
+			<rul:Lookup Type="decimal" MatrixCol="Factor" MatrixDef="LessThan80PctMultiplicativeFactorDef" MatrixFromConstant="LessThan80PctMultiplicativeFactor" ResultMode="FirstResult">
+				<rul:Keys>
+					<rul:Value Type="string" FromDataDef="/State/@Code" />
+					<rul:Constant Type="string">Y</rul:Constant>
+				</rul:Keys>
+			</rul:Lookup>
+			<rul:Lookup Type="decimal" MatrixCol="Factor" MatrixDef="LessThan80PctMultiplicativeFactorDef" MatrixFromConstant="LessThan80PctMultiplicativeFactor" ResultMode="SingleResult">
+				<rul:Keys>
+					<rul:Constant Type="string">CW</rul:Constant>
+					<rul:Constant Type="string">Y</rul:Constant>
+				</rul:Keys>
+			</rul:Lookup>
+		</rul:FirstNonNull>
+	</rul:Rule>
+	<rul:Rule Name="LookupLowestBasicGroupIIRate" Type="decimal" DataDefGroup="CommercialPropertyOutsideSignsDetail">
+		<rul:FirstNonNull Type="decimal">
+			<rul:Lookup Type="decimal" MatrixCol="Rate" MatrixDef="LowestBasicGroupIIRateDef" MatrixFromConstant="LowestBasicGroupIIRate" ResultMode="FirstResult">
+				<rul:Keys>
+					<rul:Value Type="string" FromDataDef="/State/@Code" />
+					<rul:Constant Type="string">B</rul:Constant>
+					<rul:Constant Type="string">Bldg</rul:Constant>
+				</rul:Keys>
+			</rul:Lookup>
+			<rul:Lookup Type="decimal" MatrixCol="Rate" MatrixDef="LowestBasicGroupIIRateDef" MatrixFromConstant="LowestBasicGroupIIRate" ResultMode="SingleResult">
+				<rul:Keys>
+					<rul:Constant Type="string">CW</rul:Constant>
+					<rul:Constant Type="string">B</rul:Constant>
+					<rul:Constant Type="string">Bldg</rul:Constant>
+				</rul:Keys>
+			</rul:Lookup>
+		</rul:FirstNonNull>
+	</rul:Rule>
+	<rul:Rule Name="LookupOutsideSignsClassCode" Type="string" DataDefGroup="CommercialPropertyOutsideSignsDetail">
+		<rul:FirstNonNull Type="string">
+			<rul:Lookup Type="string" MatrixCol="Code" MatrixDef="OutsideSignsClassCodeDef" MatrixFromConstant="OutsideSignsClassCode" ResultMode="FirstResult">
+				<rul:Keys>
+					<rul:Value Type="string" FromDataDef="/State/@Code" />
+					<rul:Constant Type="string">Y</rul:Constant>
+				</rul:Keys>
+			</rul:Lookup>
+			<rul:Lookup Type="string" MatrixCol="Code" MatrixDef="OutsideSignsClassCodeDef" MatrixFromConstant="OutsideSignsClassCode" ResultMode="SingleResult">
+				<rul:Keys>
+					<rul:Constant Type="string">CW</rul:Constant>
+					<rul:Constant Type="string">Y</rul:Constant>
+				</rul:Keys>
+			</rul:Lookup>
+		</rul:FirstNonNull>
+	</rul:Rule>
+	<rul:Rule Name="LookupSpecialBuildingRate" Type="decimal" DataDefGroup="CommercialPropertyOutsideSignsDetail">
+		<rul:FirstNonNull Type="decimal">
+			<rul:Lookup Type="decimal" MatrixCol="Rate" MatrixDef="SpecialBuildingRateDef" MatrixFromConstant="SpecialBuildingRate" ResultMode="FirstResult">
+				<rul:Keys>
+					<rul:Value Type="string" FromDataDef="/State/@Code" />
+					<rul:Constant Type="string">Y</rul:Constant>
+				</rul:Keys>
+			</rul:Lookup>
+			<rul:Lookup Type="decimal" MatrixCol="Rate" MatrixDef="SpecialBuildingRateDef" MatrixFromConstant="SpecialBuildingRate" ResultMode="SingleResult">
+				<rul:Keys>
+					<rul:Constant Type="string">CW</rul:Constant>
+					<rul:Constant Type="string">Y</rul:Constant>
+				</rul:Keys>
+			</rul:Lookup>
+		</rul:FirstNonNull>
+	</rul:Rule>
+	<rul:Rule Name="LookupSpecialClassCoverageCode" Type="string" DataDefGroup="CommercialPropertyOutsideSignsDetail">
+		<rul:FirstNonNull Type="string">
+			<rul:Lookup Type="string" MatrixCol="Code" MatrixDef="SpecialClassCoverageCodeDef" MatrixFromConstant="SpecialClassCoverageCode" ResultMode="FirstResult">
+				<rul:Keys>
+					<rul:Value Type="string" FromDataDef="/State/@Code" />
+					<rul:Constant Type="string">Y</rul:Constant>
+				</rul:Keys>
+			</rul:Lookup>
+			<rul:Lookup Type="string" MatrixCol="Code" MatrixDef="SpecialClassCoverageCodeDef" MatrixFromConstant="SpecialClassCoverageCode" ResultMode="SingleResult">
+				<rul:Keys>
+					<rul:Constant Type="string">CW</rul:Constant>
+					<rul:Constant Type="string">Y</rul:Constant>
+				</rul:Keys>
+			</rul:Lookup>
+		</rul:FirstNonNull>
+	</rul:Rule>
+	<rul:Rule Name="LookupVandalismExclusionFactor" Type="decimal" DataDefGroup="CommercialPropertyOutsideSignsDetail">
+		<rul:FirstNonNull Type="decimal">
+			<rul:Lookup Type="decimal" MatrixCol="Factor" MatrixDef="VandalismExclFactorDef" MatrixFromConstant="VandalismExclFactor" ResultMode="FirstResult">
+				<rul:Keys>
+					<rul:Value Type="string" FromDataDef="/State/@Code" />
+					<rul:Constant Type="string">1185</rul:Constant>
+				</rul:Keys>
+			</rul:Lookup>
+			<rul:Lookup Type="decimal" MatrixCol="Factor" MatrixDef="VandalismExclFactorDef" MatrixFromConstant="VandalismExclFactor" ResultMode="SingleResult">
+				<rul:Keys>
+					<rul:Constant Type="string">CW</rul:Constant>
+					<rul:Constant Type="string">1185</rul:Constant>
+				</rul:Keys>
+			</rul:Lookup>
+		</rul:FirstNonNull>
+	</rul:Rule>
+	<rul:Rule Name="LookupWindstormOrHailExclFactor" Type="decimal" DataDefGroup="CommercialPropertyOutsideSignsDetail">
+		<rul:Param Name="symbol" Type="string" />
+		<rul:FirstNonNull Type="decimal">
+			<rul:Lookup Type="decimal" MatrixCol="Factor" MatrixDef="WindstormOrHailExclFactorDef" MatrixFromConstant="WindstormOrHailExclFactor" ResultMode="FirstResult">
+				<rul:Keys>
+					<rul:Value Type="string" FromDataDef="/State/@Code" />
+					<rul:Value Type="string" FromParam="symbol" />
+				</rul:Keys>
+			</rul:Lookup>
+			<rul:Lookup Type="decimal" MatrixCol="Factor" MatrixDef="WindstormOrHailExclFactorDef" MatrixFromConstant="WindstormOrHailExclFactor" ResultMode="SingleResult">
+				<rul:Keys>
+					<rul:Constant Type="string">CW</rul:Constant>
+					<rul:Value Type="string" FromParam="symbol" />
+				</rul:Keys>
+			</rul:Lookup>
+		</rul:FirstNonNull>
+	</rul:Rule>
+	<rul:Rule Name="LookupEQSubLimit500FlatDeductibleFactor" Type="decimal" DataDefGroup="CommercialPropertyOutsideSignsDetail">
+		<rul:FirstNonNull Type="decimal">
+			<rul:Round DecimalPlaces="4">
+				<rul:Lookup Type="decimal" MatrixCol="Factor" MatrixDef="EQSubLimit500FlatDeductibleFactorDef" MatrixFromConstant="EQSubLimit500FlatDeductibleFactor" ResultMode="FirstResult">
+					<rul:Keys>
+						<rul:Value Type="string" FromDataDef="/State/@Code" />
+						<rul:FirstValue Type="integer" FromConstant="0" FromDataDef="../../../../@EQDeductibleTier" Order="DataDefInputParamConstant" />
+						<rul:FirstValue Type="string" FromConstant="" FromDataDef="../../../../@EQClass" Order="DataDefInputParamConstant" />
+						<rul:FirstValue Type="string" FromConstant="" FromDataDef="../../../../@EQDeductible" Order="DataDefInputParamConstant" />
+						<rul:FirstValue Type="integer" FromConstant="0" FromDataDef="../../../../@EQSubLimitPercent" Order="DataDefInputParamConstant" />
+						<rul:FirstValue Type="integer" FromConstant="0" FromDataDef="../../../../../../@EarthquakeTotalPropertyValue" Order="DataDefInputParamConstant" />
+					</rul:Keys>
+				</rul:Lookup>
+			</rul:Round>
+			<rul:Round DecimalPlaces="4">
+				<rul:Lookup Type="decimal" MatrixCol="Factor" MatrixDef="EQSubLimit500FlatDeductibleFactorDef" MatrixFromConstant="EQSubLimit500FlatDeductibleFactor" ResultMode="SingleResult">
+					<rul:Keys>
+						<rul:Constant Type="string">CW</rul:Constant>
+						<rul:FirstValue Type="integer" FromConstant="0" FromDataDef="../../../../@EQDeductibleTier" Order="DataDefInputParamConstant" />
+						<rul:FirstValue Type="string" FromConstant="" FromDataDef="../../../../@EQClass" Order="DataDefInputParamConstant" />
+						<rul:FirstValue Type="string" FromConstant="" FromDataDef="../../../../@EQDeductible" Order="DataDefInputParamConstant" />
+						<rul:FirstValue Type="integer" FromConstant="0" FromDataDef="../../../../@EQSubLimitPercent" Order="DataDefInputParamConstant" />
+						<rul:FirstValue Type="integer" FromConstant="0" FromDataDef="../../../../../../@EarthquakeTotalPropertyValue" Order="DataDefInputParamConstant" />
+					</rul:Keys>
+				</rul:Lookup>
+			</rul:Round>
+		</rul:FirstNonNull>
+	</rul:Rule>
+	<rul:Rule Name="LookupEQSubLimit1000FlatDeductibleFactor" Type="decimal" DataDefGroup="CommercialPropertyOutsideSignsDetail">
+		<rul:FirstNonNull Type="decimal">
+			<rul:Round DecimalPlaces="4">
+				<rul:Lookup Type="decimal" MatrixCol="Factor" MatrixDef="EQSubLimit1000FlatDeductibleFactorDef" MatrixFromConstant="EQSubLimit1000FlatDeductibleFactor" ResultMode="FirstResult">
+					<rul:Keys>
+						<rul:Value Type="string" FromDataDef="/State/@Code" />
+						<rul:FirstValue Type="integer" FromConstant="0" FromDataDef="../../../../@EQDeductibleTier" Order="DataDefInputParamConstant" />
+						<rul:FirstValue Type="string" FromConstant="" FromDataDef="../../../../@EQClass" Order="DataDefInputParamConstant" />
+						<rul:FirstValue Type="string" FromConstant="" FromDataDef="../../../../@EQDeductible" Order="DataDefInputParamConstant" />
+						<rul:FirstValue Type="integer" FromConstant="0" FromDataDef="../../../../@EQSubLimitPercent" Order="DataDefInputParamConstant" />
+						<rul:FirstValue Type="integer" FromConstant="0" FromDataDef="../../../../../../@EarthquakeTotalPropertyValue" Order="DataDefInputParamConstant" />
+					</rul:Keys>
+				</rul:Lookup>
+			</rul:Round>
+			<rul:Round DecimalPlaces="4">
+				<rul:Lookup Type="decimal" MatrixCol="Factor" MatrixDef="EQSubLimit1000FlatDeductibleFactorDef" MatrixFromConstant="EQSubLimit1000FlatDeductibleFactor" ResultMode="SingleResult">
+					<rul:Keys>
+						<rul:Constant Type="string">CW</rul:Constant>
+						<rul:FirstValue Type="integer" FromConstant="0" FromDataDef="../../../../@EQDeductibleTier" Order="DataDefInputParamConstant" />
+						<rul:FirstValue Type="string" FromConstant="" FromDataDef="../../../../@EQClass" Order="DataDefInputParamConstant" />
+						<rul:FirstValue Type="string" FromConstant="" FromDataDef="../../../../@EQDeductible" Order="DataDefInputParamConstant" />
+						<rul:FirstValue Type="integer" FromConstant="0" FromDataDef="../../../../@EQSubLimitPercent" Order="DataDefInputParamConstant" />
+						<rul:FirstValue Type="integer" FromConstant="0" FromDataDef="../../../../../../@EarthquakeTotalPropertyValue" Order="DataDefInputParamConstant" />
+					</rul:Keys>
+				</rul:Lookup>
+			</rul:Round>
+		</rul:FirstNonNull>
+	</rul:Rule>
+	<rul:Rule Name="LookupEQSubLimit2500FlatDeductibleFactor" Type="decimal" DataDefGroup="CommercialPropertyOutsideSignsDetail">
+		<rul:FirstNonNull Type="decimal">
+			<rul:Round DecimalPlaces="4">
+				<rul:Lookup Type="decimal" MatrixCol="Factor" MatrixDef="EQSubLimit2500FlatDeductibleFactorDef" MatrixFromConstant="EQSubLimit2500FlatDeductibleFactor" ResultMode="FirstResult">
+					<rul:Keys>
+						<rul:Value Type="string" FromDataDef="/State/@Code" />
+						<rul:FirstValue Type="integer" FromConstant="0" FromDataDef="../../../../@EQDeductibleTier" Order="DataDefInputParamConstant" />
+						<rul:FirstValue Type="string" FromConstant="" FromDataDef="../../../../@EQClass" Order="DataDefInputParamConstant" />
+						<rul:FirstValue Type="string" FromConstant="" FromDataDef="../../../../@EQDeductible" Order="DataDefInputParamConstant" />
+						<rul:FirstValue Type="integer" FromConstant="0" FromDataDef="../../../../@EQSubLimitPercent" Order="DataDefInputParamConstant" />
+						<rul:FirstValue Type="integer" FromConstant="0" FromDataDef="../../../../../../@EarthquakeTotalPropertyValue" Order="DataDefInputParamConstant" />
+					</rul:Keys>
+				</rul:Lookup>
+			</rul:Round>
+			<rul:Round DecimalPlaces="4">
+				<rul:Lookup Type="decimal" MatrixCol="Factor" MatrixDef="EQSubLimit2500FlatDeductibleFactorDef" MatrixFromConstant="EQSubLimit2500FlatDeductibleFactor" ResultMode="SingleResult">
+					<rul:Keys>
+						<rul:Constant Type="string">CW</rul:Constant>
+						<rul:FirstValue Type="integer" FromConstant="0" FromDataDef="../../../../@EQDeductibleTier" Order="DataDefInputParamConstant" />
+						<rul:FirstValue Type="string" FromConstant="" FromDataDef="../../../../@EQClass" Order="DataDefInputParamConstant" />
+						<rul:FirstValue Type="string" FromConstant="" FromDataDef="../../../../@EQDeductible" Order="DataDefInputParamConstant" />
+						<rul:FirstValue Type="integer" FromConstant="0" FromDataDef="../../../../@EQSubLimitPercent" Order="DataDefInputParamConstant" />
+						<rul:FirstValue Type="integer" FromConstant="0" FromDataDef="../../../../../../@EarthquakeTotalPropertyValue" Order="DataDefInputParamConstant" />
+					</rul:Keys>
+				</rul:Lookup>
+			</rul:Round>
+		</rul:FirstNonNull>
+	</rul:Rule>
+	<rul:Rule Name="LookupEQSubLimit5000FlatDeductibleFactor" Type="decimal" DataDefGroup="CommercialPropertyOutsideSignsDetail">
+		<rul:FirstNonNull Type="decimal">
+			<rul:Round DecimalPlaces="4">
+				<rul:Lookup Type="decimal" MatrixCol="Factor" MatrixDef="EQSubLimit5000FlatDeductibleFactorDef" MatrixFromConstant="EQSubLimit5000FlatDeductibleFactor" ResultMode="FirstResult">
+					<rul:Keys>
+						<rul:Value Type="string" FromDataDef="/State/@Code" />
+						<rul:FirstValue Type="integer" FromConstant="0" FromDataDef="../../../../@EQDeductibleTier" Order="DataDefInputParamConstant" />
+						<rul:FirstValue Type="string" FromConstant="" FromDataDef="../../../../@EQClass" Order="DataDefInputParamConstant" />
+						<rul:FirstValue Type="string" FromConstant="" FromDataDef="../../../../@EQDeductible" Order="DataDefInputParamConstant" />
+						<rul:FirstValue Type="integer" FromConstant="0" FromDataDef="../../../../@EQSubLimitPercent" Order="DataDefInputParamConstant" />
+						<rul:FirstValue Type="integer" FromConstant="0" FromDataDef="../../../../../../@EarthquakeTotalPropertyValue" Order="DataDefInputParamConstant" />
+					</rul:Keys>
+				</rul:Lookup>
+			</rul:Round>
+			<rul:Round DecimalPlaces="4">
+				<rul:Lookup Type="decimal" MatrixCol="Factor" MatrixDef="EQSubLimit5000FlatDeductibleFactorDef" MatrixFromConstant="EQSubLimit5000FlatDeductibleFactor" ResultMode="SingleResult">
+					<rul:Keys>
+						<rul:Constant Type="string">CW</rul:Constant>
+						<rul:FirstValue Type="integer" FromConstant="0" FromDataDef="../../../../@EQDeductibleTier" Order="DataDefInputParamConstant" />
+						<rul:FirstValue Type="string" FromConstant="" FromDataDef="../../../../@EQClass" Order="DataDefInputParamConstant" />
+						<rul:FirstValue Type="string" FromConstant="" FromDataDef="../../../../@EQDeductible" Order="DataDefInputParamConstant" />
+						<rul:FirstValue Type="integer" FromConstant="0" FromDataDef="../../../../@EQSubLimitPercent" Order="DataDefInputParamConstant" />
+						<rul:FirstValue Type="integer" FromConstant="0" FromDataDef="../../../../../../@EarthquakeTotalPropertyValue" Order="DataDefInputParamConstant" />
+					</rul:Keys>
+				</rul:Lookup>
+			</rul:Round>
+		</rul:FirstNonNull>
+	</rul:Rule>
+	<rul:Rule Name="LookupEQSubLimit10000FlatDeductibleFactor" Type="decimal" DataDefGroup="CommercialPropertyOutsideSignsDetail">
+		<rul:FirstNonNull Type="decimal">
+			<rul:Round DecimalPlaces="4">
+				<rul:Lookup Type="decimal" MatrixCol="Factor" MatrixDef="EQSubLimit10000FlatDeductibleFactorDef" MatrixFromConstant="EQSubLimit10000FlatDeductibleFactor" ResultMode="FirstResult">
+					<rul:Keys>
+						<rul:Value Type="string" FromDataDef="/State/@Code" />
+						<rul:FirstValue Type="integer" FromConstant="0" FromDataDef="../../../../@EQDeductibleTier" Order="DataDefInputParamConstant" />
+						<rul:FirstValue Type="string" FromConstant="" FromDataDef="../../../../@EQClass" Order="DataDefInputParamConstant" />
+						<rul:FirstValue Type="string" FromConstant="" FromDataDef="../../../../@EQDeductible" Order="DataDefInputParamConstant" />
+						<rul:FirstValue Type="integer" FromConstant="0" FromDataDef="../../../../@EQSubLimitPercent" Order="DataDefInputParamConstant" />
+						<rul:FirstValue Type="integer" FromConstant="0" FromDataDef="../../../../../../@EarthquakeTotalPropertyValue" Order="DataDefInputParamConstant" />
+					</rul:Keys>
+				</rul:Lookup>
+			</rul:Round>
+			<rul:Round DecimalPlaces="4">
+				<rul:Lookup Type="decimal" MatrixCol="Factor" MatrixDef="EQSubLimit10000FlatDeductibleFactorDef" MatrixFromConstant="EQSubLimit10000FlatDeductibleFactor" ResultMode="SingleResult">
+					<rul:Keys>
+						<rul:Constant Type="string">CW</rul:Constant>
+						<rul:FirstValue Type="integer" FromConstant="0" FromDataDef="../../../../@EQDeductibleTier" Order="DataDefInputParamConstant" />
+						<rul:FirstValue Type="string" FromConstant="" FromDataDef="../../../../@EQClass" Order="DataDefInputParamConstant" />
+						<rul:FirstValue Type="string" FromConstant="" FromDataDef="../../../../@EQDeductible" Order="DataDefInputParamConstant" />
+						<rul:FirstValue Type="integer" FromConstant="0" FromDataDef="../../../../@EQSubLimitPercent" Order="DataDefInputParamConstant" />
+						<rul:FirstValue Type="integer" FromConstant="0" FromDataDef="../../../../../../@EarthquakeTotalPropertyValue" Order="DataDefInputParamConstant" />
+					</rul:Keys>
+				</rul:Lookup>
+			</rul:Round>
+		</rul:FirstNonNull>
+	</rul:Rule>
+	<rul:Rule Name="LookupEQSubLimit25000FlatDeductibleFactor" Type="decimal" DataDefGroup="CommercialPropertyOutsideSignsDetail">
+		<rul:FirstNonNull Type="decimal">
+			<rul:Round DecimalPlaces="4">
+				<rul:Lookup Type="decimal" MatrixCol="Factor" MatrixDef="EQSubLimit25000FlatDeductibleFactorDef" MatrixFromConstant="EQSubLimit25000FlatDeductibleFactor" ResultMode="FirstResult">
+					<rul:Keys>
+						<rul:Value Type="string" FromDataDef="/State/@Code" />
+						<rul:FirstValue Type="integer" FromConstant="0" FromDataDef="../../../../@EQDeductibleTier" Order="DataDefInputParamConstant" />
+						<rul:FirstValue Type="string" FromConstant="" FromDataDef="../../../../@EQClass" Order="DataDefInputParamConstant" />
+						<rul:FirstValue Type="string" FromConstant="" FromDataDef="../../../../@EQDeductible" Order="DataDefInputParamConstant" />
+						<rul:FirstValue Type="integer" FromConstant="0" FromDataDef="../../../../@EQSubLimitPercent" Order="DataDefInputParamConstant" />
+						<rul:FirstValue Type="integer" FromConstant="0" FromDataDef="../../../../../../@EarthquakeTotalPropertyValue" Order="DataDefInputParamConstant" />
+					</rul:Keys>
+				</rul:Lookup>
+			</rul:Round>
+			<rul:Round DecimalPlaces="4">
+				<rul:Lookup Type="decimal" MatrixCol="Factor" MatrixDef="EQSubLimit25000FlatDeductibleFactorDef" MatrixFromConstant="EQSubLimit25000FlatDeductibleFactor" ResultMode="SingleResult">
+					<rul:Keys>
+						<rul:Constant Type="string">CW</rul:Constant>
+						<rul:FirstValue Type="integer" FromConstant="0" FromDataDef="../../../../@EQDeductibleTier" Order="DataDefInputParamConstant" />
+						<rul:FirstValue Type="string" FromConstant="" FromDataDef="../../../../@EQClass" Order="DataDefInputParamConstant" />
+						<rul:FirstValue Type="string" FromConstant="" FromDataDef="../../../../@EQDeductible" Order="DataDefInputParamConstant" />
+						<rul:FirstValue Type="integer" FromConstant="0" FromDataDef="../../../../@EQSubLimitPercent" Order="DataDefInputParamConstant" />
+						<rul:FirstValue Type="integer" FromConstant="0" FromDataDef="../../../../../../@EarthquakeTotalPropertyValue" Order="DataDefInputParamConstant" />
+					</rul:Keys>
+				</rul:Lookup>
+			</rul:Round>
+		</rul:FirstNonNull>
+	</rul:Rule>
+	<rul:Rule Name="LookupEQSubLimit50000FlatDeductibleFactor" Type="decimal" DataDefGroup="CommercialPropertyOutsideSignsDetail">
+		<rul:FirstNonNull Type="decimal">
+			<rul:Round DecimalPlaces="4">
+				<rul:Lookup Type="decimal" MatrixCol="Factor" MatrixDef="EQSubLimit50000FlatDeductibleFactorDef" MatrixFromConstant="EQSubLimit50000FlatDeductibleFactor" ResultMode="FirstResult">
+					<rul:Keys>
+						<rul:Value Type="string" FromDataDef="/State/@Code" />
+						<rul:FirstValue Type="integer" FromConstant="0" FromDataDef="../../../../@EQDeductibleTier" Order="DataDefInputParamConstant" />
+						<rul:FirstValue Type="string" FromConstant="" FromDataDef="../../../../@EQClass" Order="DataDefInputParamConstant" />
+						<rul:FirstValue Type="string" FromConstant="" FromDataDef="../../../../@EQDeductible" Order="DataDefInputParamConstant" />
+						<rul:FirstValue Type="integer" FromConstant="0" FromDataDef="../../../../@EQSubLimitPercent" Order="DataDefInputParamConstant" />
+						<rul:FirstValue Type="integer" FromConstant="0" FromDataDef="../../../../../../@EarthquakeTotalPropertyValue" Order="DataDefInputParamConstant" />
+					</rul:Keys>
+				</rul:Lookup>
+			</rul:Round>
+			<rul:Round DecimalPlaces="4">
+				<rul:Lookup Type="decimal" MatrixCol="Factor" MatrixDef="EQSubLimit50000FlatDeductibleFactorDef" MatrixFromConstant="EQSubLimit50000FlatDeductibleFactor" ResultMode="SingleResult">
+					<rul:Keys>
+						<rul:Constant Type="string">CW</rul:Constant>
+						<rul:FirstValue Type="integer" FromConstant="0" FromDataDef="../../../../@EQDeductibleTier" Order="DataDefInputParamConstant" />
+						<rul:FirstValue Type="string" FromConstant="" FromDataDef="../../../../@EQClass" Order="DataDefInputParamConstant" />
+						<rul:FirstValue Type="string" FromConstant="" FromDataDef="../../../../@EQDeductible" Order="DataDefInputParamConstant" />
+						<rul:FirstValue Type="integer" FromConstant="0" FromDataDef="../../../../@EQSubLimitPercent" Order="DataDefInputParamConstant" />
+						<rul:FirstValue Type="integer" FromConstant="0" FromDataDef="../../../../../../@EarthquakeTotalPropertyValue" Order="DataDefInputParamConstant" />
+					</rul:Keys>
+				</rul:Lookup>
+			</rul:Round>
+		</rul:FirstNonNull>
+	</rul:Rule>
+	<rul:Rule Name="LookupEQSubLimit75000FlatDeductibleFactor" Type="decimal" DataDefGroup="CommercialPropertyOutsideSignsDetail">
+		<rul:FirstNonNull Type="decimal">
+			<rul:Round DecimalPlaces="4">
+				<rul:Lookup Type="decimal" MatrixCol="Factor" MatrixDef="EQSubLimit75000FlatDeductibleFactorDef" MatrixFromConstant="EQSubLimit75000FlatDeductibleFactor" ResultMode="FirstResult">
+					<rul:Keys>
+						<rul:Value Type="string" FromDataDef="/State/@Code" />
+						<rul:FirstValue Type="integer" FromConstant="0" FromDataDef="../../../../@EQDeductibleTier" Order="DataDefInputParamConstant" />
+						<rul:FirstValue Type="string" FromConstant="" FromDataDef="../../../../@EQClass" Order="DataDefInputParamConstant" />
+						<rul:FirstValue Type="string" FromConstant="" FromDataDef="../../../../@EQDeductible" Order="DataDefInputParamConstant" />
+						<rul:FirstValue Type="integer" FromConstant="0" FromDataDef="../../../../@EQSubLimitPercent" Order="DataDefInputParamConstant" />
+						<rul:FirstValue Type="integer" FromConstant="0" FromDataDef="../../../../../../@EarthquakeTotalPropertyValue" Order="DataDefInputParamConstant" />
+					</rul:Keys>
+				</rul:Lookup>
+			</rul:Round>
+			<rul:Round DecimalPlaces="4">
+				<rul:Lookup Type="decimal" MatrixCol="Factor" MatrixDef="EQSubLimit75000FlatDeductibleFactorDef" MatrixFromConstant="EQSubLimit75000FlatDeductibleFactor" ResultMode="SingleResult">
+					<rul:Keys>
+						<rul:Constant Type="string">CW</rul:Constant>
+						<rul:FirstValue Type="integer" FromConstant="0" FromDataDef="../../../../@EQDeductibleTier" Order="DataDefInputParamConstant" />
+						<rul:FirstValue Type="string" FromConstant="" FromDataDef="../../../../@EQClass" Order="DataDefInputParamConstant" />
+						<rul:FirstValue Type="string" FromConstant="" FromDataDef="../../../../@EQDeductible" Order="DataDefInputParamConstant" />
+						<rul:FirstValue Type="integer" FromConstant="0" FromDataDef="../../../../@EQSubLimitPercent" Order="DataDefInputParamConstant" />
+						<rul:FirstValue Type="integer" FromConstant="0" FromDataDef="../../../../../../@EarthquakeTotalPropertyValue" Order="DataDefInputParamConstant" />
+					</rul:Keys>
+				</rul:Lookup>
+			</rul:Round>
+		</rul:FirstNonNull>
+	</rul:Rule>
+	<rul:Rule Name="LookupEQSubLimit100000FlatDeductibleFactor" Type="decimal" DataDefGroup="CommercialPropertyOutsideSignsDetail">
+		<rul:FirstNonNull Type="decimal">
+			<rul:Round DecimalPlaces="4">
+				<rul:Lookup Type="decimal" MatrixCol="Factor" MatrixDef="EQSubLimit100000FlatDeductibleFactorDef" MatrixFromConstant="EQSubLimit100000FlatDeductibleFactor" ResultMode="FirstResult">
+					<rul:Keys>
+						<rul:Value Type="string" FromDataDef="/State/@Code" />
+						<rul:FirstValue Type="integer" FromConstant="0" FromDataDef="../../../../@EQDeductibleTier" Order="DataDefInputParamConstant" />
+						<rul:FirstValue Type="string" FromConstant="" FromDataDef="../../../../@EQClass" Order="DataDefInputParamConstant" />
+						<rul:FirstValue Type="string" FromConstant="" FromDataDef="../../../../@EQDeductible" Order="DataDefInputParamConstant" />
+						<rul:FirstValue Type="integer" FromConstant="0" FromDataDef="../../../../@EQSubLimitPercent" Order="DataDefInputParamConstant" />
+						<rul:FirstValue Type="integer" FromConstant="0" FromDataDef="../../../../../../@EarthquakeTotalPropertyValue" Order="DataDefInputParamConstant" />
+					</rul:Keys>
+				</rul:Lookup>
+			</rul:Round>
+			<rul:Round DecimalPlaces="4">
+				<rul:Lookup Type="decimal" MatrixCol="Factor" MatrixDef="EQSubLimit100000FlatDeductibleFactorDef" MatrixFromConstant="EQSubLimit100000FlatDeductibleFactor" ResultMode="SingleResult">
+					<rul:Keys>
+						<rul:Constant Type="string">CW</rul:Constant>
+						<rul:FirstValue Type="integer" FromConstant="0" FromDataDef="../../../../@EQDeductibleTier" Order="DataDefInputParamConstant" />
+						<rul:FirstValue Type="string" FromConstant="" FromDataDef="../../../../@EQClass" Order="DataDefInputParamConstant" />
+						<rul:FirstValue Type="string" FromConstant="" FromDataDef="../../../../@EQDeductible" Order="DataDefInputParamConstant" />
+						<rul:FirstValue Type="integer" FromConstant="0" FromDataDef="../../../../@EQSubLimitPercent" Order="DataDefInputParamConstant" />
+						<rul:FirstValue Type="integer" FromConstant="0" FromDataDef="../../../../../../@EarthquakeTotalPropertyValue" Order="DataDefInputParamConstant" />
+					</rul:Keys>
+				</rul:Lookup>
+			</rul:Round>
+		</rul:FirstNonNull>
+	</rul:Rule>
+	<rul:Rule Name="LookupEQSubLimit250000FlatDeductibleFactor" Type="decimal" DataDefGroup="CommercialPropertyOutsideSignsDetail">
+		<rul:FirstNonNull Type="decimal">
+			<rul:Round DecimalPlaces="4">
+				<rul:Lookup Type="decimal" MatrixCol="Factor" MatrixDef="EQSubLimit250000FlatDeductibleFactorDef" MatrixFromConstant="EQSubLimit250000FlatDeductibleFactor" ResultMode="FirstResult">
+					<rul:Keys>
+						<rul:Value Type="string" FromDataDef="/State/@Code" />
+						<rul:FirstValue Type="integer" FromConstant="0" FromDataDef="../../../../@EQDeductibleTier" Order="DataDefInputParamConstant" />
+						<rul:FirstValue Type="string" FromConstant="" FromDataDef="../../../../@EQClass" Order="DataDefInputParamConstant" />
+						<rul:FirstValue Type="string" FromConstant="" FromDataDef="../../../../@EQDeductible" Order="DataDefInputParamConstant" />
+						<rul:FirstValue Type="integer" FromConstant="0" FromDataDef="../../../../@EQSubLimitPercent" Order="DataDefInputParamConstant" />
+						<rul:FirstValue Type="integer" FromConstant="0" FromDataDef="../../../../../../@EarthquakeTotalPropertyValue" Order="DataDefInputParamConstant" />
+					</rul:Keys>
+				</rul:Lookup>
+			</rul:Round>
+			<rul:Round DecimalPlaces="4">
+				<rul:Lookup Type="decimal" MatrixCol="Factor" MatrixDef="EQSubLimit250000FlatDeductibleFactorDef" MatrixFromConstant="EQSubLimit250000FlatDeductibleFactor" ResultMode="SingleResult">
+					<rul:Keys>
+						<rul:Constant Type="string">CW</rul:Constant>
+						<rul:FirstValue Type="integer" FromConstant="0" FromDataDef="../../../../@EQDeductibleTier" Order="DataDefInputParamConstant" />
+						<rul:FirstValue Type="string" FromConstant="" FromDataDef="../../../../@EQClass" Order="DataDefInputParamConstant" />
+						<rul:FirstValue Type="string" FromConstant="" FromDataDef="../../../../@EQDeductible" Order="DataDefInputParamConstant" />
+						<rul:FirstValue Type="integer" FromConstant="0" FromDataDef="../../../../@EQSubLimitPercent" Order="DataDefInputParamConstant" />
+						<rul:FirstValue Type="integer" FromConstant="0" FromDataDef="../../../../../../@EarthquakeTotalPropertyValue" Order="DataDefInputParamConstant" />
+					</rul:Keys>
+				</rul:Lookup>
+			</rul:Round>
+		</rul:FirstNonNull>
+	</rul:Rule>
+	<rul:Rule Name="LookupEQSubLimit500000FlatDeductibleFactor" Type="decimal" DataDefGroup="CommercialPropertyOutsideSignsDetail">
+		<rul:FirstNonNull Type="decimal">
+			<rul:Round DecimalPlaces="4">
+				<rul:Lookup Type="decimal" MatrixCol="Factor" MatrixDef="EQSubLimit500000FlatDeductibleFactorDef" MatrixFromConstant="EQSubLimit500000FlatDeductibleFactor" ResultMode="FirstResult">
+					<rul:Keys>
+						<rul:Value Type="string" FromDataDef="/State/@Code" />
+						<rul:FirstValue Type="integer" FromConstant="0" FromDataDef="../../../../@EQDeductibleTier" Order="DataDefInputParamConstant" />
+						<rul:FirstValue Type="string" FromConstant="" FromDataDef="../../../../@EQClass" Order="DataDefInputParamConstant" />
+						<rul:FirstValue Type="string" FromConstant="" FromDataDef="../../../../@EQDeductible" Order="DataDefInputParamConstant" />
+						<rul:FirstValue Type="integer" FromConstant="0" FromDataDef="../../../../@EQSubLimitPercent" Order="DataDefInputParamConstant" />
+						<rul:FirstValue Type="integer" FromConstant="0" FromDataDef="../../../../../../@EarthquakeTotalPropertyValue" Order="DataDefInputParamConstant" />
+					</rul:Keys>
+				</rul:Lookup>
+			</rul:Round>
+			<rul:Round DecimalPlaces="4">
+				<rul:Lookup Type="decimal" MatrixCol="Factor" MatrixDef="EQSubLimit500000FlatDeductibleFactorDef" MatrixFromConstant="EQSubLimit500000FlatDeductibleFactor" ResultMode="SingleResult">
+					<rul:Keys>
+						<rul:Constant Type="string">CW</rul:Constant>
+						<rul:FirstValue Type="integer" FromConstant="0" FromDataDef="../../../../@EQDeductibleTier" Order="DataDefInputParamConstant" />
+						<rul:FirstValue Type="string" FromConstant="" FromDataDef="../../../../@EQClass" Order="DataDefInputParamConstant" />
+						<rul:FirstValue Type="string" FromConstant="" FromDataDef="../../../../@EQDeductible" Order="DataDefInputParamConstant" />
+						<rul:FirstValue Type="integer" FromConstant="0" FromDataDef="../../../../@EQSubLimitPercent" Order="DataDefInputParamConstant" />
+						<rul:FirstValue Type="integer" FromConstant="0" FromDataDef="../../../../../../@EarthquakeTotalPropertyValue" Order="DataDefInputParamConstant" />
+					</rul:Keys>
+				</rul:Lookup>
+			</rul:Round>
+		</rul:FirstNonNull>
+	</rul:Rule>
+	<rul:Rule Name="LookupEQSubLimit750000FlatDeductibleFactor" Type="decimal" DataDefGroup="CommercialPropertyOutsideSignsDetail">
+		<rul:FirstNonNull Type="decimal">
+			<rul:Round DecimalPlaces="4">
+				<rul:Lookup Type="decimal" MatrixCol="Factor" MatrixDef="EQSubLimit750000FlatDeductibleFactorDef" MatrixFromConstant="EQSubLimit750000FlatDeductibleFactor" ResultMode="FirstResult">
+					<rul:Keys>
+						<rul:Value Type="string" FromDataDef="/State/@Code" />
+						<rul:FirstValue Type="integer" FromConstant="0" FromDataDef="../../../../@EQDeductibleTier" Order="DataDefInputParamConstant" />
+						<rul:FirstValue Type="string" FromConstant="" FromDataDef="../../../../@EQClass" Order="DataDefInputParamConstant" />
+						<rul:FirstValue Type="string" FromConstant="" FromDataDef="../../../../@EQDeductible" Order="DataDefInputParamConstant" />
+						<rul:FirstValue Type="integer" FromConstant="0" FromDataDef="../../../../@EQSubLimitPercent" Order="DataDefInputParamConstant" />
+						<rul:FirstValue Type="integer" FromConstant="0" FromDataDef="../../../../../../@EarthquakeTotalPropertyValue" Order="DataDefInputParamConstant" />
+					</rul:Keys>
+				</rul:Lookup>
+			</rul:Round>
+			<rul:Round DecimalPlaces="4">
+				<rul:Lookup Type="decimal" MatrixCol="Factor" MatrixDef="EQSubLimit750000FlatDeductibleFactorDef" MatrixFromConstant="EQSubLimit750000FlatDeductibleFactor" ResultMode="SingleResult">
+					<rul:Keys>
+						<rul:Constant Type="string">CW</rul:Constant>
+						<rul:FirstValue Type="integer" FromConstant="0" FromDataDef="../../../../@EQDeductibleTier" Order="DataDefInputParamConstant" />
+						<rul:FirstValue Type="string" FromConstant="" FromDataDef="../../../../@EQClass" Order="DataDefInputParamConstant" />
+						<rul:FirstValue Type="string" FromConstant="" FromDataDef="../../../../@EQDeductible" Order="DataDefInputParamConstant" />
+						<rul:FirstValue Type="integer" FromConstant="0" FromDataDef="../../../../@EQSubLimitPercent" Order="DataDefInputParamConstant" />
+						<rul:FirstValue Type="integer" FromConstant="0" FromDataDef="../../../../../../@EarthquakeTotalPropertyValue" Order="DataDefInputParamConstant" />
+					</rul:Keys>
+				</rul:Lookup>
+			</rul:Round>
+		</rul:FirstNonNull>
+	</rul:Rule>
+	<rul:Rule Name="LookupEQSubLimit1000000FlatDeductibleFactor" Type="decimal" DataDefGroup="CommercialPropertyOutsideSignsDetail">
+		<rul:FirstNonNull Type="decimal">
+			<rul:Round DecimalPlaces="4">
+				<rul:Lookup Type="decimal" MatrixCol="Factor" MatrixDef="EQSubLimit1000000FlatDeductibleFactorDef" MatrixFromConstant="EQSubLimit1000000FlatDeductibleFactor" ResultMode="FirstResult">
+					<rul:Keys>
+						<rul:Value Type="string" FromDataDef="/State/@Code" />
+						<rul:FirstValue Type="integer" FromConstant="0" FromDataDef="../../../../@EQDeductibleTier" Order="DataDefInputParamConstant" />
+						<rul:FirstValue Type="string" FromConstant="" FromDataDef="../../../../@EQClass" Order="DataDefInputParamConstant" />
+						<rul:FirstValue Type="string" FromConstant="" FromDataDef="../../../../@EQDeductible" Order="DataDefInputParamConstant" />
+						<rul:FirstValue Type="integer" FromConstant="0" FromDataDef="../../../../@EQSubLimitPercent" Order="DataDefInputParamConstant" />
+						<rul:FirstValue Type="integer" FromConstant="0" FromDataDef="../../../../../../@EarthquakeTotalPropertyValue" Order="DataDefInputParamConstant" />
+					</rul:Keys>
+				</rul:Lookup>
+			</rul:Round>
+			<rul:Round DecimalPlaces="4">
+				<rul:Lookup Type="decimal" MatrixCol="Factor" MatrixDef="EQSubLimit1000000FlatDeductibleFactorDef" MatrixFromConstant="EQSubLimit1000000FlatDeductibleFactor" ResultMode="SingleResult">
+					<rul:Keys>
+						<rul:Constant Type="string">CW</rul:Constant>
+						<rul:FirstValue Type="integer" FromConstant="0" FromDataDef="../../../../@EQDeductibleTier" Order="DataDefInputParamConstant" />
+						<rul:FirstValue Type="string" FromConstant="" FromDataDef="../../../../@EQClass" Order="DataDefInputParamConstant" />
+						<rul:FirstValue Type="string" FromConstant="" FromDataDef="../../../../@EQDeductible" Order="DataDefInputParamConstant" />
+						<rul:FirstValue Type="integer" FromConstant="0" FromDataDef="../../../../@EQSubLimitPercent" Order="DataDefInputParamConstant" />
+						<rul:FirstValue Type="integer" FromConstant="0" FromDataDef="../../../../../../@EarthquakeTotalPropertyValue" Order="DataDefInputParamConstant" />
+					</rul:Keys>
+				</rul:Lookup>
+			</rul:Round>
+		</rul:FirstNonNull>
+	</rul:Rule>
+	<rul:Rule Name="LookupEQSubLimitDeductibleTier1Table1" Type="decimal" DataDefGroup="CommercialPropertyOutsideSignsDetail">
+		<rul:FirstNonNull Type="decimal">
+			<rul:Lookup Type="decimal" MatrixCol="Factor" MatrixDef="EQSubLimitDeductibleTierCWTableDef" MatrixFromConstant="EQSubLimitDeductibleTierCWTable" ResultMode="FirstResult">
+				<rul:Keys>
+					<rul:Value Type="string" FromDataDef="/State/@Code" />
+					<rul:Constant Type="string">Y</rul:Constant>
+				</rul:Keys>
+			</rul:Lookup>
+			<rul:Lookup Type="decimal" MatrixCol="Factor" MatrixDef="EQSubLimitDeductibleTierCWTableDef" MatrixFromConstant="EQSubLimitDeductibleTierCWTable" ResultMode="SingleResult">
+				<rul:Keys>
+					<rul:Constant Type="string">CW</rul:Constant>
+					<rul:Constant Type="string">Y</rul:Constant>
+				</rul:Keys>
+			</rul:Lookup>
+		</rul:FirstNonNull>
+	</rul:Rule>
+	<rul:Rule Name="LookupEQSubLimitDeductibleTier1Table2" Type="decimal" DataDefGroup="CommercialPropertyOutsideSignsDetail">
+		<rul:FirstNonNull Type="decimal">
+			<rul:Lookup Type="decimal" MatrixCol="Factor" MatrixDef="EQSubLimitDeductibleTierCWTableDef" MatrixFromConstant="EQSubLimitDeductibleTierCWTable" ResultMode="FirstResult">
+				<rul:Keys>
+					<rul:Value Type="string" FromDataDef="/State/@Code" />
+					<rul:Constant Type="string">Y</rul:Constant>
+				</rul:Keys>
+			</rul:Lookup>
+			<rul:Lookup Type="decimal" MatrixCol="Factor" MatrixDef="EQSubLimitDeductibleTierCWTableDef" MatrixFromConstant="EQSubLimitDeductibleTierCWTable" ResultMode="SingleResult">
+				<rul:Keys>
+					<rul:Constant Type="string">CW</rul:Constant>
+					<rul:Constant Type="string">Y</rul:Constant>
+				</rul:Keys>
+			</rul:Lookup>
+		</rul:FirstNonNull>
+	</rul:Rule>
+	<rul:Rule Name="LookupEQSubLimitDeductibleTier2Table3" Type="decimal" DataDefGroup="CommercialPropertyOutsideSignsDetail">
+		<rul:FirstNonNull Type="decimal">
+			<rul:Lookup Type="decimal" MatrixCol="Factor" MatrixDef="EQSubLimitDeductibleTierCWTableDef" MatrixFromConstant="EQSubLimitDeductibleTierCWTable" ResultMode="FirstResult">
+				<rul:Keys>
+					<rul:Value Type="string" FromDataDef="/State/@Code" />
+					<rul:Constant Type="string">Y</rul:Constant>
+				</rul:Keys>
+			</rul:Lookup>
+			<rul:Lookup Type="decimal" MatrixCol="Factor" MatrixDef="EQSubLimitDeductibleTierCWTableDef" MatrixFromConstant="EQSubLimitDeductibleTierCWTable" ResultMode="SingleResult">
+				<rul:Keys>
+					<rul:Constant Type="string">CW</rul:Constant>
+					<rul:Constant Type="string">Y</rul:Constant>
+				</rul:Keys>
+			</rul:Lookup>
+		</rul:FirstNonNull>
+	</rul:Rule>
+	<rul:Rule Name="LookupEQSubLimitDeductibleTier2Table4" Type="decimal" DataDefGroup="CommercialPropertyOutsideSignsDetail">
+		<rul:FirstNonNull Type="decimal">
+			<rul:Lookup Type="decimal" MatrixCol="Factor" MatrixDef="EQSubLimitDeductibleTierCWTableDef" MatrixFromConstant="EQSubLimitDeductibleTierCWTable" ResultMode="FirstResult">
+				<rul:Keys>
+					<rul:Value Type="string" FromDataDef="/State/@Code" />
+					<rul:Constant Type="string">Y</rul:Constant>
+				</rul:Keys>
+			</rul:Lookup>
+			<rul:Lookup Type="decimal" MatrixCol="Factor" MatrixDef="EQSubLimitDeductibleTierCWTableDef" MatrixFromConstant="EQSubLimitDeductibleTierCWTable" ResultMode="SingleResult">
+				<rul:Keys>
+					<rul:Constant Type="string">CW</rul:Constant>
+					<rul:Constant Type="string">Y</rul:Constant>
+				</rul:Keys>
+			</rul:Lookup>
+		</rul:FirstNonNull>
+	</rul:Rule>
+	<rul:Rule Name="LookupEQSubLimitDeductibleTier3Table5" Type="decimal" DataDefGroup="CommercialPropertyOutsideSignsDetail">
+		<rul:FirstNonNull Type="decimal">
+			<rul:Lookup Type="decimal" MatrixCol="Factor" MatrixDef="EQSubLimitDeductibleTierCWTableDef" MatrixFromConstant="EQSubLimitDeductibleTierCWTable" ResultMode="FirstResult">
+				<rul:Keys>
+					<rul:Value Type="string" FromDataDef="/State/@Code" />
+					<rul:Constant Type="string">Y</rul:Constant>
+				</rul:Keys>
+			</rul:Lookup>
+			<rul:Lookup Type="decimal" MatrixCol="Factor" MatrixDef="EQSubLimitDeductibleTierCWTableDef" MatrixFromConstant="EQSubLimitDeductibleTierCWTable" ResultMode="SingleResult">
+				<rul:Keys>
+					<rul:Constant Type="string">CW</rul:Constant>
+					<rul:Constant Type="string">Y</rul:Constant>
+				</rul:Keys>
+			</rul:Lookup>
+		</rul:FirstNonNull>
+	</rul:Rule>
+	<rul:Rule Name="LookupEQSubLimitDeductibleTier3Table6" Type="decimal" DataDefGroup="CommercialPropertyOutsideSignsDetail">
+		<rul:FirstNonNull Type="decimal">
+			<rul:Lookup Type="decimal" MatrixCol="Factor" MatrixDef="EQSubLimitDeductibleTierCWTableDef" MatrixFromConstant="EQSubLimitDeductibleTierCWTable" ResultMode="FirstResult">
+				<rul:Keys>
+					<rul:Value Type="string" FromDataDef="/State/@Code" />
+					<rul:Constant Type="string">Y</rul:Constant>
+				</rul:Keys>
+			</rul:Lookup>
+			<rul:Lookup Type="decimal" MatrixCol="Factor" MatrixDef="EQSubLimitDeductibleTierCWTableDef" MatrixFromConstant="EQSubLimitDeductibleTierCWTable" ResultMode="SingleResult">
+				<rul:Keys>
+					<rul:Constant Type="string">CW</rul:Constant>
+					<rul:Constant Type="string">Y</rul:Constant>
+				</rul:Keys>
+			</rul:Lookup>
+		</rul:FirstNonNull>
+	</rul:Rule>
+</rul:Rules>

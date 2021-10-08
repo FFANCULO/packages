@@ -1,0 +1,13 @@
+"StateCode","UtilityType","UtilitySrvcCauseOfLoss","Rate"
+"CW","Public Utilities","GroupI",0.038
+"CW","Public Utilities","GroupII",0.011
+"CW","Public Utilities","Broad",0.006
+"CW","Public Utilities","SpecialBldg",0.006
+"CW","Public Utilities","SpecialPersProp",0.021
+"CW","Public Utilities","Earthquake",0.011
+"CW","Other Than Public Utilities","GroupI",0.075
+"CW","Other Than Public Utilities","GroupII",0.022
+"CW","Other Than Public Utilities","Broad",0.01
+"CW","Other Than Public Utilities","SpecialBldg",0.01
+"CW","Other Than Public Utilities","SpecialPersProp",0.042
+"CW","Other Than Public Utilities","Earthquake",0.022

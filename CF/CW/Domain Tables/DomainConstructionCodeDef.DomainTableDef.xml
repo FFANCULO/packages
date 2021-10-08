@@ -1,0 +1,14 @@
+<dt:DomainTable xmlns:dt="http://www.verisk.com/iso/erc/DomainTable">
+	<dt:MetaData>
+		<dt:MetaDataCode>DomainTableConstructionCode</dt:MetaDataCode>
+		<dt:MetaDataCode>BureauRuleNumber15B</dt:MetaDataCode>
+	</dt:MetaData>
+	<dt:KeyCols>
+		<dt:KeyCol Name="StateCode" Type="string" CaseInsensitive="false" />
+		<dt:KeyCol Name="ConstructionTypeToUse" Type="string" CaseInsensitive="false" />
+	</dt:KeyCols>
+	<dt:ValueCols>
+		<dt:ValueCol Name="DisplayValue" Type="string" />
+		<dt:ValueCol Name="DataValue" Type="integer" />
+	</dt:ValueCols>
+</dt:DomainTable>

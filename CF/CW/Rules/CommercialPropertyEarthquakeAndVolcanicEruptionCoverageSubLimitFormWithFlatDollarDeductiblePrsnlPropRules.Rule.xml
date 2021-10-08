@@ -1,0 +1,776 @@
+<rul:Rules xmlns:rul="http://www.verisk.com/iso/erc/Rule">
+	<rul:Rule Name="InitializeRuleSet" DataDefGroup="CommercialPropertyEarthquakeAndVolcanicEruptionCoverageSubLimitFormWithFlatDollarDeductiblePrsnlProp">
+		<rul:Sequence />
+	</rul:Rule>
+	<rul:Rule Name="CalculateTotalPremium" Type="decimal" DataDefGroup="CommercialPropertyEarthquakeAndVolcanicEruptionCoverageSubLimitFormWithFlatDollarDeductiblePrsnlProp">
+		<rul:If>
+			<rul:Test>
+				<rul:And>
+					<rul:Equal>
+						<rul:FirstValue Type="integer" FromConstant="0" FromDataDef="@PremiumIndicator" Order="DataDefInputParamConstant" />
+						<rul:Constant Type="integer">1</rul:Constant>
+					</rul:Equal>
+					<rul:NotEqual>
+						<rul:FirstValue Type="decimal" FromConstant="0" FromDataDef="@Premium" Order="DataDefInputParamConstant" />
+						<rul:Constant Type="decimal">0</rul:Constant>
+					</rul:NotEqual>
+				</rul:And>
+			</rul:Test>
+			<rul:Then>
+				<rul:FirstValue Type="decimal" FromConstant="0" FromDataDef="@Premium" Order="DataDefInputParamConstant" />
+			</rul:Then>
+			<rul:Else>
+				<rul:Constant Type="decimal">0</rul:Constant>
+			</rul:Else>
+		</rul:If>
+	</rul:Rule>
+	<rul:Rule Name="SetFieldValues" Type="none" DataDefGroup="CommercialPropertyEarthquakeAndVolcanicEruptionCoverageSubLimitFormWithFlatDollarDeductiblePrsnlProp">
+		<rul:Sequence>
+			<rul:Copy Type="integer" ToDataDef="@EQCauseOfLossCovBlktIDNum" FromDataDef="../../@EQCauseOfLossCovBlktIDNum" />
+		</rul:Sequence>
+	</rul:Rule>
+	<rul:Rule Name="ErcRate" Type="none" DataDefGroup="CommercialPropertyEarthquakeAndVolcanicEruptionCoverageSubLimitFormWithFlatDollarDeductiblePrsnlProp">
+		<rul:Sequence>
+			<rul:RunRule Type="none" FileName="CommercialPropertyEarthquakeAndVolcanicEruptionCoverageSubLimitFormWithFlatDollarDeductiblePrsnlPropRules" Rule="SetPremium" ClearCache="true" />
+			<rul:RunRule Type="none" FileName="CommercialPropertyEarthquakeAndVolcanicEruptionCoverageSubLimitFormWithFlatDollarDeductiblePrsnlPropRules" Rule="SetPremiumIndicator" ClearCache="true" />
+		</rul:Sequence>
+	</rul:Rule>
+	<rul:Rule Name="SetPremium" Type="none" DataDefGroup="CommercialPropertyEarthquakeAndVolcanicEruptionCoverageSubLimitFormWithFlatDollarDeductiblePrsnlProp">
+		<rul:Sequence>
+			<rul:WithArgs>
+				<rul:Arg Type="decimal" Param="calcPremium">
+					<rul:FirstNonNull Type="decimal">
+						<rul:Product DecimalPlaces="0">
+							<rul:Product DecimalPlaces="0">
+								<rul:Choose>
+									<rul:When>
+										<rul:Test>
+											<rul:Or>
+												<rul:Equal>
+													<rul:FirstValue Type="string" FromConstant="" FromDataDef="../../@EQCovIndicator" Order="DataDefInputParamConstant" />
+													<rul:Constant Type="string">No Coverage</rul:Constant>
+												</rul:Equal>
+												<rul:Equal>
+													<rul:FirstValue Type="string" FromConstant="" FromDataDef="../../@EQCovIndicator" Order="DataDefInputParamConstant" />
+													<rul:Constant Type="string">Yes, Included in Blanket</rul:Constant>
+												</rul:Equal>
+												<rul:Exist AtInputDataDef="../../CommercialPropertyEarthquakeAndVolcanicEruptionEndorsementSubLimitFormPrsnlPropTable/CommercialPropertyEarthquakeAndVolcanicEruptionEndorsementSubLimitFormPrsnlProp" />
+												<rul:Exist AtInputDataDef="../../CommercialPropertyEarthquakeAndVolcanicEruptionEndorsementPrsnlPropTable/CommercialPropertyEarthquakeAndVolcanicEruptionEndorsementPrsnlProp" />
+												<rul:Exist AtInputDataDef="../../CommercialPropertyEarthquakeAndVolcanicEruptionCoverageWithFlatDollarDeductiblePrsnlPropTable/CommercialPropertyEarthquakeAndVolcanicEruptionCoverageWithFlatDollarDeductiblePrsnlProp" />
+											</rul:Or>
+										</rul:Test>
+										<rul:Then>
+											<rul:Constant Type="decimal">0</rul:Constant>
+										</rul:Then>
+									</rul:When>
+									<rul:When>
+										<rul:Test>
+											<rul:Equal>
+												<rul:FirstValue Type="string" FromConstant="" FromDataDef="../../../../@CovForm" Order="DataDefInputParamConstant" />
+												<rul:Constant Type="string">Legal Liability Coverage Form</rul:Constant>
+											</rul:Equal>
+										</rul:Test>
+										<rul:Then>
+											<rul:Product DecimalPlaces="0">
+												<rul:Product DecimalPlaces="0">
+													<rul:Product DecimalPlaces="3">
+														<rul:Product DecimalPlaces="3">
+															<rul:FirstValue Type="decimal" FromConstant="0" FromDataDef="../../@EQCauseOfLossAdjustment" Order="DataDefInputParamConstant" />
+															<rul:FirstValue Type="decimal" FromConstant="0" FromDataDef="../../@LegalLiabFactor" Order="DataDefInputParamConstant" />
+														</rul:Product>
+														<rul:FirstValue Type="decimal" FromConstant="0" FromDataDef="../../@LegalLiabAddlInsurableIntFactor" Order="DataDefInputParamConstant" />
+													</rul:Product>
+													<rul:Divide>
+														<rul:Value Type="integer" FromDataDef="@Limit" />
+														<rul:Constant Type="decimal">100</rul:Constant>
+													</rul:Divide>
+												</rul:Product>
+												<rul:FirstValue Type="decimal" FromConstant="0" FromDataDef="../../../../../../../../../../@MultiPremiumAndDispersionCreditFactor" Order="DataDefInputParamConstant" />
+											</rul:Product>
+										</rul:Then>
+									</rul:When>
+									<rul:When>
+										<rul:Test>
+											<rul:And>
+												<rul:NotEqual>
+													<rul:FirstValue Type="string" FromConstant="" FromDataDef="../../../../@CovForm" Order="DataDefInputParamConstant" />
+													<rul:Constant Type="string">Tobacco Sales Warehouse Coverage Form</rul:Constant>
+												</rul:NotEqual>
+												<rul:NotEqual>
+													<rul:FirstValue Type="string" FromConstant="" FromDataDef="../../../../@CovForm" Order="DataDefInputParamConstant" />
+													<rul:Constant Type="string">Class Rated Building Only, No Personal Property Coverage</rul:Constant>
+												</rul:NotEqual>
+											</rul:And>
+										</rul:Test>
+										<rul:Then>
+											<rul:Product DecimalPlaces="0">
+												<rul:Product DecimalPlaces="0">
+													<rul:Divide>
+														<rul:Value Type="integer" FromDataDef="@Limit" />
+														<rul:Constant Type="decimal">100</rul:Constant>
+													</rul:Divide>
+													<rul:FirstValue Type="decimal" FromConstant="0" FromDataDef="../../@FinalEQRate" Order="DataDefInputParamConstant" />
+												</rul:Product>
+												<rul:FirstValue Type="decimal" FromConstant="0" FromDataDef="../../../../../../../../../../@MultiPremiumAndDispersionCreditFactor" Order="DataDefInputParamConstant" />
+											</rul:Product>
+										</rul:Then>
+									</rul:When>
+									<rul:Otherwise>
+										<rul:Constant Type="decimal">0</rul:Constant>
+									</rul:Otherwise>
+								</rul:Choose>
+								<rul:FirstValue Type="decimal" FromConstant="0" FromDataDef="../../../../../../../../../../@CyberIncidentExclusionFactorEQ" Order="DataDefInputParamConstant" />
+							</rul:Product>
+							<rul:FirstValue Type="decimal" FromConstant="0" FromDataDef="../../../../../../../../../../@CyberIncidentExclusionCOLExcptnsFactorEQ" Order="DataDefInputParamConstant" />
+						</rul:Product>
+						<rul:Constant Type="decimal">0</rul:Constant>
+					</rul:FirstNonNull>
+				</rul:Arg>
+				<rul:Value Type="decimal" ToDataDef="@Premium" FromParam="calcPremium" />
+			</rul:WithArgs>
+		</rul:Sequence>
+	</rul:Rule>
+	<rul:Rule Name="SetPremiumIndicator" Type="none" DataDefGroup="CommercialPropertyEarthquakeAndVolcanicEruptionCoverageSubLimitFormWithFlatDollarDeductiblePrsnlProp">
+		<rul:Sequence>
+			<rul:If>
+				<rul:Test>
+					<rul:NotEqual>
+						<rul:FirstValue Type="decimal" FromConstant="0" FromDataDef="@Premium" Order="DataDefInputParamConstant" />
+						<rul:Constant Type="decimal">0</rul:Constant>
+					</rul:NotEqual>
+				</rul:Test>
+				<rul:Then>
+					<rul:Sequence>
+						<rul:Constant Type="integer" ToDataDef="@PremiumIndicator">1</rul:Constant>
+					</rul:Sequence>
+				</rul:Then>
+				<rul:Else>
+					<rul:Sequence>
+						<rul:Constant Type="integer" ToDataDef="@PremiumIndicator">0</rul:Constant>
+					</rul:Sequence>
+				</rul:Else>
+			</rul:If>
+		</rul:Sequence>
+	</rul:Rule>
+	<rul:Rule Name="SetSubLimitPercent" Type="none" DataDefGroup="CommercialPropertyEarthquakeAndVolcanicEruptionCoverageSubLimitFormWithFlatDollarDeductiblePrsnlProp">
+		<rul:Sequence>
+			<rul:RunRule Type="none" FileName="CommercialPropertyEarthquakeAndVolcanicEruptionCoverageSubLimitFormWithFlatDollarDeductiblePrsnlPropRules" Rule="SetInsuranceToValue" ClearCache="true" />
+			<rul:RunRule Type="none" FileName="CommercialPropertyEarthquakeAndVolcanicEruptionCoverageSubLimitFormWithFlatDollarDeductiblePrsnlPropRules" Rule="SetInsuranceToValuePercentage" ClearCache="true" />
+			<rul:RunRule Type="none" FileName="CommercialPropertyEarthquakeAndVolcanicEruptionCoverageSubLimitFormWithFlatDollarDeductiblePrsnlPropRules" Rule="SetEQSubLimitPercent" ClearCache="true" />
+			<rul:RunRule Type="none" FileName="CommercialPropertyEarthquakeAndVolcanicEruptionCoverageSubLimitFormWithFlatDollarDeductiblePrsnlPropRules" Rule="SetSubLimitPct" ClearCache="true" />
+		</rul:Sequence>
+	</rul:Rule>
+	<rul:Rule Name="SetInsuranceToValue" Type="none" DataDefGroup="CommercialPropertyEarthquakeAndVolcanicEruptionCoverageSubLimitFormWithFlatDollarDeductiblePrsnlProp">
+		<rul:Sequence>
+			<rul:If>
+				<rul:Test>
+					<rul:GreaterThan>
+						<rul:FirstValue Type="integer" FromConstant="0" FromDataDef="../../@FullPrsnlPropValueToUse" Order="DataDefInputParamConstant" />
+						<rul:Constant Type="integer">0</rul:Constant>
+					</rul:GreaterThan>
+				</rul:Test>
+				<rul:Then>
+					<rul:Sequence>
+						<rul:Divide ToDataDef="@InsuranceToValue" DecimalPlaces="4">
+							<rul:Value Type="integer" FromDataDef="@Limit" />
+							<rul:Convert Type="decimal">
+								<rul:FirstValue Type="integer" FromConstant="0" FromDataDef="../../@FullPrsnlPropValueToUse" Order="DataDefInputParamConstant" />
+							</rul:Convert>
+						</rul:Divide>
+					</rul:Sequence>
+				</rul:Then>
+				<rul:Else>
+					<rul:Sequence>
+						<rul:Constant Type="decimal" ToDataDef="@InsuranceToValue">0.0</rul:Constant>
+					</rul:Sequence>
+				</rul:Else>
+			</rul:If>
+		</rul:Sequence>
+	</rul:Rule>
+	<rul:Rule Name="SetInsuranceToValuePercentage" Type="none" DataDefGroup="CommercialPropertyEarthquakeAndVolcanicEruptionCoverageSubLimitFormWithFlatDollarDeductiblePrsnlProp">
+		<rul:Sequence>
+			<rul:Product ToDataDef="@InsuranceToValuePercentage" DecimalPlaces="2">
+				<rul:FirstValue Type="decimal" FromConstant="0" FromDataDef="@InsuranceToValue" Order="DataDefInputParamConstant" />
+				<rul:Constant Type="decimal">100</rul:Constant>
+			</rul:Product>
+		</rul:Sequence>
+	</rul:Rule>
+	<rul:Rule Name="SetEQSubLimitPercent" Type="none" DataDefGroup="CommercialPropertyEarthquakeAndVolcanicEruptionCoverageSubLimitFormWithFlatDollarDeductiblePrsnlProp">
+		<rul:Sequence>
+			<rul:Choose>
+				<rul:When>
+					<rul:Test>
+						<rul:GreaterThanOrEqual>
+							<rul:FirstValue Type="decimal" FromConstant="0" FromDataDef="@InsuranceToValuePercentage" Order="DataDefInputParamConstant" />
+							<rul:Constant Type="decimal">1</rul:Constant>
+						</rul:GreaterThanOrEqual>
+					</rul:Test>
+					<rul:Then>
+						<rul:Sequence>
+							<rul:Convert Type="integer" ToDataDef="@EQSubLimitPercent">
+								<rul:Round DecimalPlaces="0">
+									<rul:FirstValue Type="decimal" FromConstant="0" FromDataDef="@InsuranceToValuePercentage" Order="DataDefInputParamConstant" />
+								</rul:Round>
+							</rul:Convert>
+						</rul:Sequence>
+					</rul:Then>
+				</rul:When>
+				<rul:When>
+					<rul:Test>
+						<rul:GreaterThan>
+							<rul:FirstValue Type="decimal" FromConstant="0" FromDataDef="@InsuranceToValuePercentage" Order="DataDefInputParamConstant" />
+							<rul:Constant Type="decimal">0</rul:Constant>
+						</rul:GreaterThan>
+					</rul:Test>
+					<rul:Then>
+						<rul:Sequence>
+							<rul:Constant Type="integer" ToDataDef="@EQSubLimitPercent">1</rul:Constant>
+						</rul:Sequence>
+					</rul:Then>
+				</rul:When>
+				<rul:Otherwise>
+					<rul:Sequence>
+						<rul:Constant Type="integer" ToDataDef="@EQSubLimitPercent">0</rul:Constant>
+					</rul:Sequence>
+				</rul:Otherwise>
+			</rul:Choose>
+		</rul:Sequence>
+	</rul:Rule>
+	<rul:Rule Name="SetSubLimitPct" Type="none" DataDefGroup="CommercialPropertyEarthquakeAndVolcanicEruptionCoverageSubLimitFormWithFlatDollarDeductiblePrsnlProp">
+		<rul:Sequence>
+			<rul:If>
+				<rul:Test>
+					<rul:And>
+						<rul:GreaterThan>
+							<rul:FirstValue Type="integer" FromConstant="0" FromDataDef="@EQSubLimitPercent" Order="DataDefInputParamConstant" />
+							<rul:Constant Type="integer">0</rul:Constant>
+						</rul:GreaterThan>
+						<rul:LessThanOrEqual>
+							<rul:FirstValue Type="integer" FromConstant="0" FromDataDef="@EQSubLimitPercent" Order="DataDefInputParamConstant" />
+							<rul:Constant Type="integer">100</rul:Constant>
+						</rul:LessThanOrEqual>
+					</rul:And>
+				</rul:Test>
+				<rul:Then>
+					<rul:Sequence>
+						<rul:RunRule Type="string" ToDataDef="@SubLimitPct" FileName="CommercialPropertyEarthquakeAndVolcanicEruptionCoverageSubLimitFormWithFlatDollarDeductiblePrsnlPropRules" Rule="LookupNumberToPercentageConversion" ClearCache="true" />
+					</rul:Sequence>
+				</rul:Then>
+				<rul:Else>
+					<rul:Sequence>
+						<rul:Constant Type="string" ToDataDef="@SubLimitPct"></rul:Constant>
+					</rul:Sequence>
+				</rul:Else>
+			</rul:If>
+		</rul:Sequence>
+	</rul:Rule>
+	<rul:Rule Name="ErcRunPostUnderwritingLogic" Type="none" DataDefGroup="CommercialPropertyEarthquakeAndVolcanicEruptionCoverageSubLimitFormWithFlatDollarDeductiblePrsnlProp">
+		<rul:Sequence>
+			<rul:RunRule Type="none" FileName="CommercialPropertyEarthquakeAndVolcanicEruptionCoverageSubLimitFormWithFlatDollarDeductiblePrsnlPropRules" Rule="DoMessageTheLimitEnteredExceedsTheAmountThatCanBeInsured" ClearCache="true" />
+		</rul:Sequence>
+	</rul:Rule>
+	<rul:Rule Name="DoMessageTheLimitEnteredExceedsTheAmountThatCanBeInsured" Type="none" DataDefGroup="CommercialPropertyEarthquakeAndVolcanicEruptionCoverageSubLimitFormWithFlatDollarDeductiblePrsnlProp">
+		<rul:Sequence>
+			<rul:If>
+				<rul:Test>
+					<rul:GreaterThan>
+						<rul:FirstValue Type="integer" FromConstant="0" FromDataDef="@EQSubLimitPercent" Order="DataDefInputParamConstant" />
+						<rul:Constant Type="integer">75</rul:Constant>
+					</rul:GreaterThan>
+				</rul:Test>
+				<rul:Then>
+					<rul:RunRule Type="none" FileName="MessageHelper" Rule="AddErrorMessage" ClearCache="true">
+						<rul:Arg Type="string" Param="Message">
+							<rul:Constant Type="string">The Limit entered exceeds the amount that can be insured</rul:Constant>
+						</rul:Arg>
+					</rul:RunRule>
+				</rul:Then>
+			</rul:If>
+		</rul:Sequence>
+	</rul:Rule>
+	<rul:Rule Name="ErcSetStatisticalCodes" Type="none" DataDefGroup="CommercialPropertyEarthquakeAndVolcanicEruptionCoverageSubLimitFormWithFlatDollarDeductiblePrsnlProp">
+		<rul:Sequence>
+			<rul:If>
+				<rul:Test>
+					<rul:Exist AtInputDataDef="ancestor::MasterCFCW/Policy" />
+				</rul:Test>
+				<rul:Then>
+					<rul:Sequence>
+						<rul:RunRule Type="none" FileName="CommercialPropertyEarthquakeAndVolcanicEruptionCoverageSubLimitFormWithFlatDollarDeductiblePrsnlPropRules" Rule="SetBuildingHeightStatCode" ClearCache="true" />
+						<rul:RunRule Type="none" FileName="CommercialPropertyEarthquakeAndVolcanicEruptionCoverageSubLimitFormWithFlatDollarDeductiblePrsnlPropRules" Rule="SetCoverageCode" ClearCache="true" />
+						<rul:RunRule Type="none" FileName="CommercialPropertyEarthquakeAndVolcanicEruptionCoverageSubLimitFormWithFlatDollarDeductiblePrsnlPropRules" Rule="SetEQAttachmentIndicatorCode" ClearCache="true" />
+						<rul:RunRule Type="none" FileName="CommercialPropertyEarthquakeAndVolcanicEruptionCoverageSubLimitFormWithFlatDollarDeductiblePrsnlPropRules" Rule="SetEQSubLimitExposureBaseStatCode" ClearCache="true" />
+						<rul:RunRule Type="none" FileName="CommercialPropertyEarthquakeAndVolcanicEruptionCoverageSubLimitFormWithFlatDollarDeductiblePrsnlPropRules" Rule="SetSublineEarthquake" ClearCache="true" />
+						<rul:RunRule Type="none" FileName="CommercialPropertyEarthquakeAndVolcanicEruptionCoverageSubLimitFormWithFlatDollarDeductiblePrsnlPropRules" Rule="SetTypeOfEQCoverageCode" ClearCache="true" />
+						<rul:RunRule Type="none" FileName="CommercialPropertyEarthquakeAndVolcanicEruptionCoverageSubLimitFormWithFlatDollarDeductiblePrsnlPropRules" Rule="SetRiskIdentificationCode" ClearCache="true" />
+						<rul:RunRule Type="none" FileName="CommercialPropertyEarthquakeAndVolcanicEruptionCoverageSubLimitFormWithFlatDollarDeductiblePrsnlPropRules" Rule="SetConstructionStatCode" ClearCache="true" />
+						<rul:RunRule Type="none" FileName="CommercialPropertyEarthquakeAndVolcanicEruptionCoverageSubLimitFormWithFlatDollarDeductiblePrsnlPropRules" Rule="SetDeductibleStatCode" ClearCache="true" />
+						<rul:RunRule Type="none" FileName="CommercialPropertyEarthquakeAndVolcanicEruptionCoverageSubLimitFormWithFlatDollarDeductiblePrsnlPropRules" Rule="SetSusceptibilityGradeStatCode" ClearCache="true" />
+						<rul:RunRule Type="none" FileName="CommercialPropertyEarthquakeAndVolcanicEruptionCoverageSubLimitFormWithFlatDollarDeductiblePrsnlPropRules" Rule="SetExposureAmountStatCode" ClearCache="true" />
+					</rul:Sequence>
+				</rul:Then>
+			</rul:If>
+		</rul:Sequence>
+	</rul:Rule>
+	<rul:Rule Name="SetBuildingHeightStatCode" Type="none" DataDefGroup="CommercialPropertyEarthquakeAndVolcanicEruptionCoverageSubLimitFormWithFlatDollarDeductiblePrsnlProp">
+		<rul:Sequence>
+			<rul:If>
+				<rul:Test>
+					<rul:NotEqual>
+						<rul:FirstValue Type="string" FromConstant="" FromDataDef="../../../../../../@NumStories" Order="DataDefInputParamConstant" />
+						<rul:Constant Type="string"></rul:Constant>
+					</rul:NotEqual>
+				</rul:Test>
+				<rul:Then>
+					<rul:Sequence>
+						<rul:RunRule Type="string" ToDataDef="@BuildingHeightStatCode" FileName="CommercialPropertyEarthquakeAndVolcanicEruptionCoverageSubLimitFormWithFlatDollarDeductiblePrsnlPropRules" Rule="LookupEarthquakeBuildingHeightStatCode" ClearCache="true" />
+					</rul:Sequence>
+				</rul:Then>
+				<rul:Else>
+					<rul:Sequence>
+						<rul:Constant Type="string" ToDataDef="@BuildingHeightStatCode"></rul:Constant>
+					</rul:Sequence>
+				</rul:Else>
+			</rul:If>
+		</rul:Sequence>
+	</rul:Rule>
+	<rul:Rule Name="SetCoverageCode" Type="none" DataDefGroup="CommercialPropertyEarthquakeAndVolcanicEruptionCoverageSubLimitFormWithFlatDollarDeductiblePrsnlProp">
+		<rul:Sequence>
+			<rul:RunRule Type="string" ToDataDef="@CoverageCode" FileName="CommercialPropertyEarthquakeAndVolcanicEruptionCoverageSubLimitFormWithFlatDollarDeductiblePrsnlPropRules" Rule="LookupEarthquakePrsnlPropertyCoverageCode" ClearCache="true" />
+		</rul:Sequence>
+	</rul:Rule>
+	<rul:Rule Name="SetEQAttachmentIndicatorCode" Type="none" DataDefGroup="CommercialPropertyEarthquakeAndVolcanicEruptionCoverageSubLimitFormWithFlatDollarDeductiblePrsnlProp">
+		<rul:Sequence>
+			<rul:RunRule Type="string" ToDataDef="@EQAttachmentIndicatorCode" FileName="CommercialPropertyEarthquakeAndVolcanicEruptionCoverageSubLimitFormWithFlatDollarDeductiblePrsnlPropRules" Rule="LookupEarthquakeAttachmentIndicatorCode" ClearCache="true" />
+		</rul:Sequence>
+	</rul:Rule>
+	<rul:Rule Name="SetEQSubLimitExposureBaseStatCode" Type="none" DataDefGroup="CommercialPropertyEarthquakeAndVolcanicEruptionCoverageSubLimitFormWithFlatDollarDeductiblePrsnlProp">
+		<rul:Sequence>
+			<rul:RunRule Type="string" ToDataDef="@EQSubLimitExposureBaseStatCode" FileName="CommercialPropertyEarthquakeAndVolcanicEruptionCoverageSubLimitFormWithFlatDollarDeductiblePrsnlPropRules" Rule="LookupEarthquakeSubLimitExposureBaseStatCode" ClearCache="true" />
+		</rul:Sequence>
+	</rul:Rule>
+	<rul:Rule Name="SetSublineEarthquake" Type="none" DataDefGroup="CommercialPropertyEarthquakeAndVolcanicEruptionCoverageSubLimitFormWithFlatDollarDeductiblePrsnlProp">
+		<rul:Sequence>
+			<rul:RunRule Type="string" ToDataDef="@SublineEarthquake" FileName="CommercialPropertyEarthquakeAndVolcanicEruptionCoverageSubLimitFormWithFlatDollarDeductiblePrsnlPropRules" Rule="LookupSublineEarthquake" ClearCache="true" />
+		</rul:Sequence>
+	</rul:Rule>
+	<rul:Rule Name="SetTypeOfEQCoverageCode" Type="none" DataDefGroup="CommercialPropertyEarthquakeAndVolcanicEruptionCoverageSubLimitFormWithFlatDollarDeductiblePrsnlProp">
+		<rul:Sequence>
+			<rul:If>
+				<rul:Test>
+					<rul:Equal>
+						<rul:FirstValue Type="string" FromConstant="" FromDataDef="../../@EQSprinklerLeakageOnly" Order="DataDefInputParamConstant" />
+						<rul:Constant Type="string">Yes</rul:Constant>
+					</rul:Equal>
+				</rul:Test>
+				<rul:Then>
+					<rul:Sequence>
+						<rul:RunRule Type="string" ToDataDef="@TypeOfEQCoverageCode" FileName="CommercialPropertyEarthquakeAndVolcanicEruptionCoverageSubLimitFormWithFlatDollarDeductiblePrsnlPropRules" Rule="LookupEarthquakeSubLimitSprinklerLeakageExtensionCoverage" ClearCache="true" />
+					</rul:Sequence>
+				</rul:Then>
+				<rul:Else>
+					<rul:Sequence>
+						<rul:RunRule Type="string" ToDataDef="@TypeOfEQCoverageCode" FileName="CommercialPropertyEarthquakeAndVolcanicEruptionCoverageSubLimitFormWithFlatDollarDeductiblePrsnlPropRules" Rule="LookupEarthquakeSubLimitCoverage" ClearCache="true" />
+					</rul:Sequence>
+				</rul:Else>
+			</rul:If>
+		</rul:Sequence>
+	</rul:Rule>
+	<rul:Rule Name="SetRiskIdentificationCode" Type="none" DataDefGroup="CommercialPropertyEarthquakeAndVolcanicEruptionCoverageSubLimitFormWithFlatDollarDeductiblePrsnlProp">
+		<rul:Sequence>
+			<rul:If>
+				<rul:Test>
+					<rul:Equal>
+						<rul:FirstValue Type="string" FromConstant="" FromDataDef="../../../../@SprinklerSystem" Order="DataDefInputParamConstant" />
+						<rul:Constant Type="string">None</rul:Constant>
+					</rul:Equal>
+				</rul:Test>
+				<rul:Then>
+					<rul:Sequence>
+						<rul:If>
+							<rul:Test>
+								<rul:Equal>
+									<rul:FirstValue Type="string" FromConstant="" FromDataDef="../../@EQCovIndicator" Order="DataDefInputParamConstant" />
+									<rul:Constant Type="string">Yes, Included in Blanket</rul:Constant>
+								</rul:Equal>
+							</rul:Test>
+							<rul:Then>
+								<rul:Sequence>
+									<rul:RunRule Type="string" ToDataDef="@RiskIdentificationCode" FileName="CommercialPropertyEarthquakeAndVolcanicEruptionCoverageSubLimitFormWithFlatDollarDeductiblePrsnlPropRules" Rule="LookupEarthquakeNonSprinkleredBlanketRiskIDCode" ClearCache="true" />
+								</rul:Sequence>
+							</rul:Then>
+							<rul:Else>
+								<rul:Sequence>
+									<rul:RunRule Type="string" ToDataDef="@RiskIdentificationCode" FileName="CommercialPropertyEarthquakeAndVolcanicEruptionCoverageSubLimitFormWithFlatDollarDeductiblePrsnlPropRules" Rule="LookupEarthquakeNonSprinkleredNonBlanketRiskIDCode" ClearCache="true" />
+								</rul:Sequence>
+							</rul:Else>
+						</rul:If>
+					</rul:Sequence>
+				</rul:Then>
+				<rul:Else>
+					<rul:Sequence>
+						<rul:If>
+							<rul:Test>
+								<rul:Equal>
+									<rul:FirstValue Type="string" FromConstant="" FromDataDef="../../@EQCovIndicator" Order="DataDefInputParamConstant" />
+									<rul:Constant Type="string">Yes, Included in Blanket</rul:Constant>
+								</rul:Equal>
+							</rul:Test>
+							<rul:Then>
+								<rul:Sequence>
+									<rul:RunRule Type="string" ToDataDef="@RiskIdentificationCode" FileName="CommercialPropertyEarthquakeAndVolcanicEruptionCoverageSubLimitFormWithFlatDollarDeductiblePrsnlPropRules" Rule="LookupEarthquakeSprinkleredBlanketRiskIDCode" ClearCache="true" />
+								</rul:Sequence>
+							</rul:Then>
+							<rul:Else>
+								<rul:Sequence>
+									<rul:RunRule Type="string" ToDataDef="@RiskIdentificationCode" FileName="CommercialPropertyEarthquakeAndVolcanicEruptionCoverageSubLimitFormWithFlatDollarDeductiblePrsnlPropRules" Rule="LookupEarthquakeSprinkleredNonBlanketRiskIDCode" ClearCache="true" />
+								</rul:Sequence>
+							</rul:Else>
+						</rul:If>
+					</rul:Sequence>
+				</rul:Else>
+			</rul:If>
+		</rul:Sequence>
+	</rul:Rule>
+	<rul:Rule Name="SetConstructionStatCode" Type="none" DataDefGroup="CommercialPropertyEarthquakeAndVolcanicEruptionCoverageSubLimitFormWithFlatDollarDeductiblePrsnlProp">
+		<rul:Sequence>
+			<rul:If>
+				<rul:Test>
+					<rul:NotEqual>
+						<rul:FirstValue Type="string" FromConstant="" FromDataDef="../../@EQClass" Order="DataDefInputParamConstant" />
+						<rul:Constant Type="string"></rul:Constant>
+					</rul:NotEqual>
+				</rul:Test>
+				<rul:Then>
+					<rul:Sequence>
+						<rul:RunRule Type="string" ToDataDef="@ConstructionStatCode" FileName="CommercialPropertyEarthquakeAndVolcanicEruptionCoverageSubLimitFormWithFlatDollarDeductiblePrsnlPropRules" Rule="LookupEarthquakeConstructionStatCode" ClearCache="true" />
+					</rul:Sequence>
+				</rul:Then>
+				<rul:Else>
+					<rul:Sequence>
+						<rul:Constant Type="string" ToDataDef="@ConstructionStatCode"></rul:Constant>
+					</rul:Sequence>
+				</rul:Else>
+			</rul:If>
+		</rul:Sequence>
+	</rul:Rule>
+	<rul:Rule Name="SetDeductibleStatCode" Type="none" DataDefGroup="CommercialPropertyEarthquakeAndVolcanicEruptionCoverageSubLimitFormWithFlatDollarDeductiblePrsnlProp">
+		<rul:Sequence>
+			<rul:If>
+				<rul:Test>
+					<rul:NotEqual>
+						<rul:FirstValue Type="string" FromConstant="" FromDataDef="../../@EQDeductible" Order="DataDefInputParamConstant" />
+						<rul:Constant Type="string"></rul:Constant>
+					</rul:NotEqual>
+				</rul:Test>
+				<rul:Then>
+					<rul:Sequence>
+						<rul:RunRule Type="string" ToDataDef="@DeductibleStatCode" FileName="CommercialPropertyEarthquakeAndVolcanicEruptionCoverageSubLimitFormWithFlatDollarDeductiblePrsnlPropRules" Rule="LookupEarthquakeFlatDollarDeductibleStatCode" ClearCache="true" />
+					</rul:Sequence>
+				</rul:Then>
+				<rul:Else>
+					<rul:Sequence>
+						<rul:Constant Type="string" ToDataDef="@DeductibleStatCode"></rul:Constant>
+					</rul:Sequence>
+				</rul:Else>
+			</rul:If>
+		</rul:Sequence>
+	</rul:Rule>
+	<rul:Rule Name="SetSusceptibilityGradeStatCode" Type="none" DataDefGroup="CommercialPropertyEarthquakeAndVolcanicEruptionCoverageSubLimitFormWithFlatDollarDeductiblePrsnlProp">
+		<rul:Sequence>
+			<rul:If>
+				<rul:Test>
+					<rul:NotEqual>
+						<rul:FirstValue Type="string" FromConstant="" FromDataDef="../../@EQGrade" Order="DataDefInputParamConstant" />
+						<rul:Constant Type="string"></rul:Constant>
+					</rul:NotEqual>
+				</rul:Test>
+				<rul:Then>
+					<rul:Sequence>
+						<rul:RunRule Type="string" ToDataDef="@SusceptibilityGradeStatCode" FileName="CommercialPropertyEarthquakeAndVolcanicEruptionCoverageSubLimitFormWithFlatDollarDeductiblePrsnlPropRules" Rule="LookupEarthquakeSusceptibilityGradeStatCode" ClearCache="true" />
+					</rul:Sequence>
+				</rul:Then>
+				<rul:Else>
+					<rul:Sequence>
+						<rul:Constant Type="string" ToDataDef="@SusceptibilityGradeStatCode"></rul:Constant>
+					</rul:Sequence>
+				</rul:Else>
+			</rul:If>
+		</rul:Sequence>
+	</rul:Rule>
+	<rul:Rule Name="SetExposureAmountStatCode" Type="none" DataDefGroup="CommercialPropertyEarthquakeAndVolcanicEruptionCoverageSubLimitFormWithFlatDollarDeductiblePrsnlProp">
+		<rul:Sequence>
+			<rul:If>
+				<rul:Test>
+					<rul:Equal>
+						<rul:FirstValue Type="string" FromConstant="" FromDataDef="../../@EQCovIndicator" Order="DataDefInputParamConstant" />
+						<rul:Constant Type="string">Yes, Not Included in Blanket</rul:Constant>
+					</rul:Equal>
+				</rul:Test>
+				<rul:Then>
+					<rul:Sequence>
+						<rul:Truncate ToDataDef="@ExposureAmountStatCode">
+							<rul:Divide DecimalPlaces="0">
+								<rul:Value Type="integer" FromDataDef="@Limit" />
+								<rul:Constant Type="decimal">100</rul:Constant>
+							</rul:Divide>
+						</rul:Truncate>
+					</rul:Sequence>
+				</rul:Then>
+				<rul:Else>
+					<rul:Sequence>
+						<rul:Constant Type="integer" ToDataDef="@ExposureAmountStatCode">0</rul:Constant>
+					</rul:Sequence>
+				</rul:Else>
+			</rul:If>
+		</rul:Sequence>
+	</rul:Rule>
+	<rul:Rule Name="ErcProcess" Type="none" DataDefGroup="CommercialPropertyEarthquakeAndVolcanicEruptionCoverageSubLimitFormWithFlatDollarDeductiblePrsnlProp">
+		<rul:Sequence>
+			<rul:RunRule Type="none" FileName="CommercialPropertyEarthquakeAndVolcanicEruptionCoverageSubLimitFormWithFlatDollarDeductiblePrsnlPropRules" Rule="SetFieldValues" ClearCache="true" />
+			<rul:RunRule Type="none" FileName="CommercialPropertyEarthquakeAndVolcanicEruptionCoverageSubLimitFormWithFlatDollarDeductiblePrsnlPropRules" Rule="ErcRate" ClearCache="true" />
+			<rul:RunRule Type="none" FileName="CommercialPropertyEarthquakeAndVolcanicEruptionCoverageSubLimitFormWithFlatDollarDeductiblePrsnlPropRules" Rule="ErcRunPostUnderwritingLogic" ClearCache="true" />
+			<rul:RunRule Type="none" FileName="CommercialPropertyEarthquakeAndVolcanicEruptionCoverageSubLimitFormWithFlatDollarDeductiblePrsnlPropRules" Rule="ErcSetStatisticalCodes" ClearCache="true" />
+		</rul:Sequence>
+	</rul:Rule>
+	<rul:Rule Name="LookupEarthquakeBuildingHeightStatCode" Type="string" DataDefGroup="CommercialPropertyEarthquakeAndVolcanicEruptionCoverageSubLimitFormWithFlatDollarDeductiblePrsnlProp">
+		<rul:FirstNonNull Type="string">
+			<rul:Lookup Type="string" MatrixCol="Code" MatrixDef="EarthquakeBuildingHeightStatCodeDef" MatrixFromConstant="EarthquakeBuildingHeightStatCode" ResultMode="FirstResult">
+				<rul:Keys>
+					<rul:Value Type="string" FromDataDef="/State/@Code" />
+					<rul:FirstValue Type="string" FromConstant="" FromDataDef="../../../../../../@NumStories" Order="DataDefInputParamConstant" />
+				</rul:Keys>
+			</rul:Lookup>
+			<rul:Lookup Type="string" MatrixCol="Code" MatrixDef="EarthquakeBuildingHeightStatCodeDef" MatrixFromConstant="EarthquakeBuildingHeightStatCode" ResultMode="SingleResult">
+				<rul:Keys>
+					<rul:Constant Type="string">CW</rul:Constant>
+					<rul:FirstValue Type="string" FromConstant="" FromDataDef="../../../../../../@NumStories" Order="DataDefInputParamConstant" />
+				</rul:Keys>
+			</rul:Lookup>
+		</rul:FirstNonNull>
+	</rul:Rule>
+	<rul:Rule Name="LookupEarthquakePrsnlPropertyCoverageCode" Type="string" DataDefGroup="CommercialPropertyEarthquakeAndVolcanicEruptionCoverageSubLimitFormWithFlatDollarDeductiblePrsnlProp">
+		<rul:FirstNonNull Type="string">
+			<rul:Lookup Type="string" MatrixCol="Code" MatrixDef="EarthquakePrsnlPropertyCoverageCodeDef" MatrixFromConstant="EarthquakePrsnlPropertyCoverageCode" ResultMode="FirstResult">
+				<rul:Keys>
+					<rul:Value Type="string" FromDataDef="/State/@Code" />
+					<rul:Constant Type="string">Y</rul:Constant>
+				</rul:Keys>
+			</rul:Lookup>
+			<rul:Lookup Type="string" MatrixCol="Code" MatrixDef="EarthquakePrsnlPropertyCoverageCodeDef" MatrixFromConstant="EarthquakePrsnlPropertyCoverageCode" ResultMode="SingleResult">
+				<rul:Keys>
+					<rul:Constant Type="string">CW</rul:Constant>
+					<rul:Constant Type="string">Y</rul:Constant>
+				</rul:Keys>
+			</rul:Lookup>
+		</rul:FirstNonNull>
+	</rul:Rule>
+	<rul:Rule Name="LookupEarthquakeAttachmentIndicatorCode" Type="string" DataDefGroup="CommercialPropertyEarthquakeAndVolcanicEruptionCoverageSubLimitFormWithFlatDollarDeductiblePrsnlProp">
+		<rul:FirstNonNull Type="string">
+			<rul:Lookup Type="string" MatrixCol="Code" MatrixDef="EarthquakeAttachmentIndicatorCodeDef" MatrixFromConstant="EarthquakeAttachmentIndicatorCode" ResultMode="FirstResult">
+				<rul:Keys>
+					<rul:Value Type="string" FromDataDef="/State/@Code" />
+					<rul:Constant Type="string">Y</rul:Constant>
+				</rul:Keys>
+			</rul:Lookup>
+			<rul:Lookup Type="string" MatrixCol="Code" MatrixDef="EarthquakeAttachmentIndicatorCodeDef" MatrixFromConstant="EarthquakeAttachmentIndicatorCode" ResultMode="SingleResult">
+				<rul:Keys>
+					<rul:Constant Type="string">CW</rul:Constant>
+					<rul:Constant Type="string">Y</rul:Constant>
+				</rul:Keys>
+			</rul:Lookup>
+		</rul:FirstNonNull>
+	</rul:Rule>
+	<rul:Rule Name="LookupEarthquakeSubLimitExposureBaseStatCode" Type="string" DataDefGroup="CommercialPropertyEarthquakeAndVolcanicEruptionCoverageSubLimitFormWithFlatDollarDeductiblePrsnlProp">
+		<rul:FirstNonNull Type="string">
+			<rul:Lookup Type="string" MatrixCol="Code" MatrixDef="EarthquakeSubLimitExposureBaseStatCodeDef" MatrixFromConstant="EarthquakeSubLimitExposureBaseStatCode" ResultMode="FirstResult">
+				<rul:Keys>
+					<rul:Value Type="string" FromDataDef="/State/@Code" />
+					<rul:Constant Type="string">Y</rul:Constant>
+				</rul:Keys>
+			</rul:Lookup>
+			<rul:Lookup Type="string" MatrixCol="Code" MatrixDef="EarthquakeSubLimitExposureBaseStatCodeDef" MatrixFromConstant="EarthquakeSubLimitExposureBaseStatCode" ResultMode="SingleResult">
+				<rul:Keys>
+					<rul:Constant Type="string">CW</rul:Constant>
+					<rul:Constant Type="string">Y</rul:Constant>
+				</rul:Keys>
+			</rul:Lookup>
+		</rul:FirstNonNull>
+	</rul:Rule>
+	<rul:Rule Name="LookupSublineEarthquake" Type="string" DataDefGroup="CommercialPropertyEarthquakeAndVolcanicEruptionCoverageSubLimitFormWithFlatDollarDeductiblePrsnlProp">
+		<rul:FirstNonNull Type="string">
+			<rul:Lookup Type="string" MatrixCol="Code" MatrixDef="SublineEarthquakeDef" MatrixFromConstant="SublineEarthquake" ResultMode="FirstResult">
+				<rul:Keys>
+					<rul:Value Type="string" FromDataDef="/State/@Code" />
+					<rul:Constant Type="string">Y</rul:Constant>
+				</rul:Keys>
+			</rul:Lookup>
+			<rul:Lookup Type="string" MatrixCol="Code" MatrixDef="SublineEarthquakeDef" MatrixFromConstant="SublineEarthquake" ResultMode="SingleResult">
+				<rul:Keys>
+					<rul:Constant Type="string">CW</rul:Constant>
+					<rul:Constant Type="string">Y</rul:Constant>
+				</rul:Keys>
+			</rul:Lookup>
+		</rul:FirstNonNull>
+	</rul:Rule>
+	<rul:Rule Name="LookupEarthquakeSubLimitSprinklerLeakageExtensionCoverage" Type="string" DataDefGroup="CommercialPropertyEarthquakeAndVolcanicEruptionCoverageSubLimitFormWithFlatDollarDeductiblePrsnlProp">
+		<rul:FirstNonNull Type="string">
+			<rul:Lookup Type="string" MatrixCol="Code" MatrixDef="EarthquakeSubLimitSprinklerLeakageExtensionCoverageDef" MatrixFromConstant="EarthquakeSubLimitSprinklerLeakageExtensionCoverage" ResultMode="FirstResult">
+				<rul:Keys>
+					<rul:Value Type="string" FromDataDef="/State/@Code" />
+					<rul:Constant Type="string">Y</rul:Constant>
+				</rul:Keys>
+			</rul:Lookup>
+			<rul:Lookup Type="string" MatrixCol="Code" MatrixDef="EarthquakeSubLimitSprinklerLeakageExtensionCoverageDef" MatrixFromConstant="EarthquakeSubLimitSprinklerLeakageExtensionCoverage" ResultMode="SingleResult">
+				<rul:Keys>
+					<rul:Constant Type="string">CW</rul:Constant>
+					<rul:Constant Type="string">Y</rul:Constant>
+				</rul:Keys>
+			</rul:Lookup>
+		</rul:FirstNonNull>
+	</rul:Rule>
+	<rul:Rule Name="LookupEarthquakeSubLimitCoverage" Type="string" DataDefGroup="CommercialPropertyEarthquakeAndVolcanicEruptionCoverageSubLimitFormWithFlatDollarDeductiblePrsnlProp">
+		<rul:FirstNonNull Type="string">
+			<rul:Lookup Type="string" MatrixCol="Code" MatrixDef="EarthquakeSubLimitCoverageDef" MatrixFromConstant="EarthquakeSubLimitCoverage" ResultMode="FirstResult">
+				<rul:Keys>
+					<rul:Value Type="string" FromDataDef="/State/@Code" />
+					<rul:Constant Type="string">Y</rul:Constant>
+				</rul:Keys>
+			</rul:Lookup>
+			<rul:Lookup Type="string" MatrixCol="Code" MatrixDef="EarthquakeSubLimitCoverageDef" MatrixFromConstant="EarthquakeSubLimitCoverage" ResultMode="SingleResult">
+				<rul:Keys>
+					<rul:Constant Type="string">CW</rul:Constant>
+					<rul:Constant Type="string">Y</rul:Constant>
+				</rul:Keys>
+			</rul:Lookup>
+		</rul:FirstNonNull>
+	</rul:Rule>
+	<rul:Rule Name="LookupEarthquakeNonSprinkleredBlanketRiskIDCode" Type="string" DataDefGroup="CommercialPropertyEarthquakeAndVolcanicEruptionCoverageSubLimitFormWithFlatDollarDeductiblePrsnlProp">
+		<rul:FirstNonNull Type="string">
+			<rul:Lookup Type="string" MatrixCol="Code" MatrixDef="EarthquakeNonSprinkleredBlanketRiskIDCodeDef" MatrixFromConstant="EarthquakeNonSprinkleredBlanketRiskIDCode" ResultMode="FirstResult">
+				<rul:Keys>
+					<rul:Value Type="string" FromDataDef="/State/@Code" />
+					<rul:Constant Type="string">Y</rul:Constant>
+				</rul:Keys>
+			</rul:Lookup>
+			<rul:Lookup Type="string" MatrixCol="Code" MatrixDef="EarthquakeNonSprinkleredBlanketRiskIDCodeDef" MatrixFromConstant="EarthquakeNonSprinkleredBlanketRiskIDCode" ResultMode="SingleResult">
+				<rul:Keys>
+					<rul:Constant Type="string">CW</rul:Constant>
+					<rul:Constant Type="string">Y</rul:Constant>
+				</rul:Keys>
+			</rul:Lookup>
+		</rul:FirstNonNull>
+	</rul:Rule>
+	<rul:Rule Name="LookupEarthquakeNonSprinkleredNonBlanketRiskIDCode" Type="string" DataDefGroup="CommercialPropertyEarthquakeAndVolcanicEruptionCoverageSubLimitFormWithFlatDollarDeductiblePrsnlProp">
+		<rul:FirstNonNull Type="string">
+			<rul:Lookup Type="string" MatrixCol="Code" MatrixDef="EarthquakeNonSprinkleredNonBlanketRiskIDCodeDef" MatrixFromConstant="EarthquakeNonSprinkleredNonBlanketRiskIDCode" ResultMode="FirstResult">
+				<rul:Keys>
+					<rul:Value Type="string" FromDataDef="/State/@Code" />
+					<rul:Constant Type="string">Y</rul:Constant>
+				</rul:Keys>
+			</rul:Lookup>
+			<rul:Lookup Type="string" MatrixCol="Code" MatrixDef="EarthquakeNonSprinkleredNonBlanketRiskIDCodeDef" MatrixFromConstant="EarthquakeNonSprinkleredNonBlanketRiskIDCode" ResultMode="SingleResult">
+				<rul:Keys>
+					<rul:Constant Type="string">CW</rul:Constant>
+					<rul:Constant Type="string">Y</rul:Constant>
+				</rul:Keys>
+			</rul:Lookup>
+		</rul:FirstNonNull>
+	</rul:Rule>
+	<rul:Rule Name="LookupEarthquakeSprinkleredBlanketRiskIDCode" Type="string" DataDefGroup="CommercialPropertyEarthquakeAndVolcanicEruptionCoverageSubLimitFormWithFlatDollarDeductiblePrsnlProp">
+		<rul:FirstNonNull Type="string">
+			<rul:Lookup Type="string" MatrixCol="Codet" MatrixDef="EarthquakeSprinkleredBlanketRiskIDCodeDef" MatrixFromConstant="EarthquakeSprinkleredBlanketRiskIDCode" ResultMode="FirstResult">
+				<rul:Keys>
+					<rul:Value Type="string" FromDataDef="/State/@Code" />
+					<rul:Constant Type="string">Y</rul:Constant>
+				</rul:Keys>
+			</rul:Lookup>
+			<rul:Lookup Type="string" MatrixCol="Codet" MatrixDef="EarthquakeSprinkleredBlanketRiskIDCodeDef" MatrixFromConstant="EarthquakeSprinkleredBlanketRiskIDCode" ResultMode="SingleResult">
+				<rul:Keys>
+					<rul:Constant Type="string">CW</rul:Constant>
+					<rul:Constant Type="string">Y</rul:Constant>
+				</rul:Keys>
+			</rul:Lookup>
+		</rul:FirstNonNull>
+	</rul:Rule>
+	<rul:Rule Name="LookupEarthquakeSprinkleredNonBlanketRiskIDCode" Type="string" DataDefGroup="CommercialPropertyEarthquakeAndVolcanicEruptionCoverageSubLimitFormWithFlatDollarDeductiblePrsnlProp">
+		<rul:FirstNonNull Type="string">
+			<rul:Lookup Type="string" MatrixCol="Code" MatrixDef="EarthquakeSprinkleredNonBlanketRiskIDCodeDef" MatrixFromConstant="EarthquakeSprinkleredNonBlanketRiskIDCode" ResultMode="FirstResult">
+				<rul:Keys>
+					<rul:Value Type="string" FromDataDef="/State/@Code" />
+					<rul:Constant Type="string">Y</rul:Constant>
+				</rul:Keys>
+			</rul:Lookup>
+			<rul:Lookup Type="string" MatrixCol="Code" MatrixDef="EarthquakeSprinkleredNonBlanketRiskIDCodeDef" MatrixFromConstant="EarthquakeSprinkleredNonBlanketRiskIDCode" ResultMode="SingleResult">
+				<rul:Keys>
+					<rul:Constant Type="string">CW</rul:Constant>
+					<rul:Constant Type="string">Y</rul:Constant>
+				</rul:Keys>
+			</rul:Lookup>
+		</rul:FirstNonNull>
+	</rul:Rule>
+	<rul:Rule Name="LookupEarthquakeConstructionStatCode" Type="string" DataDefGroup="CommercialPropertyEarthquakeAndVolcanicEruptionCoverageSubLimitFormWithFlatDollarDeductiblePrsnlProp">
+		<rul:FirstNonNull Type="string">
+			<rul:Lookup Type="string" MatrixCol="Code" MatrixDef="EarthquakeConstructionStatCodeDef" MatrixFromConstant="EarthquakeConstructionStatCode" ResultMode="FirstResult">
+				<rul:Keys>
+					<rul:Value Type="string" FromDataDef="/State/@Code" />
+					<rul:FirstValue Type="string" FromConstant="" FromDataDef="../../@EQClass" Order="DataDefInputParamConstant" />
+				</rul:Keys>
+			</rul:Lookup>
+			<rul:Lookup Type="string" MatrixCol="Code" MatrixDef="EarthquakeConstructionStatCodeDef" MatrixFromConstant="EarthquakeConstructionStatCode" ResultMode="SingleResult">
+				<rul:Keys>
+					<rul:Constant Type="string">CW</rul:Constant>
+					<rul:FirstValue Type="string" FromConstant="" FromDataDef="../../@EQClass" Order="DataDefInputParamConstant" />
+				</rul:Keys>
+			</rul:Lookup>
+		</rul:FirstNonNull>
+	</rul:Rule>
+	<rul:Rule Name="LookupEarthquakeFlatDollarDeductibleStatCode" Type="string" DataDefGroup="CommercialPropertyEarthquakeAndVolcanicEruptionCoverageSubLimitFormWithFlatDollarDeductiblePrsnlProp">
+		<rul:FirstNonNull Type="string">
+			<rul:Lookup Type="string" MatrixCol="Code" MatrixDef="EarthquakeFlatDollarDeductibleStatCodeDef" MatrixFromConstant="EarthquakeFlatDollarDeductibleStatCode" ResultMode="FirstResult">
+				<rul:Keys>
+					<rul:Value Type="string" FromDataDef="/State/@Code" />
+					<rul:FirstValue Type="string" FromConstant="" FromDataDef="../../@EQDeductible" Order="DataDefInputParamConstant" />
+				</rul:Keys>
+			</rul:Lookup>
+			<rul:Lookup Type="string" MatrixCol="Code" MatrixDef="EarthquakeFlatDollarDeductibleStatCodeDef" MatrixFromConstant="EarthquakeFlatDollarDeductibleStatCode" ResultMode="SingleResult">
+				<rul:Keys>
+					<rul:Constant Type="string">CW</rul:Constant>
+					<rul:FirstValue Type="string" FromConstant="" FromDataDef="../../@EQDeductible" Order="DataDefInputParamConstant" />
+				</rul:Keys>
+			</rul:Lookup>
+		</rul:FirstNonNull>
+	</rul:Rule>
+	<rul:Rule Name="LookupEarthquakeSusceptibilityGradeStatCode" Type="string" DataDefGroup="CommercialPropertyEarthquakeAndVolcanicEruptionCoverageSubLimitFormWithFlatDollarDeductiblePrsnlProp">
+		<rul:FirstNonNull Type="string">
+			<rul:Lookup Type="string" MatrixCol="Code" MatrixDef="EarthquakeSusceptibilityGradeStatCodeDef" MatrixFromConstant="EarthquakeSusceptibilityGradeStatCode" ResultMode="FirstResult">
+				<rul:Keys>
+					<rul:Value Type="string" FromDataDef="/State/@Code" />
+					<rul:FirstValue Type="string" FromConstant="" FromDataDef="../../@EQGrade" Order="DataDefInputParamConstant" />
+				</rul:Keys>
+			</rul:Lookup>
+			<rul:Lookup Type="string" MatrixCol="Code" MatrixDef="EarthquakeSusceptibilityGradeStatCodeDef" MatrixFromConstant="EarthquakeSusceptibilityGradeStatCode" ResultMode="SingleResult">
+				<rul:Keys>
+					<rul:Constant Type="string">CW</rul:Constant>
+					<rul:FirstValue Type="string" FromConstant="" FromDataDef="../../@EQGrade" Order="DataDefInputParamConstant" />
+				</rul:Keys>
+			</rul:Lookup>
+		</rul:FirstNonNull>
+	</rul:Rule>
+	<rul:Rule Name="LookupNumberToPercentageConversion" Type="string" DataDefGroup="CommercialPropertyEarthquakeAndVolcanicEruptionCoverageSubLimitFormWithFlatDollarDeductiblePrsnlProp">
+		<rul:FirstNonNull Type="string">
+			<rul:Lookup Type="string" MatrixCol="Percentage" MatrixDef="NumberToPercentageConversionDef" MatrixFromConstant="NumberToPercentageConversion" ResultMode="FirstResult">
+				<rul:Keys>
+					<rul:Value Type="string" FromDataDef="/State/@Code" />
+					<rul:FirstValue Type="integer" FromConstant="0" FromDataDef="@EQSubLimitPercent" Order="DataDefInputParamConstant" />
+				</rul:Keys>
+			</rul:Lookup>
+			<rul:Lookup Type="string" MatrixCol="Percentage" MatrixDef="NumberToPercentageConversionDef" MatrixFromConstant="NumberToPercentageConversion" ResultMode="SingleResult">
+				<rul:Keys>
+					<rul:Constant Type="string">CW</rul:Constant>
+					<rul:FirstValue Type="integer" FromConstant="0" FromDataDef="@EQSubLimitPercent" Order="DataDefInputParamConstant" />
+				</rul:Keys>
+			</rul:Lookup>
+		</rul:FirstNonNull>
+	</rul:Rule>
+</rul:Rules>

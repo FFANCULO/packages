@@ -1,0 +1,13 @@
+<rt:RateTable xmlns:rt="http://www.verisk.com/iso/erc/RateTable">
+	<rt:MetaData>
+		<rt:MetaDataCode>RateTableMaxNFIPCoverageAmount</rt:MetaDataCode>
+		<rt:MetaDataCode>BureauRuleNumber76C7a2</rt:MetaDataCode>
+	</rt:MetaData>
+	<rt:KeyCols>
+		<rt:KeyCol Name="StateCode" Type="string" CaseInsensitive="false" />
+		<rt:KeyCol Name="Coverage" Type="string" CaseInsensitive="false" />
+	</rt:KeyCols>
+	<rt:ValueCols>
+		<rt:ValueCol Name="Amount" Type="integer" />
+	</rt:ValueCols>
+</rt:RateTable>

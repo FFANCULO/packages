@@ -1,0 +1,15 @@
+"StateCode","CauseOfLossPrsnlProp","SpecialTheftExclusionIndicator","DisplayValue","DataValue","MinimumValue","MaximumValue"
+"CW","Basic",0,"","",0,0
+"CW","Broad",0,"","",0,0
+"CW","Blanket Cause of Loss Applies",0,"","",0,0
+"CW","Fire",0,"","",0,0
+"CW","Fire and Allied Lines",0,"","",0,0
+"CW","Fire and Sprinkler Leakage",0,"","",0,0
+"CW","Fire and Vandalism",0,"","",0,0
+"CW","Fire, Sprinkler Leakage and Allied Lines",0,"","",0,0
+"CW","Fire, Vandalism and Allied Lines",0,"","",0,0
+"CW","Fire, Vandalism and Sprinkler Leakage",0,"","",0,0
+"CW","Fire, Vandalism, Sprinkler Leakage and Allied Lines",0,"","",0,0
+"CW","Not Applicable",0,"","",0,0
+"CW","Special",0,"","",1,99999999
+"CW","Special",1,"","",0,0

@@ -1,0 +1,7 @@
+"StateCode","CovTypeBusnIncome","CoveredCausesOfLossOption","LossCost"
+"CW","Business Income With Extra Expense","Other Than Collision",0.19
+"CW","Business Income With Extra Expense","Collision",0.55
+"CW","Business Income Without Extra Expense","Other Than Collision",0.17
+"CW","Business Income Without Extra Expense","Collision",0.5
+"CW","Extra Expense Only","Other Than Collision",0.33
+"CW","Extra Expense Only","Collision",0.96

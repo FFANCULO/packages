@@ -1,0 +1,10 @@
+"StateCode","WaitingPeriod","Factor"
+"CW","168 hours",0.88
+"CW","144 hours",0.9
+"CW","120 hours",0.93
+"CW","96 hours",0.96
+"CW","72 hours",1
+"CW","48 hours",1.05
+"CW","24 hours",1.1
+"CW","12 hours",1.12
+"CW","No Business Income Waiting Period",1.15

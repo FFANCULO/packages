@@ -1,0 +1,13 @@
+<rt:RateTable xmlns:rt="http://www.verisk.com/iso/erc/RateTable">
+	<rt:MetaData>
+		<rt:MetaDataCode>RateTableDeductibleNumberConversion</rt:MetaDataCode>
+		<rt:MetaDataCode>BureauRuleNumberUtility</rt:MetaDataCode>
+	</rt:MetaData>
+	<rt:KeyCols>
+		<rt:KeyCol Name="StateCode" Type="string" CaseInsensitive="false" />
+		<rt:KeyCol Name="FloodDeductible" Type="string" CaseInsensitive="false" />
+	</rt:KeyCols>
+	<rt:ValueCols>
+		<rt:ValueCol Name="DeductibleNumber" Type="integer" />
+	</rt:ValueCols>
+</rt:RateTable>

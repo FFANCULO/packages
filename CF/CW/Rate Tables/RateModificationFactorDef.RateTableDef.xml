@@ -1,0 +1,16 @@
+<rt:RateTable xmlns:rt="http://www.verisk.com/iso/erc/RateTable">
+	<rt:MetaData>
+		<rt:MetaDataCode>RateTableRateModificationFactor</rt:MetaDataCode>
+		<rt:MetaDataCode>BureauRuleNumberGreenUpgrdD1c</rt:MetaDataCode>
+	</rt:MetaData>
+	<rt:KeyCols>
+		<rt:KeyCol Name="StateCode" Type="string" CaseInsensitive="false" />
+		<rt:Range Name="Ratio" Type="integer" RangeType="FromExclusiveToInclusive">
+			<rt:KeyCol Name="Ratio_FromGreaterThan" />
+			<rt:KeyCol Name="Ratio_To" />
+		</rt:Range>
+	</rt:KeyCols>
+	<rt:ValueCols>
+		<rt:ValueCol Name="Factor" Type="decimal" />
+	</rt:ValueCols>
+</rt:RateTable>

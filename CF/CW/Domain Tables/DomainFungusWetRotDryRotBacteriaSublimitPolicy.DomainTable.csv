@@ -1,0 +1,4 @@
+"StateCode","FungusWetRotDryRotBacteriaPolicy","DisplayValue","DataValue","MinimumValue","MaximumValue"
+"CW","15,000 Sub Limit","","",0,0
+"CW","Policy Limit","","",15000,99999999
+"CW","Separate Limits","","",0,0

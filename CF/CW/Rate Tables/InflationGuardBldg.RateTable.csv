@@ -1,0 +1,17 @@
+"StateCode","InflationGuardBldg","Factor"
+"CW","2%",0.01
+"CW","4%",0.02
+"CW","6%",0.03
+"CW","8%",0.04
+"CW","10%",0.05
+"CW","12%",0.06
+"CW","14%",0.07
+"CW","16%",0.08
+"CW","18%",0.09
+"CW","20%",0.1
+"CW","22%",0.11
+"CW","24%",0.12
+"CW","26%",0.13
+"CW","28%",0.14
+"CW","Not Applicable",0
+"CW","Blanket Inflation Guard Value Applies",0

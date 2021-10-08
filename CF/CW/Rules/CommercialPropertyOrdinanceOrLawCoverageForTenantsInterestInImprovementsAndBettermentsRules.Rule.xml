@@ -1,0 +1,356 @@
+<rul:Rules xmlns:rul="http://www.verisk.com/iso/erc/Rule">
+	<rul:Rule Name="InitializeRuleSet" DataDefGroup="CommercialPropertyOrdinanceOrLawCoverageForTenantsInterestInImprovementsAndBetterments">
+		<rul:Sequence>
+			<rul:Locate AtDataDef="CommercialPropertyOrdinanceOrLawCoverageForTenantsInterestInImprovementsAndBettermentsCovABGICoverage">
+				<rul:RunRule Type="none" FileName="CommercialPropertyOrdinanceOrLawCoverageForTenantsInterestInImprovementsAndBettermentsCovABGICoverageRules" Rule="InitializeRuleSet" ClearCache="true" />
+			</rul:Locate>
+			<rul:Locate AtDataDef="CommercialPropertyOrdinanceOrLawCoverageForTenantsInterestInImprovementsAndBettermentsCovABGIICoverage">
+				<rul:RunRule Type="none" FileName="CommercialPropertyOrdinanceOrLawCoverageForTenantsInterestInImprovementsAndBettermentsCovABGIICoverageRules" Rule="InitializeRuleSet" ClearCache="true" />
+			</rul:Locate>
+			<rul:Locate AtDataDef="CommercialPropertyOrdinanceOrLawCoverageForTenantsInterestInImprovementsAndBettermentsCovABroadCoverage">
+				<rul:RunRule Type="none" FileName="CommercialPropertyOrdinanceOrLawCoverageForTenantsInterestInImprovementsAndBettermentsCovABroadCoverageRules" Rule="InitializeRuleSet" ClearCache="true" />
+			</rul:Locate>
+			<rul:Locate AtDataDef="CommercialPropertyOrdinanceOrLawCoverageForTenantsInterestInImprovementsAndBettermentsCovAEQCoverage">
+				<rul:RunRule Type="none" FileName="CommercialPropertyOrdinanceOrLawCoverageForTenantsInterestInImprovementsAndBettermentsCovAEQCoverageRules" Rule="InitializeRuleSet" ClearCache="true" />
+			</rul:Locate>
+			<rul:Locate AtDataDef="CommercialPropertyOrdinanceOrLawCoverageForTenantsInterestInImprovementsAndBettermentsCovASpecialCoverage">
+				<rul:RunRule Type="none" FileName="CommercialPropertyOrdinanceOrLawCoverageForTenantsInterestInImprovementsAndBettermentsCovASpecialCoverageRules" Rule="InitializeRuleSet" ClearCache="true" />
+			</rul:Locate>
+			<rul:Locate AtDataDef="CommercialPropertyOrdinanceOrLawCoverageForTenantsInterestInImprovementsAndBettermentsCovBandCBGICoverage">
+				<rul:RunRule Type="none" FileName="CommercialPropertyOrdinanceOrLawCoverageForTenantsInterestInImprovementsAndBettermentsCovBandCBGICoverageRules" Rule="InitializeRuleSet" ClearCache="true" />
+			</rul:Locate>
+			<rul:Locate AtDataDef="CommercialPropertyOrdinanceOrLawCoverageForTenantsInterestInImprovementsAndBettermentsCovBandCBGIICoverage">
+				<rul:RunRule Type="none" FileName="CommercialPropertyOrdinanceOrLawCoverageForTenantsInterestInImprovementsAndBettermentsCovBandCBGIICoverageRules" Rule="InitializeRuleSet" ClearCache="true" />
+			</rul:Locate>
+			<rul:Locate AtDataDef="CommercialPropertyOrdinanceOrLawCoverageForTenantsInterestInImprovementsAndBettermentsCovBandCBroadCoverage">
+				<rul:RunRule Type="none" FileName="CommercialPropertyOrdinanceOrLawCoverageForTenantsInterestInImprovementsAndBettermentsCovBandCBroadCoverageRules" Rule="InitializeRuleSet" ClearCache="true" />
+			</rul:Locate>
+			<rul:Locate AtDataDef="CommercialPropertyOrdinanceOrLawCoverageForTenantsInterestInImprovementsAndBettermentsCovBandCEQCoverage">
+				<rul:RunRule Type="none" FileName="CommercialPropertyOrdinanceOrLawCoverageForTenantsInterestInImprovementsAndBettermentsCovBandCEQCoverageRules" Rule="InitializeRuleSet" ClearCache="true" />
+			</rul:Locate>
+			<rul:Locate AtDataDef="CommercialPropertyOrdinanceOrLawCoverageForTenantsInterestInImprovementsAndBettermentsCovBandCSpecialCoverage">
+				<rul:RunRule Type="none" FileName="CommercialPropertyOrdinanceOrLawCoverageForTenantsInterestInImprovementsAndBettermentsCovBandCSpecialCoverageRules" Rule="InitializeRuleSet" ClearCache="true" />
+			</rul:Locate>
+			<rul:Locate AtDataDef="CommercialPropertyOrdinanceOrLawCoverageForTenantsInterestInImprovementsAndBettermentsCovBBGICoverage">
+				<rul:RunRule Type="none" FileName="CommercialPropertyOrdinanceOrLawCoverageForTenantsInterestInImprovementsAndBettermentsCovBBGICoverageRules" Rule="InitializeRuleSet" ClearCache="true" />
+			</rul:Locate>
+			<rul:Locate AtDataDef="CommercialPropertyOrdinanceOrLawCoverageForTenantsInterestInImprovementsAndBettermentsCovBBGIICoverage">
+				<rul:RunRule Type="none" FileName="CommercialPropertyOrdinanceOrLawCoverageForTenantsInterestInImprovementsAndBettermentsCovBBGIICoverageRules" Rule="InitializeRuleSet" ClearCache="true" />
+			</rul:Locate>
+			<rul:Locate AtDataDef="CommercialPropertyOrdinanceOrLawCoverageForTenantsInterestInImprovementsAndBettermentsCovBBroadCoverage">
+				<rul:RunRule Type="none" FileName="CommercialPropertyOrdinanceOrLawCoverageForTenantsInterestInImprovementsAndBettermentsCovBBroadCoverageRules" Rule="InitializeRuleSet" ClearCache="true" />
+			</rul:Locate>
+			<rul:Locate AtDataDef="CommercialPropertyOrdinanceOrLawCoverageForTenantsInterestInImprovementsAndBettermentsCovBEQCoverage">
+				<rul:RunRule Type="none" FileName="CommercialPropertyOrdinanceOrLawCoverageForTenantsInterestInImprovementsAndBettermentsCovBEQCoverageRules" Rule="InitializeRuleSet" ClearCache="true" />
+			</rul:Locate>
+			<rul:Locate AtDataDef="CommercialPropertyOrdinanceOrLawCoverageForTenantsInterestInImprovementsAndBettermentsCovBSpecialCoverage">
+				<rul:RunRule Type="none" FileName="CommercialPropertyOrdinanceOrLawCoverageForTenantsInterestInImprovementsAndBettermentsCovBSpecialCoverageRules" Rule="InitializeRuleSet" ClearCache="true" />
+			</rul:Locate>
+			<rul:Locate AtDataDef="CommercialPropertyOrdinanceOrLawCoverageForTenantsInterestInImprovementsAndBettermentsCovCBGICoverage">
+				<rul:RunRule Type="none" FileName="CommercialPropertyOrdinanceOrLawCoverageForTenantsInterestInImprovementsAndBettermentsCovCBGICoverageRules" Rule="InitializeRuleSet" ClearCache="true" />
+			</rul:Locate>
+			<rul:Locate AtDataDef="CommercialPropertyOrdinanceOrLawCoverageForTenantsInterestInImprovementsAndBettermentsCovCBGIICoverage">
+				<rul:RunRule Type="none" FileName="CommercialPropertyOrdinanceOrLawCoverageForTenantsInterestInImprovementsAndBettermentsCovCBGIICoverageRules" Rule="InitializeRuleSet" ClearCache="true" />
+			</rul:Locate>
+			<rul:Locate AtDataDef="CommercialPropertyOrdinanceOrLawCoverageForTenantsInterestInImprovementsAndBettermentsCovCBroadCoverage">
+				<rul:RunRule Type="none" FileName="CommercialPropertyOrdinanceOrLawCoverageForTenantsInterestInImprovementsAndBettermentsCovCBroadCoverageRules" Rule="InitializeRuleSet" ClearCache="true" />
+			</rul:Locate>
+			<rul:Locate AtDataDef="CommercialPropertyOrdinanceOrLawCoverageForTenantsInterestInImprovementsAndBettermentsCovCEQCoverage">
+				<rul:RunRule Type="none" FileName="CommercialPropertyOrdinanceOrLawCoverageForTenantsInterestInImprovementsAndBettermentsCovCEQCoverageRules" Rule="InitializeRuleSet" ClearCache="true" />
+			</rul:Locate>
+			<rul:Locate AtDataDef="CommercialPropertyOrdinanceOrLawCoverageForTenantsInterestInImprovementsAndBettermentsCovCSpecialCoverage">
+				<rul:RunRule Type="none" FileName="CommercialPropertyOrdinanceOrLawCoverageForTenantsInterestInImprovementsAndBettermentsCovCSpecialCoverageRules" Rule="InitializeRuleSet" ClearCache="true" />
+			</rul:Locate>
+		</rul:Sequence>
+	</rul:Rule>
+	<rul:Rule Name="CalculateTotalPremium" Type="decimal" DataDefGroup="CommercialPropertyOrdinanceOrLawCoverageForTenantsInterestInImprovementsAndBetterments">
+		<rul:Sum>
+			<rul:Locate AtDataDef="CommercialPropertyOrdinanceOrLawCoverageForTenantsInterestInImprovementsAndBettermentsCovABGICoverage">
+				<rul:RunRule Type="decimal" FileName="CommercialPropertyOrdinanceOrLawCoverageForTenantsInterestInImprovementsAndBettermentsCovABGICoverageRules" Rule="CalculateTotalPremium" ClearCache="true" />
+			</rul:Locate>
+			<rul:Locate AtDataDef="CommercialPropertyOrdinanceOrLawCoverageForTenantsInterestInImprovementsAndBettermentsCovABGIICoverage">
+				<rul:RunRule Type="decimal" FileName="CommercialPropertyOrdinanceOrLawCoverageForTenantsInterestInImprovementsAndBettermentsCovABGIICoverageRules" Rule="CalculateTotalPremium" ClearCache="true" />
+			</rul:Locate>
+			<rul:Locate AtDataDef="CommercialPropertyOrdinanceOrLawCoverageForTenantsInterestInImprovementsAndBettermentsCovABroadCoverage">
+				<rul:RunRule Type="decimal" FileName="CommercialPropertyOrdinanceOrLawCoverageForTenantsInterestInImprovementsAndBettermentsCovABroadCoverageRules" Rule="CalculateTotalPremium" ClearCache="true" />
+			</rul:Locate>
+			<rul:Locate AtDataDef="CommercialPropertyOrdinanceOrLawCoverageForTenantsInterestInImprovementsAndBettermentsCovAEQCoverage">
+				<rul:RunRule Type="decimal" FileName="CommercialPropertyOrdinanceOrLawCoverageForTenantsInterestInImprovementsAndBettermentsCovAEQCoverageRules" Rule="CalculateTotalPremium" ClearCache="true" />
+			</rul:Locate>
+			<rul:Locate AtDataDef="CommercialPropertyOrdinanceOrLawCoverageForTenantsInterestInImprovementsAndBettermentsCovASpecialCoverage">
+				<rul:RunRule Type="decimal" FileName="CommercialPropertyOrdinanceOrLawCoverageForTenantsInterestInImprovementsAndBettermentsCovASpecialCoverageRules" Rule="CalculateTotalPremium" ClearCache="true" />
+			</rul:Locate>
+			<rul:Locate AtDataDef="CommercialPropertyOrdinanceOrLawCoverageForTenantsInterestInImprovementsAndBettermentsCovBandCBGICoverage">
+				<rul:RunRule Type="decimal" FileName="CommercialPropertyOrdinanceOrLawCoverageForTenantsInterestInImprovementsAndBettermentsCovBandCBGICoverageRules" Rule="CalculateTotalPremium" ClearCache="true" />
+			</rul:Locate>
+			<rul:Locate AtDataDef="CommercialPropertyOrdinanceOrLawCoverageForTenantsInterestInImprovementsAndBettermentsCovBandCBGIICoverage">
+				<rul:RunRule Type="decimal" FileName="CommercialPropertyOrdinanceOrLawCoverageForTenantsInterestInImprovementsAndBettermentsCovBandCBGIICoverageRules" Rule="CalculateTotalPremium" ClearCache="true" />
+			</rul:Locate>
+			<rul:Locate AtDataDef="CommercialPropertyOrdinanceOrLawCoverageForTenantsInterestInImprovementsAndBettermentsCovBandCBroadCoverage">
+				<rul:RunRule Type="decimal" FileName="CommercialPropertyOrdinanceOrLawCoverageForTenantsInterestInImprovementsAndBettermentsCovBandCBroadCoverageRules" Rule="CalculateTotalPremium" ClearCache="true" />
+			</rul:Locate>
+			<rul:Locate AtDataDef="CommercialPropertyOrdinanceOrLawCoverageForTenantsInterestInImprovementsAndBettermentsCovBandCEQCoverage">
+				<rul:RunRule Type="decimal" FileName="CommercialPropertyOrdinanceOrLawCoverageForTenantsInterestInImprovementsAndBettermentsCovBandCEQCoverageRules" Rule="CalculateTotalPremium" ClearCache="true" />
+			</rul:Locate>
+			<rul:Locate AtDataDef="CommercialPropertyOrdinanceOrLawCoverageForTenantsInterestInImprovementsAndBettermentsCovBandCSpecialCoverage">
+				<rul:RunRule Type="decimal" FileName="CommercialPropertyOrdinanceOrLawCoverageForTenantsInterestInImprovementsAndBettermentsCovBandCSpecialCoverageRules" Rule="CalculateTotalPremium" ClearCache="true" />
+			</rul:Locate>
+			<rul:Locate AtDataDef="CommercialPropertyOrdinanceOrLawCoverageForTenantsInterestInImprovementsAndBettermentsCovBBGICoverage">
+				<rul:RunRule Type="decimal" FileName="CommercialPropertyOrdinanceOrLawCoverageForTenantsInterestInImprovementsAndBettermentsCovBBGICoverageRules" Rule="CalculateTotalPremium" ClearCache="true" />
+			</rul:Locate>
+			<rul:Locate AtDataDef="CommercialPropertyOrdinanceOrLawCoverageForTenantsInterestInImprovementsAndBettermentsCovBBGIICoverage">
+				<rul:RunRule Type="decimal" FileName="CommercialPropertyOrdinanceOrLawCoverageForTenantsInterestInImprovementsAndBettermentsCovBBGIICoverageRules" Rule="CalculateTotalPremium" ClearCache="true" />
+			</rul:Locate>
+			<rul:Locate AtDataDef="CommercialPropertyOrdinanceOrLawCoverageForTenantsInterestInImprovementsAndBettermentsCovBBroadCoverage">
+				<rul:RunRule Type="decimal" FileName="CommercialPropertyOrdinanceOrLawCoverageForTenantsInterestInImprovementsAndBettermentsCovBBroadCoverageRules" Rule="CalculateTotalPremium" ClearCache="true" />
+			</rul:Locate>
+			<rul:Locate AtDataDef="CommercialPropertyOrdinanceOrLawCoverageForTenantsInterestInImprovementsAndBettermentsCovBEQCoverage">
+				<rul:RunRule Type="decimal" FileName="CommercialPropertyOrdinanceOrLawCoverageForTenantsInterestInImprovementsAndBettermentsCovBEQCoverageRules" Rule="CalculateTotalPremium" ClearCache="true" />
+			</rul:Locate>
+			<rul:Locate AtDataDef="CommercialPropertyOrdinanceOrLawCoverageForTenantsInterestInImprovementsAndBettermentsCovBSpecialCoverage">
+				<rul:RunRule Type="decimal" FileName="CommercialPropertyOrdinanceOrLawCoverageForTenantsInterestInImprovementsAndBettermentsCovBSpecialCoverageRules" Rule="CalculateTotalPremium" ClearCache="true" />
+			</rul:Locate>
+			<rul:Locate AtDataDef="CommercialPropertyOrdinanceOrLawCoverageForTenantsInterestInImprovementsAndBettermentsCovCBGICoverage">
+				<rul:RunRule Type="decimal" FileName="CommercialPropertyOrdinanceOrLawCoverageForTenantsInterestInImprovementsAndBettermentsCovCBGICoverageRules" Rule="CalculateTotalPremium" ClearCache="true" />
+			</rul:Locate>
+			<rul:Locate AtDataDef="CommercialPropertyOrdinanceOrLawCoverageForTenantsInterestInImprovementsAndBettermentsCovCBGIICoverage">
+				<rul:RunRule Type="decimal" FileName="CommercialPropertyOrdinanceOrLawCoverageForTenantsInterestInImprovementsAndBettermentsCovCBGIICoverageRules" Rule="CalculateTotalPremium" ClearCache="true" />
+			</rul:Locate>
+			<rul:Locate AtDataDef="CommercialPropertyOrdinanceOrLawCoverageForTenantsInterestInImprovementsAndBettermentsCovCBroadCoverage">
+				<rul:RunRule Type="decimal" FileName="CommercialPropertyOrdinanceOrLawCoverageForTenantsInterestInImprovementsAndBettermentsCovCBroadCoverageRules" Rule="CalculateTotalPremium" ClearCache="true" />
+			</rul:Locate>
+			<rul:Locate AtDataDef="CommercialPropertyOrdinanceOrLawCoverageForTenantsInterestInImprovementsAndBettermentsCovCEQCoverage">
+				<rul:RunRule Type="decimal" FileName="CommercialPropertyOrdinanceOrLawCoverageForTenantsInterestInImprovementsAndBettermentsCovCEQCoverageRules" Rule="CalculateTotalPremium" ClearCache="true" />
+			</rul:Locate>
+			<rul:Locate AtDataDef="CommercialPropertyOrdinanceOrLawCoverageForTenantsInterestInImprovementsAndBettermentsCovCSpecialCoverage">
+				<rul:RunRule Type="decimal" FileName="CommercialPropertyOrdinanceOrLawCoverageForTenantsInterestInImprovementsAndBettermentsCovCSpecialCoverageRules" Rule="CalculateTotalPremium" ClearCache="true" />
+			</rul:Locate>
+			<rul:If>
+				<rul:Test>
+					<rul:And>
+						<rul:Equal>
+							<rul:FirstValue Type="integer" FromConstant="0" FromDataDef="@PremiumIndicator" Order="DataDefInputParamConstant" />
+							<rul:Constant Type="integer">1</rul:Constant>
+						</rul:Equal>
+						<rul:NotEqual>
+							<rul:FirstValue Type="decimal" FromConstant="0" FromDataDef="@Premium" Order="DataDefInputParamConstant" />
+							<rul:Constant Type="decimal">0</rul:Constant>
+						</rul:NotEqual>
+					</rul:And>
+				</rul:Test>
+				<rul:Then>
+					<rul:FirstValue Type="decimal" FromConstant="0" FromDataDef="@Premium" Order="DataDefInputParamConstant" />
+				</rul:Then>
+				<rul:Else>
+					<rul:Constant Type="decimal">0</rul:Constant>
+				</rul:Else>
+			</rul:If>
+		</rul:Sum>
+	</rul:Rule>
+	<rul:Rule Name="ErcSetRatesAndFactors" Type="none" DataDefGroup="CommercialPropertyOrdinanceOrLawCoverageForTenantsInterestInImprovementsAndBetterments">
+		<rul:Sequence>
+			<rul:RunRule Type="none" FileName="CommercialPropertyOrdinanceOrLawCoverageForTenantsInterestInImprovementsAndBettermentsRules" Rule="SetCovAFactor" ClearCache="true" />
+			<rul:RunRule Type="none" FileName="CommercialPropertyOrdinanceOrLawCoverageForTenantsInterestInImprovementsAndBettermentsRules" Rule="SetCovAEQFactor" ClearCache="true" />
+			<rul:RunRule Type="none" FileName="CommercialPropertyOrdinanceOrLawCoverageForTenantsInterestInImprovementsAndBettermentsRules" Rule="SetPostLossFactor" ClearCache="true" />
+		</rul:Sequence>
+	</rul:Rule>
+	<rul:Rule Name="SetCovAFactor" Type="none" DataDefGroup="CommercialPropertyOrdinanceOrLawCoverageForTenantsInterestInImprovementsAndBetterments">
+		<rul:Sequence>
+			<rul:Choose>
+				<rul:When>
+					<rul:Test>
+						<rul:NotEqual>
+							<rul:FirstValue Type="string" FromConstant="" FromDataDef="@CovType" Order="DataDefInputParamConstant" />
+							<rul:Constant Type="string">Coverage C Only</rul:Constant>
+						</rul:NotEqual>
+					</rul:Test>
+					<rul:Then>
+						<rul:Sequence>
+							<rul:RunRule Type="decimal" ToDataDef="@CovAFactor" FileName="CommercialPropertyOrdinanceOrLawCoverageForTenantsInterestInImprovementsAndBettermentsRules" Rule="LookupOrdinanceOrLawCoverageAFactor" ClearCache="true" />
+						</rul:Sequence>
+					</rul:Then>
+				</rul:When>
+				<rul:When>
+					<rul:Test>
+						<rul:Equal>
+							<rul:FirstValue Type="string" FromConstant="" FromDataDef="@CovType" Order="DataDefInputParamConstant" />
+							<rul:Constant Type="string">Coverage C Only</rul:Constant>
+						</rul:Equal>
+					</rul:Test>
+					<rul:Then>
+						<rul:Sequence>
+							<rul:Constant Type="decimal" ToDataDef="@CovAFactor">1.0</rul:Constant>
+						</rul:Sequence>
+					</rul:Then>
+				</rul:When>
+			</rul:Choose>
+		</rul:Sequence>
+	</rul:Rule>
+	<rul:Rule Name="SetCovAEQFactor" Type="none" DataDefGroup="CommercialPropertyOrdinanceOrLawCoverageForTenantsInterestInImprovementsAndBetterments">
+		<rul:Sequence>
+			<rul:If>
+				<rul:Test>
+					<rul:And>
+						<rul:NotEqual>
+							<rul:FirstValue Type="string" FromConstant="" FromDataDef="@CovType" Order="DataDefInputParamConstant" />
+							<rul:Constant Type="string">Coverage C Only</rul:Constant>
+						</rul:NotEqual>
+						<rul:NotEqual>
+							<rul:FirstValue Type="string" FromConstant="" FromDataDef="../../@EQCovIndicator" Order="DataDefInputParamConstant" />
+							<rul:Constant Type="string">No Coverage</rul:Constant>
+						</rul:NotEqual>
+						<rul:NotEqual>
+							<rul:FirstValue Type="string" FromConstant="" FromDataDef="../../@EQCovIndicator" Order="DataDefInputParamConstant" />
+							<rul:Constant Type="string">Not Applicable</rul:Constant>
+						</rul:NotEqual>
+					</rul:And>
+				</rul:Test>
+				<rul:Then>
+					<rul:Sequence>
+						<rul:RunRule Type="decimal" ToDataDef="@CovAEQFactor" FileName="CommercialPropertyOrdinanceOrLawCoverageForTenantsInterestInImprovementsAndBettermentsRules" Rule="LookupOrdinanceOrLawCovAEQFactor" ClearCache="true" />
+					</rul:Sequence>
+				</rul:Then>
+				<rul:Else>
+					<rul:Sequence>
+						<rul:Constant Type="decimal" ToDataDef="@CovAEQFactor">1.0</rul:Constant>
+					</rul:Sequence>
+				</rul:Else>
+			</rul:If>
+		</rul:Sequence>
+	</rul:Rule>
+	<rul:Rule Name="SetPostLossFactor" Type="none" DataDefGroup="CommercialPropertyOrdinanceOrLawCoverageForTenantsInterestInImprovementsAndBetterments">
+		<rul:Sequence>
+			<rul:If>
+				<rul:Test>
+					<rul:Equal>
+						<rul:FirstValue Type="string" FromConstant="" FromDataDef="@PostLossOrdinanceOrLawOption" Order="DataDefInputParamConstant" />
+						<rul:Constant Type="string">Yes</rul:Constant>
+					</rul:Equal>
+				</rul:Test>
+				<rul:Then>
+					<rul:Sequence>
+						<rul:RunRule Type="decimal" ToDataDef="@PostLossFactor" FileName="CommercialPropertyOrdinanceOrLawCoverageForTenantsInterestInImprovementsAndBettermentsRules" Rule="LookupPostLossOrdinanceOrLawOptionFactor" ClearCache="true" />
+					</rul:Sequence>
+				</rul:Then>
+				<rul:Else>
+					<rul:Sequence>
+						<rul:Constant Type="decimal" ToDataDef="@PostLossFactor">1.0</rul:Constant>
+					</rul:Sequence>
+				</rul:Else>
+			</rul:If>
+		</rul:Sequence>
+	</rul:Rule>
+	<rul:Rule Name="ErcProcess" Type="none" DataDefGroup="CommercialPropertyOrdinanceOrLawCoverageForTenantsInterestInImprovementsAndBetterments">
+		<rul:Sequence>
+			<rul:RunRule Type="none" FileName="CommercialPropertyOrdinanceOrLawCoverageForTenantsInterestInImprovementsAndBettermentsRules" Rule="ErcSetRatesAndFactors" ClearCache="true" />
+			<rul:Locate AtDataDef="CommercialPropertyOrdinanceOrLawCoverageForTenantsInterestInImprovementsAndBettermentsCovABGICoverage">
+				<rul:RunRule Type="none" FileName="CommercialPropertyOrdinanceOrLawCoverageForTenantsInterestInImprovementsAndBettermentsCovABGICoverageRules" Rule="ErcProcess" ClearCache="true" />
+			</rul:Locate>
+			<rul:Locate AtDataDef="CommercialPropertyOrdinanceOrLawCoverageForTenantsInterestInImprovementsAndBettermentsCovABGIICoverage">
+				<rul:RunRule Type="none" FileName="CommercialPropertyOrdinanceOrLawCoverageForTenantsInterestInImprovementsAndBettermentsCovABGIICoverageRules" Rule="ErcProcess" ClearCache="true" />
+			</rul:Locate>
+			<rul:Locate AtDataDef="CommercialPropertyOrdinanceOrLawCoverageForTenantsInterestInImprovementsAndBettermentsCovABroadCoverage">
+				<rul:RunRule Type="none" FileName="CommercialPropertyOrdinanceOrLawCoverageForTenantsInterestInImprovementsAndBettermentsCovABroadCoverageRules" Rule="ErcProcess" ClearCache="true" />
+			</rul:Locate>
+			<rul:Locate AtDataDef="CommercialPropertyOrdinanceOrLawCoverageForTenantsInterestInImprovementsAndBettermentsCovAEQCoverage">
+				<rul:RunRule Type="none" FileName="CommercialPropertyOrdinanceOrLawCoverageForTenantsInterestInImprovementsAndBettermentsCovAEQCoverageRules" Rule="ErcProcess" ClearCache="true" />
+			</rul:Locate>
+			<rul:Locate AtDataDef="CommercialPropertyOrdinanceOrLawCoverageForTenantsInterestInImprovementsAndBettermentsCovASpecialCoverage">
+				<rul:RunRule Type="none" FileName="CommercialPropertyOrdinanceOrLawCoverageForTenantsInterestInImprovementsAndBettermentsCovASpecialCoverageRules" Rule="ErcProcess" ClearCache="true" />
+			</rul:Locate>
+			<rul:Locate AtDataDef="CommercialPropertyOrdinanceOrLawCoverageForTenantsInterestInImprovementsAndBettermentsCovBandCBGICoverage">
+				<rul:RunRule Type="none" FileName="CommercialPropertyOrdinanceOrLawCoverageForTenantsInterestInImprovementsAndBettermentsCovBandCBGICoverageRules" Rule="ErcProcess" ClearCache="true" />
+			</rul:Locate>
+			<rul:Locate AtDataDef="CommercialPropertyOrdinanceOrLawCoverageForTenantsInterestInImprovementsAndBettermentsCovBandCBGIICoverage">
+				<rul:RunRule Type="none" FileName="CommercialPropertyOrdinanceOrLawCoverageForTenantsInterestInImprovementsAndBettermentsCovBandCBGIICoverageRules" Rule="ErcProcess" ClearCache="true" />
+			</rul:Locate>
+			<rul:Locate AtDataDef="CommercialPropertyOrdinanceOrLawCoverageForTenantsInterestInImprovementsAndBettermentsCovBandCBroadCoverage">
+				<rul:RunRule Type="none" FileName="CommercialPropertyOrdinanceOrLawCoverageForTenantsInterestInImprovementsAndBettermentsCovBandCBroadCoverageRules" Rule="ErcProcess" ClearCache="true" />
+			</rul:Locate>
+			<rul:Locate AtDataDef="CommercialPropertyOrdinanceOrLawCoverageForTenantsInterestInImprovementsAndBettermentsCovBandCEQCoverage">
+				<rul:RunRule Type="none" FileName="CommercialPropertyOrdinanceOrLawCoverageForTenantsInterestInImprovementsAndBettermentsCovBandCEQCoverageRules" Rule="ErcProcess" ClearCache="true" />
+			</rul:Locate>
+			<rul:Locate AtDataDef="CommercialPropertyOrdinanceOrLawCoverageForTenantsInterestInImprovementsAndBettermentsCovBandCSpecialCoverage">
+				<rul:RunRule Type="none" FileName="CommercialPropertyOrdinanceOrLawCoverageForTenantsInterestInImprovementsAndBettermentsCovBandCSpecialCoverageRules" Rule="ErcProcess" ClearCache="true" />
+			</rul:Locate>
+			<rul:Locate AtDataDef="CommercialPropertyOrdinanceOrLawCoverageForTenantsInterestInImprovementsAndBettermentsCovBBGICoverage">
+				<rul:RunRule Type="none" FileName="CommercialPropertyOrdinanceOrLawCoverageForTenantsInterestInImprovementsAndBettermentsCovBBGICoverageRules" Rule="ErcProcess" ClearCache="true" />
+			</rul:Locate>
+			<rul:Locate AtDataDef="CommercialPropertyOrdinanceOrLawCoverageForTenantsInterestInImprovementsAndBettermentsCovBBGIICoverage">
+				<rul:RunRule Type="none" FileName="CommercialPropertyOrdinanceOrLawCoverageForTenantsInterestInImprovementsAndBettermentsCovBBGIICoverageRules" Rule="ErcProcess" ClearCache="true" />
+			</rul:Locate>
+			<rul:Locate AtDataDef="CommercialPropertyOrdinanceOrLawCoverageForTenantsInterestInImprovementsAndBettermentsCovBBroadCoverage">
+				<rul:RunRule Type="none" FileName="CommercialPropertyOrdinanceOrLawCoverageForTenantsInterestInImprovementsAndBettermentsCovBBroadCoverageRules" Rule="ErcProcess" ClearCache="true" />
+			</rul:Locate>
+			<rul:Locate AtDataDef="CommercialPropertyOrdinanceOrLawCoverageForTenantsInterestInImprovementsAndBettermentsCovBEQCoverage">
+				<rul:RunRule Type="none" FileName="CommercialPropertyOrdinanceOrLawCoverageForTenantsInterestInImprovementsAndBettermentsCovBEQCoverageRules" Rule="ErcProcess" ClearCache="true" />
+			</rul:Locate>
+			<rul:Locate AtDataDef="CommercialPropertyOrdinanceOrLawCoverageForTenantsInterestInImprovementsAndBettermentsCovBSpecialCoverage">
+				<rul:RunRule Type="none" FileName="CommercialPropertyOrdinanceOrLawCoverageForTenantsInterestInImprovementsAndBettermentsCovBSpecialCoverageRules" Rule="ErcProcess" ClearCache="true" />
+			</rul:Locate>
+			<rul:Locate AtDataDef="CommercialPropertyOrdinanceOrLawCoverageForTenantsInterestInImprovementsAndBettermentsCovCBGICoverage">
+				<rul:RunRule Type="none" FileName="CommercialPropertyOrdinanceOrLawCoverageForTenantsInterestInImprovementsAndBettermentsCovCBGICoverageRules" Rule="ErcProcess" ClearCache="true" />
+			</rul:Locate>
+			<rul:Locate AtDataDef="CommercialPropertyOrdinanceOrLawCoverageForTenantsInterestInImprovementsAndBettermentsCovCBGIICoverage">
+				<rul:RunRule Type="none" FileName="CommercialPropertyOrdinanceOrLawCoverageForTenantsInterestInImprovementsAndBettermentsCovCBGIICoverageRules" Rule="ErcProcess" ClearCache="true" />
+			</rul:Locate>
+			<rul:Locate AtDataDef="CommercialPropertyOrdinanceOrLawCoverageForTenantsInterestInImprovementsAndBettermentsCovCBroadCoverage">
+				<rul:RunRule Type="none" FileName="CommercialPropertyOrdinanceOrLawCoverageForTenantsInterestInImprovementsAndBettermentsCovCBroadCoverageRules" Rule="ErcProcess" ClearCache="true" />
+			</rul:Locate>
+			<rul:Locate AtDataDef="CommercialPropertyOrdinanceOrLawCoverageForTenantsInterestInImprovementsAndBettermentsCovCEQCoverage">
+				<rul:RunRule Type="none" FileName="CommercialPropertyOrdinanceOrLawCoverageForTenantsInterestInImprovementsAndBettermentsCovCEQCoverageRules" Rule="ErcProcess" ClearCache="true" />
+			</rul:Locate>
+			<rul:Locate AtDataDef="CommercialPropertyOrdinanceOrLawCoverageForTenantsInterestInImprovementsAndBettermentsCovCSpecialCoverage">
+				<rul:RunRule Type="none" FileName="CommercialPropertyOrdinanceOrLawCoverageForTenantsInterestInImprovementsAndBettermentsCovCSpecialCoverageRules" Rule="ErcProcess" ClearCache="true" />
+			</rul:Locate>
+		</rul:Sequence>
+	</rul:Rule>
+	<rul:Rule Name="LookupOrdinanceOrLawCoverageAFactor" Type="decimal" DataDefGroup="CommercialPropertyOrdinanceOrLawCoverageForTenantsInterestInImprovementsAndBetterments">
+		<rul:FirstNonNull Type="decimal">
+			<rul:Lookup Type="decimal" MatrixCol="Factor" MatrixDef="OrdinanceOrLawCoverageAFactorDef" MatrixFromConstant="OrdinanceOrLawCoverageAFactor" ResultMode="FirstResult">
+				<rul:Keys>
+					<rul:Value Type="string" FromDataDef="/State/@Code" />
+					<rul:Constant Type="string">Y</rul:Constant>
+				</rul:Keys>
+			</rul:Lookup>
+			<rul:Lookup Type="decimal" MatrixCol="Factor" MatrixDef="OrdinanceOrLawCoverageAFactorDef" MatrixFromConstant="OrdinanceOrLawCoverageAFactor" ResultMode="SingleResult">
+				<rul:Keys>
+					<rul:Constant Type="string">CW</rul:Constant>
+					<rul:Constant Type="string">Y</rul:Constant>
+				</rul:Keys>
+			</rul:Lookup>
+		</rul:FirstNonNull>
+	</rul:Rule>
+	<rul:Rule Name="LookupOrdinanceOrLawCovAEQFactor" Type="decimal" DataDefGroup="CommercialPropertyOrdinanceOrLawCoverageForTenantsInterestInImprovementsAndBetterments">
+		<rul:FirstNonNull Type="decimal">
+			<rul:Lookup Type="decimal" MatrixCol="Factor" MatrixDef="OrdinanceOrLawCovAEQFactorDef" MatrixFromConstant="OrdinanceOrLawCovAEQFactor" ResultMode="FirstResult">
+				<rul:Keys>
+					<rul:Value Type="string" FromDataDef="/State/@Code" />
+					<rul:Constant Type="string">Y</rul:Constant>
+				</rul:Keys>
+			</rul:Lookup>
+			<rul:Lookup Type="decimal" MatrixCol="Factor" MatrixDef="OrdinanceOrLawCovAEQFactorDef" MatrixFromConstant="OrdinanceOrLawCovAEQFactor" ResultMode="SingleResult">
+				<rul:Keys>
+					<rul:Constant Type="string">CW</rul:Constant>
+					<rul:Constant Type="string">Y</rul:Constant>
+				</rul:Keys>
+			</rul:Lookup>
+		</rul:FirstNonNull>
+	</rul:Rule>
+	<rul:Rule Name="LookupPostLossOrdinanceOrLawOptionFactor" Type="decimal" DataDefGroup="CommercialPropertyOrdinanceOrLawCoverageForTenantsInterestInImprovementsAndBetterments">
+		<rul:FirstNonNull Type="decimal">
+			<rul:Lookup Type="decimal" MatrixCol="Factor" MatrixDef="PostLossOrdinanceOrLawOptionFactorDef" MatrixFromConstant="PostLossOrdinanceOrLawOptionFactor" ResultMode="FirstResult">
+				<rul:Keys>
+					<rul:Value Type="string" FromDataDef="/State/@Code" />
+					<rul:Constant Type="string">Y</rul:Constant>
+				</rul:Keys>
+			</rul:Lookup>
+			<rul:Lookup Type="decimal" MatrixCol="Factor" MatrixDef="PostLossOrdinanceOrLawOptionFactorDef" MatrixFromConstant="PostLossOrdinanceOrLawOptionFactor" ResultMode="SingleResult">
+				<rul:Keys>
+					<rul:Constant Type="string">CW</rul:Constant>
+					<rul:Constant Type="string">Y</rul:Constant>
+				</rul:Keys>
+			</rul:Lookup>
+		</rul:FirstNonNull>
+	</rul:Rule>
+</rul:Rules>

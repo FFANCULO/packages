@@ -1,0 +1,8 @@
+"StateCode","OwnershipAndOperation","Code"
+"CW","Unmanned aircraft owned and operated by the insured","1"
+"CW","Unmanned aircraft rented or leased to (and operated by) the insured","2"
+"CW","Unmanned aircraft operations are contracted out","3"
+"CW","Unmanned aircraft rented or leased to others","4"
+"CW","The insured is a hired operator/pilot or carrier for hire","5"
+"CW","Not applicable","6"
+"CW","Unknown","7"

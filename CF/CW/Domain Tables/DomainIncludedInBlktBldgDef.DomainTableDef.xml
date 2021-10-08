@@ -1,0 +1,15 @@
+<dt:DomainTable xmlns:dt="http://www.verisk.com/iso/erc/DomainTable">
+	<dt:MetaData>
+		<dt:MetaDataCode>DomainTableIncludedInBlktBldg</dt:MetaDataCode>
+		<dt:MetaDataCode>BureauRuleNumber34B40C30A30C5656632</dt:MetaDataCode>
+	</dt:MetaData>
+	<dt:KeyCols>
+		<dt:KeyCol Name="StateCode" Type="string" CaseInsensitive="false" />
+		<dt:KeyCol Name="CovTypeBldg" Type="string" CaseInsensitive="false" />
+		<dt:KeyCol Name="BlktRated" Type="string" CaseInsensitive="false" />
+	</dt:KeyCols>
+	<dt:ValueCols>
+		<dt:ValueCol Name="DisplayValue" Type="string" />
+		<dt:ValueCol Name="DataValue" Type="string" />
+	</dt:ValueCols>
+</dt:DomainTable>

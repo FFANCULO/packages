@@ -1,0 +1,16 @@
+<dt:DomainTable xmlns:dt="http://www.verisk.com/iso/erc/DomainTable">
+	<dt:MetaData>
+		<dt:MetaDataCode>DomainTableCoinsuranceForBlanket</dt:MetaDataCode>
+		<dt:MetaDataCode>BureauRuleNumber34B3</dt:MetaDataCode>
+	</dt:MetaData>
+	<dt:KeyCols>
+		<dt:KeyCol Name="StateCode" Type="string" CaseInsensitive="false" />
+		<dt:KeyCol Name="BlanketType" Type="string" CaseInsensitive="false" />
+		<dt:KeyCol Name="CauseOfLossForBlanket" Type="string" CaseInsensitive="false" />
+		<dt:KeyCol Name="EQCauseOfLossIncludedInBlkt" Type="string" CaseInsensitive="false" />
+	</dt:KeyCols>
+	<dt:ValueCols>
+		<dt:ValueCol Name="DisplayValue" Type="string" />
+		<dt:ValueCol Name="DataValue" Type="string" />
+	</dt:ValueCols>
+</dt:DomainTable>

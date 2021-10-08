@@ -1,0 +1,7 @@
+"StateCode","UtilitySrvcCauseOfLoss","Rate"
+"CW","GroupI",0.008
+"CW","GroupII",0.006
+"CW","Broad",0.006
+"CW","SpecialBldg",0.006
+"CW","SpecialPersProp",0.021
+"CW","Earthquake",0.034

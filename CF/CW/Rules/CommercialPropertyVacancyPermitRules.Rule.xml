@@ -1,0 +1,1811 @@
+<rul:Rules xmlns:rul="http://www.verisk.com/iso/erc/Rule">
+	<rul:Rule Name="InitializeRuleSet" DataDefGroup="CommercialPropertyVacancyPermit">
+		<rul:Sequence>
+			<rul:Locate AtDataDef="CommercialPropertyVacancyPermitBasicGroupICoverage">
+				<rul:RunRule Type="none" FileName="CommercialPropertyVacancyPermitBasicGroupICoverageRules" Rule="InitializeRuleSet" ClearCache="true" />
+			</rul:Locate>
+			<rul:Locate AtDataDef="CommercialPropertyVacancyPermitBasicGroupIICoverage">
+				<rul:RunRule Type="none" FileName="CommercialPropertyVacancyPermitBasicGroupIICoverageRules" Rule="InitializeRuleSet" ClearCache="true" />
+			</rul:Locate>
+			<rul:Locate AtDataDef="CommercialPropertyVacancyPermitBroadCoverage">
+				<rul:RunRule Type="none" FileName="CommercialPropertyVacancyPermitBroadCoverageRules" Rule="InitializeRuleSet" ClearCache="true" />
+			</rul:Locate>
+			<rul:Locate AtDataDef="CommercialPropertyVacancyPermitEarthquakeCoverage">
+				<rul:RunRule Type="none" FileName="CommercialPropertyVacancyPermitEarthquakeCoverageRules" Rule="InitializeRuleSet" ClearCache="true" />
+			</rul:Locate>
+			<rul:Locate AtDataDef="CommercialPropertyVacancyPermitMoltenMaterialCoverage">
+				<rul:RunRule Type="none" FileName="CommercialPropertyVacancyPermitMoltenMaterialCoverageRules" Rule="InitializeRuleSet" ClearCache="true" />
+			</rul:Locate>
+			<rul:Locate AtDataDef="CommercialPropertyVacancyPermitRadioactiveContaminationCoverage">
+				<rul:RunRule Type="none" FileName="CommercialPropertyVacancyPermitRadioactiveContaminationCoverageRules" Rule="InitializeRuleSet" ClearCache="true" />
+			</rul:Locate>
+			<rul:Locate AtDataDef="CommercialPropertyVacancyPermitSpecialCoverage">
+				<rul:RunRule Type="none" FileName="CommercialPropertyVacancyPermitSpecialCoverageRules" Rule="InitializeRuleSet" ClearCache="true" />
+			</rul:Locate>
+		</rul:Sequence>
+	</rul:Rule>
+	<rul:Rule Name="CalculateTotalPremium" Type="decimal" DataDefGroup="CommercialPropertyVacancyPermit">
+		<rul:Sum>
+			<rul:Locate AtDataDef="CommercialPropertyVacancyPermitBasicGroupICoverage">
+				<rul:RunRule Type="decimal" FileName="CommercialPropertyVacancyPermitBasicGroupICoverageRules" Rule="CalculateTotalPremium" ClearCache="true" />
+			</rul:Locate>
+			<rul:Locate AtDataDef="CommercialPropertyVacancyPermitBasicGroupIICoverage">
+				<rul:RunRule Type="decimal" FileName="CommercialPropertyVacancyPermitBasicGroupIICoverageRules" Rule="CalculateTotalPremium" ClearCache="true" />
+			</rul:Locate>
+			<rul:Locate AtDataDef="CommercialPropertyVacancyPermitBroadCoverage">
+				<rul:RunRule Type="decimal" FileName="CommercialPropertyVacancyPermitBroadCoverageRules" Rule="CalculateTotalPremium" ClearCache="true" />
+			</rul:Locate>
+			<rul:Locate AtDataDef="CommercialPropertyVacancyPermitEarthquakeCoverage">
+				<rul:RunRule Type="decimal" FileName="CommercialPropertyVacancyPermitEarthquakeCoverageRules" Rule="CalculateTotalPremium" ClearCache="true" />
+			</rul:Locate>
+			<rul:Locate AtDataDef="CommercialPropertyVacancyPermitMoltenMaterialCoverage">
+				<rul:RunRule Type="decimal" FileName="CommercialPropertyVacancyPermitMoltenMaterialCoverageRules" Rule="CalculateTotalPremium" ClearCache="true" />
+			</rul:Locate>
+			<rul:Locate AtDataDef="CommercialPropertyVacancyPermitRadioactiveContaminationCoverage">
+				<rul:RunRule Type="decimal" FileName="CommercialPropertyVacancyPermitRadioactiveContaminationCoverageRules" Rule="CalculateTotalPremium" ClearCache="true" />
+			</rul:Locate>
+			<rul:Locate AtDataDef="CommercialPropertyVacancyPermitSpecialCoverage">
+				<rul:RunRule Type="decimal" FileName="CommercialPropertyVacancyPermitSpecialCoverageRules" Rule="CalculateTotalPremium" ClearCache="true" />
+			</rul:Locate>
+			<rul:If>
+				<rul:Test>
+					<rul:And>
+						<rul:Equal>
+							<rul:FirstValue Type="integer" FromConstant="0" FromDataDef="@PremiumIndicator" Order="DataDefInputParamConstant" />
+							<rul:Constant Type="integer">1</rul:Constant>
+						</rul:Equal>
+						<rul:NotEqual>
+							<rul:FirstValue Type="decimal" FromConstant="0" FromDataDef="@Premium" Order="DataDefInputParamConstant" />
+							<rul:Constant Type="decimal">0</rul:Constant>
+						</rul:NotEqual>
+					</rul:And>
+				</rul:Test>
+				<rul:Then>
+					<rul:FirstValue Type="decimal" FromConstant="0" FromDataDef="@Premium" Order="DataDefInputParamConstant" />
+				</rul:Then>
+				<rul:Else>
+					<rul:Constant Type="decimal">0</rul:Constant>
+				</rul:Else>
+			</rul:If>
+		</rul:Sum>
+	</rul:Rule>
+	<rul:Rule Name="ErcSetRatesAndFactors" Type="none" DataDefGroup="CommercialPropertyVacancyPermit">
+		<rul:Sequence>
+			<rul:RunRule Type="none" FileName="CommercialPropertyVacancyPermitRules" Rule="SetVacancyPermitProRateFactor" ClearCache="true" />
+			<rul:RunRule Type="none" FileName="CommercialPropertyVacancyPermitRules" Rule="SetVandalismExclusion" ClearCache="true" />
+			<rul:RunRule Type="none" FileName="CommercialPropertyVacancyPermitRules" Rule="SetSprinklerLeakageExclusion" ClearCache="true" />
+			<rul:RunRule Type="none" FileName="CommercialPropertyVacancyPermitRules" Rule="SetCoinsurance" ClearCache="true" />
+			<rul:RunRule Type="none" FileName="CommercialPropertyVacancyPermitRules" Rule="SetCauseOfLoss" ClearCache="true" />
+			<rul:RunRule Type="none" FileName="CommercialPropertyVacancyPermitRules" Rule="SetSpecialVandalismStatus" ClearCache="true" />
+			<rul:RunRule Type="none" FileName="CommercialPropertyVacancyPermitRules" Rule="SetMinBasicGroupIBaseRate" ClearCache="true" />
+			<rul:RunRule Type="none" FileName="CommercialPropertyVacancyPermitRules" Rule="SetMinBasicGroupIIBaseRate" ClearCache="true" />
+			<rul:RunRule Type="none" FileName="CommercialPropertyVacancyPermitRules" Rule="SetMinBasicGroupIRate" ClearCache="true" />
+			<rul:RunRule Type="none" FileName="CommercialPropertyVacancyPermitRules" Rule="SetMinBasicGroupIIRate" ClearCache="true" />
+			<rul:RunRule Type="decimal" ToDataDef="@SprinklerLeakageExclNonSprinkleredRate" FileName="CommercialPropertyVacancyPermitRules" Rule="LookupSprinklerLeakageExclNonSprinkleredRate" ClearCache="true" />
+			<rul:RunRule Type="none" FileName="CommercialPropertyVacancyPermitRules" Rule="SetSprinklerLeakageExclNonSprinklerBldgRate" ClearCache="true" />
+			<rul:RunRule Type="none" FileName="CommercialPropertyVacancyPermitRules" Rule="SetSprinklerLeakageExclSprinkleredFactor" ClearCache="true" />
+			<rul:RunRule Type="none" FileName="CommercialPropertyVacancyPermitRules" Rule="SetVandalismExclFactor" ClearCache="true" />
+			<rul:RunRule Type="none" FileName="CommercialPropertyVacancyPermitRules" Rule="SetBGICOLAdjustment" ClearCache="true" />
+			<rul:RunRule Type="none" FileName="CommercialPropertyVacancyPermitRules" Rule="SetAdjustedBGIRate" ClearCache="true" />
+			<rul:RunRule Type="none" FileName="CommercialPropertyVacancyPermitRules" Rule="SetBasicGroupIRate" ClearCache="true" />
+			<rul:RunRule Type="none" FileName="CommercialPropertyVacancyPermitRules" Rule="SetBasicGroupIIRate" ClearCache="true" />
+			<rul:RunRule Type="none" FileName="CommercialPropertyVacancyPermitRules" Rule="SetMoltenMaterialFactor" ClearCache="true" />
+			<rul:RunRule Type="none" FileName="CommercialPropertyVacancyPermitRules" Rule="SetBroadFactor" ClearCache="true" />
+			<rul:RunRule Type="none" FileName="CommercialPropertyVacancyPermitRules" Rule="SetSpecialFactor" ClearCache="true" />
+			<rul:RunRule Type="none" FileName="CommercialPropertyVacancyPermitRules" Rule="SetEQFactor" ClearCache="true" />
+			<rul:RunRule Type="none" FileName="CommercialPropertyVacancyPermitRules" Rule="SetOtherCOLFactor" ClearCache="true" />
+			<rul:RunRule Type="none" FileName="CommercialPropertyVacancyPermitRules" Rule="SetBGIStdPropPolIncVandalismRate" ClearCache="true" />
+		</rul:Sequence>
+	</rul:Rule>
+	<rul:Rule Name="SetVacancyPermitProRateFactor" Type="none" DataDefGroup="CommercialPropertyVacancyPermit">
+		<rul:Sequence>
+			<rul:If>
+				<rul:Test>
+					<rul:And>
+						<rul:IsNotNull>
+							<rul:Value Type="dateTime" FromDataDef="@PermitPeriodFrom" />
+						</rul:IsNotNull>
+						<rul:IsNotNull>
+							<rul:Value Type="dateTime" FromDataDef="@PermitPeriodTo" />
+						</rul:IsNotNull>
+					</rul:And>
+				</rul:Test>
+				<rul:Then>
+					<rul:Sequence>
+						<rul:Divide ToDataDef="@VacancyPermitProRateFactor" DecimalPlaces="3">
+							<rul:Convert Type="decimal">
+								<rul:DateDifference UnitType="Days">
+									<rul:DateCreate>
+										<rul:DatePart UnitType="Years">
+											<rul:FirstValue Type="dateTime" FromConstant="01/01/0001" FromDataDef="@PermitPeriodFrom" Order="DataDefInputParamConstant" />
+										</rul:DatePart>
+										<rul:DatePart UnitType="Months">
+											<rul:FirstValue Type="dateTime" FromConstant="01/01/0001" FromDataDef="@PermitPeriodFrom" Order="DataDefInputParamConstant" />
+										</rul:DatePart>
+										<rul:DatePart UnitType="Days">
+											<rul:FirstValue Type="dateTime" FromConstant="01/01/0001" FromDataDef="@PermitPeriodFrom" Order="DataDefInputParamConstant" />
+										</rul:DatePart>
+									</rul:DateCreate>
+									<rul:DateCreate>
+										<rul:DatePart UnitType="Years">
+											<rul:FirstValue Type="dateTime" FromConstant="01/01/0001" FromDataDef="@PermitPeriodTo" Order="DataDefInputParamConstant" />
+										</rul:DatePart>
+										<rul:DatePart UnitType="Months">
+											<rul:FirstValue Type="dateTime" FromConstant="01/01/0001" FromDataDef="@PermitPeriodTo" Order="DataDefInputParamConstant" />
+										</rul:DatePart>
+										<rul:DatePart UnitType="Days">
+											<rul:FirstValue Type="dateTime" FromConstant="01/01/0001" FromDataDef="@PermitPeriodTo" Order="DataDefInputParamConstant" />
+										</rul:DatePart>
+									</rul:DateCreate>
+								</rul:DateDifference>
+							</rul:Convert>
+							<rul:Convert Type="decimal">
+								<rul:DateDifference UnitType="Days">
+									<rul:DateCreate>
+										<rul:DatePart UnitType="Years">
+											<rul:FirstValue Type="dateTime" FromConstant="01/01/0001" FromDataDef="ancestor::CommercialProperty/@EffectiveDt" Order="DataDefInputParamConstant" />
+										</rul:DatePart>
+										<rul:DatePart UnitType="Months">
+											<rul:FirstValue Type="dateTime" FromConstant="01/01/0001" FromDataDef="ancestor::CommercialProperty/@EffectiveDt" Order="DataDefInputParamConstant" />
+										</rul:DatePart>
+										<rul:DatePart UnitType="Days">
+											<rul:FirstValue Type="dateTime" FromConstant="01/01/0001" FromDataDef="ancestor::CommercialProperty/@EffectiveDt" Order="DataDefInputParamConstant" />
+										</rul:DatePart>
+									</rul:DateCreate>
+									<rul:DateCreate>
+										<rul:DatePart UnitType="Years">
+											<rul:FirstValue Type="dateTime" FromConstant="01/01/0001" FromDataDef="ancestor::CommercialProperty/@ExpirationDt" Order="DataDefInputParamConstant" />
+										</rul:DatePart>
+										<rul:DatePart UnitType="Months">
+											<rul:FirstValue Type="dateTime" FromConstant="01/01/0001" FromDataDef="ancestor::CommercialProperty/@ExpirationDt" Order="DataDefInputParamConstant" />
+										</rul:DatePart>
+										<rul:DatePart UnitType="Days">
+											<rul:FirstValue Type="dateTime" FromConstant="01/01/0001" FromDataDef="ancestor::CommercialProperty/@ExpirationDt" Order="DataDefInputParamConstant" />
+										</rul:DatePart>
+									</rul:DateCreate>
+								</rul:DateDifference>
+							</rul:Convert>
+						</rul:Divide>
+						<rul:Divide ToDataDef="@ProRateFactor" DecimalPlaces="3">
+							<rul:Convert Type="decimal">
+								<rul:DateDifference UnitType="Days">
+									<rul:DateCreate>
+										<rul:DatePart UnitType="Years">
+											<rul:FirstValue Type="dateTime" FromConstant="01/01/0001" FromDataDef="@PermitPeriodFrom" Order="DataDefInputParamConstant" />
+										</rul:DatePart>
+										<rul:DatePart UnitType="Months">
+											<rul:FirstValue Type="dateTime" FromConstant="01/01/0001" FromDataDef="@PermitPeriodFrom" Order="DataDefInputParamConstant" />
+										</rul:DatePart>
+										<rul:DatePart UnitType="Days">
+											<rul:FirstValue Type="dateTime" FromConstant="01/01/0001" FromDataDef="@PermitPeriodFrom" Order="DataDefInputParamConstant" />
+										</rul:DatePart>
+									</rul:DateCreate>
+									<rul:DateCreate>
+										<rul:DatePart UnitType="Years">
+											<rul:FirstValue Type="dateTime" FromConstant="01/01/0001" FromDataDef="@PermitPeriodTo" Order="DataDefInputParamConstant" />
+										</rul:DatePart>
+										<rul:DatePart UnitType="Months">
+											<rul:FirstValue Type="dateTime" FromConstant="01/01/0001" FromDataDef="@PermitPeriodTo" Order="DataDefInputParamConstant" />
+										</rul:DatePart>
+										<rul:DatePart UnitType="Days">
+											<rul:FirstValue Type="dateTime" FromConstant="01/01/0001" FromDataDef="@PermitPeriodTo" Order="DataDefInputParamConstant" />
+										</rul:DatePart>
+									</rul:DateCreate>
+								</rul:DateDifference>
+							</rul:Convert>
+							<rul:Convert Type="decimal">
+								<rul:DateDifference UnitType="Days">
+									<rul:DateCreate>
+										<rul:DatePart UnitType="Years">
+											<rul:FirstValue Type="dateTime" FromConstant="01/01/0001" FromDataDef="ancestor::CommercialProperty/@EffectiveDt" Order="DataDefInputParamConstant" />
+										</rul:DatePart>
+										<rul:DatePart UnitType="Months">
+											<rul:FirstValue Type="dateTime" FromConstant="01/01/0001" FromDataDef="ancestor::CommercialProperty/@EffectiveDt" Order="DataDefInputParamConstant" />
+										</rul:DatePart>
+										<rul:DatePart UnitType="Days">
+											<rul:FirstValue Type="dateTime" FromConstant="01/01/0001" FromDataDef="ancestor::CommercialProperty/@EffectiveDt" Order="DataDefInputParamConstant" />
+										</rul:DatePart>
+									</rul:DateCreate>
+									<rul:DateCreate>
+										<rul:DatePart UnitType="Years">
+											<rul:FirstValue Type="dateTime" FromConstant="01/01/0001" FromDataDef="ancestor::CommercialProperty/@ExpirationDt" Order="DataDefInputParamConstant" />
+										</rul:DatePart>
+										<rul:DatePart UnitType="Months">
+											<rul:FirstValue Type="dateTime" FromConstant="01/01/0001" FromDataDef="ancestor::CommercialProperty/@ExpirationDt" Order="DataDefInputParamConstant" />
+										</rul:DatePart>
+										<rul:DatePart UnitType="Days">
+											<rul:FirstValue Type="dateTime" FromConstant="01/01/0001" FromDataDef="ancestor::CommercialProperty/@ExpirationDt" Order="DataDefInputParamConstant" />
+										</rul:DatePart>
+									</rul:DateCreate>
+								</rul:DateDifference>
+							</rul:Convert>
+						</rul:Divide>
+					</rul:Sequence>
+				</rul:Then>
+			</rul:If>
+		</rul:Sequence>
+	</rul:Rule>
+	<rul:Rule Name="SetVandalismExclusion" Type="none" DataDefGroup="CommercialPropertyVacancyPermit">
+		<rul:Sequence>
+			<rul:If>
+				<rul:Test>
+					<rul:Exist AtInputDataDef="../../CommercialPropertyVandalismExclusionTable/CommercialPropertyVandalismExclusion" />
+				</rul:Test>
+				<rul:Then>
+					<rul:Sequence>
+						<rul:Constant Type="string" ToDataDef="@Vandalism">Yes</rul:Constant>
+					</rul:Sequence>
+				</rul:Then>
+			</rul:If>
+		</rul:Sequence>
+	</rul:Rule>
+	<rul:Rule Name="SetMoltenMaterialFactor" Type="none" DataDefGroup="CommercialPropertyVacancyPermit">
+		<rul:Sequence>
+			<rul:RunRule Type="decimal" ToDataDef="@MoltenMaterialFactor" FileName="CommercialPropertyVacancyPermitRules" Rule="LookupMoltenMaterialFactor" ClearCache="true" />
+		</rul:Sequence>
+	</rul:Rule>
+	<rul:Rule Name="SetCauseOfLoss" Type="none" DataDefGroup="CommercialPropertyVacancyPermit">
+		<rul:Sequence>
+			<rul:If>
+				<rul:Test>
+					<rul:Equal>
+						<rul:FirstValue Type="string" FromConstant="" FromDataDef="ancestor::CommercialPropertyStructure/@IncludedInBlkt" Order="DataDefInputParamConstant" />
+						<rul:Constant Type="string">Yes</rul:Constant>
+					</rul:Equal>
+				</rul:Test>
+				<rul:Then>
+					<rul:Copy Type="string" ToDataDef="@CauseOfLoss" FromDataDef="ancestor::CommercialPropertyStructure/@BlktCauseOfLossValue" />
+				</rul:Then>
+				<rul:Else>
+					<rul:Copy Type="string" ToDataDef="@CauseOfLoss" FromDataDef="ancestor::CommercialPropertyStructure/@CauseOfLoss" />
+				</rul:Else>
+			</rul:If>
+		</rul:Sequence>
+	</rul:Rule>
+	<rul:Rule Name="SetSpecialVandalismStatus" Type="none" DataDefGroup="CommercialPropertyVacancyPermit">
+		<rul:Sequence>
+			<rul:If>
+				<rul:Test>
+					<rul:NotEqual>
+						<rul:FirstValue Type="string" FromConstant="" FromDataDef="ancestor::CommercialPropertyStructure/@ClassCode" Order="DataDefInputParamConstant" />
+						<rul:Constant Type="string"></rul:Constant>
+					</rul:NotEqual>
+				</rul:Test>
+				<rul:Then>
+					<rul:Sequence>
+						<rul:RunRule Type="string" ToDataDef="@SpecialVandalismStatus" FileName="CommercialPropertyVacancyPermitRules" Rule="LookupVandalismStatus" ClearCache="true" />
+					</rul:Sequence>
+				</rul:Then>
+				<rul:Else>
+					<rul:Sequence>
+						<rul:Constant Type="string" ToDataDef="@SpecialVandalismStatus"></rul:Constant>
+					</rul:Sequence>
+				</rul:Else>
+			</rul:If>
+		</rul:Sequence>
+	</rul:Rule>
+	<rul:Rule Name="SetSprinklerLeakageExclNonSprinklerBldgRate" Type="none" DataDefGroup="CommercialPropertyVacancyPermit">
+		<rul:Sequence>
+			<rul:WithArgs>
+				<rul:Arg Type="decimal" Param="calcSprinklerLeakageExclNonSprinkleredBldgRate">
+					<rul:FirstNonNull Type="decimal">
+						<rul:If>
+							<rul:Test>
+								<rul:Or>
+									<rul:And>
+										<rul:Equal>
+											<rul:FirstValue Type="string" FromConstant="" FromDataDef="ancestor::CommercialProperty/@PolicyType" Order="DataDefInputParamConstant" />
+											<rul:Constant Type="string">Commercial Property Policy</rul:Constant>
+										</rul:Equal>
+										<rul:Equal>
+											<rul:FirstValue Type="string" FromConstant="" FromDataDef="ancestor::CommercialPropertyStructure/@SprinklerSystem" Order="DataDefInputParamConstant" />
+											<rul:Constant Type="string">Sprinklered Building, but Not Rated as Sprinklered</rul:Constant>
+										</rul:Equal>
+										<rul:Or>
+											<rul:Exist AtInputDataDef="ancestor::CommercialPropertyStructure/CommercialPropertySprinklerLeakageExclusionTable/CommercialPropertySprinklerLeakageExclusion" />
+											<rul:Equal>
+												<rul:FirstValue Type="string" FromConstant="" FromDataDef="@SprinklerLeakage" Order="DataDefInputParamConstant" />
+												<rul:Constant Type="string">Yes</rul:Constant>
+											</rul:Equal>
+										</rul:Or>
+									</rul:And>
+									<rul:And>
+										<rul:Equal>
+											<rul:FirstValue Type="string" FromConstant="" FromDataDef="ancestor::CommercialProperty/@PolicyType" Order="DataDefInputParamConstant" />
+											<rul:Constant Type="string">Standard Property Policy</rul:Constant>
+										</rul:Equal>
+										<rul:Equal>
+											<rul:FirstValue Type="string" FromConstant="" FromDataDef="ancestor::CommercialPropertyStructure/@SprinklerSystem" Order="DataDefInputParamConstant" />
+											<rul:Constant Type="string">Sprinklered Building, but Not Rated as Sprinklered</rul:Constant>
+										</rul:Equal>
+										<rul:Or>
+											<rul:Equal>
+												<rul:FirstValue Type="string" FromConstant="" FromDataDef="ancestor::CommercialPropertyStructure/@CauseOfLoss" Order="DataDefInputParamConstant" />
+												<rul:Constant Type="string">Fire</rul:Constant>
+											</rul:Equal>
+											<rul:Equal>
+												<rul:FirstValue Type="string" FromConstant="" FromDataDef="ancestor::CommercialPropertyStructure/@CauseOfLoss" Order="DataDefInputParamConstant" />
+												<rul:Constant Type="string">Fire and Vandalism</rul:Constant>
+											</rul:Equal>
+											<rul:Equal>
+												<rul:FirstValue Type="string" FromConstant="" FromDataDef="ancestor::CommercialPropertyStructure/@CauseOfLoss" Order="DataDefInputParamConstant" />
+												<rul:Constant Type="string">Fire and Allied Lines</rul:Constant>
+											</rul:Equal>
+											<rul:Equal>
+												<rul:FirstValue Type="string" FromConstant="" FromDataDef="ancestor::CommercialPropertyStructure/@CauseOfLoss" Order="DataDefInputParamConstant" />
+												<rul:Constant Type="string">Fire, Vandalism and Allied Lines</rul:Constant>
+											</rul:Equal>
+											<rul:Equal>
+												<rul:FirstValue Type="string" FromConstant="" FromDataDef="@SprinklerLeakage" Order="DataDefInputParamConstant" />
+												<rul:Constant Type="string">Yes</rul:Constant>
+											</rul:Equal>
+										</rul:Or>
+									</rul:And>
+								</rul:Or>
+							</rul:Test>
+							<rul:Then>
+								<rul:Product DecimalPlaces="3">
+									<rul:FirstValue Type="decimal" FromConstant="0" FromDataDef="@SprinklerLeakageExclNonSprinkleredRate" Order="DataDefInputParamConstant" />
+									<rul:FirstValue Type="decimal" FromConstant="0" FromDataDef="ancestor::CommercialProperty/@LossCostMultiplier" Order="DataDefInputParamConstant" />
+								</rul:Product>
+							</rul:Then>
+						</rul:If>
+						<rul:Constant Type="decimal">0</rul:Constant>
+					</rul:FirstNonNull>
+				</rul:Arg>
+				<rul:Value Type="decimal" ToDataDef="@SprinklerLeakageExclNonSprinkleredBldgRate" FromParam="calcSprinklerLeakageExclNonSprinkleredBldgRate" />
+			</rul:WithArgs>
+		</rul:Sequence>
+	</rul:Rule>
+	<rul:Rule Name="SetSprinklerLeakageExclSprinkleredFactor" Type="none" DataDefGroup="CommercialPropertyVacancyPermit">
+		<rul:Sequence>
+			<rul:If>
+				<rul:Test>
+					<rul:Or>
+						<rul:And>
+							<rul:Equal>
+								<rul:FirstValue Type="string" FromConstant="" FromDataDef="ancestor::CommercialProperty/@PolicyType" Order="DataDefInputParamConstant" />
+								<rul:Constant Type="string">Commercial Property Policy</rul:Constant>
+							</rul:Equal>
+							<rul:Or>
+								<rul:Equal>
+									<rul:FirstValue Type="string" FromConstant="" FromDataDef="ancestor::CommercialPropertyStructure/@SprinklerSystem" Order="DataDefInputParamConstant" />
+									<rul:Constant Type="string">Rated as Sprinklered; &lt;50% of Value Exposed to Sprinklers</rul:Constant>
+								</rul:Equal>
+								<rul:Equal>
+									<rul:FirstValue Type="string" FromConstant="" FromDataDef="ancestor::CommercialPropertyStructure/@SprinklerSystem" Order="DataDefInputParamConstant" />
+									<rul:Constant Type="string">Rated as Sprinklered; &gt;50% of Value Exposed to Sprinklers</rul:Constant>
+								</rul:Equal>
+							</rul:Or>
+							<rul:Or>
+								<rul:Exist AtInputDataDef="ancestor::CommercialPropertyStructure/CommercialPropertySprinklerLeakageExclusionTable/CommercialPropertySprinklerLeakageExclusion" />
+								<rul:Equal>
+									<rul:FirstValue Type="string" FromConstant="" FromDataDef="@SprinklerLeakage" Order="DataDefInputParamConstant" />
+									<rul:Constant Type="string">Yes</rul:Constant>
+								</rul:Equal>
+							</rul:Or>
+						</rul:And>
+						<rul:And>
+							<rul:Equal>
+								<rul:FirstValue Type="string" FromConstant="" FromDataDef="ancestor::CommercialProperty/@PolicyType" Order="DataDefInputParamConstant" />
+								<rul:Constant Type="string">Standard Property Policy</rul:Constant>
+							</rul:Equal>
+							<rul:Or>
+								<rul:Equal>
+									<rul:FirstValue Type="string" FromConstant="" FromDataDef="ancestor::CommercialPropertyStructure/@SprinklerSystem" Order="DataDefInputParamConstant" />
+									<rul:Constant Type="string">Rated as Sprinklered; &lt;50% of Value Exposed to Sprinklers</rul:Constant>
+								</rul:Equal>
+								<rul:Equal>
+									<rul:FirstValue Type="string" FromConstant="" FromDataDef="ancestor::CommercialPropertyStructure/@SprinklerSystem" Order="DataDefInputParamConstant" />
+									<rul:Constant Type="string">Rated as Sprinklered; &gt;50% of Value Exposed to Sprinklers</rul:Constant>
+								</rul:Equal>
+							</rul:Or>
+							<rul:Or>
+								<rul:Equal>
+									<rul:FirstValue Type="string" FromConstant="" FromDataDef="ancestor::CommercialPropertyStructure/@CauseOfLoss" Order="DataDefInputParamConstant" />
+									<rul:Constant Type="string">Fire</rul:Constant>
+								</rul:Equal>
+								<rul:Equal>
+									<rul:FirstValue Type="string" FromConstant="" FromDataDef="ancestor::CommercialPropertyStructure/@CauseOfLoss" Order="DataDefInputParamConstant" />
+									<rul:Constant Type="string">Fire and Vandalism</rul:Constant>
+								</rul:Equal>
+								<rul:Equal>
+									<rul:FirstValue Type="string" FromConstant="" FromDataDef="ancestor::CommercialPropertyStructure/@CauseOfLoss" Order="DataDefInputParamConstant" />
+									<rul:Constant Type="string">Fire and Allied Lines</rul:Constant>
+								</rul:Equal>
+								<rul:Equal>
+									<rul:FirstValue Type="string" FromConstant="" FromDataDef="ancestor::CommercialPropertyStructure/@CauseOfLoss" Order="DataDefInputParamConstant" />
+									<rul:Constant Type="string">Fire, Vandalism and Allied Lines</rul:Constant>
+								</rul:Equal>
+								<rul:Equal>
+									<rul:FirstValue Type="string" FromConstant="" FromDataDef="@SprinklerLeakage" Order="DataDefInputParamConstant" />
+									<rul:Constant Type="string">Yes</rul:Constant>
+								</rul:Equal>
+							</rul:Or>
+						</rul:And>
+					</rul:Or>
+				</rul:Test>
+				<rul:Then>
+					<rul:Sequence>
+						<rul:RunRule Type="decimal" ToDataDef="@SprinklerLeakageExclSprinkleredFactor" FileName="CommercialPropertyVacancyPermitRules" Rule="LookupSprinklerLeakageExclSprinkleredFactor" ClearCache="true" />
+					</rul:Sequence>
+				</rul:Then>
+				<rul:Else>
+					<rul:Sequence>
+						<rul:Constant Type="decimal" ToDataDef="@SprinklerLeakageExclSprinkleredFactor">1.0</rul:Constant>
+					</rul:Sequence>
+				</rul:Else>
+			</rul:If>
+		</rul:Sequence>
+	</rul:Rule>
+	<rul:Rule Name="SetVandalismExclFactor" Type="none" DataDefGroup="CommercialPropertyVacancyPermit">
+		<rul:Sequence>
+			<rul:WithArgs>
+				<rul:Arg Type="decimal" Param="calcVandalismExclFactor">
+					<rul:FirstNonNull Type="decimal">
+						<rul:Choose>
+							<rul:When>
+								<rul:Test>
+									<rul:Or>
+										<rul:And>
+											<rul:Equal>
+												<rul:FirstValue Type="string" FromConstant="" FromDataDef="ancestor::CommercialProperty/@PolicyType" Order="DataDefInputParamConstant" />
+												<rul:Constant Type="string">Commercial Property Policy</rul:Constant>
+											</rul:Equal>
+											<rul:Equal>
+												<rul:FirstValue Type="string" FromConstant="" FromDataDef="ancestor::CommercialPropertyStructure/@VacantBuilding" Order="DataDefInputParamConstant" />
+												<rul:Constant Type="string">Yes</rul:Constant>
+											</rul:Equal>
+											<rul:Or>
+												<rul:Exist AtInputDataDef="ancestor::CommercialPropertyStructure/CommercialPropertyVandalismExclusionTable/CommercialPropertyVandalismExclusion" />
+												<rul:Equal>
+													<rul:FirstValue Type="string" FromConstant="" FromDataDef="@Vandalism" Order="DataDefInputParamConstant" />
+													<rul:Constant Type="string">Yes</rul:Constant>
+												</rul:Equal>
+											</rul:Or>
+										</rul:And>
+										<rul:And>
+											<rul:Equal>
+												<rul:FirstValue Type="string" FromConstant="" FromDataDef="ancestor::CommercialProperty/@PolicyType" Order="DataDefInputParamConstant" />
+												<rul:Constant Type="string">Standard Property Policy</rul:Constant>
+											</rul:Equal>
+											<rul:Equal>
+												<rul:FirstValue Type="string" FromConstant="" FromDataDef="ancestor::CommercialPropertyStructure/@VacantBuilding" Order="DataDefInputParamConstant" />
+												<rul:Constant Type="string">Yes</rul:Constant>
+											</rul:Equal>
+											<rul:Or>
+												<rul:Equal>
+													<rul:FirstValue Type="string" FromConstant="" FromDataDef="ancestor::CommercialPropertyStructure/@CauseOfLoss" Order="DataDefInputParamConstant" />
+													<rul:Constant Type="string">Fire</rul:Constant>
+												</rul:Equal>
+												<rul:Equal>
+													<rul:FirstValue Type="string" FromConstant="" FromDataDef="ancestor::CommercialPropertyStructure/@CauseOfLoss" Order="DataDefInputParamConstant" />
+													<rul:Constant Type="string">Fire and Sprinkler Leakage</rul:Constant>
+												</rul:Equal>
+												<rul:Equal>
+													<rul:FirstValue Type="string" FromConstant="" FromDataDef="ancestor::CommercialPropertyStructure/@CauseOfLoss" Order="DataDefInputParamConstant" />
+													<rul:Constant Type="string">Fire and Allied Lines</rul:Constant>
+												</rul:Equal>
+												<rul:Equal>
+													<rul:FirstValue Type="string" FromConstant="" FromDataDef="ancestor::CommercialPropertyStructure/@CauseOfLoss" Order="DataDefInputParamConstant" />
+													<rul:Constant Type="string">Fire, Sprinkler Leakage and Allied Lines</rul:Constant>
+												</rul:Equal>
+												<rul:Equal>
+													<rul:FirstValue Type="string" FromConstant="" FromDataDef="@Vandalism" Order="DataDefInputParamConstant" />
+													<rul:Constant Type="string">Yes</rul:Constant>
+												</rul:Equal>
+											</rul:Or>
+										</rul:And>
+									</rul:Or>
+								</rul:Test>
+								<rul:Then>
+									<rul:RunRule Type="decimal" FileName="CommercialPropertyVacancyPermitRules" Rule="LookupVandalismExclusionFactor" ClearCache="true">
+										<rul:Arg Type="string" Param="classCode">
+											<rul:Constant Type="string">1180</rul:Constant>
+										</rul:Arg>
+									</rul:RunRule>
+								</rul:Then>
+							</rul:When>
+							<rul:When>
+								<rul:Test>
+									<rul:Or>
+										<rul:And>
+											<rul:Equal>
+												<rul:FirstValue Type="string" FromConstant="" FromDataDef="ancestor::CommercialProperty/@PolicyType" Order="DataDefInputParamConstant" />
+												<rul:Constant Type="string">Commercial Property Policy</rul:Constant>
+											</rul:Equal>
+											<rul:Equal>
+												<rul:FirstValue Type="string" FromConstant="" FromDataDef="ancestor::CommercialPropertyStructure/@VacantBuilding" Order="DataDefInputParamConstant" />
+												<rul:Constant Type="string">No</rul:Constant>
+											</rul:Equal>
+											<rul:Or>
+												<rul:Exist AtInputDataDef="ancestor::CommercialPropertyStructure/CommercialPropertyVandalismExclusionTable/CommercialPropertyVandalismExclusion" />
+												<rul:Equal>
+													<rul:FirstValue Type="string" FromConstant="" FromDataDef="@Vandalism" Order="DataDefInputParamConstant" />
+													<rul:Constant Type="string">Yes</rul:Constant>
+												</rul:Equal>
+											</rul:Or>
+										</rul:And>
+										<rul:And>
+											<rul:Equal>
+												<rul:FirstValue Type="string" FromConstant="" FromDataDef="ancestor::CommercialProperty/@PolicyType" Order="DataDefInputParamConstant" />
+												<rul:Constant Type="string">Standard Property Policy</rul:Constant>
+											</rul:Equal>
+											<rul:Equal>
+												<rul:FirstValue Type="string" FromConstant="" FromDataDef="ancestor::CommercialPropertyStructure/@VacantBuilding" Order="DataDefInputParamConstant" />
+												<rul:Constant Type="string">No</rul:Constant>
+											</rul:Equal>
+											<rul:Or>
+												<rul:Equal>
+													<rul:FirstValue Type="string" FromConstant="" FromDataDef="ancestor::CommercialPropertyStructure/@CauseOfLoss" Order="DataDefInputParamConstant" />
+													<rul:Constant Type="string">Fire</rul:Constant>
+												</rul:Equal>
+												<rul:Equal>
+													<rul:FirstValue Type="string" FromConstant="" FromDataDef="ancestor::CommercialPropertyStructure/@CauseOfLoss" Order="DataDefInputParamConstant" />
+													<rul:Constant Type="string">Fire and Sprinkler Leakage</rul:Constant>
+												</rul:Equal>
+												<rul:Equal>
+													<rul:FirstValue Type="string" FromConstant="" FromDataDef="ancestor::CommercialPropertyStructure/@CauseOfLoss" Order="DataDefInputParamConstant" />
+													<rul:Constant Type="string">Fire and Allied Lines</rul:Constant>
+												</rul:Equal>
+												<rul:Equal>
+													<rul:FirstValue Type="string" FromConstant="" FromDataDef="ancestor::CommercialPropertyStructure/@CauseOfLoss" Order="DataDefInputParamConstant" />
+													<rul:Constant Type="string">Fire, Sprinkler Leakage and Allied Lines</rul:Constant>
+												</rul:Equal>
+												<rul:Equal>
+													<rul:FirstValue Type="string" FromConstant="" FromDataDef="@Vandalism" Order="DataDefInputParamConstant" />
+													<rul:Constant Type="string">Yes</rul:Constant>
+												</rul:Equal>
+											</rul:Or>
+											<rul:NotEqual>
+												<rul:FirstValue Type="string" FromConstant="" FromDataDef="ancestor::CommercialPropertyStructure/@ClassCodeToUse" Order="DataDefInputParamConstant" />
+												<rul:Constant Type="string"></rul:Constant>
+											</rul:NotEqual>
+										</rul:And>
+									</rul:Or>
+								</rul:Test>
+								<rul:Then>
+									<rul:RunRule Type="decimal" FileName="CommercialPropertyVacancyPermitRules" Rule="LookupVandalismExclusionFactor" ClearCache="true">
+										<rul:Arg Type="string" Param="classCode">
+											<rul:FirstValue Type="string" FromConstant="" FromDataDef="ancestor::CommercialPropertyStructure/@ClassCodeToUse" Order="DataDefInputParamConstant" />
+										</rul:Arg>
+									</rul:RunRule>
+								</rul:Then>
+							</rul:When>
+							<rul:Otherwise>
+								<rul:Constant Type="decimal">1</rul:Constant>
+							</rul:Otherwise>
+						</rul:Choose>
+						<rul:Constant Type="decimal">1</rul:Constant>
+					</rul:FirstNonNull>
+				</rul:Arg>
+				<rul:Value Type="decimal" ToDataDef="@VandalismExclFactor" FromParam="calcVandalismExclFactor" />
+			</rul:WithArgs>
+		</rul:Sequence>
+	</rul:Rule>
+	<rul:Rule Name="SetMinBasicGroupIBaseRate" Type="none" DataDefGroup="CommercialPropertyVacancyPermit">
+		<rul:Sequence>
+			<rul:If>
+				<rul:Test>
+					<rul:And>
+						<rul:NotEqual>
+							<rul:FirstValue Type="string" FromConstant="" FromDataDef="@SpecialVandalismStatus" Order="DataDefInputParamConstant" />
+							<rul:Constant Type="string"></rul:Constant>
+						</rul:NotEqual>
+						<rul:NotEqual>
+							<rul:FirstValue Type="string" FromConstant="" FromDataDef="@Coinsurance" Order="DataDefInputParamConstant" />
+							<rul:Constant Type="string"></rul:Constant>
+						</rul:NotEqual>
+					</rul:And>
+				</rul:Test>
+				<rul:Then>
+					<rul:Sequence>
+						<rul:RunRule Type="decimal" ToDataDef="@MinBasicGroupIBaseRate" FileName="CommercialPropertyVacancyPermitRules" Rule="LookupVacancyPermitBasicGroupIMinRate" ClearCache="true" />
+					</rul:Sequence>
+				</rul:Then>
+				<rul:Else>
+					<rul:Sequence>
+						<rul:Constant Type="decimal" ToDataDef="@MinBasicGroupIBaseRate">0.0</rul:Constant>
+					</rul:Sequence>
+				</rul:Else>
+			</rul:If>
+		</rul:Sequence>
+	</rul:Rule>
+	<rul:Rule Name="SetMinBasicGroupIIBaseRate" Type="none" DataDefGroup="CommercialPropertyVacancyPermit">
+		<rul:Sequence>
+			<rul:RunRule Type="decimal" ToDataDef="@MinBasicGroupIIBaseRate" FileName="CommercialPropertyVacancyPermitRules" Rule="LookupVacancyPermitBasicGroupIIMinRate" ClearCache="true" />
+		</rul:Sequence>
+	</rul:Rule>
+	<rul:Rule Name="SetMinBasicGroupIRate" Type="none" DataDefGroup="CommercialPropertyVacancyPermit">
+		<rul:Sequence>
+			<rul:WithArgs>
+				<rul:Arg Type="decimal" Param="calcMinBasicGroupIRate">
+					<rul:FirstNonNull Type="decimal">
+						<rul:Product DecimalPlaces="3">
+							<rul:FirstValue Type="decimal" FromConstant="0" FromDataDef="@MinBasicGroupIBaseRate" Order="DataDefInputParamConstant" />
+							<rul:FirstValue Type="decimal" FromConstant="0" FromDataDef="ancestor::CommercialProperty/@LossCostMultiplier" Order="DataDefInputParamConstant" />
+						</rul:Product>
+						<rul:Constant Type="decimal">0</rul:Constant>
+					</rul:FirstNonNull>
+				</rul:Arg>
+				<rul:Value Type="decimal" ToDataDef="@MinBasicGroupIRate" FromParam="calcMinBasicGroupIRate" />
+			</rul:WithArgs>
+		</rul:Sequence>
+	</rul:Rule>
+	<rul:Rule Name="SetMinBasicGroupIIRate" Type="none" DataDefGroup="CommercialPropertyVacancyPermit">
+		<rul:Sequence>
+			<rul:WithArgs>
+				<rul:Arg Type="decimal" Param="calcMinBasicGroupIIRate">
+					<rul:FirstNonNull Type="decimal">
+						<rul:Product DecimalPlaces="3">
+							<rul:FirstValue Type="decimal" FromConstant="0" FromDataDef="@MinBasicGroupIIBaseRate" Order="DataDefInputParamConstant" />
+							<rul:FirstValue Type="decimal" FromConstant="0" FromDataDef="ancestor::CommercialProperty/@LossCostMultiplier" Order="DataDefInputParamConstant" />
+						</rul:Product>
+						<rul:Constant Type="decimal">0</rul:Constant>
+					</rul:FirstNonNull>
+				</rul:Arg>
+				<rul:Value Type="decimal" ToDataDef="@MinBasicGroupIIRate" FromParam="calcMinBasicGroupIIRate" />
+			</rul:WithArgs>
+		</rul:Sequence>
+	</rul:Rule>
+	<rul:Rule Name="SetBroadFactor" Type="none" DataDefGroup="CommercialPropertyVacancyPermit">
+		<rul:Sequence>
+			<rul:RunRule Type="decimal" ToDataDef="@BroadFactor" FileName="CommercialPropertyVacancyPermitRules" Rule="LookupVacancyPermitFactors" ClearCache="true">
+				<rul:Arg Type="string" Param="policyType">
+					<rul:Constant Type="string">Commercial Property Policy</rul:Constant>
+				</rul:Arg>
+				<rul:Arg Type="string" Param="vacancyCauseOfLoss">
+					<rul:Constant Type="string">Broad</rul:Constant>
+				</rul:Arg>
+			</rul:RunRule>
+		</rul:Sequence>
+	</rul:Rule>
+	<rul:Rule Name="SetSpecialFactor" Type="none" DataDefGroup="CommercialPropertyVacancyPermit">
+		<rul:Sequence>
+			<rul:RunRule Type="decimal" ToDataDef="@SpecialFactor" FileName="CommercialPropertyVacancyPermitRules" Rule="LookupVacancyPermitFactors" ClearCache="true">
+				<rul:Arg Type="string" Param="policyType">
+					<rul:Constant Type="string">Commercial Property Policy</rul:Constant>
+				</rul:Arg>
+				<rul:Arg Type="string" Param="vacancyCauseOfLoss">
+					<rul:Constant Type="string">Special</rul:Constant>
+				</rul:Arg>
+			</rul:RunRule>
+		</rul:Sequence>
+	</rul:Rule>
+	<rul:Rule Name="SetEQFactor" Type="none" DataDefGroup="CommercialPropertyVacancyPermit">
+		<rul:Sequence>
+			<rul:RunRule Type="decimal" ToDataDef="@EQFactor" FileName="CommercialPropertyVacancyPermitRules" Rule="LookupVacancyPermitFactors" ClearCache="true">
+				<rul:Arg Type="string" Param="policyType">
+					<rul:FirstValue Type="string" FromConstant="" FromDataDef="ancestor::CommercialProperty/@PolicyType" Order="DataDefInputParamConstant" />
+				</rul:Arg>
+				<rul:Arg Type="string" Param="vacancyCauseOfLoss">
+					<rul:Constant Type="string">Earthquake</rul:Constant>
+				</rul:Arg>
+			</rul:RunRule>
+		</rul:Sequence>
+	</rul:Rule>
+	<rul:Rule Name="SetOtherCOLFactor" Type="none" DataDefGroup="CommercialPropertyVacancyPermit">
+		<rul:Sequence>
+			<rul:RunRule Type="decimal" ToDataDef="@OtherCausesOfLossFactor" FileName="CommercialPropertyVacancyPermitRules" Rule="LookupVacancyPermitOtherCausesOfLossFactor" ClearCache="true" />
+		</rul:Sequence>
+	</rul:Rule>
+	<rul:Rule Name="SetBGIStdPropPolIncVandalismRate" Type="none" DataDefGroup="CommercialPropertyVacancyPermit">
+		<rul:Sequence>
+			<rul:If>
+				<rul:Test>
+					<rul:NotEqual>
+						<rul:FirstValue Type="string" FromConstant="" FromDataDef="@Coinsurance" Order="DataDefInputParamConstant" />
+						<rul:Constant Type="string"></rul:Constant>
+					</rul:NotEqual>
+				</rul:Test>
+				<rul:Then>
+					<rul:Sequence>
+						<rul:RunRule Type="decimal" ToDataDef="@BasicGroupIStdPropPolIncludingVandalismBaseRate" FileName="CommercialPropertyVacancyPermitRules" Rule="LookupVacancyPermitBasicGroupIStdPropPolIncldgVandalismRate" ClearCache="true" />
+					</rul:Sequence>
+				</rul:Then>
+				<rul:Else>
+					<rul:Sequence>
+						<rul:Constant Type="decimal" ToDataDef="@BasicGroupIStdPropPolIncludingVandalismBaseRate">0.0</rul:Constant>
+					</rul:Sequence>
+				</rul:Else>
+			</rul:If>
+			<rul:WithArgs>
+				<rul:Arg Type="decimal" Param="calcBasicGroupIStdPropPolIncludingVandalismRate">
+					<rul:FirstNonNull Type="decimal">
+						<rul:Product DecimalPlaces="3">
+							<rul:FirstValue Type="decimal" FromConstant="0" FromDataDef="@BasicGroupIStdPropPolIncludingVandalismBaseRate" Order="DataDefInputParamConstant" />
+							<rul:FirstValue Type="decimal" FromConstant="0" FromDataDef="ancestor::CommercialProperty/@LossCostMultiplier" Order="DataDefInputParamConstant" />
+						</rul:Product>
+						<rul:Constant Type="decimal">0</rul:Constant>
+					</rul:FirstNonNull>
+				</rul:Arg>
+				<rul:Value Type="decimal" ToDataDef="@BasicGroupIStdPropPolIncludingVandalismRate" FromParam="calcBasicGroupIStdPropPolIncludingVandalismRate" />
+			</rul:WithArgs>
+		</rul:Sequence>
+	</rul:Rule>
+	<rul:Rule Name="SetSprinklerLeakageExclusion" Type="none" DataDefGroup="CommercialPropertyVacancyPermit">
+		<rul:Sequence>
+			<rul:If>
+				<rul:Test>
+					<rul:Exist AtInputDataDef="../../CommercialPropertySprinklerLeakageExclusionTable/CommercialPropertySprinklerLeakageExclusion" />
+				</rul:Test>
+				<rul:Then>
+					<rul:Sequence>
+						<rul:Constant Type="string" ToDataDef="@SprinklerLeakage">Yes</rul:Constant>
+					</rul:Sequence>
+				</rul:Then>
+			</rul:If>
+		</rul:Sequence>
+	</rul:Rule>
+	<rul:Rule Name="SetCoinsurance" Type="none" DataDefGroup="CommercialPropertyVacancyPermit">
+		<rul:Sequence>
+			<rul:If>
+				<rul:Test>
+					<rul:Equal>
+						<rul:FirstValue Type="string" FromConstant="" FromDataDef="ancestor::CommercialPropertyStructure/@IncludedInBlkt" Order="DataDefInputParamConstant" />
+						<rul:Constant Type="string">Yes</rul:Constant>
+					</rul:Equal>
+				</rul:Test>
+				<rul:Then>
+					<rul:Copy Type="string" ToDataDef="@Coinsurance" FromDataDef="ancestor::CommercialPropertyStructure/@BlktCoinsuranceValue" />
+				</rul:Then>
+				<rul:Else>
+					<rul:Copy Type="string" ToDataDef="@Coinsurance" FromDataDef="ancestor::CommercialPropertyStructure/@Coinsurance" />
+				</rul:Else>
+			</rul:If>
+			<rul:Choose>
+				<rul:When>
+					<rul:Test>
+						<rul:Or>
+							<rul:Equal>
+								<rul:FirstValue Type="string" FromConstant="" FromDataDef="ancestor::CommercialPropertyStructure/@ValuationType" Order="DataDefInputParamConstant" />
+								<rul:Constant Type="string">Functional Valuation</rul:Constant>
+							</rul:Equal>
+							<rul:Equal>
+								<rul:FirstValue Type="string" FromConstant="" FromDataDef="ancestor::CommercialPropertyStructure/@ClassCodeToUse" Order="DataDefInputParamConstant" />
+								<rul:Constant Type="string">1150</rul:Constant>
+							</rul:Equal>
+						</rul:Or>
+					</rul:Test>
+					<rul:Then>
+						<rul:Sequence>
+							<rul:Constant Type="decimal" ToDataDef="@CoinsuranceFactor">1.0</rul:Constant>
+						</rul:Sequence>
+					</rul:Then>
+				</rul:When>
+				<rul:When>
+					<rul:Test>
+						<rul:Or>
+							<rul:Equal>
+								<rul:FirstValue Type="string" FromConstant="" FromDataDef="@Coinsurance" Order="DataDefInputParamConstant" />
+								<rul:Constant Type="string">80%</rul:Constant>
+							</rul:Equal>
+							<rul:Equal>
+								<rul:FirstValue Type="string" FromConstant="" FromDataDef="@Coinsurance" Order="DataDefInputParamConstant" />
+								<rul:Constant Type="string">90%</rul:Constant>
+							</rul:Equal>
+							<rul:Equal>
+								<rul:FirstValue Type="string" FromConstant="" FromDataDef="@Coinsurance" Order="DataDefInputParamConstant" />
+								<rul:Constant Type="string">100%</rul:Constant>
+							</rul:Equal>
+						</rul:Or>
+					</rul:Test>
+					<rul:Then>
+						<rul:Sequence>
+							<rul:RunRule Type="decimal" ToDataDef="@CoinsuranceFactor" FileName="CommercialPropertyVacancyPermitRules" Rule="LookupCoinsuranceFactor" ClearCache="true" />
+						</rul:Sequence>
+					</rul:Then>
+				</rul:When>
+				<rul:When>
+					<rul:Test>
+						<rul:Or>
+							<rul:Equal>
+								<rul:FirstValue Type="string" FromConstant="" FromDataDef="@Coinsurance" Order="DataDefInputParamConstant" />
+								<rul:Constant Type="string">50%</rul:Constant>
+							</rul:Equal>
+							<rul:Equal>
+								<rul:FirstValue Type="string" FromConstant="" FromDataDef="@Coinsurance" Order="DataDefInputParamConstant" />
+								<rul:Constant Type="string">60%</rul:Constant>
+							</rul:Equal>
+							<rul:Equal>
+								<rul:FirstValue Type="string" FromConstant="" FromDataDef="@Coinsurance" Order="DataDefInputParamConstant" />
+								<rul:Constant Type="string">70%</rul:Constant>
+							</rul:Equal>
+							<rul:Equal>
+								<rul:FirstValue Type="string" FromConstant="" FromDataDef="@Coinsurance" Order="DataDefInputParamConstant" />
+								<rul:Constant Type="string">None</rul:Constant>
+							</rul:Equal>
+						</rul:Or>
+					</rul:Test>
+					<rul:Then>
+						<rul:Sequence>
+							<rul:RunRule Type="decimal" ToDataDef="@CoinsuranceFactor" FileName="CommercialPropertyVacancyPermitRules" Rule="LookupLessThan80PctMultiplicativeFactor" ClearCache="true" />
+						</rul:Sequence>
+					</rul:Then>
+				</rul:When>
+				<rul:Otherwise>
+					<rul:Sequence>
+						<rul:Constant Type="decimal" ToDataDef="@CoinsuranceFactor">1.0</rul:Constant>
+					</rul:Sequence>
+				</rul:Otherwise>
+			</rul:Choose>
+		</rul:Sequence>
+	</rul:Rule>
+	<rul:Rule Name="SetBGICOLAdjustment" Type="none" DataDefGroup="CommercialPropertyVacancyPermit">
+		<rul:Sequence>
+			<rul:WithArgs>
+				<rul:Arg Type="decimal" Param="calcBasicGroupICauseOfLossAdjustment">
+					<rul:FirstNonNull Type="decimal">
+						<rul:Product DecimalPlaces="3">
+							<rul:Product DecimalPlaces="3">
+								<rul:Product DecimalPlaces="3">
+									<rul:Round DecimalPlaces="3">
+										<rul:Subtract>
+											<rul:Value Type="decimal" FromDataDef="ancestor::CommercialPropertyStructure/@BasicGroupIRate" />
+											<rul:Value Type="decimal" FromDataDef="@SprinklerLeakageExclNonSprinkleredBldgRate" />
+										</rul:Subtract>
+									</rul:Round>
+									<rul:FirstValue Type="decimal" FromConstant="0" FromDataDef="@SprinklerLeakageExclSprinkleredFactor" Order="DataDefInputParamConstant" />
+								</rul:Product>
+								<rul:FirstValue Type="decimal" FromConstant="0" FromDataDef="@VandalismExclFactor" Order="DataDefInputParamConstant" />
+							</rul:Product>
+							<rul:FirstValue Type="decimal" FromConstant="0" FromDataDef="ancestor::CommercialProperty/@StdPropPolBasicGroupIFactor" Order="DataDefInputParamConstant" />
+						</rul:Product>
+						<rul:Constant Type="decimal">0</rul:Constant>
+					</rul:FirstNonNull>
+				</rul:Arg>
+				<rul:Value Type="decimal" ToDataDef="@BasicGroupICauseOfLossAdjustment" FromParam="calcBasicGroupICauseOfLossAdjustment" />
+			</rul:WithArgs>
+		</rul:Sequence>
+	</rul:Rule>
+	<rul:Rule Name="SetAdjustedBGIRate" Type="none" DataDefGroup="CommercialPropertyVacancyPermit">
+		<rul:Sequence>
+			<rul:WithArgs>
+				<rul:Arg Type="decimal" Param="calcAdjustedBasicGroupIRate">
+					<rul:FirstNonNull Type="decimal">
+						<rul:Product DecimalPlaces="3">
+							<rul:Product DecimalPlaces="3">
+								<rul:FirstValue Type="decimal" FromConstant="0" FromDataDef="@BasicGroupICauseOfLossAdjustment" Order="DataDefInputParamConstant" />
+								<rul:FirstValue Type="decimal" FromConstant="0" FromDataDef="../../@BasicGroupILOIFactor" Order="DataDefInputParamConstant" />
+							</rul:Product>
+							<rul:FirstValue Type="decimal" FromConstant="0" FromDataDef="@CoinsuranceFactor" Order="DataDefInputParamConstant" />
+						</rul:Product>
+						<rul:Constant Type="decimal">0</rul:Constant>
+					</rul:FirstNonNull>
+				</rul:Arg>
+				<rul:Value Type="decimal" ToDataDef="@AdjustedBasicGroupIRate" FromParam="calcAdjustedBasicGroupIRate" />
+			</rul:WithArgs>
+		</rul:Sequence>
+	</rul:Rule>
+	<rul:Rule Name="SetBasicGroupIRate" Type="none" DataDefGroup="CommercialPropertyVacancyPermit">
+		<rul:Sequence>
+			<rul:If>
+				<rul:Test>
+					<rul:Equal>
+						<rul:FirstValue Type="string" FromConstant="" FromDataDef="ancestor::CommercialProperty/@PolicyType" Order="DataDefInputParamConstant" />
+						<rul:Constant Type="string">Commercial Property Policy</rul:Constant>
+					</rul:Equal>
+				</rul:Test>
+				<rul:Then>
+					<rul:Sequence>
+						<rul:If>
+							<rul:Test>
+								<rul:GreaterThan>
+									<rul:FirstValue Type="decimal" FromConstant="0" FromDataDef="@MinBasicGroupIRate" Order="DataDefInputParamConstant" />
+									<rul:Product DecimalPlaces="3">
+										<rul:FirstValue Type="decimal" FromConstant="0" FromDataDef="@AdjustedBasicGroupIRate" Order="DataDefInputParamConstant" />
+										<rul:FirstValue Type="decimal" FromConstant="0" FromDataDef="@BasicGroupIFactor" Order="DataDefInputParamConstant" />
+									</rul:Product>
+								</rul:GreaterThan>
+							</rul:Test>
+							<rul:Then>
+								<rul:Copy Type="decimal" ToDataDef="@BasicGroupIRate" FromDataDef="@MinBasicGroupIRate" />
+							</rul:Then>
+							<rul:Else>
+								<rul:Sequence>
+									<rul:Product ToDataDef="@BasicGroupIRate" DecimalPlaces="3">
+										<rul:FirstValue Type="decimal" FromConstant="0" FromDataDef="@AdjustedBasicGroupIRate" Order="DataDefInputParamConstant" />
+										<rul:FirstValue Type="decimal" FromConstant="0" FromDataDef="@BasicGroupIFactor" Order="DataDefInputParamConstant" />
+									</rul:Product>
+								</rul:Sequence>
+							</rul:Else>
+						</rul:If>
+					</rul:Sequence>
+				</rul:Then>
+				<rul:Else>
+					<rul:Sequence>
+						<rul:Product ToDataDef="@BasicGroupIRate" DecimalPlaces="3">
+							<rul:FirstValue Type="decimal" FromConstant="0" FromDataDef="@AdjustedBasicGroupIRate" Order="DataDefInputParamConstant" />
+							<rul:FirstValue Type="decimal" FromConstant="0" FromDataDef="@BasicGroupIFactor" Order="DataDefInputParamConstant" />
+						</rul:Product>
+					</rul:Sequence>
+				</rul:Else>
+			</rul:If>
+		</rul:Sequence>
+	</rul:Rule>
+	<rul:Rule Name="SetBasicGroupIIRate" Type="none" DataDefGroup="CommercialPropertyVacancyPermit">
+		<rul:Sequence>
+			<rul:If>
+				<rul:Test>
+					<rul:Equal>
+						<rul:FirstValue Type="string" FromConstant="" FromDataDef="ancestor::CommercialProperty/@PolicyType" Order="DataDefInputParamConstant" />
+						<rul:Constant Type="string">Commercial Property Policy</rul:Constant>
+					</rul:Equal>
+				</rul:Test>
+				<rul:Then>
+					<rul:Sequence>
+						<rul:WithArgs>
+							<rul:Arg Type="decimal" Param="calcBasicGroupIIRate">
+								<rul:Choose>
+									<rul:When>
+										<rul:Test>
+											<rul:Equal>
+												<rul:FirstValue Type="string" FromConstant="" FromDataDef="ancestor::CommercialProperty/@PolicyType" Order="DataDefInputParamConstant" />
+												<rul:Constant Type="string">Commercial Property Policy</rul:Constant>
+											</rul:Equal>
+										</rul:Test>
+										<rul:Then>
+											<rul:RunRule Type="decimal" FileName="CommercialPropertyVacancyPermitRules" Rule="LookupVacancyPermitFactors" ClearCache="true">
+												<rul:Arg Type="string" Param="policyType">
+													<rul:Constant Type="string">Commercial Property Policy</rul:Constant>
+												</rul:Arg>
+												<rul:Arg Type="string" Param="vacancyCauseOfLoss">
+													<rul:Constant Type="string">Basic Group II</rul:Constant>
+												</rul:Arg>
+											</rul:RunRule>
+										</rul:Then>
+									</rul:When>
+									<rul:When>
+										<rul:Test>
+											<rul:And>
+												<rul:Equal>
+													<rul:FirstValue Type="string" FromConstant="" FromDataDef="ancestor::CommercialProperty/@PolicyType" Order="DataDefInputParamConstant" />
+													<rul:Constant Type="string">Standard Property Policy</rul:Constant>
+												</rul:Equal>
+												<rul:NotEqual>
+													<rul:FirstValue Type="string" FromConstant="" FromDataDef="@CauseOfLoss" Order="DataDefInputParamConstant" />
+													<rul:Constant Type="string">Fire</rul:Constant>
+												</rul:NotEqual>
+												<rul:NotEqual>
+													<rul:FirstValue Type="string" FromConstant="" FromDataDef="@CauseOfLoss" Order="DataDefInputParamConstant" />
+													<rul:Constant Type="string">Fire and Vandalism</rul:Constant>
+												</rul:NotEqual>
+												<rul:NotEqual>
+													<rul:FirstValue Type="string" FromConstant="" FromDataDef="@CauseOfLoss" Order="DataDefInputParamConstant" />
+													<rul:Constant Type="string">Fire and Sprinkler Leakage</rul:Constant>
+												</rul:NotEqual>
+												<rul:NotEqual>
+													<rul:FirstValue Type="string" FromConstant="" FromDataDef="@CauseOfLoss" Order="DataDefInputParamConstant" />
+													<rul:Constant Type="string">Fire, Vandalism and Sprinkler Leakage</rul:Constant>
+												</rul:NotEqual>
+											</rul:And>
+										</rul:Test>
+										<rul:Then>
+											<rul:RunRule Type="decimal" FileName="CommercialPropertyVacancyPermitRules" Rule="LookupVacancyPermitFactors" ClearCache="true">
+												<rul:Arg Type="string" Param="policyType">
+													<rul:Constant Type="string">Standard Property Policy</rul:Constant>
+												</rul:Arg>
+												<rul:Arg Type="string" Param="vacancyCauseOfLoss">
+													<rul:Constant Type="string">Basic Group II</rul:Constant>
+												</rul:Arg>
+											</rul:RunRule>
+										</rul:Then>
+									</rul:When>
+									<rul:When>
+										<rul:Test>
+											<rul:And>
+												<rul:Equal>
+													<rul:FirstValue Type="string" FromConstant="" FromDataDef="ancestor::CommercialProperty/@PolicyType" Order="DataDefInputParamConstant" />
+													<rul:Constant Type="string">Standard Property Policy</rul:Constant>
+												</rul:Equal>
+												<rul:Or>
+													<rul:Equal>
+														<rul:FirstValue Type="string" FromConstant="" FromDataDef="@CauseOfLoss" Order="DataDefInputParamConstant" />
+														<rul:Constant Type="string">Fire</rul:Constant>
+													</rul:Equal>
+													<rul:Equal>
+														<rul:FirstValue Type="string" FromConstant="" FromDataDef="@CauseOfLoss" Order="DataDefInputParamConstant" />
+														<rul:Constant Type="string">Fire and Vandalism</rul:Constant>
+													</rul:Equal>
+													<rul:Equal>
+														<rul:FirstValue Type="string" FromConstant="" FromDataDef="@CauseOfLoss" Order="DataDefInputParamConstant" />
+														<rul:Constant Type="string">Fire and Sprinkler Leakage</rul:Constant>
+													</rul:Equal>
+													<rul:Equal>
+														<rul:FirstValue Type="string" FromConstant="" FromDataDef="@CauseOfLoss" Order="DataDefInputParamConstant" />
+														<rul:Constant Type="string">Fire, Vandalism and Sprinkler Leakage</rul:Constant>
+													</rul:Equal>
+												</rul:Or>
+											</rul:And>
+										</rul:Test>
+										<rul:Then>
+											<rul:Constant Type="decimal">0</rul:Constant>
+										</rul:Then>
+									</rul:When>
+									<rul:Otherwise>
+										<rul:Constant Type="decimal">0</rul:Constant>
+									</rul:Otherwise>
+								</rul:Choose>
+							</rul:Arg>
+							<rul:If>
+								<rul:Test>
+									<rul:GreaterThan>
+										<rul:FirstValue Type="decimal" FromConstant="0" FromDataDef="@MinBasicGroupIIRate" Order="DataDefInputParamConstant" />
+										<rul:Product DecimalPlaces="3">
+											<rul:Value Type="decimal" FromParam="calcBasicGroupIIRate" />
+											<rul:FirstValue Type="decimal" FromConstant="0" FromDataDef="ancestor::CommercialPropertyStructure/@AdjustedBasicGroupIIRate" Order="DataDefInputParamConstant" />
+										</rul:Product>
+									</rul:GreaterThan>
+								</rul:Test>
+								<rul:Then>
+									<rul:Copy Type="decimal" ToDataDef="@BasicGroupIIRate" FromDataDef="@MinBasicGroupIIRate" />
+								</rul:Then>
+								<rul:Else>
+									<rul:Sequence>
+										<rul:Product ToDataDef="@BasicGroupIIRate" DecimalPlaces="3">
+											<rul:Value Type="decimal" FromParam="calcBasicGroupIIRate" />
+											<rul:FirstValue Type="decimal" FromConstant="0" FromDataDef="ancestor::CommercialPropertyStructure/@AdjustedBasicGroupIIRate" Order="DataDefInputParamConstant" />
+										</rul:Product>
+									</rul:Sequence>
+								</rul:Else>
+							</rul:If>
+						</rul:WithArgs>
+					</rul:Sequence>
+				</rul:Then>
+				<rul:Else>
+					<rul:Sequence>
+						<rul:WithArgs>
+							<rul:Arg Type="decimal" Param="calcBasicGroupIIRate">
+								<rul:Choose>
+									<rul:When>
+										<rul:Test>
+											<rul:Equal>
+												<rul:FirstValue Type="string" FromConstant="" FromDataDef="ancestor::CommercialProperty/@PolicyType" Order="DataDefInputParamConstant" />
+												<rul:Constant Type="string">Commercial Property Policy</rul:Constant>
+											</rul:Equal>
+										</rul:Test>
+										<rul:Then>
+											<rul:RunRule Type="decimal" FileName="CommercialPropertyVacancyPermitRules" Rule="LookupVacancyPermitFactors" ClearCache="true">
+												<rul:Arg Type="string" Param="policyType">
+													<rul:Constant Type="string">Commercial Property Policy</rul:Constant>
+												</rul:Arg>
+												<rul:Arg Type="string" Param="vacancyCauseOfLoss">
+													<rul:Constant Type="string">Basic Group II</rul:Constant>
+												</rul:Arg>
+											</rul:RunRule>
+										</rul:Then>
+									</rul:When>
+									<rul:When>
+										<rul:Test>
+											<rul:And>
+												<rul:Equal>
+													<rul:FirstValue Type="string" FromConstant="" FromDataDef="ancestor::CommercialProperty/@PolicyType" Order="DataDefInputParamConstant" />
+													<rul:Constant Type="string">Standard Property Policy</rul:Constant>
+												</rul:Equal>
+												<rul:NotEqual>
+													<rul:FirstValue Type="string" FromConstant="" FromDataDef="@CauseOfLoss" Order="DataDefInputParamConstant" />
+													<rul:Constant Type="string">Fire</rul:Constant>
+												</rul:NotEqual>
+												<rul:NotEqual>
+													<rul:FirstValue Type="string" FromConstant="" FromDataDef="@CauseOfLoss" Order="DataDefInputParamConstant" />
+													<rul:Constant Type="string">Fire and Vandalism</rul:Constant>
+												</rul:NotEqual>
+												<rul:NotEqual>
+													<rul:FirstValue Type="string" FromConstant="" FromDataDef="@CauseOfLoss" Order="DataDefInputParamConstant" />
+													<rul:Constant Type="string">Fire and Sprinkler Leakage</rul:Constant>
+												</rul:NotEqual>
+												<rul:NotEqual>
+													<rul:FirstValue Type="string" FromConstant="" FromDataDef="@CauseOfLoss" Order="DataDefInputParamConstant" />
+													<rul:Constant Type="string">Fire, Vandalism and Sprinkler Leakage</rul:Constant>
+												</rul:NotEqual>
+											</rul:And>
+										</rul:Test>
+										<rul:Then>
+											<rul:RunRule Type="decimal" FileName="CommercialPropertyVacancyPermitRules" Rule="LookupVacancyPermitFactors" ClearCache="true">
+												<rul:Arg Type="string" Param="policyType">
+													<rul:Constant Type="string">Standard Property Policy</rul:Constant>
+												</rul:Arg>
+												<rul:Arg Type="string" Param="vacancyCauseOfLoss">
+													<rul:Constant Type="string">Basic Group II</rul:Constant>
+												</rul:Arg>
+											</rul:RunRule>
+										</rul:Then>
+									</rul:When>
+									<rul:When>
+										<rul:Test>
+											<rul:And>
+												<rul:Equal>
+													<rul:FirstValue Type="string" FromConstant="" FromDataDef="ancestor::CommercialProperty/@PolicyType" Order="DataDefInputParamConstant" />
+													<rul:Constant Type="string">Standard Property Policy</rul:Constant>
+												</rul:Equal>
+												<rul:Or>
+													<rul:Equal>
+														<rul:FirstValue Type="string" FromConstant="" FromDataDef="@CauseOfLoss" Order="DataDefInputParamConstant" />
+														<rul:Constant Type="string">Fire</rul:Constant>
+													</rul:Equal>
+													<rul:Equal>
+														<rul:FirstValue Type="string" FromConstant="" FromDataDef="@CauseOfLoss" Order="DataDefInputParamConstant" />
+														<rul:Constant Type="string">Fire and Vandalism</rul:Constant>
+													</rul:Equal>
+													<rul:Equal>
+														<rul:FirstValue Type="string" FromConstant="" FromDataDef="@CauseOfLoss" Order="DataDefInputParamConstant" />
+														<rul:Constant Type="string">Fire and Sprinkler Leakage</rul:Constant>
+													</rul:Equal>
+													<rul:Equal>
+														<rul:FirstValue Type="string" FromConstant="" FromDataDef="@CauseOfLoss" Order="DataDefInputParamConstant" />
+														<rul:Constant Type="string">Fire, Vandalism and Sprinkler Leakage</rul:Constant>
+													</rul:Equal>
+												</rul:Or>
+											</rul:And>
+										</rul:Test>
+										<rul:Then>
+											<rul:Constant Type="decimal">0</rul:Constant>
+										</rul:Then>
+									</rul:When>
+									<rul:Otherwise>
+										<rul:Constant Type="decimal">0</rul:Constant>
+									</rul:Otherwise>
+								</rul:Choose>
+							</rul:Arg>
+							<rul:Product ToDataDef="@BasicGroupIIRate" DecimalPlaces="3">
+								<rul:Value Type="decimal" FromParam="calcBasicGroupIIRate" />
+								<rul:FirstValue Type="decimal" FromConstant="0" FromDataDef="ancestor::CommercialPropertyStructure/@AdjustedBasicGroupIIRate" Order="DataDefInputParamConstant" />
+							</rul:Product>
+						</rul:WithArgs>
+					</rul:Sequence>
+				</rul:Else>
+			</rul:If>
+		</rul:Sequence>
+	</rul:Rule>
+	<rul:Rule Name="ErcSetStatisticalCodes" Type="none" DataDefGroup="CommercialPropertyVacancyPermit">
+		<rul:Sequence>
+			<rul:If>
+				<rul:Test>
+					<rul:Exist AtInputDataDef="ancestor::MasterCFCW/Policy" />
+				</rul:Test>
+				<rul:Then>
+					<rul:Sequence>
+						<rul:Convert Type="integer" ToDataDef="@ExposureStatAmount">
+							<rul:Truncate>
+								<rul:Divide>
+									<rul:Value Type="integer" FromDataDef="../../@LimitToUse" />
+									<rul:Constant Type="integer">1000</rul:Constant>
+								</rul:Divide>
+							</rul:Truncate>
+						</rul:Convert>
+						<rul:RunRule Type="none" FileName="CommercialPropertyVacancyPermitRules" Rule="SetSublineBasicGroupI" ClearCache="true" />
+						<rul:RunRule Type="none" FileName="CommercialPropertyVacancyPermitRules" Rule="SetSublineBasicGroupII" ClearCache="true" />
+						<rul:RunRule Type="none" FileName="CommercialPropertyVacancyPermitRules" Rule="SetSublineBroadForm" ClearCache="true" />
+						<rul:RunRule Type="none" FileName="CommercialPropertyVacancyPermitRules" Rule="SetSublineSpecialForm" ClearCache="true" />
+						<rul:RunRule Type="none" FileName="CommercialPropertyVacancyPermitRules" Rule="SetSublineEarthquake" ClearCache="true" />
+					</rul:Sequence>
+				</rul:Then>
+			</rul:If>
+		</rul:Sequence>
+	</rul:Rule>
+	<rul:Rule Name="SetSublineBasicGroupI" Type="none" DataDefGroup="CommercialPropertyVacancyPermit">
+		<rul:Sequence>
+			<rul:Choose>
+				<rul:When>
+					<rul:Test>
+						<rul:And>
+							<rul:Equal>
+								<rul:FirstValue Type="decimal" FromConstant="0" FromDataDef="@SprinklerLeakageExclNonSprinkleredBldgRate" Order="DataDefInputParamConstant" />
+								<rul:Constant Type="decimal">0</rul:Constant>
+							</rul:Equal>
+							<rul:Equal>
+								<rul:FirstValue Type="decimal" FromConstant="0" FromDataDef="@SprinklerLeakageExclSprinkleredFactor" Order="DataDefInputParamConstant" />
+								<rul:Constant Type="decimal">1</rul:Constant>
+							</rul:Equal>
+							<rul:Equal>
+								<rul:FirstValue Type="decimal" FromConstant="0" FromDataDef="@VandalismExclFactor" Order="DataDefInputParamConstant" />
+								<rul:Constant Type="decimal">1</rul:Constant>
+							</rul:Equal>
+						</rul:And>
+					</rul:Test>
+					<rul:Then>
+						<rul:Sequence>
+							<rul:RunRule Type="string" ToDataDef="@SublineBasicGroupI" FileName="CommercialPropertyVacancyPermitRules" Rule="LookupSublineBasicGroupI" ClearCache="true" />
+						</rul:Sequence>
+					</rul:Then>
+				</rul:When>
+				<rul:When>
+					<rul:Test>
+						<rul:And>
+							<rul:Equal>
+								<rul:FirstValue Type="decimal" FromConstant="0" FromDataDef="@SprinklerLeakageExclNonSprinkleredBldgRate" Order="DataDefInputParamConstant" />
+								<rul:Constant Type="decimal">0</rul:Constant>
+							</rul:Equal>
+							<rul:Equal>
+								<rul:FirstValue Type="decimal" FromConstant="0" FromDataDef="@SprinklerLeakageExclSprinkleredFactor" Order="DataDefInputParamConstant" />
+								<rul:Constant Type="decimal">1</rul:Constant>
+							</rul:Equal>
+							<rul:NotEqual>
+								<rul:FirstValue Type="decimal" FromConstant="0" FromDataDef="@VandalismExclFactor" Order="DataDefInputParamConstant" />
+								<rul:Constant Type="decimal">1</rul:Constant>
+							</rul:NotEqual>
+						</rul:And>
+					</rul:Test>
+					<rul:Then>
+						<rul:Sequence>
+							<rul:RunRule Type="string" ToDataDef="@SublineBasicGroupI" FileName="CommercialPropertyVacancyPermitRules" Rule="LookupSublineBasicGroupIExcludingVandalism" ClearCache="true" />
+						</rul:Sequence>
+					</rul:Then>
+				</rul:When>
+				<rul:When>
+					<rul:Test>
+						<rul:And>
+							<rul:Or>
+								<rul:NotEqual>
+									<rul:FirstValue Type="decimal" FromConstant="0" FromDataDef="@SprinklerLeakageExclNonSprinkleredBldgRate" Order="DataDefInputParamConstant" />
+									<rul:Constant Type="decimal">0</rul:Constant>
+								</rul:NotEqual>
+								<rul:NotEqual>
+									<rul:FirstValue Type="decimal" FromConstant="0" FromDataDef="@SprinklerLeakageExclSprinkleredFactor" Order="DataDefInputParamConstant" />
+									<rul:Constant Type="decimal">1</rul:Constant>
+								</rul:NotEqual>
+							</rul:Or>
+							<rul:Equal>
+								<rul:FirstValue Type="decimal" FromConstant="0" FromDataDef="@VandalismExclFactor" Order="DataDefInputParamConstant" />
+								<rul:Constant Type="decimal">1</rul:Constant>
+							</rul:Equal>
+						</rul:And>
+					</rul:Test>
+					<rul:Then>
+						<rul:Sequence>
+							<rul:RunRule Type="string" ToDataDef="@SublineBasicGroupI" FileName="CommercialPropertyVacancyPermitRules" Rule="LookupSublineBasicGroupIExcludingSprinklerLeakage" ClearCache="true" />
+						</rul:Sequence>
+					</rul:Then>
+				</rul:When>
+				<rul:When>
+					<rul:Test>
+						<rul:And>
+							<rul:Or>
+								<rul:NotEqual>
+									<rul:FirstValue Type="decimal" FromConstant="0" FromDataDef="@SprinklerLeakageExclNonSprinkleredBldgRate" Order="DataDefInputParamConstant" />
+									<rul:Constant Type="decimal">0</rul:Constant>
+								</rul:NotEqual>
+								<rul:NotEqual>
+									<rul:FirstValue Type="decimal" FromConstant="0" FromDataDef="@SprinklerLeakageExclSprinkleredFactor" Order="DataDefInputParamConstant" />
+									<rul:Constant Type="decimal">1</rul:Constant>
+								</rul:NotEqual>
+							</rul:Or>
+							<rul:NotEqual>
+								<rul:FirstValue Type="decimal" FromConstant="0" FromDataDef="@VandalismExclFactor" Order="DataDefInputParamConstant" />
+								<rul:Constant Type="decimal">1</rul:Constant>
+							</rul:NotEqual>
+						</rul:And>
+					</rul:Test>
+					<rul:Then>
+						<rul:Sequence>
+							<rul:RunRule Type="string" ToDataDef="@SublineBasicGroupI" FileName="CommercialPropertyVacancyPermitRules" Rule="LookupSublineBasicGroupIExcludingVandalismAndSprinklerLeakage" ClearCache="true" />
+						</rul:Sequence>
+					</rul:Then>
+				</rul:When>
+				<rul:Otherwise>
+					<rul:Sequence>
+						<rul:Constant Type="string" ToDataDef="@SublineBasicGroupI"></rul:Constant>
+					</rul:Sequence>
+				</rul:Otherwise>
+			</rul:Choose>
+		</rul:Sequence>
+	</rul:Rule>
+	<rul:Rule Name="SetSublineBasicGroupII" Type="none" DataDefGroup="CommercialPropertyVacancyPermit">
+		<rul:Sequence>
+			<rul:Choose>
+				<rul:When>
+					<rul:Test>
+						<rul:NotExist AtInputDataDef="../../CommercialPropertyWindstormOrHailExclusionTable/CommercialPropertyWindstormOrHailExclusion" />
+					</rul:Test>
+					<rul:Then>
+						<rul:Sequence>
+							<rul:RunRule Type="string" ToDataDef="@SublineBasicGroupII" FileName="CommercialPropertyVacancyPermitRules" Rule="LookupSublineBasicGroupII" ClearCache="true" />
+						</rul:Sequence>
+					</rul:Then>
+				</rul:When>
+				<rul:When>
+					<rul:Test>
+						<rul:Exist AtInputDataDef="../../CommercialPropertyWindstormOrHailExclusionTable/CommercialPropertyWindstormOrHailExclusion" />
+					</rul:Test>
+					<rul:Then>
+						<rul:Sequence>
+							<rul:RunRule Type="string" ToDataDef="@SublineBasicGroupII" FileName="CommercialPropertyVacancyPermitRules" Rule="LookupSublineBasicGroupIIExcludingWindstormOrHail" ClearCache="true" />
+						</rul:Sequence>
+					</rul:Then>
+				</rul:When>
+				<rul:Otherwise>
+					<rul:Sequence>
+						<rul:Constant Type="string" ToDataDef="@SublineBasicGroupII"></rul:Constant>
+					</rul:Sequence>
+				</rul:Otherwise>
+			</rul:Choose>
+		</rul:Sequence>
+	</rul:Rule>
+	<rul:Rule Name="SetSublineBroadForm" Type="none" DataDefGroup="CommercialPropertyVacancyPermit">
+		<rul:Sequence>
+			<rul:If>
+				<rul:Test>
+					<rul:Equal>
+						<rul:FirstValue Type="string" FromConstant="" FromDataDef="../../@CauseOfLossToUse" Order="DataDefInputParamConstant" />
+						<rul:Constant Type="string">Broad</rul:Constant>
+					</rul:Equal>
+				</rul:Test>
+				<rul:Then>
+					<rul:Sequence>
+						<rul:RunRule Type="string" ToDataDef="@SublineBroadForm" FileName="CommercialPropertyVacancyPermitRules" Rule="LookupSublineBroadForm" ClearCache="true" />
+					</rul:Sequence>
+				</rul:Then>
+				<rul:Else>
+					<rul:Sequence>
+						<rul:Constant Type="string" ToDataDef="@SublineBroadForm"></rul:Constant>
+					</rul:Sequence>
+				</rul:Else>
+			</rul:If>
+		</rul:Sequence>
+	</rul:Rule>
+	<rul:Rule Name="SetSublineSpecialForm" Type="none" DataDefGroup="CommercialPropertyVacancyPermit">
+		<rul:Sequence>
+			<rul:Choose>
+				<rul:When>
+					<rul:Test>
+						<rul:And>
+							<rul:Equal>
+								<rul:FirstValue Type="string" FromConstant="" FromDataDef="../../@CauseOfLossToUse" Order="DataDefInputParamConstant" />
+								<rul:Constant Type="string">Special</rul:Constant>
+							</rul:Equal>
+							<rul:Equal>
+								<rul:FirstValue Type="integer" FromConstant="0" FromDataDef="../../@SpecialTheftExclusionIndicator" Order="DataDefInputParamConstant" />
+								<rul:Constant Type="integer">0</rul:Constant>
+							</rul:Equal>
+						</rul:And>
+					</rul:Test>
+					<rul:Then>
+						<rul:Sequence>
+							<rul:RunRule Type="string" ToDataDef="@SublineSpecialForm" FileName="CommercialPropertyVacancyPermitRules" Rule="LookupSublineSpecialFormIncludingTheft" ClearCache="true" />
+						</rul:Sequence>
+					</rul:Then>
+				</rul:When>
+				<rul:When>
+					<rul:Test>
+						<rul:And>
+							<rul:Equal>
+								<rul:FirstValue Type="string" FromConstant="" FromDataDef="../../@CauseOfLossToUse" Order="DataDefInputParamConstant" />
+								<rul:Constant Type="string">Special</rul:Constant>
+							</rul:Equal>
+							<rul:Equal>
+								<rul:FirstValue Type="integer" FromConstant="0" FromDataDef="../../@SpecialTheftExclusionIndicator" Order="DataDefInputParamConstant" />
+								<rul:Constant Type="integer">1</rul:Constant>
+							</rul:Equal>
+						</rul:And>
+					</rul:Test>
+					<rul:Then>
+						<rul:Sequence>
+							<rul:RunRule Type="string" ToDataDef="@SublineSpecialForm" FileName="CommercialPropertyVacancyPermitRules" Rule="LookupSublineSpecialFormExcludingTheft" ClearCache="true" />
+						</rul:Sequence>
+					</rul:Then>
+				</rul:When>
+				<rul:Otherwise>
+					<rul:Sequence>
+						<rul:Constant Type="string" ToDataDef="@SublineSpecialForm"></rul:Constant>
+					</rul:Sequence>
+				</rul:Otherwise>
+			</rul:Choose>
+		</rul:Sequence>
+	</rul:Rule>
+	<rul:Rule Name="SetSublineEarthquake" Type="none" DataDefGroup="CommercialPropertyVacancyPermit">
+		<rul:Sequence>
+			<rul:If>
+				<rul:Test>
+					<rul:Or>
+						<rul:Equal>
+							<rul:FirstValue Type="string" FromConstant="" FromDataDef="../../@EQCovIndicator" Order="DataDefInputParamConstant" />
+							<rul:Constant Type="string">Yes, Included in Blanket</rul:Constant>
+						</rul:Equal>
+						<rul:Equal>
+							<rul:FirstValue Type="string" FromConstant="" FromDataDef="../../@EQCovIndicator" Order="DataDefInputParamConstant" />
+							<rul:Constant Type="string">Yes, Not Included in Blanket</rul:Constant>
+						</rul:Equal>
+					</rul:Or>
+				</rul:Test>
+				<rul:Then>
+					<rul:Sequence>
+						<rul:RunRule Type="string" ToDataDef="@SublineEarthquake" FileName="CommercialPropertyVacancyPermitRules" Rule="LookupSublineEarthquake" ClearCache="true" />
+					</rul:Sequence>
+				</rul:Then>
+				<rul:Else>
+					<rul:Sequence>
+						<rul:Constant Type="string" ToDataDef="@SublineEarthquake"></rul:Constant>
+					</rul:Sequence>
+				</rul:Else>
+			</rul:If>
+		</rul:Sequence>
+	</rul:Rule>
+	<rul:Rule Name="ErcProcess" Type="none" DataDefGroup="CommercialPropertyVacancyPermit">
+		<rul:Sequence>
+			<rul:RunRule Type="none" FileName="CommercialPropertyVacancyPermitRules" Rule="ErcSetRatesAndFactors" ClearCache="true" />
+			<rul:Locate AtDataDef="CommercialPropertyVacancyPermitBasicGroupICoverage">
+				<rul:RunRule Type="none" FileName="CommercialPropertyVacancyPermitBasicGroupICoverageRules" Rule="ErcProcess" ClearCache="true" />
+			</rul:Locate>
+			<rul:Locate AtDataDef="CommercialPropertyVacancyPermitBasicGroupIICoverage">
+				<rul:RunRule Type="none" FileName="CommercialPropertyVacancyPermitBasicGroupIICoverageRules" Rule="ErcProcess" ClearCache="true" />
+			</rul:Locate>
+			<rul:Locate AtDataDef="CommercialPropertyVacancyPermitBroadCoverage">
+				<rul:RunRule Type="none" FileName="CommercialPropertyVacancyPermitBroadCoverageRules" Rule="ErcProcess" ClearCache="true" />
+			</rul:Locate>
+			<rul:Locate AtDataDef="CommercialPropertyVacancyPermitEarthquakeCoverage">
+				<rul:RunRule Type="none" FileName="CommercialPropertyVacancyPermitEarthquakeCoverageRules" Rule="ErcProcess" ClearCache="true" />
+			</rul:Locate>
+			<rul:Locate AtDataDef="CommercialPropertyVacancyPermitMoltenMaterialCoverage">
+				<rul:RunRule Type="none" FileName="CommercialPropertyVacancyPermitMoltenMaterialCoverageRules" Rule="ErcProcess" ClearCache="true" />
+			</rul:Locate>
+			<rul:Locate AtDataDef="CommercialPropertyVacancyPermitRadioactiveContaminationCoverage">
+				<rul:RunRule Type="none" FileName="CommercialPropertyVacancyPermitRadioactiveContaminationCoverageRules" Rule="ErcProcess" ClearCache="true" />
+			</rul:Locate>
+			<rul:Locate AtDataDef="CommercialPropertyVacancyPermitSpecialCoverage">
+				<rul:RunRule Type="none" FileName="CommercialPropertyVacancyPermitSpecialCoverageRules" Rule="ErcProcess" ClearCache="true" />
+			</rul:Locate>
+			<rul:RunRule Type="none" FileName="CommercialPropertyVacancyPermitRules" Rule="ErcSetStatisticalCodes" ClearCache="true" />
+		</rul:Sequence>
+	</rul:Rule>
+	<rul:Rule Name="LookupCoinsuranceFactor" Type="decimal" DataDefGroup="CommercialPropertyVacancyPermit">
+		<rul:FirstNonNull Type="decimal">
+			<rul:Lookup Type="decimal" MatrixCol="Factor" MatrixDef="CoinsuranceFactorDef" MatrixFromConstant="CoinsuranceFactor" ResultMode="FirstResult">
+				<rul:Keys>
+					<rul:Value Type="string" FromDataDef="/State/@Code" />
+					<rul:FirstValue Type="string" FromConstant="" FromDataDef="@Coinsurance" Order="DataDefInputParamConstant" />
+				</rul:Keys>
+			</rul:Lookup>
+			<rul:Lookup Type="decimal" MatrixCol="Factor" MatrixDef="CoinsuranceFactorDef" MatrixFromConstant="CoinsuranceFactor" ResultMode="SingleResult">
+				<rul:Keys>
+					<rul:Constant Type="string">CW</rul:Constant>
+					<rul:FirstValue Type="string" FromConstant="" FromDataDef="@Coinsurance" Order="DataDefInputParamConstant" />
+				</rul:Keys>
+			</rul:Lookup>
+		</rul:FirstNonNull>
+	</rul:Rule>
+	<rul:Rule Name="LookupLessThan80PctMultiplicativeFactor" Type="decimal" DataDefGroup="CommercialPropertyVacancyPermit">
+		<rul:FirstNonNull Type="decimal">
+			<rul:Lookup Type="decimal" MatrixCol="Factor" MatrixDef="LessThan80PctMultiplicativeFactorDef" MatrixFromConstant="LessThan80PctMultiplicativeFactor" ResultMode="FirstResult">
+				<rul:Keys>
+					<rul:Value Type="string" FromDataDef="/State/@Code" />
+					<rul:Constant Type="string">Y</rul:Constant>
+				</rul:Keys>
+			</rul:Lookup>
+			<rul:Lookup Type="decimal" MatrixCol="Factor" MatrixDef="LessThan80PctMultiplicativeFactorDef" MatrixFromConstant="LessThan80PctMultiplicativeFactor" ResultMode="SingleResult">
+				<rul:Keys>
+					<rul:Constant Type="string">CW</rul:Constant>
+					<rul:Constant Type="string">Y</rul:Constant>
+				</rul:Keys>
+			</rul:Lookup>
+		</rul:FirstNonNull>
+	</rul:Rule>
+	<rul:Rule Name="LookupMoltenMaterialFactor" Type="decimal" DataDefGroup="CommercialPropertyVacancyPermit">
+		<rul:FirstNonNull Type="decimal">
+			<rul:Lookup Type="decimal" MatrixCol="Factor" MatrixDef="MoltenMaterialFactorDef" MatrixFromConstant="MoltenMaterialFactor" ResultMode="FirstResult">
+				<rul:Keys>
+					<rul:Value Type="string" FromDataDef="/State/@Code" />
+					<rul:Constant Type="string">Y</rul:Constant>
+				</rul:Keys>
+			</rul:Lookup>
+			<rul:Lookup Type="decimal" MatrixCol="Factor" MatrixDef="MoltenMaterialFactorDef" MatrixFromConstant="MoltenMaterialFactor" ResultMode="SingleResult">
+				<rul:Keys>
+					<rul:Constant Type="string">CW</rul:Constant>
+					<rul:Constant Type="string">Y</rul:Constant>
+				</rul:Keys>
+			</rul:Lookup>
+		</rul:FirstNonNull>
+	</rul:Rule>
+	<rul:Rule Name="LookupSprinklerLeakageExclNonSprinkleredRate" Type="decimal" DataDefGroup="CommercialPropertyVacancyPermit">
+		<rul:FirstNonNull Type="decimal">
+			<rul:Lookup Type="decimal" MatrixCol="Rate" MatrixDef="SprinklerLeakageExclNonSprinkleredRateDef" MatrixFromConstant="SprinklerLeakageExclNonSprinkleredRate" ResultMode="FirstResult">
+				<rul:Keys>
+					<rul:Value Type="string" FromDataDef="/State/@Code" />
+					<rul:Constant Type="string">Y</rul:Constant>
+				</rul:Keys>
+			</rul:Lookup>
+			<rul:Lookup Type="decimal" MatrixCol="Rate" MatrixDef="SprinklerLeakageExclNonSprinkleredRateDef" MatrixFromConstant="SprinklerLeakageExclNonSprinkleredRate" ResultMode="SingleResult">
+				<rul:Keys>
+					<rul:Constant Type="string">CW</rul:Constant>
+					<rul:Constant Type="string">Y</rul:Constant>
+				</rul:Keys>
+			</rul:Lookup>
+		</rul:FirstNonNull>
+	</rul:Rule>
+	<rul:Rule Name="LookupSprinklerLeakageExclSprinkleredFactor" Type="decimal" DataDefGroup="CommercialPropertyVacancyPermit">
+		<rul:FirstNonNull Type="decimal">
+			<rul:Lookup Type="decimal" MatrixCol="Factor" MatrixDef="SprinklerLeakageExclSprinkleredFactorDef" MatrixFromConstant="SprinklerLeakageExclSprinkleredFactor" ResultMode="FirstResult">
+				<rul:Keys>
+					<rul:Value Type="string" FromDataDef="/State/@Code" />
+					<rul:FirstValue Type="integer" FromConstant="0" FromDataDef="ancestor::CommercialPropertyStructure/@ConstructionCode" Order="DataDefInputParamConstant" />
+					<rul:Constant Type="string">Bldg</rul:Constant>
+				</rul:Keys>
+			</rul:Lookup>
+			<rul:Lookup Type="decimal" MatrixCol="Factor" MatrixDef="SprinklerLeakageExclSprinkleredFactorDef" MatrixFromConstant="SprinklerLeakageExclSprinkleredFactor" ResultMode="SingleResult">
+				<rul:Keys>
+					<rul:Constant Type="string">CW</rul:Constant>
+					<rul:FirstValue Type="integer" FromConstant="0" FromDataDef="ancestor::CommercialPropertyStructure/@ConstructionCode" Order="DataDefInputParamConstant" />
+					<rul:Constant Type="string">Bldg</rul:Constant>
+				</rul:Keys>
+			</rul:Lookup>
+		</rul:FirstNonNull>
+	</rul:Rule>
+	<rul:Rule Name="LookupVacancyPermitBasicGroupIIMinRate" Type="decimal" DataDefGroup="CommercialPropertyVacancyPermit">
+		<rul:FirstNonNull Type="decimal">
+			<rul:Lookup Type="decimal" MatrixCol="Rate" MatrixDef="VacancyPermitBasicGroupIIMinRateDef" MatrixFromConstant="VacancyPermitBasicGroupIIMinRate" ResultMode="FirstResult">
+				<rul:Keys>
+					<rul:Value Type="string" FromDataDef="/State/@Code" />
+					<rul:Constant Type="string">Y</rul:Constant>
+				</rul:Keys>
+			</rul:Lookup>
+			<rul:Lookup Type="decimal" MatrixCol="Rate" MatrixDef="VacancyPermitBasicGroupIIMinRateDef" MatrixFromConstant="VacancyPermitBasicGroupIIMinRate" ResultMode="SingleResult">
+				<rul:Keys>
+					<rul:Constant Type="string">CW</rul:Constant>
+					<rul:Constant Type="string">Y</rul:Constant>
+				</rul:Keys>
+			</rul:Lookup>
+		</rul:FirstNonNull>
+	</rul:Rule>
+	<rul:Rule Name="LookupVacancyPermitBasicGroupIMinRate" Type="decimal" DataDefGroup="CommercialPropertyVacancyPermit">
+		<rul:FirstNonNull Type="decimal">
+			<rul:Lookup Type="decimal" MatrixCol="Rate" MatrixDef="VacancyPermitBasicGroupIMinRateDef" MatrixFromConstant="VacancyPermitBasicGroupIMinRate" ResultMode="FirstResult">
+				<rul:Keys>
+					<rul:Value Type="string" FromDataDef="/State/@Code" />
+					<rul:FirstValue Type="string" FromConstant="" FromDataDef="@SpecialVandalismStatus" Order="DataDefInputParamConstant" />
+					<rul:FirstValue Type="string" FromConstant="" FromDataDef="@Coinsurance" Order="DataDefInputParamConstant" />
+				</rul:Keys>
+			</rul:Lookup>
+			<rul:Lookup Type="decimal" MatrixCol="Rate" MatrixDef="VacancyPermitBasicGroupIMinRateDef" MatrixFromConstant="VacancyPermitBasicGroupIMinRate" ResultMode="SingleResult">
+				<rul:Keys>
+					<rul:Constant Type="string">CW</rul:Constant>
+					<rul:FirstValue Type="string" FromConstant="" FromDataDef="@SpecialVandalismStatus" Order="DataDefInputParamConstant" />
+					<rul:FirstValue Type="string" FromConstant="" FromDataDef="@Coinsurance" Order="DataDefInputParamConstant" />
+				</rul:Keys>
+			</rul:Lookup>
+		</rul:FirstNonNull>
+	</rul:Rule>
+	<rul:Rule Name="LookupVacancyPermitBasicGroupIStdPropPolIncldgVandalismRate" Type="decimal" DataDefGroup="CommercialPropertyVacancyPermit">
+		<rul:FirstNonNull Type="decimal">
+			<rul:Lookup Type="decimal" MatrixCol="Rate" MatrixDef="VacancyPermitBasicGroupIStdPropPolIncldgVandalismRateDef" MatrixFromConstant="VacancyPermitBasicGroupIStdPropPolIncldgVandalismRate" ResultMode="FirstResult">
+				<rul:Keys>
+					<rul:Value Type="string" FromDataDef="/State/@Code" />
+					<rul:FirstValue Type="string" FromConstant="" FromDataDef="@Coinsurance" Order="DataDefInputParamConstant" />
+				</rul:Keys>
+			</rul:Lookup>
+			<rul:Lookup Type="decimal" MatrixCol="Rate" MatrixDef="VacancyPermitBasicGroupIStdPropPolIncldgVandalismRateDef" MatrixFromConstant="VacancyPermitBasicGroupIStdPropPolIncldgVandalismRate" ResultMode="SingleResult">
+				<rul:Keys>
+					<rul:Constant Type="string">CW</rul:Constant>
+					<rul:FirstValue Type="string" FromConstant="" FromDataDef="@Coinsurance" Order="DataDefInputParamConstant" />
+				</rul:Keys>
+			</rul:Lookup>
+		</rul:FirstNonNull>
+	</rul:Rule>
+	<rul:Rule Name="LookupVacancyPermitFactors" Type="decimal" DataDefGroup="CommercialPropertyVacancyPermit">
+		<rul:Param Name="policyType" Type="string" />
+		<rul:Param Name="vacancyCauseOfLoss" Type="string" />
+		<rul:FirstNonNull Type="decimal">
+			<rul:Lookup Type="decimal" MatrixCol="Factor" MatrixDef="VacancyPermitFactorsDef" MatrixFromConstant="VacancyPermitFactors" ResultMode="FirstResult">
+				<rul:Keys>
+					<rul:Value Type="string" FromDataDef="/State/@Code" />
+					<rul:Value Type="string" FromParam="policyType" />
+					<rul:Value Type="string" FromParam="vacancyCauseOfLoss" />
+				</rul:Keys>
+			</rul:Lookup>
+			<rul:Lookup Type="decimal" MatrixCol="Factor" MatrixDef="VacancyPermitFactorsDef" MatrixFromConstant="VacancyPermitFactors" ResultMode="SingleResult">
+				<rul:Keys>
+					<rul:Constant Type="string">CW</rul:Constant>
+					<rul:Value Type="string" FromParam="policyType" />
+					<rul:Value Type="string" FromParam="vacancyCauseOfLoss" />
+				</rul:Keys>
+			</rul:Lookup>
+		</rul:FirstNonNull>
+	</rul:Rule>
+	<rul:Rule Name="LookupVacancyPermitOtherCausesOfLossFactor" Type="decimal" DataDefGroup="CommercialPropertyVacancyPermit">
+		<rul:FirstNonNull Type="decimal">
+			<rul:Lookup Type="decimal" MatrixCol="Factor" MatrixDef="VacancyPermitOtherCausesOfLossFactorDef" MatrixFromConstant="VacancyPermitOtherCausesOfLossFactor" ResultMode="FirstResult">
+				<rul:Keys>
+					<rul:Value Type="string" FromDataDef="/State/@Code" />
+					<rul:Constant Type="string">Y</rul:Constant>
+				</rul:Keys>
+			</rul:Lookup>
+			<rul:Lookup Type="decimal" MatrixCol="Factor" MatrixDef="VacancyPermitOtherCausesOfLossFactorDef" MatrixFromConstant="VacancyPermitOtherCausesOfLossFactor" ResultMode="SingleResult">
+				<rul:Keys>
+					<rul:Constant Type="string">CW</rul:Constant>
+					<rul:Constant Type="string">Y</rul:Constant>
+				</rul:Keys>
+			</rul:Lookup>
+		</rul:FirstNonNull>
+	</rul:Rule>
+	<rul:Rule Name="LookupVandalismExclusionFactor" Type="decimal" DataDefGroup="CommercialPropertyVacancyPermit">
+		<rul:Param Name="classCode" Type="string" />
+		<rul:FirstNonNull Type="decimal">
+			<rul:Lookup Type="decimal" MatrixCol="Factor" MatrixDef="VandalismExclFactorDef" MatrixFromConstant="VandalismExclFactor" ResultMode="FirstResult">
+				<rul:Keys>
+					<rul:Value Type="string" FromDataDef="/State/@Code" />
+					<rul:Value Type="string" FromParam="classCode" />
+				</rul:Keys>
+			</rul:Lookup>
+			<rul:Lookup Type="decimal" MatrixCol="Factor" MatrixDef="VandalismExclFactorDef" MatrixFromConstant="VandalismExclFactor" ResultMode="SingleResult">
+				<rul:Keys>
+					<rul:Constant Type="string">CW</rul:Constant>
+					<rul:Value Type="string" FromParam="classCode" />
+				</rul:Keys>
+			</rul:Lookup>
+		</rul:FirstNonNull>
+	</rul:Rule>
+	<rul:Rule Name="LookupVandalismStatus" Type="string" DataDefGroup="CommercialPropertyVacancyPermit">
+		<rul:FirstNonNull Type="string">
+			<rul:Lookup Type="string" MatrixCol="Status" MatrixDef="VandalismStatusDef" MatrixFromConstant="VandalismStatus" ResultMode="FirstResult">
+				<rul:Keys>
+					<rul:Value Type="string" FromDataDef="/State/@Code" />
+					<rul:FirstValue Type="string" FromConstant="" FromDataDef="ancestor::CommercialPropertyStructure/@ClassCode" Order="DataDefInputParamConstant" />
+				</rul:Keys>
+			</rul:Lookup>
+			<rul:Lookup Type="string" MatrixCol="Status" MatrixDef="VandalismStatusDef" MatrixFromConstant="VandalismStatus" ResultMode="SingleResult">
+				<rul:Keys>
+					<rul:Constant Type="string">CW</rul:Constant>
+					<rul:FirstValue Type="string" FromConstant="" FromDataDef="ancestor::CommercialPropertyStructure/@ClassCode" Order="DataDefInputParamConstant" />
+				</rul:Keys>
+			</rul:Lookup>
+		</rul:FirstNonNull>
+	</rul:Rule>
+	<rul:Rule Name="LookupSublineBasicGroupI" Type="string" DataDefGroup="CommercialPropertyVacancyPermit">
+		<rul:FirstNonNull Type="string">
+			<rul:Lookup Type="string" MatrixCol="Code" MatrixDef="SublineBasicGroupIDef" MatrixFromConstant="SublineBasicGroupI" ResultMode="FirstResult">
+				<rul:Keys>
+					<rul:Value Type="string" FromDataDef="/State/@Code" />
+					<rul:Constant Type="string">Y</rul:Constant>
+				</rul:Keys>
+			</rul:Lookup>
+			<rul:Lookup Type="string" MatrixCol="Code" MatrixDef="SublineBasicGroupIDef" MatrixFromConstant="SublineBasicGroupI" ResultMode="SingleResult">
+				<rul:Keys>
+					<rul:Constant Type="string">CW</rul:Constant>
+					<rul:Constant Type="string">Y</rul:Constant>
+				</rul:Keys>
+			</rul:Lookup>
+		</rul:FirstNonNull>
+	</rul:Rule>
+	<rul:Rule Name="LookupSublineBasicGroupIExcludingVandalism" Type="string" DataDefGroup="CommercialPropertyVacancyPermit">
+		<rul:FirstNonNull Type="string">
+			<rul:Lookup Type="string" MatrixCol="Code" MatrixDef="SublineBasicGroupIExcludingVandalismDef" MatrixFromConstant="SublineBasicGroupIExcludingVandalism" ResultMode="FirstResult">
+				<rul:Keys>
+					<rul:Value Type="string" FromDataDef="/State/@Code" />
+					<rul:Constant Type="string">Y</rul:Constant>
+				</rul:Keys>
+			</rul:Lookup>
+			<rul:Lookup Type="string" MatrixCol="Code" MatrixDef="SublineBasicGroupIExcludingVandalismDef" MatrixFromConstant="SublineBasicGroupIExcludingVandalism" ResultMode="SingleResult">
+				<rul:Keys>
+					<rul:Constant Type="string">CW</rul:Constant>
+					<rul:Constant Type="string">Y</rul:Constant>
+				</rul:Keys>
+			</rul:Lookup>
+		</rul:FirstNonNull>
+	</rul:Rule>
+	<rul:Rule Name="LookupSublineBasicGroupIExcludingSprinklerLeakage" Type="string" DataDefGroup="CommercialPropertyVacancyPermit">
+		<rul:FirstNonNull Type="string">
+			<rul:Lookup Type="string" MatrixCol="Code" MatrixDef="SublineBasicGroupIExcludingSprinklerLeakageDef" MatrixFromConstant="SublineBasicGroupIExcludingSprinklerLeakage" ResultMode="FirstResult">
+				<rul:Keys>
+					<rul:Value Type="string" FromDataDef="/State/@Code" />
+					<rul:Constant Type="string">Y</rul:Constant>
+				</rul:Keys>
+			</rul:Lookup>
+			<rul:Lookup Type="string" MatrixCol="Code" MatrixDef="SublineBasicGroupIExcludingSprinklerLeakageDef" MatrixFromConstant="SublineBasicGroupIExcludingSprinklerLeakage" ResultMode="SingleResult">
+				<rul:Keys>
+					<rul:Constant Type="string">CW</rul:Constant>
+					<rul:Constant Type="string">Y</rul:Constant>
+				</rul:Keys>
+			</rul:Lookup>
+		</rul:FirstNonNull>
+	</rul:Rule>
+	<rul:Rule Name="LookupSublineBasicGroupIExcludingVandalismAndSprinklerLeakage" Type="string" DataDefGroup="CommercialPropertyVacancyPermit">
+		<rul:FirstNonNull Type="string">
+			<rul:Lookup Type="string" MatrixCol="Code" MatrixDef="SublineBasicGroupIExcludingVandalismAndSprinklerLeakageDef" MatrixFromConstant="SublineBasicGroupIExcludingVandalismAndSprinklerLeakage" ResultMode="FirstResult">
+				<rul:Keys>
+					<rul:Value Type="string" FromDataDef="/State/@Code" />
+					<rul:Constant Type="string">Y</rul:Constant>
+				</rul:Keys>
+			</rul:Lookup>
+			<rul:Lookup Type="string" MatrixCol="Code" MatrixDef="SublineBasicGroupIExcludingVandalismAndSprinklerLeakageDef" MatrixFromConstant="SublineBasicGroupIExcludingVandalismAndSprinklerLeakage" ResultMode="SingleResult">
+				<rul:Keys>
+					<rul:Constant Type="string">CW</rul:Constant>
+					<rul:Constant Type="string">Y</rul:Constant>
+				</rul:Keys>
+			</rul:Lookup>
+		</rul:FirstNonNull>
+	</rul:Rule>
+	<rul:Rule Name="LookupSublineBasicGroupII" Type="string" DataDefGroup="CommercialPropertyVacancyPermit">
+		<rul:FirstNonNull Type="string">
+			<rul:Lookup Type="string" MatrixCol="Code" MatrixDef="SublineBasicGroupIIDef" MatrixFromConstant="SublineBasicGroupII" ResultMode="FirstResult">
+				<rul:Keys>
+					<rul:Value Type="string" FromDataDef="/State/@Code" />
+					<rul:Constant Type="string">Y</rul:Constant>
+				</rul:Keys>
+			</rul:Lookup>
+			<rul:Lookup Type="string" MatrixCol="Code" MatrixDef="SublineBasicGroupIIDef" MatrixFromConstant="SublineBasicGroupII" ResultMode="SingleResult">
+				<rul:Keys>
+					<rul:Constant Type="string">CW</rul:Constant>
+					<rul:Constant Type="string">Y</rul:Constant>
+				</rul:Keys>
+			</rul:Lookup>
+		</rul:FirstNonNull>
+	</rul:Rule>
+	<rul:Rule Name="LookupSublineBasicGroupIIExcludingWindstormOrHail" Type="string" DataDefGroup="CommercialPropertyVacancyPermit">
+		<rul:FirstNonNull Type="string">
+			<rul:Lookup Type="string" MatrixCol="Code" MatrixDef="SublineBasicGroupIIExcludingWindstormOrHailDef" MatrixFromConstant="SublineBasicGroupIIExcludingWindstormOrHail" ResultMode="FirstResult">
+				<rul:Keys>
+					<rul:Value Type="string" FromDataDef="/State/@Code" />
+					<rul:Constant Type="string">Y</rul:Constant>
+				</rul:Keys>
+			</rul:Lookup>
+			<rul:Lookup Type="string" MatrixCol="Code" MatrixDef="SublineBasicGroupIIExcludingWindstormOrHailDef" MatrixFromConstant="SublineBasicGroupIIExcludingWindstormOrHail" ResultMode="SingleResult">
+				<rul:Keys>
+					<rul:Constant Type="string">CW</rul:Constant>
+					<rul:Constant Type="string">Y</rul:Constant>
+				</rul:Keys>
+			</rul:Lookup>
+		</rul:FirstNonNull>
+	</rul:Rule>
+	<rul:Rule Name="LookupSublineBroadForm" Type="string" DataDefGroup="CommercialPropertyVacancyPermit">
+		<rul:FirstNonNull Type="string">
+			<rul:Lookup Type="string" MatrixCol="Code" MatrixDef="SublineBroadFormDef" MatrixFromConstant="SublineBroadForm" ResultMode="FirstResult">
+				<rul:Keys>
+					<rul:Value Type="string" FromDataDef="/State/@Code" />
+					<rul:Constant Type="string">Y</rul:Constant>
+				</rul:Keys>
+			</rul:Lookup>
+			<rul:Lookup Type="string" MatrixCol="Code" MatrixDef="SublineBroadFormDef" MatrixFromConstant="SublineBroadForm" ResultMode="SingleResult">
+				<rul:Keys>
+					<rul:Constant Type="string">CW</rul:Constant>
+					<rul:Constant Type="string">Y</rul:Constant>
+				</rul:Keys>
+			</rul:Lookup>
+		</rul:FirstNonNull>
+	</rul:Rule>
+	<rul:Rule Name="LookupSublineSpecialFormIncludingTheft" Type="string" DataDefGroup="CommercialPropertyVacancyPermit">
+		<rul:FirstNonNull Type="string">
+			<rul:Lookup Type="string" MatrixCol="Code" MatrixDef="SublineSpecialFormIncludingTheftDef" MatrixFromConstant="SublineSpecialFormIncludingTheft" ResultMode="FirstResult">
+				<rul:Keys>
+					<rul:Value Type="string" FromDataDef="/State/@Code" />
+					<rul:Constant Type="string">Y</rul:Constant>
+				</rul:Keys>
+			</rul:Lookup>
+			<rul:Lookup Type="string" MatrixCol="Code" MatrixDef="SublineSpecialFormIncludingTheftDef" MatrixFromConstant="SublineSpecialFormIncludingTheft" ResultMode="SingleResult">
+				<rul:Keys>
+					<rul:Constant Type="string">CW</rul:Constant>
+					<rul:Constant Type="string">Y</rul:Constant>
+				</rul:Keys>
+			</rul:Lookup>
+		</rul:FirstNonNull>
+	</rul:Rule>
+	<rul:Rule Name="LookupSublineSpecialFormExcludingTheft" Type="string" DataDefGroup="CommercialPropertyVacancyPermit">
+		<rul:FirstNonNull Type="string">
+			<rul:Lookup Type="string" MatrixCol="Code" MatrixDef="SublineSpecialFormExcludingTheftDef" MatrixFromConstant="SublineSpecialFormExcludingTheft" ResultMode="FirstResult">
+				<rul:Keys>
+					<rul:Value Type="string" FromDataDef="/State/@Code" />
+					<rul:Constant Type="string">Y</rul:Constant>
+				</rul:Keys>
+			</rul:Lookup>
+			<rul:Lookup Type="string" MatrixCol="Code" MatrixDef="SublineSpecialFormExcludingTheftDef" MatrixFromConstant="SublineSpecialFormExcludingTheft" ResultMode="SingleResult">
+				<rul:Keys>
+					<rul:Constant Type="string">CW</rul:Constant>
+					<rul:Constant Type="string">Y</rul:Constant>
+				</rul:Keys>
+			</rul:Lookup>
+		</rul:FirstNonNull>
+	</rul:Rule>
+	<rul:Rule Name="LookupSublineEarthquake" Type="string" DataDefGroup="CommercialPropertyVacancyPermit">
+		<rul:FirstNonNull Type="string">
+			<rul:Lookup Type="string" MatrixCol="Code" MatrixDef="SublineEarthquakeDef" MatrixFromConstant="SublineEarthquake" ResultMode="FirstResult">
+				<rul:Keys>
+					<rul:Value Type="string" FromDataDef="/State/@Code" />
+					<rul:Constant Type="string">Y</rul:Constant>
+				</rul:Keys>
+			</rul:Lookup>
+			<rul:Lookup Type="string" MatrixCol="Code" MatrixDef="SublineEarthquakeDef" MatrixFromConstant="SublineEarthquake" ResultMode="SingleResult">
+				<rul:Keys>
+					<rul:Constant Type="string">CW</rul:Constant>
+					<rul:Constant Type="string">Y</rul:Constant>
+				</rul:Keys>
+			</rul:Lookup>
+		</rul:FirstNonNull>
+	</rul:Rule>
+</rul:Rules>

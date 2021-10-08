@@ -1,0 +1,33 @@
+"StateCode","CausesOfLossOrPerilGroupPremium","TypeOfLimit","AggregateLimit","Factor"
+"CW","Basic Group I","Full Limit","No",1
+"CW","Basic Group II","Full Limit","No",1
+"CW","Broad","Full Limit","No",1
+"CW","Special","Full Limit","No",0.998
+"CW","Earthquake","Full Limit","No",1
+"CW","Flood","Full Limit","No",0.999
+"CW","Spoilage","Full Limit","No",0.999
+"CW","Equipment Breakdown","Full Limit","No",0.999
+"CW","Basic Group I","Full Limit","Yes",1
+"CW","Basic Group II","Full Limit","Yes",1
+"CW","Broad","Full Limit","Yes",1
+"CW","Special","Full Limit","Yes",0.997
+"CW","Earthquake","Full Limit","Yes",1
+"CW","Flood","Full Limit","Yes",0.999
+"CW","Spoilage","Full Limit","Yes",0.999
+"CW","Equipment Breakdown","Full Limit","Yes",0.999
+"CW","Basic Group I","Sublimit","No",0.998
+"CW","Basic Group II","Sublimit","No",0.998
+"CW","Broad","Sublimit","No",0.998
+"CW","Special","Sublimit","No",0.996
+"CW","Earthquake","Sublimit","No",1
+"CW","Flood","Sublimit","No",0.999
+"CW","Spoilage","Sublimit","No",0.999
+"CW","Equipment Breakdown","Sublimit","No",0.999
+"CW","Basic Group I","Sublimit","Yes",0.997
+"CW","Basic Group II","Sublimit","Yes",0.997
+"CW","Broad","Sublimit","Yes",0.997
+"CW","Special","Sublimit","Yes",0.996
+"CW","Earthquake","Sublimit","Yes",1
+"CW","Flood","Sublimit","Yes",0.999
+"CW","Spoilage","Sublimit","Yes",0.999
+"CW","Equipment Breakdown","Sublimit","Yes",0.999

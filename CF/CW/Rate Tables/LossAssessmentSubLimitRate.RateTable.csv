@@ -1,0 +1,10 @@
+"StateCode","LossAssessmentSubLimit","CauseOfLoss","Rate"
+"CW","Upto5000","Basic",2
+"CW","From6000To10000","Basic",1
+"CW","Over10000","Basic",0.5
+"CW","Upto5000","Broad",2.3
+"CW","From6000To10000","Broad",1.15
+"CW","Over10000","Broad",0.58
+"CW","Upto5000","Special",2.3
+"CW","From6000To10000","Special",1.15
+"CW","Over10000","Special",0.58

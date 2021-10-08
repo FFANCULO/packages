@@ -1,0 +1,13 @@
+<rt:RateTable xmlns:rt="http://www.verisk.com/iso/erc/RateTable">
+	<rt:MetaData>
+		<rt:MetaDataCode>RateTableWindstormOrHailDeductibleAsNumber</rt:MetaDataCode>
+		<rt:MetaDataCode>BureauRuleNumber82D</rt:MetaDataCode>
+	</rt:MetaData>
+	<rt:KeyCols>
+		<rt:KeyCol Name="StateCode" Type="string" CaseInsensitive="false" />
+		<rt:KeyCol Name="WindstormOrHailDeductible" Type="string" CaseInsensitive="false" />
+	</rt:KeyCols>
+	<rt:ValueCols>
+		<rt:ValueCol Name="Number" Type="integer" />
+	</rt:ValueCols>
+</rt:RateTable>

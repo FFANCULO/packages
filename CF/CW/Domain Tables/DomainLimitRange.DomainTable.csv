@@ -1,0 +1,7 @@
+"StateCode","IncludedInBlkt","EQCovIndicator","DisplayValue","DataValue","MinimumValue","MaximumValue"
+"CW","Yes","No Coverage","","",0,0
+"CW","Yes","Yes, Included in Blanket","","",0,0
+"CW","Yes","Yes, Not Included in Blanket","","",1,99999999
+"CW","No","No Coverage","","",1,99999999
+"CW","No","Yes, Included in Blanket","","",1,99999999
+"CW","No","Yes, Not Included in Blanket","","",1,99999999

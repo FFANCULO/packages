@@ -1,0 +1,1786 @@
+<rul:Rules xmlns:rul="http://www.verisk.com/iso/erc/Rule">
+	<rul:Rule Name="InitializeRuleSet" DataDefGroup="CommercialPropertyFloodCoverageEndorsementSpclClassBusnIncome">
+		<rul:Sequence />
+	</rul:Rule>
+	<rul:Rule Name="CalculateTotalPremium" Type="decimal" DataDefGroup="CommercialPropertyFloodCoverageEndorsementSpclClassBusnIncome">
+		<rul:If>
+			<rul:Test>
+				<rul:And>
+					<rul:Equal>
+						<rul:FirstValue Type="integer" FromConstant="0" FromDataDef="@PremiumIndicator" Order="DataDefInputParamConstant" />
+						<rul:Constant Type="integer">1</rul:Constant>
+					</rul:Equal>
+					<rul:NotEqual>
+						<rul:FirstValue Type="decimal" FromConstant="0" FromDataDef="@Premium" Order="DataDefInputParamConstant" />
+						<rul:Constant Type="decimal">0</rul:Constant>
+					</rul:NotEqual>
+				</rul:And>
+			</rul:Test>
+			<rul:Then>
+				<rul:FirstValue Type="decimal" FromConstant="0" FromDataDef="@Premium" Order="DataDefInputParamConstant" />
+			</rul:Then>
+			<rul:Else>
+				<rul:Constant Type="decimal">0</rul:Constant>
+			</rul:Else>
+		</rul:If>
+	</rul:Rule>
+	<rul:Rule Name="ProcessCall" Type="none" DataDefGroup="CommercialPropertyFloodCoverageEndorsementSpclClassBusnIncome">
+		<rul:Sequence>
+			<rul:RunRule Type="none" FileName="CommercialPropertyFloodCoverageEndorsementSpclClassBusnIncomeRules" Rule="ErcSetRatesAndFactors" ClearCache="true" />
+		</rul:Sequence>
+	</rul:Rule>
+	<rul:Rule Name="ErcSetRatesAndFactors" Type="none" DataDefGroup="CommercialPropertyFloodCoverageEndorsementSpclClassBusnIncome">
+		<rul:Sequence>
+			<rul:RunRule Type="none" FileName="CommercialPropertyFloodCoverageEndorsementSpclClassBusnIncomeRules" Rule="SetFloodCovEndtBlanketRating" ClearCache="true" />
+			<rul:RunRule Type="none" FileName="CommercialPropertyFloodCoverageEndorsementSpclClassBusnIncomeRules" Rule="SetCoinsurance" ClearCache="true" />
+			<rul:RunRule Type="none" FileName="CommercialPropertyFloodCoverageEndorsementSpclClassBusnIncomeRules" Rule="SetTypeRiskCombination1Factor" ClearCache="true" />
+			<rul:RunRule Type="none" FileName="CommercialPropertyFloodCoverageEndorsementSpclClassBusnIncomeRules" Rule="SetTypeRiskCombination2Factor" ClearCache="true" />
+			<rul:RunRule Type="none" FileName="CommercialPropertyFloodCoverageEndorsementSpclClassBusnIncomeRules" Rule="SetTypeOfRiskFactor" ClearCache="true" />
+			<rul:RunRule Type="none" FileName="CommercialPropertyFloodCoverageEndorsementSpclClassBusnIncomeRules" Rule="SetBusinessIncomeFactor" ClearCache="true" />
+			<rul:RunRule Type="none" FileName="CommercialPropertyFloodCoverageEndorsementSpclClassBusnIncomeRules" Rule="SetAnnualAggregateFactor" ClearCache="true" />
+			<rul:RunRule Type="none" FileName="CommercialPropertyFloodCoverageEndorsementSpclClassBusnIncomeRules" Rule="SetFloodBaseRate" ClearCache="true" />
+			<rul:RunRule Type="none" FileName="CommercialPropertyFloodCoverageEndorsementSpclClassBusnIncomeRules" Rule="SetFloodRate" ClearCache="true" />
+			<rul:RunRule Type="none" FileName="CommercialPropertyFloodCoverageEndorsementSpclClassBusnIncomeRules" Rule="SetFloodAdjustedRate" ClearCache="true" />
+			<rul:RunRule Type="none" FileName="CommercialPropertyFloodCoverageEndorsementSpclClassBusnIncomeRules" Rule="SetFull100PctValue" ClearCache="true" />
+			<rul:RunRule Type="none" FileName="CommercialPropertyFloodCoverageEndorsementSpclClassBusnIncomeRules" Rule="SetAdjustedFull100PercentValue" ClearCache="true" />
+		</rul:Sequence>
+	</rul:Rule>
+	<rul:Rule Name="SetFloodCovEndtBlanketRating" Type="none" DataDefGroup="CommercialPropertyFloodCoverageEndorsementSpclClassBusnIncome">
+		<rul:Sequence />
+	</rul:Rule>
+	<rul:Rule Name="SetCoinsurance" Type="none" DataDefGroup="CommercialPropertyFloodCoverageEndorsementSpclClassBusnIncome">
+		<rul:Sequence>
+			<rul:If>
+				<rul:Test>
+					<rul:And>
+						<rul:Equal>
+							<rul:FirstValue Type="string" FromConstant="" FromDataDef="@IncludedInBlkt" Order="DataDefInputParamConstant" />
+							<rul:Constant Type="string">Yes</rul:Constant>
+						</rul:Equal>
+						<rul:GreaterThan>
+							<rul:FirstValue Type="integer" FromConstant="0" FromDataDef="@BlanketIDNum" Order="DataDefInputParamConstant" />
+							<rul:Constant Type="integer">0</rul:Constant>
+						</rul:GreaterThan>
+						<rul:Exist AtInputDataDef="../../../../../../../../CommercialPropertyFloodCovEndtBlanketRatingTable/CommercialPropertyFloodCovEndtBlanketRating[1]/CommercialPropertyFloodCovEndtBlanketRatingDetailTable/CommercialPropertyFloodCovEndtBlanketRatingDetail" />
+					</rul:And>
+				</rul:Test>
+				<rul:Then>
+					<rul:Sequence>
+						<rul:WithArgs>
+							<rul:Arg Type="integer" Param="BlanketIDNumParam">
+								<rul:FirstValue Type="integer" FromConstant="0" FromDataDef="@BlanketIDNum" Order="DataDefInputParamConstant" />
+							</rul:Arg>
+							<rul:ForEach AtInputDataDef="../../../../../../../../CommercialPropertyFloodCovEndtBlanketRatingTable/CommercialPropertyFloodCovEndtBlanketRating">
+								<rul:ForEach AtInputDataDef="CommercialPropertyFloodCovEndtBlanketRatingDetailTable/CommercialPropertyFloodCovEndtBlanketRatingDetail">
+									<rul:If>
+										<rul:Test>
+											<rul:Equal>
+												<rul:Value Type="integer" FromParam="BlanketIDNumParam" />
+												<rul:FirstValue Type="integer" FromConstant="0" FromDataDef="@UnitNumber" Order="DataDefInputParamConstant" />
+											</rul:Equal>
+										</rul:Test>
+										<rul:Then>
+											<rul:Sequence>
+												<rul:Choose>
+													<rul:When>
+														<rul:Test>
+															<rul:And>
+																<rul:GreaterThan>
+																	<rul:FirstValue Type="integer" FromConstant="0" FromDataDef="@InsuranceToValuePercentageToUse" Order="DataDefInputParamConstant" />
+																	<rul:Constant Type="integer">0</rul:Constant>
+																</rul:GreaterThan>
+																<rul:LessThanOrEqual>
+																	<rul:FirstValue Type="integer" FromConstant="0" FromDataDef="@InsuranceToValuePercentageToUse" Order="DataDefInputParamConstant" />
+																	<rul:Constant Type="integer">125</rul:Constant>
+																</rul:LessThanOrEqual>
+															</rul:And>
+														</rul:Test>
+														<rul:Then>
+															<rul:Sequence>
+																<rul:WithArgs>
+																	<rul:Arg Type="integer" Param="insuranceToValue">
+																		<rul:FirstValue Type="integer" FromConstant="0" FromDataDef="@InsuranceToValuePercentageToUse" Order="DataDefInputParamConstant" />
+																	</rul:Arg>
+																	<rul:FirstNonNull Type="string">
+																		<rul:Lookup Type="string" ToDataDef="@Coinsurance" MatrixCol="CoinsurancePct" MatrixDef="EQSubLimitPctToTimeElementCoinsuranceDef" MatrixFromConstant="EQSubLimitPctToTimeElementCoinsurance" ResultMode="FirstResult">
+																			<rul:Keys>
+																				<rul:Value Type="string" FromDataDef="/State/@Code" />
+																				<rul:Value Type="integer" FromParam="insuranceToValue" />
+																			</rul:Keys>
+																		</rul:Lookup>
+																		<rul:Lookup Type="string" ToDataDef="@Coinsurance" MatrixCol="CoinsurancePct" MatrixDef="EQSubLimitPctToTimeElementCoinsuranceDef" MatrixFromConstant="EQSubLimitPctToTimeElementCoinsurance" ResultMode="SingleResult">
+																			<rul:Keys>
+																				<rul:Constant Type="string">CW</rul:Constant>
+																				<rul:Value Type="integer" FromParam="insuranceToValue" />
+																			</rul:Keys>
+																		</rul:Lookup>
+																	</rul:FirstNonNull>
+																</rul:WithArgs>
+															</rul:Sequence>
+														</rul:Then>
+													</rul:When>
+													<rul:When>
+														<rul:Test>
+															<rul:GreaterThan>
+																<rul:FirstValue Type="integer" FromConstant="0" FromDataDef="@InsuranceToValuePercentageToUse" Order="DataDefInputParamConstant" />
+																<rul:Constant Type="integer">125</rul:Constant>
+															</rul:GreaterThan>
+														</rul:Test>
+														<rul:Then>
+															<rul:Sequence>
+																<rul:Constant Type="string" ToDataDef="@Coinsurance">Greater than 125%</rul:Constant>
+															</rul:Sequence>
+														</rul:Then>
+													</rul:When>
+													<rul:Otherwise>
+														<rul:Sequence>
+															<rul:Constant Type="string" ToDataDef="@Coinsurance"></rul:Constant>
+														</rul:Sequence>
+													</rul:Otherwise>
+												</rul:Choose>
+												<rul:Break />
+											</rul:Sequence>
+										</rul:Then>
+										<rul:Else>
+											<rul:Sequence>
+												<rul:Constant Type="string" ToDataDef="@Coinsurance"></rul:Constant>
+											</rul:Sequence>
+										</rul:Else>
+									</rul:If>
+								</rul:ForEach>
+							</rul:ForEach>
+						</rul:WithArgs>
+					</rul:Sequence>
+				</rul:Then>
+				<rul:Else>
+					<rul:Copy Type="string" ToDataDef="@Coinsurance" FromDataDef="../../@CoinsuranceToUse" />
+				</rul:Else>
+			</rul:If>
+		</rul:Sequence>
+	</rul:Rule>
+	<rul:Rule Name="SetTypeRiskCombination1Factor" Type="none" DataDefGroup="CommercialPropertyFloodCoverageEndorsementSpclClassBusnIncome">
+		<rul:Sequence>
+			<rul:If>
+				<rul:Test>
+					<rul:And>
+						<rul:Or>
+							<rul:Equal>
+								<rul:FirstValue Type="string" FromConstant="" FromDataDef="../../@CovType" Order="DataDefInputParamConstant" />
+								<rul:Constant Type="string">Business Income With Extra Expense</rul:Constant>
+							</rul:Equal>
+							<rul:Equal>
+								<rul:FirstValue Type="string" FromConstant="" FromDataDef="../../@CovType" Order="DataDefInputParamConstant" />
+								<rul:Constant Type="string">Business Income Without Extra Expense</rul:Constant>
+							</rul:Equal>
+						</rul:Or>
+						<rul:NotEqual>
+							<rul:FirstValue Type="string" FromConstant="" FromDataDef="@Coinsurance" Order="DataDefInputParamConstant" />
+							<rul:Constant Type="string"></rul:Constant>
+						</rul:NotEqual>
+						<rul:NotEqual>
+							<rul:FirstValue Type="string" FromConstant="" FromDataDef="@Coinsurance" Order="DataDefInputParamConstant" />
+							<rul:Constant Type="string">Blanket Coinsurance Percentage Applies</rul:Constant>
+						</rul:NotEqual>
+						<rul:NotEqual>
+							<rul:FirstValue Type="string" FromConstant="" FromDataDef="@Coinsurance" Order="DataDefInputParamConstant" />
+							<rul:Constant Type="string">Not Applicable</rul:Constant>
+						</rul:NotEqual>
+						<rul:NotEqual>
+							<rul:FirstValue Type="string" FromConstant="" FromDataDef="@Coinsurance" Order="DataDefInputParamConstant" />
+							<rul:Constant Type="string">Greater than 125%</rul:Constant>
+						</rul:NotEqual>
+					</rul:And>
+				</rul:Test>
+				<rul:Then>
+					<rul:Sequence>
+						<rul:Choose>
+							<rul:When>
+								<rul:Test>
+									<rul:Or>
+										<rul:Equal>
+											<rul:FirstValue Type="string" FromConstant="" FromDataDef="../../@TypeOfRisk" Order="DataDefInputParamConstant" />
+											<rul:Constant Type="string">Combined Manufacturing and Mercantile Operations</rul:Constant>
+										</rul:Equal>
+										<rul:Equal>
+											<rul:FirstValue Type="string" FromConstant="" FromDataDef="../../@TypeOfRisk" Order="DataDefInputParamConstant" />
+											<rul:Constant Type="string">Combined Manufacturing and Rental Operations</rul:Constant>
+										</rul:Equal>
+									</rul:Or>
+								</rul:Test>
+								<rul:Then>
+									<rul:Sequence>
+										<rul:RunRule Type="decimal" ToDataDef="@TypeRiskCombination1Factor" FileName="CommercialPropertyFloodCoverageEndorsementSpclClassBusnIncomeRules" Rule="LookupBusnIncomeFactor" ClearCache="true">
+											<rul:Arg Type="string" Param="typeOfRisk">
+												<rul:Constant Type="string">Manufacturing</rul:Constant>
+											</rul:Arg>
+										</rul:RunRule>
+									</rul:Sequence>
+								</rul:Then>
+							</rul:When>
+							<rul:When>
+								<rul:Test>
+									<rul:Or>
+										<rul:Equal>
+											<rul:FirstValue Type="string" FromConstant="" FromDataDef="../../@TypeOfRisk" Order="DataDefInputParamConstant" />
+											<rul:Constant Type="string">Combined Mercantile and Rental Operations</rul:Constant>
+										</rul:Equal>
+										<rul:Equal>
+											<rul:FirstValue Type="string" FromConstant="" FromDataDef="../../@TypeOfRisk" Order="DataDefInputParamConstant" />
+											<rul:Constant Type="string">Combined Educational Institutes and Rental Operations</rul:Constant>
+										</rul:Equal>
+									</rul:Or>
+								</rul:Test>
+								<rul:Then>
+									<rul:Sequence>
+										<rul:RunRule Type="decimal" ToDataDef="@TypeRiskCombination1Factor" FileName="CommercialPropertyFloodCoverageEndorsementSpclClassBusnIncomeRules" Rule="LookupBusnIncomeFactor" ClearCache="true">
+											<rul:Arg Type="string" Param="typeOfRisk">
+												<rul:Constant Type="string">Mercantile and Non-manufacturing</rul:Constant>
+											</rul:Arg>
+										</rul:RunRule>
+									</rul:Sequence>
+								</rul:Then>
+							</rul:When>
+							<rul:Otherwise>
+								<rul:Sequence>
+									<rul:Constant Type="decimal" ToDataDef="@TypeRiskCombination1Factor">0.0</rul:Constant>
+								</rul:Sequence>
+							</rul:Otherwise>
+						</rul:Choose>
+					</rul:Sequence>
+				</rul:Then>
+				<rul:Else>
+					<rul:Sequence>
+						<rul:Constant Type="decimal" ToDataDef="@TypeRiskCombination1Factor">0.0</rul:Constant>
+					</rul:Sequence>
+				</rul:Else>
+			</rul:If>
+		</rul:Sequence>
+	</rul:Rule>
+	<rul:Rule Name="SetTypeRiskCombination2Factor" Type="none" DataDefGroup="CommercialPropertyFloodCoverageEndorsementSpclClassBusnIncome">
+		<rul:Sequence>
+			<rul:If>
+				<rul:Test>
+					<rul:And>
+						<rul:Or>
+							<rul:Equal>
+								<rul:FirstValue Type="string" FromConstant="" FromDataDef="../../@CovType" Order="DataDefInputParamConstant" />
+								<rul:Constant Type="string">Business Income With Extra Expense</rul:Constant>
+							</rul:Equal>
+							<rul:Equal>
+								<rul:FirstValue Type="string" FromConstant="" FromDataDef="../../@CovType" Order="DataDefInputParamConstant" />
+								<rul:Constant Type="string">Business Income Without Extra Expense</rul:Constant>
+							</rul:Equal>
+						</rul:Or>
+						<rul:NotEqual>
+							<rul:FirstValue Type="string" FromConstant="" FromDataDef="@Coinsurance" Order="DataDefInputParamConstant" />
+							<rul:Constant Type="string"></rul:Constant>
+						</rul:NotEqual>
+						<rul:NotEqual>
+							<rul:FirstValue Type="string" FromConstant="" FromDataDef="@Coinsurance" Order="DataDefInputParamConstant" />
+							<rul:Constant Type="string">Blanket Coinsurance Percentage Applies</rul:Constant>
+						</rul:NotEqual>
+						<rul:NotEqual>
+							<rul:FirstValue Type="string" FromConstant="" FromDataDef="@Coinsurance" Order="DataDefInputParamConstant" />
+							<rul:Constant Type="string">Not Applicable</rul:Constant>
+						</rul:NotEqual>
+						<rul:NotEqual>
+							<rul:FirstValue Type="string" FromConstant="" FromDataDef="@Coinsurance" Order="DataDefInputParamConstant" />
+							<rul:Constant Type="string">Greater than 125%</rul:Constant>
+						</rul:NotEqual>
+					</rul:And>
+				</rul:Test>
+				<rul:Then>
+					<rul:Sequence>
+						<rul:Choose>
+							<rul:When>
+								<rul:Test>
+									<rul:Equal>
+										<rul:FirstValue Type="string" FromConstant="" FromDataDef="../../@TypeOfRisk" Order="DataDefInputParamConstant" />
+										<rul:Constant Type="string">Combined Manufacturing and Mercantile Operations</rul:Constant>
+									</rul:Equal>
+								</rul:Test>
+								<rul:Then>
+									<rul:Sequence>
+										<rul:RunRule Type="decimal" ToDataDef="@TypeRiskCombination2Factor" FileName="CommercialPropertyFloodCoverageEndorsementSpclClassBusnIncomeRules" Rule="LookupBusnIncomeFactor" ClearCache="true">
+											<rul:Arg Type="string" Param="typeOfRisk">
+												<rul:Constant Type="string">Mercantile and Non-manufacturing</rul:Constant>
+											</rul:Arg>
+										</rul:RunRule>
+									</rul:Sequence>
+								</rul:Then>
+							</rul:When>
+							<rul:When>
+								<rul:Test>
+									<rul:Or>
+										<rul:Equal>
+											<rul:FirstValue Type="string" FromConstant="" FromDataDef="../../@TypeOfRisk" Order="DataDefInputParamConstant" />
+											<rul:Constant Type="string">Combined Manufacturing and Rental Operations</rul:Constant>
+										</rul:Equal>
+										<rul:Equal>
+											<rul:FirstValue Type="string" FromConstant="" FromDataDef="../../@TypeOfRisk" Order="DataDefInputParamConstant" />
+											<rul:Constant Type="string">Combined Mercantile and Rental Operations</rul:Constant>
+										</rul:Equal>
+										<rul:Equal>
+											<rul:FirstValue Type="string" FromConstant="" FromDataDef="../../@TypeOfRisk" Order="DataDefInputParamConstant" />
+											<rul:Constant Type="string">Combined Educational Institutes and Rental Operations</rul:Constant>
+										</rul:Equal>
+									</rul:Or>
+								</rul:Test>
+								<rul:Then>
+									<rul:Sequence>
+										<rul:RunRule Type="decimal" ToDataDef="@TypeRiskCombination2Factor" FileName="CommercialPropertyFloodCoverageEndorsementSpclClassBusnIncomeRules" Rule="LookupBusnIncomeFactor" ClearCache="true">
+											<rul:Arg Type="string" Param="typeOfRisk">
+												<rul:Constant Type="string">Rental Properties</rul:Constant>
+											</rul:Arg>
+										</rul:RunRule>
+									</rul:Sequence>
+								</rul:Then>
+							</rul:When>
+							<rul:Otherwise>
+								<rul:Sequence>
+									<rul:Constant Type="decimal" ToDataDef="@TypeRiskCombination2Factor">0.0</rul:Constant>
+								</rul:Sequence>
+							</rul:Otherwise>
+						</rul:Choose>
+					</rul:Sequence>
+				</rul:Then>
+				<rul:Else>
+					<rul:Sequence>
+						<rul:Constant Type="decimal" ToDataDef="@TypeRiskCombination2Factor">0.0</rul:Constant>
+					</rul:Sequence>
+				</rul:Else>
+			</rul:If>
+		</rul:Sequence>
+	</rul:Rule>
+	<rul:Rule Name="SetTypeOfRiskFactor" Type="none" DataDefGroup="CommercialPropertyFloodCoverageEndorsementSpclClassBusnIncome">
+		<rul:Sequence>
+			<rul:Choose>
+				<rul:When>
+					<rul:Test>
+						<rul:Equal>
+							<rul:FirstValue Type="string" FromConstant="" FromDataDef="../../@CovType" Order="DataDefInputParamConstant" />
+							<rul:Constant Type="string">Extra Expense Only</rul:Constant>
+						</rul:Equal>
+					</rul:Test>
+					<rul:Then>
+						<rul:Sequence>
+							<rul:Constant Type="decimal" ToDataDef="@TypeOfRiskFactor">0.0</rul:Constant>
+						</rul:Sequence>
+					</rul:Then>
+				</rul:When>
+				<rul:When>
+					<rul:Test>
+						<rul:And>
+							<rul:NotEqual>
+								<rul:FirstValue Type="string" FromConstant="" FromDataDef="../../@CovType" Order="DataDefInputParamConstant" />
+								<rul:Constant Type="string"></rul:Constant>
+							</rul:NotEqual>
+							<rul:NotEqual>
+								<rul:FirstValue Type="string" FromConstant="" FromDataDef="../../@CovType" Order="DataDefInputParamConstant" />
+								<rul:Constant Type="string">Not Applicable</rul:Constant>
+							</rul:NotEqual>
+							<rul:NotEqual>
+								<rul:FirstValue Type="string" FromConstant="" FromDataDef="@Coinsurance" Order="DataDefInputParamConstant" />
+								<rul:Constant Type="string"></rul:Constant>
+							</rul:NotEqual>
+							<rul:NotEqual>
+								<rul:FirstValue Type="string" FromConstant="" FromDataDef="@Coinsurance" Order="DataDefInputParamConstant" />
+								<rul:Constant Type="string">Blanket Coinsurance Percentage Applies</rul:Constant>
+							</rul:NotEqual>
+							<rul:NotEqual>
+								<rul:FirstValue Type="string" FromConstant="" FromDataDef="@Coinsurance" Order="DataDefInputParamConstant" />
+								<rul:Constant Type="string">Not Applicable</rul:Constant>
+							</rul:NotEqual>
+							<rul:NotEqual>
+								<rul:FirstValue Type="string" FromConstant="" FromDataDef="@Coinsurance" Order="DataDefInputParamConstant" />
+								<rul:Constant Type="string">Greater than 125%</rul:Constant>
+							</rul:NotEqual>
+						</rul:And>
+					</rul:Test>
+					<rul:Then>
+						<rul:Sequence>
+							<rul:Choose>
+								<rul:When>
+									<rul:Test>
+										<rul:Equal>
+											<rul:FirstValue Type="string" FromConstant="" FromDataDef="../../@TypeOfRisk" Order="DataDefInputParamConstant" />
+											<rul:Constant Type="string">Combined Manufacturing and Mercantile Operations</rul:Constant>
+										</rul:Equal>
+									</rul:Test>
+									<rul:Then>
+										<rul:Sequence>
+											<rul:Round ToDataDef="@TypeOfRiskFactor" DecimalPlaces="3">
+												<rul:Sum>
+													<rul:Product DecimalPlaces="3">
+														<rul:Divide>
+															<rul:Value Type="integer" FromDataDef="../../@CombinedTypeOfRiskManufacturingPct" />
+															<rul:Constant Type="decimal">100</rul:Constant>
+														</rul:Divide>
+														<rul:FirstValue Type="decimal" FromConstant="0" FromDataDef="@TypeRiskCombination1Factor" Order="DataDefInputParamConstant" />
+													</rul:Product>
+													<rul:Product DecimalPlaces="3">
+														<rul:Divide>
+															<rul:Value Type="integer" FromDataDef="../../@CombinedTypeOfRiskMercantilePct" />
+															<rul:Constant Type="decimal">100</rul:Constant>
+														</rul:Divide>
+														<rul:FirstValue Type="decimal" FromConstant="0" FromDataDef="@TypeRiskCombination2Factor" Order="DataDefInputParamConstant" />
+													</rul:Product>
+												</rul:Sum>
+											</rul:Round>
+										</rul:Sequence>
+									</rul:Then>
+								</rul:When>
+								<rul:When>
+									<rul:Test>
+										<rul:Equal>
+											<rul:FirstValue Type="string" FromConstant="" FromDataDef="../../@TypeOfRisk" Order="DataDefInputParamConstant" />
+											<rul:Constant Type="string">Combined Manufacturing and Rental Operations</rul:Constant>
+										</rul:Equal>
+									</rul:Test>
+									<rul:Then>
+										<rul:Sequence>
+											<rul:WithArgs>
+												<rul:Arg Type="decimal" Param="typeOfRiskCalc1">
+													<rul:Product DecimalPlaces="3">
+														<rul:Divide>
+															<rul:Value Type="integer" FromDataDef="../../@CombinedTypeOfRiskManufacturingPct" />
+															<rul:Constant Type="decimal">100</rul:Constant>
+														</rul:Divide>
+														<rul:FirstValue Type="decimal" FromConstant="0" FromDataDef="@TypeRiskCombination1Factor" Order="DataDefInputParamConstant" />
+													</rul:Product>
+												</rul:Arg>
+												<rul:Arg Type="decimal" Param="typeOfRiskCalc2">
+													<rul:Product DecimalPlaces="3">
+														<rul:Divide>
+															<rul:Value Type="integer" FromDataDef="../../@CombinedTypeOfRiskRentalPct" />
+															<rul:Constant Type="decimal">100</rul:Constant>
+														</rul:Divide>
+														<rul:FirstValue Type="decimal" FromConstant="0" FromDataDef="@TypeRiskCombination2Factor" Order="DataDefInputParamConstant" />
+													</rul:Product>
+												</rul:Arg>
+												<rul:Round ToDataDef="@TypeOfRiskFactor" DecimalPlaces="3">
+													<rul:Sum>
+														<rul:Value Type="decimal" FromParam="typeOfRiskCalc1" />
+														<rul:Value Type="decimal" FromParam="typeOfRiskCalc2" />
+													</rul:Sum>
+												</rul:Round>
+											</rul:WithArgs>
+										</rul:Sequence>
+									</rul:Then>
+								</rul:When>
+								<rul:When>
+									<rul:Test>
+										<rul:Equal>
+											<rul:FirstValue Type="string" FromConstant="" FromDataDef="../../@TypeOfRisk" Order="DataDefInputParamConstant" />
+											<rul:Constant Type="string">Combined Mercantile and Rental Operations</rul:Constant>
+										</rul:Equal>
+									</rul:Test>
+									<rul:Then>
+										<rul:Sequence>
+											<rul:WithArgs>
+												<rul:Arg Type="decimal" Param="typeOfRiskCalc1">
+													<rul:Product DecimalPlaces="3">
+														<rul:Divide>
+															<rul:Value Type="integer" FromDataDef="../../@CombinedTypeOfRiskMercantilePct" />
+															<rul:Constant Type="decimal">100</rul:Constant>
+														</rul:Divide>
+														<rul:FirstValue Type="decimal" FromConstant="0" FromDataDef="@TypeRiskCombination1Factor" Order="DataDefInputParamConstant" />
+													</rul:Product>
+												</rul:Arg>
+												<rul:Arg Type="decimal" Param="typeOfRiskCalc2">
+													<rul:Product DecimalPlaces="3">
+														<rul:Divide>
+															<rul:Value Type="integer" FromDataDef="../../@CombinedTypeOfRiskRentalPct" />
+															<rul:Constant Type="decimal">100</rul:Constant>
+														</rul:Divide>
+														<rul:FirstValue Type="decimal" FromConstant="0" FromDataDef="@TypeRiskCombination2Factor" Order="DataDefInputParamConstant" />
+													</rul:Product>
+												</rul:Arg>
+												<rul:Round ToDataDef="@TypeOfRiskFactor" DecimalPlaces="3">
+													<rul:Sum>
+														<rul:Value Type="decimal" FromParam="typeOfRiskCalc1" />
+														<rul:Value Type="decimal" FromParam="typeOfRiskCalc2" />
+													</rul:Sum>
+												</rul:Round>
+											</rul:WithArgs>
+										</rul:Sequence>
+									</rul:Then>
+								</rul:When>
+								<rul:When>
+									<rul:Test>
+										<rul:Equal>
+											<rul:FirstValue Type="string" FromConstant="" FromDataDef="../../@TypeOfRisk" Order="DataDefInputParamConstant" />
+											<rul:Constant Type="string">Combined Educational Institutes and Rental Operations</rul:Constant>
+										</rul:Equal>
+									</rul:Test>
+									<rul:Then>
+										<rul:Sequence>
+											<rul:WithArgs>
+												<rul:Arg Type="decimal" Param="typeOfRiskCalc1">
+													<rul:Product DecimalPlaces="3">
+														<rul:Divide>
+															<rul:Value Type="integer" FromDataDef="../../@CombinedTypeOfRiskEducationalPct" />
+															<rul:Constant Type="decimal">100</rul:Constant>
+														</rul:Divide>
+														<rul:FirstValue Type="decimal" FromConstant="0" FromDataDef="@TypeRiskCombination1Factor" Order="DataDefInputParamConstant" />
+													</rul:Product>
+												</rul:Arg>
+												<rul:Arg Type="decimal" Param="typeOfRiskCalc2">
+													<rul:Product DecimalPlaces="3">
+														<rul:Divide>
+															<rul:Value Type="integer" FromDataDef="../../@CombinedTypeOfRiskRentalPct" />
+															<rul:Constant Type="decimal">100</rul:Constant>
+														</rul:Divide>
+														<rul:FirstValue Type="decimal" FromConstant="0" FromDataDef="@TypeRiskCombination2Factor" Order="DataDefInputParamConstant" />
+													</rul:Product>
+												</rul:Arg>
+												<rul:Round ToDataDef="@TypeOfRiskFactor" DecimalPlaces="3">
+													<rul:Sum>
+														<rul:Value Type="decimal" FromParam="typeOfRiskCalc1" />
+														<rul:Value Type="decimal" FromParam="typeOfRiskCalc2" />
+													</rul:Sum>
+												</rul:Round>
+											</rul:WithArgs>
+										</rul:Sequence>
+									</rul:Then>
+								</rul:When>
+								<rul:When>
+									<rul:Test>
+										<rul:Equal>
+											<rul:FirstValue Type="string" FromConstant="" FromDataDef="../../@TypeOfRisk" Order="DataDefInputParamConstant" />
+											<rul:Constant Type="string">Educational Institutions</rul:Constant>
+										</rul:Equal>
+									</rul:Test>
+									<rul:Then>
+										<rul:Sequence>
+											<rul:RunRule Type="decimal" ToDataDef="@TypeOfRiskFactor" FileName="CommercialPropertyFloodCoverageEndorsementSpclClassBusnIncomeRules" Rule="LookupBusnIncomeFactor" ClearCache="true">
+												<rul:Arg Type="string" Param="typeOfRisk">
+													<rul:Constant Type="string">Mercantile and Non-manufacturing</rul:Constant>
+												</rul:Arg>
+											</rul:RunRule>
+										</rul:Sequence>
+									</rul:Then>
+								</rul:When>
+								<rul:When>
+									<rul:Test>
+										<rul:Equal>
+											<rul:FirstValue Type="string" FromConstant="" FromDataDef="../../@TypeOfRisk" Order="DataDefInputParamConstant" />
+											<rul:Constant Type="string">Seasonal Leases with Monthly Limit</rul:Constant>
+										</rul:Equal>
+									</rul:Test>
+									<rul:Then>
+										<rul:Sequence>
+											<rul:RunRule Type="decimal" ToDataDef="@TypeOfRiskFactor" FileName="CommercialPropertyFloodCoverageEndorsementSpclClassBusnIncomeRules" Rule="LookupBusnIncomeFactor" ClearCache="true">
+												<rul:Arg Type="string" Param="typeOfRisk">
+													<rul:Constant Type="string">Rental Properties</rul:Constant>
+												</rul:Arg>
+											</rul:RunRule>
+										</rul:Sequence>
+									</rul:Then>
+								</rul:When>
+								<rul:Otherwise>
+									<rul:Sequence>
+										<rul:If>
+											<rul:Test>
+												<rul:And>
+													<rul:NotEqual>
+														<rul:FirstValue Type="string" FromConstant="" FromDataDef="../../@TypeOfRisk" Order="DataDefInputParamConstant" />
+														<rul:Constant Type="string"></rul:Constant>
+													</rul:NotEqual>
+													<rul:NotEqual>
+														<rul:FirstValue Type="string" FromConstant="" FromDataDef="../../@TypeOfRisk" Order="DataDefInputParamConstant" />
+														<rul:Constant Type="string">Not Applicable</rul:Constant>
+													</rul:NotEqual>
+												</rul:And>
+											</rul:Test>
+											<rul:Then>
+												<rul:Sequence>
+													<rul:RunRule Type="decimal" ToDataDef="@TypeOfRiskFactor" FileName="CommercialPropertyFloodCoverageEndorsementSpclClassBusnIncomeRules" Rule="LookupBusnIncomeFactor" ClearCache="true">
+														<rul:Arg Type="string" Param="typeOfRisk">
+															<rul:FirstValue Type="string" FromConstant="" FromDataDef="../../@TypeOfRisk" Order="DataDefInputParamConstant" />
+														</rul:Arg>
+													</rul:RunRule>
+												</rul:Sequence>
+											</rul:Then>
+											<rul:Else>
+												<rul:Sequence>
+													<rul:Constant Type="decimal" ToDataDef="@TypeOfRiskFactor">0.0</rul:Constant>
+												</rul:Sequence>
+											</rul:Else>
+										</rul:If>
+									</rul:Sequence>
+								</rul:Otherwise>
+							</rul:Choose>
+						</rul:Sequence>
+					</rul:Then>
+				</rul:When>
+				<rul:Otherwise>
+					<rul:Sequence>
+						<rul:Constant Type="decimal" ToDataDef="@TypeOfRiskFactor">0.0</rul:Constant>
+					</rul:Sequence>
+				</rul:Otherwise>
+			</rul:Choose>
+		</rul:Sequence>
+	</rul:Rule>
+	<rul:Rule Name="SetBusinessIncomeFactor" Type="none" DataDefGroup="CommercialPropertyFloodCoverageEndorsementSpclClassBusnIncome">
+		<rul:Sequence>
+			<rul:If>
+				<rul:Test>
+					<rul:Equal>
+						<rul:FirstValue Type="string" FromConstant="" FromDataDef="@IncludedInBlkt" Order="DataDefInputParamConstant" />
+						<rul:Constant Type="string">Yes</rul:Constant>
+					</rul:Equal>
+				</rul:Test>
+				<rul:Then>
+					<rul:Sequence>
+						<rul:If>
+							<rul:Test>
+								<rul:Or>
+									<rul:Equal>
+										<rul:FirstValue Type="string" FromConstant="" FromDataDef="../../@CovType" Order="DataDefInputParamConstant" />
+										<rul:Constant Type="string">Extra Expense Only</rul:Constant>
+									</rul:Equal>
+									<rul:Equal>
+										<rul:FirstValue Type="string" FromConstant="" FromDataDef="../../@MaxPeriod" Order="DataDefInputParamConstant" />
+										<rul:Constant Type="string">Yes</rul:Constant>
+									</rul:Equal>
+									<rul:NotEqual>
+										<rul:FirstValue Type="string" FromConstant="" FromDataDef="../../@MonthlyLimitOfIndemnity" Order="DataDefInputParamConstant" />
+										<rul:Constant Type="string">Not Applicable</rul:Constant>
+									</rul:NotEqual>
+								</rul:Or>
+							</rul:Test>
+							<rul:Then>
+								<rul:Sequence>
+									<rul:Constant Type="decimal" ToDataDef="@BusinessIncomeFactor">1.0</rul:Constant>
+								</rul:Sequence>
+							</rul:Then>
+							<rul:Else>
+								<rul:Copy Type="decimal" ToDataDef="@BusinessIncomeFactor" FromDataDef="@TypeOfRiskFactor" />
+							</rul:Else>
+						</rul:If>
+					</rul:Sequence>
+				</rul:Then>
+				<rul:Else>
+					<rul:Sequence>
+						<rul:Choose>
+							<rul:When>
+								<rul:Test>
+									<rul:Equal>
+										<rul:FirstValue Type="string" FromConstant="" FromDataDef="../../@MaxPeriod" Order="DataDefInputParamConstant" />
+										<rul:Constant Type="string">Yes</rul:Constant>
+									</rul:Equal>
+								</rul:Test>
+								<rul:Then>
+									<rul:Copy Type="decimal" ToDataDef="@BusinessIncomeFactor" FromDataDef="../../@MaxPeriodOfIndemnityFactor" />
+								</rul:Then>
+							</rul:When>
+							<rul:When>
+								<rul:Test>
+									<rul:NotEqual>
+										<rul:FirstValue Type="string" FromConstant="" FromDataDef="../../@MonthlyLimitOfIndemnity" Order="DataDefInputParamConstant" />
+										<rul:Constant Type="string">Not Applicable</rul:Constant>
+									</rul:NotEqual>
+								</rul:Test>
+								<rul:Then>
+									<rul:Copy Type="decimal" ToDataDef="@BusinessIncomeFactor" FromDataDef="../../@MonthlyLimitOfIndemnityFactor" />
+								</rul:Then>
+							</rul:When>
+							<rul:When>
+								<rul:Test>
+									<rul:Equal>
+										<rul:FirstValue Type="string" FromConstant="" FromDataDef="../../@CovType" Order="DataDefInputParamConstant" />
+										<rul:Constant Type="string">Extra Expense Only</rul:Constant>
+									</rul:Equal>
+								</rul:Test>
+								<rul:Then>
+									<rul:Copy Type="decimal" ToDataDef="@BusinessIncomeFactor" FromDataDef="../../@ExtraExpenseFactor" />
+								</rul:Then>
+							</rul:When>
+							<rul:Otherwise>
+								<rul:Copy Type="decimal" ToDataDef="@BusinessIncomeFactor" FromDataDef="@TypeOfRiskFactor" />
+							</rul:Otherwise>
+						</rul:Choose>
+					</rul:Sequence>
+				</rul:Else>
+			</rul:If>
+		</rul:Sequence>
+	</rul:Rule>
+	<rul:Rule Name="SetAnnualAggregateFactor" Type="none" DataDefGroup="CommercialPropertyFloodCoverageEndorsementSpclClassBusnIncome">
+		<rul:Sequence>
+			<rul:Choose>
+				<rul:When>
+					<rul:Test>
+						<rul:Equal>
+							<rul:FirstValue Type="string" FromConstant="" FromDataDef="@IncludedInBlkt" Order="DataDefInputParamConstant" />
+							<rul:Constant Type="string">No</rul:Constant>
+						</rul:Equal>
+					</rul:Test>
+					<rul:Then>
+						<rul:Sequence>
+							<rul:If>
+								<rul:Test>
+									<rul:Equal>
+										<rul:FirstValue Type="integer" FromConstant="0" FromDataDef="@Limit" Order="DataDefInputParamConstant" />
+										<rul:FirstValue Type="integer" FromConstant="0" FromDataDef="@AnnualAggregateLimit" Order="DataDefInputParamConstant" />
+									</rul:Equal>
+								</rul:Test>
+								<rul:Then>
+									<rul:Sequence>
+										<rul:RunRule Type="decimal" ToDataDef="@AnnualAggregateFactor" FileName="CommercialPropertyFloodCoverageEndorsementSpclClassBusnIncomeRules" Rule="LookupAnnualAggregateFactor" ClearCache="true" />
+									</rul:Sequence>
+								</rul:Then>
+								<rul:Else>
+									<rul:Sequence>
+										<rul:Constant Type="decimal" ToDataDef="@AnnualAggregateFactor">1.0</rul:Constant>
+									</rul:Sequence>
+								</rul:Else>
+							</rul:If>
+						</rul:Sequence>
+					</rul:Then>
+				</rul:When>
+				<rul:When>
+					<rul:Test>
+						<rul:And>
+							<rul:Equal>
+								<rul:FirstValue Type="string" FromConstant="" FromDataDef="@IncludedInBlkt" Order="DataDefInputParamConstant" />
+								<rul:Constant Type="string">Yes</rul:Constant>
+							</rul:Equal>
+							<rul:GreaterThan>
+								<rul:FirstValue Type="integer" FromConstant="0" FromDataDef="@BlanketIDNum" Order="DataDefInputParamConstant" />
+								<rul:Constant Type="integer">0</rul:Constant>
+							</rul:GreaterThan>
+							<rul:Exist AtInputDataDef="../../../../../../../../CommercialPropertyFloodCovEndtBlanketRatingTable/CommercialPropertyFloodCovEndtBlanketRating[1]/CommercialPropertyFloodCovEndtBlanketRatingDetailTable/CommercialPropertyFloodCovEndtBlanketRatingDetail" />
+						</rul:And>
+					</rul:Test>
+					<rul:Then>
+						<rul:Sequence>
+							<rul:WithArgs>
+								<rul:Arg Type="integer" Param="BlanketIDNumParam">
+									<rul:FirstValue Type="integer" FromConstant="0" FromDataDef="@BlanketIDNum" Order="DataDefInputParamConstant" />
+								</rul:Arg>
+								<rul:Arg Type="string" Param="ISOSSINodeCovTypeParam">
+									<rul:FirstValue Type="string" FromConstant="" FromDataDef="../../@CovType" Order="DataDefInputParamConstant" />
+								</rul:Arg>
+								<rul:ForEach AtInputDataDef="../../../../../../../../CommercialPropertyFloodCovEndtBlanketRatingTable/CommercialPropertyFloodCovEndtBlanketRating">
+									<rul:ForEach AtInputDataDef="CommercialPropertyFloodCovEndtBlanketRatingDetailTable/CommercialPropertyFloodCovEndtBlanketRatingDetail">
+										<rul:If>
+											<rul:Test>
+												<rul:And>
+													<rul:Equal>
+														<rul:Value Type="integer" FromParam="BlanketIDNumParam" />
+														<rul:FirstValue Type="integer" FromConstant="0" FromDataDef="@UnitNumber" Order="DataDefInputParamConstant" />
+													</rul:Equal>
+													<rul:Or>
+														<rul:And>
+															<rul:Equal>
+																<rul:FirstValue Type="string" FromConstant="" FromDataDef="@BusnIncomeWithExtraExpenseCov" Order="DataDefInputParamConstant" />
+																<rul:Constant Type="string">Yes</rul:Constant>
+															</rul:Equal>
+															<rul:Equal>
+																<rul:Value Type="string" FromParam="ISOSSINodeCovTypeParam" />
+																<rul:Constant Type="string">Business Income With Extra Expense</rul:Constant>
+															</rul:Equal>
+														</rul:And>
+														<rul:And>
+															<rul:Equal>
+																<rul:FirstValue Type="string" FromConstant="" FromDataDef="@BusnIncomeWithoutExtraExpenseCov" Order="DataDefInputParamConstant" />
+																<rul:Constant Type="string">Yes</rul:Constant>
+															</rul:Equal>
+															<rul:Equal>
+																<rul:Value Type="string" FromParam="ISOSSINodeCovTypeParam" />
+																<rul:Constant Type="string">Business Income Without Extra Expense</rul:Constant>
+															</rul:Equal>
+														</rul:And>
+														<rul:And>
+															<rul:Equal>
+																<rul:FirstValue Type="string" FromConstant="" FromDataDef="@ExtraExpenseCov" Order="DataDefInputParamConstant" />
+																<rul:Constant Type="string">Yes</rul:Constant>
+															</rul:Equal>
+															<rul:Equal>
+																<rul:Value Type="string" FromParam="ISOSSINodeCovTypeParam" />
+																<rul:Constant Type="string">Extra Expense Only</rul:Constant>
+															</rul:Equal>
+														</rul:And>
+													</rul:Or>
+													<rul:Equal>
+														<rul:FirstValue Type="integer" FromConstant="0" FromDataDef="@Limit" Order="DataDefInputParamConstant" />
+														<rul:FirstValue Type="integer" FromConstant="0" FromDataDef="@AggLimit" Order="DataDefInputParamConstant" />
+													</rul:Equal>
+												</rul:And>
+											</rul:Test>
+											<rul:Then>
+												<rul:Sequence>
+													<rul:FirstNonNull Type="decimal">
+														<rul:Lookup Type="decimal" ToDataDef="@AnnualAggregateFactor" MatrixCol="Factor" MatrixDef="AnnualAggregateFactorDef" MatrixFromConstant="AnnualAggregateFactor" ResultMode="FirstResult">
+															<rul:Keys>
+																<rul:Value Type="string" FromDataDef="/State/@Code" />
+																<rul:Constant Type="string">Y</rul:Constant>
+															</rul:Keys>
+														</rul:Lookup>
+														<rul:Lookup Type="decimal" ToDataDef="@AnnualAggregateFactor" MatrixCol="Factor" MatrixDef="AnnualAggregateFactorDef" MatrixFromConstant="AnnualAggregateFactor" ResultMode="SingleResult">
+															<rul:Keys>
+																<rul:Constant Type="string">CW</rul:Constant>
+																<rul:Constant Type="string">Y</rul:Constant>
+															</rul:Keys>
+														</rul:Lookup>
+													</rul:FirstNonNull>
+													<rul:Break />
+												</rul:Sequence>
+											</rul:Then>
+											<rul:Else>
+												<rul:Sequence>
+													<rul:Constant Type="decimal" ToDataDef="@AnnualAggregateFactor">1.0</rul:Constant>
+												</rul:Sequence>
+											</rul:Else>
+										</rul:If>
+									</rul:ForEach>
+								</rul:ForEach>
+							</rul:WithArgs>
+						</rul:Sequence>
+					</rul:Then>
+				</rul:When>
+				<rul:Otherwise>
+					<rul:Sequence>
+						<rul:Constant Type="decimal" ToDataDef="@AnnualAggregateFactor">1.0</rul:Constant>
+					</rul:Sequence>
+				</rul:Otherwise>
+			</rul:Choose>
+		</rul:Sequence>
+	</rul:Rule>
+	<rul:Rule Name="SetFloodBaseRate" Type="none" DataDefGroup="CommercialPropertyFloodCoverageEndorsementSpclClassBusnIncome">
+		<rul:Sequence>
+			<rul:If>
+				<rul:Test>
+					<rul:And>
+						<rul:NotEqual>
+							<rul:FirstValue Type="string" FromConstant="" FromDataDef="@ConstructionType" Order="DataDefInputParamConstant" />
+							<rul:Constant Type="string"></rul:Constant>
+						</rul:NotEqual>
+						<rul:IsNotNull>
+							<rul:Value Type="string" FromDataDef="../../../../../../CommercialPropertyFloodCovEndtLocationTable/CommercialPropertyFloodCovEndtLocation[1]/@FloodZone" />
+						</rul:IsNotNull>
+						<rul:NotEqual>
+							<rul:FirstValue Type="string" FromConstant="" FromDataDef="../../../../../../CommercialPropertyFloodCovEndtLocationTable/CommercialPropertyFloodCovEndtLocation[1]/@FloodZone" Order="DataDefInputParamConstant" />
+							<rul:Constant Type="string"></rul:Constant>
+						</rul:NotEqual>
+					</rul:And>
+				</rul:Test>
+				<rul:Then>
+					<rul:Sequence>
+						<rul:RunRule Type="decimal" ToDataDef="@FloodBaseRate" FileName="CommercialPropertyFloodCoverageEndorsementSpclClassBusnIncomeRules" Rule="LookupFloodLossCost" ClearCache="true" />
+					</rul:Sequence>
+				</rul:Then>
+				<rul:Else>
+					<rul:Sequence>
+						<rul:Constant Type="decimal" ToDataDef="@FloodBaseRate">0.0</rul:Constant>
+					</rul:Sequence>
+				</rul:Else>
+			</rul:If>
+		</rul:Sequence>
+	</rul:Rule>
+	<rul:Rule Name="SetFloodRate" Type="none" DataDefGroup="CommercialPropertyFloodCoverageEndorsementSpclClassBusnIncome">
+		<rul:Sequence>
+			<rul:WithArgs>
+				<rul:Arg Type="decimal" Param="calcFloodRate">
+					<rul:FirstNonNull Type="decimal">
+						<rul:Product DecimalPlaces="3">
+							<rul:Product DecimalPlaces="3">
+								<rul:FirstValue Type="decimal" FromConstant="0" FromDataDef="@FloodBaseRate" Order="DataDefInputParamConstant" />
+								<rul:FirstValue Type="decimal" FromConstant="0" FromDataDef="../../../../../../../../@LossCostMultiplier" Order="DataDefInputParamConstant" />
+							</rul:Product>
+							<rul:FirstValue Type="decimal" FromConstant="0" FromDataDef="@AnnualAggregateFactor" Order="DataDefInputParamConstant" />
+						</rul:Product>
+						<rul:Constant Type="decimal">0</rul:Constant>
+					</rul:FirstNonNull>
+				</rul:Arg>
+				<rul:Value Type="decimal" ToDataDef="@FloodRate" FromParam="calcFloodRate" />
+			</rul:WithArgs>
+		</rul:Sequence>
+	</rul:Rule>
+	<rul:Rule Name="SetFloodAdjustedRate" Type="none" DataDefGroup="CommercialPropertyFloodCoverageEndorsementSpclClassBusnIncome">
+		<rul:Sequence>
+			<rul:Product ToDataDef="@FloodAdjustedRate" DecimalPlaces="3">
+				<rul:FirstValue Type="decimal" FromConstant="0" FromDataDef="@FloodRate" Order="DataDefInputParamConstant" />
+				<rul:FirstValue Type="decimal" FromConstant="0" FromDataDef="@BusinessIncomeFactor" Order="DataDefInputParamConstant" />
+			</rul:Product>
+		</rul:Sequence>
+	</rul:Rule>
+	<rul:Rule Name="SetFull100PctValue" Type="none" DataDefGroup="CommercialPropertyFloodCoverageEndorsementSpclClassBusnIncome">
+		<rul:Sequence>
+			<rul:If>
+				<rul:Test>
+					<rul:Equal>
+						<rul:FirstValue Type="string" FromConstant="" FromDataDef="@IncludedInBlkt" Order="DataDefInputParamConstant" />
+						<rul:Constant Type="string">Yes</rul:Constant>
+					</rul:Equal>
+				</rul:Test>
+				<rul:Then>
+					<rul:Sequence>
+						<rul:If>
+							<rul:Test>
+								<rul:Equal>
+									<rul:FirstValue Type="string" FromConstant="" FromDataDef="../../@CovType" Order="DataDefInputParamConstant" />
+									<rul:Constant Type="string">Extra Expense Only</rul:Constant>
+								</rul:Equal>
+							</rul:Test>
+							<rul:Then>
+								<rul:Sequence>
+									<rul:If>
+										<rul:Test>
+											<rul:Equal>
+												<rul:FirstValue Type="string" FromConstant="" FromDataDef="../../@IncludedInBlkt" Order="DataDefInputParamConstant" />
+												<rul:Constant Type="string">Yes</rul:Constant>
+											</rul:Equal>
+										</rul:Test>
+										<rul:Then>
+											<rul:Sequence>
+												<rul:Convert Type="integer" ToDataDef="@Full100PctValue">
+													<rul:Product DecimalPlaces="0">
+														<rul:FirstValue Type="integer" FromConstant="0" FromDataDef="../../@BlktLimit" Order="DataDefInputParamConstant" />
+														<rul:Convert Type="integer">
+															<rul:FirstValue Type="decimal" FromConstant="0" FromDataDef="../../@BlktProportion" Order="DataDefInputParamConstant" />
+														</rul:Convert>
+													</rul:Product>
+												</rul:Convert>
+											</rul:Sequence>
+										</rul:Then>
+										<rul:Else>
+											<rul:Copy Type="integer" ToDataDef="@Full100PctValue" FromDataDef="../../@Limit" />
+										</rul:Else>
+									</rul:If>
+								</rul:Sequence>
+							</rul:Then>
+							<rul:Else>
+								<rul:Copy Type="integer" ToDataDef="@Full100PctValue" FromDataDef="@AnnualNetIncome" />
+							</rul:Else>
+						</rul:If>
+					</rul:Sequence>
+				</rul:Then>
+				<rul:Else>
+					<rul:Sequence>
+						<rul:Constant Type="integer" ToDataDef="@Full100PctValue">0</rul:Constant>
+					</rul:Sequence>
+				</rul:Else>
+			</rul:If>
+		</rul:Sequence>
+	</rul:Rule>
+	<rul:Rule Name="SetAdjustedFull100PercentValue" Type="none" DataDefGroup="CommercialPropertyFloodCoverageEndorsementSpclClassBusnIncome">
+		<rul:Sequence>
+			<rul:If>
+				<rul:Test>
+					<rul:Equal>
+						<rul:FirstValue Type="string" FromConstant="" FromDataDef="@IncludedInBlkt" Order="DataDefInputParamConstant" />
+						<rul:Constant Type="string">Yes</rul:Constant>
+					</rul:Equal>
+				</rul:Test>
+				<rul:Then>
+					<rul:Sequence>
+						<rul:Convert Type="integer" ToDataDef="@AdjustedFull100PercentValue">
+							<rul:Product DecimalPlaces="0">
+								<rul:FirstValue Type="integer" FromConstant="0" FromDataDef="@Full100PctValue" Order="DataDefInputParamConstant" />
+								<rul:FirstValue Type="decimal" FromConstant="0" FromDataDef="@FloodAdjustedRate" Order="DataDefInputParamConstant" />
+							</rul:Product>
+						</rul:Convert>
+					</rul:Sequence>
+				</rul:Then>
+				<rul:Else>
+					<rul:Sequence>
+						<rul:Constant Type="integer" ToDataDef="@AdjustedFull100PercentValue">0</rul:Constant>
+					</rul:Sequence>
+				</rul:Else>
+			</rul:If>
+		</rul:Sequence>
+	</rul:Rule>
+	<rul:Rule Name="ErcRate" Type="none" DataDefGroup="CommercialPropertyFloodCoverageEndorsementSpclClassBusnIncome">
+		<rul:Sequence>
+			<rul:RunRule Type="none" FileName="CommercialPropertyFloodCoverageEndorsementSpclClassBusnIncomeRules" Rule="SetPremium" ClearCache="true" />
+			<rul:RunRule Type="none" FileName="CommercialPropertyFloodCoverageEndorsementSpclClassBusnIncomeRules" Rule="SetPremiumIndicator" ClearCache="true" />
+		</rul:Sequence>
+	</rul:Rule>
+	<rul:Rule Name="SetPremium" Type="none" DataDefGroup="CommercialPropertyFloodCoverageEndorsementSpclClassBusnIncome">
+		<rul:Sequence>
+			<rul:WithArgs>
+				<rul:Arg Type="decimal" Param="calcPremium">
+					<rul:If>
+						<rul:Test>
+							<rul:Equal>
+								<rul:FirstValue Type="string" FromConstant="" FromDataDef="@IncludedInBlkt" Order="DataDefInputParamConstant" />
+								<rul:Constant Type="string">No</rul:Constant>
+							</rul:Equal>
+						</rul:Test>
+						<rul:Then>
+							<rul:Product DecimalPlaces="0">
+								<rul:Product DecimalPlaces="0">
+									<rul:Product DecimalPlaces="0">
+										<rul:Product DecimalPlaces="0">
+											<rul:Product DecimalPlaces="0">
+												<rul:FirstValue Type="decimal" FromConstant="0" FromDataDef="@FloodAdjustedRate" Order="DataDefInputParamConstant" />
+												<rul:Divide>
+													<rul:Value Type="integer" FromDataDef="@Limit" />
+													<rul:Constant Type="decimal">100</rul:Constant>
+												</rul:Divide>
+											</rul:Product>
+											<rul:FirstValue Type="decimal" FromConstant="0" FromDataDef="../../../../../../../../@PackageModFactor" Order="DataDefInputParamConstant" />
+										</rul:Product>
+										<rul:FirstValue Type="decimal" FromConstant="0" FromDataDef="../../../../../../../../@IRPMFactor" Order="DataDefInputParamConstant" />
+									</rul:Product>
+									<rul:FirstValue Type="decimal" FromConstant="0" FromDataDef="../../../../../../../../@CyberIncidentExclusionFactorFlood" Order="DataDefInputParamConstant" />
+								</rul:Product>
+								<rul:FirstValue Type="decimal" FromConstant="0" FromDataDef="../../@CyberIncidentExclusionCOLExcptnsFactorBusnIncomeFloodToUse" Order="DataDefInputParamConstant" />
+							</rul:Product>
+						</rul:Then>
+						<rul:Else>
+							<rul:Constant Type="decimal">0</rul:Constant>
+						</rul:Else>
+					</rul:If>
+				</rul:Arg>
+				<rul:Value Type="decimal" ToDataDef="@Premium" FromParam="calcPremium" />
+			</rul:WithArgs>
+		</rul:Sequence>
+	</rul:Rule>
+	<rul:Rule Name="SetPremiumIndicator" Type="none" DataDefGroup="CommercialPropertyFloodCoverageEndorsementSpclClassBusnIncome">
+		<rul:Sequence>
+			<rul:If>
+				<rul:Test>
+					<rul:NotEqual>
+						<rul:FirstValue Type="decimal" FromConstant="0" FromDataDef="@Premium" Order="DataDefInputParamConstant" />
+						<rul:Constant Type="decimal">0</rul:Constant>
+					</rul:NotEqual>
+				</rul:Test>
+				<rul:Then>
+					<rul:Sequence>
+						<rul:Constant Type="integer" ToDataDef="@PremiumIndicator">1</rul:Constant>
+					</rul:Sequence>
+				</rul:Then>
+				<rul:Else>
+					<rul:Sequence>
+						<rul:Constant Type="integer" ToDataDef="@PremiumIndicator">0</rul:Constant>
+					</rul:Sequence>
+				</rul:Else>
+			</rul:If>
+		</rul:Sequence>
+	</rul:Rule>
+	<rul:Rule Name="ErcRunPostUnderwritingLogic" Type="none" DataDefGroup="CommercialPropertyFloodCoverageEndorsementSpclClassBusnIncome">
+		<rul:Sequence>
+			<rul:RunRule Type="none" FileName="CommercialPropertyFloodCoverageEndorsementSpclClassBusnIncomeRules" Rule="SetFloodCovEndtBlanketRating" ClearCache="true" />
+			<rul:RunRule Type="none" FileName="CommercialPropertyFloodCoverageEndorsementSpclClassBusnIncomeRules" Rule="DoMessageCannotBeIncludedInBlanketBlanketCoveredPropertyBICP0030OrBICP0032OrEECP0050NeedToBeSelectedInOrderToAddThisRiskFormAsPartOfTheBlanket" ClearCache="true" />
+			<rul:RunRule Type="none" FileName="CommercialPropertyFloodCoverageEndorsementSpclClassBusnIncomeRules" Rule="DoMessageNoneOfTheBlanketCoveredPropertySelectedMatchesTheCoverageTypeSelectedAtTheRiskLevel" ClearCache="true" />
+			<rul:RunRule Type="none" FileName="CommercialPropertyFloodCoverageEndorsementSpclClassBusnIncomeRules" Rule="DoMessagePleaseEnteraValidFloodBlanketIDNumber" ClearCache="true" />
+			<rul:RunRule Type="none" FileName="CommercialPropertyFloodCoverageEndorsementSpclClassBusnIncomeRules" Rule="DoMessageFloodCoverageGeneralInformationNeedsToBeAttachedWhenEndorsementCP1065IsAttached" ClearCache="true" />
+			<rul:RunRule Type="none" FileName="CommercialPropertyFloodCoverageEndorsementSpclClassBusnIncomeRules" Rule="DoMessageTheCoinsuranceLevelThatCorrespondsToTheInsuranceToValueUnderFloodBlanketCannotBeGreaterThan125Pct" ClearCache="true" />
+		</rul:Sequence>
+	</rul:Rule>
+	<rul:Rule Name="DoMessageCannotBeIncludedInBlanketBlanketCoveredPropertyBICP0030OrBICP0032OrEECP0050NeedToBeSelectedInOrderToAddThisRiskFormAsPartOfTheBlanket" Type="none" DataDefGroup="CommercialPropertyFloodCoverageEndorsementSpclClassBusnIncome">
+		<rul:Sequence>
+			<rul:WithArgs>
+				<rul:Arg Type="boolean" Param="isTheCorrespondingCoveredPropertySelected">
+					<rul:FirstNonNull Type="boolean">
+						<rul:WithArgs>
+							<rul:Arg Type="integer" Param="BlanketIDNumParam">
+								<rul:FirstValue Type="integer" FromConstant="0" FromDataDef="@BlanketIDNum" Order="DataDefInputParamConstant" />
+							</rul:Arg>
+							<rul:ForEach AtDataDef="../../../../../../../../CommercialPropertyFloodCovEndtBlanketRatingTable/CommercialPropertyFloodCovEndtBlanketRating">
+								<rul:ForEach AtDataDef="CommercialPropertyFloodCovEndtBlanketRatingDetailTable/CommercialPropertyFloodCovEndtBlanketRatingDetail">
+									<rul:If>
+										<rul:Test>
+											<rul:And>
+												<rul:NotEqual>
+													<rul:FirstValue Type="string" FromConstant="" FromDataDef="@BusnIncomeWithExtraExpenseCov" Order="DataDefInputParamConstant" />
+													<rul:Constant Type="string">Yes</rul:Constant>
+												</rul:NotEqual>
+												<rul:NotEqual>
+													<rul:FirstValue Type="string" FromConstant="" FromDataDef="@BusnIncomeWithoutExtraExpenseCov" Order="DataDefInputParamConstant" />
+													<rul:Constant Type="string">Yes</rul:Constant>
+												</rul:NotEqual>
+												<rul:NotEqual>
+													<rul:FirstValue Type="string" FromConstant="" FromDataDef="@ExtraExpenseCov" Order="DataDefInputParamConstant" />
+													<rul:Constant Type="string">Yes</rul:Constant>
+												</rul:NotEqual>
+												<rul:Equal>
+													<rul:FirstValue Type="integer" FromConstant="0" FromDataDef="@UnitNumber" Order="DataDefInputParamConstant" />
+													<rul:Value Type="integer" FromParam="BlanketIDNumParam" />
+												</rul:Equal>
+											</rul:And>
+										</rul:Test>
+										<rul:Then>
+											<rul:GetList>
+												<rul:Constant Type="boolean">false</rul:Constant>
+												<rul:Break />
+											</rul:GetList>
+										</rul:Then>
+									</rul:If>
+								</rul:ForEach>
+							</rul:ForEach>
+						</rul:WithArgs>
+						<rul:Constant Type="boolean">true</rul:Constant>
+					</rul:FirstNonNull>
+				</rul:Arg>
+				<rul:If>
+					<rul:Test>
+						<rul:And>
+							<rul:Equal>
+								<rul:FirstValue Type="string" FromConstant="" FromDataDef="@IncludedInBlkt" Order="DataDefInputParamConstant" />
+								<rul:Constant Type="string">Yes</rul:Constant>
+							</rul:Equal>
+							<rul:Equal>
+								<rul:Value Type="boolean" FromParam="isTheCorrespondingCoveredPropertySelected" />
+								<rul:Constant Type="boolean">false</rul:Constant>
+							</rul:Equal>
+						</rul:And>
+					</rul:Test>
+					<rul:Then>
+						<rul:RunRule Type="none" FileName="MessageHelper" Rule="AddErrorMessage" ClearCache="true">
+							<rul:Arg Type="string" Param="Message">
+								<rul:Constant Type="string">Cannot be Included In Blanket. Blanket Covered Property 'BI (CP 00 30)' or 'BI (CP 00 32)' or 'EE (CP 00 50)' need to be selected in order to add this risk/form as part of the Blanket</rul:Constant>
+							</rul:Arg>
+						</rul:RunRule>
+					</rul:Then>
+				</rul:If>
+			</rul:WithArgs>
+		</rul:Sequence>
+	</rul:Rule>
+	<rul:Rule Name="DoMessageNoneOfTheBlanketCoveredPropertySelectedMatchesTheCoverageTypeSelectedAtTheRiskLevel" Type="none" DataDefGroup="CommercialPropertyFloodCoverageEndorsementSpclClassBusnIncome">
+		<rul:Sequence>
+			<rul:WithArgs>
+				<rul:Arg Type="boolean" Param="doesBlanketCoveredPropertyMatchRiskCoverageType">
+					<rul:FirstNonNull Type="boolean">
+						<rul:WithArgs>
+							<rul:Arg Type="string" Param="ISOSSINodeCovTypeParam">
+								<rul:FirstValue Type="string" FromConstant="" FromDataDef="../../@CovType" Order="DataDefInputParamConstant" />
+							</rul:Arg>
+							<rul:Arg Type="integer" Param="BlanketIDNumParam">
+								<rul:FirstValue Type="integer" FromConstant="0" FromDataDef="@BlanketIDNum" Order="DataDefInputParamConstant" />
+							</rul:Arg>
+							<rul:ForEach AtDataDef="../../../../../../../../CommercialPropertyFloodCovEndtBlanketRatingTable/CommercialPropertyFloodCovEndtBlanketRating">
+								<rul:ForEach AtDataDef="CommercialPropertyFloodCovEndtBlanketRatingDetailTable/CommercialPropertyFloodCovEndtBlanketRatingDetail">
+									<rul:If>
+										<rul:Test>
+											<rul:And>
+												<rul:Or>
+													<rul:And>
+														<rul:NotEqual>
+															<rul:FirstValue Type="string" FromConstant="" FromDataDef="@BusnIncomeWithExtraExpenseCov" Order="DataDefInputParamConstant" />
+															<rul:Constant Type="string">Yes</rul:Constant>
+														</rul:NotEqual>
+														<rul:Equal>
+															<rul:Value Type="string" FromParam="ISOSSINodeCovTypeParam" />
+															<rul:Constant Type="string">Business Income With Extra Expense</rul:Constant>
+														</rul:Equal>
+													</rul:And>
+													<rul:And>
+														<rul:NotEqual>
+															<rul:FirstValue Type="string" FromConstant="" FromDataDef="@BusnIncomeWithoutExtraExpenseCov" Order="DataDefInputParamConstant" />
+															<rul:Constant Type="string">Yes</rul:Constant>
+														</rul:NotEqual>
+														<rul:Equal>
+															<rul:Value Type="string" FromParam="ISOSSINodeCovTypeParam" />
+															<rul:Constant Type="string">Business Income Without Extra Expense</rul:Constant>
+														</rul:Equal>
+													</rul:And>
+													<rul:And>
+														<rul:NotEqual>
+															<rul:FirstValue Type="string" FromConstant="" FromDataDef="@ExtraExpenseCov" Order="DataDefInputParamConstant" />
+															<rul:Constant Type="string">Yes</rul:Constant>
+														</rul:NotEqual>
+														<rul:Equal>
+															<rul:Value Type="string" FromParam="ISOSSINodeCovTypeParam" />
+															<rul:Constant Type="string">Extra Expense Only</rul:Constant>
+														</rul:Equal>
+													</rul:And>
+												</rul:Or>
+												<rul:Equal>
+													<rul:FirstValue Type="integer" FromConstant="0" FromDataDef="@UnitNumber" Order="DataDefInputParamConstant" />
+													<rul:Value Type="integer" FromParam="BlanketIDNumParam" />
+												</rul:Equal>
+											</rul:And>
+										</rul:Test>
+										<rul:Then>
+											<rul:GetList>
+												<rul:Constant Type="boolean">false</rul:Constant>
+												<rul:Break />
+											</rul:GetList>
+										</rul:Then>
+									</rul:If>
+								</rul:ForEach>
+							</rul:ForEach>
+						</rul:WithArgs>
+						<rul:Constant Type="boolean">true</rul:Constant>
+					</rul:FirstNonNull>
+				</rul:Arg>
+				<rul:If>
+					<rul:Test>
+						<rul:And>
+							<rul:Equal>
+								<rul:FirstValue Type="string" FromConstant="" FromDataDef="@IncludedInBlkt" Order="DataDefInputParamConstant" />
+								<rul:Constant Type="string">Yes</rul:Constant>
+							</rul:Equal>
+							<rul:Equal>
+								<rul:Value Type="boolean" FromParam="doesBlanketCoveredPropertyMatchRiskCoverageType" />
+								<rul:Constant Type="boolean">false</rul:Constant>
+							</rul:Equal>
+						</rul:And>
+					</rul:Test>
+					<rul:Then>
+						<rul:RunRule Type="none" FileName="MessageHelper" Rule="AddErrorMessage" ClearCache="true">
+							<rul:Arg Type="string" Param="Message">
+								<rul:Constant Type="string">None of the Blanket Covered Property selected matches the Coverage Type selected at the risk level</rul:Constant>
+							</rul:Arg>
+						</rul:RunRule>
+					</rul:Then>
+				</rul:If>
+			</rul:WithArgs>
+		</rul:Sequence>
+	</rul:Rule>
+	<rul:Rule Name="DoMessagePleaseEnteraValidFloodBlanketIDNumber" Type="none" DataDefGroup="CommercialPropertyFloodCoverageEndorsementSpclClassBusnIncome">
+		<rul:Sequence>
+			<rul:WithArgs>
+				<rul:Arg Type="boolean" Param="doesUnitNumberMatchBlanketUnitNumber">
+					<rul:FirstNonNull Type="boolean">
+						<rul:WithArgs>
+							<rul:Arg Type="string" Param="ISOSSINodeCovTypeParam">
+								<rul:FirstValue Type="string" FromConstant="" FromDataDef="../../@CovType" Order="DataDefInputParamConstant" />
+							</rul:Arg>
+							<rul:Arg Type="integer" Param="BlanketIDNumParam">
+								<rul:FirstValue Type="integer" FromConstant="0" FromDataDef="@BlanketIDNum" Order="DataDefInputParamConstant" />
+							</rul:Arg>
+							<rul:ForEach AtDataDef="../../../../../../../../CommercialPropertyFloodCovEndtBlanketRatingTable/CommercialPropertyFloodCovEndtBlanketRating">
+								<rul:ForEach AtDataDef="CommercialPropertyFloodCovEndtBlanketRatingDetailTable/CommercialPropertyFloodCovEndtBlanketRatingDetail">
+									<rul:If>
+										<rul:Test>
+											<rul:And>
+												<rul:Or>
+													<rul:And>
+														<rul:Equal>
+															<rul:FirstValue Type="string" FromConstant="" FromDataDef="@BusnIncomeWithExtraExpenseCov" Order="DataDefInputParamConstant" />
+															<rul:Constant Type="string">Yes</rul:Constant>
+														</rul:Equal>
+														<rul:Equal>
+															<rul:Value Type="string" FromParam="ISOSSINodeCovTypeParam" />
+															<rul:Constant Type="string">Business Income With Extra Expense</rul:Constant>
+														</rul:Equal>
+													</rul:And>
+													<rul:And>
+														<rul:Equal>
+															<rul:FirstValue Type="string" FromConstant="" FromDataDef="@BusnIncomeWithoutExtraExpenseCov" Order="DataDefInputParamConstant" />
+															<rul:Constant Type="string">Yes</rul:Constant>
+														</rul:Equal>
+														<rul:Equal>
+															<rul:Value Type="string" FromParam="ISOSSINodeCovTypeParam" />
+															<rul:Constant Type="string">Business Income Without Extra Expense</rul:Constant>
+														</rul:Equal>
+													</rul:And>
+													<rul:And>
+														<rul:Equal>
+															<rul:FirstValue Type="string" FromConstant="" FromDataDef="@ExtraExpenseCov" Order="DataDefInputParamConstant" />
+															<rul:Constant Type="string">Yes</rul:Constant>
+														</rul:Equal>
+														<rul:Equal>
+															<rul:Value Type="string" FromParam="ISOSSINodeCovTypeParam" />
+															<rul:Constant Type="string">Extra Expense Only</rul:Constant>
+														</rul:Equal>
+													</rul:And>
+												</rul:Or>
+												<rul:Equal>
+													<rul:FirstValue Type="integer" FromConstant="0" FromDataDef="@UnitNumber" Order="DataDefInputParamConstant" />
+													<rul:Value Type="integer" FromParam="BlanketIDNumParam" />
+												</rul:Equal>
+											</rul:And>
+										</rul:Test>
+										<rul:Then>
+											<rul:GetList>
+												<rul:Constant Type="boolean">true</rul:Constant>
+												<rul:Break />
+											</rul:GetList>
+										</rul:Then>
+									</rul:If>
+								</rul:ForEach>
+							</rul:ForEach>
+						</rul:WithArgs>
+						<rul:Constant Type="boolean">false</rul:Constant>
+					</rul:FirstNonNull>
+				</rul:Arg>
+				<rul:If>
+					<rul:Test>
+						<rul:And>
+							<rul:Equal>
+								<rul:FirstValue Type="string" FromConstant="" FromDataDef="@IncludedInBlkt" Order="DataDefInputParamConstant" />
+								<rul:Constant Type="string">Yes</rul:Constant>
+							</rul:Equal>
+							<rul:Equal>
+								<rul:Value Type="boolean" FromParam="doesUnitNumberMatchBlanketUnitNumber" />
+								<rul:Constant Type="boolean">false</rul:Constant>
+							</rul:Equal>
+						</rul:And>
+					</rul:Test>
+					<rul:Then>
+						<rul:RunRule Type="none" FileName="MessageHelper" Rule="AddErrorMessage" ClearCache="true">
+							<rul:Arg Type="string" Param="Message">
+								<rul:Constant Type="string">Please enter a valid Flood Blanket ID number</rul:Constant>
+							</rul:Arg>
+						</rul:RunRule>
+					</rul:Then>
+				</rul:If>
+			</rul:WithArgs>
+		</rul:Sequence>
+	</rul:Rule>
+	<rul:Rule Name="DoMessageFloodCoverageGeneralInformationNeedsToBeAttachedWhenEndorsementCP1065IsAttached" Type="none" DataDefGroup="CommercialPropertyFloodCoverageEndorsementSpclClassBusnIncome">
+		<rul:Sequence>
+			<rul:If>
+				<rul:Test>
+					<rul:NotExist AtInputDataDef="../../../../../../CommercialPropertyFloodCovEndtLocationTable/CommercialPropertyFloodCovEndtLocation" />
+				</rul:Test>
+				<rul:Then>
+					<rul:RunRule Type="none" FileName="MessageHelper" Rule="AddErrorMessage" ClearCache="true">
+						<rul:Arg Type="string" Param="Message">
+							<rul:Constant Type="string">Flood Coverage General Information needs to be attached when Endorsement CP 10 65 is attached</rul:Constant>
+						</rul:Arg>
+					</rul:RunRule>
+				</rul:Then>
+			</rul:If>
+		</rul:Sequence>
+	</rul:Rule>
+	<rul:Rule Name="DoMessageTheCoinsuranceLevelThatCorrespondsToTheInsuranceToValueUnderFloodBlanketCannotBeGreaterThan125Pct" Type="none" DataDefGroup="CommercialPropertyFloodCoverageEndorsementSpclClassBusnIncome">
+		<rul:Sequence>
+			<rul:If>
+				<rul:Test>
+					<rul:Equal>
+						<rul:FirstValue Type="string" FromConstant="" FromDataDef="@Coinsurance" Order="DataDefInputParamConstant" />
+						<rul:Constant Type="string">Greater than 125%</rul:Constant>
+					</rul:Equal>
+				</rul:Test>
+				<rul:Then>
+					<rul:RunRule Type="none" FileName="MessageHelper" Rule="AddErrorMessage" ClearCache="true">
+						<rul:Arg Type="string" Param="Message">
+							<rul:Constant Type="string">The Coinsurance level that corresponds to the Insurance To Value under Flood Blanket cannot be greater than 125%</rul:Constant>
+						</rul:Arg>
+					</rul:RunRule>
+				</rul:Then>
+			</rul:If>
+		</rul:Sequence>
+	</rul:Rule>
+	<rul:Rule Name="ErcSetStatisticalCodes" Type="none" DataDefGroup="CommercialPropertyFloodCoverageEndorsementSpclClassBusnIncome">
+		<rul:Sequence>
+			<rul:If>
+				<rul:Test>
+					<rul:Exist AtInputDataDef="ancestor::MasterCFCW/Policy" />
+				</rul:Test>
+				<rul:Then>
+					<rul:Sequence>
+						<rul:RunRule Type="none" FileName="CommercialPropertyFloodCoverageEndorsementSpclClassBusnIncomeRules" Rule="SetSublineFloodCoverage" ClearCache="true" />
+						<rul:RunRule Type="none" FileName="CommercialPropertyFloodCoverageEndorsementSpclClassBusnIncomeRules" Rule="SetFloodRatingIdentificationCode" ClearCache="true" />
+						<rul:RunRule Type="none" FileName="CommercialPropertyFloodCoverageEndorsementSpclClassBusnIncomeRules" Rule="SetFloodConstructionCodeOtherThanBGIIStatCode" ClearCache="true" />
+						<rul:RunRule Type="none" FileName="CommercialPropertyFloodCoverageEndorsementSpclClassBusnIncomeRules" Rule="SetAdditionalFloodConstructionCode" ClearCache="true" />
+						<rul:RunRule Type="none" FileName="CommercialPropertyFloodCoverageEndorsementSpclClassBusnIncomeRules" Rule="SetFloodNumberOfStoriesCode" ClearCache="true" />
+						<rul:RunRule Type="none" FileName="CommercialPropertyFloodCoverageEndorsementSpclClassBusnIncomeRules" Rule="SetFloodFloorOfInterestCode" ClearCache="true" />
+					</rul:Sequence>
+				</rul:Then>
+			</rul:If>
+		</rul:Sequence>
+	</rul:Rule>
+	<rul:Rule Name="SetSublineFloodCoverage" Type="none" DataDefGroup="CommercialPropertyFloodCoverageEndorsementSpclClassBusnIncome">
+		<rul:Sequence>
+			<rul:RunRule Type="string" ToDataDef="@SublineFloodCoverage" FileName="CommercialPropertyFloodCoverageEndorsementSpclClassBusnIncomeRules" Rule="LookupSublineFloodCoverageWithoutNFIP" ClearCache="true" />
+		</rul:Sequence>
+	</rul:Rule>
+	<rul:Rule Name="SetFloodRatingIdentificationCode" Type="none" DataDefGroup="CommercialPropertyFloodCoverageEndorsementSpclClassBusnIncome">
+		<rul:Sequence>
+			<rul:Choose>
+				<rul:When>
+					<rul:Test>
+						<rul:And>
+							<rul:Equal>
+								<rul:FirstValue Type="string" FromConstant="" FromDataDef="@IncludedInBlkt" Order="DataDefInputParamConstant" />
+								<rul:Constant Type="string">No</rul:Constant>
+							</rul:Equal>
+							<rul:Equal>
+								<rul:FirstValue Type="string" FromConstant="" FromDataDef="../../@IncludedInBlkt" Order="DataDefInputParamConstant" />
+								<rul:Constant Type="string">No</rul:Constant>
+							</rul:Equal>
+						</rul:And>
+					</rul:Test>
+					<rul:Then>
+						<rul:Sequence>
+							<rul:RunRule Type="string" ToDataDef="@FloodRatingIdentificationCode" FileName="CommercialPropertyFloodCoverageEndorsementSpclClassBusnIncomeRules" Rule="LookupFloodRatingIdentificationCode" ClearCache="true" />
+						</rul:Sequence>
+					</rul:Then>
+				</rul:When>
+				<rul:When>
+					<rul:Test>
+						<rul:And>
+							<rul:Equal>
+								<rul:FirstValue Type="string" FromConstant="" FromDataDef="@IncludedInBlkt" Order="DataDefInputParamConstant" />
+								<rul:Constant Type="string">No</rul:Constant>
+							</rul:Equal>
+							<rul:Equal>
+								<rul:FirstValue Type="string" FromConstant="" FromDataDef="../../@IncludedInBlkt" Order="DataDefInputParamConstant" />
+								<rul:Constant Type="string">Yes</rul:Constant>
+							</rul:Equal>
+						</rul:And>
+					</rul:Test>
+					<rul:Then>
+						<rul:Sequence>
+							<rul:RunRule Type="string" ToDataDef="@FloodRatingIdentificationCode" FileName="CommercialPropertyFloodCoverageEndorsementSpclClassBusnIncomeRules" Rule="LookupFloodRatingIdentificationBlanketCode" ClearCache="true" />
+						</rul:Sequence>
+					</rul:Then>
+				</rul:When>
+				<rul:When>
+					<rul:Test>
+						<rul:And>
+							<rul:Equal>
+								<rul:FirstValue Type="string" FromConstant="" FromDataDef="@IncludedInBlkt" Order="DataDefInputParamConstant" />
+								<rul:Constant Type="string">Yes</rul:Constant>
+							</rul:Equal>
+							<rul:Equal>
+								<rul:FirstValue Type="string" FromConstant="" FromDataDef="../../@IncludedInBlkt" Order="DataDefInputParamConstant" />
+								<rul:Constant Type="string">No</rul:Constant>
+							</rul:Equal>
+						</rul:And>
+					</rul:Test>
+					<rul:Then>
+						<rul:Sequence>
+							<rul:RunRule Type="string" ToDataDef="@FloodRatingIdentificationCode" FileName="CommercialPropertyFloodCoverageEndorsementSpclClassBusnIncomeRules" Rule="LookupFloodBlanketRatingIdentificationCode" ClearCache="true" />
+						</rul:Sequence>
+					</rul:Then>
+				</rul:When>
+				<rul:When>
+					<rul:Test>
+						<rul:And>
+							<rul:Equal>
+								<rul:FirstValue Type="string" FromConstant="" FromDataDef="@IncludedInBlkt" Order="DataDefInputParamConstant" />
+								<rul:Constant Type="string">Yes</rul:Constant>
+							</rul:Equal>
+							<rul:Equal>
+								<rul:FirstValue Type="string" FromConstant="" FromDataDef="../../@IncludedInBlkt" Order="DataDefInputParamConstant" />
+								<rul:Constant Type="string">Yes</rul:Constant>
+							</rul:Equal>
+						</rul:And>
+					</rul:Test>
+					<rul:Then>
+						<rul:Sequence>
+							<rul:RunRule Type="string" ToDataDef="@FloodRatingIdentificationCode" FileName="CommercialPropertyFloodCoverageEndorsementSpclClassBusnIncomeRules" Rule="LookupFloodBlanketRatingIdentificationBlanketCode" ClearCache="true" />
+						</rul:Sequence>
+					</rul:Then>
+				</rul:When>
+				<rul:Otherwise>
+					<rul:Sequence>
+						<rul:Constant Type="string" ToDataDef="@FloodRatingIdentificationCode"></rul:Constant>
+					</rul:Sequence>
+				</rul:Otherwise>
+			</rul:Choose>
+		</rul:Sequence>
+	</rul:Rule>
+	<rul:Rule Name="SetFloodConstructionCodeOtherThanBGIIStatCode" Type="none" DataDefGroup="CommercialPropertyFloodCoverageEndorsementSpclClassBusnIncome">
+		<rul:Sequence>
+			<rul:If>
+				<rul:Test>
+					<rul:NotEqual>
+						<rul:FirstValue Type="string" FromConstant="" FromDataDef="@ConstructionType" Order="DataDefInputParamConstant" />
+						<rul:Constant Type="string"></rul:Constant>
+					</rul:NotEqual>
+				</rul:Test>
+				<rul:Then>
+					<rul:Sequence>
+						<rul:RunRule Type="string" ToDataDef="@FloodConstructionCodeOtherThanBGIIStatCode" FileName="CommercialPropertyFloodCoverageEndorsementSpclClassBusnIncomeRules" Rule="LookupAllOtherConstructionStatCode" ClearCache="true" />
+					</rul:Sequence>
+				</rul:Then>
+				<rul:Else>
+					<rul:Sequence>
+						<rul:Constant Type="string" ToDataDef="@FloodConstructionCodeOtherThanBGIIStatCode"></rul:Constant>
+					</rul:Sequence>
+				</rul:Else>
+			</rul:If>
+		</rul:Sequence>
+	</rul:Rule>
+	<rul:Rule Name="SetAdditionalFloodConstructionCode" Type="none" DataDefGroup="CommercialPropertyFloodCoverageEndorsementSpclClassBusnIncome">
+		<rul:Sequence>
+			<rul:If>
+				<rul:Test>
+					<rul:NotEqual>
+						<rul:FirstValue Type="string" FromConstant="" FromDataDef="@AdditionalConstructionType" Order="DataDefInputParamConstant" />
+						<rul:Constant Type="string"></rul:Constant>
+					</rul:NotEqual>
+				</rul:Test>
+				<rul:Then>
+					<rul:Sequence>
+						<rul:RunRule Type="string" ToDataDef="@AdditionalFloodConstructionCode" FileName="CommercialPropertyFloodCoverageEndorsementSpclClassBusnIncomeRules" Rule="LookupAdditionalFloodConstructionCode" ClearCache="true" />
+					</rul:Sequence>
+				</rul:Then>
+				<rul:Else>
+					<rul:Sequence>
+						<rul:Constant Type="string" ToDataDef="@AdditionalFloodConstructionCode"></rul:Constant>
+					</rul:Sequence>
+				</rul:Else>
+			</rul:If>
+		</rul:Sequence>
+	</rul:Rule>
+	<rul:Rule Name="SetFloodNumberOfStoriesCode" Type="none" DataDefGroup="CommercialPropertyFloodCoverageEndorsementSpclClassBusnIncome">
+		<rul:Sequence>
+			<rul:If>
+				<rul:Test>
+					<rul:NotEqual>
+						<rul:FirstValue Type="string" FromConstant="" FromDataDef="@NumberOfStories" Order="DataDefInputParamConstant" />
+						<rul:Constant Type="string"></rul:Constant>
+					</rul:NotEqual>
+				</rul:Test>
+				<rul:Then>
+					<rul:Sequence>
+						<rul:RunRule Type="string" ToDataDef="@FloodNumberOfStoriesCode" FileName="CommercialPropertyFloodCoverageEndorsementSpclClassBusnIncomeRules" Rule="LookupFloodNumberOfStoriesCode" ClearCache="true" />
+					</rul:Sequence>
+				</rul:Then>
+				<rul:Else>
+					<rul:Sequence>
+						<rul:Constant Type="string" ToDataDef="@FloodNumberOfStoriesCode"></rul:Constant>
+					</rul:Sequence>
+				</rul:Else>
+			</rul:If>
+		</rul:Sequence>
+	</rul:Rule>
+	<rul:Rule Name="SetFloodFloorOfInterestCode" Type="none" DataDefGroup="CommercialPropertyFloodCoverageEndorsementSpclClassBusnIncome">
+		<rul:Sequence>
+			<rul:If>
+				<rul:Test>
+					<rul:NotEqual>
+						<rul:FirstValue Type="string" FromConstant="" FromDataDef="@FloorLevel" Order="DataDefInputParamConstant" />
+						<rul:Constant Type="string"></rul:Constant>
+					</rul:NotEqual>
+				</rul:Test>
+				<rul:Then>
+					<rul:Sequence>
+						<rul:RunRule Type="string" ToDataDef="@FloodFloorOfInterestCode" FileName="CommercialPropertyFloodCoverageEndorsementSpclClassBusnIncomeRules" Rule="LookupFloodFloorOfInterestCode" ClearCache="true" />
+					</rul:Sequence>
+				</rul:Then>
+				<rul:Else>
+					<rul:Sequence>
+						<rul:Constant Type="string" ToDataDef="@FloodFloorOfInterestCode"></rul:Constant>
+					</rul:Sequence>
+				</rul:Else>
+			</rul:If>
+		</rul:Sequence>
+	</rul:Rule>
+	<rul:Rule Name="ErcProcess" Type="none" DataDefGroup="CommercialPropertyFloodCoverageEndorsementSpclClassBusnIncome">
+		<rul:Sequence>
+			<rul:RunRule Type="none" FileName="CommercialPropertyFloodCoverageEndorsementSpclClassBusnIncomeRules" Rule="ErcRate" ClearCache="true" />
+			<rul:RunRule Type="none" FileName="CommercialPropertyFloodCoverageEndorsementSpclClassBusnIncomeRules" Rule="ErcRunPostUnderwritingLogic" ClearCache="true" />
+			<rul:RunRule Type="none" FileName="CommercialPropertyFloodCoverageEndorsementSpclClassBusnIncomeRules" Rule="ErcSetStatisticalCodes" ClearCache="true" />
+		</rul:Sequence>
+	</rul:Rule>
+	<rul:Rule Name="LookupEQSubLimitPctToTimeElementCoinsurance" Type="string" DataDefGroup="CommercialPropertyFloodCoverageEndorsementSpclClassBusnIncome">
+		<rul:Param Name="insuranceToValue" Type="integer" />
+		<rul:FirstNonNull Type="string">
+			<rul:Lookup Type="string" MatrixCol="CoinsurancePct" MatrixDef="EQSubLimitPctToTimeElementCoinsuranceDef" MatrixFromConstant="EQSubLimitPctToTimeElementCoinsurance" ResultMode="FirstResult">
+				<rul:Keys>
+					<rul:Value Type="string" FromDataDef="/State/@Code" />
+					<rul:Value Type="integer" FromParam="insuranceToValue" />
+				</rul:Keys>
+			</rul:Lookup>
+			<rul:Lookup Type="string" MatrixCol="CoinsurancePct" MatrixDef="EQSubLimitPctToTimeElementCoinsuranceDef" MatrixFromConstant="EQSubLimitPctToTimeElementCoinsurance" ResultMode="SingleResult">
+				<rul:Keys>
+					<rul:Constant Type="string">CW</rul:Constant>
+					<rul:Value Type="integer" FromParam="insuranceToValue" />
+				</rul:Keys>
+			</rul:Lookup>
+		</rul:FirstNonNull>
+	</rul:Rule>
+	<rul:Rule Name="LookupBusnIncomeFactor" Type="decimal" DataDefGroup="CommercialPropertyFloodCoverageEndorsementSpclClassBusnIncome">
+		<rul:Param Name="typeOfRisk" Type="string" />
+		<rul:FirstNonNull Type="decimal">
+			<rul:Lookup Type="decimal" MatrixCol="Factor" MatrixDef="BusnIncomeFactorDef" MatrixFromConstant="BusnIncomeFactor" ResultMode="FirstResult">
+				<rul:Keys>
+					<rul:Value Type="string" FromDataDef="/State/@Code" />
+					<rul:FirstValue Type="string" FromConstant="" FromDataDef="../../@CovType" Order="DataDefInputParamConstant" />
+					<rul:Value Type="string" FromParam="typeOfRisk" />
+					<rul:FirstValue Type="string" FromConstant="" FromDataDef="@Coinsurance" Order="DataDefInputParamConstant" />
+				</rul:Keys>
+			</rul:Lookup>
+			<rul:Lookup Type="decimal" MatrixCol="Factor" MatrixDef="BusnIncomeFactorDef" MatrixFromConstant="BusnIncomeFactor" ResultMode="SingleResult">
+				<rul:Keys>
+					<rul:Constant Type="string">CW</rul:Constant>
+					<rul:FirstValue Type="string" FromConstant="" FromDataDef="../../@CovType" Order="DataDefInputParamConstant" />
+					<rul:Value Type="string" FromParam="typeOfRisk" />
+					<rul:FirstValue Type="string" FromConstant="" FromDataDef="@Coinsurance" Order="DataDefInputParamConstant" />
+				</rul:Keys>
+			</rul:Lookup>
+		</rul:FirstNonNull>
+	</rul:Rule>
+	<rul:Rule Name="LookupAnnualAggregateFactor" Type="decimal" DataDefGroup="CommercialPropertyFloodCoverageEndorsementSpclClassBusnIncome">
+		<rul:FirstNonNull Type="decimal">
+			<rul:Lookup Type="decimal" MatrixCol="Factor" MatrixDef="AnnualAggregateFactorDef" MatrixFromConstant="AnnualAggregateFactor" ResultMode="FirstResult">
+				<rul:Keys>
+					<rul:Value Type="string" FromDataDef="/State/@Code" />
+					<rul:Constant Type="string">Y</rul:Constant>
+				</rul:Keys>
+			</rul:Lookup>
+			<rul:Lookup Type="decimal" MatrixCol="Factor" MatrixDef="AnnualAggregateFactorDef" MatrixFromConstant="AnnualAggregateFactor" ResultMode="SingleResult">
+				<rul:Keys>
+					<rul:Constant Type="string">CW</rul:Constant>
+					<rul:Constant Type="string">Y</rul:Constant>
+				</rul:Keys>
+			</rul:Lookup>
+		</rul:FirstNonNull>
+	</rul:Rule>
+	<rul:Rule Name="LookupFloodLossCost" Type="decimal" DataDefGroup="CommercialPropertyFloodCoverageEndorsementSpclClassBusnIncome">
+		<rul:FirstNonNull Type="decimal">
+			<rul:Lookup Type="decimal" MatrixCol="LossCost" MatrixDef="FloodLossCostDef" MatrixFromConstant="FloodLossCost" ResultMode="FirstResult">
+				<rul:Keys>
+					<rul:Value Type="string" FromDataDef="/State/@Code" />
+					<rul:Constant Type="string">Building</rul:Constant>
+					<rul:FirstValue Type="string" FromConstant="" FromDataDef="@ConstructionType" Order="DataDefInputParamConstant" />
+					<rul:FirstValue Type="string" FromConstant="" FromDataDef="../../../../../../CommercialPropertyFloodCovEndtLocationTable/CommercialPropertyFloodCovEndtLocation[1]/@FloodZone" Order="DataDefInputParamConstant" />
+				</rul:Keys>
+			</rul:Lookup>
+			<rul:Lookup Type="decimal" MatrixCol="LossCost" MatrixDef="FloodLossCostDef" MatrixFromConstant="FloodLossCost" ResultMode="SingleResult">
+				<rul:Keys>
+					<rul:Constant Type="string">CW</rul:Constant>
+					<rul:Constant Type="string">Building</rul:Constant>
+					<rul:FirstValue Type="string" FromConstant="" FromDataDef="@ConstructionType" Order="DataDefInputParamConstant" />
+					<rul:FirstValue Type="string" FromConstant="" FromDataDef="../../../../../../CommercialPropertyFloodCovEndtLocationTable/CommercialPropertyFloodCovEndtLocation[1]/@FloodZone" Order="DataDefInputParamConstant" />
+				</rul:Keys>
+			</rul:Lookup>
+		</rul:FirstNonNull>
+	</rul:Rule>
+	<rul:Rule Name="LookupSublineFloodCoverageWithoutNFIP" Type="string" DataDefGroup="CommercialPropertyFloodCoverageEndorsementSpclClassBusnIncome">
+		<rul:FirstNonNull Type="string">
+			<rul:Lookup Type="string" MatrixCol="Code" MatrixDef="SublineFloodCoverageWithoutNFIPDef" MatrixFromConstant="SublineFloodCoverageWithoutNFIP" ResultMode="FirstResult">
+				<rul:Keys>
+					<rul:Value Type="string" FromDataDef="/State/@Code" />
+					<rul:Constant Type="string">Y</rul:Constant>
+				</rul:Keys>
+			</rul:Lookup>
+			<rul:Lookup Type="string" MatrixCol="Code" MatrixDef="SublineFloodCoverageWithoutNFIPDef" MatrixFromConstant="SublineFloodCoverageWithoutNFIP" ResultMode="SingleResult">
+				<rul:Keys>
+					<rul:Constant Type="string">CW</rul:Constant>
+					<rul:Constant Type="string">Y</rul:Constant>
+				</rul:Keys>
+			</rul:Lookup>
+		</rul:FirstNonNull>
+	</rul:Rule>
+	<rul:Rule Name="LookupFloodRatingIdentificationCode" Type="string" DataDefGroup="CommercialPropertyFloodCoverageEndorsementSpclClassBusnIncome">
+		<rul:FirstNonNull Type="string">
+			<rul:Lookup Type="string" MatrixCol="Code" MatrixDef="FloodRatingIdentificationCodeDef" MatrixFromConstant="FloodRatingIdentificationCode" ResultMode="FirstResult">
+				<rul:Keys>
+					<rul:Value Type="string" FromDataDef="/State/@Code" />
+					<rul:Constant Type="string">Y</rul:Constant>
+				</rul:Keys>
+			</rul:Lookup>
+			<rul:Lookup Type="string" MatrixCol="Code" MatrixDef="FloodRatingIdentificationCodeDef" MatrixFromConstant="FloodRatingIdentificationCode" ResultMode="SingleResult">
+				<rul:Keys>
+					<rul:Constant Type="string">CW</rul:Constant>
+					<rul:Constant Type="string">Y</rul:Constant>
+				</rul:Keys>
+			</rul:Lookup>
+		</rul:FirstNonNull>
+	</rul:Rule>
+	<rul:Rule Name="LookupFloodRatingIdentificationBlanketCode" Type="string" DataDefGroup="CommercialPropertyFloodCoverageEndorsementSpclClassBusnIncome">
+		<rul:FirstNonNull Type="string">
+			<rul:Lookup Type="string" MatrixCol="Code" MatrixDef="FloodRatingIdentificationBlanketCodeDef" MatrixFromConstant="FloodRatingIdentificationBlanketCode" ResultMode="FirstResult">
+				<rul:Keys>
+					<rul:Value Type="string" FromDataDef="/State/@Code" />
+					<rul:Constant Type="string">Y</rul:Constant>
+				</rul:Keys>
+			</rul:Lookup>
+			<rul:Lookup Type="string" MatrixCol="Code" MatrixDef="FloodRatingIdentificationBlanketCodeDef" MatrixFromConstant="FloodRatingIdentificationBlanketCode" ResultMode="SingleResult">
+				<rul:Keys>
+					<rul:Constant Type="string">CW</rul:Constant>
+					<rul:Constant Type="string">Y</rul:Constant>
+				</rul:Keys>
+			</rul:Lookup>
+		</rul:FirstNonNull>
+	</rul:Rule>
+	<rul:Rule Name="LookupFloodBlanketRatingIdentificationCode" Type="string" DataDefGroup="CommercialPropertyFloodCoverageEndorsementSpclClassBusnIncome">
+		<rul:FirstNonNull Type="string">
+			<rul:Lookup Type="string" MatrixCol="Code" MatrixDef="FloodBlanketRatingIdentificationCodeDef" MatrixFromConstant="FloodBlanketRatingIdentificationCode" ResultMode="FirstResult">
+				<rul:Keys>
+					<rul:Value Type="string" FromDataDef="/State/@Code" />
+					<rul:Constant Type="string">Y</rul:Constant>
+				</rul:Keys>
+			</rul:Lookup>
+			<rul:Lookup Type="string" MatrixCol="Code" MatrixDef="FloodBlanketRatingIdentificationCodeDef" MatrixFromConstant="FloodBlanketRatingIdentificationCode" ResultMode="SingleResult">
+				<rul:Keys>
+					<rul:Constant Type="string">CW</rul:Constant>
+					<rul:Constant Type="string">Y</rul:Constant>
+				</rul:Keys>
+			</rul:Lookup>
+		</rul:FirstNonNull>
+	</rul:Rule>
+	<rul:Rule Name="LookupFloodBlanketRatingIdentificationBlanketCode" Type="string" DataDefGroup="CommercialPropertyFloodCoverageEndorsementSpclClassBusnIncome">
+		<rul:FirstNonNull Type="string">
+			<rul:Lookup Type="string" MatrixCol="Code" MatrixDef="FloodBlanketRatingIdentificationBlanketCodeDef" MatrixFromConstant="FloodBlanketRatingIdentificationBlanketCode" ResultMode="FirstResult">
+				<rul:Keys>
+					<rul:Value Type="string" FromDataDef="/State/@Code" />
+					<rul:Constant Type="string">Y</rul:Constant>
+				</rul:Keys>
+			</rul:Lookup>
+			<rul:Lookup Type="string" MatrixCol="Code" MatrixDef="FloodBlanketRatingIdentificationBlanketCodeDef" MatrixFromConstant="FloodBlanketRatingIdentificationBlanketCode" ResultMode="SingleResult">
+				<rul:Keys>
+					<rul:Constant Type="string">CW</rul:Constant>
+					<rul:Constant Type="string">Y</rul:Constant>
+				</rul:Keys>
+			</rul:Lookup>
+		</rul:FirstNonNull>
+	</rul:Rule>
+	<rul:Rule Name="LookupAllOtherConstructionStatCode" Type="string" DataDefGroup="CommercialPropertyFloodCoverageEndorsementSpclClassBusnIncome">
+		<rul:FirstNonNull Type="string">
+			<rul:Lookup Type="string" MatrixCol="Code" MatrixDef="AllOtherConstructionStatCodeDef" MatrixFromConstant="AllOtherConstructionStatCode" ResultMode="FirstResult">
+				<rul:Keys>
+					<rul:Value Type="string" FromDataDef="/State/@Code" />
+					<rul:FirstValue Type="string" FromConstant="" FromDataDef="@ConstructionType" Order="DataDefInputParamConstant" />
+				</rul:Keys>
+			</rul:Lookup>
+			<rul:Lookup Type="string" MatrixCol="Code" MatrixDef="AllOtherConstructionStatCodeDef" MatrixFromConstant="AllOtherConstructionStatCode" ResultMode="SingleResult">
+				<rul:Keys>
+					<rul:Constant Type="string">CW</rul:Constant>
+					<rul:FirstValue Type="string" FromConstant="" FromDataDef="@ConstructionType" Order="DataDefInputParamConstant" />
+				</rul:Keys>
+			</rul:Lookup>
+		</rul:FirstNonNull>
+	</rul:Rule>
+	<rul:Rule Name="LookupAdditionalFloodConstructionCode" Type="string" DataDefGroup="CommercialPropertyFloodCoverageEndorsementSpclClassBusnIncome">
+		<rul:FirstNonNull Type="string">
+			<rul:Lookup Type="string" MatrixCol="Code" MatrixDef="AdditionalFloodConstructionCodeDef" MatrixFromConstant="AdditionalFloodConstructionCode" ResultMode="FirstResult">
+				<rul:Keys>
+					<rul:Value Type="string" FromDataDef="/State/@Code" />
+					<rul:FirstValue Type="string" FromConstant="" FromDataDef="@AdditionalConstructionType" Order="DataDefInputParamConstant" />
+				</rul:Keys>
+			</rul:Lookup>
+			<rul:Lookup Type="string" MatrixCol="Code" MatrixDef="AdditionalFloodConstructionCodeDef" MatrixFromConstant="AdditionalFloodConstructionCode" ResultMode="SingleResult">
+				<rul:Keys>
+					<rul:Constant Type="string">CW</rul:Constant>
+					<rul:FirstValue Type="string" FromConstant="" FromDataDef="@AdditionalConstructionType" Order="DataDefInputParamConstant" />
+				</rul:Keys>
+			</rul:Lookup>
+		</rul:FirstNonNull>
+	</rul:Rule>
+	<rul:Rule Name="LookupFloodNumberOfStoriesCode" Type="string" DataDefGroup="CommercialPropertyFloodCoverageEndorsementSpclClassBusnIncome">
+		<rul:FirstNonNull Type="string">
+			<rul:Lookup Type="string" MatrixCol="Code" MatrixDef="FloodNumberOfStoriesCodeDef" MatrixFromConstant="FloodNumberOfStoriesCode" ResultMode="FirstResult">
+				<rul:Keys>
+					<rul:Value Type="string" FromDataDef="/State/@Code" />
+					<rul:FirstValue Type="string" FromConstant="" FromDataDef="@NumberOfStories" Order="DataDefInputParamConstant" />
+				</rul:Keys>
+			</rul:Lookup>
+			<rul:Lookup Type="string" MatrixCol="Code" MatrixDef="FloodNumberOfStoriesCodeDef" MatrixFromConstant="FloodNumberOfStoriesCode" ResultMode="SingleResult">
+				<rul:Keys>
+					<rul:Constant Type="string">CW</rul:Constant>
+					<rul:FirstValue Type="string" FromConstant="" FromDataDef="@NumberOfStories" Order="DataDefInputParamConstant" />
+				</rul:Keys>
+			</rul:Lookup>
+		</rul:FirstNonNull>
+	</rul:Rule>
+	<rul:Rule Name="LookupFloodFloorOfInterestCode" Type="string" DataDefGroup="CommercialPropertyFloodCoverageEndorsementSpclClassBusnIncome">
+		<rul:FirstNonNull Type="string">
+			<rul:Lookup Type="string" MatrixCol="Code" MatrixDef="FloodFloorOfInterestCodeDef" MatrixFromConstant="FloodFloorOfInterestCode" ResultMode="FirstResult">
+				<rul:Keys>
+					<rul:Value Type="string" FromDataDef="/State/@Code" />
+					<rul:FirstValue Type="string" FromConstant="" FromDataDef="@FloorLevel" Order="DataDefInputParamConstant" />
+				</rul:Keys>
+			</rul:Lookup>
+			<rul:Lookup Type="string" MatrixCol="Code" MatrixDef="FloodFloorOfInterestCodeDef" MatrixFromConstant="FloodFloorOfInterestCode" ResultMode="SingleResult">
+				<rul:Keys>
+					<rul:Constant Type="string">CW</rul:Constant>
+					<rul:FirstValue Type="string" FromConstant="" FromDataDef="@FloorLevel" Order="DataDefInputParamConstant" />
+				</rul:Keys>
+			</rul:Lookup>
+		</rul:FirstNonNull>
+	</rul:Rule>
+</rul:Rules>

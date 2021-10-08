@@ -1,0 +1,4 @@
+"StateCode","JewelryAndWatchesIndicator","DisplayValue","DataValue","MinimumValue","MaximumValue"
+"CW","Not Applicable","","",2501,99999999
+"CW","Worth $100 or less per item","","",1,99999999
+"CW","Worth more than $100 per item","","",2501,99999999

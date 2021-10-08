@@ -1,0 +1,272 @@
+<rul:Rules xmlns:rul="http://www.verisk.com/iso/erc/Rule">
+	<rul:Rule Name="InitializeRuleSet" DataDefGroup="CommercialPropertyCivilAuthorityIncreasedCoveragePeriodSpclClassBusnIncome">
+		<rul:Sequence>
+			<rul:ForEach AtDataDef="CommercialPropertyCivilAuthorityChangesSpclClassBusnIncomeDetailTable/CommercialPropertyCivilAuthorityChangesSpclClassBusnIncomeDetail">
+				<rul:RunRule Type="none" FileName="CommercialPropertyCivilAuthorityChangesSpclClassBusnIncomeDetailRules" Rule="InitializeRuleSet" ClearCache="true" />
+			</rul:ForEach>
+			<rul:Locate AtDataDef="CommercialPropertyCivilAuthorityIncreasedCoveragePeriodSpclClassBusnIncomeBasicGroupICoverage">
+				<rul:RunRule Type="none" FileName="CommercialPropertyCivilAuthorityIncreasedCoveragePeriodSpclClassBusnIncomeBasicGroupICoverageRules" Rule="InitializeRuleSet" ClearCache="true" />
+			</rul:Locate>
+			<rul:Locate AtDataDef="CommercialPropertyCivilAuthorityIncreasedCoveragePeriodSpclClassBusnIncomeBasicGroupIICoverage">
+				<rul:RunRule Type="none" FileName="CommercialPropertyCivilAuthorityIncreasedCoveragePeriodSpclClassBusnIncomeBasicGroupIICoverageRules" Rule="InitializeRuleSet" ClearCache="true" />
+			</rul:Locate>
+			<rul:Locate AtDataDef="CommercialPropertyCivilAuthorityIncreasedCoveragePeriodSpclClassBusnIncomeBroadCoverage">
+				<rul:RunRule Type="none" FileName="CommercialPropertyCivilAuthorityIncreasedCoveragePeriodSpclClassBusnIncomeBroadCoverageRules" Rule="InitializeRuleSet" ClearCache="true" />
+			</rul:Locate>
+			<rul:Locate AtDataDef="CommercialPropertyCivilAuthorityIncreasedCoveragePeriodSpclClassBusnIncomeEarthquakeCoverage">
+				<rul:RunRule Type="none" FileName="CommercialPropertyCivilAuthorityIncreasedCoveragePeriodSpclClassBusnIncomeEarthquakeCoverageRules" Rule="InitializeRuleSet" ClearCache="true" />
+			</rul:Locate>
+			<rul:Locate AtDataDef="CommercialPropertyCivilAuthorityIncreasedCoveragePeriodSpclClassBusnIncomeRadiusCoverage">
+				<rul:RunRule Type="none" FileName="CommercialPropertyCivilAuthorityIncreasedCoveragePeriodSpclClassBusnIncomeRadiusCoverageRules" Rule="InitializeRuleSet" ClearCache="true" />
+			</rul:Locate>
+			<rul:Locate AtDataDef="CommercialPropertyCivilAuthorityIncreasedCoveragePeriodSpclClassBusnIncomeSpecialCoverage">
+				<rul:RunRule Type="none" FileName="CommercialPropertyCivilAuthorityIncreasedCoveragePeriodSpclClassBusnIncomeSpecialCoverageRules" Rule="InitializeRuleSet" ClearCache="true" />
+			</rul:Locate>
+		</rul:Sequence>
+	</rul:Rule>
+	<rul:Rule Name="CalculateTotalPremium" Type="decimal" DataDefGroup="CommercialPropertyCivilAuthorityIncreasedCoveragePeriodSpclClassBusnIncome">
+		<rul:Sum>
+			<rul:ForEach AtDataDef="CommercialPropertyCivilAuthorityChangesSpclClassBusnIncomeDetailTable/CommercialPropertyCivilAuthorityChangesSpclClassBusnIncomeDetail">
+				<rul:RunRule Type="decimal" FileName="CommercialPropertyCivilAuthorityChangesSpclClassBusnIncomeDetailRules" Rule="CalculateTotalPremium" ClearCache="true" />
+			</rul:ForEach>
+			<rul:Locate AtDataDef="CommercialPropertyCivilAuthorityIncreasedCoveragePeriodSpclClassBusnIncomeBasicGroupICoverage">
+				<rul:RunRule Type="decimal" FileName="CommercialPropertyCivilAuthorityIncreasedCoveragePeriodSpclClassBusnIncomeBasicGroupICoverageRules" Rule="CalculateTotalPremium" ClearCache="true" />
+			</rul:Locate>
+			<rul:Locate AtDataDef="CommercialPropertyCivilAuthorityIncreasedCoveragePeriodSpclClassBusnIncomeBasicGroupIICoverage">
+				<rul:RunRule Type="decimal" FileName="CommercialPropertyCivilAuthorityIncreasedCoveragePeriodSpclClassBusnIncomeBasicGroupIICoverageRules" Rule="CalculateTotalPremium" ClearCache="true" />
+			</rul:Locate>
+			<rul:Locate AtDataDef="CommercialPropertyCivilAuthorityIncreasedCoveragePeriodSpclClassBusnIncomeBroadCoverage">
+				<rul:RunRule Type="decimal" FileName="CommercialPropertyCivilAuthorityIncreasedCoveragePeriodSpclClassBusnIncomeBroadCoverageRules" Rule="CalculateTotalPremium" ClearCache="true" />
+			</rul:Locate>
+			<rul:Locate AtDataDef="CommercialPropertyCivilAuthorityIncreasedCoveragePeriodSpclClassBusnIncomeEarthquakeCoverage">
+				<rul:RunRule Type="decimal" FileName="CommercialPropertyCivilAuthorityIncreasedCoveragePeriodSpclClassBusnIncomeEarthquakeCoverageRules" Rule="CalculateTotalPremium" ClearCache="true" />
+			</rul:Locate>
+			<rul:Locate AtDataDef="CommercialPropertyCivilAuthorityIncreasedCoveragePeriodSpclClassBusnIncomeRadiusCoverage">
+				<rul:RunRule Type="decimal" FileName="CommercialPropertyCivilAuthorityIncreasedCoveragePeriodSpclClassBusnIncomeRadiusCoverageRules" Rule="CalculateTotalPremium" ClearCache="true" />
+			</rul:Locate>
+			<rul:Locate AtDataDef="CommercialPropertyCivilAuthorityIncreasedCoveragePeriodSpclClassBusnIncomeSpecialCoverage">
+				<rul:RunRule Type="decimal" FileName="CommercialPropertyCivilAuthorityIncreasedCoveragePeriodSpclClassBusnIncomeSpecialCoverageRules" Rule="CalculateTotalPremium" ClearCache="true" />
+			</rul:Locate>
+			<rul:If>
+				<rul:Test>
+					<rul:And>
+						<rul:Equal>
+							<rul:FirstValue Type="integer" FromConstant="0" FromDataDef="@PremiumIndicator" Order="DataDefInputParamConstant" />
+							<rul:Constant Type="integer">1</rul:Constant>
+						</rul:Equal>
+						<rul:NotEqual>
+							<rul:FirstValue Type="decimal" FromConstant="0" FromDataDef="@Premium" Order="DataDefInputParamConstant" />
+							<rul:Constant Type="decimal">0</rul:Constant>
+						</rul:NotEqual>
+					</rul:And>
+				</rul:Test>
+				<rul:Then>
+					<rul:FirstValue Type="decimal" FromConstant="0" FromDataDef="@Premium" Order="DataDefInputParamConstant" />
+				</rul:Then>
+				<rul:Else>
+					<rul:Constant Type="decimal">0</rul:Constant>
+				</rul:Else>
+			</rul:If>
+		</rul:Sum>
+	</rul:Rule>
+	<rul:Rule Name="ErcSetRatesAndFactors" Type="none" DataDefGroup="CommercialPropertyCivilAuthorityIncreasedCoveragePeriodSpclClassBusnIncome">
+		<rul:Sequence>
+			<rul:Copy Type="string" ToDataDef="@MaxPeriod" FromDataDef="../../@MaxPeriod" />
+			<rul:If>
+				<rul:Test>
+					<rul:NotEqual>
+						<rul:FirstValue Type="string" FromConstant="" FromDataDef="@IncreasedCoveragePeriod" Order="DataDefInputParamConstant" />
+						<rul:Constant Type="string"></rul:Constant>
+					</rul:NotEqual>
+				</rul:Test>
+				<rul:Then>
+					<rul:Sequence>
+						<rul:RunRule Type="decimal" ToDataDef="@BaseFactor" FileName="CommercialPropertyCivilAuthorityIncreasedCoveragePeriodSpclClassBusnIncomeRules" Rule="LookupCivilAuthorityIncreasedCoveragePeriodEndtFactor" ClearCache="true" />
+					</rul:Sequence>
+				</rul:Then>
+				<rul:Else>
+					<rul:Sequence>
+						<rul:Constant Type="decimal" ToDataDef="@BaseFactor">1.0</rul:Constant>
+					</rul:Sequence>
+				</rul:Else>
+			</rul:If>
+			<rul:Round ToDataDef="@Factor" DecimalPlaces="3">
+				<rul:Subtract>
+					<rul:Value Type="decimal" FromDataDef="@BaseFactor" />
+					<rul:Constant Type="integer">1</rul:Constant>
+				</rul:Subtract>
+			</rul:Round>
+		</rul:Sequence>
+	</rul:Rule>
+	<rul:Rule Name="ErcRate" Type="none" DataDefGroup="CommercialPropertyCivilAuthorityIncreasedCoveragePeriodSpclClassBusnIncome">
+		<rul:Sequence>
+			<rul:Sum ToDataDef="@IncreasedCoveragePremium">
+				<rul:Value Type="decimal" FromDataDef="CommercialPropertyCivilAuthorityIncreasedCoveragePeriodSpclClassBusnIncomeBasicGroupICoverage/@Premium" />
+				<rul:Value Type="decimal" FromDataDef="CommercialPropertyCivilAuthorityIncreasedCoveragePeriodSpclClassBusnIncomeBasicGroupIICoverage/@Premium" />
+				<rul:Value Type="decimal" FromDataDef="CommercialPropertyCivilAuthorityIncreasedCoveragePeriodSpclClassBusnIncomeBroadCoverage/@Premium" />
+				<rul:Value Type="decimal" FromDataDef="CommercialPropertyCivilAuthorityIncreasedCoveragePeriodSpclClassBusnIncomeSpecialCoverage/@Premium" />
+				<rul:Value Type="decimal" FromDataDef="CommercialPropertyCivilAuthorityIncreasedCoveragePeriodSpclClassBusnIncomeEarthquakeCoverage/@Premium" />
+				<rul:Value Type="decimal" FromDataDef="CommercialPropertyCivilAuthorityIncreasedCoveragePeriodSpclClassBusnIncomeRadiusCoverage/@Premium" />
+			</rul:Sum>
+		</rul:Sequence>
+	</rul:Rule>
+	<rul:Rule Name="ErcSetStatisticalCodes" Type="none" DataDefGroup="CommercialPropertyCivilAuthorityIncreasedCoveragePeriodSpclClassBusnIncome">
+		<rul:Sequence>
+			<rul:If>
+				<rul:Test>
+					<rul:Exist AtInputDataDef="ancestor::MasterCFCW/Policy" />
+				</rul:Test>
+				<rul:Then>
+					<rul:Sequence>
+						<rul:WithArgs>
+							<rul:Arg Type="integer" Param="calcExposureStatAmount">
+								<rul:FirstNonNull Type="integer">
+									<rul:Choose>
+										<rul:When>
+											<rul:Test>
+												<rul:Equal>
+													<rul:FirstValue Type="string" FromConstant="" FromDataDef="../../@IncludedInBlkt" Order="DataDefInputParamConstant" />
+													<rul:Constant Type="string">No</rul:Constant>
+												</rul:Equal>
+											</rul:Test>
+											<rul:Then>
+												<rul:Convert Type="integer">
+													<rul:Truncate>
+														<rul:Divide>
+															<rul:Value Type="integer" FromDataDef="../../@Limit" />
+															<rul:Constant Type="integer">1000</rul:Constant>
+														</rul:Divide>
+													</rul:Truncate>
+												</rul:Convert>
+											</rul:Then>
+										</rul:When>
+										<rul:When>
+											<rul:Test>
+												<rul:Equal>
+													<rul:FirstValue Type="string" FromConstant="" FromDataDef="../../@IncludedInBlkt" Order="DataDefInputParamConstant" />
+													<rul:Constant Type="string">Yes</rul:Constant>
+												</rul:Equal>
+											</rul:Test>
+											<rul:Then>
+												<rul:WithArgs>
+													<rul:Arg Type="integer" Param="blanketLimit">
+														<rul:FirstNonNull Type="integer">
+															<rul:If>
+																<rul:Test>
+																	<rul:Equal>
+																		<rul:FirstValue Type="string" FromConstant="" FromDataDef="../../@IncludedInBlkt" Order="DataDefInputParamConstant" />
+																		<rul:Constant Type="string">Yes</rul:Constant>
+																	</rul:Equal>
+																</rul:Test>
+																<rul:Then>
+																	<rul:If>
+																		<rul:Test>
+																			<rul:IsNotNull>
+																				<rul:Value Type="integer" FromDataDef="../../@BlktLimit" />
+																			</rul:IsNotNull>
+																		</rul:Test>
+																		<rul:Then>
+																			<rul:FirstValue Type="integer" FromConstant="0" FromDataDef="../../@BlktLimit" Order="DataDefInputParamConstant" />
+																		</rul:Then>
+																	</rul:If>
+																</rul:Then>
+															</rul:If>
+															<rul:Constant Type="integer">0</rul:Constant>
+														</rul:FirstNonNull>
+													</rul:Arg>
+													<rul:Arg Type="decimal" Param="blktProportion">
+														<rul:FirstNonNull Type="decimal">
+															<rul:If>
+																<rul:Test>
+																	<rul:Equal>
+																		<rul:FirstValue Type="string" FromConstant="" FromDataDef="../../@IncludedInBlkt" Order="DataDefInputParamConstant" />
+																		<rul:Constant Type="string">Yes</rul:Constant>
+																	</rul:Equal>
+																</rul:Test>
+																<rul:Then>
+																	<rul:If>
+																		<rul:Test>
+																			<rul:IsNotNull>
+																				<rul:Value Type="decimal" FromDataDef="../../@BlktProportion" />
+																			</rul:IsNotNull>
+																		</rul:Test>
+																		<rul:Then>
+																			<rul:FirstValue Type="decimal" FromConstant="0" FromDataDef="../../@BlktProportion" Order="DataDefInputParamConstant" />
+																		</rul:Then>
+																	</rul:If>
+																</rul:Then>
+															</rul:If>
+															<rul:Constant Type="decimal">0</rul:Constant>
+														</rul:FirstNonNull>
+													</rul:Arg>
+													<rul:Truncate>
+														<rul:Divide DecimalPlaces="0">
+															<rul:Product>
+																<rul:Value Type="integer" FromParam="blanketLimit" />
+																<rul:Value Type="decimal" FromParam="blktProportion" />
+															</rul:Product>
+															<rul:Constant Type="integer">1000</rul:Constant>
+														</rul:Divide>
+													</rul:Truncate>
+												</rul:WithArgs>
+											</rul:Then>
+										</rul:When>
+										<rul:Otherwise>
+											<rul:Constant Type="integer">0</rul:Constant>
+										</rul:Otherwise>
+									</rul:Choose>
+									<rul:Constant Type="integer">0</rul:Constant>
+								</rul:FirstNonNull>
+							</rul:Arg>
+							<rul:Value Type="integer" ToDataDef="@ExposureStatAmount" FromParam="calcExposureStatAmount" />
+						</rul:WithArgs>
+					</rul:Sequence>
+				</rul:Then>
+			</rul:If>
+		</rul:Sequence>
+	</rul:Rule>
+	<rul:Rule Name="ErcProcess" Type="none" DataDefGroup="CommercialPropertyCivilAuthorityIncreasedCoveragePeriodSpclClassBusnIncome">
+		<rul:Sequence>
+			<rul:RunRule Type="none" FileName="CommercialPropertyCivilAuthorityIncreasedCoveragePeriodSpclClassBusnIncomeRules" Rule="ErcSetRatesAndFactors" ClearCache="true" />
+			<rul:Locate AtDataDef="CommercialPropertyCivilAuthorityIncreasedCoveragePeriodSpclClassBusnIncomeBasicGroupICoverage">
+				<rul:RunRule Type="none" FileName="CommercialPropertyCivilAuthorityIncreasedCoveragePeriodSpclClassBusnIncomeBasicGroupICoverageRules" Rule="ErcProcess" ClearCache="true" />
+			</rul:Locate>
+			<rul:Locate AtDataDef="CommercialPropertyCivilAuthorityIncreasedCoveragePeriodSpclClassBusnIncomeBasicGroupIICoverage">
+				<rul:RunRule Type="none" FileName="CommercialPropertyCivilAuthorityIncreasedCoveragePeriodSpclClassBusnIncomeBasicGroupIICoverageRules" Rule="ErcProcess" ClearCache="true" />
+			</rul:Locate>
+			<rul:Locate AtDataDef="CommercialPropertyCivilAuthorityIncreasedCoveragePeriodSpclClassBusnIncomeBroadCoverage">
+				<rul:RunRule Type="none" FileName="CommercialPropertyCivilAuthorityIncreasedCoveragePeriodSpclClassBusnIncomeBroadCoverageRules" Rule="ErcProcess" ClearCache="true" />
+			</rul:Locate>
+			<rul:Locate AtDataDef="CommercialPropertyCivilAuthorityIncreasedCoveragePeriodSpclClassBusnIncomeEarthquakeCoverage">
+				<rul:RunRule Type="none" FileName="CommercialPropertyCivilAuthorityIncreasedCoveragePeriodSpclClassBusnIncomeEarthquakeCoverageRules" Rule="ErcProcess" ClearCache="true" />
+			</rul:Locate>
+			<rul:Locate AtDataDef="CommercialPropertyCivilAuthorityIncreasedCoveragePeriodSpclClassBusnIncomeRadiusCoverage">
+				<rul:RunRule Type="none" FileName="CommercialPropertyCivilAuthorityIncreasedCoveragePeriodSpclClassBusnIncomeRadiusCoverageRules" Rule="ErcProcess" ClearCache="true" />
+			</rul:Locate>
+			<rul:Locate AtDataDef="CommercialPropertyCivilAuthorityIncreasedCoveragePeriodSpclClassBusnIncomeSpecialCoverage">
+				<rul:RunRule Type="none" FileName="CommercialPropertyCivilAuthorityIncreasedCoveragePeriodSpclClassBusnIncomeSpecialCoverageRules" Rule="ErcProcess" ClearCache="true" />
+			</rul:Locate>
+			<rul:RunRule Type="none" FileName="CommercialPropertyCivilAuthorityIncreasedCoveragePeriodSpclClassBusnIncomeRules" Rule="ErcRate" ClearCache="true" />
+			<rul:RunRule Type="none" FileName="CommercialPropertyCivilAuthorityIncreasedCoveragePeriodSpclClassBusnIncomeRules" Rule="ErcSetStatisticalCodes" ClearCache="true" />
+			<rul:ForEach AtDataDef="CommercialPropertyCivilAuthorityChangesSpclClassBusnIncomeDetailTable/CommercialPropertyCivilAuthorityChangesSpclClassBusnIncomeDetail">
+				<rul:RunRule Type="none" FileName="CommercialPropertyCivilAuthorityChangesSpclClassBusnIncomeDetailRules" Rule="ErcProcess" ClearCache="true" />
+			</rul:ForEach>
+		</rul:Sequence>
+	</rul:Rule>
+	<rul:Rule Name="LookupCivilAuthorityIncreasedCoveragePeriodEndtFactor" Type="decimal" DataDefGroup="CommercialPropertyCivilAuthorityIncreasedCoveragePeriodSpclClassBusnIncome">
+		<rul:FirstNonNull Type="decimal">
+			<rul:Lookup Type="decimal" MatrixCol="Factor" MatrixDef="CivilAuthorityIncreasedCoveragePeriodEndtFactorDef" MatrixFromConstant="CivilAuthorityIncreasedCoveragePeriodEndtFactor" ResultMode="FirstResult">
+				<rul:Keys>
+					<rul:Value Type="string" FromDataDef="/State/@Code" />
+					<rul:FirstValue Type="string" FromConstant="" FromDataDef="@IncreasedCoveragePeriod" Order="DataDefInputParamConstant" />
+				</rul:Keys>
+			</rul:Lookup>
+			<rul:Lookup Type="decimal" MatrixCol="Factor" MatrixDef="CivilAuthorityIncreasedCoveragePeriodEndtFactorDef" MatrixFromConstant="CivilAuthorityIncreasedCoveragePeriodEndtFactor" ResultMode="SingleResult">
+				<rul:Keys>
+					<rul:Constant Type="string">CW</rul:Constant>
+					<rul:FirstValue Type="string" FromConstant="" FromDataDef="@IncreasedCoveragePeriod" Order="DataDefInputParamConstant" />
+				</rul:Keys>
+			</rul:Lookup>
+		</rul:FirstNonNull>
+	</rul:Rule>
+</rul:Rules>

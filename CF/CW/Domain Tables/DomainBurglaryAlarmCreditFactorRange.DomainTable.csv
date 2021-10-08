@@ -1,0 +1,5 @@
+"StateCode","BurglaryAlarmSystemType","DisplayValue","DataValue","MinimumValue","MaximumValue"
+"CW","Not Applicable","","",1,1
+"CW","Central Station With Keys","","",0.73,0.92
+"CW","Central Station Without Keys","","",0.78,0.92
+"CW","Local Alarm","","",0.89,0.97

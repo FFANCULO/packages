@@ -1,0 +1,5 @@
+"StateCode","Description","Code"
+"CW","Drone (separate limit per drone)","S"
+"CW","Drone (blanket limit)","T"
+"CW","Drone and Related Equipment (combined single limit)","U"
+"CW","Drone and Related Equipment (blanket limit)","V"

@@ -1,0 +1,118 @@
+<rul:Rules xmlns:rul="http://www.verisk.com/iso/erc/Rule">
+	<rul:Rule Name="InitializeRuleSet" DataDefGroup="CommercialPropertyHigherLimitsLocation">
+		<rul:Sequence />
+	</rul:Rule>
+	<rul:Rule Name="CalculateTotalPremium" Type="decimal" DataDefGroup="CommercialPropertyHigherLimitsLocation">
+		<rul:If>
+			<rul:Test>
+				<rul:And>
+					<rul:Equal>
+						<rul:FirstValue Type="integer" FromConstant="0" FromDataDef="@PremiumIndicator" Order="DataDefInputParamConstant" />
+						<rul:Constant Type="integer">1</rul:Constant>
+					</rul:Equal>
+					<rul:NotEqual>
+						<rul:FirstValue Type="decimal" FromConstant="0" FromDataDef="@Premium" Order="DataDefInputParamConstant" />
+						<rul:Constant Type="decimal">0</rul:Constant>
+					</rul:NotEqual>
+				</rul:And>
+			</rul:Test>
+			<rul:Then>
+				<rul:FirstValue Type="decimal" FromConstant="0" FromDataDef="@Premium" Order="DataDefInputParamConstant" />
+			</rul:Then>
+			<rul:Else>
+				<rul:Constant Type="decimal">0</rul:Constant>
+			</rul:Else>
+		</rul:If>
+	</rul:Rule>
+	<rul:Rule Name="SetValues" Type="none" DataDefGroup="CommercialPropertyHigherLimitsLocation">
+		<rul:Sequence>
+			<rul:RunRule Type="none" FileName="CommercialPropertyHigherLimitsLocationRules" Rule="SetFireDepartmentValues" ClearCache="true" />
+			<rul:RunRule Type="none" FileName="CommercialPropertyHigherLimitsLocationRules" Rule="SetNewlyAcquiredLocationTimeElementValues" ClearCache="true" />
+		</rul:Sequence>
+	</rul:Rule>
+	<rul:Rule Name="SetFireDepartmentValues" Type="none" DataDefGroup="CommercialPropertyHigherLimitsLocation">
+		<rul:Sequence>
+			<rul:RunRule Type="none" FileName="CommercialPropertyHigherLimitsLocationRules" Rule="SetFireDepartmentChargeIndicator" ClearCache="true" />
+			<rul:If>
+				<rul:Test>
+					<rul:Equal>
+						<rul:FirstValue Type="string" FromConstant="" FromDataDef="@FireDepartmentChargeIndicator" Order="DataDefInputParamConstant" />
+						<rul:Constant Type="string">Yes</rul:Constant>
+					</rul:Equal>
+				</rul:Test>
+				<rul:Then>
+					<rul:Sequence>
+						<rul:RunRule Type="none" FileName="CommercialPropertyHigherLimitsLocationRules" Rule="SetFireDepartmentChargeCoverage" ClearCache="true" />
+						<rul:RunRule Type="none" FileName="CommercialPropertyHigherLimitsLocationRules" Rule="SetFireDepartmentChargeLimit" ClearCache="true" />
+						<rul:RunRule Type="none" FileName="CommercialPropertyHigherLimitsLocationRules" Rule="SetFireDepartmentChargeGeneratedPremium" ClearCache="true" />
+					</rul:Sequence>
+				</rul:Then>
+			</rul:If>
+		</rul:Sequence>
+	</rul:Rule>
+	<rul:Rule Name="SetFireDepartmentChargeIndicator" Type="none" DataDefGroup="CommercialPropertyHigherLimitsLocation">
+		<rul:Sequence>
+			<rul:Copy Type="string" ToDataDef="@FireDepartmentChargeIndicator" FromDataDef="../../CommercialPropertyLocationFireDepartmentCharge/@FireIncreaseLimitApplyOnPolicyIndicator" />
+		</rul:Sequence>
+	</rul:Rule>
+	<rul:Rule Name="SetFireDepartmentChargeCoverage" Type="none" DataDefGroup="CommercialPropertyHigherLimitsLocation">
+		<rul:Sequence>
+			<rul:Constant Type="string" ToDataDef="@FireDepartmentChargeCoverage">Fire Department Service Charge</rul:Constant>
+		</rul:Sequence>
+	</rul:Rule>
+	<rul:Rule Name="SetFireDepartmentChargeLimit" Type="none" DataDefGroup="CommercialPropertyHigherLimitsLocation">
+		<rul:Sequence>
+			<rul:Copy Type="integer" ToDataDef="@FireDepartmentChargeLimit" FromDataDef="../../CommercialPropertyLocationFireDepartmentCharge/@Limit" />
+		</rul:Sequence>
+	</rul:Rule>
+	<rul:Rule Name="SetFireDepartmentChargeGeneratedPremium" Type="none" DataDefGroup="CommercialPropertyHigherLimitsLocation">
+		<rul:Sequence>
+			<rul:Copy Type="decimal" ToDataDef="@FireDepartmentChargeGeneratedPremium" FromDataDef="../../CommercialPropertyLocationFireDepartmentCharge/@Premium" />
+		</rul:Sequence>
+	</rul:Rule>
+	<rul:Rule Name="SetNewlyAcquiredLocationTimeElementValues" Type="none" DataDefGroup="CommercialPropertyHigherLimitsLocation">
+		<rul:Sequence>
+			<rul:RunRule Type="none" FileName="CommercialPropertyHigherLimitsLocationRules" Rule="SetNewlyAcquiredLocationTimeElementIndicator" ClearCache="true" />
+			<rul:If>
+				<rul:Test>
+					<rul:Equal>
+						<rul:FirstValue Type="string" FromConstant="" FromDataDef="@NewlyAcquiredLocationTimeElementIndicator" Order="DataDefInputParamConstant" />
+						<rul:Constant Type="string">Yes</rul:Constant>
+					</rul:Equal>
+				</rul:Test>
+				<rul:Then>
+					<rul:Sequence>
+						<rul:RunRule Type="none" FileName="CommercialPropertyHigherLimitsLocationRules" Rule="SetNewlyAcquiredLocationTimeElementCoverage" ClearCache="true" />
+						<rul:RunRule Type="none" FileName="CommercialPropertyHigherLimitsLocationRules" Rule="SetNewlyAcquiredLocationTimeElementLimit" ClearCache="true" />
+						<rul:RunRule Type="none" FileName="CommercialPropertyHigherLimitsLocationRules" Rule="SetNewlyAcquiredLocationTimeElementGeneratedPremium" ClearCache="true" />
+					</rul:Sequence>
+				</rul:Then>
+			</rul:If>
+		</rul:Sequence>
+	</rul:Rule>
+	<rul:Rule Name="SetNewlyAcquiredLocationTimeElementIndicator" Type="none" DataDefGroup="CommercialPropertyHigherLimitsLocation">
+		<rul:Sequence>
+			<rul:Copy Type="string" ToDataDef="@NewlyAcquiredLocationTimeElementIndicator" FromDataDef="../../CommercialPropertyLocationNewlyAcquiredLocationTimeElement/@Indicator" />
+		</rul:Sequence>
+	</rul:Rule>
+	<rul:Rule Name="SetNewlyAcquiredLocationTimeElementCoverage" Type="none" DataDefGroup="CommercialPropertyHigherLimitsLocation">
+		<rul:Sequence>
+			<rul:Constant Type="string" ToDataDef="@NewlyAcquiredLocationTimeElementCoverage">Newly Acquired Locations - Time Element</rul:Constant>
+		</rul:Sequence>
+	</rul:Rule>
+	<rul:Rule Name="SetNewlyAcquiredLocationTimeElementLimit" Type="none" DataDefGroup="CommercialPropertyHigherLimitsLocation">
+		<rul:Sequence>
+			<rul:Copy Type="integer" ToDataDef="@NewlyAcquiredLocationTimeElementLimit" FromDataDef="../../CommercialPropertyLocationNewlyAcquiredLocationTimeElement/@Limit" />
+		</rul:Sequence>
+	</rul:Rule>
+	<rul:Rule Name="SetNewlyAcquiredLocationTimeElementGeneratedPremium" Type="none" DataDefGroup="CommercialPropertyHigherLimitsLocation">
+		<rul:Sequence>
+			<rul:Copy Type="decimal" ToDataDef="@NewlyAcquiredLocationTimeElementGeneratedPremium" FromDataDef="../../CommercialPropertyLocationNewlyAcquiredLocationTimeElement/@Premium" />
+		</rul:Sequence>
+	</rul:Rule>
+	<rul:Rule Name="ErcProcess" Type="none" DataDefGroup="CommercialPropertyHigherLimitsLocation">
+		<rul:Sequence>
+			<rul:RunRule Type="none" FileName="CommercialPropertyHigherLimitsLocationRules" Rule="SetValues" ClearCache="true" />
+		</rul:Sequence>
+	</rul:Rule>
+</rul:Rules>

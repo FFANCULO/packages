@@ -1,0 +1,6 @@
+"StateCode","CauseOfLoss","Factor"
+"CW","Basic Group I",0.1
+"CW","Basic Group II",0.15
+"CW","Broad",0.1
+"CW","Special",0.1
+"CW","Earthquake",0.1

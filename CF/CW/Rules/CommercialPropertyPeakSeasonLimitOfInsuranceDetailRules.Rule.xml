@@ -1,0 +1,666 @@
+<rul:Rules xmlns:rul="http://www.verisk.com/iso/erc/Rule">
+	<rul:Rule Name="InitializeRuleSet" DataDefGroup="CommercialPropertyPeakSeasonLimitOfInsuranceDetail">
+		<rul:Sequence>
+			<rul:Locate AtDataDef="CommercialPropertyPeakSeasonLimitOfInsuranceDetailBasicGroupICoverage">
+				<rul:RunRule Type="none" FileName="CommercialPropertyPeakSeasonLimitOfInsuranceDetailBasicGroupICoverageRules" Rule="InitializeRuleSet" ClearCache="true" />
+			</rul:Locate>
+			<rul:Locate AtDataDef="CommercialPropertyPeakSeasonLimitOfInsuranceDetailBasicGroupIICoverage">
+				<rul:RunRule Type="none" FileName="CommercialPropertyPeakSeasonLimitOfInsuranceDetailBasicGroupIICoverageRules" Rule="InitializeRuleSet" ClearCache="true" />
+			</rul:Locate>
+			<rul:Locate AtDataDef="CommercialPropertyPeakSeasonLimitOfInsuranceDetailBroadCoverage">
+				<rul:RunRule Type="none" FileName="CommercialPropertyPeakSeasonLimitOfInsuranceDetailBroadCoverageRules" Rule="InitializeRuleSet" ClearCache="true" />
+			</rul:Locate>
+			<rul:Locate AtDataDef="CommercialPropertyPeakSeasonLimitOfInsuranceDetailEarthquakeCoverage">
+				<rul:RunRule Type="none" FileName="CommercialPropertyPeakSeasonLimitOfInsuranceDetailEarthquakeCoverageRules" Rule="InitializeRuleSet" ClearCache="true" />
+			</rul:Locate>
+			<rul:Locate AtDataDef="CommercialPropertyPeakSeasonLimitOfInsuranceDetailSpecialCoverage">
+				<rul:RunRule Type="none" FileName="CommercialPropertyPeakSeasonLimitOfInsuranceDetailSpecialCoverageRules" Rule="InitializeRuleSet" ClearCache="true" />
+			</rul:Locate>
+		</rul:Sequence>
+	</rul:Rule>
+	<rul:Rule Name="CalculateTotalPremium" Type="decimal" DataDefGroup="CommercialPropertyPeakSeasonLimitOfInsuranceDetail">
+		<rul:Sum>
+			<rul:Locate AtDataDef="CommercialPropertyPeakSeasonLimitOfInsuranceDetailBasicGroupICoverage">
+				<rul:RunRule Type="decimal" FileName="CommercialPropertyPeakSeasonLimitOfInsuranceDetailBasicGroupICoverageRules" Rule="CalculateTotalPremium" ClearCache="true" />
+			</rul:Locate>
+			<rul:Locate AtDataDef="CommercialPropertyPeakSeasonLimitOfInsuranceDetailBasicGroupIICoverage">
+				<rul:RunRule Type="decimal" FileName="CommercialPropertyPeakSeasonLimitOfInsuranceDetailBasicGroupIICoverageRules" Rule="CalculateTotalPremium" ClearCache="true" />
+			</rul:Locate>
+			<rul:Locate AtDataDef="CommercialPropertyPeakSeasonLimitOfInsuranceDetailBroadCoverage">
+				<rul:RunRule Type="decimal" FileName="CommercialPropertyPeakSeasonLimitOfInsuranceDetailBroadCoverageRules" Rule="CalculateTotalPremium" ClearCache="true" />
+			</rul:Locate>
+			<rul:Locate AtDataDef="CommercialPropertyPeakSeasonLimitOfInsuranceDetailEarthquakeCoverage">
+				<rul:RunRule Type="decimal" FileName="CommercialPropertyPeakSeasonLimitOfInsuranceDetailEarthquakeCoverageRules" Rule="CalculateTotalPremium" ClearCache="true" />
+			</rul:Locate>
+			<rul:Locate AtDataDef="CommercialPropertyPeakSeasonLimitOfInsuranceDetailSpecialCoverage">
+				<rul:RunRule Type="decimal" FileName="CommercialPropertyPeakSeasonLimitOfInsuranceDetailSpecialCoverageRules" Rule="CalculateTotalPremium" ClearCache="true" />
+			</rul:Locate>
+			<rul:If>
+				<rul:Test>
+					<rul:And>
+						<rul:Equal>
+							<rul:FirstValue Type="integer" FromConstant="0" FromDataDef="@PremiumIndicator" Order="DataDefInputParamConstant" />
+							<rul:Constant Type="integer">1</rul:Constant>
+						</rul:Equal>
+						<rul:NotEqual>
+							<rul:FirstValue Type="decimal" FromConstant="0" FromDataDef="@Premium" Order="DataDefInputParamConstant" />
+							<rul:Constant Type="decimal">0</rul:Constant>
+						</rul:NotEqual>
+					</rul:And>
+				</rul:Test>
+				<rul:Then>
+					<rul:FirstValue Type="decimal" FromConstant="0" FromDataDef="@Premium" Order="DataDefInputParamConstant" />
+				</rul:Then>
+				<rul:Else>
+					<rul:Constant Type="decimal">0</rul:Constant>
+				</rul:Else>
+			</rul:If>
+		</rul:Sum>
+	</rul:Rule>
+	<rul:Rule Name="ErcSetRatesAndFactors" Type="none" DataDefGroup="CommercialPropertyPeakSeasonLimitOfInsuranceDetail">
+		<rul:Sequence>
+			<rul:WithArgs>
+				<rul:Arg Type="dateTime" Param="ISOSSINodePeriodFromParam">
+					<rul:FirstValue Type="dateTime" FromConstant="01/01/0001" FromDataDef="@PeriodFrom" Order="DataDefInputParamConstant" />
+				</rul:Arg>
+				<rul:Arg Type="dateTime" Param="ISOSSINodePeriodToParam">
+					<rul:FirstValue Type="dateTime" FromConstant="01/01/0001" FromDataDef="@PeriodTo" Order="DataDefInputParamConstant" />
+				</rul:Arg>
+				<rul:Arg Type="integer" Param="BlktIDNumParam">
+					<rul:FirstValue Type="integer" FromConstant="0" FromDataDef="@BlktIDNum" Order="DataDefInputParamConstant" />
+				</rul:Arg>
+				<rul:Arg Type="decimal" Param="EQCauseOfLossCovBlktIDNumParam">
+					<rul:FirstValue Type="decimal" FromConstant="0" FromDataDef="@EQCauseOfLossCovBlktIDNum" Order="DataDefInputParamConstant" />
+				</rul:Arg>
+				<rul:ForEach AtInputDataDef="ancestor::CommercialProperty/CommercialPropertyPeakSeasonGeneralInformationTable/CommercialPropertyPeakSeasonGeneralInformation">
+					<rul:ForEach AtInputDataDef="CommercialPropertyPeakSeasonGeneralInformationDetailTable/CommercialPropertyPeakSeasonGeneralInformationDetail">
+						<rul:If>
+							<rul:Test>
+								<rul:And>
+									<rul:IsNotNull>
+										<rul:Value Type="dateTime" FromDataDef="@PeriodFrom" />
+									</rul:IsNotNull>
+									<rul:IsNotNull>
+										<rul:Value Type="dateTime" FromDataDef="@PeriodTo" />
+									</rul:IsNotNull>
+									<rul:NotEqual>
+										<rul:Value Type="dateTime" FromParam="ISOSSINodePeriodFromParam" />
+										<rul:Constant Type="dateTime">01/01/0001</rul:Constant>
+									</rul:NotEqual>
+									<rul:NotEqual>
+										<rul:Value Type="dateTime" FromParam="ISOSSINodePeriodToParam" />
+										<rul:Constant Type="dateTime">01/01/0001</rul:Constant>
+									</rul:NotEqual>
+									<rul:Equal>
+										<rul:Value Type="integer" FromParam="BlktIDNumParam" />
+										<rul:FirstValue Type="integer" FromConstant="0" FromDataDef="../../@BlktIDNum" Order="DataDefInputParamConstant" />
+									</rul:Equal>
+									<rul:Equal>
+										<rul:Value Type="dateTime" FromParam="ISOSSINodePeriodFromParam" />
+										<rul:FirstValue Type="dateTime" FromConstant="01/01/0001" FromDataDef="@PeriodFrom" Order="DataDefInputParamConstant" />
+									</rul:Equal>
+									<rul:Equal>
+										<rul:Value Type="dateTime" FromParam="ISOSSINodePeriodToParam" />
+										<rul:FirstValue Type="dateTime" FromConstant="01/01/0001" FromDataDef="@PeriodTo" Order="DataDefInputParamConstant" />
+									</rul:Equal>
+								</rul:And>
+							</rul:Test>
+							<rul:Then>
+								<rul:Sequence>
+									<rul:Copy Type="decimal" ToDataDef="@BasicGroupIAvgRate" FromDataDef="@BasicGroupIAvgRate" />
+									<rul:Copy Type="decimal" ToDataDef="@BasicGroupIIAvgRate" FromDataDef="@BasicGroupIIAvgRate" />
+									<rul:Copy Type="decimal" ToDataDef="@BroadAvgRate" FromDataDef="@BroadAvgRate" />
+									<rul:Copy Type="decimal" ToDataDef="@SpecialAvgRate" FromDataDef="@SpecialAvgRate" />
+									<rul:Copy Type="integer" ToDataDef="@AdditionalBlktLimit" FromDataDef="@AdditionalBlktLimit" />
+									<rul:Copy Type="integer" ToDataDef="@TotalFullValueAndPeakAmount" FromDataDef="@TotalFullValueAndPeakAmount" />
+								</rul:Sequence>
+							</rul:Then>
+						</rul:If>
+						<rul:If>
+							<rul:Test>
+								<rul:And>
+									<rul:Equal>
+										<rul:Value Type="decimal" FromParam="EQCauseOfLossCovBlktIDNumParam" />
+										<rul:FirstValue Type="integer" FromConstant="0" FromDataDef="../../@BlktIDNum" Order="DataDefInputParamConstant" />
+									</rul:Equal>
+									<rul:Equal>
+										<rul:Value Type="dateTime" FromParam="ISOSSINodePeriodFromParam" />
+										<rul:FirstValue Type="dateTime" FromConstant="01/01/0001" FromDataDef="@PeriodFrom" Order="DataDefInputParamConstant" />
+									</rul:Equal>
+									<rul:Equal>
+										<rul:Value Type="dateTime" FromParam="ISOSSINodePeriodToParam" />
+										<rul:FirstValue Type="dateTime" FromConstant="01/01/0001" FromDataDef="@PeriodTo" Order="DataDefInputParamConstant" />
+									</rul:Equal>
+								</rul:And>
+							</rul:Test>
+							<rul:Then>
+								<rul:Sequence>
+									<rul:Copy Type="decimal" ToDataDef="@EQAvgRate" FromDataDef="@EQAvgRate" />
+									<rul:Copy Type="integer" ToDataDef="@TotalFullValueAndPeakAmountEQ" FromDataDef="@TotalFullValueAndPeakAmount" />
+								</rul:Sequence>
+							</rul:Then>
+						</rul:If>
+					</rul:ForEach>
+				</rul:ForEach>
+			</rul:WithArgs>
+			<rul:Choose>
+				<rul:When>
+					<rul:Test>
+						<rul:Equal>
+							<rul:FirstValue Type="string" FromConstant="" FromDataDef="@EQCovIndicatorFromPrsnlProp" Order="DataDefInputParamConstant" />
+							<rul:Constant Type="string">No Coverage</rul:Constant>
+						</rul:Equal>
+					</rul:Test>
+					<rul:Then>
+						<rul:Sequence>
+							<rul:Constant Type="integer" ToDataDef="@EQLOIToUse">0</rul:Constant>
+						</rul:Sequence>
+					</rul:Then>
+				</rul:When>
+				<rul:When>
+					<rul:Test>
+						<rul:And>
+							<rul:Exist AtInputDataDef="../../../../CommercialPropertyEarthquakeAndVolcanicEruptionEndorsementSubLimitFormPrsnlPropTable/CommercialPropertyEarthquakeAndVolcanicEruptionEndorsementSubLimitFormPrsnlProp" />
+							<rul:IsNotNull>
+								<rul:Value Type="integer" FromDataDef="../../../../CommercialPropertyEarthquakeAndVolcanicEruptionEndorsementSubLimitFormPrsnlPropTable/CommercialPropertyEarthquakeAndVolcanicEruptionEndorsementSubLimitFormPrsnlProp[1]/@Limit" />
+							</rul:IsNotNull>
+						</rul:And>
+					</rul:Test>
+					<rul:Then>
+						<rul:Sequence>
+							<rul:Sum ToDataDef="@EQLOIToUse">
+								<rul:Value Type="integer" FromDataDef="../../../../CommercialPropertyEarthquakeAndVolcanicEruptionEndorsementSubLimitFormPrsnlPropTable/CommercialPropertyEarthquakeAndVolcanicEruptionEndorsementSubLimitFormPrsnlProp[1]/@Limit" />
+								<rul:Value Type="integer" FromDataDef="@Limit" />
+							</rul:Sum>
+						</rul:Sequence>
+					</rul:Then>
+				</rul:When>
+				<rul:When>
+					<rul:Test>
+						<rul:And>
+							<rul:Exist AtInputDataDef="../../../../CommercialPropertyEarthquakeAndVolcanicEruptionCoverageSubLimitFormWithFlatDollarDeductiblePrsnlPropTable/CommercialPropertyEarthquakeAndVolcanicEruptionCoverageSubLimitFormWithFlatDollarDeductiblePrsnlProp" />
+							<rul:IsNotNull>
+								<rul:Value Type="integer" FromDataDef="../../../../CommercialPropertyEarthquakeAndVolcanicEruptionCoverageSubLimitFormWithFlatDollarDeductiblePrsnlPropTable/CommercialPropertyEarthquakeAndVolcanicEruptionCoverageSubLimitFormWithFlatDollarDeductiblePrsnlProp[1]/@Limit" />
+							</rul:IsNotNull>
+						</rul:And>
+					</rul:Test>
+					<rul:Then>
+						<rul:Sequence>
+							<rul:Sum ToDataDef="@EQLOIToUse">
+								<rul:Value Type="integer" FromDataDef="../../../../CommercialPropertyEarthquakeAndVolcanicEruptionCoverageSubLimitFormWithFlatDollarDeductiblePrsnlPropTable/CommercialPropertyEarthquakeAndVolcanicEruptionCoverageSubLimitFormWithFlatDollarDeductiblePrsnlProp[1]/@Limit" />
+								<rul:Value Type="integer" FromDataDef="@Limit" />
+							</rul:Sum>
+						</rul:Sequence>
+					</rul:Then>
+				</rul:When>
+				<rul:When>
+					<rul:Test>
+						<rul:Equal>
+							<rul:FirstValue Type="string" FromConstant="" FromDataDef="@EQCovIndicatorFromPrsnlProp" Order="DataDefInputParamConstant" />
+							<rul:Constant Type="string">Yes, Included in Blanket</rul:Constant>
+						</rul:Equal>
+					</rul:Test>
+					<rul:Then>
+						<rul:Sequence>
+							<rul:Convert Type="integer" ToDataDef="@EQLOIToUse">
+								<rul:Product>
+									<rul:Divide>
+										<rul:Sum>
+											<rul:Value Type="integer" FromDataDef="@FullValue" />
+											<rul:Value Type="integer" FromDataDef="../../../../@FullPrsnlPropValue" />
+										</rul:Sum>
+										<rul:Convert Type="decimal">
+											<rul:FirstValue Type="integer" FromConstant="0" FromDataDef="@TotalFullValueAndPeakAmountEQ" Order="DataDefInputParamConstant" />
+										</rul:Convert>
+									</rul:Divide>
+									<rul:Sum>
+										<rul:Value Type="integer" FromDataDef="@AdditionalBlktLimit" />
+										<rul:Value Type="integer" FromDataDef="@BlktLimit" />
+									</rul:Sum>
+								</rul:Product>
+							</rul:Convert>
+						</rul:Sequence>
+					</rul:Then>
+				</rul:When>
+				<rul:Otherwise>
+					<rul:Sequence>
+						<rul:Sum ToDataDef="@EQLOIToUse">
+							<rul:Value Type="integer" FromDataDef="../../../../@Limit" />
+							<rul:Value Type="integer" FromDataDef="@Limit" />
+						</rul:Sum>
+					</rul:Sequence>
+				</rul:Otherwise>
+			</rul:Choose>
+		</rul:Sequence>
+	</rul:Rule>
+	<rul:Rule Name="InitializePeakSeasonLimitOfInsuranceDetail" Type="none" DataDefGroup="CommercialPropertyPeakSeasonLimitOfInsuranceDetail">
+		<rul:Sequence>
+			<rul:Copy Type="integer" ToDataDef="@DetailNumber" FromDataDef="../../@DetailCounter" />
+			<!--Logic for LossCostMultiplier moved to be inline where used.-->
+			<rul:Copy Type="integer" ToDataDef="@BlktIDNum" FromDataDef="ancestor::CommercialPropertyPersonalProperty/@BlktIDNum" />
+			<rul:Copy Type="decimal" ToDataDef="@EQCauseOfLossCovBlktIDNum" FromDataDef="ancestor::CommercialPropertyPersonalProperty/@EQCauseOfLossCovBlktIDNum" />
+			<rul:Copy Type="string" ToDataDef="@IncludedInBlktFromPrsnlProp" FromDataDef="ancestor::CommercialPropertyPersonalProperty/@IncludedInBlkt" />
+			<rul:Copy Type="string" ToDataDef="@IncludedInBlkt" FromDataDef="@IncludedInBlktFromPrsnlProp" />
+			<rul:Copy Type="string" ToDataDef="@EQCovIndicatorFromPrsnlProp" FromDataDef="ancestor::CommercialPropertyPersonalProperty/@EQCovIndicator" />
+			<!--Logic for BlktPeakSeasonIndicator moved to be inline where used.-->
+			<rul:If>
+				<rul:Test>
+					<rul:And>
+						<rul:NotEqual>
+							<rul:FirstValue Type="string" FromConstant="" FromDataDef="@IncludedInBlktFromPrsnlProp" Order="DataDefInputParamConstant" />
+							<rul:Constant Type="string">No</rul:Constant>
+						</rul:NotEqual>
+						<rul:Equal>
+							<rul:FirstValue Type="string" FromConstant="" FromDataDef="ancestor::CommercialPropertyPersonalProperty/@BlktPeakSeasonIndicator" Order="DataDefInputParamConstant" />
+							<rul:Constant Type="string">Yes</rul:Constant>
+						</rul:Equal>
+						<rul:Exist AtInputDataDef="ancestor::CommercialProperty/CommercialPropertyPeakSeasonGeneralInformationTable/CommercialPropertyPeakSeasonGeneralInformation" />
+					</rul:And>
+				</rul:Test>
+				<rul:Then>
+					<rul:Sequence>
+						<rul:WithArgs>
+							<rul:Arg Type="integer" Param="UnitNumberParam">
+								<rul:FirstValue Type="integer" FromConstant="0" FromDataDef="@UnitNumber" Order="DataDefInputParamConstant" />
+							</rul:Arg>
+							<rul:Arg Type="integer" Param="BlktIDNumParam">
+								<rul:FirstValue Type="integer" FromConstant="0" FromDataDef="@BlktIDNum" Order="DataDefInputParamConstant" />
+							</rul:Arg>
+							<rul:ForEach AtInputDataDef="ancestor::CommercialProperty/CommercialPropertyPeakSeasonGeneralInformationTable/CommercialPropertyPeakSeasonGeneralInformation">
+								<rul:ForEach AtInputDataDef="CommercialPropertyPeakSeasonGeneralInformationDetailTable/CommercialPropertyPeakSeasonGeneralInformationDetail">
+									<rul:If>
+										<rul:Test>
+											<rul:And>
+												<rul:Equal>
+													<rul:Value Type="integer" FromParam="UnitNumberParam" />
+													<rul:FirstValue Type="integer" FromConstant="0" FromDataDef="@UnitNumber" Order="DataDefInputParamConstant" />
+												</rul:Equal>
+												<rul:Equal>
+													<rul:Value Type="integer" FromParam="BlktIDNumParam" />
+													<rul:FirstValue Type="integer" FromConstant="0" FromDataDef="../../@BlktIDNum" Order="DataDefInputParamConstant" />
+												</rul:Equal>
+												<rul:IsNotNull>
+													<rul:Value Type="dateTime" FromDataDef="@PeriodFrom" />
+												</rul:IsNotNull>
+												<rul:IsNotNull>
+													<rul:Value Type="dateTime" FromDataDef="@PeriodTo" />
+												</rul:IsNotNull>
+											</rul:And>
+										</rul:Test>
+										<rul:Then>
+											<rul:Sequence>
+												<rul:Copy Type="dateTime" ToDataDef="@PeriodFrom" FromDataDef="@PeriodFrom" />
+												<rul:Copy Type="dateTime" ToDataDef="@PeriodTo" FromDataDef="@PeriodTo" />
+											</rul:Sequence>
+										</rul:Then>
+									</rul:If>
+								</rul:ForEach>
+							</rul:ForEach>
+						</rul:WithArgs>
+					</rul:Sequence>
+				</rul:Then>
+			</rul:If>
+			<rul:If>
+				<rul:Test>
+					<rul:And>
+						<rul:IsNotNull>
+							<rul:Value Type="dateTime" FromDataDef="@PeriodFrom" />
+						</rul:IsNotNull>
+						<rul:IsNotNull>
+							<rul:Value Type="dateTime" FromDataDef="@PeriodTo" />
+						</rul:IsNotNull>
+					</rul:And>
+				</rul:Test>
+				<rul:Then>
+					<rul:Sequence>
+						<rul:Divide ToDataDef="@PeakSeasonProRateFactor" DecimalPlaces="3">
+							<rul:Convert Type="decimal">
+								<rul:DateDifference UnitType="Days">
+									<rul:DateCreate>
+										<rul:DatePart UnitType="Years">
+											<rul:FirstValue Type="dateTime" FromConstant="01/01/0001" FromDataDef="@PeriodFrom" Order="DataDefInputParamConstant" />
+										</rul:DatePart>
+										<rul:DatePart UnitType="Months">
+											<rul:FirstValue Type="dateTime" FromConstant="01/01/0001" FromDataDef="@PeriodFrom" Order="DataDefInputParamConstant" />
+										</rul:DatePart>
+										<rul:DatePart UnitType="Days">
+											<rul:FirstValue Type="dateTime" FromConstant="01/01/0001" FromDataDef="@PeriodFrom" Order="DataDefInputParamConstant" />
+										</rul:DatePart>
+									</rul:DateCreate>
+									<rul:DateCreate>
+										<rul:DatePart UnitType="Years">
+											<rul:FirstValue Type="dateTime" FromConstant="01/01/0001" FromDataDef="@PeriodTo" Order="DataDefInputParamConstant" />
+										</rul:DatePart>
+										<rul:DatePart UnitType="Months">
+											<rul:FirstValue Type="dateTime" FromConstant="01/01/0001" FromDataDef="@PeriodTo" Order="DataDefInputParamConstant" />
+										</rul:DatePart>
+										<rul:DatePart UnitType="Days">
+											<rul:FirstValue Type="dateTime" FromConstant="01/01/0001" FromDataDef="@PeriodTo" Order="DataDefInputParamConstant" />
+										</rul:DatePart>
+									</rul:DateCreate>
+								</rul:DateDifference>
+							</rul:Convert>
+							<rul:Convert Type="decimal">
+								<rul:DateDifference UnitType="Days">
+									<rul:DateCreate>
+										<rul:DatePart UnitType="Years">
+											<rul:FirstValue Type="dateTime" FromConstant="01/01/0001" FromDataDef="ancestor::CommercialProperty/@EffectiveDt" Order="DataDefInputParamConstant" />
+										</rul:DatePart>
+										<rul:DatePart UnitType="Months">
+											<rul:FirstValue Type="dateTime" FromConstant="01/01/0001" FromDataDef="ancestor::CommercialProperty/@EffectiveDt" Order="DataDefInputParamConstant" />
+										</rul:DatePart>
+										<rul:DatePart UnitType="Days">
+											<rul:FirstValue Type="dateTime" FromConstant="01/01/0001" FromDataDef="ancestor::CommercialProperty/@EffectiveDt" Order="DataDefInputParamConstant" />
+										</rul:DatePart>
+									</rul:DateCreate>
+									<rul:DateCreate>
+										<rul:DatePart UnitType="Years">
+											<rul:FirstValue Type="dateTime" FromConstant="01/01/0001" FromDataDef="ancestor::CommercialProperty/@ExpirationDt" Order="DataDefInputParamConstant" />
+										</rul:DatePart>
+										<rul:DatePart UnitType="Months">
+											<rul:FirstValue Type="dateTime" FromConstant="01/01/0001" FromDataDef="ancestor::CommercialProperty/@ExpirationDt" Order="DataDefInputParamConstant" />
+										</rul:DatePart>
+										<rul:DatePart UnitType="Days">
+											<rul:FirstValue Type="dateTime" FromConstant="01/01/0001" FromDataDef="ancestor::CommercialProperty/@ExpirationDt" Order="DataDefInputParamConstant" />
+										</rul:DatePart>
+									</rul:DateCreate>
+								</rul:DateDifference>
+							</rul:Convert>
+						</rul:Divide>
+						<rul:Divide ToDataDef="@ProRateFactor" DecimalPlaces="3">
+							<rul:Convert Type="decimal">
+								<rul:DateDifference UnitType="Days">
+									<rul:DateCreate>
+										<rul:DatePart UnitType="Years">
+											<rul:FirstValue Type="dateTime" FromConstant="01/01/0001" FromDataDef="@PeriodFrom" Order="DataDefInputParamConstant" />
+										</rul:DatePart>
+										<rul:DatePart UnitType="Months">
+											<rul:FirstValue Type="dateTime" FromConstant="01/01/0001" FromDataDef="@PeriodFrom" Order="DataDefInputParamConstant" />
+										</rul:DatePart>
+										<rul:DatePart UnitType="Days">
+											<rul:FirstValue Type="dateTime" FromConstant="01/01/0001" FromDataDef="@PeriodFrom" Order="DataDefInputParamConstant" />
+										</rul:DatePart>
+									</rul:DateCreate>
+									<rul:DateCreate>
+										<rul:DatePart UnitType="Years">
+											<rul:FirstValue Type="dateTime" FromConstant="01/01/0001" FromDataDef="@PeriodTo" Order="DataDefInputParamConstant" />
+										</rul:DatePart>
+										<rul:DatePart UnitType="Months">
+											<rul:FirstValue Type="dateTime" FromConstant="01/01/0001" FromDataDef="@PeriodTo" Order="DataDefInputParamConstant" />
+										</rul:DatePart>
+										<rul:DatePart UnitType="Days">
+											<rul:FirstValue Type="dateTime" FromConstant="01/01/0001" FromDataDef="@PeriodTo" Order="DataDefInputParamConstant" />
+										</rul:DatePart>
+									</rul:DateCreate>
+								</rul:DateDifference>
+							</rul:Convert>
+							<rul:Convert Type="decimal">
+								<rul:DateDifference UnitType="Days">
+									<rul:DateCreate>
+										<rul:DatePart UnitType="Years">
+											<rul:FirstValue Type="dateTime" FromConstant="01/01/0001" FromDataDef="ancestor::CommercialProperty/@EffectiveDt" Order="DataDefInputParamConstant" />
+										</rul:DatePart>
+										<rul:DatePart UnitType="Months">
+											<rul:FirstValue Type="dateTime" FromConstant="01/01/0001" FromDataDef="ancestor::CommercialProperty/@EffectiveDt" Order="DataDefInputParamConstant" />
+										</rul:DatePart>
+										<rul:DatePart UnitType="Days">
+											<rul:FirstValue Type="dateTime" FromConstant="01/01/0001" FromDataDef="ancestor::CommercialProperty/@EffectiveDt" Order="DataDefInputParamConstant" />
+										</rul:DatePart>
+									</rul:DateCreate>
+									<rul:DateCreate>
+										<rul:DatePart UnitType="Years">
+											<rul:FirstValue Type="dateTime" FromConstant="01/01/0001" FromDataDef="ancestor::CommercialProperty/@ExpirationDt" Order="DataDefInputParamConstant" />
+										</rul:DatePart>
+										<rul:DatePart UnitType="Months">
+											<rul:FirstValue Type="dateTime" FromConstant="01/01/0001" FromDataDef="ancestor::CommercialProperty/@ExpirationDt" Order="DataDefInputParamConstant" />
+										</rul:DatePart>
+										<rul:DatePart UnitType="Days">
+											<rul:FirstValue Type="dateTime" FromConstant="01/01/0001" FromDataDef="ancestor::CommercialProperty/@ExpirationDt" Order="DataDefInputParamConstant" />
+										</rul:DatePart>
+									</rul:DateCreate>
+								</rul:DateDifference>
+							</rul:Convert>
+						</rul:Divide>
+					</rul:Sequence>
+				</rul:Then>
+			</rul:If>
+		</rul:Sequence>
+	</rul:Rule>
+	<rul:Rule Name="SetLOIFactors" Type="none" DataDefGroup="CommercialPropertyPeakSeasonLimitOfInsuranceDetail">
+		<rul:Sequence>
+			<rul:If>
+				<rul:Test>
+					<rul:Equal>
+						<rul:FirstValue Type="integer" FromConstant="0" FromDataDef="../../../../@BlktIDNum" Order="DataDefInputParamConstant" />
+						<rul:Constant Type="integer">0</rul:Constant>
+					</rul:Equal>
+				</rul:Test>
+				<rul:Then>
+					<rul:Sequence>
+						<rul:Constant Type="integer" ToDataDef="@BlktLimit">0</rul:Constant>
+					</rul:Sequence>
+				</rul:Then>
+			</rul:If>
+			<rul:WithArgs>
+				<rul:Arg Type="integer" Param="ISOSSINodeBlktIDNumParam">
+					<rul:FirstValue Type="integer" FromConstant="0" FromDataDef="../../../../@BlktIDNum" Order="DataDefInputParamConstant" />
+				</rul:Arg>
+				<rul:ForEach AtInputDataDef="../../../../../../../../../../../../CommercialPropertyBlanketRatingTable/CommercialPropertyBlanketRating">
+					<rul:ForEach AtInputDataDef="CommercialPropertyBlanketRatingDetailTable/CommercialPropertyBlanketRatingDetail">
+						<rul:If>
+							<rul:Test>
+								<rul:Equal>
+									<rul:FirstValue Type="integer" FromConstant="0" FromDataDef="@UnitNumber" Order="DataDefInputParamConstant" />
+									<rul:Value Type="integer" FromParam="ISOSSINodeBlktIDNumParam" />
+								</rul:Equal>
+							</rul:Test>
+							<rul:Then>
+								<rul:Copy Type="integer" ToDataDef="@BlktLimit" FromDataDef="@TotalLimit" />
+							</rul:Then>
+						</rul:If>
+					</rul:ForEach>
+				</rul:ForEach>
+			</rul:WithArgs>
+			<rul:If>
+				<rul:Test>
+					<rul:Equal>
+						<rul:FirstValue Type="string" FromConstant="" FromDataDef="@IncludedInBlktFromPrsnlProp" Order="DataDefInputParamConstant" />
+						<rul:Constant Type="string">No</rul:Constant>
+					</rul:Equal>
+				</rul:Test>
+				<rul:Then>
+					<rul:Sequence>
+						<rul:Sum ToDataDef="@LOIToUse">
+							<rul:Value Type="integer" FromDataDef="../../../../@Limit" />
+							<rul:Value Type="integer" FromDataDef="@Limit" />
+						</rul:Sum>
+					</rul:Sequence>
+				</rul:Then>
+				<rul:Else>
+					<rul:Sequence>
+						<rul:Convert Type="integer" ToDataDef="@LOIToUse">
+							<rul:Product>
+								<rul:Divide>
+									<rul:Sum>
+										<rul:Value Type="integer" FromDataDef="@FullValue" />
+										<rul:Value Type="integer" FromDataDef="../../../../@FullPrsnlPropValue" />
+									</rul:Sum>
+									<rul:Convert Type="decimal">
+										<rul:FirstValue Type="integer" FromConstant="0" FromDataDef="@TotalFullValueAndPeakAmount" Order="DataDefInputParamConstant" />
+									</rul:Convert>
+								</rul:Divide>
+								<rul:Sum>
+									<rul:Value Type="integer" FromDataDef="@AdditionalBlktLimit" />
+									<rul:Value Type="integer" FromDataDef="@BlktLimit" />
+								</rul:Sum>
+							</rul:Product>
+						</rul:Convert>
+					</rul:Sequence>
+				</rul:Else>
+			</rul:If>
+			<rul:If>
+				<rul:Test>
+					<rul:GreaterThanOrEqual>
+						<rul:FirstValue Type="integer" FromConstant="0" FromDataDef="@LOIToUse" Order="DataDefInputParamConstant" />
+						<rul:Constant Type="integer">0</rul:Constant>
+					</rul:GreaterThanOrEqual>
+				</rul:Test>
+				<rul:Then>
+					<rul:Sequence>
+						<rul:RunRule Type="decimal" ToDataDef="@BasicGroupILOIFactor" FileName="CommercialPropertyPeakSeasonLimitOfInsuranceDetailRules" Rule="LookupBasicGroupILOIFactor" ClearCache="true" />
+						<rul:RunRule Type="decimal" ToDataDef="@BasicGroupIILOIFactor" FileName="CommercialPropertyPeakSeasonLimitOfInsuranceDetailRules" Rule="LookupBasicGroupIILOIFactor" ClearCache="true" />
+						<rul:RunRule Type="decimal" ToDataDef="@BroadLOIFactor" FileName="CommercialPropertyPeakSeasonLimitOfInsuranceDetailRules" Rule="LookupBroadSpecialLOIFactor" ClearCache="true" />
+						<rul:RunRule Type="decimal" ToDataDef="@SpecialLOIFactor" FileName="CommercialPropertyPeakSeasonLimitOfInsuranceDetailRules" Rule="LookupBroadSpecialLOIFactor" ClearCache="true" />
+					</rul:Sequence>
+				</rul:Then>
+				<rul:Else>
+					<rul:Sequence>
+						<rul:Constant Type="decimal" ToDataDef="@BasicGroupILOIFactor">0.0</rul:Constant>
+						<rul:Constant Type="decimal" ToDataDef="@BasicGroupIILOIFactor">0.0</rul:Constant>
+						<rul:Constant Type="decimal" ToDataDef="@BroadLOIFactor">0.0</rul:Constant>
+						<rul:Constant Type="decimal" ToDataDef="@SpecialLOIFactor">0.0</rul:Constant>
+					</rul:Sequence>
+				</rul:Else>
+			</rul:If>
+		</rul:Sequence>
+	</rul:Rule>
+	<rul:Rule Name="ErcSetStatisticalCodes" Type="none" DataDefGroup="CommercialPropertyPeakSeasonLimitOfInsuranceDetail">
+		<rul:Sequence>
+			<rul:If>
+				<rul:Test>
+					<rul:Exist AtInputDataDef="ancestor::MasterCFCW/Policy" />
+				</rul:Test>
+				<rul:Then>
+					<rul:Sequence>
+						<rul:Convert Type="integer" ToDataDef="@ExposureStatAmount">
+							<rul:Truncate>
+								<rul:Divide>
+									<rul:Value Type="integer" FromDataDef="@Limit" />
+									<rul:Constant Type="integer">1000</rul:Constant>
+								</rul:Divide>
+							</rul:Truncate>
+						</rul:Convert>
+					</rul:Sequence>
+				</rul:Then>
+			</rul:If>
+		</rul:Sequence>
+	</rul:Rule>
+	<rul:Rule Name="ErcProcess" Type="none" DataDefGroup="CommercialPropertyPeakSeasonLimitOfInsuranceDetail">
+		<rul:Sequence>
+			<rul:RunRule Type="none" FileName="CommercialPropertyPeakSeasonLimitOfInsuranceDetailRules" Rule="ErcSetRatesAndFactors" ClearCache="true" />
+			<rul:Locate AtDataDef="CommercialPropertyPeakSeasonLimitOfInsuranceDetailBasicGroupICoverage">
+				<rul:RunRule Type="none" FileName="CommercialPropertyPeakSeasonLimitOfInsuranceDetailBasicGroupICoverageRules" Rule="ErcProcess" ClearCache="true" />
+			</rul:Locate>
+			<rul:Locate AtDataDef="CommercialPropertyPeakSeasonLimitOfInsuranceDetailBasicGroupIICoverage">
+				<rul:RunRule Type="none" FileName="CommercialPropertyPeakSeasonLimitOfInsuranceDetailBasicGroupIICoverageRules" Rule="ErcProcess" ClearCache="true" />
+			</rul:Locate>
+			<rul:Locate AtDataDef="CommercialPropertyPeakSeasonLimitOfInsuranceDetailBroadCoverage">
+				<rul:RunRule Type="none" FileName="CommercialPropertyPeakSeasonLimitOfInsuranceDetailBroadCoverageRules" Rule="ErcProcess" ClearCache="true" />
+			</rul:Locate>
+			<rul:Locate AtDataDef="CommercialPropertyPeakSeasonLimitOfInsuranceDetailEarthquakeCoverage">
+				<rul:RunRule Type="none" FileName="CommercialPropertyPeakSeasonLimitOfInsuranceDetailEarthquakeCoverageRules" Rule="ErcProcess" ClearCache="true" />
+			</rul:Locate>
+			<rul:Locate AtDataDef="CommercialPropertyPeakSeasonLimitOfInsuranceDetailSpecialCoverage">
+				<rul:RunRule Type="none" FileName="CommercialPropertyPeakSeasonLimitOfInsuranceDetailSpecialCoverageRules" Rule="ErcProcess" ClearCache="true" />
+			</rul:Locate>
+			<rul:RunRule Type="none" FileName="CommercialPropertyPeakSeasonLimitOfInsuranceDetailRules" Rule="ErcSetStatisticalCodes" ClearCache="true" />
+		</rul:Sequence>
+	</rul:Rule>
+	<rul:Rule Name="BlktPeakSeasonIndicator" Type="string" DataDefGroup="CommercialPropertyPeakSeasonLimitOfInsuranceDetail">
+		<rul:FirstValue Type="string" FromConstant="" FromDataDef="ancestor::CommercialPropertyPersonalProperty/@BlktPeakSeasonIndicator" Order="DataDefInputParamConstant" />
+	</rul:Rule>
+	<rul:Rule Name="contributingInsurance" Type="decimal" DataDefGroup="CommercialPropertyPeakSeasonLimitOfInsuranceDetail">
+		<rul:Constant Type="decimal">0.0</rul:Constant>
+	</rul:Rule>
+	<rul:Rule Name="LossCostMultiplier" Type="decimal" DataDefGroup="CommercialPropertyPeakSeasonLimitOfInsuranceDetail">
+		<rul:FirstValue Type="decimal" FromConstant="0" FromDataDef="ancestor::CommercialProperty/@LossCostMultiplier" Order="DataDefInputParamConstant" />
+	</rul:Rule>
+	<rul:Rule Name="LookupRelativity" Type="decimal" DataDefGroup="CommercialPropertyPeakSeasonLimitOfInsuranceDetail">
+		<rul:FirstNonNull Type="decimal">
+			<rul:Lookup Type="decimal" MatrixCol="Factor" MatrixDef="RelativityDef" MatrixFromConstant="Relativity" ResultMode="FirstResult">
+				<rul:Keys>
+					<rul:Value Type="string" FromDataDef="/State/@Code" />
+					<rul:FirstValue Type="string" FromConstant="" FromDataDef="../../../../../../@SpecialIncludingTheftRateGroup" Order="DataDefInputParamConstant" />
+					<rul:FirstValue Type="string" FromConstant="" FromDataDef="../../../../../../@SpecialIncludingTheftClassLimit" Order="DataDefInputParamConstant" />
+					<rul:FirstValue Type="integer" FromConstant="0" FromDataDef="@SpecialIncludingTheftTotAmtAllInsurance" Order="DataDefInputParamConstant" />
+				</rul:Keys>
+			</rul:Lookup>
+			<rul:Lookup Type="decimal" MatrixCol="Factor" MatrixDef="RelativityDef" MatrixFromConstant="Relativity" ResultMode="SingleResult">
+				<rul:Keys>
+					<rul:Constant Type="string">CW</rul:Constant>
+					<rul:FirstValue Type="string" FromConstant="" FromDataDef="../../../../../../@SpecialIncludingTheftRateGroup" Order="DataDefInputParamConstant" />
+					<rul:FirstValue Type="string" FromConstant="" FromDataDef="../../../../../../@SpecialIncludingTheftClassLimit" Order="DataDefInputParamConstant" />
+					<rul:FirstValue Type="integer" FromConstant="0" FromDataDef="@SpecialIncludingTheftTotAmtAllInsurance" Order="DataDefInputParamConstant" />
+				</rul:Keys>
+			</rul:Lookup>
+		</rul:FirstNonNull>
+	</rul:Rule>
+	<rul:Rule Name="LookupBasicGroupILOIFactor" Type="decimal" DataDefGroup="CommercialPropertyPeakSeasonLimitOfInsuranceDetail">
+		<rul:Round DecimalPlaces="3">
+			<rul:FirstNonNull Type="decimal">
+				<rul:Round DecimalPlaces="4">
+					<rul:Lookup Type="decimal" MatrixCol="Factor" MatrixDef="BasicGroupILOIFactorPersPropDef" MatrixFromConstant="BasicGroupILOIFactorPersProp" ResultMode="FirstResult">
+						<rul:Keys>
+							<rul:Value Type="string" FromDataDef="/State/@Code" />
+							<rul:FirstValue Type="integer" FromConstant="0" FromDataDef="@LOIToUse" Order="DataDefInputParamConstant" />
+							<rul:FirstValue Type="integer" FromConstant="0" FromDataDef="../../../../@ConstructionCode" Order="DataDefInputParamConstant" />
+						</rul:Keys>
+					</rul:Lookup>
+				</rul:Round>
+				<rul:Round DecimalPlaces="4">
+					<rul:Lookup Type="decimal" MatrixCol="Factor" MatrixDef="BasicGroupILOIFactorPersPropDef" MatrixFromConstant="BasicGroupILOIFactorPersProp" ResultMode="SingleResult">
+						<rul:Keys>
+							<rul:Constant Type="string">CW</rul:Constant>
+							<rul:FirstValue Type="integer" FromConstant="0" FromDataDef="@LOIToUse" Order="DataDefInputParamConstant" />
+							<rul:FirstValue Type="integer" FromConstant="0" FromDataDef="../../../../@ConstructionCode" Order="DataDefInputParamConstant" />
+						</rul:Keys>
+					</rul:Lookup>
+				</rul:Round>
+			</rul:FirstNonNull>
+		</rul:Round>
+	</rul:Rule>
+	<rul:Rule Name="LookupBasicGroupIILOIFactor" Type="decimal" DataDefGroup="CommercialPropertyPeakSeasonLimitOfInsuranceDetail">
+		<rul:Round DecimalPlaces="3">
+			<rul:FirstNonNull Type="decimal">
+				<rul:Round DecimalPlaces="4">
+					<rul:Lookup Type="decimal" MatrixCol="Factor" MatrixDef="BasicGroupIILOIFactorPersPropDef" MatrixFromConstant="BasicGroupIILOIFactorPersProp" ResultMode="FirstResult">
+						<rul:Keys>
+							<rul:Value Type="string" FromDataDef="/State/@Code" />
+							<rul:FirstValue Type="integer" FromConstant="0" FromDataDef="@LOIToUse" Order="DataDefInputParamConstant" />
+						</rul:Keys>
+					</rul:Lookup>
+				</rul:Round>
+				<rul:Round DecimalPlaces="4">
+					<rul:Lookup Type="decimal" MatrixCol="Factor" MatrixDef="BasicGroupIILOIFactorPersPropDef" MatrixFromConstant="BasicGroupIILOIFactorPersProp" ResultMode="SingleResult">
+						<rul:Keys>
+							<rul:Constant Type="string">CW</rul:Constant>
+							<rul:FirstValue Type="integer" FromConstant="0" FromDataDef="@LOIToUse" Order="DataDefInputParamConstant" />
+						</rul:Keys>
+					</rul:Lookup>
+				</rul:Round>
+			</rul:FirstNonNull>
+		</rul:Round>
+	</rul:Rule>
+	<rul:Rule Name="LookupBroadSpecialLOIFactor" Type="decimal" DataDefGroup="CommercialPropertyPeakSeasonLimitOfInsuranceDetail">
+		<rul:Round DecimalPlaces="3">
+			<rul:FirstNonNull Type="decimal">
+				<rul:Round DecimalPlaces="4">
+					<rul:Lookup Type="decimal" MatrixCol="Factor" MatrixDef="BroadSpecialLOIFactorPrsnlPropDef" MatrixFromConstant="BroadSpecialLOIFactorPrsnlProp" ResultMode="FirstResult">
+						<rul:Keys>
+							<rul:Value Type="string" FromDataDef="/State/@Code" />
+							<rul:FirstValue Type="integer" FromConstant="0" FromDataDef="@LOIToUse" Order="DataDefInputParamConstant" />
+						</rul:Keys>
+					</rul:Lookup>
+				</rul:Round>
+				<rul:Round DecimalPlaces="4">
+					<rul:Lookup Type="decimal" MatrixCol="Factor" MatrixDef="BroadSpecialLOIFactorPrsnlPropDef" MatrixFromConstant="BroadSpecialLOIFactorPrsnlProp" ResultMode="SingleResult">
+						<rul:Keys>
+							<rul:Constant Type="string">CW</rul:Constant>
+							<rul:FirstValue Type="integer" FromConstant="0" FromDataDef="@LOIToUse" Order="DataDefInputParamConstant" />
+						</rul:Keys>
+					</rul:Lookup>
+				</rul:Round>
+			</rul:FirstNonNull>
+		</rul:Round>
+	</rul:Rule>
+</rul:Rules>

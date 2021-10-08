@@ -1,0 +1,342 @@
+<rul:Rules xmlns:rul="http://www.verisk.com/iso/erc/Rule">
+	<rul:Rule Name="InitializeRuleSet" DataDefGroup="CommercialPropertyDischargeFromSewerDrainOrSumpNotFloodReltd">
+		<rul:Sequence />
+	</rul:Rule>
+	<rul:Rule Name="CalculateTotalPremium" Type="decimal" DataDefGroup="CommercialPropertyDischargeFromSewerDrainOrSumpNotFloodReltd">
+		<rul:If>
+			<rul:Test>
+				<rul:And>
+					<rul:Equal>
+						<rul:FirstValue Type="integer" FromConstant="0" FromDataDef="@PremiumIndicator" Order="DataDefInputParamConstant" />
+						<rul:Constant Type="integer">1</rul:Constant>
+					</rul:Equal>
+					<rul:NotEqual>
+						<rul:FirstValue Type="decimal" FromConstant="0" FromDataDef="@Premium" Order="DataDefInputParamConstant" />
+						<rul:Constant Type="decimal">0</rul:Constant>
+					</rul:NotEqual>
+				</rul:And>
+			</rul:Test>
+			<rul:Then>
+				<rul:FirstValue Type="decimal" FromConstant="0" FromDataDef="@Premium" Order="DataDefInputParamConstant" />
+			</rul:Then>
+			<rul:Else>
+				<rul:Constant Type="decimal">0</rul:Constant>
+			</rul:Else>
+		</rul:If>
+	</rul:Rule>
+	<rul:Rule Name="ErcSetRatesAndFactors" Type="none" DataDefGroup="CommercialPropertyDischargeFromSewerDrainOrSumpNotFloodReltd">
+		<rul:Sequence>
+			<rul:RunRule Type="none" FileName="CommercialPropertyDischargeFromSewerDrainOrSumpNotFloodReltdRules" Rule="SetBaseLossCost" ClearCache="true" />
+			<rul:RunRule Type="none" FileName="CommercialPropertyDischargeFromSewerDrainOrSumpNotFloodReltdRules" Rule="SetRate" ClearCache="true" />
+			<rul:RunRule Type="none" FileName="CommercialPropertyDischargeFromSewerDrainOrSumpNotFloodReltdRules" Rule="SetDeductibleFactor" ClearCache="true" />
+		</rul:Sequence>
+	</rul:Rule>
+	<rul:Rule Name="SetBaseLossCost" Type="none" DataDefGroup="CommercialPropertyDischargeFromSewerDrainOrSumpNotFloodReltd">
+		<rul:Sequence>
+			<rul:RunRule Type="decimal" ToDataDef="@BaseLossCost" FileName="CommercialPropertyDischargeFromSewerDrainOrSumpNotFloodReltdRules" Rule="LookupDischargeFromSewerDrainOrSump" ClearCache="true">
+				<rul:Arg Type="string" Param="type">
+					<rul:Constant Type="string">PD</rul:Constant>
+				</rul:Arg>
+			</rul:RunRule>
+		</rul:Sequence>
+	</rul:Rule>
+	<rul:Rule Name="SetRate" Type="none" DataDefGroup="CommercialPropertyDischargeFromSewerDrainOrSumpNotFloodReltd">
+		<rul:Sequence>
+			<rul:Product ToDataDef="@Rate" DecimalPlaces="3">
+				<rul:FirstValue Type="decimal" FromConstant="0" FromDataDef="@BaseLossCost" Order="DataDefInputParamConstant" />
+				<rul:FirstValue Type="decimal" FromConstant="0" FromDataDef="ancestor::CommercialProperty/@LossCostMultiplier" Order="DataDefInputParamConstant" />
+			</rul:Product>
+		</rul:Sequence>
+	</rul:Rule>
+	<rul:Rule Name="SetDeductibleFactor" Type="none" DataDefGroup="CommercialPropertyDischargeFromSewerDrainOrSumpNotFloodReltd">
+		<rul:Sequence>
+			<rul:WithArgs>
+				<rul:Arg Type="string" Param="structDeductible">
+					<rul:If>
+						<rul:Test>
+							<rul:And>
+								<rul:IsNotNull>
+									<rul:Value Type="string" FromDataDef="../../@Deductible" />
+								</rul:IsNotNull>
+								<rul:NotEqual>
+									<rul:FirstValue Type="string" FromConstant="" FromDataDef="../../@Deductible" Order="DataDefInputParamConstant" />
+									<rul:Constant Type="string"></rul:Constant>
+								</rul:NotEqual>
+							</rul:And>
+						</rul:Test>
+						<rul:Then>
+							<rul:FirstValue Type="string" FromConstant="" FromDataDef="ancestor::CommercialPropertyStructure/@Deductible" Order="DataDefInputParamConstant" />
+						</rul:Then>
+						<rul:Else>
+							<rul:Constant Type="string"></rul:Constant>
+						</rul:Else>
+					</rul:If>
+				</rul:Arg>
+				<rul:Arg Type="integer" Param="structTotAmtInsurance">
+					<rul:If>
+						<rul:Test>
+							<rul:IsNotNull>
+								<rul:Value Type="integer" FromDataDef="../../@TotAmtInsurance" />
+							</rul:IsNotNull>
+						</rul:Test>
+						<rul:Then>
+							<rul:FirstValue Type="integer" FromConstant="0" FromDataDef="ancestor::CommercialPropertyStructure/@TotAmtInsurance" Order="DataDefInputParamConstant" />
+						</rul:Then>
+						<rul:Else>
+							<rul:Constant Type="integer">0</rul:Constant>
+						</rul:Else>
+					</rul:If>
+				</rul:Arg>
+				<rul:Choose>
+					<rul:When>
+						<rul:Test>
+							<rul:Equal>
+								<rul:Value Type="string" FromParam="structDeductible" />
+								<rul:Constant Type="string">250</rul:Constant>
+							</rul:Equal>
+						</rul:Test>
+						<rul:Then>
+							<rul:Sequence>
+								<rul:RunRule Type="decimal" ToDataDef="@DeductibleFactor" FileName="CommercialPropertyDischargeFromSewerDrainOrSumpNotFloodReltdRules" Rule="LookupDeductible250Factor" ClearCache="true">
+									<rul:Arg Type="string" Param="causeOfLoss">
+										<rul:Constant Type="string">All Other</rul:Constant>
+									</rul:Arg>
+								</rul:RunRule>
+							</rul:Sequence>
+						</rul:Then>
+					</rul:When>
+					<rul:When>
+						<rul:Test>
+							<rul:Or>
+								<rul:Equal>
+									<rul:Value Type="string" FromParam="structDeductible" />
+									<rul:Constant Type="string">Not Applicable</rul:Constant>
+								</rul:Equal>
+								<rul:Equal>
+									<rul:Value Type="string" FromParam="structDeductible" />
+									<rul:Constant Type="string"></rul:Constant>
+								</rul:Equal>
+								<rul:Equal>
+									<rul:Value Type="integer" FromParam="structTotAmtInsurance" />
+									<rul:Constant Type="integer">0</rul:Constant>
+								</rul:Equal>
+							</rul:Or>
+						</rul:Test>
+						<rul:Then>
+							<rul:Sequence>
+								<rul:Constant Type="decimal" ToDataDef="@DeductibleFactor">1.0</rul:Constant>
+							</rul:Sequence>
+						</rul:Then>
+					</rul:When>
+					<rul:Otherwise>
+						<rul:Sequence>
+							<rul:RunRule Type="decimal" ToDataDef="@DeductibleFactor" FileName="CommercialPropertyDischargeFromSewerDrainOrSumpNotFloodReltdRules" Rule="LookupDeductibleFactor" ClearCache="true">
+								<rul:Arg Type="string" Param="Ded">
+									<rul:Value Type="string" FromParam="structDeductible" />
+								</rul:Arg>
+								<rul:Arg Type="integer" Param="limit">
+									<rul:Value Type="integer" FromParam="structTotAmtInsurance" />
+								</rul:Arg>
+								<rul:Arg Type="string" Param="CauseOfLossDed">
+									<rul:Constant Type="string">Other Cause Of Loss</rul:Constant>
+								</rul:Arg>
+							</rul:RunRule>
+						</rul:Sequence>
+					</rul:Otherwise>
+				</rul:Choose>
+			</rul:WithArgs>
+		</rul:Sequence>
+	</rul:Rule>
+	<rul:Rule Name="ErcRate" Type="none" DataDefGroup="CommercialPropertyDischargeFromSewerDrainOrSumpNotFloodReltd">
+		<rul:Sequence>
+			<rul:RunRule Type="none" FileName="CommercialPropertyDischargeFromSewerDrainOrSumpNotFloodReltdRules" Rule="SetPremium" ClearCache="true" />
+			<rul:RunRule Type="none" FileName="CommercialPropertyDischargeFromSewerDrainOrSumpNotFloodReltdRules" Rule="SetPremiumIndicator" ClearCache="true" />
+		</rul:Sequence>
+	</rul:Rule>
+	<rul:Rule Name="SetPremium" Type="none" DataDefGroup="CommercialPropertyDischargeFromSewerDrainOrSumpNotFloodReltd">
+		<rul:Sequence>
+			<rul:WithArgs>
+				<rul:Arg Type="decimal" Param="calcPremium">
+					<rul:FirstNonNull Type="decimal">
+						<rul:Product DecimalPlaces="0">
+							<rul:Product DecimalPlaces="0">
+								<rul:Product DecimalPlaces="0">
+									<rul:Product DecimalPlaces="0">
+										<rul:Product DecimalPlaces="3">
+											<rul:FirstValue Type="decimal" FromConstant="0" FromDataDef="@Rate" Order="DataDefInputParamConstant" />
+											<rul:FirstValue Type="decimal" FromConstant="0" FromDataDef="@DeductibleFactor" Order="DataDefInputParamConstant" />
+										</rul:Product>
+										<rul:Divide>
+											<rul:Value Type="integer" FromDataDef="@DischargeLimitPD" />
+											<rul:Constant Type="decimal">100</rul:Constant>
+										</rul:Divide>
+									</rul:Product>
+									<rul:FirstValue Type="decimal" FromConstant="0" FromDataDef="ancestor::CommercialProperty/@PackageModFactor" Order="DataDefInputParamConstant" />
+								</rul:Product>
+								<rul:FirstValue Type="decimal" FromConstant="0" FromDataDef="ancestor::CommercialProperty/@MultiPremiumAndDispersionCreditFactor" Order="DataDefInputParamConstant" />
+							</rul:Product>
+							<rul:FirstValue Type="decimal" FromConstant="0" FromDataDef="ancestor::CommercialProperty/@IRPMFactor" Order="DataDefInputParamConstant" />
+						</rul:Product>
+						<rul:Constant Type="decimal">0</rul:Constant>
+					</rul:FirstNonNull>
+				</rul:Arg>
+				<rul:Value Type="decimal" ToDataDef="@Premium" FromParam="calcPremium" />
+			</rul:WithArgs>
+		</rul:Sequence>
+	</rul:Rule>
+	<rul:Rule Name="SetPremiumIndicator" Type="none" DataDefGroup="CommercialPropertyDischargeFromSewerDrainOrSumpNotFloodReltd">
+		<rul:Sequence>
+			<rul:If>
+				<rul:Test>
+					<rul:NotEqual>
+						<rul:FirstValue Type="decimal" FromConstant="0" FromDataDef="@Premium" Order="DataDefInputParamConstant" />
+						<rul:Constant Type="decimal">0</rul:Constant>
+					</rul:NotEqual>
+				</rul:Test>
+				<rul:Then>
+					<rul:Sequence>
+						<rul:Constant Type="integer" ToDataDef="@PremiumIndicator">1</rul:Constant>
+					</rul:Sequence>
+				</rul:Then>
+				<rul:Else>
+					<rul:Sequence>
+						<rul:Constant Type="integer" ToDataDef="@PremiumIndicator">0</rul:Constant>
+					</rul:Sequence>
+				</rul:Else>
+			</rul:If>
+		</rul:Sequence>
+	</rul:Rule>
+	<rul:Rule Name="ErcSetStatisticalCodes" Type="none" DataDefGroup="CommercialPropertyDischargeFromSewerDrainOrSumpNotFloodReltd">
+		<rul:Sequence>
+			<rul:If>
+				<rul:Test>
+					<rul:Exist AtInputDataDef="ancestor::MasterCFCW/Policy" />
+				</rul:Test>
+				<rul:Then>
+					<rul:Sequence>
+						<rul:RunRule Type="string" ToDataDef="@SublineDischargeFromSewerDrainOrPump" FileName="CommercialPropertyDischargeFromSewerDrainOrSumpNotFloodReltdRules" Rule="LookupSublineDischargeFromSewerDrainOrPump" ClearCache="true" />
+						<rul:RunRule Type="string" ToDataDef="@DischargeFromSewerDrainOrPumpCode" FileName="CommercialPropertyDischargeFromSewerDrainOrSumpNotFloodReltdRules" Rule="LookupDischargeFromSewerDrainOrPumpCode" ClearCache="true" />
+						<rul:RunRule Type="none" FileName="CommercialPropertyDischargeFromSewerDrainOrSumpNotFloodReltdRules" Rule="SetCoverageCode" ClearCache="true" />
+					</rul:Sequence>
+				</rul:Then>
+			</rul:If>
+		</rul:Sequence>
+	</rul:Rule>
+	<rul:Rule Name="SetCoverageCode" Type="none" DataDefGroup="CommercialPropertyDischargeFromSewerDrainOrSumpNotFloodReltd">
+		<rul:Sequence>
+			<rul:RunRule Type="string" ToDataDef="@CoverageCode" FileName="CommercialPropertyDischargeFromSewerDrainOrSumpNotFloodReltdRules" Rule="LookupDischargeFromSewerDrainOrPumpPropertyDamageCoverageCode" ClearCache="true" />
+		</rul:Sequence>
+	</rul:Rule>
+	<rul:Rule Name="ErcProcess" Type="none" DataDefGroup="CommercialPropertyDischargeFromSewerDrainOrSumpNotFloodReltd">
+		<rul:Sequence>
+			<rul:RunRule Type="none" FileName="CommercialPropertyDischargeFromSewerDrainOrSumpNotFloodReltdRules" Rule="ErcSetRatesAndFactors" ClearCache="true" />
+			<rul:RunRule Type="none" FileName="CommercialPropertyDischargeFromSewerDrainOrSumpNotFloodReltdRules" Rule="ErcRate" ClearCache="true" />
+			<rul:RunRule Type="none" FileName="CommercialPropertyDischargeFromSewerDrainOrSumpNotFloodReltdRules" Rule="ErcSetStatisticalCodes" ClearCache="true" />
+		</rul:Sequence>
+	</rul:Rule>
+	<rul:Rule Name="LookupDischargeFromSewerDrainOrSump" Type="decimal" DataDefGroup="CommercialPropertyDischargeFromSewerDrainOrSumpNotFloodReltd">
+		<rul:Param Name="type" Type="string" />
+		<rul:FirstNonNull Type="decimal">
+			<rul:Lookup Type="decimal" MatrixCol="Rate" MatrixDef="DischargeFromSewerDrainOrSumpDef" MatrixFromConstant="DischargeFromSewerDrainOrSump" ResultMode="FirstResult">
+				<rul:Keys>
+					<rul:Value Type="string" FromDataDef="/State/@Code" />
+					<rul:Value Type="string" FromParam="type" />
+				</rul:Keys>
+			</rul:Lookup>
+			<rul:Lookup Type="decimal" MatrixCol="Rate" MatrixDef="DischargeFromSewerDrainOrSumpDef" MatrixFromConstant="DischargeFromSewerDrainOrSump" ResultMode="SingleResult">
+				<rul:Keys>
+					<rul:Constant Type="string">CW</rul:Constant>
+					<rul:Value Type="string" FromParam="type" />
+				</rul:Keys>
+			</rul:Lookup>
+		</rul:FirstNonNull>
+	</rul:Rule>
+	<rul:Rule Name="LookupDeductible250Factor" Type="decimal" DataDefGroup="CommercialPropertyDischargeFromSewerDrainOrSumpNotFloodReltd">
+		<rul:Param Name="causeOfLoss" Type="string" />
+		<rul:FirstNonNull Type="decimal">
+			<rul:Lookup Type="decimal" MatrixCol="Factor" MatrixDef="Deductible250FactorDef" MatrixFromConstant="Deductible250Factor" ResultMode="FirstResult">
+				<rul:Keys>
+					<rul:Value Type="string" FromDataDef="/State/@Code" />
+					<rul:Value Type="string" FromParam="causeOfLoss" />
+				</rul:Keys>
+			</rul:Lookup>
+			<rul:Lookup Type="decimal" MatrixCol="Factor" MatrixDef="Deductible250FactorDef" MatrixFromConstant="Deductible250Factor" ResultMode="SingleResult">
+				<rul:Keys>
+					<rul:Constant Type="string">CW</rul:Constant>
+					<rul:Value Type="string" FromParam="causeOfLoss" />
+				</rul:Keys>
+			</rul:Lookup>
+		</rul:FirstNonNull>
+	</rul:Rule>
+	<rul:Rule Name="LookupDeductibleFactor" Type="decimal" DataDefGroup="CommercialPropertyDischargeFromSewerDrainOrSumpNotFloodReltd">
+		<rul:Param Name="Ded" Type="string" />
+		<rul:Param Name="limit" Type="integer" />
+		<rul:Param Name="CauseOfLossDed" Type="string" />
+		<rul:FirstNonNull Type="decimal">
+			<rul:Lookup Type="decimal" MatrixCol="Factor" MatrixDef="DeductibleFactorDef" MatrixFromConstant="DeductibleFactor" ResultMode="FirstResult">
+				<rul:Keys>
+					<rul:Value Type="string" FromDataDef="/State/@Code" />
+					<rul:Value Type="string" FromParam="Ded" />
+					<rul:Value Type="integer" FromParam="limit" />
+					<rul:Value Type="string" FromParam="CauseOfLossDed" />
+				</rul:Keys>
+			</rul:Lookup>
+			<rul:Lookup Type="decimal" MatrixCol="Factor" MatrixDef="DeductibleFactorDef" MatrixFromConstant="DeductibleFactor" ResultMode="SingleResult">
+				<rul:Keys>
+					<rul:Constant Type="string">CW</rul:Constant>
+					<rul:Value Type="string" FromParam="Ded" />
+					<rul:Value Type="integer" FromParam="limit" />
+					<rul:Value Type="string" FromParam="CauseOfLossDed" />
+				</rul:Keys>
+			</rul:Lookup>
+		</rul:FirstNonNull>
+	</rul:Rule>
+	<rul:Rule Name="LookupSublineDischargeFromSewerDrainOrPump" Type="string" DataDefGroup="CommercialPropertyDischargeFromSewerDrainOrSumpNotFloodReltd">
+		<rul:FirstNonNull Type="string">
+			<rul:Lookup Type="string" MatrixCol="Code" MatrixDef="SublineDischargeFromSewerDrainOrPumpDef" MatrixFromConstant="SublineDischargeFromSewerDrainOrPump" ResultMode="FirstResult">
+				<rul:Keys>
+					<rul:Value Type="string" FromDataDef="/State/@Code" />
+					<rul:Constant Type="string">Y</rul:Constant>
+				</rul:Keys>
+			</rul:Lookup>
+			<rul:Lookup Type="string" MatrixCol="Code" MatrixDef="SublineDischargeFromSewerDrainOrPumpDef" MatrixFromConstant="SublineDischargeFromSewerDrainOrPump" ResultMode="SingleResult">
+				<rul:Keys>
+					<rul:Constant Type="string">CW</rul:Constant>
+					<rul:Constant Type="string">Y</rul:Constant>
+				</rul:Keys>
+			</rul:Lookup>
+		</rul:FirstNonNull>
+	</rul:Rule>
+	<rul:Rule Name="LookupDischargeFromSewerDrainOrPumpCode" Type="string" DataDefGroup="CommercialPropertyDischargeFromSewerDrainOrSumpNotFloodReltd">
+		<rul:FirstNonNull Type="string">
+			<rul:Lookup Type="string" MatrixCol="Code" MatrixDef="DischargeFromSewerDrainOrPumpPropertyDamageCodeDef" MatrixFromConstant="DischargeFromSewerDrainOrPumpPropertyDamageCode" ResultMode="FirstResult">
+				<rul:Keys>
+					<rul:Value Type="string" FromDataDef="/State/@Code" />
+					<rul:Constant Type="string">Y</rul:Constant>
+				</rul:Keys>
+			</rul:Lookup>
+			<rul:Lookup Type="string" MatrixCol="Code" MatrixDef="DischargeFromSewerDrainOrPumpPropertyDamageCodeDef" MatrixFromConstant="DischargeFromSewerDrainOrPumpPropertyDamageCode" ResultMode="SingleResult">
+				<rul:Keys>
+					<rul:Constant Type="string">CW</rul:Constant>
+					<rul:Constant Type="string">Y</rul:Constant>
+				</rul:Keys>
+			</rul:Lookup>
+		</rul:FirstNonNull>
+	</rul:Rule>
+	<rul:Rule Name="LookupDischargeFromSewerDrainOrPumpPropertyDamageCoverageCode" Type="string" DataDefGroup="CommercialPropertyDischargeFromSewerDrainOrSumpNotFloodReltd">
+		<rul:FirstNonNull Type="string">
+			<rul:Lookup Type="string" MatrixCol="Code" MatrixDef="DischargeFromSewerDrainOrPumpPropertyDamageCoverageCodeDef" MatrixFromConstant="DischargeFromSewerDrainOrPumpPropertyDamageCoverageCode" ResultMode="FirstResult">
+				<rul:Keys>
+					<rul:Value Type="string" FromDataDef="/State/@Code" />
+					<rul:Constant Type="string">Y</rul:Constant>
+				</rul:Keys>
+			</rul:Lookup>
+			<rul:Lookup Type="string" MatrixCol="Code" MatrixDef="DischargeFromSewerDrainOrPumpPropertyDamageCoverageCodeDef" MatrixFromConstant="DischargeFromSewerDrainOrPumpPropertyDamageCoverageCode" ResultMode="SingleResult">
+				<rul:Keys>
+					<rul:Constant Type="string">CW</rul:Constant>
+					<rul:Constant Type="string">Y</rul:Constant>
+				</rul:Keys>
+			</rul:Lookup>
+		</rul:FirstNonNull>
+	</rul:Rule>
+</rul:Rules>

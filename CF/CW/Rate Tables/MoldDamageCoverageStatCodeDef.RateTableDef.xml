@@ -1,0 +1,16 @@
+<rt:RateTable xmlns:rt="http://www.verisk.com/iso/erc/RateTable">
+	<rt:MetaData>
+		<rt:MetaDataCode>RateTableMoldDamageCoverageStatCode</rt:MetaDataCode>
+		<rt:MetaDataCode>BureauRuleNumberCF88</rt:MetaDataCode>
+	</rt:MetaData>
+	<rt:KeyCols>
+		<rt:KeyCol Name="StateCode" Type="string" CaseInsensitive="false" />
+		<rt:Range Name="SubLimit" Type="integer" RangeType="FromInclusiveToExclusive">
+			<rt:KeyCol Name="SubLimit_From" />
+			<rt:KeyCol Name="SubLimit_ToLessThan" />
+		</rt:Range>
+	</rt:KeyCols>
+	<rt:ValueCols>
+		<rt:ValueCol Name="Code" Type="string" />
+	</rt:ValueCols>
+</rt:RateTable>

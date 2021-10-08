@@ -1,0 +1,18 @@
+<dt:DomainTable xmlns:dt="http://www.verisk.com/iso/erc/DomainTable">
+	<dt:MetaData>
+		<dt:MetaDataCode>DomainTableAgreedValueBusnIncome</dt:MetaDataCode>
+		<dt:MetaDataCode>BureauRuleNumber51A2</dt:MetaDataCode>
+	</dt:MetaData>
+	<dt:KeyCols>
+		<dt:KeyCol Name="StateCode" Type="string" CaseInsensitive="false" />
+		<dt:KeyCol Name="CovFormBusnIncome" Type="string" CaseInsensitive="false" />
+		<dt:KeyCol Name="IncludedInBlktBusnIncome" Type="string" CaseInsensitive="false" />
+		<dt:KeyCol Name="EQCovIndicatorBusnIncome" Type="string" CaseInsensitive="false" />
+		<dt:KeyCol Name="MaxPeriod" Type="string" CaseInsensitive="false" />
+		<dt:KeyCol Name="MonthlyLimitOfIndemnity" Type="string" CaseInsensitive="false" />
+	</dt:KeyCols>
+	<dt:ValueCols>
+		<dt:ValueCol Name="DisplayValue" Type="string" />
+		<dt:ValueCol Name="DataValue" Type="string" />
+	</dt:ValueCols>
+</dt:DomainTable>

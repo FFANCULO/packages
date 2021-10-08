@@ -1,0 +1,18 @@
+<rt:RateTable xmlns:rt="http://www.verisk.com/iso/erc/RateTable">
+	<rt:MetaData>
+		<rt:MetaDataCode>RateTableDeductibleFactor</rt:MetaDataCode>
+		<rt:MetaDataCode>BureauRuleNumber81E4</rt:MetaDataCode>
+	</rt:MetaData>
+	<rt:KeyCols>
+		<rt:KeyCol Name="StateCode" Type="string" CaseInsensitive="false" />
+		<rt:KeyCol Name="Deductible" Type="string" CaseInsensitive="false" />
+		<rt:Range Name="Limit" Type="integer" RangeType="FromExclusiveToInclusive">
+			<rt:KeyCol Name="Limit_FromGreaterThan" />
+			<rt:KeyCol Name="Limit_To" />
+		</rt:Range>
+		<rt:KeyCol Name="CauseOfLossDeductible" Type="string" CaseInsensitive="false" />
+	</rt:KeyCols>
+	<rt:ValueCols>
+		<rt:ValueCol Name="Factor" Type="decimal" />
+	</rt:ValueCols>
+</rt:RateTable>

@@ -1,0 +1,330 @@
+<rul:Rules xmlns:rul="http://www.verisk.com/iso/erc/Rule">
+	<rul:Rule Name="InitializeRuleSet" DataDefGroup="CommercialPropertyBusinessIncomeFromDependentPropertiesBroadForm">
+		<rul:Sequence>
+			<rul:Locate AtDataDef="CommercialPropertyBusinessIncomeFromDependentPropertiesBroadFormBasicGroupICoverage">
+				<rul:RunRule Type="none" FileName="CommercialPropertyBusinessIncomeFromDependentPropertiesBroadFormBasicGroupICoverageRules" Rule="InitializeRuleSet" ClearCache="true" />
+			</rul:Locate>
+			<rul:Locate AtDataDef="CommercialPropertyBusinessIncomeFromDependentPropertiesBroadFormBasicGroupIICoverage">
+				<rul:RunRule Type="none" FileName="CommercialPropertyBusinessIncomeFromDependentPropertiesBroadFormBasicGroupIICoverageRules" Rule="InitializeRuleSet" ClearCache="true" />
+			</rul:Locate>
+			<rul:Locate AtDataDef="CommercialPropertyBusinessIncomeFromDependentPropertiesBroadFormBroadCoverage">
+				<rul:RunRule Type="none" FileName="CommercialPropertyBusinessIncomeFromDependentPropertiesBroadFormBroadCoverageRules" Rule="InitializeRuleSet" ClearCache="true" />
+			</rul:Locate>
+			<rul:ForEach AtDataDef="CommercialPropertyBusinessIncomeFromDependentPropertiesBroadFormDetailTable/CommercialPropertyBusinessIncomeFromDependentPropertiesBroadFormDetail">
+				<rul:RunRule Type="none" FileName="CommercialPropertyBusinessIncomeFromDependentPropertiesBroadFormDetailRules" Rule="InitializeRuleSet" ClearCache="true" />
+			</rul:ForEach>
+			<rul:Locate AtDataDef="CommercialPropertyBusinessIncomeFromDependentPropertiesBroadFormEarthquakeCoverage">
+				<rul:RunRule Type="none" FileName="CommercialPropertyBusinessIncomeFromDependentPropertiesBroadFormEarthquakeCoverageRules" Rule="InitializeRuleSet" ClearCache="true" />
+			</rul:Locate>
+			<rul:Locate AtDataDef="CommercialPropertyBusinessIncomeFromDependentPropertiesBroadFormSpecialCoverage">
+				<rul:RunRule Type="none" FileName="CommercialPropertyBusinessIncomeFromDependentPropertiesBroadFormSpecialCoverageRules" Rule="InitializeRuleSet" ClearCache="true" />
+			</rul:Locate>
+		</rul:Sequence>
+	</rul:Rule>
+	<rul:Rule Name="CalculateTotalPremium" Type="decimal" DataDefGroup="CommercialPropertyBusinessIncomeFromDependentPropertiesBroadForm">
+		<rul:Sum>
+			<rul:Locate AtDataDef="CommercialPropertyBusinessIncomeFromDependentPropertiesBroadFormBasicGroupICoverage">
+				<rul:RunRule Type="decimal" FileName="CommercialPropertyBusinessIncomeFromDependentPropertiesBroadFormBasicGroupICoverageRules" Rule="CalculateTotalPremium" ClearCache="true" />
+			</rul:Locate>
+			<rul:Locate AtDataDef="CommercialPropertyBusinessIncomeFromDependentPropertiesBroadFormBasicGroupIICoverage">
+				<rul:RunRule Type="decimal" FileName="CommercialPropertyBusinessIncomeFromDependentPropertiesBroadFormBasicGroupIICoverageRules" Rule="CalculateTotalPremium" ClearCache="true" />
+			</rul:Locate>
+			<rul:Locate AtDataDef="CommercialPropertyBusinessIncomeFromDependentPropertiesBroadFormBroadCoverage">
+				<rul:RunRule Type="decimal" FileName="CommercialPropertyBusinessIncomeFromDependentPropertiesBroadFormBroadCoverageRules" Rule="CalculateTotalPremium" ClearCache="true" />
+			</rul:Locate>
+			<rul:ForEach AtDataDef="CommercialPropertyBusinessIncomeFromDependentPropertiesBroadFormDetailTable/CommercialPropertyBusinessIncomeFromDependentPropertiesBroadFormDetail">
+				<rul:RunRule Type="decimal" FileName="CommercialPropertyBusinessIncomeFromDependentPropertiesBroadFormDetailRules" Rule="CalculateTotalPremium" ClearCache="true" />
+			</rul:ForEach>
+			<rul:Locate AtDataDef="CommercialPropertyBusinessIncomeFromDependentPropertiesBroadFormEarthquakeCoverage">
+				<rul:RunRule Type="decimal" FileName="CommercialPropertyBusinessIncomeFromDependentPropertiesBroadFormEarthquakeCoverageRules" Rule="CalculateTotalPremium" ClearCache="true" />
+			</rul:Locate>
+			<rul:Locate AtDataDef="CommercialPropertyBusinessIncomeFromDependentPropertiesBroadFormSpecialCoverage">
+				<rul:RunRule Type="decimal" FileName="CommercialPropertyBusinessIncomeFromDependentPropertiesBroadFormSpecialCoverageRules" Rule="CalculateTotalPremium" ClearCache="true" />
+			</rul:Locate>
+			<rul:If>
+				<rul:Test>
+					<rul:And>
+						<rul:Equal>
+							<rul:FirstValue Type="integer" FromConstant="0" FromDataDef="@PremiumIndicator" Order="DataDefInputParamConstant" />
+							<rul:Constant Type="integer">1</rul:Constant>
+						</rul:Equal>
+						<rul:NotEqual>
+							<rul:FirstValue Type="decimal" FromConstant="0" FromDataDef="@Premium" Order="DataDefInputParamConstant" />
+							<rul:Constant Type="decimal">0</rul:Constant>
+						</rul:NotEqual>
+					</rul:And>
+				</rul:Test>
+				<rul:Then>
+					<rul:FirstValue Type="decimal" FromConstant="0" FromDataDef="@Premium" Order="DataDefInputParamConstant" />
+				</rul:Then>
+				<rul:Else>
+					<rul:Constant Type="decimal">0</rul:Constant>
+				</rul:Else>
+			</rul:If>
+		</rul:Sum>
+	</rul:Rule>
+	<rul:Rule Name="ErcSetRatesAndFactors" Type="none" DataDefGroup="CommercialPropertyBusinessIncomeFromDependentPropertiesBroadForm">
+		<rul:Sequence>
+			<rul:WithArgs>
+				<rul:Arg Type="decimal" Param="finalAdjustedBasicGroupIRate">
+					<rul:FirstNonNull Type="decimal">
+						<rul:Max>
+							<rul:ForEach AtDataDef="CommercialPropertyBusinessIncomeFromDependentPropertiesBroadFormDetailTable/CommercialPropertyBusinessIncomeFromDependentPropertiesBroadFormDetail">
+								<rul:FirstValue Type="decimal" FromConstant="0" FromDataDef="@AdjustedBasicGroupIRate" Order="DataDefInputParamConstant" />
+							</rul:ForEach>
+							<rul:Constant Type="decimal">0</rul:Constant>
+						</rul:Max>
+						<rul:Constant Type="decimal">0</rul:Constant>
+					</rul:FirstNonNull>
+				</rul:Arg>
+				<rul:Value Type="decimal" ToDataDef="@BasicGroupIRate" FromParam="finalAdjustedBasicGroupIRate" />
+			</rul:WithArgs>
+			<rul:WithArgs>
+				<rul:Arg Type="decimal" Param="finalAdjustedBasicGroupIIRate">
+					<rul:FirstNonNull Type="decimal">
+						<rul:Max>
+							<rul:ForEach AtDataDef="CommercialPropertyBusinessIncomeFromDependentPropertiesBroadFormDetailTable/CommercialPropertyBusinessIncomeFromDependentPropertiesBroadFormDetail">
+								<rul:FirstValue Type="decimal" FromConstant="0" FromDataDef="@AdjustedBasicGroupIIRate" Order="DataDefInputParamConstant" />
+							</rul:ForEach>
+							<rul:Constant Type="decimal">0</rul:Constant>
+						</rul:Max>
+						<rul:Constant Type="decimal">0</rul:Constant>
+					</rul:FirstNonNull>
+				</rul:Arg>
+				<rul:Value Type="decimal" ToDataDef="@BasicGroupIIRate" FromParam="finalAdjustedBasicGroupIIRate" />
+			</rul:WithArgs>
+			<rul:WithArgs>
+				<rul:Arg Type="decimal" Param="finalAdjustedEQRate">
+					<rul:FirstNonNull Type="decimal">
+						<rul:Max>
+							<rul:ForEach AtDataDef="CommercialPropertyBusinessIncomeFromDependentPropertiesBroadFormDetailTable/CommercialPropertyBusinessIncomeFromDependentPropertiesBroadFormDetail">
+								<rul:FirstValue Type="decimal" FromConstant="0" FromDataDef="@AdjustedEQRate" Order="DataDefInputParamConstant" />
+							</rul:ForEach>
+							<rul:Constant Type="decimal">0</rul:Constant>
+						</rul:Max>
+						<rul:Constant Type="decimal">0</rul:Constant>
+					</rul:FirstNonNull>
+				</rul:Arg>
+				<rul:Value Type="decimal" ToDataDef="@EQRate" FromParam="finalAdjustedEQRate" />
+			</rul:WithArgs>
+			<rul:WithArgs>
+				<rul:Arg Type="decimal" Param="finalAdjustedBroadRate">
+					<rul:FirstNonNull Type="decimal">
+						<rul:Max>
+							<rul:ForEach AtDataDef="CommercialPropertyBusinessIncomeFromDependentPropertiesBroadFormDetailTable/CommercialPropertyBusinessIncomeFromDependentPropertiesBroadFormDetail">
+								<rul:FirstValue Type="decimal" FromConstant="0" FromDataDef="@AdjustedBroadRate" Order="DataDefInputParamConstant" />
+							</rul:ForEach>
+							<rul:Constant Type="decimal">0</rul:Constant>
+						</rul:Max>
+						<rul:Constant Type="decimal">0</rul:Constant>
+					</rul:FirstNonNull>
+				</rul:Arg>
+				<rul:Value Type="decimal" ToDataDef="@BroadRate" FromParam="finalAdjustedBroadRate" />
+			</rul:WithArgs>
+			<rul:WithArgs>
+				<rul:Arg Type="decimal" Param="finalAdjustedSpecialRate">
+					<rul:FirstNonNull Type="decimal">
+						<rul:Max>
+							<rul:ForEach AtDataDef="CommercialPropertyBusinessIncomeFromDependentPropertiesBroadFormDetailTable/CommercialPropertyBusinessIncomeFromDependentPropertiesBroadFormDetail">
+								<rul:FirstValue Type="decimal" FromConstant="0" FromDataDef="@AdjustedSpecialRate" Order="DataDefInputParamConstant" />
+							</rul:ForEach>
+							<rul:Constant Type="decimal">0</rul:Constant>
+						</rul:Max>
+						<rul:Constant Type="decimal">0</rul:Constant>
+					</rul:FirstNonNull>
+				</rul:Arg>
+				<rul:Value Type="decimal" ToDataDef="@SpecialRate" FromParam="finalAdjustedSpecialRate" />
+			</rul:WithArgs>
+			<rul:Constant Type="decimal" ToDataDef="@SecondaryLocationDependenciesFactor">1.0</rul:Constant>
+			<rul:ForEach AtInputDataDef="CommercialPropertyBusinessIncomeFromDependentPropertiesBroadFormDetailTable/CommercialPropertyBusinessIncomeFromDependentPropertiesBroadFormDetail">
+				<rul:If>
+					<rul:Test>
+						<rul:Or>
+							<rul:Equal>
+								<rul:FirstValue Type="string" FromConstant="" FromDataDef="@SecondaryContributingLocation" Order="DataDefInputParamConstant" />
+								<rul:Constant Type="string">Yes</rul:Constant>
+							</rul:Equal>
+							<rul:Equal>
+								<rul:FirstValue Type="string" FromConstant="" FromDataDef="@SecondaryRecipientLocation" Order="DataDefInputParamConstant" />
+								<rul:Constant Type="string">Yes</rul:Constant>
+							</rul:Equal>
+						</rul:Or>
+					</rul:Test>
+					<rul:Then>
+						<rul:Sequence>
+							<rul:FirstNonNull Type="decimal">
+								<rul:Lookup Type="decimal" ToDataDef="@SecondaryLocationDependenciesFactor" MatrixCol="Factor" MatrixDef="SecondaryLocationDependenciesFactorDef" MatrixFromConstant="SecondaryLocationDependenciesFactor" ResultMode="FirstResult">
+									<rul:Keys>
+										<rul:Value Type="string" FromDataDef="/State/@Code" />
+										<rul:Constant Type="string">Y</rul:Constant>
+									</rul:Keys>
+								</rul:Lookup>
+								<rul:Lookup Type="decimal" ToDataDef="@SecondaryLocationDependenciesFactor" MatrixCol="Factor" MatrixDef="SecondaryLocationDependenciesFactorDef" MatrixFromConstant="SecondaryLocationDependenciesFactor" ResultMode="SingleResult">
+									<rul:Keys>
+										<rul:Constant Type="string">CW</rul:Constant>
+										<rul:Constant Type="string">Y</rul:Constant>
+									</rul:Keys>
+								</rul:Lookup>
+							</rul:FirstNonNull>
+						</rul:Sequence>
+					</rul:Then>
+				</rul:If>
+			</rul:ForEach>
+		</rul:Sequence>
+	</rul:Rule>
+	<rul:Rule Name="ErcSetStatisticalCodes" Type="none" DataDefGroup="CommercialPropertyBusinessIncomeFromDependentPropertiesBroadForm">
+		<rul:Sequence>
+			<rul:If>
+				<rul:Test>
+					<rul:Exist AtInputDataDef="ancestor::MasterCFCW/Policy" />
+				</rul:Test>
+				<rul:Then>
+					<rul:Sequence>
+						<rul:WithArgs>
+							<rul:Arg Type="integer" Param="calcExposureStatAmount">
+								<rul:FirstNonNull Type="integer">
+									<rul:Choose>
+										<rul:When>
+											<rul:Test>
+												<rul:Equal>
+													<rul:FirstValue Type="string" FromConstant="" FromDataDef="../../@IncludedInBlkt" Order="DataDefInputParamConstant" />
+													<rul:Constant Type="string">No</rul:Constant>
+												</rul:Equal>
+											</rul:Test>
+											<rul:Then>
+												<rul:Convert Type="integer">
+													<rul:Truncate>
+														<rul:Divide>
+															<rul:Value Type="integer" FromDataDef="../../@Limit" />
+															<rul:Constant Type="integer">1000</rul:Constant>
+														</rul:Divide>
+													</rul:Truncate>
+												</rul:Convert>
+											</rul:Then>
+										</rul:When>
+										<rul:When>
+											<rul:Test>
+												<rul:Equal>
+													<rul:FirstValue Type="string" FromConstant="" FromDataDef="../../@IncludedInBlkt" Order="DataDefInputParamConstant" />
+													<rul:Constant Type="string">Yes</rul:Constant>
+												</rul:Equal>
+											</rul:Test>
+											<rul:Then>
+												<rul:WithArgs>
+													<rul:Arg Type="integer" Param="blanketLimit">
+														<rul:FirstNonNull Type="integer">
+															<rul:If>
+																<rul:Test>
+																	<rul:Equal>
+																		<rul:FirstValue Type="string" FromConstant="" FromDataDef="../../@IncludedInBlkt" Order="DataDefInputParamConstant" />
+																		<rul:Constant Type="string">Yes</rul:Constant>
+																	</rul:Equal>
+																</rul:Test>
+																<rul:Then>
+																	<rul:If>
+																		<rul:Test>
+																			<rul:IsNotNull>
+																				<rul:Value Type="integer" FromDataDef="../../@BlktLimit" />
+																			</rul:IsNotNull>
+																		</rul:Test>
+																		<rul:Then>
+																			<rul:FirstValue Type="integer" FromConstant="0" FromDataDef="../../@BlktLimit" Order="DataDefInputParamConstant" />
+																		</rul:Then>
+																	</rul:If>
+																</rul:Then>
+															</rul:If>
+															<rul:Constant Type="integer">0</rul:Constant>
+														</rul:FirstNonNull>
+													</rul:Arg>
+													<rul:Arg Type="decimal" Param="blktProportion">
+														<rul:FirstNonNull Type="decimal">
+															<rul:If>
+																<rul:Test>
+																	<rul:Equal>
+																		<rul:FirstValue Type="string" FromConstant="" FromDataDef="../../@IncludedInBlkt" Order="DataDefInputParamConstant" />
+																		<rul:Constant Type="string">Yes</rul:Constant>
+																	</rul:Equal>
+																</rul:Test>
+																<rul:Then>
+																	<rul:If>
+																		<rul:Test>
+																			<rul:IsNotNull>
+																				<rul:Value Type="decimal" FromDataDef="../../@BlktProportion" />
+																			</rul:IsNotNull>
+																		</rul:Test>
+																		<rul:Then>
+																			<rul:FirstValue Type="decimal" FromConstant="0" FromDataDef="../../@BlktProportion" Order="DataDefInputParamConstant" />
+																		</rul:Then>
+																	</rul:If>
+																</rul:Then>
+															</rul:If>
+															<rul:Constant Type="decimal">0</rul:Constant>
+														</rul:FirstNonNull>
+													</rul:Arg>
+													<rul:Truncate>
+														<rul:Divide DecimalPlaces="0">
+															<rul:Product>
+																<rul:Value Type="integer" FromParam="blanketLimit" />
+																<rul:Value Type="decimal" FromParam="blktProportion" />
+															</rul:Product>
+															<rul:Constant Type="integer">1000</rul:Constant>
+														</rul:Divide>
+													</rul:Truncate>
+												</rul:WithArgs>
+											</rul:Then>
+										</rul:When>
+										<rul:Otherwise>
+											<rul:Constant Type="integer">0</rul:Constant>
+										</rul:Otherwise>
+									</rul:Choose>
+									<rul:Constant Type="integer">0</rul:Constant>
+								</rul:FirstNonNull>
+							</rul:Arg>
+							<rul:Value Type="integer" ToDataDef="@ExposureStatAmount" FromParam="calcExposureStatAmount" />
+						</rul:WithArgs>
+					</rul:Sequence>
+				</rul:Then>
+			</rul:If>
+		</rul:Sequence>
+	</rul:Rule>
+	<rul:Rule Name="ErcProcess" Type="none" DataDefGroup="CommercialPropertyBusinessIncomeFromDependentPropertiesBroadForm">
+		<rul:Sequence>
+			<rul:ForEach AtDataDef="CommercialPropertyBusinessIncomeFromDependentPropertiesBroadFormDetailTable/CommercialPropertyBusinessIncomeFromDependentPropertiesBroadFormDetail">
+				<rul:RunRule Type="none" FileName="CommercialPropertyBusinessIncomeFromDependentPropertiesBroadFormDetailRules" Rule="ErcProcess" ClearCache="true" />
+			</rul:ForEach>
+			<rul:RunRule Type="none" FileName="CommercialPropertyBusinessIncomeFromDependentPropertiesBroadFormRules" Rule="ErcSetRatesAndFactors" ClearCache="true" />
+			<rul:Locate AtDataDef="CommercialPropertyBusinessIncomeFromDependentPropertiesBroadFormBasicGroupICoverage">
+				<rul:RunRule Type="none" FileName="CommercialPropertyBusinessIncomeFromDependentPropertiesBroadFormBasicGroupICoverageRules" Rule="ErcProcess" ClearCache="true" />
+			</rul:Locate>
+			<rul:Locate AtDataDef="CommercialPropertyBusinessIncomeFromDependentPropertiesBroadFormBasicGroupIICoverage">
+				<rul:RunRule Type="none" FileName="CommercialPropertyBusinessIncomeFromDependentPropertiesBroadFormBasicGroupIICoverageRules" Rule="ErcProcess" ClearCache="true" />
+			</rul:Locate>
+			<rul:Locate AtDataDef="CommercialPropertyBusinessIncomeFromDependentPropertiesBroadFormBroadCoverage">
+				<rul:RunRule Type="none" FileName="CommercialPropertyBusinessIncomeFromDependentPropertiesBroadFormBroadCoverageRules" Rule="ErcProcess" ClearCache="true" />
+			</rul:Locate>
+			<rul:Locate AtDataDef="CommercialPropertyBusinessIncomeFromDependentPropertiesBroadFormEarthquakeCoverage">
+				<rul:RunRule Type="none" FileName="CommercialPropertyBusinessIncomeFromDependentPropertiesBroadFormEarthquakeCoverageRules" Rule="ErcProcess" ClearCache="true" />
+			</rul:Locate>
+			<rul:Locate AtDataDef="CommercialPropertyBusinessIncomeFromDependentPropertiesBroadFormSpecialCoverage">
+				<rul:RunRule Type="none" FileName="CommercialPropertyBusinessIncomeFromDependentPropertiesBroadFormSpecialCoverageRules" Rule="ErcProcess" ClearCache="true" />
+			</rul:Locate>
+			<rul:RunRule Type="none" FileName="CommercialPropertyBusinessIncomeFromDependentPropertiesBroadFormRules" Rule="ErcSetStatisticalCodes" ClearCache="true" />
+		</rul:Sequence>
+	</rul:Rule>
+	<rul:Rule Name="LookupSecondaryLocationDependenciesFactor" Type="decimal" DataDefGroup="CommercialPropertyBusinessIncomeFromDependentPropertiesBroadForm">
+		<rul:FirstNonNull Type="decimal">
+			<rul:Lookup Type="decimal" MatrixCol="Factor" MatrixDef="SecondaryLocationDependenciesFactorDef" MatrixFromConstant="SecondaryLocationDependenciesFactor" ResultMode="FirstResult">
+				<rul:Keys>
+					<rul:Value Type="string" FromDataDef="/State/@Code" />
+					<rul:Constant Type="string">Y</rul:Constant>
+				</rul:Keys>
+			</rul:Lookup>
+			<rul:Lookup Type="decimal" MatrixCol="Factor" MatrixDef="SecondaryLocationDependenciesFactorDef" MatrixFromConstant="SecondaryLocationDependenciesFactor" ResultMode="SingleResult">
+				<rul:Keys>
+					<rul:Constant Type="string">CW</rul:Constant>
+					<rul:Constant Type="string">Y</rul:Constant>
+				</rul:Keys>
+			</rul:Lookup>
+		</rul:FirstNonNull>
+	</rul:Rule>
+</rul:Rules>

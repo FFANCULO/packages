@@ -1,0 +1,18 @@
+<dt:DomainTable xmlns:dt="http://www.verisk.com/iso/erc/DomainTable">
+	<dt:MetaData>
+		<dt:MetaDataCode>DomainTableCoinsuranceSpecialClass</dt:MetaDataCode>
+		<dt:MetaDataCode>BureauRuleNumber34B338N3d38R4b71D172D1</dt:MetaDataCode>
+	</dt:MetaData>
+	<dt:KeyCols>
+		<dt:KeyCol Name="StateCode" Type="string" CaseInsensitive="false" />
+		<dt:KeyCol Name="PolicyType" Type="string" CaseInsensitive="false" />
+		<dt:KeyCol Name="CauseOfLossSpecialClass" Type="string" CaseInsensitive="false" />
+		<dt:KeyCol Name="IncludedInBlktSpecialClass" Type="string" CaseInsensitive="false" />
+		<dt:KeyCol Name="ValuationTypeSpecialClass" Type="string" CaseInsensitive="false" />
+		<dt:KeyCol Name="AgreedValueBldg" Type="string" CaseInsensitive="false" />
+	</dt:KeyCols>
+	<dt:ValueCols>
+		<dt:ValueCol Name="DisplayValue" Type="string" />
+		<dt:ValueCol Name="DataValue" Type="string" />
+	</dt:ValueCols>
+</dt:DomainTable>

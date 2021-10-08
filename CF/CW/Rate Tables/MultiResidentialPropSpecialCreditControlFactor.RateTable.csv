@@ -1,0 +1,4 @@
+"StateCode","MultiResidentialPropSpecialCredits","Factor"
+"CW","No",1
+"CW","Yes, not under single supervision, maintenance and control",1
+"CW","Yes, under single supervision, maintenance and control",0.7

@@ -1,0 +1,13 @@
+"StateCode","CommunityRatingSystemGrade","Factor"
+"CW","1",0.7
+"CW","2",0.75
+"CW","3",0.75
+"CW","4",0.8
+"CW","5",0.8
+"CW","6",0.85
+"CW","7",0.9
+"CW","8",0.9
+"CW","9",0.95
+"CW","10",1
+"CW","Unknown",1
+"CW","Not Applicable",1

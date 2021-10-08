@@ -1,0 +1,6 @@
+"StateCode","PeriodOfRestoration","Factor"
+"CW","30",1
+"CW","60",1.02
+"CW","90",1.03
+"CW","120",1.04
+"CW","180",1.06

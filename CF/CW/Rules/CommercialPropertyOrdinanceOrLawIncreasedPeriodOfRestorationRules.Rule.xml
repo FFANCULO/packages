@@ -1,0 +1,283 @@
+<rul:Rules xmlns:rul="http://www.verisk.com/iso/erc/Rule">
+	<rul:Rule Name="InitializeRuleSet" DataDefGroup="CommercialPropertyOrdinanceOrLawIncreasedPeriodOfRestoration">
+		<rul:Sequence>
+			<rul:Locate AtDataDef="CommercialPropertyOrdinanceOrLawIncreasedPeriodOfRestorationBasicGroupICoverage">
+				<rul:RunRule Type="none" FileName="CommercialPropertyOrdinanceOrLawIncreasedPeriodOfRestorationBasicGroupICoverageRules" Rule="InitializeRuleSet" ClearCache="true" />
+			</rul:Locate>
+			<rul:Locate AtDataDef="CommercialPropertyOrdinanceOrLawIncreasedPeriodOfRestorationBasicGroupIICoverage">
+				<rul:RunRule Type="none" FileName="CommercialPropertyOrdinanceOrLawIncreasedPeriodOfRestorationBasicGroupIICoverageRules" Rule="InitializeRuleSet" ClearCache="true" />
+			</rul:Locate>
+			<rul:Locate AtDataDef="CommercialPropertyOrdinanceOrLawIncreasedPeriodOfRestorationBroadCoverage">
+				<rul:RunRule Type="none" FileName="CommercialPropertyOrdinanceOrLawIncreasedPeriodOfRestorationBroadCoverageRules" Rule="InitializeRuleSet" ClearCache="true" />
+			</rul:Locate>
+			<rul:Locate AtDataDef="CommercialPropertyOrdinanceOrLawIncreasedPeriodOfRestorationEarthquakeCoverage">
+				<rul:RunRule Type="none" FileName="CommercialPropertyOrdinanceOrLawIncreasedPeriodOfRestorationEarthquakeCoverageRules" Rule="InitializeRuleSet" ClearCache="true" />
+			</rul:Locate>
+			<rul:Locate AtDataDef="CommercialPropertyOrdinanceOrLawIncreasedPeriodOfRestorationSpecialCoverage">
+				<rul:RunRule Type="none" FileName="CommercialPropertyOrdinanceOrLawIncreasedPeriodOfRestorationSpecialCoverageRules" Rule="InitializeRuleSet" ClearCache="true" />
+			</rul:Locate>
+		</rul:Sequence>
+	</rul:Rule>
+	<rul:Rule Name="CalculateTotalPremium" Type="decimal" DataDefGroup="CommercialPropertyOrdinanceOrLawIncreasedPeriodOfRestoration">
+		<rul:Sum>
+			<rul:Locate AtDataDef="CommercialPropertyOrdinanceOrLawIncreasedPeriodOfRestorationBasicGroupICoverage">
+				<rul:RunRule Type="decimal" FileName="CommercialPropertyOrdinanceOrLawIncreasedPeriodOfRestorationBasicGroupICoverageRules" Rule="CalculateTotalPremium" ClearCache="true" />
+			</rul:Locate>
+			<rul:Locate AtDataDef="CommercialPropertyOrdinanceOrLawIncreasedPeriodOfRestorationBasicGroupIICoverage">
+				<rul:RunRule Type="decimal" FileName="CommercialPropertyOrdinanceOrLawIncreasedPeriodOfRestorationBasicGroupIICoverageRules" Rule="CalculateTotalPremium" ClearCache="true" />
+			</rul:Locate>
+			<rul:Locate AtDataDef="CommercialPropertyOrdinanceOrLawIncreasedPeriodOfRestorationBroadCoverage">
+				<rul:RunRule Type="decimal" FileName="CommercialPropertyOrdinanceOrLawIncreasedPeriodOfRestorationBroadCoverageRules" Rule="CalculateTotalPremium" ClearCache="true" />
+			</rul:Locate>
+			<rul:Locate AtDataDef="CommercialPropertyOrdinanceOrLawIncreasedPeriodOfRestorationEarthquakeCoverage">
+				<rul:RunRule Type="decimal" FileName="CommercialPropertyOrdinanceOrLawIncreasedPeriodOfRestorationEarthquakeCoverageRules" Rule="CalculateTotalPremium" ClearCache="true" />
+			</rul:Locate>
+			<rul:Locate AtDataDef="CommercialPropertyOrdinanceOrLawIncreasedPeriodOfRestorationSpecialCoverage">
+				<rul:RunRule Type="decimal" FileName="CommercialPropertyOrdinanceOrLawIncreasedPeriodOfRestorationSpecialCoverageRules" Rule="CalculateTotalPremium" ClearCache="true" />
+			</rul:Locate>
+			<rul:If>
+				<rul:Test>
+					<rul:And>
+						<rul:Equal>
+							<rul:FirstValue Type="integer" FromConstant="0" FromDataDef="@PremiumIndicator" Order="DataDefInputParamConstant" />
+							<rul:Constant Type="integer">1</rul:Constant>
+						</rul:Equal>
+						<rul:NotEqual>
+							<rul:FirstValue Type="decimal" FromConstant="0" FromDataDef="@Premium" Order="DataDefInputParamConstant" />
+							<rul:Constant Type="decimal">0</rul:Constant>
+						</rul:NotEqual>
+					</rul:And>
+				</rul:Test>
+				<rul:Then>
+					<rul:FirstValue Type="decimal" FromConstant="0" FromDataDef="@Premium" Order="DataDefInputParamConstant" />
+				</rul:Then>
+				<rul:Else>
+					<rul:Constant Type="decimal">0</rul:Constant>
+				</rul:Else>
+			</rul:If>
+		</rul:Sum>
+	</rul:Rule>
+	<rul:Rule Name="ErcSetRatesAndFactors" Type="none" DataDefGroup="CommercialPropertyOrdinanceOrLawIncreasedPeriodOfRestoration">
+		<rul:Sequence>
+			<rul:RunRule Type="none" FileName="CommercialPropertyOrdinanceOrLawIncreasedPeriodOfRestorationRules" Rule="SetFactor" ClearCache="true" />
+			<rul:RunRule Type="none" FileName="CommercialPropertyOrdinanceOrLawIncreasedPeriodOfRestorationRules" Rule="SetEQFactor" ClearCache="true" />
+			<rul:RunRule Type="none" FileName="CommercialPropertyOrdinanceOrLawIncreasedPeriodOfRestorationRules" Rule="SetPostLossFactor" ClearCache="true" />
+		</rul:Sequence>
+	</rul:Rule>
+	<rul:Rule Name="SetFactor" Type="none" DataDefGroup="CommercialPropertyOrdinanceOrLawIncreasedPeriodOfRestoration">
+		<rul:Sequence>
+			<rul:RunRule Type="decimal" ToDataDef="@Factor" FileName="CommercialPropertyOrdinanceOrLawIncreasedPeriodOfRestorationRules" Rule="LookupOrdOrLawIncrPeriodOfRestorationFactor" ClearCache="true" />
+		</rul:Sequence>
+	</rul:Rule>
+	<rul:Rule Name="SetEQFactor" Type="none" DataDefGroup="CommercialPropertyOrdinanceOrLawIncreasedPeriodOfRestoration">
+		<rul:Sequence>
+			<rul:RunRule Type="decimal" ToDataDef="@EQFactor" FileName="CommercialPropertyOrdinanceOrLawIncreasedPeriodOfRestorationRules" Rule="LookupOrdOrLawIncrPeriodOfRestorationEQFactor" ClearCache="true" />
+		</rul:Sequence>
+	</rul:Rule>
+	<rul:Rule Name="SetPostLossFactor" Type="none" DataDefGroup="CommercialPropertyOrdinanceOrLawIncreasedPeriodOfRestoration">
+		<rul:Sequence>
+			<rul:If>
+				<rul:Test>
+					<rul:Equal>
+						<rul:FirstValue Type="string" FromConstant="" FromDataDef="@PostLossOrdinanceOrLawOption" Order="DataDefInputParamConstant" />
+						<rul:Constant Type="string">Yes</rul:Constant>
+					</rul:Equal>
+				</rul:Test>
+				<rul:Then>
+					<rul:Sequence>
+						<rul:RunRule Type="decimal" ToDataDef="@PostLossFactor" FileName="CommercialPropertyOrdinanceOrLawIncreasedPeriodOfRestorationRules" Rule="LookupPostLossOrdinanceOrLawOptionFactor" ClearCache="true" />
+					</rul:Sequence>
+				</rul:Then>
+				<rul:Else>
+					<rul:Sequence>
+						<rul:Constant Type="decimal" ToDataDef="@PostLossFactor">1.0</rul:Constant>
+					</rul:Sequence>
+				</rul:Else>
+			</rul:If>
+		</rul:Sequence>
+	</rul:Rule>
+	<rul:Rule Name="ErcSetStatisticalCodes" Type="none" DataDefGroup="CommercialPropertyOrdinanceOrLawIncreasedPeriodOfRestoration">
+		<rul:Sequence>
+			<rul:If>
+				<rul:Test>
+					<rul:Exist AtInputDataDef="ancestor::MasterCFCW/Policy" />
+				</rul:Test>
+				<rul:Then>
+					<rul:Sequence>
+						<rul:WithArgs>
+							<rul:Arg Type="integer" Param="calcExposureStatAmount">
+								<rul:FirstNonNull Type="integer">
+									<rul:Choose>
+										<rul:When>
+											<rul:Test>
+												<rul:Equal>
+													<rul:FirstValue Type="string" FromConstant="" FromDataDef="../../@IncludedInBlkt" Order="DataDefInputParamConstant" />
+													<rul:Constant Type="string">No</rul:Constant>
+												</rul:Equal>
+											</rul:Test>
+											<rul:Then>
+												<rul:Convert Type="integer">
+													<rul:Truncate>
+														<rul:Divide>
+															<rul:Value Type="integer" FromDataDef="../../@Limit" />
+															<rul:Constant Type="integer">1000</rul:Constant>
+														</rul:Divide>
+													</rul:Truncate>
+												</rul:Convert>
+											</rul:Then>
+										</rul:When>
+										<rul:When>
+											<rul:Test>
+												<rul:Equal>
+													<rul:FirstValue Type="string" FromConstant="" FromDataDef="../../@IncludedInBlkt" Order="DataDefInputParamConstant" />
+													<rul:Constant Type="string">Yes</rul:Constant>
+												</rul:Equal>
+											</rul:Test>
+											<rul:Then>
+												<rul:WithArgs>
+													<rul:Arg Type="integer" Param="blktTotalLimit">
+														<rul:FirstNonNull Type="integer">
+															<rul:If>
+																<rul:Test>
+																	<rul:Equal>
+																		<rul:FirstValue Type="string" FromConstant="" FromDataDef="../../@IncludedInBlkt" Order="DataDefInputParamConstant" />
+																		<rul:Constant Type="string">Yes</rul:Constant>
+																	</rul:Equal>
+																</rul:Test>
+																<rul:Then>
+																	<rul:If>
+																		<rul:Test>
+																			<rul:IsNotNull>
+																				<rul:Value Type="integer" FromDataDef="../../@BlktLimit" />
+																			</rul:IsNotNull>
+																		</rul:Test>
+																		<rul:Then>
+																			<rul:FirstValue Type="integer" FromConstant="0" FromDataDef="../../@BlktLimit" Order="DataDefInputParamConstant" />
+																		</rul:Then>
+																	</rul:If>
+																</rul:Then>
+															</rul:If>
+															<rul:Constant Type="integer">0</rul:Constant>
+														</rul:FirstNonNull>
+													</rul:Arg>
+													<rul:Arg Type="decimal" Param="blktProportion">
+														<rul:FirstNonNull Type="decimal">
+															<rul:If>
+																<rul:Test>
+																	<rul:Equal>
+																		<rul:FirstValue Type="string" FromConstant="" FromDataDef="../../@IncludedInBlkt" Order="DataDefInputParamConstant" />
+																		<rul:Constant Type="string">Yes</rul:Constant>
+																	</rul:Equal>
+																</rul:Test>
+																<rul:Then>
+																	<rul:If>
+																		<rul:Test>
+																			<rul:IsNotNull>
+																				<rul:Value Type="decimal" FromDataDef="../../@BlktProportion" />
+																			</rul:IsNotNull>
+																		</rul:Test>
+																		<rul:Then>
+																			<rul:FirstValue Type="decimal" FromConstant="0" FromDataDef="../../@BlktProportion" Order="DataDefInputParamConstant" />
+																		</rul:Then>
+																	</rul:If>
+																</rul:Then>
+															</rul:If>
+															<rul:Constant Type="decimal">0</rul:Constant>
+														</rul:FirstNonNull>
+													</rul:Arg>
+													<rul:Truncate>
+														<rul:Divide DecimalPlaces="0">
+															<rul:Product>
+																<rul:Value Type="integer" FromParam="blktTotalLimit" />
+																<rul:Value Type="decimal" FromParam="blktProportion" />
+															</rul:Product>
+															<rul:Constant Type="integer">1000</rul:Constant>
+														</rul:Divide>
+													</rul:Truncate>
+												</rul:WithArgs>
+											</rul:Then>
+										</rul:When>
+										<rul:Otherwise>
+											<rul:Constant Type="integer">0</rul:Constant>
+										</rul:Otherwise>
+									</rul:Choose>
+									<rul:Constant Type="integer">0</rul:Constant>
+								</rul:FirstNonNull>
+							</rul:Arg>
+							<rul:Value Type="integer" ToDataDef="@ExposureStatAmount" FromParam="calcExposureStatAmount" />
+						</rul:WithArgs>
+					</rul:Sequence>
+				</rul:Then>
+			</rul:If>
+		</rul:Sequence>
+	</rul:Rule>
+	<rul:Rule Name="ErcProcess" Type="none" DataDefGroup="CommercialPropertyOrdinanceOrLawIncreasedPeriodOfRestoration">
+		<rul:Sequence>
+			<rul:RunRule Type="none" FileName="CommercialPropertyOrdinanceOrLawIncreasedPeriodOfRestorationRules" Rule="ErcSetRatesAndFactors" ClearCache="true" />
+			<rul:Locate AtDataDef="CommercialPropertyOrdinanceOrLawIncreasedPeriodOfRestorationBasicGroupICoverage">
+				<rul:RunRule Type="none" FileName="CommercialPropertyOrdinanceOrLawIncreasedPeriodOfRestorationBasicGroupICoverageRules" Rule="ErcProcess" ClearCache="true" />
+			</rul:Locate>
+			<rul:Locate AtDataDef="CommercialPropertyOrdinanceOrLawIncreasedPeriodOfRestorationBasicGroupIICoverage">
+				<rul:RunRule Type="none" FileName="CommercialPropertyOrdinanceOrLawIncreasedPeriodOfRestorationBasicGroupIICoverageRules" Rule="ErcProcess" ClearCache="true" />
+			</rul:Locate>
+			<rul:Locate AtDataDef="CommercialPropertyOrdinanceOrLawIncreasedPeriodOfRestorationBroadCoverage">
+				<rul:RunRule Type="none" FileName="CommercialPropertyOrdinanceOrLawIncreasedPeriodOfRestorationBroadCoverageRules" Rule="ErcProcess" ClearCache="true" />
+			</rul:Locate>
+			<rul:Locate AtDataDef="CommercialPropertyOrdinanceOrLawIncreasedPeriodOfRestorationEarthquakeCoverage">
+				<rul:RunRule Type="none" FileName="CommercialPropertyOrdinanceOrLawIncreasedPeriodOfRestorationEarthquakeCoverageRules" Rule="ErcProcess" ClearCache="true" />
+			</rul:Locate>
+			<rul:Locate AtDataDef="CommercialPropertyOrdinanceOrLawIncreasedPeriodOfRestorationSpecialCoverage">
+				<rul:RunRule Type="none" FileName="CommercialPropertyOrdinanceOrLawIncreasedPeriodOfRestorationSpecialCoverageRules" Rule="ErcProcess" ClearCache="true" />
+			</rul:Locate>
+			<rul:RunRule Type="none" FileName="CommercialPropertyOrdinanceOrLawIncreasedPeriodOfRestorationRules" Rule="ErcSetStatisticalCodes" ClearCache="true" />
+		</rul:Sequence>
+	</rul:Rule>
+	<rul:Rule Name="LookupOrdOrLawIncrPeriodOfRestorationEQFactor" Type="decimal" DataDefGroup="CommercialPropertyOrdinanceOrLawIncreasedPeriodOfRestoration">
+		<rul:FirstNonNull Type="decimal">
+			<rul:Lookup Type="decimal" MatrixCol="Factor" MatrixDef="OrdOrLawIncrPeriodOfRestorationEQFactorDef" MatrixFromConstant="OrdOrLawIncrPeriodOfRestorationEQFactor" ResultMode="FirstResult">
+				<rul:Keys>
+					<rul:Value Type="string" FromDataDef="/State/@Code" />
+					<rul:Constant Type="string">Y</rul:Constant>
+				</rul:Keys>
+			</rul:Lookup>
+			<rul:Lookup Type="decimal" MatrixCol="Factor" MatrixDef="OrdOrLawIncrPeriodOfRestorationEQFactorDef" MatrixFromConstant="OrdOrLawIncrPeriodOfRestorationEQFactor" ResultMode="SingleResult">
+				<rul:Keys>
+					<rul:Constant Type="string">CW</rul:Constant>
+					<rul:Constant Type="string">Y</rul:Constant>
+				</rul:Keys>
+			</rul:Lookup>
+		</rul:FirstNonNull>
+	</rul:Rule>
+	<rul:Rule Name="LookupOrdOrLawIncrPeriodOfRestorationFactor" Type="decimal" DataDefGroup="CommercialPropertyOrdinanceOrLawIncreasedPeriodOfRestoration">
+		<rul:FirstNonNull Type="decimal">
+			<rul:Lookup Type="decimal" MatrixCol="Factor" MatrixDef="OrdOrLawIncrPeriodOfRestorationFactorDef" MatrixFromConstant="OrdOrLawIncrPeriodOfRestorationFactor" ResultMode="FirstResult">
+				<rul:Keys>
+					<rul:Value Type="string" FromDataDef="/State/@Code" />
+					<rul:Constant Type="string">Y</rul:Constant>
+				</rul:Keys>
+			</rul:Lookup>
+			<rul:Lookup Type="decimal" MatrixCol="Factor" MatrixDef="OrdOrLawIncrPeriodOfRestorationFactorDef" MatrixFromConstant="OrdOrLawIncrPeriodOfRestorationFactor" ResultMode="SingleResult">
+				<rul:Keys>
+					<rul:Constant Type="string">CW</rul:Constant>
+					<rul:Constant Type="string">Y</rul:Constant>
+				</rul:Keys>
+			</rul:Lookup>
+		</rul:FirstNonNull>
+	</rul:Rule>
+	<rul:Rule Name="LookupPostLossOrdinanceOrLawOptionFactor" Type="decimal" DataDefGroup="CommercialPropertyOrdinanceOrLawIncreasedPeriodOfRestoration">
+		<rul:FirstNonNull Type="decimal">
+			<rul:Lookup Type="decimal" MatrixCol="Factor" MatrixDef="PostLossOrdinanceOrLawOptionFactorDef" MatrixFromConstant="PostLossOrdinanceOrLawOptionFactor" ResultMode="FirstResult">
+				<rul:Keys>
+					<rul:Value Type="string" FromDataDef="/State/@Code" />
+					<rul:Constant Type="string">Y</rul:Constant>
+				</rul:Keys>
+			</rul:Lookup>
+			<rul:Lookup Type="decimal" MatrixCol="Factor" MatrixDef="PostLossOrdinanceOrLawOptionFactorDef" MatrixFromConstant="PostLossOrdinanceOrLawOptionFactor" ResultMode="SingleResult">
+				<rul:Keys>
+					<rul:Constant Type="string">CW</rul:Constant>
+					<rul:Constant Type="string">Y</rul:Constant>
+				</rul:Keys>
+			</rul:Lookup>
+		</rul:FirstNonNull>
+	</rul:Rule>
+</rul:Rules>

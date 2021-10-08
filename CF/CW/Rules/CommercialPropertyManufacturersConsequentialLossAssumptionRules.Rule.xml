@@ -1,0 +1,147 @@
+<rul:Rules xmlns:rul="http://www.verisk.com/iso/erc/Rule">
+	<rul:Rule Name="InitializeRuleSet" DataDefGroup="CommercialPropertyManufacturersConsequentialLossAssumption">
+		<rul:Sequence>
+			<rul:Locate AtDataDef="CommercialPropertyManufacturersConsequentialLossAssumptionBasicGroupICoverage">
+				<rul:RunRule Type="none" FileName="CommercialPropertyManufacturersConsequentialLossAssumptionBasicGroupICoverageRules" Rule="InitializeRuleSet" ClearCache="true" />
+			</rul:Locate>
+			<rul:Locate AtDataDef="CommercialPropertyManufacturersConsequentialLossAssumptionBasicGroupIICoverage">
+				<rul:RunRule Type="none" FileName="CommercialPropertyManufacturersConsequentialLossAssumptionBasicGroupIICoverageRules" Rule="InitializeRuleSet" ClearCache="true" />
+			</rul:Locate>
+			<rul:Locate AtDataDef="CommercialPropertyManufacturersConsequentialLossAssumptionBroadCoverage">
+				<rul:RunRule Type="none" FileName="CommercialPropertyManufacturersConsequentialLossAssumptionBroadCoverageRules" Rule="InitializeRuleSet" ClearCache="true" />
+			</rul:Locate>
+			<rul:Locate AtDataDef="CommercialPropertyManufacturersConsequentialLossAssumptionEarthquakeCoverage">
+				<rul:RunRule Type="none" FileName="CommercialPropertyManufacturersConsequentialLossAssumptionEarthquakeCoverageRules" Rule="InitializeRuleSet" ClearCache="true" />
+			</rul:Locate>
+			<rul:Locate AtDataDef="CommercialPropertyManufacturersConsequentialLossAssumptionSpecialCoverage">
+				<rul:RunRule Type="none" FileName="CommercialPropertyManufacturersConsequentialLossAssumptionSpecialCoverageRules" Rule="InitializeRuleSet" ClearCache="true" />
+			</rul:Locate>
+		</rul:Sequence>
+	</rul:Rule>
+	<rul:Rule Name="CalculateTotalPremium" Type="decimal" DataDefGroup="CommercialPropertyManufacturersConsequentialLossAssumption">
+		<rul:Sum>
+			<rul:Locate AtDataDef="CommercialPropertyManufacturersConsequentialLossAssumptionBasicGroupICoverage">
+				<rul:RunRule Type="decimal" FileName="CommercialPropertyManufacturersConsequentialLossAssumptionBasicGroupICoverageRules" Rule="CalculateTotalPremium" ClearCache="true" />
+			</rul:Locate>
+			<rul:Locate AtDataDef="CommercialPropertyManufacturersConsequentialLossAssumptionBasicGroupIICoverage">
+				<rul:RunRule Type="decimal" FileName="CommercialPropertyManufacturersConsequentialLossAssumptionBasicGroupIICoverageRules" Rule="CalculateTotalPremium" ClearCache="true" />
+			</rul:Locate>
+			<rul:Locate AtDataDef="CommercialPropertyManufacturersConsequentialLossAssumptionBroadCoverage">
+				<rul:RunRule Type="decimal" FileName="CommercialPropertyManufacturersConsequentialLossAssumptionBroadCoverageRules" Rule="CalculateTotalPremium" ClearCache="true" />
+			</rul:Locate>
+			<rul:Locate AtDataDef="CommercialPropertyManufacturersConsequentialLossAssumptionEarthquakeCoverage">
+				<rul:RunRule Type="decimal" FileName="CommercialPropertyManufacturersConsequentialLossAssumptionEarthquakeCoverageRules" Rule="CalculateTotalPremium" ClearCache="true" />
+			</rul:Locate>
+			<rul:Locate AtDataDef="CommercialPropertyManufacturersConsequentialLossAssumptionSpecialCoverage">
+				<rul:RunRule Type="decimal" FileName="CommercialPropertyManufacturersConsequentialLossAssumptionSpecialCoverageRules" Rule="CalculateTotalPremium" ClearCache="true" />
+			</rul:Locate>
+			<rul:If>
+				<rul:Test>
+					<rul:And>
+						<rul:Equal>
+							<rul:FirstValue Type="integer" FromConstant="0" FromDataDef="@PremiumIndicator" Order="DataDefInputParamConstant" />
+							<rul:Constant Type="integer">1</rul:Constant>
+						</rul:Equal>
+						<rul:NotEqual>
+							<rul:FirstValue Type="decimal" FromConstant="0" FromDataDef="@Premium" Order="DataDefInputParamConstant" />
+							<rul:Constant Type="decimal">0</rul:Constant>
+						</rul:NotEqual>
+					</rul:And>
+				</rul:Test>
+				<rul:Then>
+					<rul:FirstValue Type="decimal" FromConstant="0" FromDataDef="@Premium" Order="DataDefInputParamConstant" />
+				</rul:Then>
+				<rul:Else>
+					<rul:Constant Type="decimal">0</rul:Constant>
+				</rul:Else>
+			</rul:If>
+		</rul:Sum>
+	</rul:Rule>
+	<rul:Rule Name="ErcSetRatesAndFactors" Type="none" DataDefGroup="CommercialPropertyManufacturersConsequentialLossAssumption">
+		<rul:Sequence>
+			<rul:RunRule Type="decimal" ToDataDef="@BaseFactor" FileName="CommercialPropertyManufacturersConsequentialLossAssumptionRules" Rule="LookupManufacturersConsequentialLossAssumptionFactor" ClearCache="true" />
+			<rul:Round ToDataDef="@Factor" DecimalPlaces="3">
+				<rul:Subtract>
+					<rul:Value Type="decimal" FromDataDef="@BaseFactor" />
+					<rul:Constant Type="integer">1</rul:Constant>
+				</rul:Subtract>
+			</rul:Round>
+		</rul:Sequence>
+	</rul:Rule>
+	<rul:Rule Name="ErcSetStatisticalCodes" Type="none" DataDefGroup="CommercialPropertyManufacturersConsequentialLossAssumption">
+		<rul:Sequence>
+			<rul:If>
+				<rul:Test>
+					<rul:Exist AtInputDataDef="ancestor::MasterCFCW/Policy" />
+				</rul:Test>
+				<rul:Then>
+					<rul:Sequence>
+						<rul:WithArgs>
+							<rul:Arg Type="integer" Param="calcExposureStatAmount">
+								<rul:FirstNonNull Type="integer">
+									<rul:If>
+										<rul:Test>
+											<rul:GreaterThan>
+												<rul:FirstValue Type="integer" FromConstant="0" FromDataDef="../../@Limit" Order="DataDefInputParamConstant" />
+												<rul:Constant Type="integer">0</rul:Constant>
+											</rul:GreaterThan>
+										</rul:Test>
+										<rul:Then>
+											<rul:Convert Type="integer">
+												<rul:Truncate>
+													<rul:Divide>
+														<rul:Value Type="integer" FromDataDef="../../@Limit" />
+														<rul:Constant Type="integer">1000</rul:Constant>
+													</rul:Divide>
+												</rul:Truncate>
+											</rul:Convert>
+										</rul:Then>
+									</rul:If>
+									<rul:Constant Type="integer">0</rul:Constant>
+								</rul:FirstNonNull>
+							</rul:Arg>
+							<rul:Value Type="integer" ToDataDef="@ExposureStatAmount" FromParam="calcExposureStatAmount" />
+						</rul:WithArgs>
+					</rul:Sequence>
+				</rul:Then>
+			</rul:If>
+		</rul:Sequence>
+	</rul:Rule>
+	<rul:Rule Name="ErcProcess" Type="none" DataDefGroup="CommercialPropertyManufacturersConsequentialLossAssumption">
+		<rul:Sequence>
+			<rul:RunRule Type="none" FileName="CommercialPropertyManufacturersConsequentialLossAssumptionRules" Rule="ErcSetRatesAndFactors" ClearCache="true" />
+			<rul:Locate AtDataDef="CommercialPropertyManufacturersConsequentialLossAssumptionBasicGroupICoverage">
+				<rul:RunRule Type="none" FileName="CommercialPropertyManufacturersConsequentialLossAssumptionBasicGroupICoverageRules" Rule="ErcProcess" ClearCache="true" />
+			</rul:Locate>
+			<rul:Locate AtDataDef="CommercialPropertyManufacturersConsequentialLossAssumptionBasicGroupIICoverage">
+				<rul:RunRule Type="none" FileName="CommercialPropertyManufacturersConsequentialLossAssumptionBasicGroupIICoverageRules" Rule="ErcProcess" ClearCache="true" />
+			</rul:Locate>
+			<rul:Locate AtDataDef="CommercialPropertyManufacturersConsequentialLossAssumptionBroadCoverage">
+				<rul:RunRule Type="none" FileName="CommercialPropertyManufacturersConsequentialLossAssumptionBroadCoverageRules" Rule="ErcProcess" ClearCache="true" />
+			</rul:Locate>
+			<rul:Locate AtDataDef="CommercialPropertyManufacturersConsequentialLossAssumptionEarthquakeCoverage">
+				<rul:RunRule Type="none" FileName="CommercialPropertyManufacturersConsequentialLossAssumptionEarthquakeCoverageRules" Rule="ErcProcess" ClearCache="true" />
+			</rul:Locate>
+			<rul:Locate AtDataDef="CommercialPropertyManufacturersConsequentialLossAssumptionSpecialCoverage">
+				<rul:RunRule Type="none" FileName="CommercialPropertyManufacturersConsequentialLossAssumptionSpecialCoverageRules" Rule="ErcProcess" ClearCache="true" />
+			</rul:Locate>
+			<rul:RunRule Type="none" FileName="CommercialPropertyManufacturersConsequentialLossAssumptionRules" Rule="ErcSetStatisticalCodes" ClearCache="true" />
+		</rul:Sequence>
+	</rul:Rule>
+	<rul:Rule Name="LookupManufacturersConsequentialLossAssumptionFactor" Type="decimal" DataDefGroup="CommercialPropertyManufacturersConsequentialLossAssumption">
+		<rul:FirstNonNull Type="decimal">
+			<rul:Lookup Type="decimal" MatrixCol="Factor" MatrixDef="ManufacturersConsequentialLossAssumptionFactorDef" MatrixFromConstant="ManufacturersConsequentialLossAssumptionFactor" ResultMode="FirstResult">
+				<rul:Keys>
+					<rul:Value Type="string" FromDataDef="/State/@Code" />
+					<rul:FirstValue Type="string" FromConstant="" FromDataDef="ancestor::CommercialPropertyPersonalProperty/@CovType" Order="DataDefInputParamConstant" />
+				</rul:Keys>
+			</rul:Lookup>
+			<rul:Lookup Type="decimal" MatrixCol="Factor" MatrixDef="ManufacturersConsequentialLossAssumptionFactorDef" MatrixFromConstant="ManufacturersConsequentialLossAssumptionFactor" ResultMode="SingleResult">
+				<rul:Keys>
+					<rul:Constant Type="string">CW</rul:Constant>
+					<rul:FirstValue Type="string" FromConstant="" FromDataDef="ancestor::CommercialPropertyPersonalProperty/@CovType" Order="DataDefInputParamConstant" />
+				</rul:Keys>
+			</rul:Lookup>
+		</rul:FirstNonNull>
+	</rul:Rule>
+</rul:Rules>

@@ -1,0 +1,116 @@
+<rul:Rules xmlns:rul="http://www.verisk.com/iso/erc/Rule">
+	<rul:Rule Name="InitializeRuleSet" DataDefGroup="CommercialPropertyPeakSeasonGeneralInformation">
+		<rul:Sequence>
+			<rul:ForEach AtDataDef="CommercialPropertyPeakSeasonGeneralInformationDetailTable/CommercialPropertyPeakSeasonGeneralInformationDetail">
+				<rul:RunRule Type="none" FileName="CommercialPropertyPeakSeasonGeneralInformationDetailRules" Rule="InitializeRuleSet" ClearCache="true" />
+			</rul:ForEach>
+		</rul:Sequence>
+	</rul:Rule>
+	<rul:Rule Name="CalculateTotalPremium" Type="decimal" DataDefGroup="CommercialPropertyPeakSeasonGeneralInformation">
+		<rul:Sum>
+			<rul:ForEach AtDataDef="CommercialPropertyPeakSeasonGeneralInformationDetailTable/CommercialPropertyPeakSeasonGeneralInformationDetail">
+				<rul:RunRule Type="decimal" FileName="CommercialPropertyPeakSeasonGeneralInformationDetailRules" Rule="CalculateTotalPremium" ClearCache="true" />
+			</rul:ForEach>
+			<rul:If>
+				<rul:Test>
+					<rul:And>
+						<rul:Equal>
+							<rul:FirstValue Type="integer" FromConstant="0" FromDataDef="@PremiumIndicator" Order="DataDefInputParamConstant" />
+							<rul:Constant Type="integer">1</rul:Constant>
+						</rul:Equal>
+						<rul:NotEqual>
+							<rul:FirstValue Type="decimal" FromConstant="0" FromDataDef="@Premium" Order="DataDefInputParamConstant" />
+							<rul:Constant Type="decimal">0</rul:Constant>
+						</rul:NotEqual>
+					</rul:And>
+				</rul:Test>
+				<rul:Then>
+					<rul:FirstValue Type="decimal" FromConstant="0" FromDataDef="@Premium" Order="DataDefInputParamConstant" />
+				</rul:Then>
+				<rul:Else>
+					<rul:Constant Type="decimal">0</rul:Constant>
+				</rul:Else>
+			</rul:If>
+		</rul:Sum>
+	</rul:Rule>
+	<rul:Rule Name="ErcSetRatesAndFactors" Type="none" DataDefGroup="CommercialPropertyPeakSeasonGeneralInformation">
+		<rul:Sequence>
+			<rul:RunRule Type="none" FileName="CommercialPropertyPeakSeasonGeneralInformationRules" Rule="SetBlanketDetails" ClearCache="true" />
+			<rul:RunRule Type="none" FileName="CommercialPropertyPeakSeasonGeneralInformationRules" Rule="SetCoinsuranceFactor" ClearCache="true" />
+		</rul:Sequence>
+	</rul:Rule>
+	<rul:Rule Name="SetBlanketDetails" Type="none" DataDefGroup="CommercialPropertyPeakSeasonGeneralInformation">
+		<rul:Sequence>
+			<rul:WithArgs>
+				<rul:Arg Type="integer" Param="BlktIDNumParam">
+					<rul:FirstValue Type="integer" FromConstant="0" FromDataDef="@BlktIDNum" Order="DataDefInputParamConstant" />
+				</rul:Arg>
+				<rul:ForEach AtInputDataDef="../../CommercialPropertyBlanketRatingTable/CommercialPropertyBlanketRating">
+					<rul:ForEach AtInputDataDef="CommercialPropertyBlanketRatingDetailTable/CommercialPropertyBlanketRatingDetail">
+						<rul:If>
+							<rul:Test>
+								<rul:Equal>
+									<rul:FirstValue Type="integer" FromConstant="0" FromDataDef="@UnitNumber" Order="DataDefInputParamConstant" />
+									<rul:Value Type="integer" FromParam="BlktIDNumParam" />
+								</rul:Equal>
+							</rul:Test>
+							<rul:Then>
+								<rul:Sequence>
+									<rul:Copy Type="integer" ToDataDef="@BlktLimit" FromDataDef="@TotalLimit" />
+									<rul:Copy Type="string" ToDataDef="@TypeOfBlanketRating" FromDataDef="@TypeOfBlanketRating" />
+									<rul:Copy Type="string" ToDataDef="@BlktType" FromDataDef="@Type" />
+									<rul:Copy Type="string" ToDataDef="@Coinsurance" FromDataDef="@Coinsurance" />
+									<rul:Copy Type="string" ToDataDef="@CauseOfLoss" FromDataDef="@CauseOfLoss" />
+									<rul:Copy Type="string" ToDataDef="@EQCauseOfLossIncludedInBlkt" FromDataDef="@EQCauseOfLossIncludedInBlkt" />
+								</rul:Sequence>
+							</rul:Then>
+						</rul:If>
+					</rul:ForEach>
+				</rul:ForEach>
+			</rul:WithArgs>
+		</rul:Sequence>
+	</rul:Rule>
+	<rul:Rule Name="SetCoinsuranceFactor" Type="none" DataDefGroup="CommercialPropertyPeakSeasonGeneralInformation">
+		<rul:Sequence>
+			<rul:RunRule Type="decimal" ToDataDef="@CoinsuranceFactor" FileName="CommercialPropertyPeakSeasonGeneralInformationRules" Rule="LookupCoinsuranceFactorBlkt" ClearCache="true" />
+		</rul:Sequence>
+	</rul:Rule>
+	<rul:Rule Name="ErcSetPeakSeasonGeneralInformationDetailPremium" Type="none" DataDefGroup="CommercialPropertyPeakSeasonGeneralInformation">
+		<rul:Sequence>
+			<rul:ForEach AtDataDef="CommercialPropertyPeakSeasonGeneralInformationDetailTable/CommercialPropertyPeakSeasonGeneralInformationDetail">
+				<rul:RunRule Type="none" FileName="CommercialPropertyPeakSeasonGeneralInformationDetailRules" Rule="SetPeakSeasonGeneralInformationDetailPremium" ClearCache="true" />
+			</rul:ForEach>
+		</rul:Sequence>
+	</rul:Rule>
+	<rul:Rule Name="SetPeakSeasonLimit" Type="none" DataDefGroup="CommercialPropertyPeakSeasonGeneralInformation">
+		<rul:Sequence>
+			<rul:ForEach AtDataDef="CommercialPropertyPeakSeasonGeneralInformationDetailTable/CommercialPropertyPeakSeasonGeneralInformationDetail">
+				<rul:RunRule Type="none" FileName="CommercialPropertyPeakSeasonGeneralInformationDetailRules" Rule="SetPeakSeasonLimit" ClearCache="true" />
+			</rul:ForEach>
+		</rul:Sequence>
+	</rul:Rule>
+	<rul:Rule Name="ErcProcess" Type="none" DataDefGroup="CommercialPropertyPeakSeasonGeneralInformation">
+		<rul:Sequence>
+			<rul:RunRule Type="none" FileName="CommercialPropertyPeakSeasonGeneralInformationRules" Rule="ErcSetRatesAndFactors" ClearCache="true" />
+			<rul:ForEach AtDataDef="CommercialPropertyPeakSeasonGeneralInformationDetailTable/CommercialPropertyPeakSeasonGeneralInformationDetail">
+				<rul:RunRule Type="none" FileName="CommercialPropertyPeakSeasonGeneralInformationDetailRules" Rule="ErcProcess" ClearCache="true" />
+			</rul:ForEach>
+		</rul:Sequence>
+	</rul:Rule>
+	<rul:Rule Name="LookupCoinsuranceFactorBlkt" Type="decimal" DataDefGroup="CommercialPropertyPeakSeasonGeneralInformation">
+		<rul:FirstNonNull Type="decimal">
+			<rul:Lookup Type="decimal" MatrixCol="Factor" MatrixDef="CoinsuranceFactorBlktDef" MatrixFromConstant="CoinsuranceFactorBlkt" ResultMode="FirstResult">
+				<rul:Keys>
+					<rul:Value Type="string" FromDataDef="/State/@Code" />
+					<rul:Constant Type="string">Y</rul:Constant>
+				</rul:Keys>
+			</rul:Lookup>
+			<rul:Lookup Type="decimal" MatrixCol="Factor" MatrixDef="CoinsuranceFactorBlktDef" MatrixFromConstant="CoinsuranceFactorBlkt" ResultMode="SingleResult">
+				<rul:Keys>
+					<rul:Constant Type="string">CW</rul:Constant>
+					<rul:Constant Type="string">Y</rul:Constant>
+				</rul:Keys>
+			</rul:Lookup>
+		</rul:FirstNonNull>
+	</rul:Rule>
+</rul:Rules>

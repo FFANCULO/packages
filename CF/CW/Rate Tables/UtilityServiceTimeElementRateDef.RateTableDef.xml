@@ -1,0 +1,14 @@
+<rt:RateTable xmlns:rt="http://www.verisk.com/iso/erc/RateTable">
+	<rt:MetaData>
+		<rt:MetaDataCode>RateTableUtilityServiceTimeElementRate</rt:MetaDataCode>
+		<rt:MetaDataCode>BureauRuleNumber54B</rt:MetaDataCode>
+	</rt:MetaData>
+	<rt:KeyCols>
+		<rt:KeyCol Name="StateCode" Type="string" CaseInsensitive="false" />
+		<rt:KeyCol Name="Utility" Type="string" CaseInsensitive="false" />
+		<rt:KeyCol Name="CauseOfLossOptionalForm" Type="string" CaseInsensitive="false" />
+	</rt:KeyCols>
+	<rt:ValueCols>
+		<rt:ValueCol Name="Rate" Type="decimal" />
+	</rt:ValueCols>
+</rt:RateTable>

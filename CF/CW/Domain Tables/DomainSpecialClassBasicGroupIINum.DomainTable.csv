@@ -1,0 +1,72 @@
+"StateCode","SpecialClassDescription","DisplayValue","DataValue"
+"CW","Other - Masonry or Metal or Other Non-combustible Materials, Stock or Equipment","1",1
+"CW","Other - Metal or Other Non-combustible Materials W Combustible Wrappings, or on Combustible Pallets","1",1
+"CW","Other - Materials, Stock or Equipment Which Are Combustible or Part Combustible","4",4
+"CW","Aircraft Stored in the Open","8",8
+"CW","Aircraft Beacons, Blinkers and Other Lighting Equipment - Metal Supports","1",1
+"CW","Aircraft Beacons, Blinkers and Other Lighting Equipment - Wood Supports","4",4
+"CW","Amusement Equipment in the Open (Commercial Enterprises) - Metal or Other Non-combustible Equipment","1",1
+"CW","Amusement Equipment in the Open (Commercial Enterprises) - Combustible Equipment","4",4
+"CW","Artificial Turf","1",1
+"CW","Awnings or Canopies (when Insured Separately) - Entirely Non-combustible, Including Supports","8",8
+"CW","Awnings or Canopies (when Insured Separately) - Other than Above","8",8
+"CW","Billboards and Signs (Not on Buildings) - Entirely Metal, Including Frame and Supports","4",4
+"CW","Billboards and Signs (Not on Buildings) - Other than Above","8",8
+"CW","Bleachers","1",1
+"CW","Boats, Dredges or Vessels on Land or Permanently Anchored","2",2
+"CW","Bridges, Aqueducts - Concrete, Including Supports and Deck","2",2
+"CW","Bridges, Aqueducts - Metal, Including Supports and Deck","3",3
+"CW","Bridges, Aqueducts - Wood or Part Wood","4",4
+"CW","Cooling Towers - Masonry","2",2
+"CW","Cooling Towers - Metal","3",3
+"CW","Cooling Towers - Wood","4",4
+"CW","Cordwood, Felled Timber, Stakes & RR Ties in Open, Not on Prem of a Lumber Mill or Bldrs Supply Yard","4",4
+"CW","Cranes and Other Heavy Machinery in the Open","3",3
+"CW","Drive in Theaters (Speakers and Screens Only) - Speakers","3",3
+"CW","Drive in Theaters (Speakers and Screens Only) - Screens - Concrete","2",2
+"CW","Drive in Theaters (Speakers and Screens Only) - Screens - Metal","3",3
+"CW","Drive in Theaters (Speakers and Screens Only) - Screens - Wood","4",4
+"CW","Electric Transformers in the Open Not Owned by a Public Utility - on Concrete Pads or Steel Supports","1",1
+"CW","Electric Transformers in the Open Not Owned by a Public Utility - on Wood Supports","4",4
+"CW","Electric Vehicle Charging Stations (Pole Mount or Pedestal; Not Wall Mounted)","3",3
+"CW","Exhibit Stands and Booths in the Open - Entirely Metal","3",3
+"CW","Exhibit Stands and Booths in the Open - Wood or Part Wood","4",4
+"CW","Explosives in the Open","4",4
+"CW","Fences and Arbors - Metal or Masonry","3",3
+"CW","Fences and Arbors - Wood","4",4
+"CW","Incinerators or Refuse Burners Which Are Not Part of a Building - Masonry Construction","2",2
+"CW","Incinerators or Refuse Burners Which Are Not Part of a Building - All Other Construction","3",3
+"CW","Machinery and Equipment in the Open - Processing Non-combustible Materials Only","3",3
+"CW","Machinery and Equipmt in the Open - Procg Combustible Materials Other than Hay, Straw or Fibers","3",3
+"CW","Machinery and Equipment in the Open - Processing Hay, Straw or Other Fibers","3",3
+"CW","Motion Picture Sets in the Open","8",8
+"CW","Nursery Stock in the Open - Trees, Shrubs, Plants, Flowers","8",8
+"CW","Oil Derricks","8",8
+"CW","Rafts and Other Floating Equipment, Also Portable or Movable Docks (Not Boats or Dredges)","8",8
+"CW","Reservoir Roofs","8",8
+"CW","Sawmills, Portable, in the Open","8",8
+"CW","Solar Panel Arrays - Freestanding (Not on Buildings), including strut support","8",8
+"CW","Stock Pens, Feed Pens, Feed Storing Pens, Corrals - Not Subject to Division Four - Farm","8",8
+"CW","Street Light Poles, Meters, Signs, Traffic Signals, Flagpoles, Alarm Boxes, Similar Equipmt - Metal","3",3
+"CW","Street Light Poles, Meters, Signs, Traffic Signals, Flagpoles, Alarm Boxes, Similar Equipmt - Wood","4",4
+"CW","Swimming Pools in the Open - Above Ground (Concrete or Metal)","1",1
+"CW","Swimming Pools in the Open - Above Ground (All Other)","1",1
+"CW","Swimming Pools in the Open - in Ground (Concrete or Metal)","1",1
+"CW","Swimming Pools in the Open - in Ground (All Other)","1",1
+"CW","Tanks, Bins and Silos - Tanks Below Ground, Covered with Earth","0.5",0.5
+"CW","Tanks, Bins & Silos - Tanks Above Grnd - Masonry Tanks on the Grnd, Masonry Tanks W Masonry Supports","1",1
+"CW","Tanks, Bins & Silos -Tanks Above Grnd -Steel Tanks on Grnd, Masonry or Steel Tanks on Steel Supports","1",1
+"CW","Tanks, Bins & Silos - Tanks Above Grnd - Wood Tanks or Tanks W Wood Supports (Incldg Wood Rsv Roofs)","4",4
+"CW","Tents and Fabric Covered Structures - Supported by Structural Metal Members","8",8
+"CW","Tents and Fabric Covered Structures - Air Supported Structures","8",8
+"CW","Tents and Fabric Covered Structures - All Other Fabric Covered Structures","8",8
+"CW","Towers - Broadcasting Antennas (Cell, Radio and TV)","8",8
+"CW","Towers - Receiving Antennas (Cell, Radio and TV)","8",8
+"CW","Towers - Smokestacks or Chimneys (Free Standing) - Masonry","8",8
+"CW","Towers - Smokestacks or Chimneys (Free Standing) - Metal","8",8
+"CW","Tunnels & Undrgrd Passageways, Incldg Undrgrd Conduits or Pipes (Exclg Mine) - Masonry or Metal","0.5",0.5
+"CW","Tunnels and Undrgrd Passageways, Incldg Undrgrd Conduits or Pipes (Exclg Mine Passageways) - Wood","0.5",0.5
+"CW","Water or Sewage Lift Pumps (Enclosed or Open) - Metal or Masonry","1",1
+"CW","Water or Sewage Lift Pumps (Enclosed or Open) - Wood or Part Wood","1",1
+"CW","Wind Towers - Windmills and wind turbines - tower base of concrete, reinf masonry, steel constrctn","8",8
+"CW","Wind Towers - Windmills and wind turbines - other","8",8

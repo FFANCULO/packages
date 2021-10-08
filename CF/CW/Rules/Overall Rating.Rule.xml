@@ -1,0 +1,22 @@
+<rul:Rules xmlns:rul="http://www.verisk.com/iso/erc/Rule">
+	<rul:Default>
+		<rul:Sequence>
+			<rul:Constant Type="integer" ToDataDef="@Renewal">0</rul:Constant>
+			<rul:Constant Type="string" ToDataDef="State/@Code">CW</rul:Constant>
+			<rul:Constant Type="string" ToDataDef="State/@Name">Countrywide</rul:Constant>
+			<rul:DateAdd ToDataDef="@ExpDate" UnitType="Years">
+				<rul:Value Type="dateTime" FromDataDef="@EffDate" />
+				<rul:Constant Type="integer">1</rul:Constant>
+			</rul:DateAdd>
+			<!--Assume Policy rather than Quote for a Rating as a Service Request-->
+			<rul:Locate AtOutputDataDef="Policy" OutputAction="Append">
+				<rul:Sequence />
+			</rul:Locate>
+			<rul:ForEach AtDataDef="CommercialPropertyTable/CommercialProperty">
+				<rul:RunRule Type="none" FileName="CommercialPropertyRules" Rule="InitializeRuleSet" />
+				<rul:RunRule Type="none" FileName="CommercialPropertyRules" Rule="ErcProcess" />
+				<rul:RunRule Type="none" FileName="CommercialPropertyRules" Rule="ErcCalculateTotalPremium" />
+			</rul:ForEach>
+		</rul:Sequence>
+	</rul:Default>
+</rul:Rules>

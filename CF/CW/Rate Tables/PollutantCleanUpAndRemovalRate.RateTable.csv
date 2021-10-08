@@ -1,0 +1,6 @@
+"StateCode","CauseOfLossOptionalForm","Rate"
+"CW","GroupI",0.5
+"CW","GroupII",0.5
+"CW","Broad",0.006
+"CW","Earthquake",0.75
+"CW","Special",0.006

@@ -1,0 +1,6 @@
+"StateCode","PctOfTotalExteriorWallsFaced","Factor"
+"CW","10% to 25%",1.75
+"CW","25% to 50%",2.5
+"CW","Over 50%",4
+"CW","Masonry Veneer Limitation Applies",1
+"CW","Not Applicable",1

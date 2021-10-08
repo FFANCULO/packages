@@ -1,0 +1,166 @@
+<rul:Rules xmlns:rul="http://www.verisk.com/iso/erc/Rule">
+	<rul:Rule Name="InitializeRuleSet" DataDefGroup="CommercialPropertyHigherLimits">
+		<rul:Sequence />
+	</rul:Rule>
+	<rul:Rule Name="CalculateTotalPremium" Type="decimal" DataDefGroup="CommercialPropertyHigherLimits">
+		<rul:If>
+			<rul:Test>
+				<rul:And>
+					<rul:Equal>
+						<rul:FirstValue Type="integer" FromConstant="0" FromDataDef="@PremiumIndicator" Order="DataDefInputParamConstant" />
+						<rul:Constant Type="integer">1</rul:Constant>
+					</rul:Equal>
+					<rul:NotEqual>
+						<rul:FirstValue Type="decimal" FromConstant="0" FromDataDef="@Premium" Order="DataDefInputParamConstant" />
+						<rul:Constant Type="decimal">0</rul:Constant>
+					</rul:NotEqual>
+				</rul:And>
+			</rul:Test>
+			<rul:Then>
+				<rul:FirstValue Type="decimal" FromConstant="0" FromDataDef="@Premium" Order="DataDefInputParamConstant" />
+			</rul:Then>
+			<rul:Else>
+				<rul:Constant Type="decimal">0</rul:Constant>
+			</rul:Else>
+		</rul:If>
+	</rul:Rule>
+	<rul:Rule Name="ErcRate" Type="none" DataDefGroup="CommercialPropertyHigherLimits">
+		<rul:Sequence>
+			<rul:RunRule Type="none" FileName="CommercialPropertyHigherLimitsRules" Rule="SetElectronicCommerceLimitLossOfDataManualPremium" ClearCache="true" />
+			<rul:RunRule Type="none" FileName="CommercialPropertyHigherLimitsRules" Rule="SetElectronicCommerceDataGeneratedPremium" ClearCache="true" />
+			<rul:RunRule Type="none" FileName="CommercialPropertyHigherLimitsRules" Rule="SetElectronicCommerceLimitLossOfBusinessIncomeManualPremium" ClearCache="true" />
+			<rul:RunRule Type="none" FileName="CommercialPropertyHigherLimitsRules" Rule="SetInterruptionInComputerOperationsIndicator" ClearCache="true" />
+		</rul:Sequence>
+	</rul:Rule>
+	<rul:Rule Name="SetElectronicCommerceLimitLossOfDataManualPremium" Type="none" DataDefGroup="CommercialPropertyHigherLimits">
+		<rul:Sequence>
+			<rul:WithArgs>
+				<rul:Arg Type="decimal" Param="electronicCommerceLossOfDatalimit">
+					<rul:FirstNonNull Type="decimal">
+						<rul:Convert Type="decimal">
+							<rul:FirstValue Type="integer" FromConstant="0" FromDataDef="../../CommercialPropertyElectronicCommerceTable/CommercialPropertyElectronicCommerce[1]/@Limit" Order="DataDefInputParamConstant" />
+						</rul:Convert>
+						<rul:Constant Type="decimal">0</rul:Constant>
+					</rul:FirstNonNull>
+				</rul:Arg>
+				<rul:Arg Type="decimal" Param="electronicCommerceLossOfDataManualPremium">
+					<rul:FirstNonNull Type="decimal">
+						<rul:FirstValue Type="decimal" FromConstant="0" FromDataDef="../../CommercialPropertyElectronicCommerceTable/CommercialPropertyElectronicCommerce[1]/CommercialPropertyElectronicCommerceLossOfDataCov/@ManualPremium" Order="DataDefInputParamConstant" />
+						<rul:Constant Type="decimal">0</rul:Constant>
+					</rul:FirstNonNull>
+				</rul:Arg>
+				<rul:If>
+					<rul:Test>
+						<rul:And>
+							<rul:GreaterThan>
+								<rul:Value Type="decimal" FromParam="electronicCommerceLossOfDatalimit" />
+								<rul:Constant Type="integer">2500</rul:Constant>
+							</rul:GreaterThan>
+							<rul:NotEqual>
+								<rul:Value Type="decimal" FromParam="electronicCommerceLossOfDataManualPremium" />
+								<rul:Constant Type="integer">0</rul:Constant>
+							</rul:NotEqual>
+						</rul:And>
+					</rul:Test>
+					<rul:Then>
+						<rul:Sequence>
+							<rul:Constant Type="string" ToDataDef="@ElectronicDataIndicator">Yes</rul:Constant>
+						</rul:Sequence>
+					</rul:Then>
+					<rul:Else>
+						<rul:Sequence>
+							<rul:Constant Type="string" ToDataDef="@ElectronicDataIndicator">No</rul:Constant>
+						</rul:Sequence>
+					</rul:Else>
+				</rul:If>
+			</rul:WithArgs>
+		</rul:Sequence>
+	</rul:Rule>
+	<rul:Rule Name="SetElectronicCommerceDataGeneratedPremium" Type="none" DataDefGroup="CommercialPropertyHigherLimits">
+		<rul:Sequence>
+			<rul:If>
+				<rul:Test>
+					<rul:Equal>
+						<rul:FirstValue Type="string" FromConstant="" FromDataDef="@ElectronicDataIndicator" Order="DataDefInputParamConstant" />
+						<rul:Constant Type="string">Yes</rul:Constant>
+					</rul:Equal>
+				</rul:Test>
+				<rul:Then>
+					<rul:Sequence>
+						<rul:Copy Type="decimal" ToDataDef="@ElectronicDataGeneratedPremium" FromDataDef="../../CommercialPropertyElectronicCommerceTable/CommercialPropertyElectronicCommerce[1]/CommercialPropertyElectronicCommerceLossOfDataCov/@Premium" />
+						<rul:Constant Type="string" ToDataDef="@ElectronicDataCoverage">Electronic Data</rul:Constant>
+						<rul:Copy Type="integer" ToDataDef="@ElectronicDataLimit" FromDataDef="../../CommercialPropertyElectronicCommerceTable/CommercialPropertyElectronicCommerce[1]/@Limit" />
+					</rul:Sequence>
+				</rul:Then>
+			</rul:If>
+		</rul:Sequence>
+	</rul:Rule>
+	<rul:Rule Name="SetElectronicCommerceLimitLossOfBusinessIncomeManualPremium" Type="none" DataDefGroup="CommercialPropertyHigherLimits">
+		<rul:Sequence>
+			<rul:WithArgs>
+				<rul:Arg Type="decimal" Param="electronicCommerceLossOfBusIncManualPremium">
+					<rul:FirstNonNull Type="decimal">
+						<rul:FirstValue Type="decimal" FromConstant="0" FromDataDef="../../CommercialPropertyElectronicCommerceTable/CommercialPropertyElectronicCommerce[1]/CommercialPropertyElectronicCommerceLossOfBusinessIncomeCov/@ManualPremium" Order="DataDefInputParamConstant" />
+						<rul:Constant Type="decimal">0</rul:Constant>
+					</rul:FirstNonNull>
+				</rul:Arg>
+				<rul:Arg Type="decimal" Param="electronicCommerceDatalimit">
+					<rul:FirstNonNull Type="decimal">
+						<rul:Convert Type="decimal">
+							<rul:FirstValue Type="integer" FromConstant="0" FromDataDef="../../CommercialPropertyElectronicCommerceTable/CommercialPropertyElectronicCommerce[1]/@Limit" Order="DataDefInputParamConstant" />
+						</rul:Convert>
+						<rul:Constant Type="decimal">0</rul:Constant>
+					</rul:FirstNonNull>
+				</rul:Arg>
+				<rul:If>
+					<rul:Test>
+						<rul:And>
+							<rul:NotEqual>
+								<rul:Value Type="decimal" FromParam="electronicCommerceLossOfBusIncManualPremium" />
+								<rul:Constant Type="integer">0</rul:Constant>
+							</rul:NotEqual>
+							<rul:GreaterThan>
+								<rul:Value Type="decimal" FromParam="electronicCommerceDatalimit" />
+								<rul:Constant Type="integer">2500</rul:Constant>
+							</rul:GreaterThan>
+						</rul:And>
+					</rul:Test>
+					<rul:Then>
+						<rul:Sequence>
+							<rul:Constant Type="string" ToDataDef="@InterruptionInComputerOperationsIndicator">Yes</rul:Constant>
+						</rul:Sequence>
+					</rul:Then>
+					<rul:Else>
+						<rul:Sequence>
+							<rul:Constant Type="string" ToDataDef="@InterruptionInComputerOperationsIndicator">No</rul:Constant>
+						</rul:Sequence>
+					</rul:Else>
+				</rul:If>
+			</rul:WithArgs>
+		</rul:Sequence>
+	</rul:Rule>
+	<rul:Rule Name="SetInterruptionInComputerOperationsIndicator" Type="none" DataDefGroup="CommercialPropertyHigherLimits">
+		<rul:Sequence>
+			<rul:If>
+				<rul:Test>
+					<rul:Equal>
+						<rul:FirstValue Type="string" FromConstant="" FromDataDef="@InterruptionInComputerOperationsIndicator" Order="DataDefInputParamConstant" />
+						<rul:Constant Type="string">Yes</rul:Constant>
+					</rul:Equal>
+				</rul:Test>
+				<rul:Then>
+					<rul:Sequence>
+						<rul:Copy Type="decimal" ToDataDef="@InterruptionInComputerOperationsGeneratedPremium" FromDataDef="../../CommercialPropertyElectronicCommerceTable/CommercialPropertyElectronicCommerce[1]/CommercialPropertyElectronicCommerceLossOfBusinessIncomeCov/@Premium" />
+						<rul:Constant Type="string" ToDataDef="@InterruptionInComputerOperationsCoverage">Interruption In Computer Operations</rul:Constant>
+						<rul:Copy Type="integer" ToDataDef="@InterruptionInComputerOperationsLimit" FromDataDef="../../CommercialPropertyElectronicCommerceTable/CommercialPropertyElectronicCommerce[1]/@Limit" />
+					</rul:Sequence>
+				</rul:Then>
+			</rul:If>
+		</rul:Sequence>
+	</rul:Rule>
+	<rul:Rule Name="ErcProcess" Type="none" DataDefGroup="CommercialPropertyHigherLimits">
+		<rul:Sequence>
+			<rul:RunRule Type="none" FileName="CommercialPropertyHigherLimitsRules" Rule="ErcRate" ClearCache="true" />
+		</rul:Sequence>
+	</rul:Rule>
+</rul:Rules>

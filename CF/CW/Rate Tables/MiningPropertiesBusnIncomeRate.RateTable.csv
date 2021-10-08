@@ -1,0 +1,7 @@
+"StateCode","MiningCoverageOption","MiningCauseOfLoss","Rate"
+"CW","None","Basic Group I",0
+"CW","None","Basic Group II",0
+"CW","Limited","Basic Group I",0.095
+"CW","Limited","Basic Group II",0.044
+"CW","Broad","Basic Group I",0.173
+"CW","Broad","Basic Group II",0.199

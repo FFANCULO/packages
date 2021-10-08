@@ -1,0 +1,436 @@
+<rul:Rules xmlns:rul="http://www.verisk.com/iso/erc/Rule">
+	<rul:Rule Name="InitializeRuleSet" DataDefGroup="CommercialPropertyBusinessIncomeFromDependentPropertiesLimitedFormSpclClassBusnIncomeDetail">
+		<rul:Sequence />
+	</rul:Rule>
+	<rul:Rule Name="CalculateTotalPremium" Type="decimal" DataDefGroup="CommercialPropertyBusinessIncomeFromDependentPropertiesLimitedFormSpclClassBusnIncomeDetail">
+		<rul:If>
+			<rul:Test>
+				<rul:And>
+					<rul:Equal>
+						<rul:FirstValue Type="integer" FromConstant="0" FromDataDef="@PremiumIndicator" Order="DataDefInputParamConstant" />
+						<rul:Constant Type="integer">1</rul:Constant>
+					</rul:Equal>
+					<rul:NotEqual>
+						<rul:FirstValue Type="decimal" FromConstant="0" FromDataDef="@Premium" Order="DataDefInputParamConstant" />
+						<rul:Constant Type="decimal">0</rul:Constant>
+					</rul:NotEqual>
+				</rul:And>
+			</rul:Test>
+			<rul:Then>
+				<rul:FirstValue Type="decimal" FromConstant="0" FromDataDef="@Premium" Order="DataDefInputParamConstant" />
+			</rul:Then>
+			<rul:Else>
+				<rul:Constant Type="decimal">0</rul:Constant>
+			</rul:Else>
+		</rul:If>
+	</rul:Rule>
+	<rul:Rule Name="ErcSetRatesAndFactors" Type="none" DataDefGroup="CommercialPropertyBusinessIncomeFromDependentPropertiesLimitedFormSpclClassBusnIncomeDetail">
+		<rul:Sequence>
+			<rul:If>
+				<rul:Test>
+					<rul:NotEqual>
+						<rul:FirstValue Type="string" FromConstant="" FromDataDef="@ConstructionType" Order="DataDefInputParamConstant" />
+						<rul:Constant Type="string"></rul:Constant>
+					</rul:NotEqual>
+				</rul:Test>
+				<rul:Then>
+					<rul:Sequence>
+						<rul:RunRule Type="string" ToDataDef="@ConstructionTypeToUse" FileName="CommercialPropertyBusinessIncomeFromDependentPropertiesLimitedFormSpclClassBusnIncomeDetailRules" Rule="LookupConstructionTypeToUse" ClearCache="true" />
+					</rul:Sequence>
+				</rul:Then>
+				<rul:Else>
+					<rul:Sequence>
+						<rul:Constant Type="string" ToDataDef="@ConstructionTypeToUse"></rul:Constant>
+					</rul:Sequence>
+				</rul:Else>
+			</rul:If>
+			<rul:Copy Type="string" ToDataDef="@ExtendedPeriod" FromDataDef="ancestor::CommercialPropertySpecialClassBusnIncome/@ExtendedPeriod" />
+			<rul:If>
+				<rul:Test>
+					<rul:NotEqual>
+						<rul:FirstValue Type="string" FromConstant="" FromDataDef="@NatureOfDependency" Order="DataDefInputParamConstant" />
+						<rul:Constant Type="string"></rul:Constant>
+					</rul:NotEqual>
+				</rul:Test>
+				<rul:Then>
+					<rul:Sequence>
+						<rul:RunRule Type="decimal" ToDataDef="@NatureOfDependentPropFactor" FileName="CommercialPropertyBusinessIncomeFromDependentPropertiesLimitedFormSpclClassBusnIncomeDetailRules" Rule="LookupNatureOfDependentPropLimitedFactor" ClearCache="true" />
+					</rul:Sequence>
+				</rul:Then>
+				<rul:Else>
+					<rul:Sequence>
+						<rul:Constant Type="decimal" ToDataDef="@NatureOfDependentPropFactor">0.0</rul:Constant>
+					</rul:Sequence>
+				</rul:Else>
+			</rul:If>
+			<!--Logic for BroadRateToUse moved to be inline where used.-->
+			<!--Logic for SpecialRateToUse moved to be inline where used.-->
+			<rul:WithArgs>
+				<rul:Arg Type="decimal" Param="calcAdjustedBasicGroupIRate">
+					<rul:FirstNonNull Type="decimal">
+						<rul:Product DecimalPlaces="3">
+							<rul:Product DecimalPlaces="3">
+								<rul:FirstValue Type="decimal" FromConstant="0" FromDataDef="@BasicGroupIRate" Order="DataDefInputParamConstant" />
+								<rul:FirstValue Type="decimal" FromConstant="0" FromDataDef="ancestor::CommercialProperty/@LossCostMultiplier" Order="DataDefInputParamConstant" />
+							</rul:Product>
+							<rul:FirstValue Type="decimal" FromConstant="0" FromDataDef="@NatureOfDependentPropFactor" Order="DataDefInputParamConstant" />
+						</rul:Product>
+						<rul:Constant Type="decimal">0</rul:Constant>
+					</rul:FirstNonNull>
+				</rul:Arg>
+				<rul:Value Type="decimal" ToDataDef="@AdjustedBasicGroupIRate" FromParam="calcAdjustedBasicGroupIRate" />
+			</rul:WithArgs>
+			<rul:WithArgs>
+				<rul:Arg Type="decimal" Param="calcAdjustedBasicGroupIIRate">
+					<rul:FirstNonNull Type="decimal">
+						<rul:Product DecimalPlaces="3">
+							<rul:Product DecimalPlaces="3">
+								<rul:FirstValue Type="decimal" FromConstant="0" FromDataDef="@BasicGroupIIRate" Order="DataDefInputParamConstant" />
+								<rul:FirstValue Type="decimal" FromConstant="0" FromDataDef="ancestor::CommercialProperty/@LossCostMultiplier" Order="DataDefInputParamConstant" />
+							</rul:Product>
+							<rul:FirstValue Type="decimal" FromConstant="0" FromDataDef="@NatureOfDependentPropFactor" Order="DataDefInputParamConstant" />
+						</rul:Product>
+						<rul:Constant Type="decimal">0</rul:Constant>
+					</rul:FirstNonNull>
+				</rul:Arg>
+				<rul:Value Type="decimal" ToDataDef="@AdjustedBasicGroupIIRate" FromParam="calcAdjustedBasicGroupIIRate" />
+			</rul:WithArgs>
+			<rul:WithArgs>
+				<rul:Arg Type="decimal" Param="calcAdjustedBroadRate">
+					<rul:FirstNonNull Type="decimal">
+						<rul:Choose>
+							<rul:When>
+								<rul:Test>
+									<rul:Equal>
+										<rul:FirstValue Type="string" FromConstant="" FromDataDef="ancestor::CommercialPropertySpecialClassBusnIncome/@CauseOfLossToUse" Order="DataDefInputParamConstant" />
+										<rul:Constant Type="string">Broad</rul:Constant>
+									</rul:Equal>
+								</rul:Test>
+								<rul:Then>
+									<rul:Product DecimalPlaces="3">
+										<rul:Product DecimalPlaces="3">
+											<rul:If>
+												<rul:Test>
+													<rul:NotEqual>
+														<rul:FirstValue Type="string" FromConstant="" FromDataDef="@ConstructionTypeToUse" Order="DataDefInputParamConstant" />
+														<rul:Constant Type="string"></rul:Constant>
+													</rul:NotEqual>
+												</rul:Test>
+												<rul:Then>
+													<rul:If>
+														<rul:Test>
+															<rul:Equal>
+																<rul:FirstValue Type="string" FromConstant="" FromDataDef="ancestor::CommercialPropertySpecialClassBusnIncome/@CovType" Order="DataDefInputParamConstant" />
+																<rul:Constant Type="string">Business Income Without Extra Expense</rul:Constant>
+															</rul:Equal>
+														</rul:Test>
+														<rul:Then>
+															<rul:RunRule Type="decimal" FileName="CommercialPropertyBusinessIncomeFromDependentPropertiesLimitedFormSpclClassBusnIncomeDetailRules" Rule="LookupBroadFormBaseRate" ClearCache="true">
+																<rul:Arg Type="string" Param="covType">
+																	<rul:Constant Type="string">Business Income Without Extra Expense</rul:Constant>
+																</rul:Arg>
+															</rul:RunRule>
+														</rul:Then>
+														<rul:Else>
+															<rul:RunRule Type="decimal" FileName="CommercialPropertyBusinessIncomeFromDependentPropertiesLimitedFormSpclClassBusnIncomeDetailRules" Rule="LookupBroadFormBaseRate" ClearCache="true">
+																<rul:Arg Type="string" Param="covType">
+																	<rul:Constant Type="string">All Other</rul:Constant>
+																</rul:Arg>
+															</rul:RunRule>
+														</rul:Else>
+													</rul:If>
+												</rul:Then>
+												<rul:Else>
+													<rul:Constant Type="decimal">0</rul:Constant>
+												</rul:Else>
+											</rul:If>
+											<rul:FirstValue Type="decimal" FromConstant="0" FromDataDef="ancestor::CommercialProperty/@LossCostMultiplier" Order="DataDefInputParamConstant" />
+										</rul:Product>
+										<rul:FirstValue Type="decimal" FromConstant="0" FromDataDef="@NatureOfDependentPropFactor" Order="DataDefInputParamConstant" />
+									</rul:Product>
+								</rul:Then>
+							</rul:When>
+							<rul:When>
+								<rul:Test>
+									<rul:NotEqual>
+										<rul:FirstValue Type="string" FromConstant="" FromDataDef="ancestor::CommercialPropertySpecialClassBusnIncome/@CauseOfLossToUse" Order="DataDefInputParamConstant" />
+										<rul:Constant Type="string">Broad</rul:Constant>
+									</rul:NotEqual>
+								</rul:Test>
+								<rul:Then>
+									<rul:Constant Type="decimal">0</rul:Constant>
+								</rul:Then>
+							</rul:When>
+							<rul:Otherwise>
+								<rul:Constant Type="decimal">0</rul:Constant>
+							</rul:Otherwise>
+						</rul:Choose>
+						<rul:Constant Type="decimal">0</rul:Constant>
+					</rul:FirstNonNull>
+				</rul:Arg>
+				<rul:Value Type="decimal" ToDataDef="@AdjustedBroadRate" FromParam="calcAdjustedBroadRate" />
+			</rul:WithArgs>
+			<rul:WithArgs>
+				<rul:Arg Type="decimal" Param="calcAdjustedSpecialRate">
+					<rul:FirstNonNull Type="decimal">
+						<rul:WithArgs>
+							<rul:Arg Type="decimal" Param="specialTheftExclusionFactor">
+								<rul:FirstNonNull Type="decimal">
+									<rul:If>
+										<rul:Test>
+											<rul:IsNotNull>
+												<rul:Value Type="decimal" FromDataDef="../../../../@SpecialTheftExclusionFactor" />
+											</rul:IsNotNull>
+										</rul:Test>
+										<rul:Then>
+											<rul:FirstValue Type="decimal" FromConstant="0" FromDataDef="../../../../@SpecialTheftExclusionFactor" Order="DataDefInputParamConstant" />
+										</rul:Then>
+									</rul:If>
+									<rul:Constant Type="decimal">1</rul:Constant>
+								</rul:FirstNonNull>
+							</rul:Arg>
+							<rul:Product DecimalPlaces="3">
+								<rul:Product DecimalPlaces="3">
+									<rul:Value Type="decimal" FromParam="specialTheftExclusionFactor" />
+									<rul:Product DecimalPlaces="3">
+										<rul:If>
+											<rul:Test>
+												<rul:Equal>
+													<rul:FirstValue Type="string" FromConstant="" FromDataDef="ancestor::CommercialPropertySpecialClassBusnIncome/@CauseOfLossToUse" Order="DataDefInputParamConstant" />
+													<rul:Constant Type="string">Special</rul:Constant>
+												</rul:Equal>
+											</rul:Test>
+											<rul:Then>
+												<rul:If>
+													<rul:Test>
+														<rul:NotEqual>
+															<rul:FirstValue Type="string" FromConstant="" FromDataDef="@ConstructionTypeToUse" Order="DataDefInputParamConstant" />
+															<rul:Constant Type="string"></rul:Constant>
+														</rul:NotEqual>
+													</rul:Test>
+													<rul:Then>
+														<rul:If>
+															<rul:Test>
+																<rul:Equal>
+																	<rul:FirstValue Type="string" FromConstant="" FromDataDef="ancestor::CommercialPropertySpecialClassBusnIncome/@CovType" Order="DataDefInputParamConstant" />
+																	<rul:Constant Type="string">Business Income Without Extra Expense</rul:Constant>
+																</rul:Equal>
+															</rul:Test>
+															<rul:Then>
+																<rul:RunRule Type="decimal" FileName="CommercialPropertyBusinessIncomeFromDependentPropertiesLimitedFormSpclClassBusnIncomeDetailRules" Rule="LookupSpecialFormIncldgTheftTimeElementBaseRate" ClearCache="true">
+																	<rul:Arg Type="string" Param="covType">
+																		<rul:Constant Type="string">Business Income Without Extra Expense</rul:Constant>
+																	</rul:Arg>
+																</rul:RunRule>
+															</rul:Then>
+															<rul:Else>
+																<rul:RunRule Type="decimal" FileName="CommercialPropertyBusinessIncomeFromDependentPropertiesLimitedFormSpclClassBusnIncomeDetailRules" Rule="LookupSpecialFormIncldgTheftTimeElementBaseRate" ClearCache="true">
+																	<rul:Arg Type="string" Param="covType">
+																		<rul:Constant Type="string">All Other</rul:Constant>
+																	</rul:Arg>
+																</rul:RunRule>
+															</rul:Else>
+														</rul:If>
+													</rul:Then>
+													<rul:Else>
+														<rul:Constant Type="decimal">0</rul:Constant>
+													</rul:Else>
+												</rul:If>
+											</rul:Then>
+										</rul:If>
+										<rul:FirstValue Type="decimal" FromConstant="0" FromDataDef="ancestor::CommercialProperty/@LossCostMultiplier" Order="DataDefInputParamConstant" />
+									</rul:Product>
+								</rul:Product>
+								<rul:FirstValue Type="decimal" FromConstant="0" FromDataDef="@NatureOfDependentPropFactor" Order="DataDefInputParamConstant" />
+							</rul:Product>
+						</rul:WithArgs>
+						<rul:Constant Type="decimal">0</rul:Constant>
+					</rul:FirstNonNull>
+				</rul:Arg>
+				<rul:Value Type="decimal" ToDataDef="@AdjustedSpecialRate" FromParam="calcAdjustedSpecialRate" />
+			</rul:WithArgs>
+			<rul:WithArgs>
+				<rul:Arg Type="decimal" Param="calcAdjustedEQRate">
+					<rul:FirstNonNull Type="decimal">
+						<rul:Product DecimalPlaces="3">
+							<rul:Product DecimalPlaces="3">
+								<rul:FirstValue Type="decimal" FromConstant="0" FromDataDef="@EQRate" Order="DataDefInputParamConstant" />
+								<rul:FirstValue Type="decimal" FromConstant="0" FromDataDef="ancestor::CommercialProperty/@LossCostMultiplier" Order="DataDefInputParamConstant" />
+							</rul:Product>
+							<rul:FirstValue Type="decimal" FromConstant="0" FromDataDef="@NatureOfDependentPropFactor" Order="DataDefInputParamConstant" />
+						</rul:Product>
+						<rul:Constant Type="decimal">0</rul:Constant>
+					</rul:FirstNonNull>
+				</rul:Arg>
+				<rul:Value Type="decimal" ToDataDef="@AdjustedEQRate" FromParam="calcAdjustedEQRate" />
+			</rul:WithArgs>
+		</rul:Sequence>
+	</rul:Rule>
+	<rul:Rule Name="ErcProcess" Type="none" DataDefGroup="CommercialPropertyBusinessIncomeFromDependentPropertiesLimitedFormSpclClassBusnIncomeDetail">
+		<rul:Sequence>
+			<rul:RunRule Type="none" FileName="CommercialPropertyBusinessIncomeFromDependentPropertiesLimitedFormSpclClassBusnIncomeDetailRules" Rule="ErcSetRatesAndFactors" ClearCache="true" />
+		</rul:Sequence>
+	</rul:Rule>
+	<rul:Rule Name="BroadRateToUse" Type="decimal" DataDefGroup="CommercialPropertyBusinessIncomeFromDependentPropertiesLimitedFormSpclClassBusnIncomeDetail">
+		<rul:FirstNonNull Type="decimal">
+			<rul:If>
+				<rul:Test>
+					<rul:NotEqual>
+						<rul:FirstValue Type="string" FromConstant="" FromDataDef="@ConstructionTypeToUse" Order="DataDefInputParamConstant" />
+						<rul:Constant Type="string"></rul:Constant>
+					</rul:NotEqual>
+				</rul:Test>
+				<rul:Then>
+					<rul:If>
+						<rul:Test>
+							<rul:Equal>
+								<rul:FirstValue Type="string" FromConstant="" FromDataDef="ancestor::CommercialPropertySpecialClassBusnIncome/@CovType" Order="DataDefInputParamConstant" />
+								<rul:Constant Type="string">Business Income Without Extra Expense</rul:Constant>
+							</rul:Equal>
+						</rul:Test>
+						<rul:Then>
+							<rul:RunRule Type="decimal" FileName="CommercialPropertyBusinessIncomeFromDependentPropertiesLimitedFormSpclClassBusnIncomeDetailRules" Rule="LookupBroadFormBaseRate" ClearCache="true">
+								<rul:Arg Type="string" Param="covType">
+									<rul:Constant Type="string">Business Income Without Extra Expense</rul:Constant>
+								</rul:Arg>
+							</rul:RunRule>
+						</rul:Then>
+						<rul:Else>
+							<rul:RunRule Type="decimal" FileName="CommercialPropertyBusinessIncomeFromDependentPropertiesLimitedFormSpclClassBusnIncomeDetailRules" Rule="LookupBroadFormBaseRate" ClearCache="true">
+								<rul:Arg Type="string" Param="covType">
+									<rul:Constant Type="string">All Other</rul:Constant>
+								</rul:Arg>
+							</rul:RunRule>
+						</rul:Else>
+					</rul:If>
+				</rul:Then>
+				<rul:Else>
+					<rul:Constant Type="decimal">0</rul:Constant>
+				</rul:Else>
+			</rul:If>
+			<rul:Constant Type="decimal">0</rul:Constant>
+		</rul:FirstNonNull>
+	</rul:Rule>
+	<rul:Rule Name="SpecialRateToUse" Type="decimal" DataDefGroup="CommercialPropertyBusinessIncomeFromDependentPropertiesLimitedFormSpclClassBusnIncomeDetail">
+		<rul:FirstNonNull Type="decimal">
+			<rul:If>
+				<rul:Test>
+					<rul:Equal>
+						<rul:FirstValue Type="string" FromConstant="" FromDataDef="ancestor::CommercialPropertySpecialClassBusnIncome/@CauseOfLossToUse" Order="DataDefInputParamConstant" />
+						<rul:Constant Type="string">Special</rul:Constant>
+					</rul:Equal>
+				</rul:Test>
+				<rul:Then>
+					<rul:If>
+						<rul:Test>
+							<rul:NotEqual>
+								<rul:FirstValue Type="string" FromConstant="" FromDataDef="@ConstructionTypeToUse" Order="DataDefInputParamConstant" />
+								<rul:Constant Type="string"></rul:Constant>
+							</rul:NotEqual>
+						</rul:Test>
+						<rul:Then>
+							<rul:If>
+								<rul:Test>
+									<rul:Equal>
+										<rul:FirstValue Type="string" FromConstant="" FromDataDef="ancestor::CommercialPropertySpecialClassBusnIncome/@CovType" Order="DataDefInputParamConstant" />
+										<rul:Constant Type="string">Business Income Without Extra Expense</rul:Constant>
+									</rul:Equal>
+								</rul:Test>
+								<rul:Then>
+									<rul:RunRule Type="decimal" FileName="CommercialPropertyBusinessIncomeFromDependentPropertiesLimitedFormSpclClassBusnIncomeDetailRules" Rule="LookupSpecialFormIncldgTheftTimeElementBaseRate" ClearCache="true">
+										<rul:Arg Type="string" Param="covType">
+											<rul:Constant Type="string">Business Income Without Extra Expense</rul:Constant>
+										</rul:Arg>
+									</rul:RunRule>
+								</rul:Then>
+								<rul:Else>
+									<rul:RunRule Type="decimal" FileName="CommercialPropertyBusinessIncomeFromDependentPropertiesLimitedFormSpclClassBusnIncomeDetailRules" Rule="LookupSpecialFormIncldgTheftTimeElementBaseRate" ClearCache="true">
+										<rul:Arg Type="string" Param="covType">
+											<rul:Constant Type="string">All Other</rul:Constant>
+										</rul:Arg>
+									</rul:RunRule>
+								</rul:Else>
+							</rul:If>
+						</rul:Then>
+						<rul:Else>
+							<rul:Constant Type="decimal">0</rul:Constant>
+						</rul:Else>
+					</rul:If>
+				</rul:Then>
+			</rul:If>
+			<rul:Constant Type="decimal">0</rul:Constant>
+		</rul:FirstNonNull>
+	</rul:Rule>
+	<rul:Rule Name="LookupBroadFormBaseRate" Type="decimal" DataDefGroup="CommercialPropertyBusinessIncomeFromDependentPropertiesLimitedFormSpclClassBusnIncomeDetail">
+		<rul:Param Name="covType" Type="string" />
+		<rul:FirstNonNull Type="decimal">
+			<rul:Lookup Type="decimal" MatrixCol="Rate" MatrixDef="BroadFormBaseRateDef" MatrixFromConstant="BroadFormBaseRate" ResultMode="FirstResult">
+				<rul:Keys>
+					<rul:Value Type="string" FromDataDef="/State/@Code" />
+					<rul:FirstValue Type="string" FromConstant="" FromDataDef="@ConstructionTypeToUse" Order="DataDefInputParamConstant" />
+					<rul:Value Type="string" FromParam="covType" />
+				</rul:Keys>
+			</rul:Lookup>
+			<rul:Lookup Type="decimal" MatrixCol="Rate" MatrixDef="BroadFormBaseRateDef" MatrixFromConstant="BroadFormBaseRate" ResultMode="SingleResult">
+				<rul:Keys>
+					<rul:Constant Type="string">CW</rul:Constant>
+					<rul:FirstValue Type="string" FromConstant="" FromDataDef="@ConstructionTypeToUse" Order="DataDefInputParamConstant" />
+					<rul:Value Type="string" FromParam="covType" />
+				</rul:Keys>
+			</rul:Lookup>
+		</rul:FirstNonNull>
+	</rul:Rule>
+	<rul:Rule Name="LookupConstructionTypeToUse" Type="string" DataDefGroup="CommercialPropertyBusinessIncomeFromDependentPropertiesLimitedFormSpclClassBusnIncomeDetail">
+		<rul:FirstNonNull Type="string">
+			<rul:Lookup Type="string" MatrixCol="Value" MatrixDef="ConstructionTypeToUseDef" MatrixFromConstant="ConstructionTypeToUse" ResultMode="FirstResult">
+				<rul:Keys>
+					<rul:Value Type="string" FromDataDef="/State/@Code" />
+					<rul:FirstValue Type="string" FromConstant="" FromDataDef="@ConstructionType" Order="DataDefInputParamConstant" />
+				</rul:Keys>
+			</rul:Lookup>
+			<rul:Lookup Type="string" MatrixCol="Value" MatrixDef="ConstructionTypeToUseDef" MatrixFromConstant="ConstructionTypeToUse" ResultMode="SingleResult">
+				<rul:Keys>
+					<rul:Constant Type="string">CW</rul:Constant>
+					<rul:FirstValue Type="string" FromConstant="" FromDataDef="@ConstructionType" Order="DataDefInputParamConstant" />
+				</rul:Keys>
+			</rul:Lookup>
+		</rul:FirstNonNull>
+	</rul:Rule>
+	<rul:Rule Name="LookupNatureOfDependentPropLimitedFactor" Type="decimal" DataDefGroup="CommercialPropertyBusinessIncomeFromDependentPropertiesLimitedFormSpclClassBusnIncomeDetail">
+		<rul:FirstNonNull Type="decimal">
+			<rul:Lookup Type="decimal" MatrixCol="Factor" MatrixDef="NatureOfDependentPropLimitedFactorDef" MatrixFromConstant="NatureOfDependentPropLimitedFactor" ResultMode="FirstResult">
+				<rul:Keys>
+					<rul:Value Type="string" FromDataDef="/State/@Code" />
+					<rul:FirstValue Type="string" FromConstant="" FromDataDef="@NatureOfDependency" Order="DataDefInputParamConstant" />
+				</rul:Keys>
+			</rul:Lookup>
+			<rul:Lookup Type="decimal" MatrixCol="Factor" MatrixDef="NatureOfDependentPropLimitedFactorDef" MatrixFromConstant="NatureOfDependentPropLimitedFactor" ResultMode="SingleResult">
+				<rul:Keys>
+					<rul:Constant Type="string">CW</rul:Constant>
+					<rul:FirstValue Type="string" FromConstant="" FromDataDef="@NatureOfDependency" Order="DataDefInputParamConstant" />
+				</rul:Keys>
+			</rul:Lookup>
+		</rul:FirstNonNull>
+	</rul:Rule>
+	<rul:Rule Name="LookupSpecialFormIncldgTheftTimeElementBaseRate" Type="decimal" DataDefGroup="CommercialPropertyBusinessIncomeFromDependentPropertiesLimitedFormSpclClassBusnIncomeDetail">
+		<rul:Param Name="covType" Type="string" />
+		<rul:FirstNonNull Type="decimal">
+			<rul:Lookup Type="decimal" MatrixCol="Rate" MatrixDef="SpecialFormIncldgTheftTimeElementBaseRateDef" MatrixFromConstant="SpecialFormIncldgTheftTimeElementBaseRate" ResultMode="FirstResult">
+				<rul:Keys>
+					<rul:Value Type="string" FromDataDef="/State/@Code" />
+					<rul:FirstValue Type="string" FromConstant="" FromDataDef="@ConstructionTypeToUse" Order="DataDefInputParamConstant" />
+					<rul:Value Type="string" FromParam="covType" />
+					<rul:Constant Type="string">Other than Apartments and Condominiums</rul:Constant>
+				</rul:Keys>
+			</rul:Lookup>
+			<rul:Lookup Type="decimal" MatrixCol="Rate" MatrixDef="SpecialFormIncldgTheftTimeElementBaseRateDef" MatrixFromConstant="SpecialFormIncldgTheftTimeElementBaseRate" ResultMode="SingleResult">
+				<rul:Keys>
+					<rul:Constant Type="string">CW</rul:Constant>
+					<rul:FirstValue Type="string" FromConstant="" FromDataDef="@ConstructionTypeToUse" Order="DataDefInputParamConstant" />
+					<rul:Value Type="string" FromParam="covType" />
+					<rul:Constant Type="string">Other than Apartments and Condominiums</rul:Constant>
+				</rul:Keys>
+			</rul:Lookup>
+		</rul:FirstNonNull>
+	</rul:Rule>
+</rul:Rules>

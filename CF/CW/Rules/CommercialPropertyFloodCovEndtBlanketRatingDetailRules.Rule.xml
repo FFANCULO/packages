@@ -1,0 +1,1389 @@
+<rul:Rules xmlns:rul="http://www.verisk.com/iso/erc/Rule">
+	<rul:Rule Name="InitializeRuleSet" DataDefGroup="CommercialPropertyFloodCovEndtBlanketRatingDetail">
+		<rul:Sequence />
+	</rul:Rule>
+	<rul:Rule Name="CalculateTotalPremium" Type="decimal" DataDefGroup="CommercialPropertyFloodCovEndtBlanketRatingDetail">
+		<rul:If>
+			<rul:Test>
+				<rul:And>
+					<rul:Equal>
+						<rul:FirstValue Type="integer" FromConstant="0" FromDataDef="@PremiumIndicator" Order="DataDefInputParamConstant" />
+						<rul:Constant Type="integer">1</rul:Constant>
+					</rul:Equal>
+					<rul:NotEqual>
+						<rul:FirstValue Type="decimal" FromConstant="0" FromDataDef="@Premium" Order="DataDefInputParamConstant" />
+						<rul:Constant Type="decimal">0</rul:Constant>
+					</rul:NotEqual>
+				</rul:And>
+			</rul:Test>
+			<rul:Then>
+				<rul:FirstValue Type="decimal" FromConstant="0" FromDataDef="@Premium" Order="DataDefInputParamConstant" />
+			</rul:Then>
+			<rul:Else>
+				<rul:Constant Type="decimal">0</rul:Constant>
+			</rul:Else>
+		</rul:If>
+	</rul:Rule>
+	<rul:Rule Name="SetBlanketTotalFullValue" Type="none" DataDefGroup="CommercialPropertyFloodCovEndtBlanketRatingDetail">
+		<rul:Sequence>
+			<rul:RunRule Type="none" FileName="CommercialPropertyFloodCovEndtBlanketRatingDetailRules" Rule="SetMaxNFIPBuildingCoverageAmount" ClearCache="true" />
+			<rul:RunRule Type="none" FileName="CommercialPropertyFloodCovEndtBlanketRatingDetailRules" Rule="SetMaxNFIPContentCoverageAmount" ClearCache="true" />
+			<rul:RunRule Type="none" FileName="CommercialPropertyFloodCovEndtBlanketRatingDetailRules" Rule="SetBuildingLevel100PctValue" ClearCache="true" />
+			<rul:RunRule Type="none" FileName="CommercialPropertyFloodCovEndtBlanketRatingDetailRules" Rule="SetPersonalPropLevel100PctValue" ClearCache="true" />
+			<rul:RunRule Type="none" FileName="CommercialPropertyFloodCovEndtBlanketRatingDetailRules" Rule="SetSpecialClassLevel100PctValue" ClearCache="true" />
+			<rul:RunRule Type="none" FileName="CommercialPropertyFloodCovEndtBlanketRatingDetailRules" Rule="SetBusinessIncLevel100PctValue" ClearCache="true" />
+			<rul:RunRule Type="none" FileName="CommercialPropertyFloodCovEndtBlanketRatingDetailRules" Rule="SetSpecialClassBusnIncLevel100PctValue" ClearCache="true" />
+			<rul:RunRule Type="none" FileName="CommercialPropertyFloodCovEndtBlanketRatingDetailRules" Rule="SetTotalFull100PctValue" ClearCache="true" />
+			<rul:RunRule Type="none" FileName="CommercialPropertyFloodCovEndtBlanketRatingDetailRules" Rule="SetInsuranceToValue" ClearCache="true" />
+			<rul:RunRule Type="none" FileName="CommercialPropertyFloodCovEndtBlanketRatingDetailRules" Rule="SetInsuranceToValuePercentage" ClearCache="true" />
+			<rul:RunRule Type="none" FileName="CommercialPropertyFloodCovEndtBlanketRatingDetailRules" Rule="SetInsuranceToValuePercentageToUse" ClearCache="true" />
+		</rul:Sequence>
+	</rul:Rule>
+	<rul:Rule Name="SetMaxNFIPBuildingCoverageAmount" Type="none" DataDefGroup="CommercialPropertyFloodCovEndtBlanketRatingDetail">
+		<rul:Sequence>
+			<rul:RunRule Type="integer" ToDataDef="@MaxNFIPBuildingCoverageAmount" FileName="CommercialPropertyFloodCovEndtBlanketRatingDetailRules" Rule="LookupMaxNFIPCoverageAmount" ClearCache="true">
+				<rul:Arg Type="string" Param="coverage">
+					<rul:Constant Type="string">Building</rul:Constant>
+				</rul:Arg>
+			</rul:RunRule>
+		</rul:Sequence>
+	</rul:Rule>
+	<rul:Rule Name="SetMaxNFIPContentCoverageAmount" Type="none" DataDefGroup="CommercialPropertyFloodCovEndtBlanketRatingDetail">
+		<rul:Sequence>
+			<rul:RunRule Type="integer" ToDataDef="@MaxNFIPContentCoverageAmount" FileName="CommercialPropertyFloodCovEndtBlanketRatingDetailRules" Rule="LookupMaxNFIPCoverageAmount" ClearCache="true">
+				<rul:Arg Type="string" Param="coverage">
+					<rul:Constant Type="string">Content</rul:Constant>
+				</rul:Arg>
+			</rul:RunRule>
+		</rul:Sequence>
+	</rul:Rule>
+	<rul:Rule Name="SetBuildingLevel100PctValue" Type="none" DataDefGroup="CommercialPropertyFloodCovEndtBlanketRatingDetail">
+		<rul:Sequence>
+			<rul:Constant Type="integer" ToDataDef="@BuildingLevel100PctValue">0</rul:Constant>
+			<rul:WithArgs>
+				<rul:Arg Type="integer" Param="BuildingLevel100PctValueIncrementParam">
+					<rul:Sum>
+						<rul:WithArgs>
+							<rul:Arg Type="integer" Param="UnitNumberParam">
+								<rul:FirstValue Type="integer" FromConstant="0" FromDataDef="@UnitNumber" Order="DataDefInputParamConstant" />
+							</rul:Arg>
+							<rul:Arg Type="string" Param="ExcessOverMaxNFIPIndicatorParam">
+								<rul:FirstValue Type="string" FromConstant="" FromDataDef="@ExcessOverMaxNFIPIndicator" Order="DataDefInputParamConstant" />
+							</rul:Arg>
+							<rul:Arg Type="integer" Param="MaxNFIPBuildingCoverageAmountParam">
+								<rul:FirstValue Type="integer" FromConstant="0" FromDataDef="@MaxNFIPBuildingCoverageAmount" Order="DataDefInputParamConstant" />
+							</rul:Arg>
+							<rul:ForEach AtInputDataDef="../../../../CommercialPropertyLocationTable/CommercialPropertyLocation">
+								<rul:ForEach AtInputDataDef="CommercialPropertyStructureTable/CommercialPropertyStructure">
+									<rul:If>
+										<rul:Test>
+											<rul:And>
+												<rul:Exist AtInputDataDef="CommercialPropertyFloodCoverageEndorsementTable/CommercialPropertyFloodCoverageEndorsement" />
+												<rul:Equal>
+													<rul:FirstValue Type="string" FromConstant="" FromDataDef="CommercialPropertyFloodCoverageEndorsementTable/CommercialPropertyFloodCoverageEndorsement[1]/@IncludedInBlkt" Order="DataDefInputParamConstant" />
+													<rul:Constant Type="string">Yes</rul:Constant>
+												</rul:Equal>
+												<rul:Equal>
+													<rul:FirstValue Type="integer" FromConstant="0" FromDataDef="CommercialPropertyFloodCoverageEndorsementTable/CommercialPropertyFloodCoverageEndorsement[1]/@BlanketIDNum" Order="DataDefInputParamConstant" />
+													<rul:Value Type="integer" FromParam="UnitNumberParam" />
+												</rul:Equal>
+											</rul:And>
+										</rul:Test>
+										<rul:Then>
+											<rul:If>
+												<rul:Test>
+													<rul:Equal>
+														<rul:Value Type="string" FromParam="ExcessOverMaxNFIPIndicatorParam" />
+														<rul:Constant Type="string">Yes</rul:Constant>
+													</rul:Equal>
+												</rul:Test>
+												<rul:Then>
+													<rul:If>
+														<rul:Test>
+															<rul:GreaterThan>
+																<rul:FirstValue Type="integer" FromConstant="0" FromDataDef="@FullBldgValue" Order="DataDefInputParamConstant" />
+																<rul:Value Type="integer" FromParam="MaxNFIPBuildingCoverageAmountParam" />
+															</rul:GreaterThan>
+														</rul:Test>
+														<rul:Then>
+															<rul:FirstValue Type="integer" FromConstant="0" FromDataDef="@FullBldgValue" Order="DataDefInputParamConstant" />
+														</rul:Then>
+														<rul:Else>
+															<rul:Constant Type="integer">0</rul:Constant>
+														</rul:Else>
+													</rul:If>
+												</rul:Then>
+												<rul:Else>
+													<rul:FirstValue Type="integer" FromConstant="0" FromDataDef="@FullBldgValue" Order="DataDefInputParamConstant" />
+												</rul:Else>
+											</rul:If>
+										</rul:Then>
+									</rul:If>
+								</rul:ForEach>
+							</rul:ForEach>
+						</rul:WithArgs>
+						<rul:FirstValue Type="integer" FromConstant="0" FromDataDef="@BuildingLevel100PctValue" Order="DataDefInputParamConstant" />
+					</rul:Sum>
+				</rul:Arg>
+				<rul:Value Type="integer" ToDataDef="@BuildingLevel100PctValue" FromParam="BuildingLevel100PctValueIncrementParam" />
+			</rul:WithArgs>
+		</rul:Sequence>
+	</rul:Rule>
+	<rul:Rule Name="SetPersonalPropLevel100PctValue" Type="none" DataDefGroup="CommercialPropertyFloodCovEndtBlanketRatingDetail">
+		<rul:Sequence>
+			<rul:Constant Type="integer" ToDataDef="@PersonalPropLevel100PctValue">0</rul:Constant>
+			<rul:WithArgs>
+				<rul:Arg Type="integer" Param="PersonalPropLevel100PctValueIncrementParam">
+					<rul:Sum>
+						<rul:WithArgs>
+							<rul:Arg Type="integer" Param="UnitNumberParam">
+								<rul:FirstValue Type="integer" FromConstant="0" FromDataDef="@UnitNumber" Order="DataDefInputParamConstant" />
+							</rul:Arg>
+							<rul:Arg Type="string" Param="ExcessOverMaxNFIPIndicatorParam">
+								<rul:FirstValue Type="string" FromConstant="" FromDataDef="@ExcessOverMaxNFIPIndicator" Order="DataDefInputParamConstant" />
+							</rul:Arg>
+							<rul:Arg Type="integer" Param="MaxNFIPContentCoverageAmountParam">
+								<rul:FirstValue Type="integer" FromConstant="0" FromDataDef="@MaxNFIPContentCoverageAmount" Order="DataDefInputParamConstant" />
+							</rul:Arg>
+							<rul:ForEach AtInputDataDef="../../../../CommercialPropertyLocationTable/CommercialPropertyLocation">
+								<rul:ForEach AtInputDataDef="CommercialPropertyStructureTable/CommercialPropertyStructure">
+									<rul:ForEach AtInputDataDef="CommercialPropertyOccupClassTable/CommercialPropertyOccupClass">
+										<rul:ForEach AtInputDataDef="CommercialPropertyPersonalPropertyTable/CommercialPropertyPersonalProperty">
+											<rul:If>
+												<rul:Test>
+													<rul:And>
+														<rul:Exist AtInputDataDef="CommercialPropertyFloodCoverageEndorsementPrsnlPropTable/CommercialPropertyFloodCoverageEndorsementPrsnlProp" />
+														<rul:Equal>
+															<rul:FirstValue Type="string" FromConstant="" FromDataDef="CommercialPropertyFloodCoverageEndorsementPrsnlPropTable/CommercialPropertyFloodCoverageEndorsementPrsnlProp[1]/@IncludedInBlkt" Order="DataDefInputParamConstant" />
+															<rul:Constant Type="string">Yes</rul:Constant>
+														</rul:Equal>
+														<rul:Equal>
+															<rul:FirstValue Type="integer" FromConstant="0" FromDataDef="CommercialPropertyFloodCoverageEndorsementPrsnlPropTable/CommercialPropertyFloodCoverageEndorsementPrsnlProp[1]/@BlanketIDNum" Order="DataDefInputParamConstant" />
+															<rul:Value Type="integer" FromParam="UnitNumberParam" />
+														</rul:Equal>
+													</rul:And>
+												</rul:Test>
+												<rul:Then>
+													<rul:If>
+														<rul:Test>
+															<rul:Equal>
+																<rul:Value Type="string" FromParam="ExcessOverMaxNFIPIndicatorParam" />
+																<rul:Constant Type="string">Yes</rul:Constant>
+															</rul:Equal>
+														</rul:Test>
+														<rul:Then>
+															<rul:If>
+																<rul:Test>
+																	<rul:GreaterThan>
+																		<rul:FirstValue Type="integer" FromConstant="0" FromDataDef="@FullPrsnlPropValueToUse" Order="DataDefInputParamConstant" />
+																		<rul:Value Type="integer" FromParam="MaxNFIPContentCoverageAmountParam" />
+																	</rul:GreaterThan>
+																</rul:Test>
+																<rul:Then>
+																	<rul:FirstValue Type="integer" FromConstant="0" FromDataDef="@FullPrsnlPropValueToUse" Order="DataDefInputParamConstant" />
+																</rul:Then>
+																<rul:Else>
+																	<rul:Constant Type="integer">0</rul:Constant>
+																</rul:Else>
+															</rul:If>
+														</rul:Then>
+														<rul:Else>
+															<rul:FirstValue Type="integer" FromConstant="0" FromDataDef="@FullPrsnlPropValueToUse" Order="DataDefInputParamConstant" />
+														</rul:Else>
+													</rul:If>
+												</rul:Then>
+											</rul:If>
+										</rul:ForEach>
+									</rul:ForEach>
+								</rul:ForEach>
+							</rul:ForEach>
+						</rul:WithArgs>
+						<rul:FirstValue Type="integer" FromConstant="0" FromDataDef="@PersonalPropLevel100PctValue" Order="DataDefInputParamConstant" />
+					</rul:Sum>
+				</rul:Arg>
+				<rul:Value Type="integer" ToDataDef="@PersonalPropLevel100PctValue" FromParam="PersonalPropLevel100PctValueIncrementParam" />
+			</rul:WithArgs>
+		</rul:Sequence>
+	</rul:Rule>
+	<rul:Rule Name="SetSpecialClassLevel100PctValue" Type="none" DataDefGroup="CommercialPropertyFloodCovEndtBlanketRatingDetail">
+		<rul:Sequence>
+			<rul:Constant Type="integer" ToDataDef="@SpecialClassLevel100PctValue">0</rul:Constant>
+			<rul:WithArgs>
+				<rul:Arg Type="integer" Param="SpecialClassLevel100PctValueIncrementParam">
+					<rul:Sum>
+						<rul:WithArgs>
+							<rul:Arg Type="integer" Param="UnitNumberParam">
+								<rul:FirstValue Type="integer" FromConstant="0" FromDataDef="@UnitNumber" Order="DataDefInputParamConstant" />
+							</rul:Arg>
+							<rul:Arg Type="string" Param="ExcessOverMaxNFIPIndicatorParam">
+								<rul:FirstValue Type="string" FromConstant="" FromDataDef="@ExcessOverMaxNFIPIndicator" Order="DataDefInputParamConstant" />
+							</rul:Arg>
+							<rul:Arg Type="integer" Param="MaxNFIPBuildingCoverageAmountParam">
+								<rul:FirstValue Type="integer" FromConstant="0" FromDataDef="@MaxNFIPBuildingCoverageAmount" Order="DataDefInputParamConstant" />
+							</rul:Arg>
+							<rul:ForEach AtInputDataDef="../../../../CommercialPropertyLocationTable/CommercialPropertyLocation">
+								<rul:ForEach AtInputDataDef="CommercialPropertySpecialClassTable/CommercialPropertySpecialClass">
+									<rul:If>
+										<rul:Test>
+											<rul:And>
+												<rul:Exist AtInputDataDef="CommercialPropertyFloodCoverageEndorsementSpecialClassTable/CommercialPropertyFloodCoverageEndorsementSpecialClass" />
+												<rul:Equal>
+													<rul:FirstValue Type="string" FromConstant="" FromDataDef="CommercialPropertyFloodCoverageEndorsementSpecialClassTable/CommercialPropertyFloodCoverageEndorsementSpecialClass[1]/@IncludedInBlkt" Order="DataDefInputParamConstant" />
+													<rul:Constant Type="string">Yes</rul:Constant>
+												</rul:Equal>
+												<rul:Equal>
+													<rul:FirstValue Type="integer" FromConstant="0" FromDataDef="CommercialPropertyFloodCoverageEndorsementSpecialClassTable/CommercialPropertyFloodCoverageEndorsementSpecialClass[1]/@BlanketIDNum" Order="DataDefInputParamConstant" />
+													<rul:Value Type="integer" FromParam="UnitNumberParam" />
+												</rul:Equal>
+											</rul:And>
+										</rul:Test>
+										<rul:Then>
+											<rul:If>
+												<rul:Test>
+													<rul:Equal>
+														<rul:Value Type="string" FromParam="ExcessOverMaxNFIPIndicatorParam" />
+														<rul:Constant Type="string">Yes</rul:Constant>
+													</rul:Equal>
+												</rul:Test>
+												<rul:Then>
+													<rul:If>
+														<rul:Test>
+															<rul:GreaterThan>
+																<rul:FirstValue Type="integer" FromConstant="0" FromDataDef="@FullSpecialClassValue" Order="DataDefInputParamConstant" />
+																<rul:Value Type="integer" FromParam="MaxNFIPBuildingCoverageAmountParam" />
+															</rul:GreaterThan>
+														</rul:Test>
+														<rul:Then>
+															<rul:FirstValue Type="integer" FromConstant="0" FromDataDef="@FullSpecialClassValue" Order="DataDefInputParamConstant" />
+														</rul:Then>
+														<rul:Else>
+															<rul:Constant Type="integer">0</rul:Constant>
+														</rul:Else>
+													</rul:If>
+												</rul:Then>
+												<rul:Else>
+													<rul:FirstValue Type="integer" FromConstant="0" FromDataDef="@FullSpecialClassValue" Order="DataDefInputParamConstant" />
+												</rul:Else>
+											</rul:If>
+										</rul:Then>
+									</rul:If>
+								</rul:ForEach>
+							</rul:ForEach>
+						</rul:WithArgs>
+						<rul:FirstValue Type="integer" FromConstant="0" FromDataDef="@SpecialClassLevel100PctValue" Order="DataDefInputParamConstant" />
+					</rul:Sum>
+				</rul:Arg>
+				<rul:Value Type="integer" ToDataDef="@SpecialClassLevel100PctValue" FromParam="SpecialClassLevel100PctValueIncrementParam" />
+			</rul:WithArgs>
+		</rul:Sequence>
+	</rul:Rule>
+	<rul:Rule Name="SetBusinessIncLevel100PctValue" Type="none" DataDefGroup="CommercialPropertyFloodCovEndtBlanketRatingDetail">
+		<rul:Sequence>
+			<rul:Constant Type="integer" ToDataDef="@BusinessIncLevel100PctValue">0</rul:Constant>
+			<rul:WithArgs>
+				<rul:Arg Type="integer" Param="BusinessIncLevel100PctValueIncrementParam">
+					<rul:Sum>
+						<rul:WithArgs>
+							<rul:Arg Type="string" Param="ExtraExpenseCovParam">
+								<rul:FirstValue Type="string" FromConstant="" FromDataDef="@ExtraExpenseCov" Order="DataDefInputParamConstant" />
+							</rul:Arg>
+							<rul:Arg Type="integer" Param="UnitNumberParam">
+								<rul:FirstValue Type="integer" FromConstant="0" FromDataDef="@UnitNumber" Order="DataDefInputParamConstant" />
+							</rul:Arg>
+							<rul:Arg Type="string" Param="BusnIncomeWithExtraExpenseCovParam">
+								<rul:FirstValue Type="string" FromConstant="" FromDataDef="@BusnIncomeWithExtraExpenseCov" Order="DataDefInputParamConstant" />
+							</rul:Arg>
+							<rul:Arg Type="string" Param="BusnIncomeWithoutExtraExpenseCovParam">
+								<rul:FirstValue Type="string" FromConstant="" FromDataDef="@BusnIncomeWithoutExtraExpenseCov" Order="DataDefInputParamConstant" />
+							</rul:Arg>
+							<rul:ForEach AtInputDataDef="../../../../CommercialPropertyLocationTable/CommercialPropertyLocation">
+								<rul:ForEach AtInputDataDef="CommercialPropertyStructureTable/CommercialPropertyStructure">
+									<rul:ForEach AtInputDataDef="CommercialPropertyBusinessIncomeTable/CommercialPropertyBusinessIncome">
+										<rul:Choose>
+											<rul:When>
+												<rul:Test>
+													<rul:And>
+														<rul:Equal>
+															<rul:Value Type="string" FromParam="ExtraExpenseCovParam" />
+															<rul:Constant Type="string">Yes</rul:Constant>
+														</rul:Equal>
+														<rul:Equal>
+															<rul:FirstValue Type="string" FromConstant="" FromDataDef="@CovType" Order="DataDefInputParamConstant" />
+															<rul:Constant Type="string">Extra Expense Only</rul:Constant>
+														</rul:Equal>
+														<rul:Exist AtInputDataDef="CommercialPropertyFloodCoverageEndorsementBusnIncomeTable/CommercialPropertyFloodCoverageEndorsementBusnIncome" />
+														<rul:Equal>
+															<rul:FirstValue Type="string" FromConstant="" FromDataDef="CommercialPropertyFloodCoverageEndorsementBusnIncomeTable/CommercialPropertyFloodCoverageEndorsementBusnIncome[1]/@IncludedInBlkt" Order="DataDefInputParamConstant" />
+															<rul:Constant Type="string">Yes</rul:Constant>
+														</rul:Equal>
+														<rul:Equal>
+															<rul:FirstValue Type="integer" FromConstant="0" FromDataDef="CommercialPropertyFloodCoverageEndorsementBusnIncomeTable/CommercialPropertyFloodCoverageEndorsementBusnIncome[1]/@BlanketIDNum" Order="DataDefInputParamConstant" />
+															<rul:Value Type="integer" FromParam="UnitNumberParam" />
+														</rul:Equal>
+													</rul:And>
+												</rul:Test>
+												<rul:Then>
+													<rul:If>
+														<rul:Test>
+															<rul:Equal>
+																<rul:FirstValue Type="string" FromConstant="" FromDataDef="@IncludedInBlkt" Order="DataDefInputParamConstant" />
+																<rul:Constant Type="string">Yes</rul:Constant>
+															</rul:Equal>
+														</rul:Test>
+														<rul:Then>
+															<rul:Convert Type="integer">
+																<rul:Product DecimalPlaces="0">
+																	<rul:FirstValue Type="integer" FromConstant="0" FromDataDef="@BlktLimit" Order="DataDefInputParamConstant" />
+																	<rul:Convert Type="integer">
+																		<rul:FirstValue Type="decimal" FromConstant="0" FromDataDef="@BlktProportion" Order="DataDefInputParamConstant" />
+																	</rul:Convert>
+																</rul:Product>
+															</rul:Convert>
+														</rul:Then>
+														<rul:Else>
+															<rul:FirstValue Type="integer" FromConstant="0" FromDataDef="@Limit" Order="DataDefInputParamConstant" />
+														</rul:Else>
+													</rul:If>
+												</rul:Then>
+											</rul:When>
+											<rul:When>
+												<rul:Test>
+													<rul:And>
+														<rul:Or>
+															<rul:And>
+																<rul:Equal>
+																	<rul:Value Type="string" FromParam="BusnIncomeWithExtraExpenseCovParam" />
+																	<rul:Constant Type="string">Yes</rul:Constant>
+																</rul:Equal>
+																<rul:Equal>
+																	<rul:FirstValue Type="string" FromConstant="" FromDataDef="@CovType" Order="DataDefInputParamConstant" />
+																	<rul:Constant Type="string">Business Income With Extra Expense</rul:Constant>
+																</rul:Equal>
+															</rul:And>
+															<rul:And>
+																<rul:Equal>
+																	<rul:Value Type="string" FromParam="BusnIncomeWithoutExtraExpenseCovParam" />
+																	<rul:Constant Type="string">Yes</rul:Constant>
+																</rul:Equal>
+																<rul:Equal>
+																	<rul:FirstValue Type="string" FromConstant="" FromDataDef="@CovType" Order="DataDefInputParamConstant" />
+																	<rul:Constant Type="string">Business Income Without Extra Expense</rul:Constant>
+																</rul:Equal>
+															</rul:And>
+														</rul:Or>
+														<rul:Exist AtInputDataDef="CommercialPropertyFloodCoverageEndorsementBusnIncomeTable/CommercialPropertyFloodCoverageEndorsementBusnIncome" />
+														<rul:Equal>
+															<rul:FirstValue Type="string" FromConstant="" FromDataDef="CommercialPropertyFloodCoverageEndorsementBusnIncomeTable/CommercialPropertyFloodCoverageEndorsementBusnIncome[1]/@IncludedInBlkt" Order="DataDefInputParamConstant" />
+															<rul:Constant Type="string">Yes</rul:Constant>
+														</rul:Equal>
+														<rul:Equal>
+															<rul:FirstValue Type="integer" FromConstant="0" FromDataDef="CommercialPropertyFloodCoverageEndorsementBusnIncomeTable/CommercialPropertyFloodCoverageEndorsementBusnIncome[1]/@BlanketIDNum" Order="DataDefInputParamConstant" />
+															<rul:Value Type="integer" FromParam="UnitNumberParam" />
+														</rul:Equal>
+													</rul:And>
+												</rul:Test>
+												<rul:Then>
+													<rul:FirstValue Type="integer" FromConstant="0" FromDataDef="CommercialPropertyFloodCoverageEndorsementBusnIncomeTable/CommercialPropertyFloodCoverageEndorsementBusnIncome[1]/@AnnualNetIncome" Order="DataDefInputParamConstant" />
+												</rul:Then>
+											</rul:When>
+										</rul:Choose>
+									</rul:ForEach>
+								</rul:ForEach>
+							</rul:ForEach>
+						</rul:WithArgs>
+						<rul:FirstValue Type="integer" FromConstant="0" FromDataDef="@BusinessIncLevel100PctValue" Order="DataDefInputParamConstant" />
+					</rul:Sum>
+				</rul:Arg>
+				<rul:Value Type="integer" ToDataDef="@BusinessIncLevel100PctValue" FromParam="BusinessIncLevel100PctValueIncrementParam" />
+			</rul:WithArgs>
+		</rul:Sequence>
+	</rul:Rule>
+	<rul:Rule Name="SetSpecialClassBusnIncLevel100PctValue" Type="none" DataDefGroup="CommercialPropertyFloodCovEndtBlanketRatingDetail">
+		<rul:Sequence>
+			<rul:Constant Type="integer" ToDataDef="@SpecialClassBusnIncLevel100PctValue">0</rul:Constant>
+			<rul:WithArgs>
+				<rul:Arg Type="integer" Param="SpecialClassBusnIncLevel100PctValueIncrementParam">
+					<rul:Sum>
+						<rul:WithArgs>
+							<rul:Arg Type="string" Param="ExtraExpenseCovParam">
+								<rul:FirstValue Type="string" FromConstant="" FromDataDef="@ExtraExpenseCov" Order="DataDefInputParamConstant" />
+							</rul:Arg>
+							<rul:Arg Type="integer" Param="UnitNumberParam">
+								<rul:FirstValue Type="integer" FromConstant="0" FromDataDef="@UnitNumber" Order="DataDefInputParamConstant" />
+							</rul:Arg>
+							<rul:Arg Type="string" Param="BusnIncomeWithExtraExpenseCovParam">
+								<rul:FirstValue Type="string" FromConstant="" FromDataDef="@BusnIncomeWithExtraExpenseCov" Order="DataDefInputParamConstant" />
+							</rul:Arg>
+							<rul:Arg Type="string" Param="BusnIncomeWithoutExtraExpenseCovParam">
+								<rul:FirstValue Type="string" FromConstant="" FromDataDef="@BusnIncomeWithoutExtraExpenseCov" Order="DataDefInputParamConstant" />
+							</rul:Arg>
+							<rul:ForEach AtInputDataDef="../../../../CommercialPropertyLocationTable/CommercialPropertyLocation">
+								<rul:ForEach AtInputDataDef="CommercialPropertySpecialClassTable/CommercialPropertySpecialClass">
+									<rul:ForEach AtInputDataDef="CommercialPropertySpecialClassBusnIncomeTable/CommercialPropertySpecialClassBusnIncome">
+										<rul:Choose>
+											<rul:When>
+												<rul:Test>
+													<rul:And>
+														<rul:Equal>
+															<rul:Value Type="string" FromParam="ExtraExpenseCovParam" />
+															<rul:Constant Type="string">Yes</rul:Constant>
+														</rul:Equal>
+														<rul:Equal>
+															<rul:FirstValue Type="string" FromConstant="" FromDataDef="@CovType" Order="DataDefInputParamConstant" />
+															<rul:Constant Type="string">Extra Expense Only</rul:Constant>
+														</rul:Equal>
+														<rul:Exist AtInputDataDef="CommercialPropertyFloodCoverageEndorsementSpclClassBusnIncomeTable/CommercialPropertyFloodCoverageEndorsementSpclClassBusnIncome" />
+														<rul:Equal>
+															<rul:FirstValue Type="string" FromConstant="" FromDataDef="CommercialPropertyFloodCoverageEndorsementSpclClassBusnIncomeTable/CommercialPropertyFloodCoverageEndorsementSpclClassBusnIncome[1]/@IncludedInBlkt" Order="DataDefInputParamConstant" />
+															<rul:Constant Type="string">Yes</rul:Constant>
+														</rul:Equal>
+														<rul:Equal>
+															<rul:FirstValue Type="integer" FromConstant="0" FromDataDef="CommercialPropertyFloodCoverageEndorsementSpclClassBusnIncomeTable/CommercialPropertyFloodCoverageEndorsementSpclClassBusnIncome[1]/@BlanketIDNum" Order="DataDefInputParamConstant" />
+															<rul:Value Type="integer" FromParam="UnitNumberParam" />
+														</rul:Equal>
+													</rul:And>
+												</rul:Test>
+												<rul:Then>
+													<rul:If>
+														<rul:Test>
+															<rul:Equal>
+																<rul:FirstValue Type="string" FromConstant="" FromDataDef="@IncludedInBlkt" Order="DataDefInputParamConstant" />
+																<rul:Constant Type="string">Yes</rul:Constant>
+															</rul:Equal>
+														</rul:Test>
+														<rul:Then>
+															<rul:Convert Type="integer">
+																<rul:Product DecimalPlaces="0">
+																	<rul:FirstValue Type="integer" FromConstant="0" FromDataDef="@BlktLimit" Order="DataDefInputParamConstant" />
+																	<rul:Convert Type="integer">
+																		<rul:FirstValue Type="decimal" FromConstant="0" FromDataDef="@BlktProportion" Order="DataDefInputParamConstant" />
+																	</rul:Convert>
+																</rul:Product>
+															</rul:Convert>
+														</rul:Then>
+														<rul:Else>
+															<rul:FirstValue Type="integer" FromConstant="0" FromDataDef="@Limit" Order="DataDefInputParamConstant" />
+														</rul:Else>
+													</rul:If>
+												</rul:Then>
+											</rul:When>
+											<rul:When>
+												<rul:Test>
+													<rul:And>
+														<rul:Or>
+															<rul:And>
+																<rul:Equal>
+																	<rul:Value Type="string" FromParam="BusnIncomeWithExtraExpenseCovParam" />
+																	<rul:Constant Type="string">Yes</rul:Constant>
+																</rul:Equal>
+																<rul:Equal>
+																	<rul:FirstValue Type="string" FromConstant="" FromDataDef="@CovType" Order="DataDefInputParamConstant" />
+																	<rul:Constant Type="string">Business Income With Extra Expense</rul:Constant>
+																</rul:Equal>
+															</rul:And>
+															<rul:And>
+																<rul:Equal>
+																	<rul:Value Type="string" FromParam="BusnIncomeWithoutExtraExpenseCovParam" />
+																	<rul:Constant Type="string">Yes</rul:Constant>
+																</rul:Equal>
+																<rul:Equal>
+																	<rul:FirstValue Type="string" FromConstant="" FromDataDef="@CovType" Order="DataDefInputParamConstant" />
+																	<rul:Constant Type="string">Business Income Without Extra Expense</rul:Constant>
+																</rul:Equal>
+															</rul:And>
+														</rul:Or>
+														<rul:Exist AtInputDataDef="CommercialPropertyFloodCoverageEndorsementSpclClassBusnIncomeTable/CommercialPropertyFloodCoverageEndorsementSpclClassBusnIncome" />
+														<rul:Equal>
+															<rul:FirstValue Type="string" FromConstant="" FromDataDef="CommercialPropertyFloodCoverageEndorsementSpclClassBusnIncomeTable/CommercialPropertyFloodCoverageEndorsementSpclClassBusnIncome[1]/@IncludedInBlkt" Order="DataDefInputParamConstant" />
+															<rul:Constant Type="string">Yes</rul:Constant>
+														</rul:Equal>
+														<rul:Equal>
+															<rul:FirstValue Type="integer" FromConstant="0" FromDataDef="CommercialPropertyFloodCoverageEndorsementSpclClassBusnIncomeTable/CommercialPropertyFloodCoverageEndorsementSpclClassBusnIncome[1]/@BlanketIDNum" Order="DataDefInputParamConstant" />
+															<rul:Value Type="integer" FromParam="UnitNumberParam" />
+														</rul:Equal>
+													</rul:And>
+												</rul:Test>
+												<rul:Then>
+													<rul:FirstValue Type="integer" FromConstant="0" FromDataDef="CommercialPropertyFloodCoverageEndorsementSpclClassBusnIncomeTable/CommercialPropertyFloodCoverageEndorsementSpclClassBusnIncome[1]/@AnnualNetIncome" Order="DataDefInputParamConstant" />
+												</rul:Then>
+											</rul:When>
+										</rul:Choose>
+									</rul:ForEach>
+								</rul:ForEach>
+							</rul:ForEach>
+						</rul:WithArgs>
+						<rul:FirstValue Type="integer" FromConstant="0" FromDataDef="@SpecialClassBusnIncLevel100PctValue" Order="DataDefInputParamConstant" />
+					</rul:Sum>
+				</rul:Arg>
+				<rul:Value Type="integer" ToDataDef="@SpecialClassBusnIncLevel100PctValue" FromParam="SpecialClassBusnIncLevel100PctValueIncrementParam" />
+			</rul:WithArgs>
+		</rul:Sequence>
+	</rul:Rule>
+	<rul:Rule Name="SetTotalFull100PctValue" Type="none" DataDefGroup="CommercialPropertyFloodCovEndtBlanketRatingDetail">
+		<rul:Sequence>
+			<rul:Sum ToDataDef="@TotalFull100PctValue">
+				<rul:Value Type="integer" FromDataDef="@BuildingLevel100PctValue" />
+				<rul:Value Type="integer" FromDataDef="@PersonalPropLevel100PctValue" />
+				<rul:Value Type="integer" FromDataDef="@SpecialClassLevel100PctValue" />
+				<rul:Value Type="integer" FromDataDef="@BusinessIncLevel100PctValue" />
+				<rul:Value Type="integer" FromDataDef="@SpecialClassBusnIncLevel100PctValue" />
+			</rul:Sum>
+		</rul:Sequence>
+	</rul:Rule>
+	<rul:Rule Name="SetInsuranceToValue" Type="none" DataDefGroup="CommercialPropertyFloodCovEndtBlanketRatingDetail">
+		<rul:Sequence>
+			<rul:If>
+				<rul:Test>
+					<rul:GreaterThan>
+						<rul:FirstValue Type="integer" FromConstant="0" FromDataDef="@TotalFull100PctValue" Order="DataDefInputParamConstant" />
+						<rul:Constant Type="integer">0</rul:Constant>
+					</rul:GreaterThan>
+				</rul:Test>
+				<rul:Then>
+					<rul:Sequence>
+						<rul:Divide ToDataDef="@InsuranceToValue" DecimalPlaces="4">
+							<rul:Product>
+								<rul:FirstValue Type="integer" FromConstant="0" FromDataDef="@Limit" Order="DataDefInputParamConstant" />
+								<rul:Constant Type="decimal">1</rul:Constant>
+							</rul:Product>
+							<rul:Value Type="integer" FromDataDef="@TotalFull100PctValue" />
+						</rul:Divide>
+					</rul:Sequence>
+				</rul:Then>
+				<rul:Else>
+					<rul:Sequence>
+						<rul:Constant Type="decimal" ToDataDef="@InsuranceToValue">0.0</rul:Constant>
+					</rul:Sequence>
+				</rul:Else>
+			</rul:If>
+		</rul:Sequence>
+	</rul:Rule>
+	<rul:Rule Name="SetInsuranceToValuePercentage" Type="none" DataDefGroup="CommercialPropertyFloodCovEndtBlanketRatingDetail">
+		<rul:Sequence>
+			<rul:Product ToDataDef="@InsuranceToValuePercentage" DecimalPlaces="2">
+				<rul:FirstValue Type="decimal" FromConstant="0" FromDataDef="@InsuranceToValue" Order="DataDefInputParamConstant" />
+				<rul:Constant Type="decimal">100</rul:Constant>
+			</rul:Product>
+		</rul:Sequence>
+	</rul:Rule>
+	<rul:Rule Name="SetInsuranceToValuePercentageToUse" Type="none" DataDefGroup="CommercialPropertyFloodCovEndtBlanketRatingDetail">
+		<rul:Sequence>
+			<rul:Choose>
+				<rul:When>
+					<rul:Test>
+						<rul:GreaterThanOrEqual>
+							<rul:FirstValue Type="decimal" FromConstant="0" FromDataDef="@InsuranceToValuePercentage" Order="DataDefInputParamConstant" />
+							<rul:Constant Type="decimal">1</rul:Constant>
+						</rul:GreaterThanOrEqual>
+					</rul:Test>
+					<rul:Then>
+						<rul:Sequence>
+							<rul:Convert Type="integer" ToDataDef="@InsuranceToValuePercentageToUse">
+								<rul:Round DecimalPlaces="0">
+									<rul:FirstValue Type="decimal" FromConstant="0" FromDataDef="@InsuranceToValuePercentage" Order="DataDefInputParamConstant" />
+								</rul:Round>
+							</rul:Convert>
+						</rul:Sequence>
+					</rul:Then>
+				</rul:When>
+				<rul:When>
+					<rul:Test>
+						<rul:GreaterThan>
+							<rul:FirstValue Type="decimal" FromConstant="0" FromDataDef="@InsuranceToValuePercentage" Order="DataDefInputParamConstant" />
+							<rul:Constant Type="decimal">0</rul:Constant>
+						</rul:GreaterThan>
+					</rul:Test>
+					<rul:Then>
+						<rul:Sequence>
+							<rul:Constant Type="integer" ToDataDef="@InsuranceToValuePercentageToUse">1</rul:Constant>
+						</rul:Sequence>
+					</rul:Then>
+				</rul:When>
+				<rul:Otherwise>
+					<rul:Sequence>
+						<rul:Constant Type="integer" ToDataDef="@InsuranceToValuePercentageToUse">0</rul:Constant>
+					</rul:Sequence>
+				</rul:Otherwise>
+			</rul:Choose>
+		</rul:Sequence>
+	</rul:Rule>
+	<rul:Rule Name="ErcSetRatesAndFactors" Type="none" DataDefGroup="CommercialPropertyFloodCovEndtBlanketRatingDetail">
+		<rul:Sequence>
+			<rul:RunRule Type="none" FileName="CommercialPropertyFloodCovEndtBlanketRatingDetailRules" Rule="SetTotalBuildingAdjustedFull100PctValue" ClearCache="true" />
+			<rul:RunRule Type="none" FileName="CommercialPropertyFloodCovEndtBlanketRatingDetailRules" Rule="SetTotalPersonalPropAdjustedFull100PctValue" ClearCache="true" />
+			<rul:RunRule Type="none" FileName="CommercialPropertyFloodCovEndtBlanketRatingDetailRules" Rule="SetTotalSpecialClassAdjustedFull100PctValue" ClearCache="true" />
+			<rul:RunRule Type="none" FileName="CommercialPropertyFloodCovEndtBlanketRatingDetailRules" Rule="SetTotalBusinessIncAdjustedFull100PctValue" ClearCache="true" />
+			<rul:RunRule Type="none" FileName="CommercialPropertyFloodCovEndtBlanketRatingDetailRules" Rule="SetTotalSpclClBusnIncAdjustedFull100PctValue" ClearCache="true" />
+			<rul:RunRule Type="none" FileName="CommercialPropertyFloodCovEndtBlanketRatingDetailRules" Rule="SetTotalAdjustedFull100PctValue" ClearCache="true" />
+			<rul:RunRule Type="none" FileName="CommercialPropertyFloodCovEndtBlanketRatingDetailRules" Rule="SetBlanketAverageRate" ClearCache="true" />
+		</rul:Sequence>
+	</rul:Rule>
+	<rul:Rule Name="SetTotalBuildingAdjustedFull100PctValue" Type="none" DataDefGroup="CommercialPropertyFloodCovEndtBlanketRatingDetail">
+		<rul:Sequence>
+			<rul:Constant Type="integer" ToDataDef="@TotalBuildingAdjustedFull100PctValue">0</rul:Constant>
+			<rul:WithArgs>
+				<rul:Arg Type="integer" Param="TotalBuildingAdjustedFull100PctValueIncrementParam">
+					<rul:Sum>
+						<rul:WithArgs>
+							<rul:Arg Type="integer" Param="UnitNumberParam">
+								<rul:FirstValue Type="integer" FromConstant="0" FromDataDef="@UnitNumber" Order="DataDefInputParamConstant" />
+							</rul:Arg>
+							<rul:ForEach AtInputDataDef="../../../../CommercialPropertyLocationTable/CommercialPropertyLocation">
+								<rul:ForEach AtInputDataDef="CommercialPropertyStructureTable/CommercialPropertyStructure">
+									<rul:If>
+										<rul:Test>
+											<rul:And>
+												<rul:Exist AtInputDataDef="CommercialPropertyFloodCoverageEndorsementTable/CommercialPropertyFloodCoverageEndorsement" />
+												<rul:Equal>
+													<rul:FirstValue Type="string" FromConstant="" FromDataDef="CommercialPropertyFloodCoverageEndorsementTable/CommercialPropertyFloodCoverageEndorsement[1]/@IncludedInBlkt" Order="DataDefInputParamConstant" />
+													<rul:Constant Type="string">Yes</rul:Constant>
+												</rul:Equal>
+												<rul:Equal>
+													<rul:FirstValue Type="integer" FromConstant="0" FromDataDef="CommercialPropertyFloodCoverageEndorsementTable/CommercialPropertyFloodCoverageEndorsement[1]/@BlanketIDNum" Order="DataDefInputParamConstant" />
+													<rul:Value Type="integer" FromParam="UnitNumberParam" />
+												</rul:Equal>
+											</rul:And>
+										</rul:Test>
+										<rul:Then>
+											<rul:FirstValue Type="integer" FromConstant="0" FromDataDef="CommercialPropertyFloodCoverageEndorsementTable/CommercialPropertyFloodCoverageEndorsement[1]/@AdjustedFull100PercentValue" Order="DataDefInputParamConstant" />
+										</rul:Then>
+									</rul:If>
+								</rul:ForEach>
+							</rul:ForEach>
+						</rul:WithArgs>
+						<rul:FirstValue Type="integer" FromConstant="0" FromDataDef="@TotalBuildingAdjustedFull100PctValue" Order="DataDefInputParamConstant" />
+					</rul:Sum>
+				</rul:Arg>
+				<rul:Value Type="integer" ToDataDef="@TotalBuildingAdjustedFull100PctValue" FromParam="TotalBuildingAdjustedFull100PctValueIncrementParam" />
+			</rul:WithArgs>
+		</rul:Sequence>
+	</rul:Rule>
+	<rul:Rule Name="SetTotalPersonalPropAdjustedFull100PctValue" Type="none" DataDefGroup="CommercialPropertyFloodCovEndtBlanketRatingDetail">
+		<rul:Sequence>
+			<rul:Constant Type="integer" ToDataDef="@TotalPersonalPropAdjustedFull100PctValue">0</rul:Constant>
+			<rul:WithArgs>
+				<rul:Arg Type="integer" Param="TotalPersonalPropAdjustedFull100PctValueIncrementParam">
+					<rul:Sum>
+						<rul:WithArgs>
+							<rul:Arg Type="integer" Param="UnitNumberParam">
+								<rul:FirstValue Type="integer" FromConstant="0" FromDataDef="@UnitNumber" Order="DataDefInputParamConstant" />
+							</rul:Arg>
+							<rul:ForEach AtInputDataDef="../../../../CommercialPropertyLocationTable/CommercialPropertyLocation">
+								<rul:ForEach AtInputDataDef="CommercialPropertyStructureTable/CommercialPropertyStructure">
+									<rul:ForEach AtInputDataDef="CommercialPropertyOccupClassTable/CommercialPropertyOccupClass">
+										<rul:ForEach AtInputDataDef="CommercialPropertyPersonalPropertyTable/CommercialPropertyPersonalProperty">
+											<rul:If>
+												<rul:Test>
+													<rul:And>
+														<rul:Exist AtInputDataDef="CommercialPropertyFloodCoverageEndorsementPrsnlPropTable/CommercialPropertyFloodCoverageEndorsementPrsnlProp" />
+														<rul:Equal>
+															<rul:FirstValue Type="string" FromConstant="" FromDataDef="CommercialPropertyFloodCoverageEndorsementPrsnlPropTable/CommercialPropertyFloodCoverageEndorsementPrsnlProp[1]/@IncludedInBlkt" Order="DataDefInputParamConstant" />
+															<rul:Constant Type="string">Yes</rul:Constant>
+														</rul:Equal>
+														<rul:Equal>
+															<rul:FirstValue Type="integer" FromConstant="0" FromDataDef="CommercialPropertyFloodCoverageEndorsementPrsnlPropTable/CommercialPropertyFloodCoverageEndorsementPrsnlProp[1]/@BlanketIDNum" Order="DataDefInputParamConstant" />
+															<rul:Value Type="integer" FromParam="UnitNumberParam" />
+														</rul:Equal>
+													</rul:And>
+												</rul:Test>
+												<rul:Then>
+													<rul:FirstValue Type="integer" FromConstant="0" FromDataDef="CommercialPropertyFloodCoverageEndorsementPrsnlPropTable/CommercialPropertyFloodCoverageEndorsementPrsnlProp[1]/@AdjustedFull100PercentValue" Order="DataDefInputParamConstant" />
+												</rul:Then>
+											</rul:If>
+										</rul:ForEach>
+									</rul:ForEach>
+								</rul:ForEach>
+							</rul:ForEach>
+						</rul:WithArgs>
+						<rul:FirstValue Type="integer" FromConstant="0" FromDataDef="@TotalPersonalPropAdjustedFull100PctValue" Order="DataDefInputParamConstant" />
+					</rul:Sum>
+				</rul:Arg>
+				<rul:Value Type="integer" ToDataDef="@TotalPersonalPropAdjustedFull100PctValue" FromParam="TotalPersonalPropAdjustedFull100PctValueIncrementParam" />
+			</rul:WithArgs>
+		</rul:Sequence>
+	</rul:Rule>
+	<rul:Rule Name="SetTotalSpecialClassAdjustedFull100PctValue" Type="none" DataDefGroup="CommercialPropertyFloodCovEndtBlanketRatingDetail">
+		<rul:Sequence>
+			<rul:Constant Type="integer" ToDataDef="@TotalSpecialClassAdjustedFull100PctValue">0</rul:Constant>
+			<rul:WithArgs>
+				<rul:Arg Type="integer" Param="TotalSpecialClassAdjustedFull100PctValueIncrementParam">
+					<rul:Sum>
+						<rul:WithArgs>
+							<rul:Arg Type="integer" Param="UnitNumberParam">
+								<rul:FirstValue Type="integer" FromConstant="0" FromDataDef="@UnitNumber" Order="DataDefInputParamConstant" />
+							</rul:Arg>
+							<rul:ForEach AtInputDataDef="../../../../CommercialPropertyLocationTable/CommercialPropertyLocation">
+								<rul:ForEach AtInputDataDef="CommercialPropertySpecialClassTable/CommercialPropertySpecialClass">
+									<rul:If>
+										<rul:Test>
+											<rul:And>
+												<rul:Exist AtInputDataDef="CommercialPropertyFloodCoverageEndorsementSpecialClassTable/CommercialPropertyFloodCoverageEndorsementSpecialClass" />
+												<rul:Equal>
+													<rul:FirstValue Type="string" FromConstant="" FromDataDef="CommercialPropertyFloodCoverageEndorsementSpecialClassTable/CommercialPropertyFloodCoverageEndorsementSpecialClass[1]/@IncludedInBlkt" Order="DataDefInputParamConstant" />
+													<rul:Constant Type="string">Yes</rul:Constant>
+												</rul:Equal>
+												<rul:Equal>
+													<rul:FirstValue Type="integer" FromConstant="0" FromDataDef="CommercialPropertyFloodCoverageEndorsementSpecialClassTable/CommercialPropertyFloodCoverageEndorsementSpecialClass[1]/@BlanketIDNum" Order="DataDefInputParamConstant" />
+													<rul:Value Type="integer" FromParam="UnitNumberParam" />
+												</rul:Equal>
+											</rul:And>
+										</rul:Test>
+										<rul:Then>
+											<rul:FirstValue Type="integer" FromConstant="0" FromDataDef="CommercialPropertyFloodCoverageEndorsementSpecialClassTable/CommercialPropertyFloodCoverageEndorsementSpecialClass[1]/@AdjustedFull100PercentValue" Order="DataDefInputParamConstant" />
+										</rul:Then>
+									</rul:If>
+								</rul:ForEach>
+							</rul:ForEach>
+						</rul:WithArgs>
+						<rul:FirstValue Type="integer" FromConstant="0" FromDataDef="@TotalSpecialClassAdjustedFull100PctValue" Order="DataDefInputParamConstant" />
+					</rul:Sum>
+				</rul:Arg>
+				<rul:Value Type="integer" ToDataDef="@TotalSpecialClassAdjustedFull100PctValue" FromParam="TotalSpecialClassAdjustedFull100PctValueIncrementParam" />
+			</rul:WithArgs>
+		</rul:Sequence>
+	</rul:Rule>
+	<rul:Rule Name="SetTotalBusinessIncAdjustedFull100PctValue" Type="none" DataDefGroup="CommercialPropertyFloodCovEndtBlanketRatingDetail">
+		<rul:Sequence>
+			<rul:Constant Type="integer" ToDataDef="@TotalBusinessIncAdjustedFull100PctValue">0</rul:Constant>
+			<rul:WithArgs>
+				<rul:Arg Type="integer" Param="TotalBusinessIncAdjustedFull100PctValueIncrementParam">
+					<rul:Sum>
+						<rul:WithArgs>
+							<rul:Arg Type="integer" Param="UnitNumberParam">
+								<rul:FirstValue Type="integer" FromConstant="0" FromDataDef="@UnitNumber" Order="DataDefInputParamConstant" />
+							</rul:Arg>
+							<rul:ForEach AtInputDataDef="../../../../CommercialPropertyLocationTable/CommercialPropertyLocation">
+								<rul:ForEach AtInputDataDef="CommercialPropertyStructureTable/CommercialPropertyStructure">
+									<rul:ForEach AtInputDataDef="CommercialPropertyBusinessIncomeTable/CommercialPropertyBusinessIncome">
+										<rul:If>
+											<rul:Test>
+												<rul:And>
+													<rul:Exist AtInputDataDef="CommercialPropertyFloodCoverageEndorsementBusnIncomeTable/CommercialPropertyFloodCoverageEndorsementBusnIncome" />
+													<rul:Equal>
+														<rul:FirstValue Type="string" FromConstant="" FromDataDef="CommercialPropertyFloodCoverageEndorsementBusnIncomeTable/CommercialPropertyFloodCoverageEndorsementBusnIncome[1]/@IncludedInBlkt" Order="DataDefInputParamConstant" />
+														<rul:Constant Type="string">Yes</rul:Constant>
+													</rul:Equal>
+													<rul:Equal>
+														<rul:FirstValue Type="integer" FromConstant="0" FromDataDef="CommercialPropertyFloodCoverageEndorsementBusnIncomeTable/CommercialPropertyFloodCoverageEndorsementBusnIncome[1]/@BlanketIDNum" Order="DataDefInputParamConstant" />
+														<rul:Value Type="integer" FromParam="UnitNumberParam" />
+													</rul:Equal>
+												</rul:And>
+											</rul:Test>
+											<rul:Then>
+												<rul:FirstValue Type="integer" FromConstant="0" FromDataDef="CommercialPropertyFloodCoverageEndorsementBusnIncomeTable/CommercialPropertyFloodCoverageEndorsementBusnIncome[1]/@AdjustedFull100PercentValue" Order="DataDefInputParamConstant" />
+											</rul:Then>
+										</rul:If>
+									</rul:ForEach>
+								</rul:ForEach>
+							</rul:ForEach>
+						</rul:WithArgs>
+						<rul:FirstValue Type="integer" FromConstant="0" FromDataDef="@TotalBusinessIncAdjustedFull100PctValue" Order="DataDefInputParamConstant" />
+					</rul:Sum>
+				</rul:Arg>
+				<rul:Value Type="integer" ToDataDef="@TotalBusinessIncAdjustedFull100PctValue" FromParam="TotalBusinessIncAdjustedFull100PctValueIncrementParam" />
+			</rul:WithArgs>
+		</rul:Sequence>
+	</rul:Rule>
+	<rul:Rule Name="SetTotalSpclClBusnIncAdjustedFull100PctValue" Type="none" DataDefGroup="CommercialPropertyFloodCovEndtBlanketRatingDetail">
+		<rul:Sequence>
+			<rul:Constant Type="integer" ToDataDef="@TotalSpclClBusnIncAdjustedFull100PctValue">0</rul:Constant>
+			<rul:WithArgs>
+				<rul:Arg Type="integer" Param="TotalSpclClBusnIncAdjustedFull100PctValueIncrementParam">
+					<rul:Sum>
+						<rul:WithArgs>
+							<rul:Arg Type="integer" Param="UnitNumberParam">
+								<rul:FirstValue Type="integer" FromConstant="0" FromDataDef="@UnitNumber" Order="DataDefInputParamConstant" />
+							</rul:Arg>
+							<rul:ForEach AtInputDataDef="../../../../CommercialPropertyLocationTable/CommercialPropertyLocation">
+								<rul:ForEach AtInputDataDef="CommercialPropertySpecialClassTable/CommercialPropertySpecialClass">
+									<rul:ForEach AtInputDataDef="CommercialPropertySpecialClassBusnIncomeTable/CommercialPropertySpecialClassBusnIncome">
+										<rul:If>
+											<rul:Test>
+												<rul:And>
+													<rul:Exist AtInputDataDef="CommercialPropertyFloodCoverageEndorsementSpclClassBusnIncomeTable/CommercialPropertyFloodCoverageEndorsementSpclClassBusnIncome" />
+													<rul:Equal>
+														<rul:FirstValue Type="string" FromConstant="" FromDataDef="CommercialPropertyFloodCoverageEndorsementSpclClassBusnIncomeTable/CommercialPropertyFloodCoverageEndorsementSpclClassBusnIncome[1]/@IncludedInBlkt" Order="DataDefInputParamConstant" />
+														<rul:Constant Type="string">Yes</rul:Constant>
+													</rul:Equal>
+													<rul:Equal>
+														<rul:FirstValue Type="integer" FromConstant="0" FromDataDef="CommercialPropertyFloodCoverageEndorsementSpclClassBusnIncomeTable/CommercialPropertyFloodCoverageEndorsementSpclClassBusnIncome[1]/@BlanketIDNum" Order="DataDefInputParamConstant" />
+														<rul:Value Type="integer" FromParam="UnitNumberParam" />
+													</rul:Equal>
+												</rul:And>
+											</rul:Test>
+											<rul:Then>
+												<rul:FirstValue Type="integer" FromConstant="0" FromDataDef="CommercialPropertyFloodCoverageEndorsementSpclClassBusnIncomeTable/CommercialPropertyFloodCoverageEndorsementSpclClassBusnIncome[1]/@AdjustedFull100PercentValue" Order="DataDefInputParamConstant" />
+											</rul:Then>
+										</rul:If>
+									</rul:ForEach>
+								</rul:ForEach>
+							</rul:ForEach>
+						</rul:WithArgs>
+						<rul:FirstValue Type="integer" FromConstant="0" FromDataDef="@TotalSpclClBusnIncAdjustedFull100PctValue" Order="DataDefInputParamConstant" />
+					</rul:Sum>
+				</rul:Arg>
+				<rul:Value Type="integer" ToDataDef="@TotalSpclClBusnIncAdjustedFull100PctValue" FromParam="TotalSpclClBusnIncAdjustedFull100PctValueIncrementParam" />
+			</rul:WithArgs>
+		</rul:Sequence>
+	</rul:Rule>
+	<rul:Rule Name="SetTotalAdjustedFull100PctValue" Type="none" DataDefGroup="CommercialPropertyFloodCovEndtBlanketRatingDetail">
+		<rul:Sequence>
+			<rul:Sum ToDataDef="@TotalAdjustedFull100PctValue">
+				<rul:Value Type="integer" FromDataDef="@TotalBuildingAdjustedFull100PctValue" />
+				<rul:Value Type="integer" FromDataDef="@TotalPersonalPropAdjustedFull100PctValue" />
+				<rul:Value Type="integer" FromDataDef="@TotalSpecialClassAdjustedFull100PctValue" />
+				<rul:Value Type="integer" FromDataDef="@TotalBusinessIncAdjustedFull100PctValue" />
+				<rul:Value Type="integer" FromDataDef="@TotalSpclClBusnIncAdjustedFull100PctValue" />
+			</rul:Sum>
+		</rul:Sequence>
+	</rul:Rule>
+	<rul:Rule Name="SetBlanketAverageRate" Type="none" DataDefGroup="CommercialPropertyFloodCovEndtBlanketRatingDetail">
+		<rul:Sequence>
+			<rul:If>
+				<rul:Test>
+					<rul:GreaterThan>
+						<rul:FirstValue Type="integer" FromConstant="0" FromDataDef="@TotalFull100PctValue" Order="DataDefInputParamConstant" />
+						<rul:Constant Type="integer">0</rul:Constant>
+					</rul:GreaterThan>
+				</rul:Test>
+				<rul:Then>
+					<rul:Sequence>
+						<rul:Divide ToDataDef="@BlanketAverageRate" DecimalPlaces="3">
+							<rul:Product>
+								<rul:FirstValue Type="integer" FromConstant="0" FromDataDef="@TotalAdjustedFull100PctValue" Order="DataDefInputParamConstant" />
+								<rul:Constant Type="decimal">1</rul:Constant>
+							</rul:Product>
+							<rul:Value Type="integer" FromDataDef="@TotalFull100PctValue" />
+						</rul:Divide>
+					</rul:Sequence>
+				</rul:Then>
+				<rul:Else>
+					<rul:Sequence>
+						<rul:Constant Type="decimal" ToDataDef="@BlanketAverageRate">0.0</rul:Constant>
+					</rul:Sequence>
+				</rul:Else>
+			</rul:If>
+		</rul:Sequence>
+	</rul:Rule>
+	<rul:Rule Name="ErcRate" Type="none" DataDefGroup="CommercialPropertyFloodCovEndtBlanketRatingDetail">
+		<rul:Sequence>
+			<rul:RunRule Type="none" FileName="CommercialPropertyFloodCovEndtBlanketRatingDetailRules" Rule="SetPremium" ClearCache="true" />
+			<rul:RunRule Type="none" FileName="CommercialPropertyFloodCovEndtBlanketRatingDetailRules" Rule="SetPremiumIndicator" ClearCache="true" />
+		</rul:Sequence>
+	</rul:Rule>
+	<rul:Rule Name="SetPremium" Type="none" DataDefGroup="CommercialPropertyFloodCovEndtBlanketRatingDetail">
+		<rul:Sequence>
+			<rul:WithArgs>
+				<rul:Arg Type="decimal" Param="calcPremium">
+					<rul:FirstNonNull Type="decimal">
+						<rul:Product DecimalPlaces="0">
+							<rul:Product DecimalPlaces="0">
+								<rul:Product DecimalPlaces="0">
+									<rul:Product DecimalPlaces="0">
+										<rul:Product DecimalPlaces="0">
+											<rul:FirstValue Type="decimal" FromConstant="0" FromDataDef="@BlanketAverageRate" Order="DataDefInputParamConstant" />
+											<rul:Divide>
+												<rul:Value Type="integer" FromDataDef="@Limit" />
+												<rul:Constant Type="decimal">100</rul:Constant>
+											</rul:Divide>
+										</rul:Product>
+										<rul:FirstValue Type="decimal" FromConstant="0" FromDataDef="../../../../@PackageModFactor" Order="DataDefInputParamConstant" />
+									</rul:Product>
+									<rul:FirstValue Type="decimal" FromConstant="0" FromDataDef="../../../../@IRPMFactor" Order="DataDefInputParamConstant" />
+								</rul:Product>
+								<rul:FirstValue Type="decimal" FromConstant="0" FromDataDef="../../../../@CyberIncidentExclusionFactorFlood" Order="DataDefInputParamConstant" />
+							</rul:Product>
+							<rul:FirstValue Type="decimal" FromConstant="0" FromDataDef="../../../../@CyberIncidentExclusionCOLExcptnsFactorFlood" Order="DataDefInputParamConstant" />
+						</rul:Product>
+						<rul:Constant Type="decimal">0</rul:Constant>
+					</rul:FirstNonNull>
+				</rul:Arg>
+				<rul:Value Type="decimal" ToDataDef="@Premium" FromParam="calcPremium" />
+			</rul:WithArgs>
+		</rul:Sequence>
+	</rul:Rule>
+	<rul:Rule Name="SetPremiumIndicator" Type="none" DataDefGroup="CommercialPropertyFloodCovEndtBlanketRatingDetail">
+		<rul:Sequence>
+			<rul:If>
+				<rul:Test>
+					<rul:NotEqual>
+						<rul:FirstValue Type="decimal" FromConstant="0" FromDataDef="@Premium" Order="DataDefInputParamConstant" />
+						<rul:Constant Type="decimal">0</rul:Constant>
+					</rul:NotEqual>
+				</rul:Test>
+				<rul:Then>
+					<rul:Sequence>
+						<rul:Constant Type="integer" ToDataDef="@PremiumIndicator">1</rul:Constant>
+					</rul:Sequence>
+				</rul:Then>
+				<rul:Else>
+					<rul:Sequence>
+						<rul:Constant Type="integer" ToDataDef="@PremiumIndicator">0</rul:Constant>
+					</rul:Sequence>
+				</rul:Else>
+			</rul:If>
+		</rul:Sequence>
+	</rul:Rule>
+	<rul:Rule Name="ErcRunPostUnderwritingLogic" Type="none" DataDefGroup="CommercialPropertyFloodCovEndtBlanketRatingDetail">
+		<rul:Sequence>
+			<rul:RunRule Type="none" FileName="CommercialPropertyFloodCovEndtBlanketRatingDetailRules" Rule="DoMessageSelectAtLeastOneApplicableCoveredPropertyCoverage" ClearCache="true" />
+			<rul:RunRule Type="none" FileName="CommercialPropertyFloodCovEndtBlanketRatingDetailRules" Rule="DoMessageFloodBlanketRatingRequiresFormCP1065ToBeAttachedAtTwoOrMoreRisksToBeValid" ClearCache="true" />
+			<rul:RunRule Type="none" FileName="CommercialPropertyFloodCovEndtBlanketRatingDetailRules" Rule="DoMessageTheLimitEnteredCannotBeGreaterThanTheSumOfThe100PctValuesOfAllPropertiesInTheBlanket" ClearCache="true" />
+			<rul:RunRule Type="none" FileName="CommercialPropertyFloodCovEndtBlanketRatingDetailRules" Rule="DoMessageTheLimitUsedHaveExceededTheMostCoverageThatCanBePurchasedForFlood" ClearCache="true" />
+		</rul:Sequence>
+	</rul:Rule>
+	<rul:Rule Name="DoMessageSelectAtLeastOneApplicableCoveredPropertyCoverage" Type="none" DataDefGroup="CommercialPropertyFloodCovEndtBlanketRatingDetail">
+		<rul:Sequence>
+			<rul:If>
+				<rul:Test>
+					<rul:And>
+						<rul:Equal>
+							<rul:FirstValue Type="string" FromConstant="" FromDataDef="@BldgCov" Order="DataDefInputParamConstant" />
+							<rul:Constant Type="string">No</rul:Constant>
+						</rul:Equal>
+						<rul:Equal>
+							<rul:FirstValue Type="string" FromConstant="" FromDataDef="@PrsnlPropCov" Order="DataDefInputParamConstant" />
+							<rul:Constant Type="string">No</rul:Constant>
+						</rul:Equal>
+						<rul:Equal>
+							<rul:FirstValue Type="string" FromConstant="" FromDataDef="@SpecialClassCov" Order="DataDefInputParamConstant" />
+							<rul:Constant Type="string">No</rul:Constant>
+						</rul:Equal>
+						<rul:Equal>
+							<rul:FirstValue Type="string" FromConstant="" FromDataDef="@BusnIncomeWithExtraExpenseCov" Order="DataDefInputParamConstant" />
+							<rul:Constant Type="string">No</rul:Constant>
+						</rul:Equal>
+						<rul:Equal>
+							<rul:FirstValue Type="string" FromConstant="" FromDataDef="@BusnIncomeWithoutExtraExpenseCov" Order="DataDefInputParamConstant" />
+							<rul:Constant Type="string">No</rul:Constant>
+						</rul:Equal>
+						<rul:Equal>
+							<rul:FirstValue Type="string" FromConstant="" FromDataDef="@ExtraExpenseCov" Order="DataDefInputParamConstant" />
+							<rul:Constant Type="string">No</rul:Constant>
+						</rul:Equal>
+					</rul:And>
+				</rul:Test>
+				<rul:Then>
+					<rul:RunRule Type="none" FileName="MessageHelper" Rule="AddErrorMessage" ClearCache="true">
+						<rul:Arg Type="string" Param="Message">
+							<rul:Constant Type="string">Select at least one Applicable Covered Property/Coverage</rul:Constant>
+						</rul:Arg>
+					</rul:RunRule>
+				</rul:Then>
+			</rul:If>
+		</rul:Sequence>
+	</rul:Rule>
+	<rul:Rule Name="DoMessageFloodBlanketRatingRequiresFormCP1065ToBeAttachedAtTwoOrMoreRisksToBeValid" Type="none" DataDefGroup="CommercialPropertyFloodCovEndtBlanketRatingDetail">
+		<rul:Sequence>
+			<rul:WithArgs>
+				<rul:Arg Type="integer" Param="countFormAttachment">
+					<rul:FirstNonNull Type="integer">
+						<rul:Sum>
+							<rul:WithArgs>
+								<rul:Arg Type="integer" Param="UnitNumberParam">
+									<rul:FirstValue Type="integer" FromConstant="0" FromDataDef="@UnitNumber" Order="DataDefInputParamConstant" />
+								</rul:Arg>
+								<rul:Sum>
+									<rul:ForEach AtDataDef="../../../../CommercialPropertyLocationTable/CommercialPropertyLocation">
+										<rul:ForEach AtDataDef="CommercialPropertyStructureTable/CommercialPropertyStructure">
+											<rul:If>
+												<rul:Test>
+													<rul:And>
+														<rul:Exist AtInputDataDef="CommercialPropertyFloodCoverageEndorsementTable/CommercialPropertyFloodCoverageEndorsement" />
+														<rul:Equal>
+															<rul:FirstValue Type="string" FromConstant="" FromDataDef="CommercialPropertyFloodCoverageEndorsementTable/CommercialPropertyFloodCoverageEndorsement[1]/@IncludedInBlkt" Order="DataDefInputParamConstant" />
+															<rul:Constant Type="string">Yes</rul:Constant>
+														</rul:Equal>
+														<rul:Equal>
+															<rul:FirstValue Type="integer" FromConstant="0" FromDataDef="CommercialPropertyFloodCoverageEndorsementTable/CommercialPropertyFloodCoverageEndorsement[1]/@BlanketIDNum" Order="DataDefInputParamConstant" />
+															<rul:Value Type="integer" FromParam="UnitNumberParam" />
+														</rul:Equal>
+													</rul:And>
+												</rul:Test>
+												<rul:Then>
+													<rul:Constant Type="integer">1</rul:Constant>
+												</rul:Then>
+											</rul:If>
+										</rul:ForEach>
+									</rul:ForEach>
+								</rul:Sum>
+							</rul:WithArgs>
+							<rul:WithArgs>
+								<rul:Arg Type="integer" Param="UnitNumberParam">
+									<rul:FirstValue Type="integer" FromConstant="0" FromDataDef="@UnitNumber" Order="DataDefInputParamConstant" />
+								</rul:Arg>
+								<rul:Sum>
+									<rul:ForEach AtDataDef="../../../../CommercialPropertyLocationTable/CommercialPropertyLocation">
+										<rul:ForEach AtDataDef="CommercialPropertyStructureTable/CommercialPropertyStructure">
+											<rul:ForEach AtDataDef="CommercialPropertyOccupClassTable/CommercialPropertyOccupClass">
+												<rul:ForEach AtDataDef="CommercialPropertyPersonalPropertyTable/CommercialPropertyPersonalProperty">
+													<rul:If>
+														<rul:Test>
+															<rul:And>
+																<rul:Exist AtInputDataDef="CommercialPropertyFloodCoverageEndorsementPrsnlPropTable/CommercialPropertyFloodCoverageEndorsementPrsnlProp" />
+																<rul:Equal>
+																	<rul:FirstValue Type="string" FromConstant="" FromDataDef="CommercialPropertyFloodCoverageEndorsementPrsnlPropTable/CommercialPropertyFloodCoverageEndorsementPrsnlProp[1]/@IncludedInBlkt" Order="DataDefInputParamConstant" />
+																	<rul:Constant Type="string">Yes</rul:Constant>
+																</rul:Equal>
+																<rul:Equal>
+																	<rul:FirstValue Type="integer" FromConstant="0" FromDataDef="CommercialPropertyFloodCoverageEndorsementPrsnlPropTable/CommercialPropertyFloodCoverageEndorsementPrsnlProp[1]/@BlanketIDNum" Order="DataDefInputParamConstant" />
+																	<rul:Value Type="integer" FromParam="UnitNumberParam" />
+																</rul:Equal>
+															</rul:And>
+														</rul:Test>
+														<rul:Then>
+															<rul:Constant Type="integer">1</rul:Constant>
+														</rul:Then>
+													</rul:If>
+												</rul:ForEach>
+											</rul:ForEach>
+										</rul:ForEach>
+									</rul:ForEach>
+								</rul:Sum>
+							</rul:WithArgs>
+							<rul:WithArgs>
+								<rul:Arg Type="integer" Param="UnitNumberParam">
+									<rul:FirstValue Type="integer" FromConstant="0" FromDataDef="@UnitNumber" Order="DataDefInputParamConstant" />
+								</rul:Arg>
+								<rul:Sum>
+									<rul:ForEach AtDataDef="../../../../CommercialPropertyLocationTable/CommercialPropertyLocation">
+										<rul:ForEach AtDataDef="CommercialPropertySpecialClassTable/CommercialPropertySpecialClass">
+											<rul:If>
+												<rul:Test>
+													<rul:And>
+														<rul:Exist AtInputDataDef="CommercialPropertyFloodCoverageEndorsementSpecialClassTable/CommercialPropertyFloodCoverageEndorsementSpecialClass" />
+														<rul:Equal>
+															<rul:FirstValue Type="string" FromConstant="" FromDataDef="CommercialPropertyFloodCoverageEndorsementSpecialClassTable/CommercialPropertyFloodCoverageEndorsementSpecialClass[1]/@IncludedInBlkt" Order="DataDefInputParamConstant" />
+															<rul:Constant Type="string">Yes</rul:Constant>
+														</rul:Equal>
+														<rul:Equal>
+															<rul:FirstValue Type="integer" FromConstant="0" FromDataDef="CommercialPropertyFloodCoverageEndorsementSpecialClassTable/CommercialPropertyFloodCoverageEndorsementSpecialClass[1]/@BlanketIDNum" Order="DataDefInputParamConstant" />
+															<rul:Value Type="integer" FromParam="UnitNumberParam" />
+														</rul:Equal>
+													</rul:And>
+												</rul:Test>
+												<rul:Then>
+													<rul:Constant Type="integer">1</rul:Constant>
+												</rul:Then>
+											</rul:If>
+										</rul:ForEach>
+									</rul:ForEach>
+								</rul:Sum>
+							</rul:WithArgs>
+							<rul:WithArgs>
+								<rul:Arg Type="integer" Param="UnitNumberParam">
+									<rul:FirstValue Type="integer" FromConstant="0" FromDataDef="@UnitNumber" Order="DataDefInputParamConstant" />
+								</rul:Arg>
+								<rul:Sum>
+									<rul:ForEach AtDataDef="../../../../CommercialPropertyLocationTable/CommercialPropertyLocation">
+										<rul:ForEach AtDataDef="CommercialPropertyStructureTable/CommercialPropertyStructure">
+											<rul:ForEach AtDataDef="CommercialPropertyBusinessIncomeTable/CommercialPropertyBusinessIncome">
+												<rul:If>
+													<rul:Test>
+														<rul:And>
+															<rul:Exist AtInputDataDef="CommercialPropertyFloodCoverageEndorsementBusnIncomeTable/CommercialPropertyFloodCoverageEndorsementBusnIncome" />
+															<rul:Equal>
+																<rul:FirstValue Type="string" FromConstant="" FromDataDef="CommercialPropertyFloodCoverageEndorsementBusnIncomeTable/CommercialPropertyFloodCoverageEndorsementBusnIncome[1]/@IncludedInBlkt" Order="DataDefInputParamConstant" />
+																<rul:Constant Type="string">Yes</rul:Constant>
+															</rul:Equal>
+															<rul:Equal>
+																<rul:FirstValue Type="integer" FromConstant="0" FromDataDef="CommercialPropertyFloodCoverageEndorsementBusnIncomeTable/CommercialPropertyFloodCoverageEndorsementBusnIncome[1]/@BlanketIDNum" Order="DataDefInputParamConstant" />
+																<rul:Value Type="integer" FromParam="UnitNumberParam" />
+															</rul:Equal>
+														</rul:And>
+													</rul:Test>
+													<rul:Then>
+														<rul:Constant Type="integer">1</rul:Constant>
+													</rul:Then>
+												</rul:If>
+											</rul:ForEach>
+										</rul:ForEach>
+									</rul:ForEach>
+								</rul:Sum>
+							</rul:WithArgs>
+							<rul:WithArgs>
+								<rul:Arg Type="integer" Param="UnitNumberParam">
+									<rul:FirstValue Type="integer" FromConstant="0" FromDataDef="@UnitNumber" Order="DataDefInputParamConstant" />
+								</rul:Arg>
+								<rul:Sum>
+									<rul:ForEach AtDataDef="../../../../CommercialPropertyLocationTable/CommercialPropertyLocation">
+										<rul:ForEach AtDataDef="CommercialPropertySpecialClassTable/CommercialPropertySpecialClass">
+											<rul:ForEach AtDataDef="CommercialPropertySpecialClassBusnIncomeTable/CommercialPropertySpecialClassBusnIncome">
+												<rul:If>
+													<rul:Test>
+														<rul:And>
+															<rul:Exist AtInputDataDef="CommercialPropertyFloodCoverageEndorsementSpclClassBusnIncomeTable/CommercialPropertyFloodCoverageEndorsementSpclClassBusnIncome" />
+															<rul:Equal>
+																<rul:FirstValue Type="string" FromConstant="" FromDataDef="CommercialPropertyFloodCoverageEndorsementSpclClassBusnIncomeTable/CommercialPropertyFloodCoverageEndorsementSpclClassBusnIncome[1]/@IncludedInBlkt" Order="DataDefInputParamConstant" />
+																<rul:Constant Type="string">Yes</rul:Constant>
+															</rul:Equal>
+															<rul:Equal>
+																<rul:FirstValue Type="integer" FromConstant="0" FromDataDef="CommercialPropertyFloodCoverageEndorsementSpclClassBusnIncomeTable/CommercialPropertyFloodCoverageEndorsementSpclClassBusnIncome[1]/@BlanketIDNum" Order="DataDefInputParamConstant" />
+																<rul:Value Type="integer" FromParam="UnitNumberParam" />
+															</rul:Equal>
+														</rul:And>
+													</rul:Test>
+													<rul:Then>
+														<rul:Constant Type="integer">1</rul:Constant>
+													</rul:Then>
+												</rul:If>
+											</rul:ForEach>
+										</rul:ForEach>
+									</rul:ForEach>
+								</rul:Sum>
+							</rul:WithArgs>
+						</rul:Sum>
+						<rul:Constant Type="integer">0</rul:Constant>
+					</rul:FirstNonNull>
+				</rul:Arg>
+				<rul:If>
+					<rul:Test>
+						<rul:LessThanOrEqual>
+							<rul:Value Type="integer" FromParam="countFormAttachment" />
+							<rul:Constant Type="integer">1</rul:Constant>
+						</rul:LessThanOrEqual>
+					</rul:Test>
+					<rul:Then>
+						<rul:RunRule Type="none" FileName="MessageHelper" Rule="AddErrorMessage" ClearCache="true">
+							<rul:Arg Type="string" Param="Message">
+								<rul:Constant Type="string">Flood Blanket Rating requires Form CP 10 65 to be attached at 2 or more risks to be valid</rul:Constant>
+							</rul:Arg>
+						</rul:RunRule>
+					</rul:Then>
+				</rul:If>
+			</rul:WithArgs>
+		</rul:Sequence>
+	</rul:Rule>
+	<rul:Rule Name="DoMessageTheLimitEnteredCannotBeGreaterThanTheSumOfThe100PctValuesOfAllPropertiesInTheBlanket" Type="none" DataDefGroup="CommercialPropertyFloodCovEndtBlanketRatingDetail">
+		<rul:Sequence>
+			<rul:If>
+				<rul:Test>
+					<rul:GreaterThan>
+						<rul:FirstValue Type="integer" FromConstant="0" FromDataDef="@Limit" Order="DataDefInputParamConstant" />
+						<rul:FirstValue Type="integer" FromConstant="0" FromDataDef="@TotalFull100PctValue" Order="DataDefInputParamConstant" />
+					</rul:GreaterThan>
+				</rul:Test>
+				<rul:Then>
+					<rul:RunRule Type="none" FileName="MessageHelper" Rule="AddErrorMessage" ClearCache="true">
+						<rul:Arg Type="string" Param="Message">
+							<rul:Constant Type="string">The Limit entered cannot be greater than the sum of the 100 Percent Values of all properties in the Blanket</rul:Constant>
+						</rul:Arg>
+					</rul:RunRule>
+				</rul:Then>
+			</rul:If>
+		</rul:Sequence>
+	</rul:Rule>
+	<rul:Rule Name="DoMessageTheLimitUsedHaveExceededTheMostCoverageThatCanBePurchasedForFlood" Type="none" DataDefGroup="CommercialPropertyFloodCovEndtBlanketRatingDetail">
+		<rul:Sequence>
+			<rul:WithArgs>
+				<rul:Arg Type="boolean" Param="limitHaveExceeded">
+					<rul:FirstNonNull Type="boolean">
+						<rul:If>
+							<rul:Test>
+								<rul:And>
+									<rul:IsNotNull>
+										<rul:Value Type="integer" FromDataDef="../../../../CommercialPropertyLocationTable/CommercialPropertyLocation[1]/CommercialPropertyFloodCovEndtLocationTable/CommercialPropertyFloodCovEndtLocation[1]/@MaxNFIPBuildingCoverageAmount" />
+									</rul:IsNotNull>
+									<rul:IsNotNull>
+										<rul:Value Type="integer" FromDataDef="../../../../CommercialPropertyLocationTable/CommercialPropertyLocation[1]/CommercialPropertyFloodCovEndtLocationTable/CommercialPropertyFloodCovEndtLocation[1]/@MaxNFIPContentCoverageAmount" />
+									</rul:IsNotNull>
+									<rul:IsNotNull>
+										<rul:Value Type="integer" FromDataDef="../../../../CommercialPropertyLocationTable/CommercialPropertyLocation[1]/CommercialPropertyFloodCovEndtLocationTable/CommercialPropertyFloodCovEndtLocation[1]/@DeductibleInt" />
+									</rul:IsNotNull>
+								</rul:And>
+							</rul:Test>
+							<rul:Then>
+								<rul:Choose>
+									<rul:When>
+										<rul:Test>
+											<rul:And>
+												<rul:Equal>
+													<rul:FirstValue Type="string" FromConstant="" FromDataDef="@ExcessOverMaxNFIPIndicator" Order="DataDefInputParamConstant" />
+													<rul:Constant Type="string">Yes</rul:Constant>
+												</rul:Equal>
+												<rul:Or>
+													<rul:Equal>
+														<rul:FirstValue Type="string" FromConstant="" FromDataDef="@BldgCov" Order="DataDefInputParamConstant" />
+														<rul:Constant Type="string">Yes</rul:Constant>
+													</rul:Equal>
+													<rul:Equal>
+														<rul:FirstValue Type="string" FromConstant="" FromDataDef="@SpecialClassCov" Order="DataDefInputParamConstant" />
+														<rul:Constant Type="string">Yes</rul:Constant>
+													</rul:Equal>
+												</rul:Or>
+												<rul:GreaterThan>
+													<rul:FirstValue Type="integer" FromConstant="0" FromDataDef="@Limit" Order="DataDefInputParamConstant" />
+													<rul:Subtract>
+														<rul:Value Type="integer" FromDataDef="@TotalFull100PctValue" />
+														<rul:Value Type="integer" FromDataDef="../../../../CommercialPropertyLocationTable/CommercialPropertyLocation[1]/CommercialPropertyFloodCovEndtLocationTable/CommercialPropertyFloodCovEndtLocation[1]/@MaxNFIPBuildingCoverageAmount" />
+													</rul:Subtract>
+												</rul:GreaterThan>
+											</rul:And>
+										</rul:Test>
+										<rul:Then>
+											<rul:Constant Type="boolean">true</rul:Constant>
+										</rul:Then>
+									</rul:When>
+									<rul:When>
+										<rul:Test>
+											<rul:And>
+												<rul:Equal>
+													<rul:FirstValue Type="string" FromConstant="" FromDataDef="@ExcessOverMaxNFIPIndicator" Order="DataDefInputParamConstant" />
+													<rul:Constant Type="string">Yes</rul:Constant>
+												</rul:Equal>
+												<rul:Equal>
+													<rul:FirstValue Type="string" FromConstant="" FromDataDef="@PrsnlPropCov" Order="DataDefInputParamConstant" />
+													<rul:Constant Type="string">Yes</rul:Constant>
+												</rul:Equal>
+												<rul:GreaterThan>
+													<rul:FirstValue Type="integer" FromConstant="0" FromDataDef="@Limit" Order="DataDefInputParamConstant" />
+													<rul:Subtract>
+														<rul:Value Type="integer" FromDataDef="@TotalFull100PctValue" />
+														<rul:Value Type="integer" FromDataDef="../../../../CommercialPropertyLocationTable/CommercialPropertyLocation[1]/CommercialPropertyFloodCovEndtLocationTable/CommercialPropertyFloodCovEndtLocation[1]/@MaxNFIPContentCoverageAmount" />
+													</rul:Subtract>
+												</rul:GreaterThan>
+											</rul:And>
+										</rul:Test>
+										<rul:Then>
+											<rul:Constant Type="boolean">true</rul:Constant>
+										</rul:Then>
+									</rul:When>
+									<rul:When>
+										<rul:Test>
+											<rul:And>
+												<rul:Equal>
+													<rul:FirstValue Type="string" FromConstant="" FromDataDef="@ExcessOverMaxNFIPIndicator" Order="DataDefInputParamConstant" />
+													<rul:Constant Type="string">No</rul:Constant>
+												</rul:Equal>
+												<rul:GreaterThan>
+													<rul:FirstValue Type="integer" FromConstant="0" FromDataDef="@Limit" Order="DataDefInputParamConstant" />
+													<rul:Subtract>
+														<rul:Value Type="integer" FromDataDef="@TotalFull100PctValue" />
+														<rul:Value Type="integer" FromDataDef="../../../../CommercialPropertyLocationTable/CommercialPropertyLocation[1]/CommercialPropertyFloodCovEndtLocationTable/CommercialPropertyFloodCovEndtLocation[1]/@DeductibleInt" />
+													</rul:Subtract>
+												</rul:GreaterThan>
+											</rul:And>
+										</rul:Test>
+										<rul:Then>
+											<rul:Constant Type="boolean">true</rul:Constant>
+										</rul:Then>
+									</rul:When>
+									<rul:Otherwise>
+										<rul:Constant Type="boolean">false</rul:Constant>
+									</rul:Otherwise>
+								</rul:Choose>
+							</rul:Then>
+						</rul:If>
+						<rul:Constant Type="boolean">false</rul:Constant>
+					</rul:FirstNonNull>
+				</rul:Arg>
+				<rul:If>
+					<rul:Test>
+						<rul:Equal>
+							<rul:Value Type="boolean" FromParam="limitHaveExceeded" />
+							<rul:Constant Type="boolean">true</rul:Constant>
+						</rul:Equal>
+					</rul:Test>
+					<rul:Then>
+						<rul:RunRule Type="none" FileName="MessageHelper" Rule="AddErrorMessage" ClearCache="true">
+							<rul:Arg Type="string" Param="Message">
+								<rul:Constant Type="string">The Limit used have exceeded the most coverage that can be purchased for flood</rul:Constant>
+							</rul:Arg>
+						</rul:RunRule>
+					</rul:Then>
+				</rul:If>
+			</rul:WithArgs>
+		</rul:Sequence>
+	</rul:Rule>
+	<rul:Rule Name="ErcSetStatisticalCodes" Type="none" DataDefGroup="CommercialPropertyFloodCovEndtBlanketRatingDetail">
+		<rul:Sequence>
+			<rul:If>
+				<rul:Test>
+					<rul:Exist AtInputDataDef="ancestor::MasterCFCW/Policy" />
+				</rul:Test>
+				<rul:Then>
+					<rul:RunRule Type="none" FileName="CommercialPropertyFloodCovEndtBlanketRatingDetailRules" Rule="SetSublineFloodCoverage" ClearCache="true" />
+				</rul:Then>
+			</rul:If>
+		</rul:Sequence>
+	</rul:Rule>
+	<rul:Rule Name="SetSublineFloodCoverage" Type="none" DataDefGroup="CommercialPropertyFloodCovEndtBlanketRatingDetail">
+		<rul:Sequence>
+			<rul:If>
+				<rul:Test>
+					<rul:Equal>
+						<rul:FirstValue Type="string" FromConstant="" FromDataDef="@ExcessOverMaxNFIPIndicator" Order="DataDefInputParamConstant" />
+						<rul:Constant Type="string">Yes</rul:Constant>
+					</rul:Equal>
+				</rul:Test>
+				<rul:Then>
+					<rul:Sequence>
+						<rul:RunRule Type="string" ToDataDef="@SublineFloodCoverage" FileName="CommercialPropertyFloodCovEndtBlanketRatingDetailRules" Rule="LookupSublineFloodCoverageWithNFIP" ClearCache="true" />
+					</rul:Sequence>
+				</rul:Then>
+				<rul:Else>
+					<rul:Sequence>
+						<rul:RunRule Type="string" ToDataDef="@SublineFloodCoverage" FileName="CommercialPropertyFloodCovEndtBlanketRatingDetailRules" Rule="LookupSublineFloodCoverageWithoutNFIP" ClearCache="true" />
+					</rul:Sequence>
+				</rul:Else>
+			</rul:If>
+		</rul:Sequence>
+	</rul:Rule>
+	<rul:Rule Name="ErcProcess" Type="none" DataDefGroup="CommercialPropertyFloodCovEndtBlanketRatingDetail">
+		<rul:Sequence>
+			<rul:RunRule Type="none" FileName="CommercialPropertyFloodCovEndtBlanketRatingDetailRules" Rule="ErcSetRatesAndFactors" ClearCache="true" />
+			<rul:RunRule Type="none" FileName="CommercialPropertyFloodCovEndtBlanketRatingDetailRules" Rule="ErcRate" ClearCache="true" />
+			<rul:RunRule Type="none" FileName="CommercialPropertyFloodCovEndtBlanketRatingDetailRules" Rule="ErcRunPostUnderwritingLogic" ClearCache="true" />
+			<rul:RunRule Type="none" FileName="CommercialPropertyFloodCovEndtBlanketRatingDetailRules" Rule="ErcSetStatisticalCodes" ClearCache="true" />
+		</rul:Sequence>
+	</rul:Rule>
+	<rul:Rule Name="LookupMaxNFIPCoverageAmount" Type="integer" DataDefGroup="CommercialPropertyFloodCovEndtBlanketRatingDetail">
+		<rul:Param Name="coverage" Type="string" />
+		<rul:FirstNonNull Type="integer">
+			<rul:Lookup Type="integer" MatrixCol="Amount" MatrixDef="MaxNFIPCoverageAmountDef" MatrixFromConstant="MaxNFIPCoverageAmount" ResultMode="FirstResult">
+				<rul:Keys>
+					<rul:Value Type="string" FromDataDef="/State/@Code" />
+					<rul:Value Type="string" FromParam="coverage" />
+				</rul:Keys>
+			</rul:Lookup>
+			<rul:Lookup Type="integer" MatrixCol="Amount" MatrixDef="MaxNFIPCoverageAmountDef" MatrixFromConstant="MaxNFIPCoverageAmount" ResultMode="SingleResult">
+				<rul:Keys>
+					<rul:Constant Type="string">CW</rul:Constant>
+					<rul:Value Type="string" FromParam="coverage" />
+				</rul:Keys>
+			</rul:Lookup>
+		</rul:FirstNonNull>
+	</rul:Rule>
+	<rul:Rule Name="LookupSublineFloodCoverageWithNFIP" Type="string" DataDefGroup="CommercialPropertyFloodCovEndtBlanketRatingDetail">
+		<rul:FirstNonNull Type="string">
+			<rul:Lookup Type="string" MatrixCol="Code" MatrixDef="SublineFloodCoverageWithNFIPDef" MatrixFromConstant="SublineFloodCoverageWithNFIP" ResultMode="FirstResult">
+				<rul:Keys>
+					<rul:Value Type="string" FromDataDef="/State/@Code" />
+					<rul:Constant Type="string">Y</rul:Constant>
+				</rul:Keys>
+			</rul:Lookup>
+			<rul:Lookup Type="string" MatrixCol="Code" MatrixDef="SublineFloodCoverageWithNFIPDef" MatrixFromConstant="SublineFloodCoverageWithNFIP" ResultMode="SingleResult">
+				<rul:Keys>
+					<rul:Constant Type="string">CW</rul:Constant>
+					<rul:Constant Type="string">Y</rul:Constant>
+				</rul:Keys>
+			</rul:Lookup>
+		</rul:FirstNonNull>
+	</rul:Rule>
+	<rul:Rule Name="LookupSublineFloodCoverageWithoutNFIP" Type="string" DataDefGroup="CommercialPropertyFloodCovEndtBlanketRatingDetail">
+		<rul:FirstNonNull Type="string">
+			<rul:Lookup Type="string" MatrixCol="Code" MatrixDef="SublineFloodCoverageWithoutNFIPDef" MatrixFromConstant="SublineFloodCoverageWithoutNFIP" ResultMode="FirstResult">
+				<rul:Keys>
+					<rul:Value Type="string" FromDataDef="/State/@Code" />
+					<rul:Constant Type="string">Y</rul:Constant>
+				</rul:Keys>
+			</rul:Lookup>
+			<rul:Lookup Type="string" MatrixCol="Code" MatrixDef="SublineFloodCoverageWithoutNFIPDef" MatrixFromConstant="SublineFloodCoverageWithoutNFIP" ResultMode="SingleResult">
+				<rul:Keys>
+					<rul:Constant Type="string">CW</rul:Constant>
+					<rul:Constant Type="string">Y</rul:Constant>
+				</rul:Keys>
+			</rul:Lookup>
+		</rul:FirstNonNull>
+	</rul:Rule>
+</rul:Rules>

@@ -1,0 +1,234 @@
+<rul:Rules xmlns:rul="http://www.verisk.com/iso/erc/Rule">
+	<rul:Rule Name="InitializeRuleSet" DataDefGroup="CommercialPropertyPersonalPropertyAgreedValBasicGroupIICoverage">
+		<rul:Sequence>
+			<rul:RunRule Type="none" FileName="CommercialPropertyPersonalPropertyAgreedValBasicGroupIICoverageRules" Rule="SetCoverageOnPolicyIndicator" ClearCache="true" />
+		</rul:Sequence>
+	</rul:Rule>
+	<rul:Rule Name="CalculateTotalPremium" Type="decimal" DataDefGroup="CommercialPropertyPersonalPropertyAgreedValBasicGroupIICoverage">
+		<rul:If>
+			<rul:Test>
+				<rul:And>
+					<rul:Equal>
+						<rul:FirstValue Type="integer" FromConstant="0" FromDataDef="@PremiumIndicator" Order="DataDefInputParamConstant" />
+						<rul:Constant Type="integer">1</rul:Constant>
+					</rul:Equal>
+					<rul:NotEqual>
+						<rul:FirstValue Type="decimal" FromConstant="0" FromDataDef="@Premium" Order="DataDefInputParamConstant" />
+						<rul:Constant Type="decimal">0</rul:Constant>
+					</rul:NotEqual>
+				</rul:And>
+			</rul:Test>
+			<rul:Then>
+				<rul:FirstValue Type="decimal" FromConstant="0" FromDataDef="@Premium" Order="DataDefInputParamConstant" />
+			</rul:Then>
+			<rul:Else>
+				<rul:Constant Type="decimal">0</rul:Constant>
+			</rul:Else>
+		</rul:If>
+	</rul:Rule>
+	<rul:Rule Name="SetCoverageOnPolicyIndicator" Type="none" DataDefGroup="CommercialPropertyPersonalPropertyAgreedValBasicGroupIICoverage">
+		<rul:Sequence>
+			<rul:If>
+				<rul:Test>
+					<rul:Or>
+						<rul:And>
+							<rul:Equal>
+								<rul:FirstValue Type="string" FromConstant="" FromDataDef="../@AgreedValueOption" Order="DataDefInputParamConstant" />
+								<rul:Constant Type="string">Yes</rul:Constant>
+							</rul:Equal>
+							<rul:Equal>
+								<rul:FirstValue Type="string" FromConstant="" FromDataDef="../@IncludedInBlkt" Order="DataDefInputParamConstant" />
+								<rul:Constant Type="string">No</rul:Constant>
+							</rul:Equal>
+						</rul:And>
+						<rul:And>
+							<rul:Equal>
+								<rul:FirstValue Type="string" FromConstant="" FromDataDef="../@BlktAgreedVal" Order="DataDefInputParamConstant" />
+								<rul:Constant Type="string">Yes</rul:Constant>
+							</rul:Equal>
+							<rul:Equal>
+								<rul:FirstValue Type="string" FromConstant="" FromDataDef="../@IncludedInBlkt" Order="DataDefInputParamConstant" />
+								<rul:Constant Type="string">Yes</rul:Constant>
+							</rul:Equal>
+						</rul:And>
+					</rul:Or>
+				</rul:Test>
+				<rul:Then>
+					<rul:Sequence>
+						<rul:Constant Type="integer" ToDataDef="@CoverageOnPolicyIndicator">1</rul:Constant>
+					</rul:Sequence>
+				</rul:Then>
+				<rul:Else>
+					<rul:Sequence>
+						<rul:Constant Type="integer" ToDataDef="@CoverageOnPolicyIndicator">0</rul:Constant>
+					</rul:Sequence>
+				</rul:Else>
+			</rul:If>
+		</rul:Sequence>
+	</rul:Rule>
+	<rul:Rule Name="ErcSetRatesAndFactors" Type="none" DataDefGroup="CommercialPropertyPersonalPropertyAgreedValBasicGroupIICoverage">
+		<rul:Sequence />
+	</rul:Rule>
+	<rul:Rule Name="ErcRate" Type="none" DataDefGroup="CommercialPropertyPersonalPropertyAgreedValBasicGroupIICoverage">
+		<rul:Sequence>
+			<rul:RunRule Type="decimal" ToDataDef="@Factor" FileName="CommercialPropertyPersonalPropertyAgreedValBasicGroupIICoverageRules" Rule="LookupAgreedValueFactor" ClearCache="true" />
+			<rul:WithArgs>
+				<rul:Arg Type="decimal" Param="calcPremium">
+					<rul:FirstNonNull Type="decimal">
+						<rul:Product DecimalPlaces="0">
+							<rul:Product DecimalPlaces="0">
+								<rul:Choose>
+									<rul:When>
+										<rul:Test>
+											<rul:And>
+												<rul:Equal>
+													<rul:FirstValue Type="string" FromConstant="" FromDataDef="ancestor::CommercialPropertyPersonalProperty/@IncludedInBlkt" Order="DataDefInputParamConstant" />
+													<rul:Constant Type="string">Yes</rul:Constant>
+												</rul:Equal>
+												<rul:Equal>
+													<rul:FirstValue Type="string" FromConstant="" FromDataDef="ancestor::CommercialPropertyPersonalProperty/@BlktAgreedVal" Order="DataDefInputParamConstant" />
+													<rul:Constant Type="string">Yes</rul:Constant>
+												</rul:Equal>
+											</rul:And>
+										</rul:Test>
+										<rul:Then>
+											<rul:Product DecimalPlaces="0">
+												<rul:Product DecimalPlaces="0">
+													<rul:Product DecimalPlaces="0">
+														<rul:Product DecimalPlaces="0">
+															<rul:Product DecimalPlaces="3">
+																<rul:FirstValue Type="decimal" FromConstant="0" FromDataDef="ancestor::CommercialPropertyPersonalProperty/@BlktBasicGroupIIAvgRateAgreedVal" Order="DataDefInputParamConstant" />
+																<rul:Round DecimalPlaces="3">
+																	<rul:Subtract>
+																		<rul:Value Type="decimal" FromDataDef="@Factor" />
+																		<rul:Constant Type="integer">1</rul:Constant>
+																	</rul:Subtract>
+																</rul:Round>
+															</rul:Product>
+															<rul:Divide>
+																<rul:Value Type="integer" FromDataDef="ancestor::CommercialPropertyPersonalProperty/@LimitToUse" />
+																<rul:Constant Type="decimal">100</rul:Constant>
+															</rul:Divide>
+														</rul:Product>
+														<rul:FirstValue Type="decimal" FromConstant="0" FromDataDef="ancestor::CommercialProperty/@PackageModFactor" Order="DataDefInputParamConstant" />
+													</rul:Product>
+													<rul:FirstValue Type="decimal" FromConstant="0" FromDataDef="ancestor::CommercialProperty/@MultiPremiumAndDispersionCreditFactor" Order="DataDefInputParamConstant" />
+												</rul:Product>
+												<rul:FirstValue Type="decimal" FromConstant="0" FromDataDef="ancestor::CommercialProperty/@IRPMFactor" Order="DataDefInputParamConstant" />
+											</rul:Product>
+										</rul:Then>
+									</rul:When>
+									<rul:When>
+										<rul:Test>
+											<rul:And>
+												<rul:Equal>
+													<rul:FirstValue Type="string" FromConstant="" FromDataDef="ancestor::CommercialPropertyPersonalProperty/@IncludedInBlkt" Order="DataDefInputParamConstant" />
+													<rul:Constant Type="string">No</rul:Constant>
+												</rul:Equal>
+												<rul:Equal>
+													<rul:FirstValue Type="string" FromConstant="" FromDataDef="ancestor::CommercialPropertyPersonalProperty/@AgreedValueOption" Order="DataDefInputParamConstant" />
+													<rul:Constant Type="string">Yes</rul:Constant>
+												</rul:Equal>
+											</rul:And>
+										</rul:Test>
+										<rul:Then>
+											<rul:Product DecimalPlaces="0">
+												<rul:Product DecimalPlaces="0">
+													<rul:Product DecimalPlaces="0">
+														<rul:Product DecimalPlaces="0">
+															<rul:Product DecimalPlaces="3">
+																<rul:FirstValue Type="decimal" FromConstant="0" FromDataDef="ancestor::CommercialPropertyPersonalProperty/@AdjustedBasicGroupIIRate" Order="DataDefInputParamConstant" />
+																<rul:Round DecimalPlaces="3">
+																	<rul:Subtract>
+																		<rul:Value Type="decimal" FromDataDef="@Factor" />
+																		<rul:Constant Type="integer">1</rul:Constant>
+																	</rul:Subtract>
+																</rul:Round>
+															</rul:Product>
+															<rul:Divide>
+																<rul:Value Type="integer" FromDataDef="ancestor::CommercialPropertyPersonalProperty/@AgreedValueLimit" />
+																<rul:Constant Type="decimal">100</rul:Constant>
+															</rul:Divide>
+														</rul:Product>
+														<rul:FirstValue Type="decimal" FromConstant="0" FromDataDef="ancestor::CommercialProperty/@PackageModFactor" Order="DataDefInputParamConstant" />
+													</rul:Product>
+													<rul:FirstValue Type="decimal" FromConstant="0" FromDataDef="ancestor::CommercialProperty/@MultiPremiumAndDispersionCreditFactor" Order="DataDefInputParamConstant" />
+												</rul:Product>
+												<rul:FirstValue Type="decimal" FromConstant="0" FromDataDef="ancestor::CommercialProperty/@IRPMFactor" Order="DataDefInputParamConstant" />
+											</rul:Product>
+										</rul:Then>
+									</rul:When>
+									<rul:Otherwise>
+										<rul:Constant Type="decimal">0</rul:Constant>
+									</rul:Otherwise>
+								</rul:Choose>
+								<rul:FirstValue Type="decimal" FromConstant="0" FromDataDef="../../../../../../../../../@CyberIncidentExclusionFactorBGII" Order="DataDefInputParamConstant" />
+							</rul:Product>
+							<rul:FirstValue Type="decimal" FromConstant="0" FromDataDef="../../../../../../../../../@CyberIncidentExclusionCOLExcptnsFactorBGII" Order="DataDefInputParamConstant" />
+						</rul:Product>
+						<rul:Constant Type="decimal">0</rul:Constant>
+					</rul:FirstNonNull>
+				</rul:Arg>
+				<rul:Value Type="decimal" ToDataDef="@Premium" FromParam="calcPremium" />
+			</rul:WithArgs>
+			<rul:If>
+				<rul:Test>
+					<rul:NotEqual>
+						<rul:FirstValue Type="decimal" FromConstant="0" FromDataDef="@Premium" Order="DataDefInputParamConstant" />
+						<rul:Constant Type="decimal">0</rul:Constant>
+					</rul:NotEqual>
+				</rul:Test>
+				<rul:Then>
+					<rul:Sequence>
+						<rul:Constant Type="integer" ToDataDef="@PremiumIndicator">1</rul:Constant>
+					</rul:Sequence>
+				</rul:Then>
+				<rul:Else>
+					<rul:Sequence>
+						<rul:Constant Type="integer" ToDataDef="@PremiumIndicator">0</rul:Constant>
+					</rul:Sequence>
+				</rul:Else>
+			</rul:If>
+		</rul:Sequence>
+	</rul:Rule>
+	<rul:Rule Name="ErcProcess" Type="none" DataDefGroup="CommercialPropertyPersonalPropertyAgreedValBasicGroupIICoverage">
+		<rul:Sequence>
+			<rul:RunRule Type="none" FileName="CommercialPropertyPersonalPropertyAgreedValBasicGroupIICoverageRules" Rule="SetCoverageOnPolicyIndicator" ClearCache="true" />
+			<rul:If>
+				<rul:Test>
+					<rul:Equal>
+						<rul:FirstValue Type="integer" FromConstant="0" FromDataDef="@CoverageOnPolicyIndicator" Order="DataDefInputParamConstant" />
+						<rul:Constant Type="integer">0</rul:Constant>
+					</rul:Equal>
+				</rul:Test>
+				<rul:Then>
+					<rul:Sequence>
+						<rul:Constant Type="decimal" ToDataDef="@Premium">0.0</rul:Constant>
+					</rul:Sequence>
+				</rul:Then>
+				<rul:Else>
+					<rul:Sequence>
+						<rul:RunRule Type="none" FileName="CommercialPropertyPersonalPropertyAgreedValBasicGroupIICoverageRules" Rule="ErcSetRatesAndFactors" ClearCache="true" />
+						<rul:RunRule Type="none" FileName="CommercialPropertyPersonalPropertyAgreedValBasicGroupIICoverageRules" Rule="ErcRate" ClearCache="true" />
+					</rul:Sequence>
+				</rul:Else>
+			</rul:If>
+		</rul:Sequence>
+	</rul:Rule>
+	<rul:Rule Name="LookupAgreedValueFactor" Type="decimal" DataDefGroup="CommercialPropertyPersonalPropertyAgreedValBasicGroupIICoverage">
+		<rul:FirstNonNull Type="decimal">
+			<rul:Lookup Type="decimal" MatrixCol="Factor" MatrixDef="AgreedValueFactorDef" MatrixFromConstant="AgreedValueFactor" ResultMode="FirstResult">
+				<rul:Keys>
+					<rul:Value Type="string" FromDataDef="/State/@Code" />
+					<rul:Constant Type="string">Y</rul:Constant>
+				</rul:Keys>
+			</rul:Lookup>
+			<rul:Lookup Type="decimal" MatrixCol="Factor" MatrixDef="AgreedValueFactorDef" MatrixFromConstant="AgreedValueFactor" ResultMode="SingleResult">
+				<rul:Keys>
+					<rul:Constant Type="string">CW</rul:Constant>
+					<rul:Constant Type="string">Y</rul:Constant>
+				</rul:Keys>
+			</rul:Lookup>
+		</rul:FirstNonNull>
+	</rul:Rule>
+</rul:Rules>

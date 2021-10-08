@@ -1,0 +1,16 @@
+<rt:RateTable xmlns:rt="http://www.verisk.com/iso/erc/RateTable">
+	<rt:MetaData>
+		<rt:MetaDataCode>RateTableEQSubLimitPctToTimeElementCoinsurance</rt:MetaDataCode>
+		<rt:MetaDataCode>BureauRuleNumber75C6c2</rt:MetaDataCode>
+	</rt:MetaData>
+	<rt:KeyCols>
+		<rt:KeyCol Name="StateCode" Type="string" CaseInsensitive="false" />
+		<rt:Range Name="EQSubLimitPct" Type="integer" RangeType="FromExclusiveToInclusive">
+			<rt:KeyCol Name="EQSubLimitPct_FromGreaterThan" />
+			<rt:KeyCol Name="EQSubLimitPct_To" />
+		</rt:Range>
+	</rt:KeyCols>
+	<rt:ValueCols>
+		<rt:ValueCol Name="CoinsurancePct" Type="string" />
+	</rt:ValueCols>
+</rt:RateTable>

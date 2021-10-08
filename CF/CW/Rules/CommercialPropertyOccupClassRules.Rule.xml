@@ -1,0 +1,2130 @@
+<rul:Rules xmlns:rul="http://www.verisk.com/iso/erc/Rule">
+	<rul:Rule Name="InitializeRuleSet" DataDefGroup="CommercialPropertyOccupClass">
+		<rul:Sequence>
+			<rul:ForEach AtDataDef="CommercialPropertyBuildingAndPersonalPropertyCoverageFormOccupClassTable/CommercialPropertyBuildingAndPersonalPropertyCoverageFormOccupClass">
+				<rul:RunRule Type="none" FileName="CommercialPropertyBuildingAndPersonalPropertyCoverageFormOccupClassRules" Rule="InitializeRuleSet" ClearCache="true" />
+			</rul:ForEach>
+			<rul:ForEach AtDataDef="CommercialPropertyCondominiumAssociationChangesStandardPropertyPolicyOccupClassTable/CommercialPropertyCondominiumAssociationChangesStandardPropertyPolicyOccupClass">
+				<rul:RunRule Type="none" FileName="CommercialPropertyCondominiumAssociationChangesStandardPropertyPolicyOccupClassRules" Rule="InitializeRuleSet" ClearCache="true" />
+			</rul:ForEach>
+			<rul:ForEach AtDataDef="CommercialPropertyCondominiumAssociationCoverageFormOccupClassTable/CommercialPropertyCondominiumAssociationCoverageFormOccupClass">
+				<rul:RunRule Type="none" FileName="CommercialPropertyCondominiumAssociationCoverageFormOccupClassRules" Rule="InitializeRuleSet" ClearCache="true" />
+			</rul:ForEach>
+			<rul:ForEach AtDataDef="CommercialPropertyCondominiumCommercialUnitOwnersChangesStandardPropertyPolicyTable/CommercialPropertyCondominiumCommercialUnitOwnersChangesStandardPropertyPolicy">
+				<rul:RunRule Type="none" FileName="CommercialPropertyCondominiumCommercialUnitOwnersChangesStandardPropertyPolicyRules" Rule="InitializeRuleSet" ClearCache="true" />
+			</rul:ForEach>
+			<rul:ForEach AtDataDef="CommercialPropertyCondominiumCommercialUnitOwnersCoverageFormTable/CommercialPropertyCondominiumCommercialUnitOwnersCoverageForm">
+				<rul:RunRule Type="none" FileName="CommercialPropertyCondominiumCommercialUnitOwnersCoverageFormRules" Rule="InitializeRuleSet" ClearCache="true" />
+			</rul:ForEach>
+			<rul:ForEach AtDataDef="CommercialPropertyHigherLimitsOccupClassTable/CommercialPropertyHigherLimitsOccupClass">
+				<rul:RunRule Type="none" FileName="CommercialPropertyHigherLimitsOccupClassRules" Rule="InitializeRuleSet" ClearCache="true" />
+			</rul:ForEach>
+			<rul:ForEach AtDataDef="CommercialPropertyLegalLiabilityCoverageFormOccupClassTable/CommercialPropertyLegalLiabilityCoverageFormOccupClass">
+				<rul:RunRule Type="none" FileName="CommercialPropertyLegalLiabilityCoverageFormOccupClassRules" Rule="InitializeRuleSet" ClearCache="true" />
+			</rul:ForEach>
+			<rul:Locate AtDataDef="CommercialPropertyOccupClassTemporarilyInPortableStorageUnits">
+				<rul:RunRule Type="none" FileName="CommercialPropertyOccupClassTemporarilyInPortableStorageUnitsRules" Rule="InitializeRuleSet" ClearCache="true" />
+			</rul:Locate>
+			<rul:ForEach AtDataDef="CommercialPropertyPersonalPropertyTable/CommercialPropertyPersonalProperty">
+				<rul:RunRule Type="none" FileName="CommercialPropertyPersonalPropertyRules" Rule="InitializeRuleSet" ClearCache="true" />
+			</rul:ForEach>
+			<rul:ForEach AtDataDef="CommercialPropertyTobaccoSalesWarehousesCoverageFormTable/CommercialPropertyTobaccoSalesWarehousesCoverageForm">
+				<rul:RunRule Type="none" FileName="CommercialPropertyTobaccoSalesWarehousesCoverageFormRules" Rule="InitializeRuleSet" ClearCache="true" />
+			</rul:ForEach>
+		</rul:Sequence>
+	</rul:Rule>
+	<rul:Rule Name="CalculateTotalPremium" Type="decimal" DataDefGroup="CommercialPropertyOccupClass">
+		<rul:Sum>
+			<rul:ForEach AtDataDef="CommercialPropertyBuildingAndPersonalPropertyCoverageFormOccupClassTable/CommercialPropertyBuildingAndPersonalPropertyCoverageFormOccupClass">
+				<rul:RunRule Type="decimal" FileName="CommercialPropertyBuildingAndPersonalPropertyCoverageFormOccupClassRules" Rule="CalculateTotalPremium" ClearCache="true" />
+			</rul:ForEach>
+			<rul:ForEach AtDataDef="CommercialPropertyCondominiumAssociationChangesStandardPropertyPolicyOccupClassTable/CommercialPropertyCondominiumAssociationChangesStandardPropertyPolicyOccupClass">
+				<rul:RunRule Type="decimal" FileName="CommercialPropertyCondominiumAssociationChangesStandardPropertyPolicyOccupClassRules" Rule="CalculateTotalPremium" ClearCache="true" />
+			</rul:ForEach>
+			<rul:ForEach AtDataDef="CommercialPropertyCondominiumAssociationCoverageFormOccupClassTable/CommercialPropertyCondominiumAssociationCoverageFormOccupClass">
+				<rul:RunRule Type="decimal" FileName="CommercialPropertyCondominiumAssociationCoverageFormOccupClassRules" Rule="CalculateTotalPremium" ClearCache="true" />
+			</rul:ForEach>
+			<rul:ForEach AtDataDef="CommercialPropertyCondominiumCommercialUnitOwnersChangesStandardPropertyPolicyTable/CommercialPropertyCondominiumCommercialUnitOwnersChangesStandardPropertyPolicy">
+				<rul:RunRule Type="decimal" FileName="CommercialPropertyCondominiumCommercialUnitOwnersChangesStandardPropertyPolicyRules" Rule="CalculateTotalPremium" ClearCache="true" />
+			</rul:ForEach>
+			<rul:ForEach AtDataDef="CommercialPropertyCondominiumCommercialUnitOwnersCoverageFormTable/CommercialPropertyCondominiumCommercialUnitOwnersCoverageForm">
+				<rul:RunRule Type="decimal" FileName="CommercialPropertyCondominiumCommercialUnitOwnersCoverageFormRules" Rule="CalculateTotalPremium" ClearCache="true" />
+			</rul:ForEach>
+			<rul:ForEach AtDataDef="CommercialPropertyHigherLimitsOccupClassTable/CommercialPropertyHigherLimitsOccupClass">
+				<rul:RunRule Type="decimal" FileName="CommercialPropertyHigherLimitsOccupClassRules" Rule="CalculateTotalPremium" ClearCache="true" />
+			</rul:ForEach>
+			<rul:ForEach AtDataDef="CommercialPropertyLegalLiabilityCoverageFormOccupClassTable/CommercialPropertyLegalLiabilityCoverageFormOccupClass">
+				<rul:RunRule Type="decimal" FileName="CommercialPropertyLegalLiabilityCoverageFormOccupClassRules" Rule="CalculateTotalPremium" ClearCache="true" />
+			</rul:ForEach>
+			<rul:Locate AtDataDef="CommercialPropertyOccupClassTemporarilyInPortableStorageUnits">
+				<rul:RunRule Type="decimal" FileName="CommercialPropertyOccupClassTemporarilyInPortableStorageUnitsRules" Rule="CalculateTotalPremium" ClearCache="true" />
+			</rul:Locate>
+			<rul:ForEach AtDataDef="CommercialPropertyPersonalPropertyTable/CommercialPropertyPersonalProperty">
+				<rul:RunRule Type="decimal" FileName="CommercialPropertyPersonalPropertyRules" Rule="CalculateTotalPremium" ClearCache="true" />
+			</rul:ForEach>
+			<rul:ForEach AtDataDef="CommercialPropertyTobaccoSalesWarehousesCoverageFormTable/CommercialPropertyTobaccoSalesWarehousesCoverageForm">
+				<rul:RunRule Type="decimal" FileName="CommercialPropertyTobaccoSalesWarehousesCoverageFormRules" Rule="CalculateTotalPremium" ClearCache="true" />
+			</rul:ForEach>
+			<rul:If>
+				<rul:Test>
+					<rul:And>
+						<rul:Equal>
+							<rul:FirstValue Type="integer" FromConstant="0" FromDataDef="@PremiumIndicator" Order="DataDefInputParamConstant" />
+							<rul:Constant Type="integer">1</rul:Constant>
+						</rul:Equal>
+						<rul:NotEqual>
+							<rul:FirstValue Type="decimal" FromConstant="0" FromDataDef="@Premium" Order="DataDefInputParamConstant" />
+							<rul:Constant Type="decimal">0</rul:Constant>
+						</rul:NotEqual>
+					</rul:And>
+				</rul:Test>
+				<rul:Then>
+					<rul:FirstValue Type="decimal" FromConstant="0" FromDataDef="@Premium" Order="DataDefInputParamConstant" />
+				</rul:Then>
+				<rul:Else>
+					<rul:Constant Type="decimal">0</rul:Constant>
+				</rul:Else>
+			</rul:If>
+		</rul:Sum>
+	</rul:Rule>
+	<rul:Rule Name="ErcDoConditionalMandatoryLogic" Type="none" DataDefGroup="CommercialPropertyOccupClass">
+		<rul:Sequence>
+			<rul:If>
+				<rul:Test>
+					<rul:And>
+						<rul:Equal>
+							<rul:FirstValue Type="string" FromConstant="" FromDataDef="../../../../../../@PolicyType" Order="DataDefInputParamConstant" />
+							<rul:Constant Type="string">Commercial Property Policy</rul:Constant>
+						</rul:Equal>
+						<rul:Equal>
+							<rul:FirstValue Type="string" FromConstant="" FromDataDef="@CovForm" Order="DataDefInputParamConstant" />
+							<rul:Constant Type="string">Building and Personal Property Coverage Form</rul:Constant>
+						</rul:Equal>
+					</rul:And>
+				</rul:Test>
+				<rul:Then>
+					<rul:Sequence>
+						<rul:If>
+							<rul:Test>
+								<rul:NotExist AtInputDataDef="CommercialPropertyBuildingAndPersonalPropertyCoverageFormOccupClassTable/CommercialPropertyBuildingAndPersonalPropertyCoverageFormOccupClass" />
+							</rul:Test>
+							<rul:Then>
+								<rul:Sequence>
+									<rul:Locate AtOutputDataDef="CommercialPropertyBuildingAndPersonalPropertyCoverageFormOccupClassTable/CommercialPropertyBuildingAndPersonalPropertyCoverageFormOccupClass[1]" OutputAction="Append">
+										<rul:Sequence />
+									</rul:Locate>
+								</rul:Sequence>
+							</rul:Then>
+						</rul:If>
+					</rul:Sequence>
+				</rul:Then>
+				<rul:Else>
+					<rul:Sequence>
+						<rul:Remove AtDataDef="CommercialPropertyBuildingAndPersonalPropertyCoverageFormOccupClassTable/CommercialPropertyBuildingAndPersonalPropertyCoverageFormOccupClass" RemoveMultiple="true" />
+					</rul:Sequence>
+				</rul:Else>
+			</rul:If>
+			<rul:RunRule Type="none" FileName="CommercialPropertyOccupClassRules" Rule="DoCondoChangesSPPConditionalMandatoryLogic" ClearCache="true" />
+			<rul:If>
+				<rul:Test>
+					<rul:And>
+						<rul:Equal>
+							<rul:FirstValue Type="string" FromConstant="" FromDataDef="../../../../../../@PolicyType" Order="DataDefInputParamConstant" />
+							<rul:Constant Type="string">Commercial Property Policy</rul:Constant>
+						</rul:Equal>
+						<rul:Equal>
+							<rul:FirstValue Type="string" FromConstant="" FromDataDef="@CovForm" Order="DataDefInputParamConstant" />
+							<rul:Constant Type="string">Condominium Association Coverage Form</rul:Constant>
+						</rul:Equal>
+					</rul:And>
+				</rul:Test>
+				<rul:Then>
+					<rul:Sequence>
+						<rul:If>
+							<rul:Test>
+								<rul:NotExist AtInputDataDef="CommercialPropertyCondominiumAssociationCoverageFormOccupClassTable/CommercialPropertyCondominiumAssociationCoverageFormOccupClass" />
+							</rul:Test>
+							<rul:Then>
+								<rul:Sequence>
+									<rul:Locate AtOutputDataDef="CommercialPropertyCondominiumAssociationCoverageFormOccupClassTable/CommercialPropertyCondominiumAssociationCoverageFormOccupClass[1]" OutputAction="Append">
+										<rul:Sequence />
+									</rul:Locate>
+								</rul:Sequence>
+							</rul:Then>
+						</rul:If>
+					</rul:Sequence>
+				</rul:Then>
+				<rul:Else>
+					<rul:Sequence>
+						<rul:Remove AtDataDef="CommercialPropertyCondominiumAssociationCoverageFormOccupClassTable/CommercialPropertyCondominiumAssociationCoverageFormOccupClass" RemoveMultiple="true" />
+					</rul:Sequence>
+				</rul:Else>
+			</rul:If>
+			<rul:If>
+				<rul:Test>
+					<rul:And>
+						<rul:Equal>
+							<rul:FirstValue Type="string" FromConstant="" FromDataDef="../../../../../../@PolicyType" Order="DataDefInputParamConstant" />
+							<rul:Constant Type="string">Standard Property Policy</rul:Constant>
+						</rul:Equal>
+						<rul:Equal>
+							<rul:FirstValue Type="string" FromConstant="" FromDataDef="@CovForm" Order="DataDefInputParamConstant" />
+							<rul:Constant Type="string">Condominium Commercial Unit Owners Coverage</rul:Constant>
+						</rul:Equal>
+					</rul:And>
+				</rul:Test>
+				<rul:Then>
+					<rul:Sequence>
+						<rul:If>
+							<rul:Test>
+								<rul:NotExist AtInputDataDef="CommercialPropertyCondominiumCommercialUnitOwnersChangesStandardPropertyPolicyTable/CommercialPropertyCondominiumCommercialUnitOwnersChangesStandardPropertyPolicy" />
+							</rul:Test>
+							<rul:Then>
+								<rul:Sequence>
+									<rul:Locate AtOutputDataDef="CommercialPropertyCondominiumCommercialUnitOwnersChangesStandardPropertyPolicyTable/CommercialPropertyCondominiumCommercialUnitOwnersChangesStandardPropertyPolicy[1]" OutputAction="Append">
+										<rul:Sequence />
+									</rul:Locate>
+								</rul:Sequence>
+							</rul:Then>
+						</rul:If>
+					</rul:Sequence>
+				</rul:Then>
+				<rul:Else>
+					<rul:Sequence>
+						<rul:Remove AtDataDef="CommercialPropertyCondominiumCommercialUnitOwnersChangesStandardPropertyPolicyTable/CommercialPropertyCondominiumCommercialUnitOwnersChangesStandardPropertyPolicy" RemoveMultiple="true" />
+					</rul:Sequence>
+				</rul:Else>
+			</rul:If>
+			<rul:If>
+				<rul:Test>
+					<rul:And>
+						<rul:Equal>
+							<rul:FirstValue Type="string" FromConstant="" FromDataDef="../../../../../../@PolicyType" Order="DataDefInputParamConstant" />
+							<rul:Constant Type="string">Commercial Property Policy</rul:Constant>
+						</rul:Equal>
+						<rul:Equal>
+							<rul:FirstValue Type="string" FromConstant="" FromDataDef="@CovForm" Order="DataDefInputParamConstant" />
+							<rul:Constant Type="string">Condominium Commercial Unit Owners Coverage</rul:Constant>
+						</rul:Equal>
+					</rul:And>
+				</rul:Test>
+				<rul:Then>
+					<rul:Sequence>
+						<rul:If>
+							<rul:Test>
+								<rul:NotExist AtInputDataDef="CommercialPropertyCondominiumCommercialUnitOwnersCoverageFormTable/CommercialPropertyCondominiumCommercialUnitOwnersCoverageForm" />
+							</rul:Test>
+							<rul:Then>
+								<rul:Sequence>
+									<rul:Locate AtOutputDataDef="CommercialPropertyCondominiumCommercialUnitOwnersCoverageFormTable/CommercialPropertyCondominiumCommercialUnitOwnersCoverageForm[1]" OutputAction="Append">
+										<rul:Sequence />
+									</rul:Locate>
+								</rul:Sequence>
+							</rul:Then>
+						</rul:If>
+					</rul:Sequence>
+				</rul:Then>
+				<rul:Else>
+					<rul:Sequence>
+						<rul:Remove AtDataDef="CommercialPropertyCondominiumCommercialUnitOwnersCoverageFormTable/CommercialPropertyCondominiumCommercialUnitOwnersCoverageForm" RemoveMultiple="true" />
+					</rul:Sequence>
+				</rul:Else>
+			</rul:If>
+			<rul:If>
+				<rul:Test>
+					<rul:And>
+						<rul:Equal>
+							<rul:FirstValue Type="string" FromConstant="" FromDataDef="../../../../../../@PolicyType" Order="DataDefInputParamConstant" />
+							<rul:Constant Type="string">Commercial Property Policy</rul:Constant>
+						</rul:Equal>
+						<rul:Equal>
+							<rul:FirstValue Type="string" FromConstant="" FromDataDef="@CovForm" Order="DataDefInputParamConstant" />
+							<rul:Constant Type="string">Legal Liability Coverage Form</rul:Constant>
+						</rul:Equal>
+					</rul:And>
+				</rul:Test>
+				<rul:Then>
+					<rul:Sequence>
+						<rul:If>
+							<rul:Test>
+								<rul:NotExist AtInputDataDef="CommercialPropertyLegalLiabilityCoverageFormOccupClassTable/CommercialPropertyLegalLiabilityCoverageFormOccupClass" />
+							</rul:Test>
+							<rul:Then>
+								<rul:Sequence>
+									<rul:Locate AtOutputDataDef="CommercialPropertyLegalLiabilityCoverageFormOccupClassTable/CommercialPropertyLegalLiabilityCoverageFormOccupClass[1]" OutputAction="Append">
+										<rul:Sequence />
+									</rul:Locate>
+								</rul:Sequence>
+							</rul:Then>
+						</rul:If>
+					</rul:Sequence>
+				</rul:Then>
+				<rul:Else>
+					<rul:Sequence>
+						<rul:Remove AtDataDef="CommercialPropertyLegalLiabilityCoverageFormOccupClassTable/CommercialPropertyLegalLiabilityCoverageFormOccupClass" RemoveMultiple="true" />
+					</rul:Sequence>
+				</rul:Else>
+			</rul:If>
+			<rul:If>
+				<rul:Test>
+					<rul:And>
+						<rul:Equal>
+							<rul:FirstValue Type="string" FromConstant="" FromDataDef="../../../../../../@PolicyType" Order="DataDefInputParamConstant" />
+							<rul:Constant Type="string">Commercial Property Policy</rul:Constant>
+						</rul:Equal>
+						<rul:Equal>
+							<rul:FirstValue Type="string" FromConstant="" FromDataDef="@CovForm" Order="DataDefInputParamConstant" />
+							<rul:Constant Type="string">Tobacco Sales Warehouse Coverage Form</rul:Constant>
+						</rul:Equal>
+					</rul:And>
+				</rul:Test>
+				<rul:Then>
+					<rul:Sequence>
+						<rul:If>
+							<rul:Test>
+								<rul:NotExist AtInputDataDef="CommercialPropertyTobaccoSalesWarehousesCoverageFormTable/CommercialPropertyTobaccoSalesWarehousesCoverageForm" />
+							</rul:Test>
+							<rul:Then>
+								<rul:Sequence>
+									<rul:Locate AtOutputDataDef="CommercialPropertyTobaccoSalesWarehousesCoverageFormTable/CommercialPropertyTobaccoSalesWarehousesCoverageForm[1]" OutputAction="Append">
+										<rul:Sequence />
+									</rul:Locate>
+								</rul:Sequence>
+							</rul:Then>
+						</rul:If>
+					</rul:Sequence>
+				</rul:Then>
+				<rul:Else>
+					<rul:Sequence>
+						<rul:Remove AtDataDef="CommercialPropertyTobaccoSalesWarehousesCoverageFormTable/CommercialPropertyTobaccoSalesWarehousesCoverageForm" RemoveMultiple="true" />
+					</rul:Sequence>
+				</rul:Else>
+			</rul:If>
+			<rul:Choose>
+				<rul:When>
+					<rul:Test>
+						<rul:And>
+							<rul:Equal>
+								<rul:FirstValue Type="string" FromConstant="" FromDataDef="CommercialPropertyOccupClassTemporarilyInPortableStorageUnits/@TemporarilyInPortableStorageUnitsIndicator" Order="DataDefInputParamConstant" />
+								<rul:Constant Type="string">Yes</rul:Constant>
+							</rul:Equal>
+							<rul:NotExist AtInputDataDef="CommercialPropertyHigherLimitsOccupClassTable/CommercialPropertyHigherLimitsOccupClass" />
+						</rul:And>
+					</rul:Test>
+					<rul:Then>
+						<rul:Sequence>
+							<rul:Locate AtOutputDataDef="CommercialPropertyHigherLimitsOccupClassTable/CommercialPropertyHigherLimitsOccupClass[1]" OutputAction="Append">
+								<rul:Sequence />
+							</rul:Locate>
+						</rul:Sequence>
+					</rul:Then>
+				</rul:When>
+				<rul:When>
+					<rul:Test>
+						<rul:NotEqual>
+							<rul:FirstValue Type="string" FromConstant="" FromDataDef="CommercialPropertyOccupClassTemporarilyInPortableStorageUnits/@TemporarilyInPortableStorageUnitsIndicator" Order="DataDefInputParamConstant" />
+							<rul:Constant Type="string">Yes</rul:Constant>
+						</rul:NotEqual>
+					</rul:Test>
+					<rul:Then>
+						<rul:Sequence>
+							<rul:Remove AtDataDef="CommercialPropertyHigherLimitsOccupClassTable/CommercialPropertyHigherLimitsOccupClass" RemoveMultiple="true" />
+						</rul:Sequence>
+					</rul:Then>
+				</rul:When>
+			</rul:Choose>
+		</rul:Sequence>
+	</rul:Rule>
+	<rul:Rule Name="DoCondoChangesSPPConditionalMandatoryLogic" Type="none" DataDefGroup="CommercialPropertyOccupClass">
+		<rul:Sequence>
+			<rul:If>
+				<rul:Test>
+					<rul:And>
+						<rul:Equal>
+							<rul:FirstValue Type="string" FromConstant="" FromDataDef="../../../../../../@PolicyType" Order="DataDefInputParamConstant" />
+							<rul:Constant Type="string">Standard Property Policy</rul:Constant>
+						</rul:Equal>
+						<rul:Equal>
+							<rul:FirstValue Type="string" FromConstant="" FromDataDef="@CovForm" Order="DataDefInputParamConstant" />
+							<rul:Constant Type="string">Condominium Association Coverage Form</rul:Constant>
+						</rul:Equal>
+					</rul:And>
+				</rul:Test>
+				<rul:Then>
+					<rul:Sequence>
+						<rul:If>
+							<rul:Test>
+								<rul:NotExist AtInputDataDef="CommercialPropertyCondominiumAssociationChangesStandardPropertyPolicyOccupClassTable/CommercialPropertyCondominiumAssociationChangesStandardPropertyPolicyOccupClass" />
+							</rul:Test>
+							<rul:Then>
+								<rul:Sequence>
+									<rul:Locate AtOutputDataDef="CommercialPropertyCondominiumAssociationChangesStandardPropertyPolicyOccupClassTable/CommercialPropertyCondominiumAssociationChangesStandardPropertyPolicyOccupClass[1]" OutputAction="Append">
+										<rul:Sequence />
+									</rul:Locate>
+								</rul:Sequence>
+							</rul:Then>
+						</rul:If>
+					</rul:Sequence>
+				</rul:Then>
+				<rul:Else>
+					<rul:Sequence>
+						<rul:Remove AtDataDef="CommercialPropertyCondominiumAssociationChangesStandardPropertyPolicyOccupClassTable/CommercialPropertyCondominiumAssociationChangesStandardPropertyPolicyOccupClass" RemoveMultiple="true" />
+					</rul:Sequence>
+				</rul:Else>
+			</rul:If>
+		</rul:Sequence>
+	</rul:Rule>
+	<rul:Rule Name="ErcSetRatesAndFactors" Type="none" DataDefGroup="CommercialPropertyOccupClass">
+		<rul:Sequence>
+			<rul:RunRule Type="none" FileName="CommercialPropertyOccupClassRules" Rule="SetPostPersonalPropertyRatesAndFactors" ClearCache="true" />
+		</rul:Sequence>
+	</rul:Rule>
+	<rul:Rule Name="SetBlanketRatesAndFactors" Type="none" DataDefGroup="CommercialPropertyOccupClass">
+		<rul:Sequence>
+			<rul:RunRule Type="none" FileName="CommercialPropertyOccupClassRules" Rule="SetOccupCategoryRiskSeverity" ClearCache="true" />
+			<rul:RunRule Type="none" FileName="CommercialPropertyOccupClassRules" Rule="SetPrsnlPropOnlyBlktCounter" ClearCache="true" />
+			<rul:RunRule Type="none" FileName="CommercialPropertyOccupClassRules" Rule="SetPrePersonalPropertyRatesAndFactors" ClearCache="true" />
+			<rul:RunRule Type="none" FileName="CommercialPropertyOccupClassRules" Rule="SetPostPersonalPropertyRatesAndFactors" ClearCache="true" />
+		</rul:Sequence>
+	</rul:Rule>
+	<rul:Rule Name="SetOccupCategoryRiskSeverity" Type="none" DataDefGroup="CommercialPropertyOccupClass">
+		<rul:Sequence>
+			<rul:If>
+				<rul:Test>
+					<rul:And>
+						<rul:NotEqual>
+							<rul:FirstValue Type="string" FromConstant="" FromDataDef="@OccupCategory" Order="DataDefInputParamConstant" />
+							<rul:Constant Type="string"></rul:Constant>
+						</rul:NotEqual>
+						<rul:NotEqual>
+							<rul:FirstValue Type="string" FromConstant="" FromDataDef="@ClassCode" Order="DataDefInputParamConstant" />
+							<rul:Constant Type="string"></rul:Constant>
+						</rul:NotEqual>
+					</rul:And>
+				</rul:Test>
+				<rul:Then>
+					<rul:Sequence>
+						<rul:RunRule Type="string" ToDataDef="@OccupCategoryRiskSeverity" FileName="CommercialPropertyOccupClassRules" Rule="LookupOccupCategoryRiskSeverity" ClearCache="true" />
+					</rul:Sequence>
+				</rul:Then>
+				<rul:Else>
+					<rul:Sequence>
+						<rul:Constant Type="string" ToDataDef="@OccupCategoryRiskSeverity"></rul:Constant>
+					</rul:Sequence>
+				</rul:Else>
+			</rul:If>
+		</rul:Sequence>
+	</rul:Rule>
+	<rul:Rule Name="SetPrsnlPropOnlyBlktCounter" Type="none" DataDefGroup="CommercialPropertyOccupClass">
+		<rul:Sequence>
+			<rul:Constant Type="integer" ToDataDef="@PrsnlPropOnlyBlktCounter">0</rul:Constant>
+			<rul:If>
+				<rul:Test>
+					<rul:And>
+						<rul:Exist AtInputDataDef="ancestor::CommercialProperty/CommercialPropertyPeakSeasonGeneralInformationTable/CommercialPropertyPeakSeasonGeneralInformation" />
+						<rul:IsNotNull>
+							<rul:Value Type="integer" FromDataDef="ancestor::CommercialProperty/CommercialPropertyPeakSeasonGeneralInformationTable/CommercialPropertyPeakSeasonGeneralInformation[1]/@BlktIDNum" />
+						</rul:IsNotNull>
+					</rul:And>
+				</rul:Test>
+				<rul:Then>
+					<rul:Sequence>
+						<rul:WithArgs>
+							<rul:Arg Type="integer" Param="PrsnlPropOnlyBlktCounterIncrementParam">
+								<rul:Sum>
+									<rul:WithArgs>
+										<rul:Arg Type="integer" Param="PolicyNodeCommercialPropertyPeakSeasonGeneralInformationBlktIDNumParam">
+											<rul:FirstValue Type="integer" FromConstant="0" FromDataDef="ancestor::CommercialProperty/CommercialPropertyPeakSeasonGeneralInformationTable/CommercialPropertyPeakSeasonGeneralInformation[1]/@BlktIDNum" Order="DataDefInputParamConstant" />
+										</rul:Arg>
+										<rul:ForEach AtInputDataDef="CommercialPropertyPersonalPropertyTable/CommercialPropertyPersonalProperty">
+											<rul:If>
+												<rul:Test>
+													<rul:Or>
+														<rul:And>
+															<rul:Equal>
+																<rul:FirstValue Type="string" FromConstant="" FromDataDef="@IncludedInBlkt" Order="DataDefInputParamConstant" />
+																<rul:Constant Type="string">Yes</rul:Constant>
+															</rul:Equal>
+															<rul:Equal>
+																<rul:FirstValue Type="integer" FromConstant="0" FromDataDef="@BlktIDNum" Order="DataDefInputParamConstant" />
+																<rul:Value Type="integer" FromParam="PolicyNodeCommercialPropertyPeakSeasonGeneralInformationBlktIDNumParam" />
+															</rul:Equal>
+														</rul:And>
+														<rul:And>
+															<rul:Or>
+																<rul:Equal>
+																	<rul:FirstValue Type="string" FromConstant="" FromDataDef="@EQCauseOfLossForm" Order="DataDefInputParamConstant" />
+																	<rul:Constant Type="string">Earthquake Form (CP 10 40)</rul:Constant>
+																</rul:Equal>
+																<rul:Equal>
+																	<rul:FirstValue Type="string" FromConstant="" FromDataDef="@EQCauseOfLossForm" Order="DataDefInputParamConstant" />
+																	<rul:Constant Type="string">Earthquake Form (CP 10 28)</rul:Constant>
+																</rul:Equal>
+															</rul:Or>
+															<rul:Equal>
+																<rul:FirstValue Type="string" FromConstant="" FromDataDef="@EQCovIndicator" Order="DataDefInputParamConstant" />
+																<rul:Constant Type="string">Yes, Included in Blanket</rul:Constant>
+															</rul:Equal>
+															<rul:Equal>
+																<rul:FirstValue Type="integer" FromConstant="0" FromDataDef="@EQCauseOfLossCovBlktIDNum" Order="DataDefInputParamConstant" />
+																<rul:Value Type="integer" FromParam="PolicyNodeCommercialPropertyPeakSeasonGeneralInformationBlktIDNumParam" />
+															</rul:Equal>
+														</rul:And>
+													</rul:Or>
+												</rul:Test>
+												<rul:Then>
+													<rul:Constant Type="integer">1</rul:Constant>
+												</rul:Then>
+											</rul:If>
+										</rul:ForEach>
+									</rul:WithArgs>
+									<rul:FirstValue Type="integer" FromConstant="0" FromDataDef="@PrsnlPropOnlyBlktCounter" Order="DataDefInputParamConstant" />
+								</rul:Sum>
+							</rul:Arg>
+							<rul:Value Type="integer" ToDataDef="@PrsnlPropOnlyBlktCounter" FromParam="PrsnlPropOnlyBlktCounterIncrementParam" />
+						</rul:WithArgs>
+					</rul:Sequence>
+				</rul:Then>
+			</rul:If>
+		</rul:Sequence>
+	</rul:Rule>
+	<rul:Rule Name="SetPrePersonalPropertyRatesAndFactors" Type="none" DataDefGroup="CommercialPropertyOccupClass">
+		<rul:Sequence>
+			<rul:RunRule Type="none" FileName="CommercialPropertyOccupClassRules" Rule="InitializeLegalLiability" ClearCache="true" />
+			<rul:RunRule Type="none" FileName="CommercialPropertyOccupClassRules" Rule="ResetXPath" ClearCache="true" />
+			<rul:RunRule Type="none" FileName="CommercialPropertyOccupClassRules" Rule="SetClassCodeToUse" ClearCache="true" />
+			<rul:RunRule Type="none" FileName="CommercialPropertyOccupClassRules" Rule="SetGroup" ClearCache="true" />
+			<rul:ForEach AtDataDef="CommercialPropertyPersonalPropertyTable/CommercialPropertyPersonalProperty">
+				<rul:RunRule Type="none" FileName="CommercialPropertyPersonalPropertyRules" Rule="ErcSetPreliminaryRatesAndFactorsAndDoConditionalMandatoryLogic" ClearCache="true" />
+			</rul:ForEach>
+		</rul:Sequence>
+	</rul:Rule>
+	<rul:Rule Name="ResetXPath" Type="none" DataDefGroup="CommercialPropertyOccupClass">
+		<rul:Sequence>
+			<rul:Copy Type="string" ToDataDef="@PolicyType" FromDataDef="ancestor::CommercialProperty/@PolicyType" />
+			<rul:Copy Type="string" ToDataDef="@RatingType" FromDataDef="ancestor::CommercialPropertyStructure/@RatingType" />
+			<rul:Copy Type="string" ToDataDef="@TheftDeductible" FromDataDef="ancestor::CommercialPropertyStructure/@TheftDeductible" />
+			<rul:Copy Type="integer" ToDataDef="@LocNumber" FromDataDef="../../../../@UnitNumber" />
+			<rul:Copy Type="integer" ToDataDef="@BldgNumber" FromDataDef="ancestor::CommercialPropertyStructure/@UnitNumber" />
+			<rul:Copy Type="decimal" ToDataDef="@BCEGFactor" FromDataDef="ancestor::CommercialPropertyStructure/@BCEGFactor" />
+			<rul:Copy Type="decimal" ToDataDef="@BCEGEQFactor" FromDataDef="ancestor::CommercialPropertyStructure/@BCEGEQFactor" />
+			<rul:Copy Type="string" ToDataDef="@BldgClassCode" FromDataDef="ancestor::CommercialPropertyStructure/@ClassCode" />
+			<rul:Copy Type="decimal" ToDataDef="@BasicGroupIRatingTerrFactor" FromDataDef="ancestor::CommercialPropertyStructure/@BasicGroupIRatingTerrFactor" />
+			<rul:Copy Type="decimal" ToDataDef="@SubStdConditionRate" FromDataDef="ancestor::CommercialPropertyStructure/@SubStdConditionRate" />
+			<rul:Copy Type="decimal" ToDataDef="@VacantBuildingRate" FromDataDef="ancestor::CommercialPropertyStructure/@VacantBuildingRate" />
+		</rul:Sequence>
+	</rul:Rule>
+	<rul:Rule Name="SetClassCodeToUse" Type="none" DataDefGroup="CommercialPropertyOccupClass">
+		<rul:Sequence>
+			<rul:If>
+				<rul:Test>
+					<rul:Equal>
+						<rul:FirstValue Type="string" FromConstant="" FromDataDef="@RatingType" Order="DataDefInputParamConstant" />
+						<rul:Constant Type="string">Class</rul:Constant>
+					</rul:Equal>
+				</rul:Test>
+				<rul:Then>
+					<rul:Copy Type="string" ToDataDef="@ClassCodeToUse" FromDataDef="@BldgClassCode" />
+				</rul:Then>
+				<rul:Else>
+					<rul:Copy Type="string" ToDataDef="@ClassCodeToUse" FromDataDef="@ClassCode" />
+				</rul:Else>
+			</rul:If>
+		</rul:Sequence>
+	</rul:Rule>
+	<rul:Rule Name="SetGroup" Type="none" DataDefGroup="CommercialPropertyOccupClass">
+		<rul:Sequence>
+			<rul:Choose>
+				<rul:When>
+					<rul:Test>
+						<rul:NotEqual>
+							<rul:FirstValue Type="string" FromConstant="" FromDataDef="@RatingType" Order="DataDefInputParamConstant" />
+							<rul:Constant Type="string">Class</rul:Constant>
+						</rul:NotEqual>
+					</rul:Test>
+					<rul:Then>
+						<rul:Sequence>
+							<rul:Constant Type="string" ToDataDef="@Group">Not Applicable</rul:Constant>
+						</rul:Sequence>
+					</rul:Then>
+				</rul:When>
+				<rul:When>
+					<rul:Test>
+						<rul:And>
+							<rul:NotEqual>
+								<rul:FirstValue Type="string" FromConstant="" FromDataDef="@ClassCodeToUse" Order="DataDefInputParamConstant" />
+								<rul:Constant Type="string">0321</rul:Constant>
+							</rul:NotEqual>
+							<rul:NotEqual>
+								<rul:FirstValue Type="string" FromConstant="" FromDataDef="@ClassCodeToUse" Order="DataDefInputParamConstant" />
+								<rul:Constant Type="string">0322</rul:Constant>
+							</rul:NotEqual>
+							<rul:NotEqual>
+								<rul:FirstValue Type="string" FromConstant="" FromDataDef="@ClassCodeToUse" Order="DataDefInputParamConstant" />
+								<rul:Constant Type="string">0323</rul:Constant>
+							</rul:NotEqual>
+							<rul:NotEqual>
+								<rul:FirstValue Type="string" FromConstant="" FromDataDef="@ClassCodeToUse" Order="DataDefInputParamConstant" />
+								<rul:Constant Type="string">0341</rul:Constant>
+							</rul:NotEqual>
+							<rul:NotEqual>
+								<rul:FirstValue Type="string" FromConstant="" FromDataDef="@ClassCodeToUse" Order="DataDefInputParamConstant" />
+								<rul:Constant Type="string">0342</rul:Constant>
+							</rul:NotEqual>
+							<rul:NotEqual>
+								<rul:FirstValue Type="string" FromConstant="" FromDataDef="@ClassCodeToUse" Order="DataDefInputParamConstant" />
+								<rul:Constant Type="string">0343</rul:Constant>
+							</rul:NotEqual>
+							<rul:NotEqual>
+								<rul:FirstValue Type="string" FromConstant="" FromDataDef="@ClassCodeToUse" Order="DataDefInputParamConstant" />
+								<rul:Constant Type="string">0581</rul:Constant>
+							</rul:NotEqual>
+							<rul:NotEqual>
+								<rul:FirstValue Type="string" FromConstant="" FromDataDef="@ClassCodeToUse" Order="DataDefInputParamConstant" />
+								<rul:Constant Type="string">0582</rul:Constant>
+							</rul:NotEqual>
+							<rul:NotEqual>
+								<rul:FirstValue Type="string" FromConstant="" FromDataDef="@ClassCodeToUse" Order="DataDefInputParamConstant" />
+								<rul:Constant Type="string">0701</rul:Constant>
+							</rul:NotEqual>
+							<rul:NotEqual>
+								<rul:FirstValue Type="string" FromConstant="" FromDataDef="@ClassCodeToUse" Order="DataDefInputParamConstant" />
+								<rul:Constant Type="string">0702</rul:Constant>
+							</rul:NotEqual>
+						</rul:And>
+					</rul:Test>
+					<rul:Then>
+						<rul:Sequence>
+							<rul:Constant Type="string" ToDataDef="@Group">Not Applicable</rul:Constant>
+						</rul:Sequence>
+					</rul:Then>
+				</rul:When>
+				<rul:When>
+					<rul:Test>
+						<rul:Or>
+							<rul:Equal>
+								<rul:FirstValue Type="string" FromConstant="" FromDataDef="@ClassCode" Order="DataDefInputParamConstant" />
+								<rul:Constant Type="string">0074</rul:Constant>
+							</rul:Equal>
+							<rul:Equal>
+								<rul:FirstValue Type="string" FromConstant="" FromDataDef="@ClassCode" Order="DataDefInputParamConstant" />
+								<rul:Constant Type="string">0075</rul:Constant>
+							</rul:Equal>
+							<rul:Equal>
+								<rul:FirstValue Type="string" FromConstant="" FromDataDef="@ClassCode" Order="DataDefInputParamConstant" />
+								<rul:Constant Type="string">0076</rul:Constant>
+							</rul:Equal>
+							<rul:Equal>
+								<rul:FirstValue Type="string" FromConstant="" FromDataDef="@ClassCode" Order="DataDefInputParamConstant" />
+								<rul:Constant Type="string">0077</rul:Constant>
+							</rul:Equal>
+							<rul:Equal>
+								<rul:FirstValue Type="string" FromConstant="" FromDataDef="@ClassCode" Order="DataDefInputParamConstant" />
+								<rul:Constant Type="string">0078</rul:Constant>
+							</rul:Equal>
+							<rul:Equal>
+								<rul:FirstValue Type="string" FromConstant="" FromDataDef="@ClassCode" Order="DataDefInputParamConstant" />
+								<rul:Constant Type="string">0079</rul:Constant>
+							</rul:Equal>
+							<rul:Equal>
+								<rul:FirstValue Type="string" FromConstant="" FromDataDef="@ClassCode" Order="DataDefInputParamConstant" />
+								<rul:Constant Type="string">0196</rul:Constant>
+							</rul:Equal>
+							<rul:Equal>
+								<rul:FirstValue Type="string" FromConstant="" FromDataDef="@ClassCode" Order="DataDefInputParamConstant" />
+								<rul:Constant Type="string">0197</rul:Constant>
+							</rul:Equal>
+							<rul:Equal>
+								<rul:FirstValue Type="string" FromConstant="" FromDataDef="@ClassCode" Order="DataDefInputParamConstant" />
+								<rul:Constant Type="string">0198</rul:Constant>
+							</rul:Equal>
+							<rul:Equal>
+								<rul:FirstValue Type="string" FromConstant="" FromDataDef="@ClassCode" Order="DataDefInputParamConstant" />
+								<rul:Constant Type="string">0311</rul:Constant>
+							</rul:Equal>
+							<rul:Equal>
+								<rul:FirstValue Type="string" FromConstant="" FromDataDef="@ClassCode" Order="DataDefInputParamConstant" />
+								<rul:Constant Type="string">0312</rul:Constant>
+							</rul:Equal>
+							<rul:Equal>
+								<rul:FirstValue Type="string" FromConstant="" FromDataDef="@ClassCode" Order="DataDefInputParamConstant" />
+								<rul:Constant Type="string">0313</rul:Constant>
+							</rul:Equal>
+							<rul:Equal>
+								<rul:FirstValue Type="string" FromConstant="" FromDataDef="@ClassCode" Order="DataDefInputParamConstant" />
+								<rul:Constant Type="string">0321</rul:Constant>
+							</rul:Equal>
+							<rul:Equal>
+								<rul:FirstValue Type="string" FromConstant="" FromDataDef="@ClassCode" Order="DataDefInputParamConstant" />
+								<rul:Constant Type="string">0322</rul:Constant>
+							</rul:Equal>
+							<rul:Equal>
+								<rul:FirstValue Type="string" FromConstant="" FromDataDef="@ClassCode" Order="DataDefInputParamConstant" />
+								<rul:Constant Type="string">0323</rul:Constant>
+							</rul:Equal>
+							<rul:Equal>
+								<rul:FirstValue Type="string" FromConstant="" FromDataDef="@ClassCode" Order="DataDefInputParamConstant" />
+								<rul:Constant Type="string">0331</rul:Constant>
+							</rul:Equal>
+							<rul:Equal>
+								<rul:FirstValue Type="string" FromConstant="" FromDataDef="@ClassCode" Order="DataDefInputParamConstant" />
+								<rul:Constant Type="string">0332</rul:Constant>
+							</rul:Equal>
+							<rul:Equal>
+								<rul:FirstValue Type="string" FromConstant="" FromDataDef="@ClassCode" Order="DataDefInputParamConstant" />
+								<rul:Constant Type="string">0333</rul:Constant>
+							</rul:Equal>
+							<rul:Equal>
+								<rul:FirstValue Type="string" FromConstant="" FromDataDef="@ClassCode" Order="DataDefInputParamConstant" />
+								<rul:Constant Type="string">0341</rul:Constant>
+							</rul:Equal>
+							<rul:Equal>
+								<rul:FirstValue Type="string" FromConstant="" FromDataDef="@ClassCode" Order="DataDefInputParamConstant" />
+								<rul:Constant Type="string">0342</rul:Constant>
+							</rul:Equal>
+							<rul:Equal>
+								<rul:FirstValue Type="string" FromConstant="" FromDataDef="@ClassCode" Order="DataDefInputParamConstant" />
+								<rul:Constant Type="string">0343</rul:Constant>
+							</rul:Equal>
+							<rul:Equal>
+								<rul:FirstValue Type="string" FromConstant="" FromDataDef="@ClassCode" Order="DataDefInputParamConstant" />
+								<rul:Constant Type="string">0511</rul:Constant>
+							</rul:Equal>
+							<rul:Equal>
+								<rul:FirstValue Type="string" FromConstant="" FromDataDef="@ClassCode" Order="DataDefInputParamConstant" />
+								<rul:Constant Type="string">0701</rul:Constant>
+							</rul:Equal>
+							<rul:Equal>
+								<rul:FirstValue Type="string" FromConstant="" FromDataDef="@ClassCode" Order="DataDefInputParamConstant" />
+								<rul:Constant Type="string">0702</rul:Constant>
+							</rul:Equal>
+							<rul:Equal>
+								<rul:FirstValue Type="string" FromConstant="" FromDataDef="@ClassCode" Order="DataDefInputParamConstant" />
+								<rul:Constant Type="string">0745</rul:Constant>
+							</rul:Equal>
+							<rul:Equal>
+								<rul:FirstValue Type="string" FromConstant="" FromDataDef="@ClassCode" Order="DataDefInputParamConstant" />
+								<rul:Constant Type="string">0746</rul:Constant>
+							</rul:Equal>
+							<rul:Equal>
+								<rul:FirstValue Type="string" FromConstant="" FromDataDef="@ClassCode" Order="DataDefInputParamConstant" />
+								<rul:Constant Type="string">0747</rul:Constant>
+							</rul:Equal>
+							<rul:Equal>
+								<rul:FirstValue Type="string" FromConstant="" FromDataDef="@ClassCode" Order="DataDefInputParamConstant" />
+								<rul:Constant Type="string">0851</rul:Constant>
+							</rul:Equal>
+							<rul:Equal>
+								<rul:FirstValue Type="string" FromConstant="" FromDataDef="@ClassCode" Order="DataDefInputParamConstant" />
+								<rul:Constant Type="string">0852</rul:Constant>
+							</rul:Equal>
+							<rul:Equal>
+								<rul:FirstValue Type="string" FromConstant="" FromDataDef="@ClassCode" Order="DataDefInputParamConstant" />
+								<rul:Constant Type="string">0900</rul:Constant>
+							</rul:Equal>
+							<rul:Equal>
+								<rul:FirstValue Type="string" FromConstant="" FromDataDef="@ClassCode" Order="DataDefInputParamConstant" />
+								<rul:Constant Type="string">0921</rul:Constant>
+							</rul:Equal>
+							<rul:Equal>
+								<rul:FirstValue Type="string" FromConstant="" FromDataDef="@ClassCode" Order="DataDefInputParamConstant" />
+								<rul:Constant Type="string">0923</rul:Constant>
+							</rul:Equal>
+							<rul:Equal>
+								<rul:FirstValue Type="string" FromConstant="" FromDataDef="@ClassCode" Order="DataDefInputParamConstant" />
+								<rul:Constant Type="string">0921</rul:Constant>
+							</rul:Equal>
+							<rul:Equal>
+								<rul:FirstValue Type="string" FromConstant="" FromDataDef="@ClassCode" Order="DataDefInputParamConstant" />
+								<rul:Constant Type="string">0923</rul:Constant>
+							</rul:Equal>
+							<rul:Equal>
+								<rul:FirstValue Type="string" FromConstant="" FromDataDef="@ClassCode" Order="DataDefInputParamConstant" />
+								<rul:Constant Type="string">0931</rul:Constant>
+							</rul:Equal>
+							<rul:Equal>
+								<rul:FirstValue Type="string" FromConstant="" FromDataDef="@ClassCode" Order="DataDefInputParamConstant" />
+								<rul:Constant Type="string">1000</rul:Constant>
+							</rul:Equal>
+							<rul:Equal>
+								<rul:FirstValue Type="string" FromConstant="" FromDataDef="@ClassCode" Order="DataDefInputParamConstant" />
+								<rul:Constant Type="string">1052</rul:Constant>
+							</rul:Equal>
+							<rul:Equal>
+								<rul:FirstValue Type="string" FromConstant="" FromDataDef="@ClassCode" Order="DataDefInputParamConstant" />
+								<rul:Constant Type="string">1070</rul:Constant>
+							</rul:Equal>
+						</rul:Or>
+					</rul:Test>
+					<rul:Then>
+						<rul:Sequence>
+							<rul:Constant Type="string" ToDataDef="@Group">A</rul:Constant>
+						</rul:Sequence>
+					</rul:Then>
+				</rul:When>
+				<rul:When>
+					<rul:Test>
+						<rul:Or>
+							<rul:Equal>
+								<rul:FirstValue Type="string" FromConstant="" FromDataDef="@ClassCode" Order="DataDefInputParamConstant" />
+								<rul:Constant Type="string">0520</rul:Constant>
+							</rul:Equal>
+							<rul:Equal>
+								<rul:FirstValue Type="string" FromConstant="" FromDataDef="@ClassCode" Order="DataDefInputParamConstant" />
+								<rul:Constant Type="string">0534</rul:Constant>
+							</rul:Equal>
+							<rul:Equal>
+								<rul:FirstValue Type="string" FromConstant="" FromDataDef="@ClassCode" Order="DataDefInputParamConstant" />
+								<rul:Constant Type="string">0541</rul:Constant>
+							</rul:Equal>
+							<rul:Equal>
+								<rul:FirstValue Type="string" FromConstant="" FromDataDef="@ClassCode" Order="DataDefInputParamConstant" />
+								<rul:Constant Type="string">0545</rul:Constant>
+							</rul:Equal>
+							<rul:Equal>
+								<rul:FirstValue Type="string" FromConstant="" FromDataDef="@ClassCode" Order="DataDefInputParamConstant" />
+								<rul:Constant Type="string">0562</rul:Constant>
+							</rul:Equal>
+							<rul:Equal>
+								<rul:FirstValue Type="string" FromConstant="" FromDataDef="@ClassCode" Order="DataDefInputParamConstant" />
+								<rul:Constant Type="string">0564</rul:Constant>
+							</rul:Equal>
+							<rul:Equal>
+								<rul:FirstValue Type="string" FromConstant="" FromDataDef="@ClassCode" Order="DataDefInputParamConstant" />
+								<rul:Constant Type="string">0570</rul:Constant>
+							</rul:Equal>
+							<rul:Equal>
+								<rul:FirstValue Type="string" FromConstant="" FromDataDef="@ClassCode" Order="DataDefInputParamConstant" />
+								<rul:Constant Type="string">0580</rul:Constant>
+							</rul:Equal>
+							<rul:Equal>
+								<rul:FirstValue Type="string" FromConstant="" FromDataDef="@ClassCode" Order="DataDefInputParamConstant" />
+								<rul:Constant Type="string">0742</rul:Constant>
+							</rul:Equal>
+							<rul:Equal>
+								<rul:FirstValue Type="string" FromConstant="" FromDataDef="@ClassCode" Order="DataDefInputParamConstant" />
+								<rul:Constant Type="string">0743</rul:Constant>
+							</rul:Equal>
+							<rul:Equal>
+								<rul:FirstValue Type="string" FromConstant="" FromDataDef="@ClassCode" Order="DataDefInputParamConstant" />
+								<rul:Constant Type="string">0744</rul:Constant>
+							</rul:Equal>
+							<rul:Equal>
+								<rul:FirstValue Type="string" FromConstant="" FromDataDef="@ClassCode" Order="DataDefInputParamConstant" />
+								<rul:Constant Type="string">0755</rul:Constant>
+							</rul:Equal>
+							<rul:Equal>
+								<rul:FirstValue Type="string" FromConstant="" FromDataDef="@ClassCode" Order="DataDefInputParamConstant" />
+								<rul:Constant Type="string">0832</rul:Constant>
+							</rul:Equal>
+							<rul:Equal>
+								<rul:FirstValue Type="string" FromConstant="" FromDataDef="@ClassCode" Order="DataDefInputParamConstant" />
+								<rul:Constant Type="string">0940</rul:Constant>
+							</rul:Equal>
+							<rul:Equal>
+								<rul:FirstValue Type="string" FromConstant="" FromDataDef="@ClassCode" Order="DataDefInputParamConstant" />
+								<rul:Constant Type="string">0951</rul:Constant>
+							</rul:Equal>
+							<rul:Equal>
+								<rul:FirstValue Type="string" FromConstant="" FromDataDef="@ClassCode" Order="DataDefInputParamConstant" />
+								<rul:Constant Type="string">1051</rul:Constant>
+							</rul:Equal>
+							<rul:Equal>
+								<rul:FirstValue Type="string" FromConstant="" FromDataDef="@ClassCode" Order="DataDefInputParamConstant" />
+								<rul:Constant Type="string">1211</rul:Constant>
+							</rul:Equal>
+							<rul:Equal>
+								<rul:FirstValue Type="string" FromConstant="" FromDataDef="@ClassCode" Order="DataDefInputParamConstant" />
+								<rul:Constant Type="string">1212</rul:Constant>
+							</rul:Equal>
+							<rul:Equal>
+								<rul:FirstValue Type="string" FromConstant="" FromDataDef="@ClassCode" Order="DataDefInputParamConstant" />
+								<rul:Constant Type="string">1213</rul:Constant>
+							</rul:Equal>
+							<rul:Equal>
+								<rul:FirstValue Type="string" FromConstant="" FromDataDef="@ClassCode" Order="DataDefInputParamConstant" />
+								<rul:Constant Type="string">1220</rul:Constant>
+							</rul:Equal>
+							<rul:Equal>
+								<rul:FirstValue Type="string" FromConstant="" FromDataDef="@ClassCode" Order="DataDefInputParamConstant" />
+								<rul:Constant Type="string">1230</rul:Constant>
+							</rul:Equal>
+							<rul:Equal>
+								<rul:FirstValue Type="string" FromConstant="" FromDataDef="@ClassCode" Order="DataDefInputParamConstant" />
+								<rul:Constant Type="string">1400</rul:Constant>
+							</rul:Equal>
+							<rul:Equal>
+								<rul:FirstValue Type="string" FromConstant="" FromDataDef="@ClassCode" Order="DataDefInputParamConstant" />
+								<rul:Constant Type="string">1650</rul:Constant>
+							</rul:Equal>
+							<rul:Equal>
+								<rul:FirstValue Type="string" FromConstant="" FromDataDef="@ClassCode" Order="DataDefInputParamConstant" />
+								<rul:Constant Type="string">1700</rul:Constant>
+							</rul:Equal>
+							<rul:Equal>
+								<rul:FirstValue Type="string" FromConstant="" FromDataDef="@ClassCode" Order="DataDefInputParamConstant" />
+								<rul:Constant Type="string">1751</rul:Constant>
+							</rul:Equal>
+							<rul:Equal>
+								<rul:FirstValue Type="string" FromConstant="" FromDataDef="@ClassCode" Order="DataDefInputParamConstant" />
+								<rul:Constant Type="string">1752</rul:Constant>
+							</rul:Equal>
+						</rul:Or>
+					</rul:Test>
+					<rul:Then>
+						<rul:Sequence>
+							<rul:Constant Type="string" ToDataDef="@Group">B</rul:Constant>
+						</rul:Sequence>
+					</rul:Then>
+				</rul:When>
+				<rul:Otherwise>
+					<rul:Sequence>
+						<rul:Constant Type="string" ToDataDef="@Group">C</rul:Constant>
+					</rul:Sequence>
+				</rul:Otherwise>
+			</rul:Choose>
+		</rul:Sequence>
+	</rul:Rule>
+	<rul:Rule Name="SetPostPersonalPropertyRatesAndFactors" Type="none" DataDefGroup="CommercialPropertyOccupClass">
+		<rul:Sequence>
+			<rul:Count ToDataDef="@PersonalPropertyCount" AtInputDataDef="CommercialPropertyPersonalPropertyTable/CommercialPropertyPersonalProperty" />
+			<rul:RunRule Type="none" FileName="CommercialPropertyOccupClassRules" Rule="SetAddlLocationsSpclCoinsuranceGenInfoCounters" ClearCache="true" />
+			<rul:ForEach AtDataDef="CommercialPropertyPersonalPropertyTable/CommercialPropertyPersonalProperty">
+				<rul:RunRule Type="none" FileName="CommercialPropertyPersonalPropertyRules" Rule="ErcSetPostRatesAndFactors" ClearCache="true" />
+			</rul:ForEach>
+		</rul:Sequence>
+	</rul:Rule>
+	<rul:Rule Name="OccupClassTotalAmountInsurance" Type="none" DataDefGroup="CommercialPropertyOccupClass">
+		<rul:Sequence>
+			<rul:RunRule Type="none" FileName="CommercialPropertyOccupClassRules" Rule="InitializeValueReportingForm" ClearCache="true" />
+			<rul:RunRule Type="none" FileName="CommercialPropertyOccupClassRules" Rule="SetTotalAmountInsurance" ClearCache="true" />
+		</rul:Sequence>
+	</rul:Rule>
+	<rul:Rule Name="OccupCauseOfLossForSpecial" Type="none" DataDefGroup="CommercialPropertyOccupClass">
+		<rul:Sequence>
+			<rul:ForEach AtDataDef="CommercialPropertyPersonalPropertyTable/CommercialPropertyPersonalProperty">
+				<rul:RunRule Type="none" FileName="CommercialPropertyPersonalPropertyRules" Rule="PersonalPropertyCauseofLossAndSpecialExclusionFactor" ClearCache="true" />
+			</rul:ForEach>
+		</rul:Sequence>
+	</rul:Rule>
+	<rul:Rule Name="InitializeValueReportingForm" Type="none" DataDefGroup="CommercialPropertyOccupClass">
+		<rul:Sequence>
+			<rul:ForEach AtDataDef="CommercialPropertyPersonalPropertyTable/CommercialPropertyPersonalProperty">
+				<rul:RunRule Type="none" FileName="CommercialPropertyPersonalPropertyRules" Rule="InitializeValueReportingForm" ClearCache="true" />
+			</rul:ForEach>
+		</rul:Sequence>
+	</rul:Rule>
+	<rul:Rule Name="SetTotalAmountInsurance" Type="none" DataDefGroup="CommercialPropertyOccupClass">
+		<rul:Sequence>
+			<rul:ForEach AtDataDef="CommercialPropertyPersonalPropertyTable/CommercialPropertyPersonalProperty">
+				<rul:RunRule Type="none" FileName="CommercialPropertyPersonalPropertyRules" Rule="PersonalPropertyLimitToUse" ClearCache="true" />
+			</rul:ForEach>
+			<rul:Constant Type="integer" ToDataDef="@SpecialIncludingTheftTotAmtInsurance">0</rul:Constant>
+			<rul:Constant Type="integer" ToDataDef="@TotalPrsnlPropLimit">0</rul:Constant>
+			<rul:Constant Type="integer" ToDataDef="@TotAmtInsurance">0</rul:Constant>
+			<rul:Constant Type="integer" ToDataDef="@SpecialTotAmtInsurance">0</rul:Constant>
+			<rul:Constant Type="integer" ToDataDef="@TotalLOIToUse">0</rul:Constant>
+			<rul:WithArgs>
+				<rul:Arg Type="integer" Param="TotAmtInsuranceIncrementParam">
+					<rul:Sum>
+						<rul:WithArgs>
+							<rul:Arg Type="integer" Param="ISOSSINodeRenewalParam">
+								<rul:FirstValue Type="integer" FromConstant="0" FromDataDef="../../../../../../../../@Renewal" Order="DataDefInputParamConstant" />
+							</rul:Arg>
+							<rul:ForEach AtInputDataDef="CommercialPropertyPersonalPropertyTable/CommercialPropertyPersonalProperty">
+								<rul:Choose>
+									<rul:When>
+										<rul:Test>
+											<rul:Exist AtInputDataDef="CommercialPropertyValueReportingFormTable/CommercialPropertyValueReportingForm" />
+										</rul:Test>
+										<rul:Then>
+											<rul:Choose>
+												<rul:When>
+													<rul:Test>
+														<rul:Or>
+															<rul:Exist AtInputDataDef="ancestor::MasterCFCW/Quote" />
+															<rul:And>
+																<rul:Exist AtInputDataDef="ancestor::MasterCFCW/Policy" />
+																<rul:IsNotNull>
+																	<rul:Value Type="integer" FromParam="ISOSSINodeRenewalParam" />
+																</rul:IsNotNull>
+																<rul:Equal>
+																	<rul:Value Type="integer" FromParam="ISOSSINodeRenewalParam" />
+																	<rul:Constant Type="integer">1</rul:Constant>
+																</rul:Equal>
+															</rul:And>
+														</rul:Or>
+													</rul:Test>
+													<rul:Then>
+														<rul:If>
+															<rul:Test>
+																<rul:And>
+																	<rul:Equal>
+																		<rul:FirstValue Type="string" FromConstant="" FromDataDef="@MultiLocAvgRatesIndicator" Order="DataDefInputParamConstant" />
+																		<rul:Constant Type="string">Not Used</rul:Constant>
+																	</rul:Equal>
+																	<rul:GreaterThan>
+																		<rul:FirstValue Type="integer" FromConstant="0" FromDataDef="CommercialPropertyValueReportingFormTable/CommercialPropertyValueReportingForm[1]/@AvgVal" Order="DataDefInputParamConstant" />
+																		<rul:Constant Type="integer">0</rul:Constant>
+																	</rul:GreaterThan>
+																</rul:And>
+															</rul:Test>
+															<rul:Then>
+																<rul:FirstValue Type="integer" FromConstant="0" FromDataDef="CommercialPropertyValueReportingFormTable/CommercialPropertyValueReportingForm[1]/@AvgVal" Order="DataDefInputParamConstant" />
+															</rul:Then>
+															<rul:Else>
+																<rul:FirstValue Type="integer" FromConstant="0" FromDataDef="CommercialPropertyValueReportingFormTable/CommercialPropertyValueReportingForm[1]/@EstdAvgVal" Order="DataDefInputParamConstant" />
+															</rul:Else>
+														</rul:If>
+													</rul:Then>
+												</rul:When>
+												<rul:When>
+													<rul:Test>
+														<rul:And>
+															<rul:Equal>
+																<rul:FirstValue Type="string" FromConstant="" FromDataDef="@MultiLocAvgRatesIndicator" Order="DataDefInputParamConstant" />
+																<rul:Constant Type="string">Used</rul:Constant>
+															</rul:Equal>
+															<rul:IsNotNull>
+																<rul:Value Type="integer" FromParam="ISOSSINodeRenewalParam" />
+															</rul:IsNotNull>
+															<rul:Equal>
+																<rul:Value Type="integer" FromParam="ISOSSINodeRenewalParam" />
+																<rul:Constant Type="integer">0</rul:Constant>
+															</rul:Equal>
+														</rul:And>
+													</rul:Test>
+													<rul:Then>
+														<rul:If>
+															<rul:Test>
+																<rul:GreaterThan>
+																	<rul:FirstValue Type="integer" FromConstant="0" FromDataDef="CommercialPropertyValueReportingFormTable/CommercialPropertyValueReportingForm[1]/@AvgVal" Order="DataDefInputParamConstant" />
+																	<rul:Constant Type="integer">0</rul:Constant>
+																</rul:GreaterThan>
+															</rul:Test>
+															<rul:Then>
+																<rul:FirstValue Type="integer" FromConstant="0" FromDataDef="CommercialPropertyValueReportingFormTable/CommercialPropertyValueReportingForm[1]/@AvgVal" Order="DataDefInputParamConstant" />
+															</rul:Then>
+															<rul:Else>
+																<rul:FirstValue Type="integer" FromConstant="0" FromDataDef="CommercialPropertyValueReportingFormTable/CommercialPropertyValueReportingForm[1]/@EstdAvgVal" Order="DataDefInputParamConstant" />
+															</rul:Else>
+														</rul:If>
+													</rul:Then>
+												</rul:When>
+												<rul:When>
+													<rul:Test>
+														<rul:Equal>
+															<rul:FirstValue Type="string" FromConstant="" FromDataDef="@IncludedInBlkt" Order="DataDefInputParamConstant" />
+															<rul:Constant Type="string">Yes</rul:Constant>
+														</rul:Equal>
+													</rul:Test>
+													<rul:Then>
+														<rul:FirstValue Type="integer" FromConstant="0" FromDataDef="@FullPrsnlPropValue" Order="DataDefInputParamConstant" />
+													</rul:Then>
+												</rul:When>
+												<rul:Otherwise>
+													<rul:FirstValue Type="integer" FromConstant="0" FromDataDef="@Limit" Order="DataDefInputParamConstant" />
+												</rul:Otherwise>
+											</rul:Choose>
+										</rul:Then>
+									</rul:When>
+									<rul:When>
+										<rul:Test>
+											<rul:NotExist AtInputDataDef="CommercialPropertyValueReportingFormTable/CommercialPropertyValueReportingForm" />
+										</rul:Test>
+										<rul:Then>
+											<rul:Choose>
+												<rul:When>
+													<rul:Test>
+														<rul:Equal>
+															<rul:FirstValue Type="string" FromConstant="" FromDataDef="@IncludedInBlkt" Order="DataDefInputParamConstant" />
+															<rul:Constant Type="string">Yes</rul:Constant>
+														</rul:Equal>
+													</rul:Test>
+													<rul:Then>
+														<rul:FirstValue Type="integer" FromConstant="0" FromDataDef="@FullPrsnlPropValue" Order="DataDefInputParamConstant" />
+													</rul:Then>
+												</rul:When>
+												<rul:When>
+													<rul:Test>
+														<rul:Equal>
+															<rul:FirstValue Type="string" FromConstant="" FromDataDef="@IncludedInBlkt" Order="DataDefInputParamConstant" />
+															<rul:Constant Type="string">No</rul:Constant>
+														</rul:Equal>
+													</rul:Test>
+													<rul:Then>
+														<rul:If>
+															<rul:Test>
+																<rul:IsNotNull>
+																	<rul:Value Type="integer" FromDataDef="@Limit" />
+																</rul:IsNotNull>
+															</rul:Test>
+															<rul:Then>
+																<rul:FirstValue Type="integer" FromConstant="0" FromDataDef="@Limit" Order="DataDefInputParamConstant" />
+															</rul:Then>
+														</rul:If>
+													</rul:Then>
+												</rul:When>
+											</rul:Choose>
+										</rul:Then>
+									</rul:When>
+								</rul:Choose>
+							</rul:ForEach>
+						</rul:WithArgs>
+						<rul:FirstValue Type="integer" FromConstant="0" FromDataDef="@TotAmtInsurance" Order="DataDefInputParamConstant" />
+					</rul:Sum>
+				</rul:Arg>
+				<rul:Value Type="integer" ToDataDef="@TotAmtInsurance" FromParam="TotAmtInsuranceIncrementParam" />
+			</rul:WithArgs>
+			<rul:WithArgs>
+				<rul:Arg Type="integer" Param="SpecialIncludingTheftTotAmtInsuranceIncrementParam">
+					<rul:Sum>
+						<rul:WithArgs>
+							<rul:Arg Type="integer" Param="ISOSSINodeRenewalParam">
+								<rul:FirstValue Type="integer" FromConstant="0" FromDataDef="../../../../../../../../@Renewal" Order="DataDefInputParamConstant" />
+							</rul:Arg>
+							<rul:ForEach AtInputDataDef="CommercialPropertyPersonalPropertyTable/CommercialPropertyPersonalProperty">
+								<rul:If>
+									<rul:Test>
+										<rul:And>
+											<rul:Equal>
+												<rul:FirstValue Type="string" FromConstant="" FromDataDef="@CauseOfLossToUse" Order="DataDefInputParamConstant" />
+												<rul:Constant Type="string">Special</rul:Constant>
+											</rul:Equal>
+											<rul:Equal>
+												<rul:FirstValue Type="integer" FromConstant="0" FromDataDef="@SpecialTheftExclusionIndicator" Order="DataDefInputParamConstant" />
+												<rul:Constant Type="integer">0</rul:Constant>
+											</rul:Equal>
+										</rul:And>
+									</rul:Test>
+									<rul:Then>
+										<rul:Choose>
+											<rul:When>
+												<rul:Test>
+													<rul:Exist AtInputDataDef="CommercialPropertyAlcoholicBeveragesTaxExclusionTable/CommercialPropertyAlcoholicBeveragesTaxExclusion" />
+												</rul:Test>
+												<rul:Then>
+													<rul:If>
+														<rul:Test>
+															<rul:Exist AtInputDataDef="CommercialPropertyValueReportingFormTable/CommercialPropertyValueReportingForm" />
+														</rul:Test>
+														<rul:Then>
+															<rul:Choose>
+																<rul:When>
+																	<rul:Test>
+																		<rul:And>
+																			<rul:IsNotNull>
+																				<rul:Value Type="integer" FromParam="ISOSSINodeRenewalParam" />
+																			</rul:IsNotNull>
+																			<rul:Equal>
+																				<rul:Value Type="integer" FromParam="ISOSSINodeRenewalParam" />
+																				<rul:Constant Type="integer">1</rul:Constant>
+																			</rul:Equal>
+																		</rul:And>
+																	</rul:Test>
+																	<rul:Then>
+																		<rul:If>
+																			<rul:Test>
+																				<rul:And>
+																					<rul:Equal>
+																						<rul:FirstValue Type="string" FromConstant="" FromDataDef="@MultiLocAvgRatesIndicator" Order="DataDefInputParamConstant" />
+																						<rul:Constant Type="string">Not Used</rul:Constant>
+																					</rul:Equal>
+																					<rul:GreaterThan>
+																						<rul:FirstValue Type="integer" FromConstant="0" FromDataDef="CommercialPropertyValueReportingFormTable/CommercialPropertyValueReportingForm[1]/@AvgValIncldgValOfAlcoholicBeverageTaxes" Order="DataDefInputParamConstant" />
+																						<rul:Constant Type="integer">0</rul:Constant>
+																					</rul:GreaterThan>
+																				</rul:And>
+																			</rul:Test>
+																			<rul:Then>
+																				<rul:FirstValue Type="integer" FromConstant="0" FromDataDef="CommercialPropertyValueReportingFormTable/CommercialPropertyValueReportingForm[1]/@AvgValIncldgValOfAlcoholicBeverageTaxes" Order="DataDefInputParamConstant" />
+																			</rul:Then>
+																			<rul:Else>
+																				<rul:FirstValue Type="integer" FromConstant="0" FromDataDef="CommercialPropertyValueReportingFormTable/CommercialPropertyValueReportingForm[1]/@EstdAvgValIncldgValOfAlcoholicBeverageTaxes" Order="DataDefInputParamConstant" />
+																			</rul:Else>
+																		</rul:If>
+																	</rul:Then>
+																</rul:When>
+																<rul:When>
+																	<rul:Test>
+																		<rul:And>
+																			<rul:Equal>
+																				<rul:FirstValue Type="string" FromConstant="" FromDataDef="@MultiLocAvgRatesIndicator" Order="DataDefInputParamConstant" />
+																				<rul:Constant Type="string">Used</rul:Constant>
+																			</rul:Equal>
+																			<rul:IsNotNull>
+																				<rul:Value Type="integer" FromParam="ISOSSINodeRenewalParam" />
+																			</rul:IsNotNull>
+																			<rul:Equal>
+																				<rul:Value Type="integer" FromParam="ISOSSINodeRenewalParam" />
+																				<rul:Constant Type="integer">0</rul:Constant>
+																			</rul:Equal>
+																		</rul:And>
+																	</rul:Test>
+																	<rul:Then>
+																		<rul:If>
+																			<rul:Test>
+																				<rul:GreaterThan>
+																					<rul:FirstValue Type="integer" FromConstant="0" FromDataDef="CommercialPropertyValueReportingFormTable/CommercialPropertyValueReportingForm[1]/@AvgValIncldgValOfAlcoholicBeverageTaxes" Order="DataDefInputParamConstant" />
+																					<rul:Constant Type="integer">0</rul:Constant>
+																				</rul:GreaterThan>
+																			</rul:Test>
+																			<rul:Then>
+																				<rul:FirstValue Type="integer" FromConstant="0" FromDataDef="CommercialPropertyValueReportingFormTable/CommercialPropertyValueReportingForm[1]/@AvgValIncldgValOfAlcoholicBeverageTaxes" Order="DataDefInputParamConstant" />
+																			</rul:Then>
+																			<rul:Else>
+																				<rul:FirstValue Type="integer" FromConstant="0" FromDataDef="CommercialPropertyValueReportingFormTable/CommercialPropertyValueReportingForm[1]/@EstdAvgValIncldgValOfAlcoholicBeverageTaxes" Order="DataDefInputParamConstant" />
+																			</rul:Else>
+																		</rul:If>
+																	</rul:Then>
+																</rul:When>
+																<rul:When>
+																	<rul:Test>
+																		<rul:Equal>
+																			<rul:FirstValue Type="string" FromConstant="" FromDataDef="@MultiLocAvgRatesIndicator" Order="DataDefInputParamConstant" />
+																			<rul:Constant Type="string">Not Used</rul:Constant>
+																		</rul:Equal>
+																	</rul:Test>
+																	<rul:Then>
+																		<rul:FirstValue Type="integer" FromConstant="0" FromDataDef="CommercialPropertyAlcoholicBeveragesTaxExclusionTable/CommercialPropertyAlcoholicBeveragesTaxExclusion[1]/@Limit" Order="DataDefInputParamConstant" />
+																	</rul:Then>
+																</rul:When>
+															</rul:Choose>
+														</rul:Then>
+														<rul:Else>
+															<rul:FirstValue Type="integer" FromConstant="0" FromDataDef="CommercialPropertyAlcoholicBeveragesTaxExclusionTable/CommercialPropertyAlcoholicBeveragesTaxExclusion[1]/@Limit" Order="DataDefInputParamConstant" />
+														</rul:Else>
+													</rul:If>
+												</rul:Then>
+											</rul:When>
+											<rul:When>
+												<rul:Test>
+													<rul:Exist AtInputDataDef="CommercialPropertyValueReportingFormTable/CommercialPropertyValueReportingForm" />
+												</rul:Test>
+												<rul:Then>
+													<rul:Choose>
+														<rul:When>
+															<rul:Test>
+																<rul:And>
+																	<rul:IsNotNull>
+																		<rul:Value Type="integer" FromParam="ISOSSINodeRenewalParam" />
+																	</rul:IsNotNull>
+																	<rul:Equal>
+																		<rul:Value Type="integer" FromParam="ISOSSINodeRenewalParam" />
+																		<rul:Constant Type="integer">1</rul:Constant>
+																	</rul:Equal>
+																</rul:And>
+															</rul:Test>
+															<rul:Then>
+																<rul:If>
+																	<rul:Test>
+																		<rul:And>
+																			<rul:Equal>
+																				<rul:FirstValue Type="string" FromConstant="" FromDataDef="@MultiLocAvgRatesIndicator" Order="DataDefInputParamConstant" />
+																				<rul:Constant Type="string">Not Used</rul:Constant>
+																			</rul:Equal>
+																			<rul:GreaterThan>
+																				<rul:FirstValue Type="integer" FromConstant="0" FromDataDef="CommercialPropertyValueReportingFormTable/CommercialPropertyValueReportingForm[1]/@AvgVal" Order="DataDefInputParamConstant" />
+																				<rul:Constant Type="integer">0</rul:Constant>
+																			</rul:GreaterThan>
+																		</rul:And>
+																	</rul:Test>
+																	<rul:Then>
+																		<rul:FirstValue Type="integer" FromConstant="0" FromDataDef="CommercialPropertyValueReportingFormTable/CommercialPropertyValueReportingForm[1]/@AvgVal" Order="DataDefInputParamConstant" />
+																	</rul:Then>
+																	<rul:Else>
+																		<rul:FirstValue Type="integer" FromConstant="0" FromDataDef="CommercialPropertyValueReportingFormTable/CommercialPropertyValueReportingForm[1]/@EstdAvgVal" Order="DataDefInputParamConstant" />
+																	</rul:Else>
+																</rul:If>
+															</rul:Then>
+														</rul:When>
+														<rul:When>
+															<rul:Test>
+																<rul:And>
+																	<rul:Equal>
+																		<rul:FirstValue Type="string" FromConstant="" FromDataDef="@MultiLocAvgRatesIndicator" Order="DataDefInputParamConstant" />
+																		<rul:Constant Type="string">Used</rul:Constant>
+																	</rul:Equal>
+																	<rul:IsNotNull>
+																		<rul:Value Type="integer" FromParam="ISOSSINodeRenewalParam" />
+																	</rul:IsNotNull>
+																	<rul:Equal>
+																		<rul:Value Type="integer" FromParam="ISOSSINodeRenewalParam" />
+																		<rul:Constant Type="integer">0</rul:Constant>
+																	</rul:Equal>
+																</rul:And>
+															</rul:Test>
+															<rul:Then>
+																<rul:If>
+																	<rul:Test>
+																		<rul:GreaterThan>
+																			<rul:FirstValue Type="integer" FromConstant="0" FromDataDef="CommercialPropertyValueReportingFormTable/CommercialPropertyValueReportingForm[1]/@AvgVal" Order="DataDefInputParamConstant" />
+																			<rul:Constant Type="integer">0</rul:Constant>
+																		</rul:GreaterThan>
+																	</rul:Test>
+																	<rul:Then>
+																		<rul:FirstValue Type="integer" FromConstant="0" FromDataDef="CommercialPropertyValueReportingFormTable/CommercialPropertyValueReportingForm[1]/@AvgVal" Order="DataDefInputParamConstant" />
+																	</rul:Then>
+																	<rul:Else>
+																		<rul:FirstValue Type="integer" FromConstant="0" FromDataDef="CommercialPropertyValueReportingFormTable/CommercialPropertyValueReportingForm[1]/@EstdAvgVal" Order="DataDefInputParamConstant" />
+																	</rul:Else>
+																</rul:If>
+															</rul:Then>
+														</rul:When>
+														<rul:When>
+															<rul:Test>
+																<rul:And>
+																	<rul:Equal>
+																		<rul:FirstValue Type="string" FromConstant="" FromDataDef="@MultiLocAvgRatesIndicator" Order="DataDefInputParamConstant" />
+																		<rul:Constant Type="string">Not Used</rul:Constant>
+																	</rul:Equal>
+																	<rul:Equal>
+																		<rul:FirstValue Type="string" FromConstant="" FromDataDef="@IncludedInBlkt" Order="DataDefInputParamConstant" />
+																		<rul:Constant Type="string">Yes</rul:Constant>
+																	</rul:Equal>
+																</rul:And>
+															</rul:Test>
+															<rul:Then>
+																<rul:FirstValue Type="integer" FromConstant="0" FromDataDef="@FullPrsnlPropValue" Order="DataDefInputParamConstant" />
+															</rul:Then>
+														</rul:When>
+														<rul:Otherwise>
+															<rul:FirstValue Type="integer" FromConstant="0" FromDataDef="@Limit" Order="DataDefInputParamConstant" />
+														</rul:Otherwise>
+													</rul:Choose>
+												</rul:Then>
+											</rul:When>
+											<rul:When>
+												<rul:Test>
+													<rul:NotExist AtInputDataDef="CommercialPropertyValueReportingFormTable/CommercialPropertyValueReportingForm" />
+												</rul:Test>
+												<rul:Then>
+													<rul:If>
+														<rul:Test>
+															<rul:Equal>
+																<rul:FirstValue Type="string" FromConstant="" FromDataDef="@IncludedInBlkt" Order="DataDefInputParamConstant" />
+																<rul:Constant Type="string">Yes</rul:Constant>
+															</rul:Equal>
+														</rul:Test>
+														<rul:Then>
+															<rul:FirstValue Type="integer" FromConstant="0" FromDataDef="@FullPrsnlPropValue" Order="DataDefInputParamConstant" />
+														</rul:Then>
+														<rul:Else>
+															<rul:FirstValue Type="integer" FromConstant="0" FromDataDef="@Limit" Order="DataDefInputParamConstant" />
+														</rul:Else>
+													</rul:If>
+												</rul:Then>
+											</rul:When>
+										</rul:Choose>
+									</rul:Then>
+								</rul:If>
+							</rul:ForEach>
+						</rul:WithArgs>
+						<rul:FirstValue Type="integer" FromConstant="0" FromDataDef="@SpecialIncludingTheftTotAmtInsurance" Order="DataDefInputParamConstant" />
+					</rul:Sum>
+				</rul:Arg>
+				<rul:Value Type="integer" ToDataDef="@SpecialIncludingTheftTotAmtInsurance" FromParam="SpecialIncludingTheftTotAmtInsuranceIncrementParam" />
+			</rul:WithArgs>
+			<rul:WithArgs>
+				<rul:Arg Type="integer" Param="SpecialTotAmtInsuranceIncrementParam">
+					<rul:Sum>
+						<rul:WithArgs>
+							<rul:Arg Type="integer" Param="ISOSSINodeRenewalParam">
+								<rul:FirstValue Type="integer" FromConstant="0" FromDataDef="../../../../../../../../@Renewal" Order="DataDefInputParamConstant" />
+							</rul:Arg>
+							<rul:ForEach AtInputDataDef="CommercialPropertyPersonalPropertyTable/CommercialPropertyPersonalProperty">
+								<rul:If>
+									<rul:Test>
+										<rul:Equal>
+											<rul:FirstValue Type="string" FromConstant="" FromDataDef="@CauseOfLossToUse" Order="DataDefInputParamConstant" />
+											<rul:Constant Type="string">Special</rul:Constant>
+										</rul:Equal>
+									</rul:Test>
+									<rul:Then>
+										<rul:Choose>
+											<rul:When>
+												<rul:Test>
+													<rul:Exist AtInputDataDef="CommercialPropertyAlcoholicBeveragesTaxExclusionTable/CommercialPropertyAlcoholicBeveragesTaxExclusion" />
+												</rul:Test>
+												<rul:Then>
+													<rul:If>
+														<rul:Test>
+															<rul:Exist AtInputDataDef="CommercialPropertyValueReportingFormTable/CommercialPropertyValueReportingForm" />
+														</rul:Test>
+														<rul:Then>
+															<rul:Choose>
+																<rul:When>
+																	<rul:Test>
+																		<rul:And>
+																			<rul:IsNotNull>
+																				<rul:Value Type="integer" FromParam="ISOSSINodeRenewalParam" />
+																			</rul:IsNotNull>
+																			<rul:Equal>
+																				<rul:Value Type="integer" FromParam="ISOSSINodeRenewalParam" />
+																				<rul:Constant Type="integer">1</rul:Constant>
+																			</rul:Equal>
+																		</rul:And>
+																	</rul:Test>
+																	<rul:Then>
+																		<rul:If>
+																			<rul:Test>
+																				<rul:And>
+																					<rul:Equal>
+																						<rul:FirstValue Type="string" FromConstant="" FromDataDef="@MultiLocAvgRatesIndicator" Order="DataDefInputParamConstant" />
+																						<rul:Constant Type="string">Not Used</rul:Constant>
+																					</rul:Equal>
+																					<rul:GreaterThan>
+																						<rul:FirstValue Type="integer" FromConstant="0" FromDataDef="CommercialPropertyValueReportingFormTable/CommercialPropertyValueReportingForm[1]/@AvgValIncldgValOfAlcoholicBeverageTaxes" Order="DataDefInputParamConstant" />
+																						<rul:Constant Type="integer">0</rul:Constant>
+																					</rul:GreaterThan>
+																				</rul:And>
+																			</rul:Test>
+																			<rul:Then>
+																				<rul:FirstValue Type="integer" FromConstant="0" FromDataDef="CommercialPropertyValueReportingFormTable/CommercialPropertyValueReportingForm[1]/@AvgValIncldgValOfAlcoholicBeverageTaxes" Order="DataDefInputParamConstant" />
+																			</rul:Then>
+																			<rul:Else>
+																				<rul:FirstValue Type="integer" FromConstant="0" FromDataDef="CommercialPropertyValueReportingFormTable/CommercialPropertyValueReportingForm[1]/@EstdAvgValIncldgValOfAlcoholicBeverageTaxes" Order="DataDefInputParamConstant" />
+																			</rul:Else>
+																		</rul:If>
+																	</rul:Then>
+																</rul:When>
+																<rul:When>
+																	<rul:Test>
+																		<rul:And>
+																			<rul:Equal>
+																				<rul:FirstValue Type="string" FromConstant="" FromDataDef="@MultiLocAvgRatesIndicator" Order="DataDefInputParamConstant" />
+																				<rul:Constant Type="string">Used</rul:Constant>
+																			</rul:Equal>
+																			<rul:IsNotNull>
+																				<rul:Value Type="integer" FromParam="ISOSSINodeRenewalParam" />
+																			</rul:IsNotNull>
+																			<rul:Equal>
+																				<rul:Value Type="integer" FromParam="ISOSSINodeRenewalParam" />
+																				<rul:Constant Type="integer">0</rul:Constant>
+																			</rul:Equal>
+																		</rul:And>
+																	</rul:Test>
+																	<rul:Then>
+																		<rul:If>
+																			<rul:Test>
+																				<rul:GreaterThan>
+																					<rul:FirstValue Type="integer" FromConstant="0" FromDataDef="CommercialPropertyValueReportingFormTable/CommercialPropertyValueReportingForm[1]/@AvgValIncldgValOfAlcoholicBeverageTaxes" Order="DataDefInputParamConstant" />
+																					<rul:Constant Type="integer">0</rul:Constant>
+																				</rul:GreaterThan>
+																			</rul:Test>
+																			<rul:Then>
+																				<rul:FirstValue Type="integer" FromConstant="0" FromDataDef="CommercialPropertyValueReportingFormTable/CommercialPropertyValueReportingForm[1]/@AvgValIncldgValOfAlcoholicBeverageTaxes" Order="DataDefInputParamConstant" />
+																			</rul:Then>
+																			<rul:Else>
+																				<rul:FirstValue Type="integer" FromConstant="0" FromDataDef="CommercialPropertyValueReportingFormTable/CommercialPropertyValueReportingForm[1]/@EstdAvgValIncldgValOfAlcoholicBeverageTaxes" Order="DataDefInputParamConstant" />
+																			</rul:Else>
+																		</rul:If>
+																	</rul:Then>
+																</rul:When>
+																<rul:When>
+																	<rul:Test>
+																		<rul:Equal>
+																			<rul:FirstValue Type="string" FromConstant="" FromDataDef="@MultiLocAvgRatesIndicator" Order="DataDefInputParamConstant" />
+																			<rul:Constant Type="string">Not Used</rul:Constant>
+																		</rul:Equal>
+																	</rul:Test>
+																	<rul:Then>
+																		<rul:FirstValue Type="integer" FromConstant="0" FromDataDef="CommercialPropertyAlcoholicBeveragesTaxExclusionTable/CommercialPropertyAlcoholicBeveragesTaxExclusion[1]/@Limit" Order="DataDefInputParamConstant" />
+																	</rul:Then>
+																</rul:When>
+															</rul:Choose>
+														</rul:Then>
+														<rul:Else>
+															<rul:FirstValue Type="integer" FromConstant="0" FromDataDef="CommercialPropertyAlcoholicBeveragesTaxExclusionTable/CommercialPropertyAlcoholicBeveragesTaxExclusion[1]/@Limit" Order="DataDefInputParamConstant" />
+														</rul:Else>
+													</rul:If>
+												</rul:Then>
+											</rul:When>
+											<rul:When>
+												<rul:Test>
+													<rul:Exist AtInputDataDef="CommercialPropertyValueReportingFormTable/CommercialPropertyValueReportingForm" />
+												</rul:Test>
+												<rul:Then>
+													<rul:Choose>
+														<rul:When>
+															<rul:Test>
+																<rul:And>
+																	<rul:IsNotNull>
+																		<rul:Value Type="integer" FromParam="ISOSSINodeRenewalParam" />
+																	</rul:IsNotNull>
+																	<rul:Equal>
+																		<rul:Value Type="integer" FromParam="ISOSSINodeRenewalParam" />
+																		<rul:Constant Type="integer">1</rul:Constant>
+																	</rul:Equal>
+																</rul:And>
+															</rul:Test>
+															<rul:Then>
+																<rul:If>
+																	<rul:Test>
+																		<rul:And>
+																			<rul:Equal>
+																				<rul:FirstValue Type="string" FromConstant="" FromDataDef="@MultiLocAvgRatesIndicator" Order="DataDefInputParamConstant" />
+																				<rul:Constant Type="string">Not Used</rul:Constant>
+																			</rul:Equal>
+																			<rul:GreaterThan>
+																				<rul:FirstValue Type="integer" FromConstant="0" FromDataDef="CommercialPropertyValueReportingFormTable/CommercialPropertyValueReportingForm[1]/@AvgVal" Order="DataDefInputParamConstant" />
+																				<rul:Constant Type="integer">0</rul:Constant>
+																			</rul:GreaterThan>
+																		</rul:And>
+																	</rul:Test>
+																	<rul:Then>
+																		<rul:FirstValue Type="integer" FromConstant="0" FromDataDef="CommercialPropertyValueReportingFormTable/CommercialPropertyValueReportingForm[1]/@AvgVal" Order="DataDefInputParamConstant" />
+																	</rul:Then>
+																	<rul:Else>
+																		<rul:FirstValue Type="integer" FromConstant="0" FromDataDef="CommercialPropertyValueReportingFormTable/CommercialPropertyValueReportingForm[1]/@EstdAvgVal" Order="DataDefInputParamConstant" />
+																	</rul:Else>
+																</rul:If>
+															</rul:Then>
+														</rul:When>
+														<rul:When>
+															<rul:Test>
+																<rul:And>
+																	<rul:Equal>
+																		<rul:FirstValue Type="string" FromConstant="" FromDataDef="@MultiLocAvgRatesIndicator" Order="DataDefInputParamConstant" />
+																		<rul:Constant Type="string">Used</rul:Constant>
+																	</rul:Equal>
+																	<rul:IsNotNull>
+																		<rul:Value Type="integer" FromParam="ISOSSINodeRenewalParam" />
+																	</rul:IsNotNull>
+																	<rul:Equal>
+																		<rul:Value Type="integer" FromParam="ISOSSINodeRenewalParam" />
+																		<rul:Constant Type="integer">0</rul:Constant>
+																	</rul:Equal>
+																</rul:And>
+															</rul:Test>
+															<rul:Then>
+																<rul:If>
+																	<rul:Test>
+																		<rul:GreaterThan>
+																			<rul:FirstValue Type="integer" FromConstant="0" FromDataDef="CommercialPropertyValueReportingFormTable/CommercialPropertyValueReportingForm[1]/@AvgVal" Order="DataDefInputParamConstant" />
+																			<rul:Constant Type="integer">0</rul:Constant>
+																		</rul:GreaterThan>
+																	</rul:Test>
+																	<rul:Then>
+																		<rul:FirstValue Type="integer" FromConstant="0" FromDataDef="CommercialPropertyValueReportingFormTable/CommercialPropertyValueReportingForm[1]/@AvgVal" Order="DataDefInputParamConstant" />
+																	</rul:Then>
+																	<rul:Else>
+																		<rul:FirstValue Type="integer" FromConstant="0" FromDataDef="CommercialPropertyValueReportingFormTable/CommercialPropertyValueReportingForm[1]/@EstdAvgVal" Order="DataDefInputParamConstant" />
+																	</rul:Else>
+																</rul:If>
+															</rul:Then>
+														</rul:When>
+														<rul:When>
+															<rul:Test>
+																<rul:And>
+																	<rul:Equal>
+																		<rul:FirstValue Type="string" FromConstant="" FromDataDef="@MultiLocAvgRatesIndicator" Order="DataDefInputParamConstant" />
+																		<rul:Constant Type="string">Not Used</rul:Constant>
+																	</rul:Equal>
+																	<rul:Equal>
+																		<rul:FirstValue Type="string" FromConstant="" FromDataDef="@IncludedInBlkt" Order="DataDefInputParamConstant" />
+																		<rul:Constant Type="string">Yes</rul:Constant>
+																	</rul:Equal>
+																</rul:And>
+															</rul:Test>
+															<rul:Then>
+																<rul:FirstValue Type="integer" FromConstant="0" FromDataDef="@FullPrsnlPropValue" Order="DataDefInputParamConstant" />
+															</rul:Then>
+														</rul:When>
+														<rul:Otherwise>
+															<rul:FirstValue Type="integer" FromConstant="0" FromDataDef="@Limit" Order="DataDefInputParamConstant" />
+														</rul:Otherwise>
+													</rul:Choose>
+												</rul:Then>
+											</rul:When>
+											<rul:When>
+												<rul:Test>
+													<rul:NotExist AtInputDataDef="CommercialPropertyValueReportingFormTable/CommercialPropertyValueReportingForm" />
+												</rul:Test>
+												<rul:Then>
+													<rul:If>
+														<rul:Test>
+															<rul:Equal>
+																<rul:FirstValue Type="string" FromConstant="" FromDataDef="@IncludedInBlkt" Order="DataDefInputParamConstant" />
+																<rul:Constant Type="string">Yes</rul:Constant>
+															</rul:Equal>
+														</rul:Test>
+														<rul:Then>
+															<rul:FirstValue Type="integer" FromConstant="0" FromDataDef="@FullPrsnlPropValue" Order="DataDefInputParamConstant" />
+														</rul:Then>
+														<rul:Else>
+															<rul:FirstValue Type="integer" FromConstant="0" FromDataDef="@Limit" Order="DataDefInputParamConstant" />
+														</rul:Else>
+													</rul:If>
+												</rul:Then>
+											</rul:When>
+										</rul:Choose>
+									</rul:Then>
+								</rul:If>
+							</rul:ForEach>
+						</rul:WithArgs>
+						<rul:FirstValue Type="integer" FromConstant="0" FromDataDef="@SpecialTotAmtInsurance" Order="DataDefInputParamConstant" />
+					</rul:Sum>
+				</rul:Arg>
+				<rul:Value Type="integer" ToDataDef="@SpecialTotAmtInsurance" FromParam="SpecialTotAmtInsuranceIncrementParam" />
+			</rul:WithArgs>
+			<rul:WithArgs>
+				<rul:Arg Type="integer" Param="TotalPrsnlPropLimitIncrementParam">
+					<rul:Sum>
+						<rul:ForEach AtInputDataDef="CommercialPropertyPersonalPropertyTable/CommercialPropertyPersonalProperty">
+							<rul:If>
+								<rul:Test>
+									<rul:IsNotNull>
+										<rul:Value Type="integer" FromDataDef="@Limit" />
+									</rul:IsNotNull>
+								</rul:Test>
+								<rul:Then>
+									<rul:FirstValue Type="integer" FromConstant="0" FromDataDef="@Limit" Order="DataDefInputParamConstant" />
+								</rul:Then>
+							</rul:If>
+						</rul:ForEach>
+						<rul:FirstValue Type="integer" FromConstant="0" FromDataDef="@TotalPrsnlPropLimit" Order="DataDefInputParamConstant" />
+					</rul:Sum>
+				</rul:Arg>
+				<rul:Value Type="integer" ToDataDef="@TotalPrsnlPropLimit" FromParam="TotalPrsnlPropLimitIncrementParam" />
+			</rul:WithArgs>
+			<rul:WithArgs>
+				<rul:Arg Type="integer" Param="TotalLOIToUseIncrementParam">
+					<rul:Sum>
+						<rul:ForEach AtInputDataDef="CommercialPropertyPersonalPropertyTable/CommercialPropertyPersonalProperty">
+							<rul:If>
+								<rul:Test>
+									<rul:IsNotNull>
+										<rul:Value Type="integer" FromDataDef="@LimitToUse" />
+									</rul:IsNotNull>
+								</rul:Test>
+								<rul:Then>
+									<rul:FirstValue Type="integer" FromConstant="0" FromDataDef="@LimitToUse" Order="DataDefInputParamConstant" />
+								</rul:Then>
+							</rul:If>
+						</rul:ForEach>
+						<rul:FirstValue Type="integer" FromConstant="0" FromDataDef="@TotalLOIToUse" Order="DataDefInputParamConstant" />
+					</rul:Sum>
+				</rul:Arg>
+				<rul:Value Type="integer" ToDataDef="@TotalLOIToUse" FromParam="TotalLOIToUseIncrementParam" />
+			</rul:WithArgs>
+			<rul:RunRule Type="none" FileName="CommercialPropertyOccupClassRules" Rule="SetWindstormHailTotAmtInsurance" ClearCache="true" />
+		</rul:Sequence>
+	</rul:Rule>
+	<rul:Rule Name="SetWindstormHailTotAmtInsurance" Type="none" DataDefGroup="CommercialPropertyOccupClass">
+		<rul:Sequence>
+			<rul:Constant Type="integer" ToDataDef="@WindstormOrHailTotAmtInsurance">0</rul:Constant>
+			<rul:WithArgs>
+				<rul:Arg Type="integer" Param="WindstormOrHailTotAmtInsuranceIncrementParam">
+					<rul:Sum>
+						<rul:WithArgs>
+							<rul:Arg Type="string" Param="PolicyNodePolicyTypeParam">
+								<rul:FirstValue Type="string" FromConstant="" FromDataDef="ancestor::CommercialProperty/@PolicyType" Order="DataDefInputParamConstant" />
+							</rul:Arg>
+							<rul:ForEach AtInputDataDef="CommercialPropertyPersonalPropertyTable/CommercialPropertyPersonalProperty">
+								<rul:Choose>
+									<rul:When>
+										<rul:Test>
+											<rul:IsNull>
+												<rul:Value Type="integer" FromDataDef="@WindstormHailLimit" />
+											</rul:IsNull>
+										</rul:Test>
+										<rul:Then>
+											<rul:Constant Type="integer">0</rul:Constant>
+										</rul:Then>
+									</rul:When>
+									<rul:When>
+										<rul:Test>
+											<rul:And>
+												<rul:Equal>
+													<rul:Value Type="string" FromParam="PolicyNodePolicyTypeParam" />
+													<rul:Constant Type="string">Commercial Property Policy</rul:Constant>
+												</rul:Equal>
+												<rul:NotExist AtInputDataDef="CommercialPropertyWindstormOrHailExclusionPrsnlPropTable/CommercialPropertyWindstormOrHailExclusionPrsnlProp" />
+											</rul:And>
+										</rul:Test>
+										<rul:Then>
+											<rul:FirstValue Type="integer" FromConstant="0" FromDataDef="@WindstormHailLimit" Order="DataDefInputParamConstant" />
+										</rul:Then>
+									</rul:When>
+									<rul:When>
+										<rul:Test>
+											<rul:And>
+												<rul:Equal>
+													<rul:Value Type="string" FromParam="PolicyNodePolicyTypeParam" />
+													<rul:Constant Type="string">Standard Property Policy</rul:Constant>
+												</rul:Equal>
+												<rul:NotExist AtInputDataDef="CommercialPropertyWindstormOrHailExclusionPrsnlPropTable/CommercialPropertyWindstormOrHailExclusionPrsnlProp" />
+												<rul:Or>
+													<rul:Equal>
+														<rul:FirstValue Type="string" FromConstant="" FromDataDef="@CauseOfLoss" Order="DataDefInputParamConstant" />
+														<rul:Constant Type="string">Fire and Allied Lines</rul:Constant>
+													</rul:Equal>
+													<rul:Equal>
+														<rul:FirstValue Type="string" FromConstant="" FromDataDef="@CauseOfLoss" Order="DataDefInputParamConstant" />
+														<rul:Constant Type="string">Fire, Vandalism and Allied Lines</rul:Constant>
+													</rul:Equal>
+													<rul:Equal>
+														<rul:FirstValue Type="string" FromConstant="" FromDataDef="@CauseOfLoss" Order="DataDefInputParamConstant" />
+														<rul:Constant Type="string">Fire, Sprinkler Leakage and Allied Lines</rul:Constant>
+													</rul:Equal>
+													<rul:Equal>
+														<rul:FirstValue Type="string" FromConstant="" FromDataDef="@CauseOfLoss" Order="DataDefInputParamConstant" />
+														<rul:Constant Type="string">Fire, Vandalism, Sprinkler Leakage and Allied Lines</rul:Constant>
+													</rul:Equal>
+												</rul:Or>
+											</rul:And>
+										</rul:Test>
+										<rul:Then>
+											<rul:FirstValue Type="integer" FromConstant="0" FromDataDef="@WindstormHailLimit" Order="DataDefInputParamConstant" />
+										</rul:Then>
+									</rul:When>
+								</rul:Choose>
+							</rul:ForEach>
+						</rul:WithArgs>
+						<rul:FirstValue Type="integer" FromConstant="0" FromDataDef="@WindstormOrHailTotAmtInsurance" Order="DataDefInputParamConstant" />
+					</rul:Sum>
+				</rul:Arg>
+				<rul:Value Type="integer" ToDataDef="@WindstormOrHailTotAmtInsurance" FromParam="WindstormOrHailTotAmtInsuranceIncrementParam" />
+			</rul:WithArgs>
+		</rul:Sequence>
+	</rul:Rule>
+	<rul:Rule Name="SetAddlLocationsSpclCoinsuranceGenInfoCounters" Type="none" DataDefGroup="CommercialPropertyOccupClass">
+		<rul:Sequence>
+			<rul:WithArgs>
+				<rul:Arg Type="integer" Param="calcAddlLocsSpclCoinsCounter">
+					<rul:FirstNonNull Type="integer">
+						<rul:WithArgs>
+							<rul:Arg Type="boolean" Param="noAddlLocsSpclCoinsFormsAttached">
+								<rul:FirstNonNull Type="boolean">
+									<rul:ForEach AtDataDef="CommercialPropertyPersonalPropertyTable/CommercialPropertyPersonalProperty">
+										<rul:If>
+											<rul:Test>
+												<rul:NotExist AtInputDataDef="CommercialPropertyAdditionalLocationsSpecialCoinsuranceProvisionsTable/CommercialPropertyAdditionalLocationsSpecialCoinsuranceProvisions" />
+											</rul:Test>
+											<rul:Then>
+												<rul:Constant Type="boolean">true</rul:Constant>
+											</rul:Then>
+										</rul:If>
+									</rul:ForEach>
+									<rul:Constant Type="boolean">false</rul:Constant>
+								</rul:FirstNonNull>
+							</rul:Arg>
+							<rul:If>
+								<rul:Test>
+									<rul:And>
+										<rul:Equal>
+											<rul:FirstValue Type="integer" FromConstant="0" FromDataDef="@PersonalPropertyCount" Order="DataDefInputParamConstant" />
+											<rul:Constant Type="integer">0</rul:Constant>
+										</rul:Equal>
+										<rul:Equal>
+											<rul:Value Type="boolean" FromParam="noAddlLocsSpclCoinsFormsAttached" />
+											<rul:Constant Type="boolean">true</rul:Constant>
+										</rul:Equal>
+									</rul:And>
+								</rul:Test>
+								<rul:Then>
+									<rul:Constant Type="integer">0</rul:Constant>
+								</rul:Then>
+								<rul:Else>
+									<rul:Sum>
+										<rul:ForEach AtDataDef="CommercialPropertyPersonalPropertyTable/CommercialPropertyPersonalProperty">
+											<rul:If>
+												<rul:Test>
+													<rul:Exist AtInputDataDef="CommercialPropertyAdditionalLocationsSpecialCoinsuranceProvisionsTable/CommercialPropertyAdditionalLocationsSpecialCoinsuranceProvisions" />
+												</rul:Test>
+												<rul:Then>
+													<rul:Constant Type="integer">1</rul:Constant>
+												</rul:Then>
+											</rul:If>
+										</rul:ForEach>
+									</rul:Sum>
+								</rul:Else>
+							</rul:If>
+						</rul:WithArgs>
+						<rul:Constant Type="integer">0</rul:Constant>
+					</rul:FirstNonNull>
+				</rul:Arg>
+				<rul:Value Type="integer" ToDataDef="@AddlLocsSpclCoinsCounter" FromParam="calcAddlLocsSpclCoinsCounter" />
+			</rul:WithArgs>
+			<rul:WithArgs>
+				<rul:Arg Type="integer" Param="calcEQCovCounter">
+					<rul:FirstNonNull Type="integer">
+						<rul:WithArgs>
+							<rul:Arg Type="boolean" Param="noAddlLocsSpclCoinsFormsAttached">
+								<rul:FirstNonNull Type="boolean">
+									<rul:ForEach AtDataDef="CommercialPropertyPersonalPropertyTable/CommercialPropertyPersonalProperty">
+										<rul:If>
+											<rul:Test>
+												<rul:NotExist AtInputDataDef="CommercialPropertyAdditionalLocationsSpecialCoinsuranceProvisionsTable/CommercialPropertyAdditionalLocationsSpecialCoinsuranceProvisions" />
+											</rul:Test>
+											<rul:Then>
+												<rul:Constant Type="boolean">true</rul:Constant>
+											</rul:Then>
+										</rul:If>
+									</rul:ForEach>
+									<rul:Constant Type="boolean">false</rul:Constant>
+								</rul:FirstNonNull>
+							</rul:Arg>
+							<rul:If>
+								<rul:Test>
+									<rul:And>
+										<rul:Equal>
+											<rul:FirstValue Type="integer" FromConstant="0" FromDataDef="@PersonalPropertyCount" Order="DataDefInputParamConstant" />
+											<rul:Constant Type="integer">0</rul:Constant>
+										</rul:Equal>
+										<rul:Equal>
+											<rul:Value Type="boolean" FromParam="noAddlLocsSpclCoinsFormsAttached" />
+											<rul:Constant Type="boolean">true</rul:Constant>
+										</rul:Equal>
+									</rul:And>
+								</rul:Test>
+								<rul:Then>
+									<rul:Constant Type="integer">0</rul:Constant>
+								</rul:Then>
+								<rul:Else>
+									<rul:Sum>
+										<rul:ForEach AtDataDef="CommercialPropertyPersonalPropertyTable/CommercialPropertyPersonalProperty">
+											<rul:If>
+												<rul:Test>
+													<rul:Exist AtInputDataDef="CommercialPropertyAdditionalLocationsSpecialCoinsuranceProvisionsTable/CommercialPropertyAdditionalLocationsSpecialCoinsuranceProvisions" />
+												</rul:Test>
+												<rul:Then>
+													<rul:If>
+														<rul:Test>
+															<rul:Equal>
+																<rul:FirstValue Type="string" FromConstant="" FromDataDef="@EQCovIndicator" Order="DataDefInputParamConstant" />
+																<rul:Constant Type="string">Yes, Not Included in Blanket</rul:Constant>
+															</rul:Equal>
+														</rul:Test>
+														<rul:Then>
+															<rul:Constant Type="integer">1</rul:Constant>
+														</rul:Then>
+													</rul:If>
+												</rul:Then>
+											</rul:If>
+										</rul:ForEach>
+									</rul:Sum>
+								</rul:Else>
+							</rul:If>
+						</rul:WithArgs>
+						<rul:Constant Type="integer">0</rul:Constant>
+					</rul:FirstNonNull>
+				</rul:Arg>
+				<rul:Value Type="integer" ToDataDef="@EQCovCounter" FromParam="calcEQCovCounter" />
+			</rul:WithArgs>
+			<rul:WithArgs>
+				<rul:Arg Type="integer" Param="calcEQSubLimitCounter">
+					<rul:FirstNonNull Type="integer">
+						<rul:WithArgs>
+							<rul:Arg Type="boolean" Param="noAddlLocsSpclCoinsFormsAttached">
+								<rul:FirstNonNull Type="boolean">
+									<rul:ForEach AtDataDef="CommercialPropertyPersonalPropertyTable/CommercialPropertyPersonalProperty">
+										<rul:If>
+											<rul:Test>
+												<rul:NotExist AtInputDataDef="CommercialPropertyAdditionalLocationsSpecialCoinsuranceProvisionsTable/CommercialPropertyAdditionalLocationsSpecialCoinsuranceProvisions" />
+											</rul:Test>
+											<rul:Then>
+												<rul:Constant Type="boolean">true</rul:Constant>
+											</rul:Then>
+										</rul:If>
+									</rul:ForEach>
+									<rul:Constant Type="boolean">false</rul:Constant>
+								</rul:FirstNonNull>
+							</rul:Arg>
+							<rul:If>
+								<rul:Test>
+									<rul:And>
+										<rul:Equal>
+											<rul:FirstValue Type="integer" FromConstant="0" FromDataDef="@PersonalPropertyCount" Order="DataDefInputParamConstant" />
+											<rul:Constant Type="integer">0</rul:Constant>
+										</rul:Equal>
+										<rul:Equal>
+											<rul:Value Type="boolean" FromParam="noAddlLocsSpclCoinsFormsAttached" />
+											<rul:Constant Type="boolean">true</rul:Constant>
+										</rul:Equal>
+									</rul:And>
+								</rul:Test>
+								<rul:Then>
+									<rul:Constant Type="integer">0</rul:Constant>
+								</rul:Then>
+								<rul:Else>
+									<rul:Sum>
+										<rul:ForEach AtDataDef="CommercialPropertyPersonalPropertyTable/CommercialPropertyPersonalProperty">
+											<rul:If>
+												<rul:Test>
+													<rul:Exist AtInputDataDef="CommercialPropertyAdditionalLocationsSpecialCoinsuranceProvisionsTable/CommercialPropertyAdditionalLocationsSpecialCoinsuranceProvisions" />
+												</rul:Test>
+												<rul:Then>
+													<rul:If>
+														<rul:Test>
+															<rul:Equal>
+																<rul:FirstValue Type="string" FromConstant="" FromDataDef="@EQCauseOfLossForm" Order="DataDefInputParamConstant" />
+																<rul:Constant Type="string">Earthquake Sub-Limit Form (CP 10 45)</rul:Constant>
+															</rul:Equal>
+														</rul:Test>
+														<rul:Then>
+															<rul:Constant Type="integer">1</rul:Constant>
+														</rul:Then>
+													</rul:If>
+												</rul:Then>
+											</rul:If>
+										</rul:ForEach>
+									</rul:Sum>
+								</rul:Else>
+							</rul:If>
+						</rul:WithArgs>
+						<rul:Constant Type="integer">0</rul:Constant>
+					</rul:FirstNonNull>
+				</rul:Arg>
+				<rul:Value Type="integer" ToDataDef="@EQSubLimitCounter" FromParam="calcEQSubLimitCounter" />
+			</rul:WithArgs>
+		</rul:Sequence>
+	</rul:Rule>
+	<rul:Rule Name="ErcRunPostUnderwritingLogic" Type="none" DataDefGroup="CommercialPropertyOccupClass">
+		<rul:Sequence>
+			<rul:RunRule Type="none" FileName="CommercialPropertyOccupClassRules" Rule="RunPostUnderwritingLogicWindstormOrHail" ClearCache="true" />
+			<rul:If>
+				<rul:Test>
+					<rul:And>
+						<rul:Exist AtInputDataDef="CommercialPropertyLegalLiabilityCoverageFormOccupClassTable/CommercialPropertyLegalLiabilityCoverageFormOccupClass" />
+						<rul:Equal>
+							<rul:FirstValue Type="string" FromConstant="" FromDataDef="CommercialPropertyLegalLiabilityCoverageFormOccupClassTable/CommercialPropertyLegalLiabilityCoverageFormOccupClass[1]/@AddlInsurableInt" Order="DataDefInputParamConstant" />
+							<rul:Constant Type="string">Other</rul:Constant>
+						</rul:Equal>
+						<rul:Equal>
+							<rul:FirstValue Type="string" FromConstant="" FromDataDef="CommercialPropertyLegalLiabilityCoverageFormOccupClassTable/CommercialPropertyLegalLiabilityCoverageFormOccupClass[1]/@OtherAddlIntDesc" Order="DataDefInputParamConstant" />
+							<rul:Constant Type="string"></rul:Constant>
+						</rul:Equal>
+					</rul:And>
+				</rul:Test>
+				<rul:Then>
+					<rul:RunRule Type="none" FileName="MessageHelper" Rule="AddErrorMessage" ClearCache="true">
+						<rul:Arg Type="string" Param="Message">
+							<rul:Constant Type="string">Please describe the Other Additional Insurable Interest in CP 00 40</rul:Constant>
+						</rul:Arg>
+					</rul:RunRule>
+				</rul:Then>
+			</rul:If>
+			<rul:If>
+				<rul:Test>
+					<rul:And>
+						<rul:NotEqual>
+							<rul:FirstValue Type="string" FromConstant="" FromDataDef="ancestor::CommercialPropertyStructure/@WindstormOrHailDeductible" Order="DataDefInputParamConstant" />
+							<rul:Constant Type="string">Not Applicable</rul:Constant>
+						</rul:NotEqual>
+						<rul:Equal>
+							<rul:FirstValue Type="string" FromConstant="" FromDataDef="@CovForm" Order="DataDefInputParamConstant" />
+							<rul:Constant Type="string">Legal Liability Coverage Form</rul:Constant>
+						</rul:Equal>
+					</rul:And>
+				</rul:Test>
+				<rul:Then>
+					<rul:RunRule Type="none" FileName="MessageHelper" Rule="AddErrorMessage" ClearCache="true">
+						<rul:Arg Type="string" Param="Message">
+							<rul:Constant Type="string">Windstorm or Hail Deductible not valid with selected coverage form</rul:Constant>
+						</rul:Arg>
+					</rul:RunRule>
+				</rul:Then>
+			</rul:If>
+			<rul:If>
+				<rul:Test>
+					<rul:And>
+						<rul:Equal>
+							<rul:FirstValue Type="string" FromConstant="" FromDataDef="ancestor::CommercialPropertyStructure/@CovType" Order="DataDefInputParamConstant" />
+							<rul:Constant Type="string">No Coverage</rul:Constant>
+						</rul:Equal>
+						<rul:Equal>
+							<rul:FirstValue Type="string" FromConstant="" FromDataDef="@CovForm" Order="DataDefInputParamConstant" />
+							<rul:Constant Type="string">Class Rated Building Only, No Personal Property Coverage</rul:Constant>
+						</rul:Equal>
+					</rul:And>
+				</rul:Test>
+				<rul:Then>
+					<rul:RunRule Type="none" FileName="MessageHelper" Rule="AddErrorMessage" ClearCache="true">
+						<rul:Arg Type="string" Param="Message">
+							<rul:Constant Type="string">Please select a different Building or Occupancy Class Coverage</rul:Constant>
+						</rul:Arg>
+					</rul:RunRule>
+				</rul:Then>
+			</rul:If>
+			<rul:If>
+				<rul:Test>
+					<rul:Equal>
+						<rul:FirstValue Type="string" FromConstant="" FromDataDef="ancestor::CommercialPropertyStructure/@ClassCode" Order="DataDefInputParamConstant" />
+						<rul:Constant Type="string">1150</rul:Constant>
+					</rul:Equal>
+				</rul:Test>
+				<rul:Then>
+					<rul:RunRule Type="none" FileName="MessageHelper" Rule="AddErrorMessage" ClearCache="true">
+						<rul:Arg Type="string" Param="Message">
+							<rul:Constant Type="string">Occupancy Class and Personal Property are not valid with Class Code 1150</rul:Constant>
+						</rul:Arg>
+					</rul:RunRule>
+				</rul:Then>
+			</rul:If>
+		</rul:Sequence>
+	</rul:Rule>
+	<rul:Rule Name="RunPostUnderwritingLogicWindstormOrHail" Type="none" DataDefGroup="CommercialPropertyOccupClass">
+		<rul:Sequence />
+	</rul:Rule>
+	<rul:Rule Name="ErcSetBlanketRatesAndFactors" Type="none" DataDefGroup="CommercialPropertyOccupClass">
+		<rul:Sequence>
+			<rul:RunRule Type="none" FileName="CommercialPropertyOccupClassRules" Rule="SetBlanketRatesAndFactors" ClearCache="true" />
+		</rul:Sequence>
+	</rul:Rule>
+	<rul:Rule Name="ErcSetAddlLocationsSpclCoinsuranceGenInfoCounters" Type="none" DataDefGroup="CommercialPropertyOccupClass">
+		<rul:Sequence>
+			<rul:RunRule Type="none" FileName="CommercialPropertyOccupClassRules" Rule="ErcSetRatesAndFactors" ClearCache="true" />
+		</rul:Sequence>
+	</rul:Rule>
+	<rul:Rule Name="OccupClassInitialization" Type="none" DataDefGroup="CommercialPropertyOccupClass">
+		<rul:Sequence />
+	</rul:Rule>
+	<rul:Rule Name="InitializeLegalLiability" Type="none" DataDefGroup="CommercialPropertyOccupClass">
+		<rul:Sequence>
+			<rul:ForEach AtDataDef="CommercialPropertyLegalLiabilityCoverageFormOccupClassTable/CommercialPropertyLegalLiabilityCoverageFormOccupClass">
+				<rul:RunRule Type="none" FileName="CommercialPropertyLegalLiabilityCoverageFormOccupClassRules" Rule="InitializeColumns" ClearCache="true" />
+			</rul:ForEach>
+		</rul:Sequence>
+	</rul:Rule>
+	<rul:Rule Name="InitializeOccupClass" Type="none" DataDefGroup="CommercialPropertyOccupClass">
+		<rul:Sequence>
+			<rul:ForEach AtDataDef="CommercialPropertyPersonalPropertyTable/CommercialPropertyPersonalProperty">
+				<rul:RunRule Type="none" FileName="CommercialPropertyPersonalPropertyRules" Rule="InitializePersonalProperty" ClearCache="true" />
+			</rul:ForEach>
+		</rul:Sequence>
+	</rul:Rule>
+	<rul:Rule Name="InitialzePersPropCauseOfLossToUse" Type="none" DataDefGroup="CommercialPropertyOccupClass">
+		<rul:Sequence />
+	</rul:Rule>
+	<rul:Rule Name="ErcSetStatisticalCodes" Type="none" DataDefGroup="CommercialPropertyOccupClass">
+		<rul:Sequence>
+			<rul:If>
+				<rul:Test>
+					<rul:Exist AtInputDataDef="ancestor::MasterCFCW/Policy" />
+				</rul:Test>
+				<rul:Then>
+					<rul:RunRule Type="none" FileName="CommercialPropertyOccupClassRules" Rule="SetLCMStatCODE" ClearCache="true" />
+				</rul:Then>
+			</rul:If>
+		</rul:Sequence>
+	</rul:Rule>
+	<rul:Rule Name="SetLCMStatCODE" Type="none" DataDefGroup="CommercialPropertyOccupClass">
+		<rul:Sequence>
+			<rul:If>
+				<rul:Test>
+					<rul:LessThan>
+						<rul:Product>
+							<rul:Round DecimalPlaces="2">
+								<rul:FirstValue Type="decimal" FromConstant="0" FromDataDef="ancestor::CommercialProperty/@LossCostMultiplier" Order="DataDefInputParamConstant" />
+							</rul:Round>
+							<rul:Constant Type="integer">100</rul:Constant>
+						</rul:Product>
+						<rul:Constant Type="decimal">100</rul:Constant>
+					</rul:LessThan>
+				</rul:Test>
+				<rul:Then>
+					<rul:Sequence>
+						<rul:RunRule Type="string" ToDataDef="@LossCostMultiplierStatCode" FileName="CommercialPropertyOccupClassRules" Rule="LookupLossCostMultiplierStatCode" ClearCache="true">
+							<rul:Arg Type="string" Param="lossCostMultiplierStatCode">
+								<rul:Convert Type="string">
+									<rul:Product>
+										<rul:Round DecimalPlaces="2">
+											<rul:FirstValue Type="decimal" FromConstant="0" FromDataDef="ancestor::CommercialProperty/@LossCostMultiplier" Order="DataDefInputParamConstant" />
+										</rul:Round>
+										<rul:Constant Type="integer">100</rul:Constant>
+									</rul:Product>
+								</rul:Convert>
+							</rul:Arg>
+						</rul:RunRule>
+					</rul:Sequence>
+				</rul:Then>
+				<rul:Else>
+					<rul:Sequence>
+						<rul:Convert Type="string" ToDataDef="@LossCostMultiplierStatCode">
+							<rul:Product>
+								<rul:Round DecimalPlaces="2">
+									<rul:FirstValue Type="decimal" FromConstant="0" FromDataDef="ancestor::CommercialProperty/@LossCostMultiplier" Order="DataDefInputParamConstant" />
+								</rul:Round>
+								<rul:Constant Type="integer">100</rul:Constant>
+							</rul:Product>
+						</rul:Convert>
+					</rul:Sequence>
+				</rul:Else>
+			</rul:If>
+		</rul:Sequence>
+	</rul:Rule>
+	<rul:Rule Name="ErcProcess" Type="none" DataDefGroup="CommercialPropertyOccupClass">
+		<rul:Sequence>
+			<rul:RunRule Type="none" FileName="CommercialPropertyOccupClassRules" Rule="ErcDoConditionalMandatoryLogic" ClearCache="true" />
+			<rul:RunRule Type="none" FileName="CommercialPropertyOccupClassRules" Rule="ErcSetRatesAndFactors" ClearCache="true" />
+			<rul:ForEach AtDataDef="CommercialPropertyBuildingAndPersonalPropertyCoverageFormOccupClassTable/CommercialPropertyBuildingAndPersonalPropertyCoverageFormOccupClass">
+				<rul:RunRule Type="none" FileName="CommercialPropertyBuildingAndPersonalPropertyCoverageFormOccupClassRules" Rule="ErcProcess" ClearCache="true" />
+			</rul:ForEach>
+			<rul:ForEach AtDataDef="CommercialPropertyCondominiumAssociationChangesStandardPropertyPolicyOccupClassTable/CommercialPropertyCondominiumAssociationChangesStandardPropertyPolicyOccupClass">
+				<rul:RunRule Type="none" FileName="CommercialPropertyCondominiumAssociationChangesStandardPropertyPolicyOccupClassRules" Rule="ErcProcess" ClearCache="true" />
+			</rul:ForEach>
+			<rul:ForEach AtDataDef="CommercialPropertyCondominiumAssociationCoverageFormOccupClassTable/CommercialPropertyCondominiumAssociationCoverageFormOccupClass">
+				<rul:RunRule Type="none" FileName="CommercialPropertyCondominiumAssociationCoverageFormOccupClassRules" Rule="ErcProcess" ClearCache="true" />
+			</rul:ForEach>
+			<rul:ForEach AtDataDef="CommercialPropertyCondominiumCommercialUnitOwnersChangesStandardPropertyPolicyTable/CommercialPropertyCondominiumCommercialUnitOwnersChangesStandardPropertyPolicy">
+				<rul:RunRule Type="none" FileName="CommercialPropertyCondominiumCommercialUnitOwnersChangesStandardPropertyPolicyRules" Rule="ErcProcess" ClearCache="true" />
+			</rul:ForEach>
+			<rul:ForEach AtDataDef="CommercialPropertyCondominiumCommercialUnitOwnersCoverageFormTable/CommercialPropertyCondominiumCommercialUnitOwnersCoverageForm">
+				<rul:RunRule Type="none" FileName="CommercialPropertyCondominiumCommercialUnitOwnersCoverageFormRules" Rule="ErcProcess" ClearCache="true" />
+			</rul:ForEach>
+			<rul:ForEach AtDataDef="CommercialPropertyHigherLimitsOccupClassTable/CommercialPropertyHigherLimitsOccupClass">
+				<rul:RunRule Type="none" FileName="CommercialPropertyHigherLimitsOccupClassRules" Rule="ErcProcess" ClearCache="true" />
+			</rul:ForEach>
+			<rul:ForEach AtDataDef="CommercialPropertyLegalLiabilityCoverageFormOccupClassTable/CommercialPropertyLegalLiabilityCoverageFormOccupClass">
+				<rul:RunRule Type="none" FileName="CommercialPropertyLegalLiabilityCoverageFormOccupClassRules" Rule="ErcProcess" ClearCache="true" />
+			</rul:ForEach>
+			<rul:Locate AtDataDef="CommercialPropertyOccupClassTemporarilyInPortableStorageUnits">
+				<rul:RunRule Type="none" FileName="CommercialPropertyOccupClassTemporarilyInPortableStorageUnitsRules" Rule="ErcProcess" ClearCache="true" />
+			</rul:Locate>
+			<rul:ForEach AtDataDef="CommercialPropertyPersonalPropertyTable/CommercialPropertyPersonalProperty">
+				<rul:RunRule Type="none" FileName="CommercialPropertyPersonalPropertyRules" Rule="ErcProcess" ClearCache="true" />
+			</rul:ForEach>
+			<rul:ForEach AtDataDef="CommercialPropertyTobaccoSalesWarehousesCoverageFormTable/CommercialPropertyTobaccoSalesWarehousesCoverageForm">
+				<rul:RunRule Type="none" FileName="CommercialPropertyTobaccoSalesWarehousesCoverageFormRules" Rule="ErcProcess" ClearCache="true" />
+			</rul:ForEach>
+			<rul:RunRule Type="none" FileName="CommercialPropertyOccupClassRules" Rule="ErcRunPostUnderwritingLogic" ClearCache="true" />
+		</rul:Sequence>
+	</rul:Rule>
+	<rul:Rule Name="LookupOccupCategoryRiskSeverity" Type="string" DataDefGroup="CommercialPropertyOccupClass">
+		<rul:FirstNonNull Type="string">
+			<rul:Lookup Type="string" MatrixCol="Severity" MatrixDef="OccupCategoryRiskSeverityDef" MatrixFromConstant="OccupCategoryRiskSeverity" ResultMode="FirstResult">
+				<rul:Keys>
+					<rul:Value Type="string" FromDataDef="/State/@Code" />
+					<rul:FirstValue Type="string" FromConstant="" FromDataDef="@OccupCategory" Order="DataDefInputParamConstant" />
+					<rul:FirstValue Type="string" FromConstant="" FromDataDef="@ClassCode" Order="DataDefInputParamConstant" />
+				</rul:Keys>
+			</rul:Lookup>
+			<rul:Lookup Type="string" MatrixCol="Severity" MatrixDef="OccupCategoryRiskSeverityDef" MatrixFromConstant="OccupCategoryRiskSeverity" ResultMode="SingleResult">
+				<rul:Keys>
+					<rul:Constant Type="string">CW</rul:Constant>
+					<rul:FirstValue Type="string" FromConstant="" FromDataDef="@OccupCategory" Order="DataDefInputParamConstant" />
+					<rul:FirstValue Type="string" FromConstant="" FromDataDef="@ClassCode" Order="DataDefInputParamConstant" />
+				</rul:Keys>
+			</rul:Lookup>
+		</rul:FirstNonNull>
+	</rul:Rule>
+	<rul:Rule Name="LookupLossCostMultiplierStatCode" Type="string" DataDefGroup="CommercialPropertyOccupClass">
+		<rul:Param Name="lossCostMultiplierStatCode" Type="string" />
+		<rul:FirstNonNull Type="string">
+			<rul:Lookup Type="string" MatrixCol="Code" MatrixDef="LossCostMultiplierStatCodeDef" MatrixFromConstant="LossCostMultiplierStatCode" ResultMode="FirstResult">
+				<rul:Keys>
+					<rul:Value Type="string" FromDataDef="/State/@Code" />
+					<rul:Value Type="string" FromParam="lossCostMultiplierStatCode" />
+				</rul:Keys>
+			</rul:Lookup>
+			<rul:Lookup Type="string" MatrixCol="Code" MatrixDef="LossCostMultiplierStatCodeDef" MatrixFromConstant="LossCostMultiplierStatCode" ResultMode="SingleResult">
+				<rul:Keys>
+					<rul:Constant Type="string">CW</rul:Constant>
+					<rul:Value Type="string" FromParam="lossCostMultiplierStatCode" />
+				</rul:Keys>
+			</rul:Lookup>
+		</rul:FirstNonNull>
+	</rul:Rule>
+</rul:Rules>

@@ -1,0 +1,5 @@
+"StateCode","PercentInsToExposure","Code"
+"CW","75% or more","B"
+"CW","50% to 74.9%","C"
+"CW","25% to 49.9%","D"
+"CW","Under 25%","E"

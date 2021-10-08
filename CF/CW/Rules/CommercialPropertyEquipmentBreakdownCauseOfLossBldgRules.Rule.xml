@@ -1,0 +1,264 @@
+<rul:Rules xmlns:rul="http://www.verisk.com/iso/erc/Rule">
+	<rul:Rule Name="InitializeRuleSet" DataDefGroup="CommercialPropertyEquipmentBreakdownCauseOfLossBldg">
+		<rul:Sequence>
+			<rul:Locate AtDataDef="CommercialPropertyEquipmentBreakdownCauseOfLossBldgAmmoniaContaminationCov">
+				<rul:RunRule Type="none" FileName="CommercialPropertyEquipmentBreakdownCauseOfLossBldgAmmoniaContaminationCovRules" Rule="InitializeRuleSet" ClearCache="true" />
+			</rul:Locate>
+			<rul:Locate AtDataDef="CommercialPropertyEquipmentBreakdownCauseOfLossBldgEBCov">
+				<rul:RunRule Type="none" FileName="CommercialPropertyEquipmentBreakdownCauseOfLossBldgEBCovRules" Rule="InitializeRuleSet" ClearCache="true" />
+			</rul:Locate>
+			<rul:Locate AtDataDef="CommercialPropertyEquipmentBreakdownCauseOfLossBldgHazardousSubstanceOtherThanAmmoniaCov">
+				<rul:RunRule Type="none" FileName="CommercialPropertyEquipmentBreakdownCauseOfLossBldgHazardousSubstanceOtherThanAmmoniaCovRules" Rule="InitializeRuleSet" ClearCache="true" />
+			</rul:Locate>
+		</rul:Sequence>
+	</rul:Rule>
+	<rul:Rule Name="CalculateTotalPremium" Type="decimal" DataDefGroup="CommercialPropertyEquipmentBreakdownCauseOfLossBldg">
+		<rul:Sum>
+			<rul:Locate AtDataDef="CommercialPropertyEquipmentBreakdownCauseOfLossBldgAmmoniaContaminationCov">
+				<rul:RunRule Type="decimal" FileName="CommercialPropertyEquipmentBreakdownCauseOfLossBldgAmmoniaContaminationCovRules" Rule="CalculateTotalPremium" ClearCache="true" />
+			</rul:Locate>
+			<rul:Locate AtDataDef="CommercialPropertyEquipmentBreakdownCauseOfLossBldgEBCov">
+				<rul:RunRule Type="decimal" FileName="CommercialPropertyEquipmentBreakdownCauseOfLossBldgEBCovRules" Rule="CalculateTotalPremium" ClearCache="true" />
+			</rul:Locate>
+			<rul:Locate AtDataDef="CommercialPropertyEquipmentBreakdownCauseOfLossBldgHazardousSubstanceOtherThanAmmoniaCov">
+				<rul:RunRule Type="decimal" FileName="CommercialPropertyEquipmentBreakdownCauseOfLossBldgHazardousSubstanceOtherThanAmmoniaCovRules" Rule="CalculateTotalPremium" ClearCache="true" />
+			</rul:Locate>
+			<rul:If>
+				<rul:Test>
+					<rul:And>
+						<rul:Equal>
+							<rul:FirstValue Type="integer" FromConstant="0" FromDataDef="@PremiumIndicator" Order="DataDefInputParamConstant" />
+							<rul:Constant Type="integer">1</rul:Constant>
+						</rul:Equal>
+						<rul:NotEqual>
+							<rul:FirstValue Type="decimal" FromConstant="0" FromDataDef="@Premium" Order="DataDefInputParamConstant" />
+							<rul:Constant Type="decimal">0</rul:Constant>
+						</rul:NotEqual>
+					</rul:And>
+				</rul:Test>
+				<rul:Then>
+					<rul:FirstValue Type="decimal" FromConstant="0" FromDataDef="@Premium" Order="DataDefInputParamConstant" />
+				</rul:Then>
+				<rul:Else>
+					<rul:Constant Type="decimal">0</rul:Constant>
+				</rul:Else>
+			</rul:If>
+		</rul:Sum>
+	</rul:Rule>
+	<rul:Rule Name="ErcSetRatesAndFactors" Type="none" DataDefGroup="CommercialPropertyEquipmentBreakdownCauseOfLossBldg">
+		<rul:Sequence>
+			<rul:RunRule Type="none" FileName="CommercialPropertyEquipmentBreakdownCauseOfLossBldgRules" Rule="SetDeductibleFactor" ClearCache="true" />
+			<rul:RunRule Type="none" FileName="CommercialPropertyEquipmentBreakdownCauseOfLossBldgRules" Rule="SetOccupancyGroupNumber" ClearCache="true" />
+			<rul:RunRule Type="none" FileName="CommercialPropertyEquipmentBreakdownCauseOfLossBldgRules" Rule="SetLossCost" ClearCache="true" />
+		</rul:Sequence>
+	</rul:Rule>
+	<rul:Rule Name="SetDeductibleFactor" Type="none" DataDefGroup="CommercialPropertyEquipmentBreakdownCauseOfLossBldg">
+		<rul:Sequence>
+			<rul:Choose>
+				<rul:When>
+					<rul:Test>
+						<rul:And>
+							<rul:IsNotNull>
+								<rul:Value Type="string" FromDataDef="../../@Deductible" />
+							</rul:IsNotNull>
+							<rul:Equal>
+								<rul:FirstValue Type="string" FromConstant="" FromDataDef="../../@Deductible" Order="DataDefInputParamConstant" />
+								<rul:Constant Type="string">250</rul:Constant>
+							</rul:Equal>
+						</rul:And>
+					</rul:Test>
+					<rul:Then>
+						<rul:Sequence>
+							<rul:RunRule Type="decimal" ToDataDef="@DeductibleFactor" FileName="CommercialPropertyEquipmentBreakdownCauseOfLossBldgRules" Rule="LookupDeductible250Factor" ClearCache="true" />
+						</rul:Sequence>
+					</rul:Then>
+				</rul:When>
+				<rul:When>
+					<rul:Test>
+						<rul:IsNotNull>
+							<rul:Value Type="decimal" FromDataDef="../../@DeductibleFactorBroad" />
+						</rul:IsNotNull>
+					</rul:Test>
+					<rul:Then>
+						<rul:Copy Type="decimal" ToDataDef="@DeductibleFactor" FromDataDef="../../@DeductibleFactorBroad" />
+					</rul:Then>
+				</rul:When>
+			</rul:Choose>
+		</rul:Sequence>
+	</rul:Rule>
+	<rul:Rule Name="SetOccupancyGroupNumber" Type="none" DataDefGroup="CommercialPropertyEquipmentBreakdownCauseOfLossBldg">
+		<rul:Sequence>
+			<rul:If>
+				<rul:Test>
+					<rul:And>
+						<rul:NotEqual>
+							<rul:FirstValue Type="string" FromConstant="" FromDataDef="@OccupancyCategory" Order="DataDefInputParamConstant" />
+							<rul:Constant Type="string"></rul:Constant>
+						</rul:NotEqual>
+						<rul:NotEqual>
+							<rul:FirstValue Type="string" FromConstant="" FromDataDef="../../@ClassCode" Order="DataDefInputParamConstant" />
+							<rul:Constant Type="string"></rul:Constant>
+						</rul:NotEqual>
+						<rul:NotEqual>
+							<rul:FirstValue Type="string" FromConstant="" FromDataDef="@OccupancyGroup" Order="DataDefInputParamConstant" />
+							<rul:Constant Type="string"></rul:Constant>
+						</rul:NotEqual>
+					</rul:And>
+				</rul:Test>
+				<rul:Then>
+					<rul:Sequence>
+						<rul:RunRule Type="integer" ToDataDef="@OccupancyGroupNumber" FileName="CommercialPropertyEquipmentBreakdownCauseOfLossBldgRules" Rule="LookupOccupancyGroupNumber" ClearCache="true" />
+					</rul:Sequence>
+				</rul:Then>
+				<rul:Else>
+					<rul:Sequence>
+						<rul:Constant Type="integer" ToDataDef="@OccupancyGroupNumber">0</rul:Constant>
+					</rul:Sequence>
+				</rul:Else>
+			</rul:If>
+		</rul:Sequence>
+	</rul:Rule>
+	<rul:Rule Name="SetLossCost" Type="none" DataDefGroup="CommercialPropertyEquipmentBreakdownCauseOfLossBldg">
+		<rul:Sequence>
+			<rul:If>
+				<rul:Test>
+					<rul:And>
+						<rul:IsNotNull>
+							<rul:Value Type="integer" FromDataDef="../../@TotAmtInsurance" />
+						</rul:IsNotNull>
+						<rul:GreaterThan>
+							<rul:FirstValue Type="integer" FromConstant="0" FromDataDef="@OccupancyGroupNumber" Order="DataDefInputParamConstant" />
+							<rul:Constant Type="integer">0</rul:Constant>
+						</rul:GreaterThan>
+					</rul:And>
+				</rul:Test>
+				<rul:Then>
+					<rul:Sequence>
+						<rul:RunRule Type="decimal" ToDataDef="@LossCost" FileName="CommercialPropertyEquipmentBreakdownCauseOfLossBldgRules" Rule="LookupLossCost" ClearCache="true" />
+					</rul:Sequence>
+				</rul:Then>
+				<rul:Else>
+					<rul:Sequence>
+						<rul:Constant Type="decimal" ToDataDef="@LossCost">0.0</rul:Constant>
+					</rul:Sequence>
+				</rul:Else>
+			</rul:If>
+		</rul:Sequence>
+	</rul:Rule>
+	<rul:Rule Name="ErcSetStatisticalCodes" Type="none" DataDefGroup="CommercialPropertyEquipmentBreakdownCauseOfLossBldg">
+		<rul:Sequence>
+			<rul:If>
+				<rul:Test>
+					<rul:Exist AtInputDataDef="ancestor::MasterCFCW/Policy" />
+				</rul:Test>
+				<rul:Then>
+					<rul:Sequence>
+						<rul:RunRule Type="string" ToDataDef="@SublineEquipmentBreakdown" FileName="CommercialPropertyEquipmentBreakdownCauseOfLossBldgRules" Rule="LookupSublineEquipmentBreakdown" ClearCache="true" />
+						<rul:RunRule Type="string" ToDataDef="@EquipmentBreakdownCode" FileName="CommercialPropertyEquipmentBreakdownCauseOfLossBldgRules" Rule="LookupEquipmentBreakdownCode" ClearCache="true" />
+					</rul:Sequence>
+				</rul:Then>
+			</rul:If>
+		</rul:Sequence>
+	</rul:Rule>
+	<rul:Rule Name="ErcProcess" Type="none" DataDefGroup="CommercialPropertyEquipmentBreakdownCauseOfLossBldg">
+		<rul:Sequence>
+			<rul:RunRule Type="none" FileName="CommercialPropertyEquipmentBreakdownCauseOfLossBldgRules" Rule="ErcSetRatesAndFactors" ClearCache="true" />
+			<rul:Locate AtDataDef="CommercialPropertyEquipmentBreakdownCauseOfLossBldgAmmoniaContaminationCov">
+				<rul:RunRule Type="none" FileName="CommercialPropertyEquipmentBreakdownCauseOfLossBldgAmmoniaContaminationCovRules" Rule="ErcProcess" ClearCache="true" />
+			</rul:Locate>
+			<rul:Locate AtDataDef="CommercialPropertyEquipmentBreakdownCauseOfLossBldgEBCov">
+				<rul:RunRule Type="none" FileName="CommercialPropertyEquipmentBreakdownCauseOfLossBldgEBCovRules" Rule="ErcProcess" ClearCache="true" />
+			</rul:Locate>
+			<rul:Locate AtDataDef="CommercialPropertyEquipmentBreakdownCauseOfLossBldgHazardousSubstanceOtherThanAmmoniaCov">
+				<rul:RunRule Type="none" FileName="CommercialPropertyEquipmentBreakdownCauseOfLossBldgHazardousSubstanceOtherThanAmmoniaCovRules" Rule="ErcProcess" ClearCache="true" />
+			</rul:Locate>
+			<rul:RunRule Type="none" FileName="CommercialPropertyEquipmentBreakdownCauseOfLossBldgRules" Rule="ErcSetStatisticalCodes" ClearCache="true" />
+		</rul:Sequence>
+	</rul:Rule>
+	<rul:Rule Name="LookupSublineEquipmentBreakdown" Type="string" DataDefGroup="CommercialPropertyEquipmentBreakdownCauseOfLossBldg">
+		<rul:FirstNonNull Type="string">
+			<rul:Lookup Type="string" MatrixCol="Code" MatrixDef="SublineEquipmentBreakdownDef" MatrixFromConstant="SublineEquipmentBreakdown" ResultMode="FirstResult">
+				<rul:Keys>
+					<rul:Value Type="string" FromDataDef="/State/@Code" />
+					<rul:Constant Type="string">Y</rul:Constant>
+				</rul:Keys>
+			</rul:Lookup>
+			<rul:Lookup Type="string" MatrixCol="Code" MatrixDef="SublineEquipmentBreakdownDef" MatrixFromConstant="SublineEquipmentBreakdown" ResultMode="SingleResult">
+				<rul:Keys>
+					<rul:Constant Type="string">CW</rul:Constant>
+					<rul:Constant Type="string">Y</rul:Constant>
+				</rul:Keys>
+			</rul:Lookup>
+		</rul:FirstNonNull>
+	</rul:Rule>
+	<rul:Rule Name="LookupEquipmentBreakdownCode" Type="string" DataDefGroup="CommercialPropertyEquipmentBreakdownCauseOfLossBldg">
+		<rul:FirstNonNull Type="string">
+			<rul:Lookup Type="string" MatrixCol="Code" MatrixDef="EquipmentBreakdownPropertyDamageCodeDef" MatrixFromConstant="EquipmentBreakdownPropertyDamageCode" ResultMode="FirstResult">
+				<rul:Keys>
+					<rul:Value Type="string" FromDataDef="/State/@Code" />
+					<rul:Constant Type="string">Y</rul:Constant>
+				</rul:Keys>
+			</rul:Lookup>
+			<rul:Lookup Type="string" MatrixCol="Code" MatrixDef="EquipmentBreakdownPropertyDamageCodeDef" MatrixFromConstant="EquipmentBreakdownPropertyDamageCode" ResultMode="SingleResult">
+				<rul:Keys>
+					<rul:Constant Type="string">CW</rul:Constant>
+					<rul:Constant Type="string">Y</rul:Constant>
+				</rul:Keys>
+			</rul:Lookup>
+		</rul:FirstNonNull>
+	</rul:Rule>
+	<rul:Rule Name="LookupDeductible250Factor" Type="decimal" DataDefGroup="CommercialPropertyEquipmentBreakdownCauseOfLossBldg">
+		<rul:FirstNonNull Type="decimal">
+			<rul:Lookup Type="decimal" MatrixCol="Factor" MatrixDef="Deductible250FactorDef" MatrixFromConstant="Deductible250Factor" ResultMode="FirstResult">
+				<rul:Keys>
+					<rul:Value Type="string" FromDataDef="/State/@Code" />
+					<rul:Constant Type="string">All Other</rul:Constant>
+				</rul:Keys>
+			</rul:Lookup>
+			<rul:Lookup Type="decimal" MatrixCol="Factor" MatrixDef="Deductible250FactorDef" MatrixFromConstant="Deductible250Factor" ResultMode="SingleResult">
+				<rul:Keys>
+					<rul:Constant Type="string">CW</rul:Constant>
+					<rul:Constant Type="string">All Other</rul:Constant>
+				</rul:Keys>
+			</rul:Lookup>
+		</rul:FirstNonNull>
+	</rul:Rule>
+	<rul:Rule Name="LookupOccupancyGroupNumber" Type="integer" DataDefGroup="CommercialPropertyEquipmentBreakdownCauseOfLossBldg">
+		<rul:FirstNonNull Type="integer">
+			<rul:Lookup Type="integer" MatrixCol="GroupNumber" MatrixDef="OccupancyGroupNumberDef" MatrixFromConstant="OccupancyGroupNumber" ResultMode="FirstResult">
+				<rul:Keys>
+					<rul:Value Type="string" FromDataDef="/State/@Code" />
+					<rul:FirstValue Type="string" FromConstant="" FromDataDef="@OccupancyCategory" Order="DataDefInputParamConstant" />
+					<rul:FirstValue Type="string" FromConstant="" FromDataDef="../../@ClassCode" Order="DataDefInputParamConstant" />
+					<rul:FirstValue Type="string" FromConstant="" FromDataDef="@OccupancyGroup" Order="DataDefInputParamConstant" />
+				</rul:Keys>
+			</rul:Lookup>
+			<rul:Lookup Type="integer" MatrixCol="GroupNumber" MatrixDef="OccupancyGroupNumberDef" MatrixFromConstant="OccupancyGroupNumber" ResultMode="SingleResult">
+				<rul:Keys>
+					<rul:Constant Type="string">CW</rul:Constant>
+					<rul:FirstValue Type="string" FromConstant="" FromDataDef="@OccupancyCategory" Order="DataDefInputParamConstant" />
+					<rul:FirstValue Type="string" FromConstant="" FromDataDef="../../@ClassCode" Order="DataDefInputParamConstant" />
+					<rul:FirstValue Type="string" FromConstant="" FromDataDef="@OccupancyGroup" Order="DataDefInputParamConstant" />
+				</rul:Keys>
+			</rul:Lookup>
+		</rul:FirstNonNull>
+	</rul:Rule>
+	<rul:Rule Name="LookupLossCost" Type="decimal" DataDefGroup="CommercialPropertyEquipmentBreakdownCauseOfLossBldg">
+		<rul:FirstNonNull Type="decimal">
+			<rul:Lookup Type="decimal" MatrixCol="Premium" MatrixDef="EquipmentBreakdownPropertyDamagePremiumDef" MatrixFromConstant="EquipmentBreakdownPropertyDamagePremium" ResultMode="FirstResult">
+				<rul:Keys>
+					<rul:Value Type="string" FromDataDef="/State/@Code" />
+					<rul:FirstValue Type="integer" FromConstant="0" FromDataDef="../../@TotAmtInsurance" Order="DataDefInputParamConstant" />
+					<rul:FirstValue Type="integer" FromConstant="0" FromDataDef="@OccupancyGroupNumber" Order="DataDefInputParamConstant" />
+				</rul:Keys>
+			</rul:Lookup>
+			<rul:Lookup Type="decimal" MatrixCol="Premium" MatrixDef="EquipmentBreakdownPropertyDamagePremiumDef" MatrixFromConstant="EquipmentBreakdownPropertyDamagePremium" ResultMode="SingleResult">
+				<rul:Keys>
+					<rul:Constant Type="string">CW</rul:Constant>
+					<rul:FirstValue Type="integer" FromConstant="0" FromDataDef="../../@TotAmtInsurance" Order="DataDefInputParamConstant" />
+					<rul:FirstValue Type="integer" FromConstant="0" FromDataDef="@OccupancyGroupNumber" Order="DataDefInputParamConstant" />
+				</rul:Keys>
+			</rul:Lookup>
+		</rul:FirstNonNull>
+	</rul:Rule>
+</rul:Rules>

@@ -1,0 +1,6 @@
+"StateCode","SpoilageCauseOfLoss","DisplayValue","DataValue"
+"CW","Breakdown or Contamination","Not Applicable","Not Applicable"
+"CW","Breakdown or Contamination","Applicable","Applicable"
+"CW","Power Outage","Not Applicable","Not Applicable"
+"CW","Both Breakdown or Contamination and Power Outage","Not Applicable","Not Applicable"
+"CW","Both Breakdown or Contamination and Power Outage","Applicable","Applicable"

@@ -1,0 +1,257 @@
+<rul:Rules xmlns:rul="http://www.verisk.com/iso/erc/Rule">
+	<rul:Rule Name="InitializeRuleSet" DataDefGroup="CommercialPropertyBusinessIncomeLandlordAsAdditionalInsuredRentalValueSpclClassBusnIncome">
+		<rul:Sequence>
+			<rul:Locate AtDataDef="CommercialPropertyBusinessIncomeLandlordAsAdditionalInsuredRentalValueSpclClassBusnIncomeBasicGroupICoverage">
+				<rul:RunRule Type="none" FileName="CommercialPropertyBusinessIncomeLandlordAsAdditionalInsuredRentalValueSpclClassBusnIncomeBasicGroupICoverageRules" Rule="InitializeRuleSet" ClearCache="true" />
+			</rul:Locate>
+			<rul:Locate AtDataDef="CommercialPropertyBusinessIncomeLandlordAsAdditionalInsuredRentalValueSpclClassBusnIncomeBasicGroupIICoverage">
+				<rul:RunRule Type="none" FileName="CommercialPropertyBusinessIncomeLandlordAsAdditionalInsuredRentalValueSpclClassBusnIncomeBasicGroupIICoverageRules" Rule="InitializeRuleSet" ClearCache="true" />
+			</rul:Locate>
+			<rul:Locate AtDataDef="CommercialPropertyBusinessIncomeLandlordAsAdditionalInsuredRentalValueSpclClassBusnIncomeBroadCoverage">
+				<rul:RunRule Type="none" FileName="CommercialPropertyBusinessIncomeLandlordAsAdditionalInsuredRentalValueSpclClassBusnIncomeBroadCoverageRules" Rule="InitializeRuleSet" ClearCache="true" />
+			</rul:Locate>
+			<rul:Locate AtDataDef="CommercialPropertyBusinessIncomeLandlordAsAdditionalInsuredRentalValueSpclClassBusnIncomeEarthquakeCoverage">
+				<rul:RunRule Type="none" FileName="CommercialPropertyBusinessIncomeLandlordAsAdditionalInsuredRentalValueSpclClassBusnIncomeEarthquakeCoverageRules" Rule="InitializeRuleSet" ClearCache="true" />
+			</rul:Locate>
+			<rul:Locate AtDataDef="CommercialPropertyBusinessIncomeLandlordAsAdditionalInsuredRentalValueSpclClassBusnIncomeSpecialCoverage">
+				<rul:RunRule Type="none" FileName="CommercialPropertyBusinessIncomeLandlordAsAdditionalInsuredRentalValueSpclClassBusnIncomeSpecialCoverageRules" Rule="InitializeRuleSet" ClearCache="true" />
+			</rul:Locate>
+		</rul:Sequence>
+	</rul:Rule>
+	<rul:Rule Name="CalculateTotalPremium" Type="decimal" DataDefGroup="CommercialPropertyBusinessIncomeLandlordAsAdditionalInsuredRentalValueSpclClassBusnIncome">
+		<rul:Sum>
+			<rul:Locate AtDataDef="CommercialPropertyBusinessIncomeLandlordAsAdditionalInsuredRentalValueSpclClassBusnIncomeBasicGroupICoverage">
+				<rul:RunRule Type="decimal" FileName="CommercialPropertyBusinessIncomeLandlordAsAdditionalInsuredRentalValueSpclClassBusnIncomeBasicGroupICoverageRules" Rule="CalculateTotalPremium" ClearCache="true" />
+			</rul:Locate>
+			<rul:Locate AtDataDef="CommercialPropertyBusinessIncomeLandlordAsAdditionalInsuredRentalValueSpclClassBusnIncomeBasicGroupIICoverage">
+				<rul:RunRule Type="decimal" FileName="CommercialPropertyBusinessIncomeLandlordAsAdditionalInsuredRentalValueSpclClassBusnIncomeBasicGroupIICoverageRules" Rule="CalculateTotalPremium" ClearCache="true" />
+			</rul:Locate>
+			<rul:Locate AtDataDef="CommercialPropertyBusinessIncomeLandlordAsAdditionalInsuredRentalValueSpclClassBusnIncomeBroadCoverage">
+				<rul:RunRule Type="decimal" FileName="CommercialPropertyBusinessIncomeLandlordAsAdditionalInsuredRentalValueSpclClassBusnIncomeBroadCoverageRules" Rule="CalculateTotalPremium" ClearCache="true" />
+			</rul:Locate>
+			<rul:Locate AtDataDef="CommercialPropertyBusinessIncomeLandlordAsAdditionalInsuredRentalValueSpclClassBusnIncomeEarthquakeCoverage">
+				<rul:RunRule Type="decimal" FileName="CommercialPropertyBusinessIncomeLandlordAsAdditionalInsuredRentalValueSpclClassBusnIncomeEarthquakeCoverageRules" Rule="CalculateTotalPremium" ClearCache="true" />
+			</rul:Locate>
+			<rul:Locate AtDataDef="CommercialPropertyBusinessIncomeLandlordAsAdditionalInsuredRentalValueSpclClassBusnIncomeSpecialCoverage">
+				<rul:RunRule Type="decimal" FileName="CommercialPropertyBusinessIncomeLandlordAsAdditionalInsuredRentalValueSpclClassBusnIncomeSpecialCoverageRules" Rule="CalculateTotalPremium" ClearCache="true" />
+			</rul:Locate>
+			<rul:If>
+				<rul:Test>
+					<rul:And>
+						<rul:Equal>
+							<rul:FirstValue Type="integer" FromConstant="0" FromDataDef="@PremiumIndicator" Order="DataDefInputParamConstant" />
+							<rul:Constant Type="integer">1</rul:Constant>
+						</rul:Equal>
+						<rul:NotEqual>
+							<rul:FirstValue Type="decimal" FromConstant="0" FromDataDef="@Premium" Order="DataDefInputParamConstant" />
+							<rul:Constant Type="decimal">0</rul:Constant>
+						</rul:NotEqual>
+					</rul:And>
+				</rul:Test>
+				<rul:Then>
+					<rul:FirstValue Type="decimal" FromConstant="0" FromDataDef="@Premium" Order="DataDefInputParamConstant" />
+				</rul:Then>
+				<rul:Else>
+					<rul:Constant Type="decimal">0</rul:Constant>
+				</rul:Else>
+			</rul:If>
+		</rul:Sum>
+	</rul:Rule>
+	<rul:Rule Name="SetRatesAndFactors" Type="none" DataDefGroup="CommercialPropertyBusinessIncomeLandlordAsAdditionalInsuredRentalValueSpclClassBusnIncome">
+		<rul:Sequence>
+			<rul:Copy Type="string" ToDataDef="@AgreedValueBusinessIncome" FromDataDef="../../@AgreedValueOption" />
+			<rul:Constant Type="string" ToDataDef="@CovType">Business Income Without Extra Expense</rul:Constant>
+			<rul:Copy Type="string" ToDataDef="@EQCovIndicator" FromDataDef="../../@EQCovIndicator" />
+			<rul:If>
+				<rul:Test>
+					<rul:And>
+						<rul:IsNotNull>
+							<rul:Value Type="string" FromDataDef="../../@ExtendedPeriodApplies" />
+						</rul:IsNotNull>
+						<rul:NotEqual>
+							<rul:FirstValue Type="string" FromConstant="" FromDataDef="../../@ExtendedPeriodApplies" Order="DataDefInputParamConstant" />
+							<rul:Constant Type="string"></rul:Constant>
+						</rul:NotEqual>
+					</rul:And>
+				</rul:Test>
+				<rul:Then>
+					<rul:Copy Type="string" ToDataDef="@ExtendedPeriodApplies" FromDataDef="../../@ExtendedPeriodApplies" />
+				</rul:Then>
+			</rul:If>
+			<rul:Copy Type="string" ToDataDef="@IncludeInBlkt" FromDataDef="../../@IncludedInBlkt" />
+			<rul:Constant Type="string" ToDataDef="@TypeOfRisk">Rental Properties</rul:Constant>
+			<rul:If>
+				<rul:Test>
+					<rul:NotEqual>
+						<rul:FirstValue Type="string" FromConstant="" FromDataDef="@Coinsurance" Order="DataDefInputParamConstant" />
+						<rul:Constant Type="string"></rul:Constant>
+					</rul:NotEqual>
+				</rul:Test>
+				<rul:Then>
+					<rul:Sequence>
+						<rul:If>
+							<rul:Test>
+								<rul:Equal>
+									<rul:FirstValue Type="string" FromConstant="" FromDataDef="@Coinsurance" Order="DataDefInputParamConstant" />
+									<rul:Constant Type="string">None</rul:Constant>
+								</rul:Equal>
+							</rul:Test>
+							<rul:Then>
+								<rul:Sequence>
+									<rul:RunRule Type="decimal" ToDataDef="@TypeOfRiskFactor" FileName="CommercialPropertyBusinessIncomeLandlordAsAdditionalInsuredRentalValueSpclClassBusnIncomeRules" Rule="LookupBusinessIncomeFactor" ClearCache="true">
+										<rul:Arg Type="string" Param="coinsurance">
+											<rul:Constant Type="string">No Coinsurance</rul:Constant>
+										</rul:Arg>
+									</rul:RunRule>
+								</rul:Sequence>
+							</rul:Then>
+							<rul:Else>
+								<rul:Sequence>
+									<rul:RunRule Type="decimal" ToDataDef="@TypeOfRiskFactor" FileName="CommercialPropertyBusinessIncomeLandlordAsAdditionalInsuredRentalValueSpclClassBusnIncomeRules" Rule="LookupBusinessIncomeFactor" ClearCache="true">
+										<rul:Arg Type="string" Param="coinsurance">
+											<rul:FirstValue Type="string" FromConstant="" FromDataDef="@Coinsurance" Order="DataDefInputParamConstant" />
+										</rul:Arg>
+									</rul:RunRule>
+								</rul:Sequence>
+							</rul:Else>
+						</rul:If>
+					</rul:Sequence>
+				</rul:Then>
+			</rul:If>
+			<rul:If>
+				<rul:Test>
+					<rul:NotEqual>
+						<rul:FirstValue Type="string" FromConstant="" FromDataDef="@CovType" Order="DataDefInputParamConstant" />
+						<rul:Constant Type="string"></rul:Constant>
+					</rul:NotEqual>
+				</rul:Test>
+				<rul:Then>
+					<rul:Sequence>
+						<rul:RunRule Type="decimal" ToDataDef="@BroadBaseRate" FileName="CommercialPropertyBusinessIncomeLandlordAsAdditionalInsuredRentalValueSpclClassBusnIncomeRules" Rule="LookupBroadFormBaseRate" ClearCache="true" />
+					</rul:Sequence>
+				</rul:Then>
+				<rul:Else>
+					<rul:Sequence>
+						<rul:Constant Type="decimal" ToDataDef="@BroadBaseRate">0.0</rul:Constant>
+					</rul:Sequence>
+				</rul:Else>
+			</rul:If>
+			<rul:If>
+				<rul:Test>
+					<rul:And>
+						<rul:NotEqual>
+							<rul:FirstValue Type="string" FromConstant="" FromDataDef="../../../../../../../../@PolicyType" Order="DataDefInputParamConstant" />
+							<rul:Constant Type="string">Standard Property Policy</rul:Constant>
+						</rul:NotEqual>
+						<rul:Equal>
+							<rul:FirstValue Type="string" FromConstant="" FromDataDef="../../@CauseOfLossToUse" Order="DataDefInputParamConstant" />
+							<rul:Constant Type="string">Special</rul:Constant>
+						</rul:Equal>
+					</rul:And>
+				</rul:Test>
+				<rul:Then>
+					<rul:Sequence>
+						<rul:RunRule Type="decimal" ToDataDef="@SpecialBaseRate" FileName="CommercialPropertyBusinessIncomeLandlordAsAdditionalInsuredRentalValueSpclClassBusnIncomeRules" Rule="LookUpSpecialFormIncldgTheftTimeElementBaseRate" ClearCache="true" />
+					</rul:Sequence>
+				</rul:Then>
+			</rul:If>
+		</rul:Sequence>
+	</rul:Rule>
+	<rul:Rule Name="ErcProcess" Type="none" DataDefGroup="CommercialPropertyBusinessIncomeLandlordAsAdditionalInsuredRentalValueSpclClassBusnIncome">
+		<rul:Sequence>
+			<rul:RunRule Type="none" FileName="CommercialPropertyBusinessIncomeLandlordAsAdditionalInsuredRentalValueSpclClassBusnIncomeRules" Rule="SetRatesAndFactors" ClearCache="true" />
+			<rul:Locate AtDataDef="CommercialPropertyBusinessIncomeLandlordAsAdditionalInsuredRentalValueSpclClassBusnIncomeBasicGroupICoverage">
+				<rul:RunRule Type="none" FileName="CommercialPropertyBusinessIncomeLandlordAsAdditionalInsuredRentalValueSpclClassBusnIncomeBasicGroupICoverageRules" Rule="ErcProcess" ClearCache="true" />
+			</rul:Locate>
+			<rul:Locate AtDataDef="CommercialPropertyBusinessIncomeLandlordAsAdditionalInsuredRentalValueSpclClassBusnIncomeBasicGroupIICoverage">
+				<rul:RunRule Type="none" FileName="CommercialPropertyBusinessIncomeLandlordAsAdditionalInsuredRentalValueSpclClassBusnIncomeBasicGroupIICoverageRules" Rule="ErcProcess" ClearCache="true" />
+			</rul:Locate>
+			<rul:Locate AtDataDef="CommercialPropertyBusinessIncomeLandlordAsAdditionalInsuredRentalValueSpclClassBusnIncomeBroadCoverage">
+				<rul:RunRule Type="none" FileName="CommercialPropertyBusinessIncomeLandlordAsAdditionalInsuredRentalValueSpclClassBusnIncomeBroadCoverageRules" Rule="ErcProcess" ClearCache="true" />
+			</rul:Locate>
+			<rul:Locate AtDataDef="CommercialPropertyBusinessIncomeLandlordAsAdditionalInsuredRentalValueSpclClassBusnIncomeEarthquakeCoverage">
+				<rul:RunRule Type="none" FileName="CommercialPropertyBusinessIncomeLandlordAsAdditionalInsuredRentalValueSpclClassBusnIncomeEarthquakeCoverageRules" Rule="ErcProcess" ClearCache="true" />
+			</rul:Locate>
+			<rul:Locate AtDataDef="CommercialPropertyBusinessIncomeLandlordAsAdditionalInsuredRentalValueSpclClassBusnIncomeSpecialCoverage">
+				<rul:RunRule Type="none" FileName="CommercialPropertyBusinessIncomeLandlordAsAdditionalInsuredRentalValueSpclClassBusnIncomeSpecialCoverageRules" Rule="ErcProcess" ClearCache="true" />
+			</rul:Locate>
+		</rul:Sequence>
+	</rul:Rule>
+	<rul:Rule Name="LookUpSpecialFormExclgTheftTimeElementBaseRate" Type="decimal" DataDefGroup="CommercialPropertyBusinessIncomeLandlordAsAdditionalInsuredRentalValueSpclClassBusnIncome">
+		<rul:FirstNonNull Type="decimal">
+			<rul:Lookup Type="decimal" MatrixCol="Rate" MatrixDef="SpecialFormExclgTheftTimeElementBaseRateDef" MatrixFromConstant="SpecialFormExclgTheftTimeElementBaseRate" ResultMode="FirstResult">
+				<rul:Keys>
+					<rul:Value Type="string" FromDataDef="/State/@Code" />
+					<rul:FirstValue Type="string" FromConstant="" FromDataDef="@CovType" Order="DataDefInputParamConstant" />
+					<rul:Constant Type="string">Frame</rul:Constant>
+				</rul:Keys>
+			</rul:Lookup>
+			<rul:Lookup Type="decimal" MatrixCol="Rate" MatrixDef="SpecialFormExclgTheftTimeElementBaseRateDef" MatrixFromConstant="SpecialFormExclgTheftTimeElementBaseRate" ResultMode="SingleResult">
+				<rul:Keys>
+					<rul:Constant Type="string">CW</rul:Constant>
+					<rul:FirstValue Type="string" FromConstant="" FromDataDef="@CovType" Order="DataDefInputParamConstant" />
+					<rul:Constant Type="string">Frame</rul:Constant>
+				</rul:Keys>
+			</rul:Lookup>
+		</rul:FirstNonNull>
+	</rul:Rule>
+	<rul:Rule Name="LookUpSpecialFormIncldgTheftTimeElementBaseRate" Type="decimal" DataDefGroup="CommercialPropertyBusinessIncomeLandlordAsAdditionalInsuredRentalValueSpclClassBusnIncome">
+		<rul:FirstNonNull Type="decimal">
+			<rul:Lookup Type="decimal" MatrixCol="Rate" MatrixDef="SpecialFormIncldgTheftTimeElementBaseRateDef" MatrixFromConstant="SpecialFormIncldgTheftTimeElementBaseRate" ResultMode="FirstResult">
+				<rul:Keys>
+					<rul:Value Type="string" FromDataDef="/State/@Code" />
+					<rul:Constant Type="string">Frame</rul:Constant>
+					<rul:FirstValue Type="string" FromConstant="" FromDataDef="@CovType" Order="DataDefInputParamConstant" />
+					<rul:Constant Type="string">Other than Apartments and Condominiums</rul:Constant>
+				</rul:Keys>
+			</rul:Lookup>
+			<rul:Lookup Type="decimal" MatrixCol="Rate" MatrixDef="SpecialFormIncldgTheftTimeElementBaseRateDef" MatrixFromConstant="SpecialFormIncldgTheftTimeElementBaseRate" ResultMode="SingleResult">
+				<rul:Keys>
+					<rul:Constant Type="string">CW</rul:Constant>
+					<rul:Constant Type="string">Frame</rul:Constant>
+					<rul:FirstValue Type="string" FromConstant="" FromDataDef="@CovType" Order="DataDefInputParamConstant" />
+					<rul:Constant Type="string">Other than Apartments and Condominiums</rul:Constant>
+				</rul:Keys>
+			</rul:Lookup>
+		</rul:FirstNonNull>
+	</rul:Rule>
+	<rul:Rule Name="LookupBroadFormBaseRate" Type="decimal" DataDefGroup="CommercialPropertyBusinessIncomeLandlordAsAdditionalInsuredRentalValueSpclClassBusnIncome">
+		<rul:FirstNonNull Type="decimal">
+			<rul:Lookup Type="decimal" MatrixCol="Rate" MatrixDef="BroadFormBaseRateDef" MatrixFromConstant="BroadFormBaseRate" ResultMode="FirstResult">
+				<rul:Keys>
+					<rul:Value Type="string" FromDataDef="/State/@Code" />
+					<rul:Constant Type="string">Frame</rul:Constant>
+					<rul:FirstValue Type="string" FromConstant="" FromDataDef="@CovType" Order="DataDefInputParamConstant" />
+				</rul:Keys>
+			</rul:Lookup>
+			<rul:Lookup Type="decimal" MatrixCol="Rate" MatrixDef="BroadFormBaseRateDef" MatrixFromConstant="BroadFormBaseRate" ResultMode="SingleResult">
+				<rul:Keys>
+					<rul:Constant Type="string">CW</rul:Constant>
+					<rul:Constant Type="string">Frame</rul:Constant>
+					<rul:FirstValue Type="string" FromConstant="" FromDataDef="@CovType" Order="DataDefInputParamConstant" />
+				</rul:Keys>
+			</rul:Lookup>
+		</rul:FirstNonNull>
+	</rul:Rule>
+	<rul:Rule Name="LookupBusinessIncomeFactor" Type="decimal" DataDefGroup="CommercialPropertyBusinessIncomeLandlordAsAdditionalInsuredRentalValueSpclClassBusnIncome">
+		<rul:Param Name="coinsurance" Type="string" />
+		<rul:FirstNonNull Type="decimal">
+			<rul:Lookup Type="decimal" MatrixCol="Factor" MatrixDef="BusnIncomeFactorDef" MatrixFromConstant="BusnIncomeFactor" ResultMode="FirstResult">
+				<rul:Keys>
+					<rul:Value Type="string" FromDataDef="/State/@Code" />
+					<rul:FirstValue Type="string" FromConstant="" FromDataDef="@CovType" Order="DataDefInputParamConstant" />
+					<rul:FirstValue Type="string" FromConstant="" FromDataDef="@TypeOfRisk" Order="DataDefInputParamConstant" />
+					<rul:Value Type="string" FromParam="coinsurance" />
+				</rul:Keys>
+			</rul:Lookup>
+			<rul:Lookup Type="decimal" MatrixCol="Factor" MatrixDef="BusnIncomeFactorDef" MatrixFromConstant="BusnIncomeFactor" ResultMode="SingleResult">
+				<rul:Keys>
+					<rul:Constant Type="string">CW</rul:Constant>
+					<rul:FirstValue Type="string" FromConstant="" FromDataDef="@CovType" Order="DataDefInputParamConstant" />
+					<rul:FirstValue Type="string" FromConstant="" FromDataDef="@TypeOfRisk" Order="DataDefInputParamConstant" />
+					<rul:Value Type="string" FromParam="coinsurance" />
+				</rul:Keys>
+			</rul:Lookup>
+		</rul:FirstNonNull>
+	</rul:Rule>
+</rul:Rules>

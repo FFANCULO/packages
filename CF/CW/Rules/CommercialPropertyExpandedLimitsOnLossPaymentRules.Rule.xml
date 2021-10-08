@@ -1,0 +1,443 @@
+<rul:Rules xmlns:rul="http://www.verisk.com/iso/erc/Rule">
+	<rul:Rule Name="InitializeRuleSet" DataDefGroup="CommercialPropertyExpandedLimitsOnLossPayment">
+		<rul:Sequence />
+	</rul:Rule>
+	<rul:Rule Name="CalculateTotalPremium" Type="decimal" DataDefGroup="CommercialPropertyExpandedLimitsOnLossPayment">
+		<rul:If>
+			<rul:Test>
+				<rul:And>
+					<rul:Equal>
+						<rul:FirstValue Type="integer" FromConstant="0" FromDataDef="@PremiumIndicator" Order="DataDefInputParamConstant" />
+						<rul:Constant Type="integer">1</rul:Constant>
+					</rul:Equal>
+					<rul:NotEqual>
+						<rul:FirstValue Type="decimal" FromConstant="0" FromDataDef="@Premium" Order="DataDefInputParamConstant" />
+						<rul:Constant Type="decimal">0</rul:Constant>
+					</rul:NotEqual>
+				</rul:And>
+			</rul:Test>
+			<rul:Then>
+				<rul:FirstValue Type="decimal" FromConstant="0" FromDataDef="@Premium" Order="DataDefInputParamConstant" />
+			</rul:Then>
+			<rul:Else>
+				<rul:Constant Type="decimal">0</rul:Constant>
+			</rul:Else>
+		</rul:If>
+	</rul:Rule>
+	<rul:Rule Name="ErcSetRatesAndFactors" Type="none" DataDefGroup="CommercialPropertyExpandedLimitsOnLossPayment">
+		<rul:Sequence>
+			<rul:RunRule Type="decimal" ToDataDef="@MaxFactor" FileName="CommercialPropertyExpandedLimitsOnLossPaymentRules" Rule="LookupAddlOptionsExtraExpenseExpandedLimitsMaxFactor" ClearCache="true" />
+			<rul:RunRule Type="decimal" ToDataDef="@First30DayRestorationFactor" FileName="CommercialPropertyExpandedLimitsOnLossPaymentRules" Rule="LookupAddlOptionsForExtraExpenseExpandedLimitsOnLossPaymentsFactor" ClearCache="true">
+				<rul:Arg Type="string" Param="periodOfRestoration">
+					<rul:Constant Type="string">1st 30 day period of restoration</rul:Constant>
+				</rul:Arg>
+			</rul:RunRule>
+			<rul:RunRule Type="decimal" ToDataDef="@Second30DayRestorationFactor" FileName="CommercialPropertyExpandedLimitsOnLossPaymentRules" Rule="LookupAddlOptionsForExtraExpenseExpandedLimitsOnLossPaymentsFactor" ClearCache="true">
+				<rul:Arg Type="string" Param="periodOfRestoration">
+					<rul:Constant Type="string">2nd 30 day period of restoration</rul:Constant>
+				</rul:Arg>
+			</rul:RunRule>
+			<rul:RunRule Type="decimal" ToDataDef="@Third30DayRestorationFactor" FileName="CommercialPropertyExpandedLimitsOnLossPaymentRules" Rule="LookupAddlOptionsForExtraExpenseExpandedLimitsOnLossPaymentsFactor" ClearCache="true">
+				<rul:Arg Type="string" Param="periodOfRestoration">
+					<rul:Constant Type="string">3rd 30 day period of restoration</rul:Constant>
+				</rul:Arg>
+			</rul:RunRule>
+			<rul:RunRule Type="decimal" ToDataDef="@Fourth30DayRestorationFactor" FileName="CommercialPropertyExpandedLimitsOnLossPaymentRules" Rule="LookupAddlOptionsForExtraExpenseExpandedLimitsOnLossPaymentsFactor" ClearCache="true">
+				<rul:Arg Type="string" Param="periodOfRestoration">
+					<rul:Constant Type="string">4th 30 day period of restoration</rul:Constant>
+				</rul:Arg>
+			</rul:RunRule>
+			<rul:RunRule Type="decimal" ToDataDef="@Fifth30DayRestorationFactor" FileName="CommercialPropertyExpandedLimitsOnLossPaymentRules" Rule="LookupAddlOptionsForExtraExpenseExpandedLimitsOnLossPaymentsFactor" ClearCache="true">
+				<rul:Arg Type="string" Param="periodOfRestoration">
+					<rul:Constant Type="string">5th 30 day period of restoration</rul:Constant>
+				</rul:Arg>
+			</rul:RunRule>
+			<rul:RunRule Type="decimal" ToDataDef="@Sixth30DayRestorationFactor" FileName="CommercialPropertyExpandedLimitsOnLossPaymentRules" Rule="LookupAddlOptionsForExtraExpenseExpandedLimitsOnLossPaymentsFactor" ClearCache="true">
+				<rul:Arg Type="string" Param="periodOfRestoration">
+					<rul:Constant Type="string">6th 30 day period of restoration</rul:Constant>
+				</rul:Arg>
+			</rul:RunRule>
+			<rul:RunRule Type="decimal" ToDataDef="@Seventh30DayRestorationFactor" FileName="CommercialPropertyExpandedLimitsOnLossPaymentRules" Rule="LookupAddlOptionsForExtraExpenseExpandedLimitsOnLossPaymentsFactor" ClearCache="true">
+				<rul:Arg Type="string" Param="periodOfRestoration">
+					<rul:Constant Type="string">7th 30 day period of restoration</rul:Constant>
+				</rul:Arg>
+			</rul:RunRule>
+			<rul:RunRule Type="decimal" ToDataDef="@Eighth30DayRestorationFactor" FileName="CommercialPropertyExpandedLimitsOnLossPaymentRules" Rule="LookupAddlOptionsForExtraExpenseExpandedLimitsOnLossPaymentsFactor" ClearCache="true">
+				<rul:Arg Type="string" Param="periodOfRestoration">
+					<rul:Constant Type="string">8th 30 day period of restoration</rul:Constant>
+				</rul:Arg>
+			</rul:RunRule>
+			<rul:RunRule Type="decimal" ToDataDef="@Ninth30DayRestorationFactor" FileName="CommercialPropertyExpandedLimitsOnLossPaymentRules" Rule="LookupAddlOptionsForExtraExpenseExpandedLimitsOnLossPaymentsFactor" ClearCache="true">
+				<rul:Arg Type="string" Param="periodOfRestoration">
+					<rul:Constant Type="string">9th 30 day period of restoration</rul:Constant>
+				</rul:Arg>
+			</rul:RunRule>
+			<rul:RunRule Type="decimal" ToDataDef="@Tenth30DayRestorationFactor" FileName="CommercialPropertyExpandedLimitsOnLossPaymentRules" Rule="LookupAddlOptionsForExtraExpenseExpandedLimitsOnLossPaymentsFactor" ClearCache="true">
+				<rul:Arg Type="string" Param="periodOfRestoration">
+					<rul:Constant Type="string">10th 30 day period of restoration</rul:Constant>
+				</rul:Arg>
+			</rul:RunRule>
+			<rul:RunRule Type="decimal" ToDataDef="@Eleventh30DayRestorationFactor" FileName="CommercialPropertyExpandedLimitsOnLossPaymentRules" Rule="LookupAddlOptionsForExtraExpenseExpandedLimitsOnLossPaymentsFactor" ClearCache="true">
+				<rul:Arg Type="string" Param="periodOfRestoration">
+					<rul:Constant Type="string">11th 30 day period of restoration</rul:Constant>
+				</rul:Arg>
+			</rul:RunRule>
+			<rul:RunRule Type="decimal" ToDataDef="@Twelfth30DayRestorationFactor" FileName="CommercialPropertyExpandedLimitsOnLossPaymentRules" Rule="LookupAddlOptionsForExtraExpenseExpandedLimitsOnLossPaymentsFactor" ClearCache="true">
+				<rul:Arg Type="string" Param="periodOfRestoration">
+					<rul:Constant Type="string">12th 30 day period of restoration</rul:Constant>
+				</rul:Arg>
+			</rul:RunRule>
+			<rul:Product ToDataDef="@First30DayRestorationAdjustedFactor">
+				<rul:Divide>
+					<rul:Convert Type="decimal">
+						<rul:FirstValue Type="integer" FromConstant="0" FromDataDef="@First30DayRestorationPct" Order="DataDefInputParamConstant" />
+					</rul:Convert>
+					<rul:Constant Type="integer">100</rul:Constant>
+				</rul:Divide>
+				<rul:FirstValue Type="decimal" FromConstant="0" FromDataDef="@First30DayRestorationFactor" Order="DataDefInputParamConstant" />
+			</rul:Product>
+			<rul:Product ToDataDef="@Second30DayRestorationAdjustedFactor">
+				<rul:Divide>
+					<rul:Subtract>
+						<rul:Convert Type="decimal">
+							<rul:FirstValue Type="integer" FromConstant="0" FromDataDef="@Second30DayRestorationPct" Order="DataDefInputParamConstant" />
+						</rul:Convert>
+						<rul:Convert Type="decimal">
+							<rul:FirstValue Type="integer" FromConstant="0" FromDataDef="@First30DayRestorationPct" Order="DataDefInputParamConstant" />
+						</rul:Convert>
+					</rul:Subtract>
+					<rul:Constant Type="integer">100</rul:Constant>
+				</rul:Divide>
+				<rul:FirstValue Type="decimal" FromConstant="0" FromDataDef="@Second30DayRestorationFactor" Order="DataDefInputParamConstant" />
+			</rul:Product>
+			<rul:Product ToDataDef="@Third30DayRestorationAdjustedFactor">
+				<rul:Divide>
+					<rul:Subtract>
+						<rul:Convert Type="decimal">
+							<rul:FirstValue Type="integer" FromConstant="0" FromDataDef="@Third30DayRestorationPct" Order="DataDefInputParamConstant" />
+						</rul:Convert>
+						<rul:Convert Type="decimal">
+							<rul:FirstValue Type="integer" FromConstant="0" FromDataDef="@Second30DayRestorationPct" Order="DataDefInputParamConstant" />
+						</rul:Convert>
+					</rul:Subtract>
+					<rul:Constant Type="integer">100</rul:Constant>
+				</rul:Divide>
+				<rul:FirstValue Type="decimal" FromConstant="0" FromDataDef="@Third30DayRestorationFactor" Order="DataDefInputParamConstant" />
+			</rul:Product>
+			<rul:Product ToDataDef="@Fourth30DayRestorationAdjustedFactor">
+				<rul:Divide>
+					<rul:Subtract>
+						<rul:Convert Type="decimal">
+							<rul:FirstValue Type="integer" FromConstant="0" FromDataDef="@Fourth30DayRestorationPct" Order="DataDefInputParamConstant" />
+						</rul:Convert>
+						<rul:Convert Type="decimal">
+							<rul:FirstValue Type="integer" FromConstant="0" FromDataDef="@Third30DayRestorationPct" Order="DataDefInputParamConstant" />
+						</rul:Convert>
+					</rul:Subtract>
+					<rul:Constant Type="integer">100</rul:Constant>
+				</rul:Divide>
+				<rul:FirstValue Type="decimal" FromConstant="0" FromDataDef="@Fourth30DayRestorationFactor" Order="DataDefInputParamConstant" />
+			</rul:Product>
+			<rul:If>
+				<rul:Test>
+					<rul:Equal>
+						<rul:FirstValue Type="integer" FromConstant="0" FromDataDef="@Fifth30DayRestorationPct" Order="DataDefInputParamConstant" />
+						<rul:Constant Type="integer">0</rul:Constant>
+					</rul:Equal>
+				</rul:Test>
+				<rul:Then>
+					<rul:Sequence>
+						<rul:Constant Type="decimal" ToDataDef="@Fifth30DayRestorationAdjustedFactor">0.0</rul:Constant>
+					</rul:Sequence>
+				</rul:Then>
+				<rul:Else>
+					<rul:Sequence>
+						<rul:Product ToDataDef="@Fifth30DayRestorationAdjustedFactor">
+							<rul:Divide>
+								<rul:Subtract>
+									<rul:Convert Type="decimal">
+										<rul:FirstValue Type="integer" FromConstant="0" FromDataDef="@Fifth30DayRestorationPct" Order="DataDefInputParamConstant" />
+									</rul:Convert>
+									<rul:Convert Type="decimal">
+										<rul:FirstValue Type="integer" FromConstant="0" FromDataDef="@Fourth30DayRestorationPct" Order="DataDefInputParamConstant" />
+									</rul:Convert>
+								</rul:Subtract>
+								<rul:Constant Type="integer">100</rul:Constant>
+							</rul:Divide>
+							<rul:FirstValue Type="decimal" FromConstant="0" FromDataDef="@Fifth30DayRestorationFactor" Order="DataDefInputParamConstant" />
+						</rul:Product>
+					</rul:Sequence>
+				</rul:Else>
+			</rul:If>
+			<rul:If>
+				<rul:Test>
+					<rul:Equal>
+						<rul:FirstValue Type="integer" FromConstant="0" FromDataDef="@Sixth30DayRestorationPct" Order="DataDefInputParamConstant" />
+						<rul:Constant Type="integer">0</rul:Constant>
+					</rul:Equal>
+				</rul:Test>
+				<rul:Then>
+					<rul:Sequence>
+						<rul:Constant Type="decimal" ToDataDef="@Sixth30DayRestorationAdjustedFactor">0.0</rul:Constant>
+					</rul:Sequence>
+				</rul:Then>
+				<rul:Else>
+					<rul:Sequence>
+						<rul:Product ToDataDef="@Sixth30DayRestorationAdjustedFactor">
+							<rul:Divide>
+								<rul:Subtract>
+									<rul:Convert Type="decimal">
+										<rul:FirstValue Type="integer" FromConstant="0" FromDataDef="@Sixth30DayRestorationPct" Order="DataDefInputParamConstant" />
+									</rul:Convert>
+									<rul:Convert Type="decimal">
+										<rul:FirstValue Type="integer" FromConstant="0" FromDataDef="@Fifth30DayRestorationPct" Order="DataDefInputParamConstant" />
+									</rul:Convert>
+								</rul:Subtract>
+								<rul:Constant Type="integer">100</rul:Constant>
+							</rul:Divide>
+							<rul:FirstValue Type="decimal" FromConstant="0" FromDataDef="@Sixth30DayRestorationFactor" Order="DataDefInputParamConstant" />
+						</rul:Product>
+					</rul:Sequence>
+				</rul:Else>
+			</rul:If>
+			<rul:If>
+				<rul:Test>
+					<rul:Equal>
+						<rul:FirstValue Type="integer" FromConstant="0" FromDataDef="@Seventh30DayRestorationPct" Order="DataDefInputParamConstant" />
+						<rul:Constant Type="integer">0</rul:Constant>
+					</rul:Equal>
+				</rul:Test>
+				<rul:Then>
+					<rul:Sequence>
+						<rul:Constant Type="decimal" ToDataDef="@Seventh30DayRestorationAdjustedFactor">0.0</rul:Constant>
+					</rul:Sequence>
+				</rul:Then>
+				<rul:Else>
+					<rul:Sequence>
+						<rul:Product ToDataDef="@Seventh30DayRestorationAdjustedFactor">
+							<rul:Divide>
+								<rul:Subtract>
+									<rul:Convert Type="decimal">
+										<rul:FirstValue Type="integer" FromConstant="0" FromDataDef="@Seventh30DayRestorationPct" Order="DataDefInputParamConstant" />
+									</rul:Convert>
+									<rul:Convert Type="decimal">
+										<rul:FirstValue Type="integer" FromConstant="0" FromDataDef="@Sixth30DayRestorationPct" Order="DataDefInputParamConstant" />
+									</rul:Convert>
+								</rul:Subtract>
+								<rul:Constant Type="integer">100</rul:Constant>
+							</rul:Divide>
+							<rul:FirstValue Type="decimal" FromConstant="0" FromDataDef="@Seventh30DayRestorationFactor" Order="DataDefInputParamConstant" />
+						</rul:Product>
+					</rul:Sequence>
+				</rul:Else>
+			</rul:If>
+			<rul:If>
+				<rul:Test>
+					<rul:Equal>
+						<rul:FirstValue Type="integer" FromConstant="0" FromDataDef="@Eighth30DayRestorationPct" Order="DataDefInputParamConstant" />
+						<rul:Constant Type="integer">0</rul:Constant>
+					</rul:Equal>
+				</rul:Test>
+				<rul:Then>
+					<rul:Sequence>
+						<rul:Constant Type="decimal" ToDataDef="@Eighth30DayRestorationAdjustedFactor">0.0</rul:Constant>
+					</rul:Sequence>
+				</rul:Then>
+				<rul:Else>
+					<rul:Sequence>
+						<rul:Product ToDataDef="@Eighth30DayRestorationAdjustedFactor">
+							<rul:Divide>
+								<rul:Subtract>
+									<rul:Convert Type="decimal">
+										<rul:FirstValue Type="integer" FromConstant="0" FromDataDef="@Eighth30DayRestorationPct" Order="DataDefInputParamConstant" />
+									</rul:Convert>
+									<rul:Convert Type="decimal">
+										<rul:FirstValue Type="integer" FromConstant="0" FromDataDef="@Seventh30DayRestorationPct" Order="DataDefInputParamConstant" />
+									</rul:Convert>
+								</rul:Subtract>
+								<rul:Constant Type="integer">100</rul:Constant>
+							</rul:Divide>
+							<rul:FirstValue Type="decimal" FromConstant="0" FromDataDef="@Eighth30DayRestorationFactor" Order="DataDefInputParamConstant" />
+						</rul:Product>
+					</rul:Sequence>
+				</rul:Else>
+			</rul:If>
+			<rul:If>
+				<rul:Test>
+					<rul:Equal>
+						<rul:FirstValue Type="integer" FromConstant="0" FromDataDef="@Ninth30DayRestorationPct" Order="DataDefInputParamConstant" />
+						<rul:Constant Type="integer">0</rul:Constant>
+					</rul:Equal>
+				</rul:Test>
+				<rul:Then>
+					<rul:Sequence>
+						<rul:Constant Type="decimal" ToDataDef="@Ninth30DayRestorationAdjustedFactor">0.0</rul:Constant>
+					</rul:Sequence>
+				</rul:Then>
+				<rul:Else>
+					<rul:Sequence>
+						<rul:Product ToDataDef="@Ninth30DayRestorationAdjustedFactor">
+							<rul:Divide>
+								<rul:Subtract>
+									<rul:Convert Type="decimal">
+										<rul:FirstValue Type="integer" FromConstant="0" FromDataDef="@Ninth30DayRestorationPct" Order="DataDefInputParamConstant" />
+									</rul:Convert>
+									<rul:Convert Type="decimal">
+										<rul:FirstValue Type="integer" FromConstant="0" FromDataDef="@Eighth30DayRestorationPct" Order="DataDefInputParamConstant" />
+									</rul:Convert>
+								</rul:Subtract>
+								<rul:Constant Type="integer">100</rul:Constant>
+							</rul:Divide>
+							<rul:FirstValue Type="decimal" FromConstant="0" FromDataDef="@Ninth30DayRestorationFactor" Order="DataDefInputParamConstant" />
+						</rul:Product>
+					</rul:Sequence>
+				</rul:Else>
+			</rul:If>
+			<rul:If>
+				<rul:Test>
+					<rul:Equal>
+						<rul:FirstValue Type="integer" FromConstant="0" FromDataDef="@Tenth30DayRestorationPct" Order="DataDefInputParamConstant" />
+						<rul:Constant Type="integer">0</rul:Constant>
+					</rul:Equal>
+				</rul:Test>
+				<rul:Then>
+					<rul:Sequence>
+						<rul:Constant Type="decimal" ToDataDef="@Tenth30DayRestorationAdjustedFactor">0.0</rul:Constant>
+					</rul:Sequence>
+				</rul:Then>
+				<rul:Else>
+					<rul:Sequence>
+						<rul:Product ToDataDef="@Tenth30DayRestorationAdjustedFactor">
+							<rul:Divide>
+								<rul:Subtract>
+									<rul:Convert Type="decimal">
+										<rul:FirstValue Type="integer" FromConstant="0" FromDataDef="@Tenth30DayRestorationPct" Order="DataDefInputParamConstant" />
+									</rul:Convert>
+									<rul:Convert Type="decimal">
+										<rul:FirstValue Type="integer" FromConstant="0" FromDataDef="@Ninth30DayRestorationPct" Order="DataDefInputParamConstant" />
+									</rul:Convert>
+								</rul:Subtract>
+								<rul:Constant Type="integer">100</rul:Constant>
+							</rul:Divide>
+							<rul:FirstValue Type="decimal" FromConstant="0" FromDataDef="@Tenth30DayRestorationFactor" Order="DataDefInputParamConstant" />
+						</rul:Product>
+					</rul:Sequence>
+				</rul:Else>
+			</rul:If>
+			<rul:If>
+				<rul:Test>
+					<rul:Equal>
+						<rul:FirstValue Type="integer" FromConstant="0" FromDataDef="@Eleventh30DayRestorationPct" Order="DataDefInputParamConstant" />
+						<rul:Constant Type="integer">0</rul:Constant>
+					</rul:Equal>
+				</rul:Test>
+				<rul:Then>
+					<rul:Sequence>
+						<rul:Constant Type="decimal" ToDataDef="@Eleventh30DayRestorationAdjustedFactor">0.0</rul:Constant>
+					</rul:Sequence>
+				</rul:Then>
+				<rul:Else>
+					<rul:Sequence>
+						<rul:Product ToDataDef="@Eleventh30DayRestorationAdjustedFactor">
+							<rul:Divide>
+								<rul:Subtract>
+									<rul:Convert Type="decimal">
+										<rul:FirstValue Type="integer" FromConstant="0" FromDataDef="@Eleventh30DayRestorationPct" Order="DataDefInputParamConstant" />
+									</rul:Convert>
+									<rul:Convert Type="decimal">
+										<rul:FirstValue Type="integer" FromConstant="0" FromDataDef="@Tenth30DayRestorationPct" Order="DataDefInputParamConstant" />
+									</rul:Convert>
+								</rul:Subtract>
+								<rul:Constant Type="integer">100</rul:Constant>
+							</rul:Divide>
+							<rul:FirstValue Type="decimal" FromConstant="0" FromDataDef="@Eleventh30DayRestorationFactor" Order="DataDefInputParamConstant" />
+						</rul:Product>
+					</rul:Sequence>
+				</rul:Else>
+			</rul:If>
+			<rul:If>
+				<rul:Test>
+					<rul:Equal>
+						<rul:FirstValue Type="integer" FromConstant="0" FromDataDef="@Twelfth30DayRestorationPct" Order="DataDefInputParamConstant" />
+						<rul:Constant Type="integer">0</rul:Constant>
+					</rul:Equal>
+				</rul:Test>
+				<rul:Then>
+					<rul:Sequence>
+						<rul:Constant Type="decimal" ToDataDef="@Twelfth30DayRestorationAdjustedFactor">0.0</rul:Constant>
+					</rul:Sequence>
+				</rul:Then>
+				<rul:Else>
+					<rul:Sequence>
+						<rul:Product ToDataDef="@Twelfth30DayRestorationAdjustedFactor">
+							<rul:Divide>
+								<rul:Subtract>
+									<rul:Convert Type="decimal">
+										<rul:FirstValue Type="integer" FromConstant="0" FromDataDef="@Twelfth30DayRestorationPct" Order="DataDefInputParamConstant" />
+									</rul:Convert>
+									<rul:Convert Type="decimal">
+										<rul:FirstValue Type="integer" FromConstant="0" FromDataDef="@Eleventh30DayRestorationPct" Order="DataDefInputParamConstant" />
+									</rul:Convert>
+								</rul:Subtract>
+								<rul:Constant Type="integer">100</rul:Constant>
+							</rul:Divide>
+							<rul:FirstValue Type="decimal" FromConstant="0" FromDataDef="@Twelfth30DayRestorationFactor" Order="DataDefInputParamConstant" />
+						</rul:Product>
+					</rul:Sequence>
+				</rul:Else>
+			</rul:If>
+			<rul:Sum ToDataDef="@TotAdjustedFactor">
+				<rul:Value Type="decimal" FromDataDef="@First30DayRestorationAdjustedFactor" />
+				<rul:Value Type="decimal" FromDataDef="@Second30DayRestorationAdjustedFactor" />
+				<rul:Value Type="decimal" FromDataDef="@Third30DayRestorationAdjustedFactor" />
+				<rul:Value Type="decimal" FromDataDef="@Fourth30DayRestorationAdjustedFactor" />
+				<rul:Value Type="decimal" FromDataDef="@Fifth30DayRestorationAdjustedFactor" />
+				<rul:Value Type="decimal" FromDataDef="@Sixth30DayRestorationAdjustedFactor" />
+				<rul:Value Type="decimal" FromDataDef="@Seventh30DayRestorationAdjustedFactor" />
+				<rul:Value Type="decimal" FromDataDef="@Eighth30DayRestorationAdjustedFactor" />
+				<rul:Value Type="decimal" FromDataDef="@Ninth30DayRestorationAdjustedFactor" />
+				<rul:Value Type="decimal" FromDataDef="@Tenth30DayRestorationAdjustedFactor" />
+				<rul:Value Type="decimal" FromDataDef="@Eleventh30DayRestorationAdjustedFactor" />
+				<rul:Value Type="decimal" FromDataDef="@Twelfth30DayRestorationAdjustedFactor" />
+			</rul:Sum>
+		</rul:Sequence>
+	</rul:Rule>
+	<rul:Rule Name="ErcProcess" Type="none" DataDefGroup="CommercialPropertyExpandedLimitsOnLossPayment">
+		<rul:Sequence>
+			<rul:RunRule Type="none" FileName="CommercialPropertyExpandedLimitsOnLossPaymentRules" Rule="ErcSetRatesAndFactors" ClearCache="true" />
+		</rul:Sequence>
+	</rul:Rule>
+	<rul:Rule Name="LookupAddlOptionsExtraExpenseExpandedLimitsMaxFactor" Type="decimal" DataDefGroup="CommercialPropertyExpandedLimitsOnLossPayment">
+		<rul:FirstNonNull Type="decimal">
+			<rul:Lookup Type="decimal" MatrixCol="Factor" MatrixDef="AddlOptionsExtraExpenseExpandedLimitsMaxFactorDef" MatrixFromConstant="AddlOptionsExtraExpenseExpandedLimitsMaxFactor" ResultMode="FirstResult">
+				<rul:Keys>
+					<rul:Value Type="string" FromDataDef="/State/@Code" />
+					<rul:Constant Type="string">Y</rul:Constant>
+				</rul:Keys>
+			</rul:Lookup>
+			<rul:Lookup Type="decimal" MatrixCol="Factor" MatrixDef="AddlOptionsExtraExpenseExpandedLimitsMaxFactorDef" MatrixFromConstant="AddlOptionsExtraExpenseExpandedLimitsMaxFactor" ResultMode="SingleResult">
+				<rul:Keys>
+					<rul:Constant Type="string">CW</rul:Constant>
+					<rul:Constant Type="string">Y</rul:Constant>
+				</rul:Keys>
+			</rul:Lookup>
+		</rul:FirstNonNull>
+	</rul:Rule>
+	<rul:Rule Name="LookupAddlOptionsForExtraExpenseExpandedLimitsOnLossPaymentsFactor" Type="decimal" DataDefGroup="CommercialPropertyExpandedLimitsOnLossPayment">
+		<rul:Param Name="periodOfRestoration" Type="string" />
+		<rul:FirstNonNull Type="decimal">
+			<rul:Lookup Type="decimal" MatrixCol="Factor" MatrixDef="AddlOptionsForExtraExpenseExpandedLimitsOnLossPaymentsFactorDef" MatrixFromConstant="AddlOptionsForExtraExpenseExpandedLimitsOnLossPaymentsFactor" ResultMode="FirstResult">
+				<rul:Keys>
+					<rul:Value Type="string" FromDataDef="/State/@Code" />
+					<rul:Value Type="string" FromParam="periodOfRestoration" />
+				</rul:Keys>
+			</rul:Lookup>
+			<rul:Lookup Type="decimal" MatrixCol="Factor" MatrixDef="AddlOptionsForExtraExpenseExpandedLimitsOnLossPaymentsFactorDef" MatrixFromConstant="AddlOptionsForExtraExpenseExpandedLimitsOnLossPaymentsFactor" ResultMode="SingleResult">
+				<rul:Keys>
+					<rul:Constant Type="string">CW</rul:Constant>
+					<rul:Value Type="string" FromParam="periodOfRestoration" />
+				</rul:Keys>
+			</rul:Lookup>
+		</rul:FirstNonNull>
+	</rul:Rule>
+</rul:Rules>

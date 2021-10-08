@@ -1,0 +1,23 @@
+"StateCode","CovTypeBusnIncome","TypeOfRisk","Factor"
+"CW","Business Income With Extra Expense","Mercantile and Non-manufacturing",1.15
+"CW","Business Income With Extra Expense","Manufacturing",1.93
+"CW","Business Income With Extra Expense","Mining",1
+"CW","Business Income With Extra Expense","Rental Properties",0.88
+"CW","Business Income With Extra Expense","Combined Manufacturing and Mercantile Operations",1
+"CW","Business Income With Extra Expense","Combined Manufacturing and Rental Operations",1
+"CW","Business Income With Extra Expense","Combined Mercantile and Rental Operations",1
+"CW","Business Income With Extra Expense","Combined Educational Institutes and Rental Operations",1
+"CW","Business Income With Extra Expense","Educational Institutions",1
+"CW","Business Income With Extra Expense","Seasonal Leases with Monthly Limit",1
+"CW","Business Income Without Extra Expense","Mercantile and Non-manufacturing",1.07
+"CW","Business Income Without Extra Expense","Manufacturing",1.76
+"CW","Business Income Without Extra Expense","Mining",1
+"CW","Business Income Without Extra Expense","Rental Properties",0.81
+"CW","Business Income Without Extra Expense","Combined Manufacturing and Mercantile Operations",1
+"CW","Business Income Without Extra Expense","Combined Manufacturing and Rental Operations",1
+"CW","Business Income Without Extra Expense","Combined Mercantile and Rental Operations",1
+"CW","Business Income Without Extra Expense","Combined Educational Institutes and Rental Operations",1
+"CW","Business Income Without Extra Expense","Educational Institutions",1
+"CW","Business Income Without Extra Expense","Seasonal Leases with Monthly Limit",1
+"CW","Extra Expense Only","Not Applicable",0
+"CW","Not Applicable","Not Applicable",0

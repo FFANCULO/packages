@@ -1,0 +1,579 @@
+<rul:Rules xmlns:rul="http://www.verisk.com/iso/erc/Rule">
+	<rul:Rule Name="InitializeRuleSet" DataDefGroup="CommercialPropertyCondominiumCommercialUnitOwnersOptionalCoverages">
+		<rul:Sequence>
+			<rul:Locate AtDataDef="CommercialPropertyCondominiumCommercialUnitOwnersOptionalCovLossAssmtCoverage">
+				<rul:RunRule Type="none" FileName="CommercialPropertyCondominiumCommercialUnitOwnersOptionalCovLossAssmtCoverageRules" Rule="InitializeRuleSet" ClearCache="true" />
+			</rul:Locate>
+			<rul:Locate AtDataDef="CommercialPropertyCondominiumCommercialUnitOwnersOptionalCovMiscRealPropCoverage">
+				<rul:RunRule Type="none" FileName="CommercialPropertyCondominiumCommercialUnitOwnersOptionalCovMiscRealPropCoverageRules" Rule="InitializeRuleSet" ClearCache="true" />
+			</rul:Locate>
+		</rul:Sequence>
+	</rul:Rule>
+	<rul:Rule Name="CalculateTotalPremium" Type="decimal" DataDefGroup="CommercialPropertyCondominiumCommercialUnitOwnersOptionalCoverages">
+		<rul:Sum>
+			<rul:Locate AtDataDef="CommercialPropertyCondominiumCommercialUnitOwnersOptionalCovLossAssmtCoverage">
+				<rul:RunRule Type="decimal" FileName="CommercialPropertyCondominiumCommercialUnitOwnersOptionalCovLossAssmtCoverageRules" Rule="CalculateTotalPremium" ClearCache="true" />
+			</rul:Locate>
+			<rul:Locate AtDataDef="CommercialPropertyCondominiumCommercialUnitOwnersOptionalCovMiscRealPropCoverage">
+				<rul:RunRule Type="decimal" FileName="CommercialPropertyCondominiumCommercialUnitOwnersOptionalCovMiscRealPropCoverageRules" Rule="CalculateTotalPremium" ClearCache="true" />
+			</rul:Locate>
+			<rul:If>
+				<rul:Test>
+					<rul:And>
+						<rul:Equal>
+							<rul:FirstValue Type="integer" FromConstant="0" FromDataDef="@PremiumIndicator" Order="DataDefInputParamConstant" />
+							<rul:Constant Type="integer">1</rul:Constant>
+						</rul:Equal>
+						<rul:NotEqual>
+							<rul:FirstValue Type="decimal" FromConstant="0" FromDataDef="@Premium" Order="DataDefInputParamConstant" />
+							<rul:Constant Type="decimal">0</rul:Constant>
+						</rul:NotEqual>
+					</rul:And>
+				</rul:Test>
+				<rul:Then>
+					<rul:FirstValue Type="decimal" FromConstant="0" FromDataDef="@Premium" Order="DataDefInputParamConstant" />
+				</rul:Then>
+				<rul:Else>
+					<rul:Constant Type="decimal">0</rul:Constant>
+				</rul:Else>
+			</rul:If>
+		</rul:Sum>
+	</rul:Rule>
+	<rul:Rule Name="ErcSetRatesAndFactors" Type="none" DataDefGroup="CommercialPropertyCondominiumCommercialUnitOwnersOptionalCoverages">
+		<rul:Sequence>
+			<rul:RunRule Type="none" FileName="CommercialPropertyCondominiumCommercialUnitOwnersOptionalCoveragesRules" Rule="SetLossAssessmentLimitConverted" ClearCache="true" />
+			<rul:RunRule Type="none" FileName="CommercialPropertyCondominiumCommercialUnitOwnersOptionalCoveragesRules" Rule="SetLossAssessmentLimitToUse" ClearCache="true" />
+			<rul:RunRule Type="none" FileName="CommercialPropertyCondominiumCommercialUnitOwnersOptionalCoveragesRules" Rule="SetMultipleOf1000ValidationIndicator" ClearCache="true" />
+			<rul:RunRule Type="none" FileName="CommercialPropertyCondominiumCommercialUnitOwnersOptionalCoveragesRules" Rule="SetMultipleOf5000ValidationIndicator" ClearCache="true" />
+		</rul:Sequence>
+	</rul:Rule>
+	<rul:Rule Name="SetLossAssessmentLimitConverted" Type="none" DataDefGroup="CommercialPropertyCondominiumCommercialUnitOwnersOptionalCoverages">
+		<rul:Sequence>
+			<rul:If>
+				<rul:Test>
+					<rul:And>
+						<rul:NotEqual>
+							<rul:FirstValue Type="string" FromConstant="" FromDataDef="@LossAssessmentLimit" Order="DataDefInputParamConstant" />
+							<rul:Constant Type="string"></rul:Constant>
+						</rul:NotEqual>
+						<rul:NotEqual>
+							<rul:FirstValue Type="string" FromConstant="" FromDataDef="@LossAssessmentLimit" Order="DataDefInputParamConstant" />
+							<rul:Constant Type="string">Over 10,000</rul:Constant>
+						</rul:NotEqual>
+					</rul:And>
+				</rul:Test>
+				<rul:Then>
+					<rul:Sequence>
+						<rul:RunRule Type="integer" ToDataDef="@LossAssessmentLimitConverted" FileName="CommercialPropertyCondominiumCommercialUnitOwnersOptionalCoveragesRules" Rule="LookupLossAssessmentLimitConverted" ClearCache="true" />
+					</rul:Sequence>
+				</rul:Then>
+				<rul:Else>
+					<rul:Sequence>
+						<rul:Constant Type="integer" ToDataDef="@LossAssessmentLimitConverted">0</rul:Constant>
+					</rul:Sequence>
+				</rul:Else>
+			</rul:If>
+		</rul:Sequence>
+	</rul:Rule>
+	<rul:Rule Name="SetLossAssessmentLimitToUse" Type="none" DataDefGroup="CommercialPropertyCondominiumCommercialUnitOwnersOptionalCoverages">
+		<rul:Sequence>
+			<rul:If>
+				<rul:Test>
+					<rul:Equal>
+						<rul:FirstValue Type="string" FromConstant="" FromDataDef="@LossAssessmentLimit" Order="DataDefInputParamConstant" />
+						<rul:Constant Type="string">Over 10,000</rul:Constant>
+					</rul:Equal>
+				</rul:Test>
+				<rul:Then>
+					<rul:Copy Type="integer" ToDataDef="@LossAssessmentLimitToUse" FromDataDef="@LossAssessmentLimitOver10000" />
+				</rul:Then>
+				<rul:Else>
+					<rul:Copy Type="integer" ToDataDef="@LossAssessmentLimitToUse" FromDataDef="@LossAssessmentLimitConverted" />
+				</rul:Else>
+			</rul:If>
+		</rul:Sequence>
+	</rul:Rule>
+	<rul:Rule Name="SetMultipleOf1000ValidationIndicator" Type="none" DataDefGroup="CommercialPropertyCondominiumCommercialUnitOwnersOptionalCoverages">
+		<rul:Sequence>
+			<rul:WithArgs>
+				<rul:Arg Type="decimal" Param="multipleOf1000ValidationCalc">
+					<rul:FirstNonNull Type="decimal">
+						<rul:If>
+							<rul:Test>
+								<rul:GreaterThan>
+									<rul:FirstValue Type="integer" FromConstant="0" FromDataDef="@LossAssessmentSubLimit" Order="DataDefInputParamConstant" />
+									<rul:Constant Type="integer">10000</rul:Constant>
+								</rul:GreaterThan>
+							</rul:Test>
+							<rul:Then>
+								<rul:Divide>
+									<rul:Value Type="integer" FromDataDef="@LossAssessmentSubLimit" />
+									<rul:Constant Type="decimal">1000</rul:Constant>
+								</rul:Divide>
+							</rul:Then>
+						</rul:If>
+						<rul:Constant Type="decimal">0</rul:Constant>
+					</rul:FirstNonNull>
+				</rul:Arg>
+				<rul:Arg Type="integer" Param="multipleOf1000Validation">
+					<rul:FirstNonNull Type="integer">
+						<rul:If>
+							<rul:Test>
+								<rul:GreaterThan>
+									<rul:FirstValue Type="integer" FromConstant="0" FromDataDef="@LossAssessmentSubLimit" Order="DataDefInputParamConstant" />
+									<rul:Constant Type="integer">10000</rul:Constant>
+								</rul:GreaterThan>
+							</rul:Test>
+							<rul:Then>
+								<rul:Truncate>
+									<rul:Divide>
+										<rul:Value Type="integer" FromDataDef="@LossAssessmentSubLimit" />
+										<rul:Constant Type="decimal">1000</rul:Constant>
+									</rul:Divide>
+								</rul:Truncate>
+							</rul:Then>
+						</rul:If>
+						<rul:Constant Type="integer">0</rul:Constant>
+					</rul:FirstNonNull>
+				</rul:Arg>
+				<rul:If>
+					<rul:Test>
+						<rul:Equal>
+							<rul:Subtract>
+								<rul:Value Type="decimal" FromParam="multipleOf1000ValidationCalc" />
+								<rul:Value Type="integer" FromParam="multipleOf1000Validation" />
+							</rul:Subtract>
+							<rul:Constant Type="decimal">0</rul:Constant>
+						</rul:Equal>
+					</rul:Test>
+					<rul:Then>
+						<rul:Sequence>
+							<rul:Constant Type="string" ToDataDef="@MultipleOf1000ValidationIndicator">Yes</rul:Constant>
+						</rul:Sequence>
+					</rul:Then>
+					<rul:Else>
+						<rul:Sequence>
+							<rul:Constant Type="string" ToDataDef="@MultipleOf1000ValidationIndicator">No</rul:Constant>
+						</rul:Sequence>
+					</rul:Else>
+				</rul:If>
+			</rul:WithArgs>
+		</rul:Sequence>
+	</rul:Rule>
+	<rul:Rule Name="SetMultipleOf5000ValidationIndicator" Type="none" DataDefGroup="CommercialPropertyCondominiumCommercialUnitOwnersOptionalCoverages">
+		<rul:Sequence>
+			<rul:WithArgs>
+				<rul:Arg Type="decimal" Param="multipleOf5000ValidationCalc">
+					<rul:FirstNonNull Type="decimal">
+						<rul:If>
+							<rul:Test>
+								<rul:And>
+									<rul:Equal>
+										<rul:FirstValue Type="string" FromConstant="" FromDataDef="@LossAssessmentLimit" Order="DataDefInputParamConstant" />
+										<rul:Constant Type="string">Over 10,000</rul:Constant>
+									</rul:Equal>
+									<rul:GreaterThanOrEqual>
+										<rul:FirstValue Type="integer" FromConstant="0" FromDataDef="@LossAssessmentLimitOver10000" Order="DataDefInputParamConstant" />
+										<rul:Constant Type="integer">15000</rul:Constant>
+									</rul:GreaterThanOrEqual>
+								</rul:And>
+							</rul:Test>
+							<rul:Then>
+								<rul:Divide>
+									<rul:Value Type="integer" FromDataDef="@LossAssessmentLimitOver10000" />
+									<rul:Constant Type="decimal">5000</rul:Constant>
+								</rul:Divide>
+							</rul:Then>
+						</rul:If>
+						<rul:Constant Type="decimal">0</rul:Constant>
+					</rul:FirstNonNull>
+				</rul:Arg>
+				<rul:Arg Type="integer" Param="multipleOf5000Validation">
+					<rul:FirstNonNull Type="integer">
+						<rul:If>
+							<rul:Test>
+								<rul:And>
+									<rul:Equal>
+										<rul:FirstValue Type="string" FromConstant="" FromDataDef="@LossAssessmentLimit" Order="DataDefInputParamConstant" />
+										<rul:Constant Type="string">Over 10,000</rul:Constant>
+									</rul:Equal>
+									<rul:GreaterThanOrEqual>
+										<rul:FirstValue Type="integer" FromConstant="0" FromDataDef="@LossAssessmentLimitOver10000" Order="DataDefInputParamConstant" />
+										<rul:Constant Type="integer">15000</rul:Constant>
+									</rul:GreaterThanOrEqual>
+								</rul:And>
+							</rul:Test>
+							<rul:Then>
+								<rul:Truncate>
+									<rul:Divide>
+										<rul:Value Type="integer" FromDataDef="@LossAssessmentLimitOver10000" />
+										<rul:Constant Type="decimal">5000</rul:Constant>
+									</rul:Divide>
+								</rul:Truncate>
+							</rul:Then>
+						</rul:If>
+						<rul:Constant Type="integer">0</rul:Constant>
+					</rul:FirstNonNull>
+				</rul:Arg>
+				<rul:If>
+					<rul:Test>
+						<rul:Equal>
+							<rul:Subtract>
+								<rul:Value Type="decimal" FromParam="multipleOf5000ValidationCalc" />
+								<rul:Value Type="integer" FromParam="multipleOf5000Validation" />
+							</rul:Subtract>
+							<rul:Constant Type="decimal">0</rul:Constant>
+						</rul:Equal>
+					</rul:Test>
+					<rul:Then>
+						<rul:Sequence>
+							<rul:Constant Type="string" ToDataDef="@MultipleOf5000ValidationIndicator">Yes</rul:Constant>
+						</rul:Sequence>
+					</rul:Then>
+					<rul:Else>
+						<rul:Sequence>
+							<rul:Constant Type="string" ToDataDef="@MultipleOf5000ValidationIndicator">No</rul:Constant>
+						</rul:Sequence>
+					</rul:Else>
+				</rul:If>
+			</rul:WithArgs>
+		</rul:Sequence>
+	</rul:Rule>
+	<rul:Rule Name="ErcRunPostUnderwritingLogic" Type="none" DataDefGroup="CommercialPropertyCondominiumCommercialUnitOwnersOptionalCoverages">
+		<rul:Sequence>
+			<rul:RunRule Type="none" FileName="CommercialPropertyCondominiumCommercialUnitOwnersOptionalCoveragesRules" Rule="DoMessageLossAssessmentSubLimitCannotBeGreaterThanTheLossAssessmentLimit" ClearCache="true" />
+			<rul:RunRule Type="none" FileName="CommercialPropertyCondominiumCommercialUnitOwnersOptionalCoveragesRules" Rule="DoMessageAmountEnteredForSubLimitNeedsToBeMultipleOf1000" ClearCache="true" />
+			<rul:RunRule Type="none" FileName="CommercialPropertyCondominiumCommercialUnitOwnersOptionalCoveragesRules" Rule="DoMessageAmountEnteredForLossAssessmentLimitNeedsToBeMultipleOf5000" ClearCache="true" />
+		</rul:Sequence>
+	</rul:Rule>
+	<rul:Rule Name="DoMessageLossAssessmentSubLimitCannotBeGreaterThanTheLossAssessmentLimit" Type="none" DataDefGroup="CommercialPropertyCondominiumCommercialUnitOwnersOptionalCoverages">
+		<rul:Sequence>
+			<rul:If>
+				<rul:Test>
+					<rul:GreaterThan>
+						<rul:FirstValue Type="integer" FromConstant="0" FromDataDef="@LossAssessmentSubLimit" Order="DataDefInputParamConstant" />
+						<rul:FirstValue Type="integer" FromConstant="0" FromDataDef="@LossAssessmentLimitToUse" Order="DataDefInputParamConstant" />
+					</rul:GreaterThan>
+				</rul:Test>
+				<rul:Then>
+					<rul:RunRule Type="none" FileName="MessageHelper" Rule="AddErrorMessage" ClearCache="true">
+						<rul:Arg Type="string" Param="Message">
+							<rul:Constant Type="string">Loss Assessment Sub Limit cannot be greater than the Loss Assessment Limit</rul:Constant>
+						</rul:Arg>
+					</rul:RunRule>
+				</rul:Then>
+			</rul:If>
+		</rul:Sequence>
+	</rul:Rule>
+	<rul:Rule Name="DoMessageAmountEnteredForSubLimitNeedsToBeMultipleOf1000" Type="none" DataDefGroup="CommercialPropertyCondominiumCommercialUnitOwnersOptionalCoverages">
+		<rul:Sequence>
+			<rul:If>
+				<rul:Test>
+					<rul:Equal>
+						<rul:FirstValue Type="string" FromConstant="" FromDataDef="@MultipleOf1000ValidationIndicator" Order="DataDefInputParamConstant" />
+						<rul:Constant Type="string">No</rul:Constant>
+					</rul:Equal>
+				</rul:Test>
+				<rul:Then>
+					<rul:RunRule Type="none" FileName="MessageHelper" Rule="AddErrorMessage" ClearCache="true">
+						<rul:Arg Type="string" Param="Message">
+							<rul:Constant Type="string">Amount entered for SubLimit needs to be multiple of 1000</rul:Constant>
+						</rul:Arg>
+					</rul:RunRule>
+				</rul:Then>
+			</rul:If>
+		</rul:Sequence>
+	</rul:Rule>
+	<rul:Rule Name="DoMessageAmountEnteredForLossAssessmentLimitNeedsToBeMultipleOf5000" Type="none" DataDefGroup="CommercialPropertyCondominiumCommercialUnitOwnersOptionalCoverages">
+		<rul:Sequence>
+			<rul:If>
+				<rul:Test>
+					<rul:Equal>
+						<rul:FirstValue Type="string" FromConstant="" FromDataDef="@MultipleOf5000ValidationIndicator" Order="DataDefInputParamConstant" />
+						<rul:Constant Type="string">No</rul:Constant>
+					</rul:Equal>
+				</rul:Test>
+				<rul:Then>
+					<rul:RunRule Type="none" FileName="MessageHelper" Rule="AddErrorMessage" ClearCache="true">
+						<rul:Arg Type="string" Param="Message">
+							<rul:Constant Type="string">Amount entered for Loss Assessment Limit Over $10,000 needs to be multiple of 5000</rul:Constant>
+						</rul:Arg>
+					</rul:RunRule>
+				</rul:Then>
+			</rul:If>
+		</rul:Sequence>
+	</rul:Rule>
+	<rul:Rule Name="ErcSetStatisticalCodes" Type="none" DataDefGroup="CommercialPropertyCondominiumCommercialUnitOwnersOptionalCoverages">
+		<rul:Sequence>
+			<rul:If>
+				<rul:Test>
+					<rul:Exist AtInputDataDef="ancestor::MasterCFCW/Policy" />
+				</rul:Test>
+				<rul:Then>
+					<rul:Sequence>
+						<rul:RunRule Type="none" FileName="CommercialPropertyCondominiumCommercialUnitOwnersOptionalCoveragesRules" Rule="SetSubline" ClearCache="true" />
+						<rul:RunRule Type="none" FileName="CommercialPropertyCondominiumCommercialUnitOwnersOptionalCoveragesRules" Rule="SetPerilExclusionIndicatorStatCode" ClearCache="true" />
+					</rul:Sequence>
+				</rul:Then>
+			</rul:If>
+		</rul:Sequence>
+	</rul:Rule>
+	<rul:Rule Name="SetSubline" Type="none" DataDefGroup="CommercialPropertyCondominiumCommercialUnitOwnersOptionalCoverages">
+		<rul:Sequence>
+			<rul:Choose>
+				<rul:When>
+					<rul:Test>
+						<rul:Equal>
+							<rul:FirstValue Type="string" FromConstant="" FromDataDef="../../@CauseOfLossToUse" Order="DataDefInputParamConstant" />
+							<rul:Constant Type="string">Broad</rul:Constant>
+						</rul:Equal>
+					</rul:Test>
+					<rul:Then>
+						<rul:Sequence>
+							<rul:RunRule Type="string" ToDataDef="@Subline" FileName="CommercialPropertyCondominiumCommercialUnitOwnersOptionalCoveragesRules" Rule="LookupIndivisibleSublineBroad" ClearCache="true" />
+						</rul:Sequence>
+					</rul:Then>
+				</rul:When>
+				<rul:When>
+					<rul:Test>
+						<rul:Equal>
+							<rul:FirstValue Type="string" FromConstant="" FromDataDef="../../@CauseOfLossToUse" Order="DataDefInputParamConstant" />
+							<rul:Constant Type="string">Special</rul:Constant>
+						</rul:Equal>
+					</rul:Test>
+					<rul:Then>
+						<rul:Sequence>
+							<rul:RunRule Type="string" ToDataDef="@Subline" FileName="CommercialPropertyCondominiumCommercialUnitOwnersOptionalCoveragesRules" Rule="LookupIndivisibleSublineSpecial" ClearCache="true" />
+						</rul:Sequence>
+					</rul:Then>
+				</rul:When>
+				<rul:Otherwise>
+					<rul:Sequence>
+						<rul:RunRule Type="string" ToDataDef="@Subline" FileName="CommercialPropertyCondominiumCommercialUnitOwnersOptionalCoveragesRules" Rule="LookupIndivisibleSublineBasic" ClearCache="true" />
+					</rul:Sequence>
+				</rul:Otherwise>
+			</rul:Choose>
+		</rul:Sequence>
+	</rul:Rule>
+	<rul:Rule Name="SetPerilExclusionIndicatorStatCode" Type="none" DataDefGroup="CommercialPropertyCondominiumCommercialUnitOwnersOptionalCoverages">
+		<rul:Sequence>
+			<rul:RunRule Type="none" FileName="CommercialPropertyCondominiumCommercialUnitOwnersOptionalCoveragesRules" Rule="SetVandalismExcludedIndicator" ClearCache="true" />
+			<rul:RunRule Type="none" FileName="CommercialPropertyCondominiumCommercialUnitOwnersOptionalCoveragesRules" Rule="SetSprinklerLeakageExcludedIndicator" ClearCache="true" />
+			<rul:RunRule Type="none" FileName="CommercialPropertyCondominiumCommercialUnitOwnersOptionalCoveragesRules" Rule="SetWindstormOrHailExcludedIndicator" ClearCache="true" />
+			<rul:RunRule Type="none" FileName="CommercialPropertyCondominiumCommercialUnitOwnersOptionalCoveragesRules" Rule="SetTheftExcludedIndicator" ClearCache="true" />
+			<rul:If>
+				<rul:Test>
+					<rul:Equal>
+						<rul:FirstValue Type="string" FromConstant="" FromDataDef="../../@CauseOfLossToUse" Order="DataDefInputParamConstant" />
+						<rul:Constant Type="string">Special</rul:Constant>
+					</rul:Equal>
+				</rul:Test>
+				<rul:Then>
+					<rul:Sequence>
+						<rul:RunRule Type="string" ToDataDef="@PerilExclusionIndicatorStatCode" FileName="CommercialPropertyCondominiumCommercialUnitOwnersOptionalCoveragesRules" Rule="LookupPerilExclusionIndicatorBasicAndSpecialStatCode" ClearCache="true" />
+					</rul:Sequence>
+				</rul:Then>
+				<rul:Else>
+					<rul:Sequence>
+						<rul:RunRule Type="string" ToDataDef="@PerilExclusionIndicatorStatCode" FileName="CommercialPropertyCondominiumCommercialUnitOwnersOptionalCoveragesRules" Rule="LookupPerilExclusionIndicatorBasicAndBroadStatCode" ClearCache="true" />
+					</rul:Sequence>
+				</rul:Else>
+			</rul:If>
+		</rul:Sequence>
+	</rul:Rule>
+	<rul:Rule Name="SetVandalismExcludedIndicator" Type="none" DataDefGroup="CommercialPropertyCondominiumCommercialUnitOwnersOptionalCoverages">
+		<rul:Sequence>
+			<rul:If>
+				<rul:Test>
+					<rul:Exist AtInputDataDef="../../CommercialPropertyVandalismExclusionPrsnlPropTable/CommercialPropertyVandalismExclusionPrsnlProp" />
+				</rul:Test>
+				<rul:Then>
+					<rul:Sequence>
+						<rul:Constant Type="string" ToDataDef="@VandalismExcludedIndicator">Yes</rul:Constant>
+					</rul:Sequence>
+				</rul:Then>
+				<rul:Else>
+					<rul:Sequence>
+						<rul:Constant Type="string" ToDataDef="@VandalismExcludedIndicator">No</rul:Constant>
+					</rul:Sequence>
+				</rul:Else>
+			</rul:If>
+		</rul:Sequence>
+	</rul:Rule>
+	<rul:Rule Name="SetSprinklerLeakageExcludedIndicator" Type="none" DataDefGroup="CommercialPropertyCondominiumCommercialUnitOwnersOptionalCoverages">
+		<rul:Sequence>
+			<rul:If>
+				<rul:Test>
+					<rul:Exist AtInputDataDef="../../CommercialPropertySprinklerLeakageExclusionPrsnlPropTable/CommercialPropertySprinklerLeakageExclusionPrsnlProp" />
+				</rul:Test>
+				<rul:Then>
+					<rul:Sequence>
+						<rul:Constant Type="string" ToDataDef="@SprinklerLeakageExcludedIndicator">Yes</rul:Constant>
+					</rul:Sequence>
+				</rul:Then>
+				<rul:Else>
+					<rul:Sequence>
+						<rul:Constant Type="string" ToDataDef="@SprinklerLeakageExcludedIndicator">No</rul:Constant>
+					</rul:Sequence>
+				</rul:Else>
+			</rul:If>
+		</rul:Sequence>
+	</rul:Rule>
+	<rul:Rule Name="SetWindstormOrHailExcludedIndicator" Type="none" DataDefGroup="CommercialPropertyCondominiumCommercialUnitOwnersOptionalCoverages">
+		<rul:Sequence>
+			<rul:If>
+				<rul:Test>
+					<rul:Exist AtInputDataDef="../../CommercialPropertyWindstormOrHailExclusionPrsnlPropTable/CommercialPropertyWindstormOrHailExclusionPrsnlProp" />
+				</rul:Test>
+				<rul:Then>
+					<rul:Sequence>
+						<rul:Constant Type="string" ToDataDef="@WindstormOrHailExcludedIndicator">Yes</rul:Constant>
+					</rul:Sequence>
+				</rul:Then>
+				<rul:Else>
+					<rul:Sequence>
+						<rul:Constant Type="string" ToDataDef="@WindstormOrHailExcludedIndicator">No</rul:Constant>
+					</rul:Sequence>
+				</rul:Else>
+			</rul:If>
+		</rul:Sequence>
+	</rul:Rule>
+	<rul:Rule Name="SetTheftExcludedIndicator" Type="none" DataDefGroup="CommercialPropertyCondominiumCommercialUnitOwnersOptionalCoverages">
+		<rul:Sequence>
+			<rul:If>
+				<rul:Test>
+					<rul:Exist AtInputDataDef="../../CommercialPropertyTheftExclusionPrsnlPropTable/CommercialPropertyTheftExclusionPrsnlProp" />
+				</rul:Test>
+				<rul:Then>
+					<rul:Sequence>
+						<rul:Constant Type="string" ToDataDef="@TheftExcludedIndicator">Yes</rul:Constant>
+					</rul:Sequence>
+				</rul:Then>
+				<rul:Else>
+					<rul:Sequence>
+						<rul:Constant Type="string" ToDataDef="@TheftExcludedIndicator">No</rul:Constant>
+					</rul:Sequence>
+				</rul:Else>
+			</rul:If>
+		</rul:Sequence>
+	</rul:Rule>
+	<rul:Rule Name="ErcProcess" Type="none" DataDefGroup="CommercialPropertyCondominiumCommercialUnitOwnersOptionalCoverages">
+		<rul:Sequence>
+			<rul:RunRule Type="none" FileName="CommercialPropertyCondominiumCommercialUnitOwnersOptionalCoveragesRules" Rule="ErcSetRatesAndFactors" ClearCache="true" />
+			<rul:Locate AtDataDef="CommercialPropertyCondominiumCommercialUnitOwnersOptionalCovLossAssmtCoverage">
+				<rul:RunRule Type="none" FileName="CommercialPropertyCondominiumCommercialUnitOwnersOptionalCovLossAssmtCoverageRules" Rule="ErcProcess" ClearCache="true" />
+			</rul:Locate>
+			<rul:Locate AtDataDef="CommercialPropertyCondominiumCommercialUnitOwnersOptionalCovMiscRealPropCoverage">
+				<rul:RunRule Type="none" FileName="CommercialPropertyCondominiumCommercialUnitOwnersOptionalCovMiscRealPropCoverageRules" Rule="ErcProcess" ClearCache="true" />
+			</rul:Locate>
+			<rul:RunRule Type="none" FileName="CommercialPropertyCondominiumCommercialUnitOwnersOptionalCoveragesRules" Rule="ErcRunPostUnderwritingLogic" ClearCache="true" />
+			<rul:RunRule Type="none" FileName="CommercialPropertyCondominiumCommercialUnitOwnersOptionalCoveragesRules" Rule="ErcSetStatisticalCodes" ClearCache="true" />
+		</rul:Sequence>
+	</rul:Rule>
+	<rul:Rule Name="LookupLossAssessmentLimitConverted" Type="integer" DataDefGroup="CommercialPropertyCondominiumCommercialUnitOwnersOptionalCoverages">
+		<rul:FirstNonNull Type="integer">
+			<rul:Lookup Type="integer" MatrixCol="Value" MatrixDef="LossAssessmentLimitConvertedDef" MatrixFromConstant="LossAssessmentLimitConverted" ResultMode="FirstResult">
+				<rul:Keys>
+					<rul:Value Type="string" FromDataDef="/State/@Code" />
+					<rul:FirstValue Type="string" FromConstant="" FromDataDef="@LossAssessmentLimit" Order="DataDefInputParamConstant" />
+				</rul:Keys>
+			</rul:Lookup>
+			<rul:Lookup Type="integer" MatrixCol="Value" MatrixDef="LossAssessmentLimitConvertedDef" MatrixFromConstant="LossAssessmentLimitConverted" ResultMode="SingleResult">
+				<rul:Keys>
+					<rul:Constant Type="string">CW</rul:Constant>
+					<rul:FirstValue Type="string" FromConstant="" FromDataDef="@LossAssessmentLimit" Order="DataDefInputParamConstant" />
+				</rul:Keys>
+			</rul:Lookup>
+		</rul:FirstNonNull>
+	</rul:Rule>
+	<rul:Rule Name="LookupIndivisibleSublineBasic" Type="string" DataDefGroup="CommercialPropertyCondominiumCommercialUnitOwnersOptionalCoverages">
+		<rul:FirstNonNull Type="string">
+			<rul:Lookup Type="string" MatrixCol="Code" MatrixDef="IndivisibleSublineBasicDef" MatrixFromConstant="IndivisibleSublineBasic" ResultMode="FirstResult">
+				<rul:Keys>
+					<rul:Value Type="string" FromDataDef="/State/@Code" />
+					<rul:Constant Type="string">Y</rul:Constant>
+				</rul:Keys>
+			</rul:Lookup>
+			<rul:Lookup Type="string" MatrixCol="Code" MatrixDef="IndivisibleSublineBasicDef" MatrixFromConstant="IndivisibleSublineBasic" ResultMode="SingleResult">
+				<rul:Keys>
+					<rul:Constant Type="string">CW</rul:Constant>
+					<rul:Constant Type="string">Y</rul:Constant>
+				</rul:Keys>
+			</rul:Lookup>
+		</rul:FirstNonNull>
+	</rul:Rule>
+	<rul:Rule Name="LookupIndivisibleSublineBroad" Type="string" DataDefGroup="CommercialPropertyCondominiumCommercialUnitOwnersOptionalCoverages">
+		<rul:FirstNonNull Type="string">
+			<rul:Lookup Type="string" MatrixCol="Code" MatrixDef="IndivisibleSublineBroadDef" MatrixFromConstant="IndivisibleSublineBroad" ResultMode="FirstResult">
+				<rul:Keys>
+					<rul:Value Type="string" FromDataDef="/State/@Code" />
+					<rul:Constant Type="string">Y</rul:Constant>
+				</rul:Keys>
+			</rul:Lookup>
+			<rul:Lookup Type="string" MatrixCol="Code" MatrixDef="IndivisibleSublineBroadDef" MatrixFromConstant="IndivisibleSublineBroad" ResultMode="SingleResult">
+				<rul:Keys>
+					<rul:Constant Type="string">CW</rul:Constant>
+					<rul:Constant Type="string">Y</rul:Constant>
+				</rul:Keys>
+			</rul:Lookup>
+		</rul:FirstNonNull>
+	</rul:Rule>
+	<rul:Rule Name="LookupIndivisibleSublineSpecial" Type="string" DataDefGroup="CommercialPropertyCondominiumCommercialUnitOwnersOptionalCoverages">
+		<rul:FirstNonNull Type="string">
+			<rul:Lookup Type="string" MatrixCol="Code" MatrixDef="IndivisibleSublineSpecialDef" MatrixFromConstant="IndivisibleSublineSpecial" ResultMode="FirstResult">
+				<rul:Keys>
+					<rul:Value Type="string" FromDataDef="/State/@Code" />
+					<rul:Constant Type="string">Y</rul:Constant>
+				</rul:Keys>
+			</rul:Lookup>
+			<rul:Lookup Type="string" MatrixCol="Code" MatrixDef="IndivisibleSublineSpecialDef" MatrixFromConstant="IndivisibleSublineSpecial" ResultMode="SingleResult">
+				<rul:Keys>
+					<rul:Constant Type="string">CW</rul:Constant>
+					<rul:Constant Type="string">Y</rul:Constant>
+				</rul:Keys>
+			</rul:Lookup>
+		</rul:FirstNonNull>
+	</rul:Rule>
+	<rul:Rule Name="LookupPerilExclusionIndicatorBasicAndBroadStatCode" Type="string" DataDefGroup="CommercialPropertyCondominiumCommercialUnitOwnersOptionalCoverages">
+		<rul:FirstNonNull Type="string">
+			<rul:Lookup Type="string" MatrixCol="Code" MatrixDef="PerilExclusionIndicatorBasicAndBroadStatCodeDef" MatrixFromConstant="PerilExclusionIndicatorBasicAndBroadStatCode" ResultMode="FirstResult">
+				<rul:Keys>
+					<rul:Value Type="string" FromDataDef="/State/@Code" />
+					<rul:FirstValue Type="string" FromConstant="" FromDataDef="@VandalismExcludedIndicator" Order="DataDefInputParamConstant" />
+					<rul:FirstValue Type="string" FromConstant="" FromDataDef="@SprinklerLeakageExcludedIndicator" Order="DataDefInputParamConstant" />
+					<rul:FirstValue Type="string" FromConstant="" FromDataDef="@WindstormOrHailExcludedIndicator" Order="DataDefInputParamConstant" />
+				</rul:Keys>
+			</rul:Lookup>
+			<rul:Lookup Type="string" MatrixCol="Code" MatrixDef="PerilExclusionIndicatorBasicAndBroadStatCodeDef" MatrixFromConstant="PerilExclusionIndicatorBasicAndBroadStatCode" ResultMode="SingleResult">
+				<rul:Keys>
+					<rul:Constant Type="string">CW</rul:Constant>
+					<rul:FirstValue Type="string" FromConstant="" FromDataDef="@VandalismExcludedIndicator" Order="DataDefInputParamConstant" />
+					<rul:FirstValue Type="string" FromConstant="" FromDataDef="@SprinklerLeakageExcludedIndicator" Order="DataDefInputParamConstant" />
+					<rul:FirstValue Type="string" FromConstant="" FromDataDef="@WindstormOrHailExcludedIndicator" Order="DataDefInputParamConstant" />
+				</rul:Keys>
+			</rul:Lookup>
+		</rul:FirstNonNull>
+	</rul:Rule>
+	<rul:Rule Name="LookupPerilExclusionIndicatorBasicAndSpecialStatCode" Type="string" DataDefGroup="CommercialPropertyCondominiumCommercialUnitOwnersOptionalCoverages">
+		<rul:FirstNonNull Type="string">
+			<rul:Lookup Type="string" MatrixCol="Code" MatrixDef="PerilExclusionIndicatorBasicAndSpecialStatCodeDef" MatrixFromConstant="PerilExclusionIndicatorBasicAndSpecialStatCode" ResultMode="FirstResult">
+				<rul:Keys>
+					<rul:Value Type="string" FromDataDef="/State/@Code" />
+					<rul:FirstValue Type="string" FromConstant="" FromDataDef="@VandalismExcludedIndicator" Order="DataDefInputParamConstant" />
+					<rul:FirstValue Type="string" FromConstant="" FromDataDef="@SprinklerLeakageExcludedIndicator" Order="DataDefInputParamConstant" />
+					<rul:FirstValue Type="string" FromConstant="" FromDataDef="@WindstormOrHailExcludedIndicator" Order="DataDefInputParamConstant" />
+					<rul:FirstValue Type="string" FromConstant="" FromDataDef="@TheftExcludedIndicator" Order="DataDefInputParamConstant" />
+				</rul:Keys>
+			</rul:Lookup>
+			<rul:Lookup Type="string" MatrixCol="Code" MatrixDef="PerilExclusionIndicatorBasicAndSpecialStatCodeDef" MatrixFromConstant="PerilExclusionIndicatorBasicAndSpecialStatCode" ResultMode="SingleResult">
+				<rul:Keys>
+					<rul:Constant Type="string">CW</rul:Constant>
+					<rul:FirstValue Type="string" FromConstant="" FromDataDef="@VandalismExcludedIndicator" Order="DataDefInputParamConstant" />
+					<rul:FirstValue Type="string" FromConstant="" FromDataDef="@SprinklerLeakageExcludedIndicator" Order="DataDefInputParamConstant" />
+					<rul:FirstValue Type="string" FromConstant="" FromDataDef="@WindstormOrHailExcludedIndicator" Order="DataDefInputParamConstant" />
+					<rul:FirstValue Type="string" FromConstant="" FromDataDef="@TheftExcludedIndicator" Order="DataDefInputParamConstant" />
+				</rul:Keys>
+			</rul:Lookup>
+		</rul:FirstNonNull>
+	</rul:Rule>
+</rul:Rules>

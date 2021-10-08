@@ -1,0 +1,15 @@
+<rt:RateTable xmlns:rt="http://www.verisk.com/iso/erc/RateTable">
+	<rt:MetaData>
+		<rt:MetaDataCode>RateTableEQPercentageDeductibleFactor</rt:MetaDataCode>
+		<rt:MetaDataCode>BureauRuleNumber73D2d</rt:MetaDataCode>
+	</rt:MetaData>
+	<rt:KeyCols>
+		<rt:KeyCol Name="StateCode" Type="string" CaseInsensitive="false" />
+		<rt:KeyCol Name="EQDeductibleTier" Type="integer" CaseInsensitive="false" />
+		<rt:KeyCol Name="EQClass" Type="string" CaseInsensitive="false" />
+		<rt:KeyCol Name="EQDeductible" Type="string" CaseInsensitive="false" />
+	</rt:KeyCols>
+	<rt:ValueCols>
+		<rt:ValueCol Name="Factor" Type="decimal" />
+	</rt:ValueCols>
+</rt:RateTable>

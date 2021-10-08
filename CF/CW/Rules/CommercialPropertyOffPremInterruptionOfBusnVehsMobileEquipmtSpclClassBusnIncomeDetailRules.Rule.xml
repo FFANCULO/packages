@@ -1,0 +1,471 @@
+<rul:Rules xmlns:rul="http://www.verisk.com/iso/erc/Rule">
+	<rul:Rule Name="InitializeRuleSet" DataDefGroup="CommercialPropertyOffPremInterruptionOfBusnVehsMobileEquipmtSpclClassBusnIncomeDetail">
+		<rul:Sequence>
+			<rul:Locate AtDataDef="CommercialPropertyOffPremInterruptionOfBusnVehsMobileEquipmtSpclClassBusnIncomeDetailCollision">
+				<rul:RunRule Type="none" FileName="CommercialPropertyOffPremInterruptionOfBusnVehsMobileEquipmtSpclClassBusnIncomeDetailCollisionRules" Rule="InitializeRuleSet" ClearCache="true" />
+			</rul:Locate>
+			<rul:Locate AtDataDef="CommercialPropertyOffPremInterruptionOfBusnVehsMobileEquipmtSpclClassBusnIncomeDetailOTC">
+				<rul:RunRule Type="none" FileName="CommercialPropertyOffPremInterruptionOfBusnVehsMobileEquipmtSpclClassBusnIncomeDetailOTCRules" Rule="InitializeRuleSet" ClearCache="true" />
+			</rul:Locate>
+		</rul:Sequence>
+	</rul:Rule>
+	<rul:Rule Name="CalculateTotalPremium" Type="decimal" DataDefGroup="CommercialPropertyOffPremInterruptionOfBusnVehsMobileEquipmtSpclClassBusnIncomeDetail">
+		<rul:Sum>
+			<rul:Locate AtDataDef="CommercialPropertyOffPremInterruptionOfBusnVehsMobileEquipmtSpclClassBusnIncomeDetailCollision">
+				<rul:RunRule Type="decimal" FileName="CommercialPropertyOffPremInterruptionOfBusnVehsMobileEquipmtSpclClassBusnIncomeDetailCollisionRules" Rule="CalculateTotalPremium" ClearCache="true" />
+			</rul:Locate>
+			<rul:Locate AtDataDef="CommercialPropertyOffPremInterruptionOfBusnVehsMobileEquipmtSpclClassBusnIncomeDetailOTC">
+				<rul:RunRule Type="decimal" FileName="CommercialPropertyOffPremInterruptionOfBusnVehsMobileEquipmtSpclClassBusnIncomeDetailOTCRules" Rule="CalculateTotalPremium" ClearCache="true" />
+			</rul:Locate>
+			<rul:If>
+				<rul:Test>
+					<rul:And>
+						<rul:Equal>
+							<rul:FirstValue Type="integer" FromConstant="0" FromDataDef="@PremiumIndicator" Order="DataDefInputParamConstant" />
+							<rul:Constant Type="integer">1</rul:Constant>
+						</rul:Equal>
+						<rul:NotEqual>
+							<rul:FirstValue Type="decimal" FromConstant="0" FromDataDef="@Premium" Order="DataDefInputParamConstant" />
+							<rul:Constant Type="decimal">0</rul:Constant>
+						</rul:NotEqual>
+					</rul:And>
+				</rul:Test>
+				<rul:Then>
+					<rul:FirstValue Type="decimal" FromConstant="0" FromDataDef="@Premium" Order="DataDefInputParamConstant" />
+				</rul:Then>
+				<rul:Else>
+					<rul:Constant Type="decimal">0</rul:Constant>
+				</rul:Else>
+			</rul:If>
+		</rul:Sum>
+	</rul:Rule>
+	<rul:Rule Name="ErcSetRatesAndFactors" Type="none" DataDefGroup="CommercialPropertyOffPremInterruptionOfBusnVehsMobileEquipmtSpclClassBusnIncomeDetail">
+		<rul:Sequence>
+			<rul:RunRule Type="none" FileName="CommercialPropertyOffPremInterruptionOfBusnVehsMobileEquipmtSpclClassBusnIncomeDetailRules" Rule="SetInsToExposureFactor" ClearCache="true" />
+		</rul:Sequence>
+	</rul:Rule>
+	<rul:Rule Name="SetInsToExposureFactor" Type="none" DataDefGroup="CommercialPropertyOffPremInterruptionOfBusnVehsMobileEquipmtSpclClassBusnIncomeDetail">
+		<rul:Sequence>
+			<rul:If>
+				<rul:Test>
+					<rul:And>
+						<rul:IsNotNull>
+							<rul:Value Type="string" FromDataDef="@Option" />
+						</rul:IsNotNull>
+						<rul:Equal>
+							<rul:FirstValue Type="string" FromConstant="" FromDataDef="@Option" Order="DataDefInputParamConstant" />
+							<rul:Constant Type="string">Option B</rul:Constant>
+						</rul:Equal>
+						<rul:IsNotNull>
+							<rul:Value Type="string" FromDataDef="@PercentInsToExposure" />
+						</rul:IsNotNull>
+					</rul:And>
+				</rul:Test>
+				<rul:Then>
+					<rul:Sequence>
+						<rul:RunRule Type="decimal" ToDataDef="@InsToExposureFactor" FileName="CommercialPropertyOffPremInterruptionOfBusnVehsMobileEquipmtSpclClassBusnIncomeDetailRules" Rule="LookupOffPremInsToExposureFactor" ClearCache="true" />
+					</rul:Sequence>
+				</rul:Then>
+				<rul:Else>
+					<rul:Sequence>
+						<rul:Constant Type="decimal" ToDataDef="@InsToExposureFactor">1.0</rul:Constant>
+					</rul:Sequence>
+				</rul:Else>
+			</rul:If>
+		</rul:Sequence>
+	</rul:Rule>
+	<rul:Rule Name="ErcSetStatisticalCodes" Type="none" DataDefGroup="CommercialPropertyOffPremInterruptionOfBusnVehsMobileEquipmtSpclClassBusnIncomeDetail">
+		<rul:Sequence>
+			<rul:If>
+				<rul:Test>
+					<rul:Exist AtInputDataDef="ancestor::MasterCFCW/Policy" />
+				</rul:Test>
+				<rul:Then>
+					<rul:Sequence>
+						<rul:RunRule Type="none" FileName="CommercialPropertyOffPremInterruptionOfBusnVehsMobileEquipmtSpclClassBusnIncomeDetailRules" Rule="SetOffPremisesCoverageOTCStatCode" ClearCache="true" />
+						<rul:RunRule Type="none" FileName="CommercialPropertyOffPremInterruptionOfBusnVehsMobileEquipmtSpclClassBusnIncomeDetailRules" Rule="SetOffPremisesCoverageCollisionStatCode" ClearCache="true" />
+						<rul:RunRule Type="none" FileName="CommercialPropertyOffPremInterruptionOfBusnVehsMobileEquipmtSpclClassBusnIncomeDetailRules" Rule="SetOffPremisesPercentageStatCode" ClearCache="true" />
+						<rul:RunRule Type="none" FileName="CommercialPropertyOffPremInterruptionOfBusnVehsMobileEquipmtSpclClassBusnIncomeDetailRules" Rule="SetOffPremisesExposureStatCode" ClearCache="true" />
+					</rul:Sequence>
+				</rul:Then>
+			</rul:If>
+		</rul:Sequence>
+	</rul:Rule>
+	<rul:Rule Name="SetOffPremisesCoverageOTCStatCode" Type="none" DataDefGroup="CommercialPropertyOffPremInterruptionOfBusnVehsMobileEquipmtSpclClassBusnIncomeDetail">
+		<rul:Sequence>
+			<rul:Choose>
+				<rul:When>
+					<rul:Test>
+						<rul:And>
+							<rul:IsNotNull>
+								<rul:Value Type="string" FromDataDef="../../../../@CovType" />
+							</rul:IsNotNull>
+							<rul:Equal>
+								<rul:FirstValue Type="string" FromConstant="" FromDataDef="../../../../@CovType" Order="DataDefInputParamConstant" />
+								<rul:Constant Type="string">Business Income Without Extra Expense</rul:Constant>
+							</rul:Equal>
+						</rul:And>
+					</rul:Test>
+					<rul:Then>
+						<rul:Sequence>
+							<rul:RunRule Type="string" ToDataDef="@OffPremisesCoverageOTCStatCode" FileName="CommercialPropertyOffPremInterruptionOfBusnVehsMobileEquipmtSpclClassBusnIncomeDetailRules" Rule="LookupOffPremBusnIncomeOTCCoverageCode" ClearCache="true" />
+						</rul:Sequence>
+					</rul:Then>
+				</rul:When>
+				<rul:When>
+					<rul:Test>
+						<rul:And>
+							<rul:IsNotNull>
+								<rul:Value Type="string" FromDataDef="../../../../@CovType" />
+							</rul:IsNotNull>
+							<rul:Equal>
+								<rul:FirstValue Type="string" FromConstant="" FromDataDef="../../../../@CovType" Order="DataDefInputParamConstant" />
+								<rul:Constant Type="string">Extra Expense Only</rul:Constant>
+							</rul:Equal>
+						</rul:And>
+					</rul:Test>
+					<rul:Then>
+						<rul:Sequence>
+							<rul:RunRule Type="string" ToDataDef="@OffPremisesCoverageOTCStatCode" FileName="CommercialPropertyOffPremInterruptionOfBusnVehsMobileEquipmtSpclClassBusnIncomeDetailRules" Rule="LookupOffPremExtraExpenseOTCCoverageCode" ClearCache="true" />
+						</rul:Sequence>
+					</rul:Then>
+				</rul:When>
+				<rul:When>
+					<rul:Test>
+						<rul:And>
+							<rul:IsNotNull>
+								<rul:Value Type="string" FromDataDef="../../../../@CovType" />
+							</rul:IsNotNull>
+							<rul:Equal>
+								<rul:FirstValue Type="string" FromConstant="" FromDataDef="../../../../@CovType" Order="DataDefInputParamConstant" />
+								<rul:Constant Type="string">Business Income With Extra Expense</rul:Constant>
+							</rul:Equal>
+						</rul:And>
+					</rul:Test>
+					<rul:Then>
+						<rul:Sequence>
+							<rul:RunRule Type="string" ToDataDef="@OffPremisesCoverageOTCStatCode" FileName="CommercialPropertyOffPremInterruptionOfBusnVehsMobileEquipmtSpclClassBusnIncomeDetailRules" Rule="LookupOffPremBusnIncomeAndExtraExpnOTCCoverageCode" ClearCache="true" />
+						</rul:Sequence>
+					</rul:Then>
+				</rul:When>
+				<rul:Otherwise>
+					<rul:Sequence>
+						<rul:Constant Type="string" ToDataDef="@OffPremisesCoverageOTCStatCode"></rul:Constant>
+					</rul:Sequence>
+				</rul:Otherwise>
+			</rul:Choose>
+		</rul:Sequence>
+	</rul:Rule>
+	<rul:Rule Name="SetOffPremisesCoverageCollisionStatCode" Type="none" DataDefGroup="CommercialPropertyOffPremInterruptionOfBusnVehsMobileEquipmtSpclClassBusnIncomeDetail">
+		<rul:Sequence>
+			<rul:If>
+				<rul:Test>
+					<rul:And>
+						<rul:IsNotNull>
+							<rul:Value Type="string" FromDataDef="../../@CollisionCovCOL" />
+						</rul:IsNotNull>
+						<rul:Equal>
+							<rul:FirstValue Type="string" FromConstant="" FromDataDef="../../@CollisionCovCOL" Order="DataDefInputParamConstant" />
+							<rul:Constant Type="string">Yes</rul:Constant>
+						</rul:Equal>
+					</rul:And>
+				</rul:Test>
+				<rul:Then>
+					<rul:Sequence>
+						<rul:Choose>
+							<rul:When>
+								<rul:Test>
+									<rul:And>
+										<rul:IsNotNull>
+											<rul:Value Type="string" FromDataDef="../../../../@CovType" />
+										</rul:IsNotNull>
+										<rul:Equal>
+											<rul:FirstValue Type="string" FromConstant="" FromDataDef="../../../../@CovType" Order="DataDefInputParamConstant" />
+											<rul:Constant Type="string">Business Income Without Extra Expense</rul:Constant>
+										</rul:Equal>
+									</rul:And>
+								</rul:Test>
+								<rul:Then>
+									<rul:Sequence>
+										<rul:RunRule Type="string" ToDataDef="@OffPremisesCoverageCollisionStatCode" FileName="CommercialPropertyOffPremInterruptionOfBusnVehsMobileEquipmtSpclClassBusnIncomeDetailRules" Rule="LookupOffPremBusnIncomeCollisionCoverageCode" ClearCache="true" />
+									</rul:Sequence>
+								</rul:Then>
+							</rul:When>
+							<rul:When>
+								<rul:Test>
+									<rul:And>
+										<rul:IsNotNull>
+											<rul:Value Type="string" FromDataDef="../../../../@CovType" />
+										</rul:IsNotNull>
+										<rul:Equal>
+											<rul:FirstValue Type="string" FromConstant="" FromDataDef="../../../../@CovType" Order="DataDefInputParamConstant" />
+											<rul:Constant Type="string">Extra Expense Only</rul:Constant>
+										</rul:Equal>
+									</rul:And>
+								</rul:Test>
+								<rul:Then>
+									<rul:Sequence>
+										<rul:RunRule Type="string" ToDataDef="@OffPremisesCoverageCollisionStatCode" FileName="CommercialPropertyOffPremInterruptionOfBusnVehsMobileEquipmtSpclClassBusnIncomeDetailRules" Rule="LookupOffPremExtraExpenseCollisionCoverageCode" ClearCache="true" />
+									</rul:Sequence>
+								</rul:Then>
+							</rul:When>
+							<rul:When>
+								<rul:Test>
+									<rul:And>
+										<rul:IsNotNull>
+											<rul:Value Type="string" FromDataDef="../../../../@CovType" />
+										</rul:IsNotNull>
+										<rul:Equal>
+											<rul:FirstValue Type="string" FromConstant="" FromDataDef="../../../../@CovType" Order="DataDefInputParamConstant" />
+											<rul:Constant Type="string">Business Income With Extra Expense</rul:Constant>
+										</rul:Equal>
+									</rul:And>
+								</rul:Test>
+								<rul:Then>
+									<rul:Sequence>
+										<rul:RunRule Type="string" ToDataDef="@OffPremisesCoverageCollisionStatCode" FileName="CommercialPropertyOffPremInterruptionOfBusnVehsMobileEquipmtSpclClassBusnIncomeDetailRules" Rule="LookupOffPremBusnIncomeAndExtraExpnCollisionCoverageCode" ClearCache="true" />
+									</rul:Sequence>
+								</rul:Then>
+							</rul:When>
+							<rul:Otherwise>
+								<rul:Sequence>
+									<rul:Constant Type="string" ToDataDef="@OffPremisesCoverageCollisionStatCode"></rul:Constant>
+								</rul:Sequence>
+							</rul:Otherwise>
+						</rul:Choose>
+					</rul:Sequence>
+				</rul:Then>
+				<rul:Else>
+					<rul:Sequence>
+						<rul:Constant Type="string" ToDataDef="@OffPremisesCoverageCollisionStatCode"></rul:Constant>
+					</rul:Sequence>
+				</rul:Else>
+			</rul:If>
+		</rul:Sequence>
+	</rul:Rule>
+	<rul:Rule Name="SetOffPremisesPercentageStatCode" Type="none" DataDefGroup="CommercialPropertyOffPremInterruptionOfBusnVehsMobileEquipmtSpclClassBusnIncomeDetail">
+		<rul:Sequence>
+			<rul:Choose>
+				<rul:When>
+					<rul:Test>
+						<rul:Equal>
+							<rul:FirstValue Type="string" FromConstant="" FromDataDef="@Option" Order="DataDefInputParamConstant" />
+							<rul:Constant Type="string">Option A</rul:Constant>
+						</rul:Equal>
+					</rul:Test>
+					<rul:Then>
+						<rul:Sequence>
+							<rul:RunRule Type="string" ToDataDef="@OffPremisesPercentageStatCode" FileName="CommercialPropertyOffPremInterruptionOfBusnVehsMobileEquipmtSpclClassBusnIncomeDetailRules" Rule="LookupOffPremOptionAStatCode" ClearCache="true" />
+						</rul:Sequence>
+					</rul:Then>
+				</rul:When>
+				<rul:When>
+					<rul:Test>
+						<rul:And>
+							<rul:Equal>
+								<rul:FirstValue Type="string" FromConstant="" FromDataDef="@Option" Order="DataDefInputParamConstant" />
+								<rul:Constant Type="string">Option B</rul:Constant>
+							</rul:Equal>
+							<rul:IsNotNull>
+								<rul:Value Type="string" FromDataDef="@PercentInsToExposure" />
+							</rul:IsNotNull>
+						</rul:And>
+					</rul:Test>
+					<rul:Then>
+						<rul:Sequence>
+							<rul:RunRule Type="string" ToDataDef="@OffPremisesPercentageStatCode" FileName="CommercialPropertyOffPremInterruptionOfBusnVehsMobileEquipmtSpclClassBusnIncomeDetailRules" Rule="LookupOffPremInsToExposureStatCode" ClearCache="true" />
+						</rul:Sequence>
+					</rul:Then>
+				</rul:When>
+				<rul:Otherwise>
+					<rul:Sequence>
+						<rul:Constant Type="string" ToDataDef="@OffPremisesPercentageStatCode"></rul:Constant>
+					</rul:Sequence>
+				</rul:Otherwise>
+			</rul:Choose>
+		</rul:Sequence>
+	</rul:Rule>
+	<rul:Rule Name="SetOffPremisesExposureStatCode" Type="none" DataDefGroup="CommercialPropertyOffPremInterruptionOfBusnVehsMobileEquipmtSpclClassBusnIncomeDetail">
+		<rul:Sequence>
+			<rul:If>
+				<rul:Test>
+					<rul:NotEqual>
+						<rul:FirstValue Type="integer" FromConstant="0" FromDataDef="@Limit" Order="DataDefInputParamConstant" />
+						<rul:Constant Type="integer">0</rul:Constant>
+					</rul:NotEqual>
+				</rul:Test>
+				<rul:Then>
+					<rul:Sequence>
+						<rul:Truncate ToDataDef="@OffPremisesExposureStatCode">
+							<rul:Divide>
+								<rul:Value Type="integer" FromDataDef="@Limit" />
+								<rul:Constant Type="decimal">1000</rul:Constant>
+							</rul:Divide>
+						</rul:Truncate>
+					</rul:Sequence>
+				</rul:Then>
+				<rul:Else>
+					<rul:Sequence>
+						<rul:Constant Type="integer" ToDataDef="@OffPremisesExposureStatCode">0</rul:Constant>
+					</rul:Sequence>
+				</rul:Else>
+			</rul:If>
+		</rul:Sequence>
+	</rul:Rule>
+	<rul:Rule Name="ErcProcess" Type="none" DataDefGroup="CommercialPropertyOffPremInterruptionOfBusnVehsMobileEquipmtSpclClassBusnIncomeDetail">
+		<rul:Sequence>
+			<rul:RunRule Type="none" FileName="CommercialPropertyOffPremInterruptionOfBusnVehsMobileEquipmtSpclClassBusnIncomeDetailRules" Rule="ErcSetRatesAndFactors" ClearCache="true" />
+			<rul:Locate AtDataDef="CommercialPropertyOffPremInterruptionOfBusnVehsMobileEquipmtSpclClassBusnIncomeDetailCollision">
+				<rul:RunRule Type="none" FileName="CommercialPropertyOffPremInterruptionOfBusnVehsMobileEquipmtSpclClassBusnIncomeDetailCollisionRules" Rule="ErcProcess" ClearCache="true" />
+			</rul:Locate>
+			<rul:Locate AtDataDef="CommercialPropertyOffPremInterruptionOfBusnVehsMobileEquipmtSpclClassBusnIncomeDetailOTC">
+				<rul:RunRule Type="none" FileName="CommercialPropertyOffPremInterruptionOfBusnVehsMobileEquipmtSpclClassBusnIncomeDetailOTCRules" Rule="ErcProcess" ClearCache="true" />
+			</rul:Locate>
+			<rul:RunRule Type="none" FileName="CommercialPropertyOffPremInterruptionOfBusnVehsMobileEquipmtSpclClassBusnIncomeDetailRules" Rule="ErcSetStatisticalCodes" ClearCache="true" />
+		</rul:Sequence>
+	</rul:Rule>
+	<rul:Rule Name="LookupOffPremBusnIncomeCollisionCoverageCode" Type="string" DataDefGroup="CommercialPropertyOffPremInterruptionOfBusnVehsMobileEquipmtSpclClassBusnIncomeDetail">
+		<rul:FirstNonNull Type="string">
+			<rul:Lookup Type="string" MatrixCol="Code" MatrixDef="OffPremBusnIncomeCollisionCoverageCodeDef" MatrixFromConstant="OffPremBusnIncomeCollisionCoverageCode" ResultMode="FirstResult">
+				<rul:Keys>
+					<rul:Value Type="string" FromDataDef="/State/@Code" />
+					<rul:Constant Type="string">Y</rul:Constant>
+				</rul:Keys>
+			</rul:Lookup>
+			<rul:Lookup Type="string" MatrixCol="Code" MatrixDef="OffPremBusnIncomeCollisionCoverageCodeDef" MatrixFromConstant="OffPremBusnIncomeCollisionCoverageCode" ResultMode="SingleResult">
+				<rul:Keys>
+					<rul:Constant Type="string">CW</rul:Constant>
+					<rul:Constant Type="string">Y</rul:Constant>
+				</rul:Keys>
+			</rul:Lookup>
+		</rul:FirstNonNull>
+	</rul:Rule>
+	<rul:Rule Name="LookupOffPremExtraExpenseCollisionCoverageCode" Type="string" DataDefGroup="CommercialPropertyOffPremInterruptionOfBusnVehsMobileEquipmtSpclClassBusnIncomeDetail">
+		<rul:FirstNonNull Type="string">
+			<rul:Lookup Type="string" MatrixCol="Code" MatrixDef="OffPremExtraExpenseCollisionCoverageCodeDef" MatrixFromConstant="OffPremExtraExpenseCollisionCoverageCode" ResultMode="FirstResult">
+				<rul:Keys>
+					<rul:Value Type="string" FromDataDef="/State/@Code" />
+					<rul:Constant Type="string">Y</rul:Constant>
+				</rul:Keys>
+			</rul:Lookup>
+			<rul:Lookup Type="string" MatrixCol="Code" MatrixDef="OffPremExtraExpenseCollisionCoverageCodeDef" MatrixFromConstant="OffPremExtraExpenseCollisionCoverageCode" ResultMode="SingleResult">
+				<rul:Keys>
+					<rul:Constant Type="string">CW</rul:Constant>
+					<rul:Constant Type="string">Y</rul:Constant>
+				</rul:Keys>
+			</rul:Lookup>
+		</rul:FirstNonNull>
+	</rul:Rule>
+	<rul:Rule Name="LookupOffPremBusnIncomeAndExtraExpnCollisionCoverageCode" Type="string" DataDefGroup="CommercialPropertyOffPremInterruptionOfBusnVehsMobileEquipmtSpclClassBusnIncomeDetail">
+		<rul:FirstNonNull Type="string">
+			<rul:Lookup Type="string" MatrixCol="Code" MatrixDef="OffPremBusnIncomeAndExtraExpnCollisionCoverageCodeDef" MatrixFromConstant="OffPremBusnIncomeAndExtraExpnCollisionCoverageCode" ResultMode="FirstResult">
+				<rul:Keys>
+					<rul:Value Type="string" FromDataDef="/State/@Code" />
+					<rul:Constant Type="string">Y</rul:Constant>
+				</rul:Keys>
+			</rul:Lookup>
+			<rul:Lookup Type="string" MatrixCol="Code" MatrixDef="OffPremBusnIncomeAndExtraExpnCollisionCoverageCodeDef" MatrixFromConstant="OffPremBusnIncomeAndExtraExpnCollisionCoverageCode" ResultMode="SingleResult">
+				<rul:Keys>
+					<rul:Constant Type="string">CW</rul:Constant>
+					<rul:Constant Type="string">Y</rul:Constant>
+				</rul:Keys>
+			</rul:Lookup>
+		</rul:FirstNonNull>
+	</rul:Rule>
+	<rul:Rule Name="LookupOffPremBusnIncomeOTCCoverageCode" Type="string" DataDefGroup="CommercialPropertyOffPremInterruptionOfBusnVehsMobileEquipmtSpclClassBusnIncomeDetail">
+		<rul:FirstNonNull Type="string">
+			<rul:Lookup Type="string" MatrixCol="Code" MatrixDef="OffPremBusnIncomeOTCCoverageCodeDef" MatrixFromConstant="OffPremBusnIncomeOTCCoverageCode" ResultMode="FirstResult">
+				<rul:Keys>
+					<rul:Value Type="string" FromDataDef="/State/@Code" />
+					<rul:Constant Type="string">Y</rul:Constant>
+				</rul:Keys>
+			</rul:Lookup>
+			<rul:Lookup Type="string" MatrixCol="Code" MatrixDef="OffPremBusnIncomeOTCCoverageCodeDef" MatrixFromConstant="OffPremBusnIncomeOTCCoverageCode" ResultMode="SingleResult">
+				<rul:Keys>
+					<rul:Constant Type="string">CW</rul:Constant>
+					<rul:Constant Type="string">Y</rul:Constant>
+				</rul:Keys>
+			</rul:Lookup>
+		</rul:FirstNonNull>
+	</rul:Rule>
+	<rul:Rule Name="LookupOffPremExtraExpenseOTCCoverageCode" Type="string" DataDefGroup="CommercialPropertyOffPremInterruptionOfBusnVehsMobileEquipmtSpclClassBusnIncomeDetail">
+		<rul:FirstNonNull Type="string">
+			<rul:Lookup Type="string" MatrixCol="Code" MatrixDef="OffPremExtraExpenseOTCCoverageCodeDef" MatrixFromConstant="OffPremExtraExpenseOTCCoverageCode" ResultMode="FirstResult">
+				<rul:Keys>
+					<rul:Value Type="string" FromDataDef="/State/@Code" />
+					<rul:Constant Type="string">Y</rul:Constant>
+				</rul:Keys>
+			</rul:Lookup>
+			<rul:Lookup Type="string" MatrixCol="Code" MatrixDef="OffPremExtraExpenseOTCCoverageCodeDef" MatrixFromConstant="OffPremExtraExpenseOTCCoverageCode" ResultMode="SingleResult">
+				<rul:Keys>
+					<rul:Constant Type="string">CW</rul:Constant>
+					<rul:Constant Type="string">Y</rul:Constant>
+				</rul:Keys>
+			</rul:Lookup>
+		</rul:FirstNonNull>
+	</rul:Rule>
+	<rul:Rule Name="LookupOffPremBusnIncomeAndExtraExpnOTCCoverageCode" Type="string" DataDefGroup="CommercialPropertyOffPremInterruptionOfBusnVehsMobileEquipmtSpclClassBusnIncomeDetail">
+		<rul:FirstNonNull Type="string">
+			<rul:Lookup Type="string" MatrixCol="Code" MatrixDef="OffPremBusnIncomeAndExtraExpnOTCCoverageCodeDef" MatrixFromConstant="OffPremBusnIncomeAndExtraExpnOTCCoverageCode" ResultMode="FirstResult">
+				<rul:Keys>
+					<rul:Value Type="string" FromDataDef="/State/@Code" />
+					<rul:Constant Type="string">Y</rul:Constant>
+				</rul:Keys>
+			</rul:Lookup>
+			<rul:Lookup Type="string" MatrixCol="Code" MatrixDef="OffPremBusnIncomeAndExtraExpnOTCCoverageCodeDef" MatrixFromConstant="OffPremBusnIncomeAndExtraExpnOTCCoverageCode" ResultMode="SingleResult">
+				<rul:Keys>
+					<rul:Constant Type="string">CW</rul:Constant>
+					<rul:Constant Type="string">Y</rul:Constant>
+				</rul:Keys>
+			</rul:Lookup>
+		</rul:FirstNonNull>
+	</rul:Rule>
+	<rul:Rule Name="LookupOffPremInsToExposureStatCode" Type="string" DataDefGroup="CommercialPropertyOffPremInterruptionOfBusnVehsMobileEquipmtSpclClassBusnIncomeDetail">
+		<rul:FirstNonNull Type="string">
+			<rul:Lookup Type="string" MatrixCol="Code" MatrixDef="OffPremInsToExposureStatCodeDef" MatrixFromConstant="OffPremInsToExposureStatCode" ResultMode="FirstResult">
+				<rul:Keys>
+					<rul:Value Type="string" FromDataDef="/State/@Code" />
+					<rul:FirstValue Type="string" FromConstant="" FromDataDef="@PercentInsToExposure" Order="DataDefInputParamConstant" />
+				</rul:Keys>
+			</rul:Lookup>
+			<rul:Lookup Type="string" MatrixCol="Code" MatrixDef="OffPremInsToExposureStatCodeDef" MatrixFromConstant="OffPremInsToExposureStatCode" ResultMode="SingleResult">
+				<rul:Keys>
+					<rul:Constant Type="string">CW</rul:Constant>
+					<rul:FirstValue Type="string" FromConstant="" FromDataDef="@PercentInsToExposure" Order="DataDefInputParamConstant" />
+				</rul:Keys>
+			</rul:Lookup>
+		</rul:FirstNonNull>
+	</rul:Rule>
+	<rul:Rule Name="LookupOffPremInsToExposureFactor" Type="decimal" DataDefGroup="CommercialPropertyOffPremInterruptionOfBusnVehsMobileEquipmtSpclClassBusnIncomeDetail">
+		<rul:FirstNonNull Type="decimal">
+			<rul:Lookup Type="decimal" MatrixCol="Factor" MatrixDef="OffPremInsToExposureFactorDef" MatrixFromConstant="OffPremInsToExposureFactor" ResultMode="FirstResult">
+				<rul:Keys>
+					<rul:Value Type="string" FromDataDef="/State/@Code" />
+					<rul:FirstValue Type="string" FromConstant="" FromDataDef="@PercentInsToExposure" Order="DataDefInputParamConstant" />
+				</rul:Keys>
+			</rul:Lookup>
+			<rul:Lookup Type="decimal" MatrixCol="Factor" MatrixDef="OffPremInsToExposureFactorDef" MatrixFromConstant="OffPremInsToExposureFactor" ResultMode="SingleResult">
+				<rul:Keys>
+					<rul:Constant Type="string">CW</rul:Constant>
+					<rul:FirstValue Type="string" FromConstant="" FromDataDef="@PercentInsToExposure" Order="DataDefInputParamConstant" />
+				</rul:Keys>
+			</rul:Lookup>
+		</rul:FirstNonNull>
+	</rul:Rule>
+	<rul:Rule Name="LookupOffPremOptionAStatCode" Type="string" DataDefGroup="CommercialPropertyOffPremInterruptionOfBusnVehsMobileEquipmtSpclClassBusnIncomeDetail">
+		<rul:FirstNonNull Type="string">
+			<rul:Lookup Type="string" MatrixCol="Code" MatrixDef="OffPremOptionAStatCodeDef" MatrixFromConstant="OffPremOptionAStatCode" ResultMode="FirstResult">
+				<rul:Keys>
+					<rul:Value Type="string" FromDataDef="/State/@Code" />
+					<rul:Constant Type="string">Y</rul:Constant>
+				</rul:Keys>
+			</rul:Lookup>
+			<rul:Lookup Type="string" MatrixCol="Code" MatrixDef="OffPremOptionAStatCodeDef" MatrixFromConstant="OffPremOptionAStatCode" ResultMode="SingleResult">
+				<rul:Keys>
+					<rul:Constant Type="string">CW</rul:Constant>
+					<rul:Constant Type="string">Y</rul:Constant>
+				</rul:Keys>
+			</rul:Lookup>
+		</rul:FirstNonNull>
+	</rul:Rule>
+</rul:Rules>

@@ -1,0 +1,2833 @@
+<rul:Rules xmlns:rul="http://www.verisk.com/iso/erc/Rule">
+	<rul:Rule Name="InitializeRuleSet" DataDefGroup="CommercialPropertyBuildersRiskRenovations">
+		<rul:Sequence>
+			<rul:Locate AtDataDef="CommercialPropertyBuildersRiskRenovationsBasicGroupICoverage">
+				<rul:RunRule Type="none" FileName="CommercialPropertyBuildersRiskRenovationsBasicGroupICoverageRules" Rule="InitializeRuleSet" ClearCache="true" />
+			</rul:Locate>
+			<rul:Locate AtDataDef="CommercialPropertyBuildersRiskRenovationsBasicGroupIICoverage">
+				<rul:RunRule Type="none" FileName="CommercialPropertyBuildersRiskRenovationsBasicGroupIICoverageRules" Rule="InitializeRuleSet" ClearCache="true" />
+			</rul:Locate>
+			<rul:Locate AtDataDef="CommercialPropertyBuildersRiskRenovationsBroadCoverage">
+				<rul:RunRule Type="none" FileName="CommercialPropertyBuildersRiskRenovationsBroadCoverageRules" Rule="InitializeRuleSet" ClearCache="true" />
+			</rul:Locate>
+			<rul:ForEach AtDataDef="CommercialPropertyBuildersRiskRenovationsDetailTable/CommercialPropertyBuildersRiskRenovationsDetail">
+				<rul:RunRule Type="none" FileName="CommercialPropertyBuildersRiskRenovationsDetailRules" Rule="InitializeRuleSet" ClearCache="true" />
+			</rul:ForEach>
+			<rul:Locate AtDataDef="CommercialPropertyBuildersRiskRenovationsEarthquakeCoverage">
+				<rul:RunRule Type="none" FileName="CommercialPropertyBuildersRiskRenovationsEarthquakeCoverageRules" Rule="InitializeRuleSet" ClearCache="true" />
+			</rul:Locate>
+			<rul:Locate AtDataDef="CommercialPropertyBuildersRiskRenovationsSpecialCoverage">
+				<rul:RunRule Type="none" FileName="CommercialPropertyBuildersRiskRenovationsSpecialCoverageRules" Rule="InitializeRuleSet" ClearCache="true" />
+			</rul:Locate>
+		</rul:Sequence>
+	</rul:Rule>
+	<rul:Rule Name="CalculateTotalPremium" Type="decimal" DataDefGroup="CommercialPropertyBuildersRiskRenovations">
+		<rul:Sum>
+			<rul:Locate AtDataDef="CommercialPropertyBuildersRiskRenovationsBasicGroupICoverage">
+				<rul:RunRule Type="decimal" FileName="CommercialPropertyBuildersRiskRenovationsBasicGroupICoverageRules" Rule="CalculateTotalPremium" ClearCache="true" />
+			</rul:Locate>
+			<rul:Locate AtDataDef="CommercialPropertyBuildersRiskRenovationsBasicGroupIICoverage">
+				<rul:RunRule Type="decimal" FileName="CommercialPropertyBuildersRiskRenovationsBasicGroupIICoverageRules" Rule="CalculateTotalPremium" ClearCache="true" />
+			</rul:Locate>
+			<rul:Locate AtDataDef="CommercialPropertyBuildersRiskRenovationsBroadCoverage">
+				<rul:RunRule Type="decimal" FileName="CommercialPropertyBuildersRiskRenovationsBroadCoverageRules" Rule="CalculateTotalPremium" ClearCache="true" />
+			</rul:Locate>
+			<rul:ForEach AtDataDef="CommercialPropertyBuildersRiskRenovationsDetailTable/CommercialPropertyBuildersRiskRenovationsDetail">
+				<rul:RunRule Type="decimal" FileName="CommercialPropertyBuildersRiskRenovationsDetailRules" Rule="CalculateTotalPremium" ClearCache="true" />
+			</rul:ForEach>
+			<rul:Locate AtDataDef="CommercialPropertyBuildersRiskRenovationsEarthquakeCoverage">
+				<rul:RunRule Type="decimal" FileName="CommercialPropertyBuildersRiskRenovationsEarthquakeCoverageRules" Rule="CalculateTotalPremium" ClearCache="true" />
+			</rul:Locate>
+			<rul:Locate AtDataDef="CommercialPropertyBuildersRiskRenovationsSpecialCoverage">
+				<rul:RunRule Type="decimal" FileName="CommercialPropertyBuildersRiskRenovationsSpecialCoverageRules" Rule="CalculateTotalPremium" ClearCache="true" />
+			</rul:Locate>
+			<rul:If>
+				<rul:Test>
+					<rul:And>
+						<rul:Equal>
+							<rul:FirstValue Type="integer" FromConstant="0" FromDataDef="@PremiumIndicator" Order="DataDefInputParamConstant" />
+							<rul:Constant Type="integer">1</rul:Constant>
+						</rul:Equal>
+						<rul:NotEqual>
+							<rul:FirstValue Type="decimal" FromConstant="0" FromDataDef="@Premium" Order="DataDefInputParamConstant" />
+							<rul:Constant Type="decimal">0</rul:Constant>
+						</rul:NotEqual>
+					</rul:And>
+				</rul:Test>
+				<rul:Then>
+					<rul:FirstValue Type="decimal" FromConstant="0" FromDataDef="@Premium" Order="DataDefInputParamConstant" />
+				</rul:Then>
+				<rul:Else>
+					<rul:Constant Type="decimal">0</rul:Constant>
+				</rul:Else>
+			</rul:If>
+		</rul:Sum>
+	</rul:Rule>
+	<rul:Rule Name="ResetHiddenDomainTables" Type="none" DataDefGroup="CommercialPropertyBuildersRiskRenovations">
+		<rul:Sequence>
+			<rul:If>
+				<rul:Test>
+					<rul:NotEqual>
+						<rul:FirstValue Type="string" FromConstant="" FromDataDef="@ConstructionType" Order="DataDefInputParamConstant" />
+						<rul:Constant Type="string"></rul:Constant>
+					</rul:NotEqual>
+				</rul:Test>
+				<rul:Then>
+					<rul:Sequence>
+						<rul:RunRule Type="string" ToDataDef="@ConstructionTypeToUse" FileName="CommercialPropertyBuildersRiskRenovationsRules" Rule="LookupConstructionTypeToUse" ClearCache="true" />
+					</rul:Sequence>
+				</rul:Then>
+				<rul:Else>
+					<rul:Sequence>
+						<rul:Constant Type="string" ToDataDef="@ConstructionTypeToUse"></rul:Constant>
+					</rul:Sequence>
+				</rul:Else>
+			</rul:If>
+			<rul:If>
+				<rul:Test>
+					<rul:NotEqual>
+						<rul:FirstValue Type="string" FromConstant="" FromDataDef="@ConstructionTypeToUse" Order="DataDefInputParamConstant" />
+						<rul:Constant Type="string"></rul:Constant>
+					</rul:NotEqual>
+				</rul:Test>
+				<rul:Then>
+					<rul:Sequence>
+						<rul:RunRule Type="integer" ToDataDef="@ConstructionCode" FileName="CommercialPropertyBuildersRiskRenovationsRules" Rule="LookupConstructionCode" ClearCache="true" />
+					</rul:Sequence>
+				</rul:Then>
+				<rul:Else>
+					<rul:Sequence>
+						<rul:Constant Type="integer" ToDataDef="@ConstructionCode">0</rul:Constant>
+					</rul:Sequence>
+				</rul:Else>
+			</rul:If>
+		</rul:Sequence>
+	</rul:Rule>
+	<rul:Rule Name="ErcSetRatesAndFactors" Type="none" DataDefGroup="CommercialPropertyBuildersRiskRenovations">
+		<rul:Sequence>
+			<rul:RunRule Type="none" FileName="CommercialPropertyBuildersRiskRenovationsRules" Rule="ResetHiddenDomainTables" ClearCache="true" />
+			<rul:If>
+				<rul:Test>
+					<rul:NotExist AtInputDataDef="ancestor::CommercialPropertyStructure/CommercialPropertyBuildersRiskReportingFormTable/CommercialPropertyBuildersRiskReportingForm" />
+				</rul:Test>
+				<rul:Then>
+					<rul:Sequence>
+						<rul:RunRule Type="decimal" ToDataDef="@CompletedValueMultiplier" FileName="CommercialPropertyBuildersRiskRenovationsRules" Rule="LookupBldrsRiskRenovationsCompldValMultiplierFactor" ClearCache="true">
+							<rul:Arg Type="string" Param="option">
+								<rul:Constant Type="string">Renovations without Reporting Form</rul:Constant>
+							</rul:Arg>
+						</rul:RunRule>
+					</rul:Sequence>
+				</rul:Then>
+				<rul:Else>
+					<rul:Sequence>
+						<rul:RunRule Type="decimal" ToDataDef="@CompletedValueMultiplier" FileName="CommercialPropertyBuildersRiskRenovationsRules" Rule="LookupBldrsRiskRenovationsCompldValMultiplierFactor" ClearCache="true">
+							<rul:Arg Type="string" Param="option">
+								<rul:Constant Type="string">Renovations with Reporting Form</rul:Constant>
+							</rul:Arg>
+						</rul:RunRule>
+					</rul:Sequence>
+				</rul:Else>
+			</rul:If>
+			<rul:If>
+				<rul:Test>
+					<rul:NotExist AtInputDataDef="ancestor::CommercialPropertyStructure/CommercialPropertyBuildersRiskReportingFormTable/CommercialPropertyBuildersRiskReportingForm" />
+				</rul:Test>
+				<rul:Then>
+					<rul:Sequence>
+						<rul:RunRule Type="decimal" ToDataDef="@CoinsuranceModFactor" FileName="CommercialPropertyBuildersRiskRenovationsRules" Rule="LookupBldrsRiskRenovationsCoinsuranceModFactor" ClearCache="true" />
+					</rul:Sequence>
+				</rul:Then>
+				<rul:Else>
+					<rul:Sequence>
+						<rul:Constant Type="decimal" ToDataDef="@CoinsuranceModFactor">1.0</rul:Constant>
+					</rul:Sequence>
+				</rul:Else>
+			</rul:If>
+			<rul:RunRule Type="decimal" ToDataDef="@CoinsuranceFactor" FileName="CommercialPropertyBuildersRiskRenovationsRules" Rule="LookupCoinsuranceFactor" ClearCache="true" />
+			<rul:If>
+				<rul:Test>
+					<rul:And>
+						<rul:NotEqual>
+							<rul:FirstValue Type="string" FromConstant="" FromDataDef="@EQClass" Order="DataDefInputParamConstant" />
+							<rul:Constant Type="string"></rul:Constant>
+						</rul:NotEqual>
+						<rul:NotEqual>
+							<rul:FirstValue Type="string" FromConstant="" FromDataDef="@EQClass" Order="DataDefInputParamConstant" />
+							<rul:Constant Type="string">Not Applicable</rul:Constant>
+						</rul:NotEqual>
+					</rul:And>
+				</rul:Test>
+				<rul:Then>
+					<rul:Sequence>
+						<rul:RunRule Type="decimal" ToDataDef="@EQBaseRate" FileName="CommercialPropertyBuildersRiskRenovationsRules" Rule="LookupEQLossCostBldg" ClearCache="true" />
+					</rul:Sequence>
+				</rul:Then>
+				<rul:Else>
+					<rul:Sequence>
+						<rul:Constant Type="decimal" ToDataDef="@EQBaseRate">0.0</rul:Constant>
+					</rul:Sequence>
+				</rul:Else>
+			</rul:If>
+			<rul:RunRule Type="none" FileName="CommercialPropertyBuildersRiskRenovationsRules" Rule="SetBasicGroupILOIFactor" ClearCache="true" />
+			<rul:RunRule Type="none" FileName="CommercialPropertyBuildersRiskRenovationsRules" Rule="SetBasicGroupIILOIFactor" ClearCache="true" />
+			<rul:RunRule Type="none" FileName="CommercialPropertyBuildersRiskRenovationsRules" Rule="SetBroadLOIFacctor" ClearCache="true" />
+			<rul:RunRule Type="none" FileName="CommercialPropertyBuildersRiskRenovationsRules" Rule="SetSpecialLOIFacctor" ClearCache="true" />
+			<rul:WithArgs>
+				<rul:Arg Type="decimal" Param="calcVandalismExclFactorBuildersRiskRateCalculation">
+					<rul:FirstNonNull Type="decimal">
+						<rul:If>
+							<rul:Test>
+								<rul:Or>
+									<rul:And>
+										<rul:Equal>
+											<rul:FirstValue Type="string" FromConstant="" FromDataDef="ancestor::CommercialProperty/@PolicyType" Order="DataDefInputParamConstant" />
+											<rul:Constant Type="string">Commercial Property Policy</rul:Constant>
+										</rul:Equal>
+										<rul:Exist AtInputDataDef="ancestor::CommercialPropertyStructure/CommercialPropertyVandalismExclusionTable/CommercialPropertyVandalismExclusion" />
+									</rul:And>
+									<rul:And>
+										<rul:Equal>
+											<rul:FirstValue Type="string" FromConstant="" FromDataDef="ancestor::CommercialProperty/@PolicyType" Order="DataDefInputParamConstant" />
+											<rul:Constant Type="string">Standard Property Policy</rul:Constant>
+										</rul:Equal>
+										<rul:Or>
+											<rul:Equal>
+												<rul:FirstValue Type="string" FromConstant="" FromDataDef="ancestor::CommercialPropertyStructure/@CauseOfLossToUse" Order="DataDefInputParamConstant" />
+												<rul:Constant Type="string">Fire</rul:Constant>
+											</rul:Equal>
+											<rul:Equal>
+												<rul:FirstValue Type="string" FromConstant="" FromDataDef="ancestor::CommercialPropertyStructure/@CauseOfLossToUse" Order="DataDefInputParamConstant" />
+												<rul:Constant Type="string">Fire and Sprinkler Leakage</rul:Constant>
+											</rul:Equal>
+											<rul:Equal>
+												<rul:FirstValue Type="string" FromConstant="" FromDataDef="ancestor::CommercialPropertyStructure/@CauseOfLossToUse" Order="DataDefInputParamConstant" />
+												<rul:Constant Type="string">Fire and Allied Lines</rul:Constant>
+											</rul:Equal>
+											<rul:Equal>
+												<rul:FirstValue Type="string" FromConstant="" FromDataDef="ancestor::CommercialPropertyStructure/@CauseOfLossToUse" Order="DataDefInputParamConstant" />
+												<rul:Constant Type="string">Fire, Sprinkler Leakage and Allied Lines</rul:Constant>
+											</rul:Equal>
+										</rul:Or>
+									</rul:And>
+								</rul:Or>
+							</rul:Test>
+							<rul:Then>
+								<rul:RunRule Type="decimal" FileName="CommercialPropertyBuildersRiskRenovationsRules" Rule="LookupVandalismExclusionFactor" ClearCache="true">
+									<rul:Arg Type="string" Param="classCode">
+										<rul:Constant Type="string">1150</rul:Constant>
+									</rul:Arg>
+								</rul:RunRule>
+							</rul:Then>
+						</rul:If>
+						<rul:Constant Type="decimal">1</rul:Constant>
+					</rul:FirstNonNull>
+				</rul:Arg>
+				<rul:Value Type="decimal" ToDataDef="@VandalismExclFactorBuildersRiskRateCalculation" FromParam="calcVandalismExclFactorBuildersRiskRateCalculation" />
+			</rul:WithArgs>
+			<rul:WithArgs>
+				<rul:Arg Type="decimal" Param="calcVandalismExclFactorCompletedBuildingRateCalculation">
+					<rul:FirstNonNull Type="decimal">
+						<rul:If>
+							<rul:Test>
+								<rul:Or>
+									<rul:And>
+										<rul:Equal>
+											<rul:FirstValue Type="string" FromConstant="" FromDataDef="ancestor::CommercialProperty/@PolicyType" Order="DataDefInputParamConstant" />
+											<rul:Constant Type="string">Commercial Property Policy</rul:Constant>
+										</rul:Equal>
+										<rul:Exist AtInputDataDef="ancestor::CommercialPropertyStructure/CommercialPropertyVandalismExclusionTable/CommercialPropertyVandalismExclusion" />
+									</rul:And>
+									<rul:And>
+										<rul:Equal>
+											<rul:FirstValue Type="string" FromConstant="" FromDataDef="ancestor::CommercialProperty/@PolicyType" Order="DataDefInputParamConstant" />
+											<rul:Constant Type="string">Standard Property Policy</rul:Constant>
+										</rul:Equal>
+										<rul:Or>
+											<rul:Equal>
+												<rul:FirstValue Type="string" FromConstant="" FromDataDef="ancestor::CommercialPropertyStructure/@CauseOfLossToUse" Order="DataDefInputParamConstant" />
+												<rul:Constant Type="string">Fire</rul:Constant>
+											</rul:Equal>
+											<rul:Equal>
+												<rul:FirstValue Type="string" FromConstant="" FromDataDef="ancestor::CommercialPropertyStructure/@CauseOfLossToUse" Order="DataDefInputParamConstant" />
+												<rul:Constant Type="string">Fire and Sprinkler Leakage</rul:Constant>
+											</rul:Equal>
+											<rul:Equal>
+												<rul:FirstValue Type="string" FromConstant="" FromDataDef="ancestor::CommercialPropertyStructure/@CauseOfLossToUse" Order="DataDefInputParamConstant" />
+												<rul:Constant Type="string">Fire and Allied Lines</rul:Constant>
+											</rul:Equal>
+											<rul:Equal>
+												<rul:FirstValue Type="string" FromConstant="" FromDataDef="ancestor::CommercialPropertyStructure/@CauseOfLossToUse" Order="DataDefInputParamConstant" />
+												<rul:Constant Type="string">Fire, Sprinkler Leakage and Allied Lines</rul:Constant>
+											</rul:Equal>
+										</rul:Or>
+									</rul:And>
+								</rul:Or>
+							</rul:Test>
+							<rul:Then>
+								<rul:RunRule Type="decimal" FileName="CommercialPropertyBuildersRiskRenovationsRules" Rule="LookupVandalismExclusionFactor" ClearCache="true">
+									<rul:Arg Type="string" Param="classCode">
+										<rul:FirstValue Type="string" FromConstant="" FromDataDef="ancestor::CommercialPropertyStructure/@ClassCode" Order="DataDefInputParamConstant" />
+									</rul:Arg>
+								</rul:RunRule>
+							</rul:Then>
+						</rul:If>
+						<rul:Constant Type="decimal">1</rul:Constant>
+					</rul:FirstNonNull>
+				</rul:Arg>
+				<rul:Value Type="decimal" ToDataDef="@VandalismExclFactorCompletedBuildingRateCalculation" FromParam="calcVandalismExclFactorCompletedBuildingRateCalculation" />
+			</rul:WithArgs>
+			<rul:RunRule Type="none" FileName="CommercialPropertyBuildersRiskRenovationsRules" Rule="SetBuildersRiskRateCalcBGI" ClearCache="true" />
+			<rul:RunRule Type="none" FileName="CommercialPropertyBuildersRiskRenovationsRules" Rule="SetCompldBuildingRateCalcBGI" ClearCache="true" />
+			<rul:RunRule Type="none" FileName="CommercialPropertyBuildersRiskRenovationsRules" Rule="SetBasicGroupIISymbol" ClearCache="true" />
+			<rul:RunRule Type="none" FileName="CommercialPropertyBuildersRiskRenovationsRules" Rule="SetSuperiorRoofingIndicator" ClearCache="true" />
+			<rul:RunRule Type="none" FileName="CommercialPropertyBuildersRiskRenovationsRules" Rule="SetBGIISymbolsToUse" ClearCache="true" />
+			<rul:RunRule Type="none" FileName="CommercialPropertyBuildersRiskRenovationsRules" Rule="SetBuildersRiskRateCalcBGII" ClearCache="true" />
+			<rul:RunRule Type="none" FileName="CommercialPropertyBuildersRiskRenovationsRules" Rule="SetCompldBuildingRateCalcBGII" ClearCache="true" />
+			<rul:RunRule Type="none" FileName="CommercialPropertyBuildersRiskRenovationsRules" Rule="SetBuildersRiskRateAndCompldBuildingRateCalcsBroad" ClearCache="true" />
+			<rul:RunRule Type="none" FileName="CommercialPropertyBuildersRiskRenovationsRules" Rule="SetBuildersRiskRateAndCompldBuildingRateCalcsSpecial" ClearCache="true" />
+			<rul:RunRule Type="none" FileName="CommercialPropertyBuildersRiskRenovationsRules" Rule="SetBuildersRiskRateAndCompldBuildingRateCalcsEQ" ClearCache="true" />
+			<rul:WithArgs>
+				<rul:Arg Type="decimal" Param="BuildersRiskRateCalcBGIParam">
+					<rul:RunRule Type="decimal" FileName="CommercialPropertyBuildersRiskRenovationsRules" Rule="BuildersRiskRateCalcBGI" ClearCache="true" />
+				</rul:Arg>
+				<rul:Arg Type="decimal" Param="CompldBuildingRateCalcBGIParam">
+					<rul:RunRule Type="decimal" FileName="CommercialPropertyBuildersRiskRenovationsRules" Rule="CompldBuildingRateCalcBGI" ClearCache="true" />
+				</rul:Arg>
+				<rul:Choose>
+					<rul:When>
+						<rul:Test>
+							<rul:GreaterThanOrEqual>
+								<rul:Value Type="decimal" FromParam="BuildersRiskRateCalcBGIParam" />
+								<rul:Value Type="decimal" FromParam="CompldBuildingRateCalcBGIParam" />
+							</rul:GreaterThanOrEqual>
+						</rul:Test>
+						<rul:Then>
+							<rul:Sequence>
+								<rul:WithArgs>
+									<rul:Arg Type="decimal" Param="tempBuildersRiskRateBGIBaseRateParam">
+										<rul:RunRule Type="decimal" FileName="CommercialPropertyBuildersRiskRenovationsRules" Rule="tempBuildersRiskRateBGIBaseRate" ClearCache="true" />
+									</rul:Arg>
+									<rul:Value Type="decimal" ToDataDef="@BasicGroupIBaseRate" FromParam="tempBuildersRiskRateBGIBaseRateParam" />
+								</rul:WithArgs>
+								<rul:Value Type="decimal" ToDataDef="@BasicGroupIRate" FromParam="BuildersRiskRateCalcBGIParam" />
+								<rul:Constant Type="integer" ToDataDef="@MaxBGIRateCalc">1</rul:Constant>
+							</rul:Sequence>
+						</rul:Then>
+					</rul:When>
+					<rul:When>
+						<rul:Test>
+							<rul:LessThan>
+								<rul:Value Type="decimal" FromParam="BuildersRiskRateCalcBGIParam" />
+								<rul:Value Type="decimal" FromParam="CompldBuildingRateCalcBGIParam" />
+							</rul:LessThan>
+						</rul:Test>
+						<rul:Then>
+							<rul:Sequence>
+								<rul:WithArgs>
+									<rul:Arg Type="decimal" Param="tempCompldBuildingRateBGIBaseRateParam">
+										<rul:RunRule Type="decimal" FileName="CommercialPropertyBuildersRiskRenovationsRules" Rule="tempCompldBuildingRateBGIBaseRate" ClearCache="true" />
+									</rul:Arg>
+									<rul:Value Type="decimal" ToDataDef="@BasicGroupIBaseRate" FromParam="tempCompldBuildingRateBGIBaseRateParam" />
+								</rul:WithArgs>
+								<rul:Value Type="decimal" ToDataDef="@BasicGroupIRate" FromParam="CompldBuildingRateCalcBGIParam" />
+								<rul:Constant Type="integer" ToDataDef="@MaxBGIRateCalc">2</rul:Constant>
+							</rul:Sequence>
+						</rul:Then>
+					</rul:When>
+				</rul:Choose>
+			</rul:WithArgs>
+			<rul:WithArgs>
+				<rul:Arg Type="decimal" Param="BuildersRiskRateCalcBGIIParam">
+					<rul:RunRule Type="decimal" FileName="CommercialPropertyBuildersRiskRenovationsRules" Rule="BuildersRiskRateCalcBGII" ClearCache="true" />
+				</rul:Arg>
+				<rul:Arg Type="decimal" Param="CompldBuildingRateCalcBGIIParam">
+					<rul:RunRule Type="decimal" FileName="CommercialPropertyBuildersRiskRenovationsRules" Rule="CompldBuildingRateCalcBGII" ClearCache="true" />
+				</rul:Arg>
+				<rul:Choose>
+					<rul:When>
+						<rul:Test>
+							<rul:Or>
+								<rul:Equal>
+									<rul:FirstValue Type="string" FromConstant="" FromDataDef="ancestor::CommercialPropertyStructure/@CauseOfLossToUse" Order="DataDefInputParamConstant" />
+									<rul:Constant Type="string">Fire</rul:Constant>
+								</rul:Equal>
+								<rul:Equal>
+									<rul:FirstValue Type="string" FromConstant="" FromDataDef="ancestor::CommercialPropertyStructure/@CauseOfLossToUse" Order="DataDefInputParamConstant" />
+									<rul:Constant Type="string">Fire and Vandalism</rul:Constant>
+								</rul:Equal>
+								<rul:Equal>
+									<rul:FirstValue Type="string" FromConstant="" FromDataDef="ancestor::CommercialPropertyStructure/@CauseOfLossToUse" Order="DataDefInputParamConstant" />
+									<rul:Constant Type="string">Fire and Sprinkler Leakage</rul:Constant>
+								</rul:Equal>
+								<rul:Equal>
+									<rul:FirstValue Type="string" FromConstant="" FromDataDef="ancestor::CommercialPropertyStructure/@CauseOfLossToUse" Order="DataDefInputParamConstant" />
+									<rul:Constant Type="string">Fire, Vandalism and Sprinkler Leakage</rul:Constant>
+								</rul:Equal>
+							</rul:Or>
+						</rul:Test>
+						<rul:Then>
+							<rul:Sequence>
+								<rul:Constant Type="decimal" ToDataDef="@BasicGroupIIRate">0.0</rul:Constant>
+							</rul:Sequence>
+						</rul:Then>
+					</rul:When>
+					<rul:When>
+						<rul:Test>
+							<rul:GreaterThanOrEqual>
+								<rul:Value Type="decimal" FromParam="BuildersRiskRateCalcBGIIParam" />
+								<rul:Value Type="decimal" FromParam="CompldBuildingRateCalcBGIIParam" />
+							</rul:GreaterThanOrEqual>
+						</rul:Test>
+						<rul:Then>
+							<rul:Sequence>
+								<rul:WithArgs>
+									<rul:Arg Type="decimal" Param="tempBuildersRiskRateBGIIBaseRateParam">
+										<rul:RunRule Type="decimal" FileName="CommercialPropertyBuildersRiskRenovationsRules" Rule="tempBuildersRiskRateBGIIBaseRate" ClearCache="true" />
+									</rul:Arg>
+									<rul:Value Type="decimal" ToDataDef="@BasicGroupIIBaseRate" FromParam="tempBuildersRiskRateBGIIBaseRateParam" />
+								</rul:WithArgs>
+								<rul:WithArgs>
+									<rul:Arg Type="decimal" Param="tempCompldBldrsRiskBasicGroupIINumericValueParam">
+										<rul:RunRule Type="decimal" FileName="CommercialPropertyBuildersRiskRenovationsRules" Rule="tempCompldBldrsRiskBasicGroupIINumericValue" ClearCache="true" />
+									</rul:Arg>
+									<rul:Value Type="decimal" ToDataDef="@BldrsRiskBasicGroupIINumericValue" FromParam="tempCompldBldrsRiskBasicGroupIINumericValueParam" />
+								</rul:WithArgs>
+								<rul:Value Type="decimal" ToDataDef="@BasicGroupIIRate" FromParam="BuildersRiskRateCalcBGIIParam" />
+								<rul:Constant Type="integer" ToDataDef="@MaxBGIIRateCalc">1</rul:Constant>
+							</rul:Sequence>
+						</rul:Then>
+					</rul:When>
+					<rul:When>
+						<rul:Test>
+							<rul:LessThan>
+								<rul:Value Type="decimal" FromParam="BuildersRiskRateCalcBGIIParam" />
+								<rul:Value Type="decimal" FromParam="CompldBuildingRateCalcBGIIParam" />
+							</rul:LessThan>
+						</rul:Test>
+						<rul:Then>
+							<rul:Sequence>
+								<rul:WithArgs>
+									<rul:Arg Type="decimal" Param="tempCompldBuildingRateBGIIBaseRateParam">
+										<rul:RunRule Type="decimal" FileName="CommercialPropertyBuildersRiskRenovationsRules" Rule="tempCompldBuildingRateBGIIBaseRate" ClearCache="true" />
+									</rul:Arg>
+									<rul:Value Type="decimal" ToDataDef="@BasicGroupIIBaseRate" FromParam="tempCompldBuildingRateBGIIBaseRateParam" />
+								</rul:WithArgs>
+								<rul:WithArgs>
+									<rul:Arg Type="decimal" Param="tempModBldrsRiskBasicGroupIINumericValueParam">
+										<rul:RunRule Type="decimal" FileName="CommercialPropertyBuildersRiskRenovationsRules" Rule="tempModBldrsRiskBasicGroupIINumericValue" ClearCache="true" />
+									</rul:Arg>
+									<rul:Value Type="decimal" ToDataDef="@BldrsRiskBasicGroupIINumericValue" FromParam="tempModBldrsRiskBasicGroupIINumericValueParam" />
+								</rul:WithArgs>
+								<rul:Value Type="decimal" ToDataDef="@BasicGroupIIRate" FromParam="CompldBuildingRateCalcBGIIParam" />
+								<rul:Constant Type="integer" ToDataDef="@MaxBGIIRateCalc">2</rul:Constant>
+							</rul:Sequence>
+						</rul:Then>
+					</rul:When>
+				</rul:Choose>
+			</rul:WithArgs>
+			<rul:WithArgs>
+				<rul:Arg Type="decimal" Param="BuildersRiskRateCalcBroadParam">
+					<rul:RunRule Type="decimal" FileName="CommercialPropertyBuildersRiskRenovationsRules" Rule="BuildersRiskRateCalcBroad" ClearCache="true" />
+				</rul:Arg>
+				<rul:Arg Type="decimal" Param="CompldBuildingRateCalcBroadParam">
+					<rul:RunRule Type="decimal" FileName="CommercialPropertyBuildersRiskRenovationsRules" Rule="CompldBuildingRateCalcBroad" ClearCache="true" />
+				</rul:Arg>
+				<rul:Choose>
+					<rul:When>
+						<rul:Test>
+							<rul:GreaterThanOrEqual>
+								<rul:Value Type="decimal" FromParam="BuildersRiskRateCalcBroadParam" />
+								<rul:Value Type="decimal" FromParam="CompldBuildingRateCalcBroadParam" />
+							</rul:GreaterThanOrEqual>
+						</rul:Test>
+						<rul:Then>
+							<rul:Sequence>
+								<rul:WithArgs>
+									<rul:Arg Type="decimal" Param="tempBuildersRiskRateBroadBaseRateParam">
+										<rul:RunRule Type="decimal" FileName="CommercialPropertyBuildersRiskRenovationsRules" Rule="tempBuildersRiskRateBroadBaseRate" ClearCache="true" />
+									</rul:Arg>
+									<rul:Value Type="decimal" ToDataDef="@BroadBaseRate" FromParam="tempBuildersRiskRateBroadBaseRateParam" />
+								</rul:WithArgs>
+								<rul:Value Type="decimal" ToDataDef="@BroadRate" FromParam="BuildersRiskRateCalcBroadParam" />
+								<rul:Constant Type="integer" ToDataDef="@MaxBroadRateCalc">1</rul:Constant>
+							</rul:Sequence>
+						</rul:Then>
+					</rul:When>
+					<rul:When>
+						<rul:Test>
+							<rul:LessThan>
+								<rul:Value Type="decimal" FromParam="BuildersRiskRateCalcBroadParam" />
+								<rul:Value Type="decimal" FromParam="CompldBuildingRateCalcBroadParam" />
+							</rul:LessThan>
+						</rul:Test>
+						<rul:Then>
+							<rul:Sequence>
+								<rul:WithArgs>
+									<rul:Arg Type="decimal" Param="tempCompldBuildingRateBroadBaseRateParam">
+										<rul:RunRule Type="decimal" FileName="CommercialPropertyBuildersRiskRenovationsRules" Rule="tempCompldBuildingRateBroadBaseRate" ClearCache="true" />
+									</rul:Arg>
+									<rul:Value Type="decimal" ToDataDef="@BroadBaseRate" FromParam="tempCompldBuildingRateBroadBaseRateParam" />
+								</rul:WithArgs>
+								<rul:Value Type="decimal" ToDataDef="@BroadRate" FromParam="CompldBuildingRateCalcBroadParam" />
+								<rul:Constant Type="integer" ToDataDef="@MaxBroadRateCalc">2</rul:Constant>
+							</rul:Sequence>
+						</rul:Then>
+					</rul:When>
+				</rul:Choose>
+			</rul:WithArgs>
+			<rul:WithArgs>
+				<rul:Arg Type="decimal" Param="BuildersRiskRateCalcSpecialParam">
+					<rul:RunRule Type="decimal" FileName="CommercialPropertyBuildersRiskRenovationsRules" Rule="BuildersRiskRateCalcSpecial" ClearCache="true" />
+				</rul:Arg>
+				<rul:Arg Type="decimal" Param="CompldBuildingRateCalcSpecialParam">
+					<rul:RunRule Type="decimal" FileName="CommercialPropertyBuildersRiskRenovationsRules" Rule="CompldBuildingRateCalcSpecial" ClearCache="true" />
+				</rul:Arg>
+				<rul:Choose>
+					<rul:When>
+						<rul:Test>
+							<rul:GreaterThanOrEqual>
+								<rul:Value Type="decimal" FromParam="BuildersRiskRateCalcSpecialParam" />
+								<rul:Value Type="decimal" FromParam="CompldBuildingRateCalcSpecialParam" />
+							</rul:GreaterThanOrEqual>
+						</rul:Test>
+						<rul:Then>
+							<rul:Sequence>
+								<rul:WithArgs>
+									<rul:Arg Type="decimal" Param="tempBuildersRiskRateSpecialBaseRateParam">
+										<rul:RunRule Type="decimal" FileName="CommercialPropertyBuildersRiskRenovationsRules" Rule="tempBuildersRiskRateSpecialBaseRate" ClearCache="true" />
+									</rul:Arg>
+									<rul:Value Type="decimal" ToDataDef="@SpecialBaseRate" FromParam="tempBuildersRiskRateSpecialBaseRateParam" />
+								</rul:WithArgs>
+								<rul:Value Type="decimal" ToDataDef="@SpecialRate" FromParam="BuildersRiskRateCalcSpecialParam" />
+								<rul:Constant Type="integer" ToDataDef="@MaxSpecialRateCalc">1</rul:Constant>
+							</rul:Sequence>
+						</rul:Then>
+					</rul:When>
+					<rul:When>
+						<rul:Test>
+							<rul:LessThan>
+								<rul:Value Type="decimal" FromParam="BuildersRiskRateCalcSpecialParam" />
+								<rul:Value Type="decimal" FromParam="CompldBuildingRateCalcSpecialParam" />
+							</rul:LessThan>
+						</rul:Test>
+						<rul:Then>
+							<rul:Sequence>
+								<rul:WithArgs>
+									<rul:Arg Type="decimal" Param="tempCompldBuildingRateSpecialBaseRateParam">
+										<rul:RunRule Type="decimal" FileName="CommercialPropertyBuildersRiskRenovationsRules" Rule="tempCompldBuildingRateSpecialBaseRate" ClearCache="true" />
+									</rul:Arg>
+									<rul:Value Type="decimal" ToDataDef="@SpecialBaseRate" FromParam="tempCompldBuildingRateSpecialBaseRateParam" />
+								</rul:WithArgs>
+								<rul:Value Type="decimal" ToDataDef="@SpecialRate" FromParam="CompldBuildingRateCalcSpecialParam" />
+								<rul:Constant Type="integer" ToDataDef="@MaxSpecialRateCalc">2</rul:Constant>
+							</rul:Sequence>
+						</rul:Then>
+					</rul:When>
+				</rul:Choose>
+			</rul:WithArgs>
+			<rul:WithArgs>
+				<rul:Arg Type="decimal" Param="BuildersRiskRateCalcEQParam">
+					<rul:RunRule Type="decimal" FileName="CommercialPropertyBuildersRiskRenovationsRules" Rule="BuildersRiskRateCalcEQ" ClearCache="true" />
+				</rul:Arg>
+				<rul:Arg Type="decimal" Param="CompldBuildingRateCalcEQParam">
+					<rul:RunRule Type="decimal" FileName="CommercialPropertyBuildersRiskRenovationsRules" Rule="CompldBuildingRateCalcEQ" ClearCache="true" />
+				</rul:Arg>
+				<rul:Choose>
+					<rul:When>
+						<rul:Test>
+							<rul:GreaterThanOrEqual>
+								<rul:Value Type="decimal" FromParam="BuildersRiskRateCalcEQParam" />
+								<rul:Value Type="decimal" FromParam="CompldBuildingRateCalcEQParam" />
+							</rul:GreaterThanOrEqual>
+						</rul:Test>
+						<rul:Then>
+							<rul:Sequence>
+								<rul:Value Type="decimal" ToDataDef="@EQRate" FromParam="BuildersRiskRateCalcEQParam" />
+								<rul:Constant Type="integer" ToDataDef="@MaxEQRateCalc">1</rul:Constant>
+							</rul:Sequence>
+						</rul:Then>
+					</rul:When>
+					<rul:When>
+						<rul:Test>
+							<rul:LessThan>
+								<rul:Value Type="decimal" FromParam="BuildersRiskRateCalcEQParam" />
+								<rul:Value Type="decimal" FromParam="CompldBuildingRateCalcEQParam" />
+							</rul:LessThan>
+						</rul:Test>
+						<rul:Then>
+							<rul:Sequence>
+								<rul:Value Type="decimal" ToDataDef="@EQRate" FromParam="CompldBuildingRateCalcEQParam" />
+								<rul:Constant Type="integer" ToDataDef="@MaxEQRateCalc">2</rul:Constant>
+							</rul:Sequence>
+						</rul:Then>
+					</rul:When>
+				</rul:Choose>
+			</rul:WithArgs>
+		</rul:Sequence>
+	</rul:Rule>
+	<rul:Rule Name="SetBasicGroupILOIFactor" Type="none" DataDefGroup="CommercialPropertyBuildersRiskRenovations">
+		<rul:Sequence>
+			<rul:If>
+				<rul:Test>
+					<rul:And>
+						<rul:NotExist AtInputDataDef="ancestor::CommercialPropertyStructure/CommercialPropertyBuildersRiskReportingFormTable/CommercialPropertyBuildersRiskReportingForm" />
+						<rul:GreaterThan>
+							<rul:FirstValue Type="integer" FromConstant="0" FromDataDef="@Limit" Order="DataDefInputParamConstant" />
+							<rul:Constant Type="integer">0</rul:Constant>
+						</rul:GreaterThan>
+						<rul:NotEqual>
+							<rul:FirstValue Type="integer" FromConstant="0" FromDataDef="@ConstructionCode" Order="DataDefInputParamConstant" />
+							<rul:Constant Type="integer">0</rul:Constant>
+						</rul:NotEqual>
+					</rul:And>
+				</rul:Test>
+				<rul:Then>
+					<rul:Sequence>
+						<rul:RunRule Type="decimal" ToDataDef="@BasicGroupILOIFactor" FileName="CommercialPropertyBuildersRiskRenovationsRules" Rule="LookupBasicGroupILOIFactor" ClearCache="true">
+							<rul:Arg Type="integer" Param="limit">
+								<rul:FirstValue Type="integer" FromConstant="0" FromDataDef="@Limit" Order="DataDefInputParamConstant" />
+							</rul:Arg>
+						</rul:RunRule>
+					</rul:Sequence>
+				</rul:Then>
+				<rul:Else>
+					<rul:Sequence>
+						<rul:WithArgs>
+							<rul:Arg Type="integer" Param="limitBasicGroupILOIFactor">
+								<rul:FirstNonNull Type="integer">
+									<rul:If>
+										<rul:Test>
+											<rul:IsNotNull>
+												<rul:Value Type="integer" FromDataDef="../../CommercialPropertyBuildersRiskReportingFormTable/CommercialPropertyBuildersRiskReportingForm[1]/@Limit" />
+											</rul:IsNotNull>
+										</rul:Test>
+										<rul:Then>
+											<rul:FirstValue Type="integer" FromConstant="0" FromDataDef="../../CommercialPropertyBuildersRiskReportingFormTable/CommercialPropertyBuildersRiskReportingForm[1]/@Limit" Order="DataDefInputParamConstant" />
+										</rul:Then>
+									</rul:If>
+									<rul:Constant Type="integer">0</rul:Constant>
+								</rul:FirstNonNull>
+							</rul:Arg>
+							<rul:If>
+								<rul:Test>
+									<rul:And>
+										<rul:GreaterThan>
+											<rul:Value Type="integer" FromParam="limitBasicGroupILOIFactor" />
+											<rul:Constant Type="integer">0</rul:Constant>
+										</rul:GreaterThan>
+										<rul:NotEqual>
+											<rul:FirstValue Type="integer" FromConstant="0" FromDataDef="@ConstructionCode" Order="DataDefInputParamConstant" />
+											<rul:Constant Type="integer">0</rul:Constant>
+										</rul:NotEqual>
+									</rul:And>
+								</rul:Test>
+								<rul:Then>
+									<rul:Sequence>
+										<rul:RunRule Type="decimal" ToDataDef="@BasicGroupILOIFactor" FileName="CommercialPropertyBuildersRiskRenovationsRules" Rule="LookupBasicGroupILOIFactor" ClearCache="true">
+											<rul:Arg Type="integer" Param="limit">
+												<rul:Value Type="integer" FromParam="limitBasicGroupILOIFactor" />
+											</rul:Arg>
+										</rul:RunRule>
+									</rul:Sequence>
+								</rul:Then>
+								<rul:Else>
+									<rul:Sequence>
+										<rul:Constant Type="decimal" ToDataDef="@BasicGroupILOIFactor">0.0</rul:Constant>
+									</rul:Sequence>
+								</rul:Else>
+							</rul:If>
+						</rul:WithArgs>
+					</rul:Sequence>
+				</rul:Else>
+			</rul:If>
+		</rul:Sequence>
+	</rul:Rule>
+	<rul:Rule Name="SetBasicGroupIILOIFactor" Type="none" DataDefGroup="CommercialPropertyBuildersRiskRenovations">
+		<rul:Sequence>
+			<rul:If>
+				<rul:Test>
+					<rul:And>
+						<rul:NotExist AtInputDataDef="ancestor::CommercialPropertyStructure/CommercialPropertyBuildersRiskReportingFormTable/CommercialPropertyBuildersRiskReportingForm" />
+						<rul:GreaterThan>
+							<rul:FirstValue Type="integer" FromConstant="0" FromDataDef="@Limit" Order="DataDefInputParamConstant" />
+							<rul:Constant Type="integer">0</rul:Constant>
+						</rul:GreaterThan>
+					</rul:And>
+				</rul:Test>
+				<rul:Then>
+					<rul:Sequence>
+						<rul:RunRule Type="decimal" ToDataDef="@BasicGroupIILOIFactor" FileName="CommercialPropertyBuildersRiskRenovationsRules" Rule="LookupBasicGroupIILOIFactor" ClearCache="true">
+							<rul:Arg Type="integer" Param="limit">
+								<rul:FirstValue Type="integer" FromConstant="0" FromDataDef="@Limit" Order="DataDefInputParamConstant" />
+							</rul:Arg>
+						</rul:RunRule>
+					</rul:Sequence>
+				</rul:Then>
+				<rul:Else>
+					<rul:Sequence>
+						<rul:WithArgs>
+							<rul:Arg Type="integer" Param="limitBasicGroupIILOIFactor">
+								<rul:FirstNonNull Type="integer">
+									<rul:If>
+										<rul:Test>
+											<rul:IsNotNull>
+												<rul:Value Type="integer" FromDataDef="../../CommercialPropertyBuildersRiskReportingFormTable/CommercialPropertyBuildersRiskReportingForm[1]/@Limit" />
+											</rul:IsNotNull>
+										</rul:Test>
+										<rul:Then>
+											<rul:FirstValue Type="integer" FromConstant="0" FromDataDef="../../CommercialPropertyBuildersRiskReportingFormTable/CommercialPropertyBuildersRiskReportingForm[1]/@Limit" Order="DataDefInputParamConstant" />
+										</rul:Then>
+									</rul:If>
+									<rul:Constant Type="integer">0</rul:Constant>
+								</rul:FirstNonNull>
+							</rul:Arg>
+							<rul:If>
+								<rul:Test>
+									<rul:GreaterThan>
+										<rul:Value Type="integer" FromParam="limitBasicGroupIILOIFactor" />
+										<rul:Constant Type="integer">0</rul:Constant>
+									</rul:GreaterThan>
+								</rul:Test>
+								<rul:Then>
+									<rul:Sequence>
+										<rul:RunRule Type="decimal" ToDataDef="@BasicGroupIILOIFactor" FileName="CommercialPropertyBuildersRiskRenovationsRules" Rule="LookupBasicGroupIILOIFactor" ClearCache="true">
+											<rul:Arg Type="integer" Param="limit">
+												<rul:Value Type="integer" FromParam="limitBasicGroupIILOIFactor" />
+											</rul:Arg>
+										</rul:RunRule>
+									</rul:Sequence>
+								</rul:Then>
+								<rul:Else>
+									<rul:Sequence>
+										<rul:Constant Type="decimal" ToDataDef="@BasicGroupIILOIFactor">0.0</rul:Constant>
+									</rul:Sequence>
+								</rul:Else>
+							</rul:If>
+						</rul:WithArgs>
+					</rul:Sequence>
+				</rul:Else>
+			</rul:If>
+		</rul:Sequence>
+	</rul:Rule>
+	<rul:Rule Name="SetBroadLOIFacctor" Type="none" DataDefGroup="CommercialPropertyBuildersRiskRenovations">
+		<rul:Sequence>
+			<rul:If>
+				<rul:Test>
+					<rul:And>
+						<rul:NotExist AtInputDataDef="ancestor::CommercialPropertyStructure/CommercialPropertyBuildersRiskReportingFormTable/CommercialPropertyBuildersRiskReportingForm" />
+						<rul:GreaterThan>
+							<rul:FirstValue Type="integer" FromConstant="0" FromDataDef="@Limit" Order="DataDefInputParamConstant" />
+							<rul:Constant Type="integer">0</rul:Constant>
+						</rul:GreaterThan>
+					</rul:And>
+				</rul:Test>
+				<rul:Then>
+					<rul:Sequence>
+						<rul:RunRule Type="decimal" ToDataDef="@BroadLOIFactor" FileName="CommercialPropertyBuildersRiskRenovationsRules" Rule="LookupBroadLOIFactor" ClearCache="true">
+							<rul:Arg Type="integer" Param="limit">
+								<rul:FirstValue Type="integer" FromConstant="0" FromDataDef="@Limit" Order="DataDefInputParamConstant" />
+							</rul:Arg>
+						</rul:RunRule>
+					</rul:Sequence>
+				</rul:Then>
+				<rul:Else>
+					<rul:Sequence>
+						<rul:WithArgs>
+							<rul:Arg Type="integer" Param="limitBroadLOIFactor">
+								<rul:FirstNonNull Type="integer">
+									<rul:If>
+										<rul:Test>
+											<rul:IsNotNull>
+												<rul:Value Type="integer" FromDataDef="../../CommercialPropertyBuildersRiskReportingFormTable/CommercialPropertyBuildersRiskReportingForm[1]/@Limit" />
+											</rul:IsNotNull>
+										</rul:Test>
+										<rul:Then>
+											<rul:FirstValue Type="integer" FromConstant="0" FromDataDef="../../CommercialPropertyBuildersRiskReportingFormTable/CommercialPropertyBuildersRiskReportingForm[1]/@Limit" Order="DataDefInputParamConstant" />
+										</rul:Then>
+									</rul:If>
+									<rul:Constant Type="integer">0</rul:Constant>
+								</rul:FirstNonNull>
+							</rul:Arg>
+							<rul:If>
+								<rul:Test>
+									<rul:GreaterThan>
+										<rul:Value Type="integer" FromParam="limitBroadLOIFactor" />
+										<rul:Constant Type="integer">0</rul:Constant>
+									</rul:GreaterThan>
+								</rul:Test>
+								<rul:Then>
+									<rul:Sequence>
+										<rul:RunRule Type="decimal" ToDataDef="@BroadLOIFactor" FileName="CommercialPropertyBuildersRiskRenovationsRules" Rule="LookupBroadLOIFactor" ClearCache="true">
+											<rul:Arg Type="integer" Param="limit">
+												<rul:Value Type="integer" FromParam="limitBroadLOIFactor" />
+											</rul:Arg>
+										</rul:RunRule>
+									</rul:Sequence>
+								</rul:Then>
+								<rul:Else>
+									<rul:Sequence>
+										<rul:Constant Type="decimal" ToDataDef="@BroadLOIFactor">0.0</rul:Constant>
+									</rul:Sequence>
+								</rul:Else>
+							</rul:If>
+						</rul:WithArgs>
+					</rul:Sequence>
+				</rul:Else>
+			</rul:If>
+		</rul:Sequence>
+	</rul:Rule>
+	<rul:Rule Name="SetSpecialLOIFacctor" Type="none" DataDefGroup="CommercialPropertyBuildersRiskRenovations">
+		<rul:Sequence>
+			<rul:If>
+				<rul:Test>
+					<rul:And>
+						<rul:NotExist AtInputDataDef="ancestor::CommercialPropertyStructure/CommercialPropertyBuildersRiskReportingFormTable/CommercialPropertyBuildersRiskReportingForm" />
+						<rul:GreaterThan>
+							<rul:FirstValue Type="integer" FromConstant="0" FromDataDef="@Limit" Order="DataDefInputParamConstant" />
+							<rul:Constant Type="integer">0</rul:Constant>
+						</rul:GreaterThan>
+					</rul:And>
+				</rul:Test>
+				<rul:Then>
+					<rul:Sequence>
+						<rul:RunRule Type="decimal" ToDataDef="@SpecialLOIFactor" FileName="CommercialPropertyBuildersRiskRenovationsRules" Rule="LookupSpecialLOIFactor" ClearCache="true">
+							<rul:Arg Type="integer" Param="limit">
+								<rul:FirstValue Type="integer" FromConstant="0" FromDataDef="@Limit" Order="DataDefInputParamConstant" />
+							</rul:Arg>
+						</rul:RunRule>
+					</rul:Sequence>
+				</rul:Then>
+				<rul:Else>
+					<rul:Sequence>
+						<rul:WithArgs>
+							<rul:Arg Type="integer" Param="limitSpecialLOIFactor">
+								<rul:FirstNonNull Type="integer">
+									<rul:If>
+										<rul:Test>
+											<rul:IsNotNull>
+												<rul:Value Type="integer" FromDataDef="../../CommercialPropertyBuildersRiskReportingFormTable/CommercialPropertyBuildersRiskReportingForm[1]/@Limit" />
+											</rul:IsNotNull>
+										</rul:Test>
+										<rul:Then>
+											<rul:FirstValue Type="integer" FromConstant="0" FromDataDef="../../CommercialPropertyBuildersRiskReportingFormTable/CommercialPropertyBuildersRiskReportingForm[1]/@Limit" Order="DataDefInputParamConstant" />
+										</rul:Then>
+									</rul:If>
+									<rul:Constant Type="integer">0</rul:Constant>
+								</rul:FirstNonNull>
+							</rul:Arg>
+							<rul:If>
+								<rul:Test>
+									<rul:GreaterThan>
+										<rul:Value Type="integer" FromParam="limitSpecialLOIFactor" />
+										<rul:Constant Type="integer">0</rul:Constant>
+									</rul:GreaterThan>
+								</rul:Test>
+								<rul:Then>
+									<rul:Sequence>
+										<rul:RunRule Type="decimal" ToDataDef="@SpecialLOIFactor" FileName="CommercialPropertyBuildersRiskRenovationsRules" Rule="LookupSpecialLOIFactor" ClearCache="true">
+											<rul:Arg Type="integer" Param="limit">
+												<rul:Value Type="integer" FromParam="limitSpecialLOIFactor" />
+											</rul:Arg>
+										</rul:RunRule>
+									</rul:Sequence>
+								</rul:Then>
+								<rul:Else>
+									<rul:Sequence>
+										<rul:Constant Type="decimal" ToDataDef="@SpecialLOIFactor">0.0</rul:Constant>
+									</rul:Sequence>
+								</rul:Else>
+							</rul:If>
+						</rul:WithArgs>
+					</rul:Sequence>
+				</rul:Else>
+			</rul:If>
+		</rul:Sequence>
+	</rul:Rule>
+	<rul:Rule Name="SetBuildersRiskRateCalcBGI" Type="none" DataDefGroup="CommercialPropertyBuildersRiskRenovations">
+		<rul:Sequence>
+			<!--Logic for tempBuildersRiskRateBGIBaseRate moved to be inline where used.-->
+			<!--Logic for BuildersRiskRateCalcBGI moved to be inline where used.-->
+		</rul:Sequence>
+	</rul:Rule>
+	<rul:Rule Name="SetCompldBuildingRateCalcBGI" Type="none" DataDefGroup="CommercialPropertyBuildersRiskRenovations">
+		<rul:Sequence>
+			<!--Logic for tempCompldBuildingRateBGIBaseRate moved to be inline where used.-->
+			<!--Logic for tempCompldBuildingRateBGIBaseRate moved to be inline where used.-->
+			<!--Logic for CompldBuildingRateCalcBGI moved to be inline where used.-->
+		</rul:Sequence>
+	</rul:Rule>
+	<rul:Rule Name="SetBasicGroupIISymbol" Type="none" DataDefGroup="CommercialPropertyBuildersRiskRenovations">
+		<rul:Sequence>
+			<rul:If>
+				<rul:Test>
+					<rul:And>
+						<rul:NotEqual>
+							<rul:FirstValue Type="string" FromConstant="" FromDataDef="@ConstructionType" Order="DataDefInputParamConstant" />
+							<rul:Constant Type="string"></rul:Constant>
+						</rul:NotEqual>
+						<rul:NotEqual>
+							<rul:FirstValue Type="string" FromConstant="" FromDataDef="@NumStories" Order="DataDefInputParamConstant" />
+							<rul:Constant Type="string"></rul:Constant>
+						</rul:NotEqual>
+					</rul:And>
+				</rul:Test>
+				<rul:Then>
+					<rul:Sequence>
+						<rul:RunRule Type="string" ToDataDef="@BasicGroupIISymbol" FileName="CommercialPropertyBuildersRiskRenovationsRules" Rule="LookupBasicGroupIIConstructionSymbol" ClearCache="true" />
+					</rul:Sequence>
+				</rul:Then>
+				<rul:Else>
+					<rul:Sequence>
+						<rul:Constant Type="string" ToDataDef="@BasicGroupIISymbol"></rul:Constant>
+					</rul:Sequence>
+				</rul:Else>
+			</rul:If>
+		</rul:Sequence>
+	</rul:Rule>
+	<rul:Rule Name="SetSuperiorRoofingIndicator" Type="none" DataDefGroup="CommercialPropertyBuildersRiskRenovations">
+		<rul:Sequence>
+			<!--Logic for SuperiorRoofingIndicator moved to be inline where used.-->
+		</rul:Sequence>
+	</rul:Rule>
+	<rul:Rule Name="SetBGIISymbolsToUse" Type="none" DataDefGroup="CommercialPropertyBuildersRiskRenovations">
+		<rul:Sequence>
+			<!--Logic for BGIISymbolToUse moved to be inline where used.-->
+			<rul:Choose>
+				<rul:When>
+					<rul:Test>
+						<rul:Or>
+							<rul:Equal>
+								<rul:FirstValue Type="string" FromConstant="" FromDataDef="@OpenSides" Order="DataDefInputParamConstant" />
+								<rul:Constant Type="string">Yes</rul:Constant>
+							</rul:Equal>
+							<rul:Equal>
+								<rul:FirstValue Type="string" FromConstant="" FromDataDef="ancestor::CommercialPropertyStructure/@ClassCodeToUse" Order="DataDefInputParamConstant" />
+								<rul:Constant Type="string">0580</rul:Constant>
+							</rul:Equal>
+							<rul:Equal>
+								<rul:FirstValue Type="string" FromConstant="" FromDataDef="ancestor::CommercialPropertyStructure/@ClassCodeToUse" Order="DataDefInputParamConstant" />
+								<rul:Constant Type="string">1300</rul:Constant>
+							</rul:Equal>
+							<rul:Equal>
+								<rul:FirstValue Type="string" FromConstant="" FromDataDef="ancestor::CommercialPropertyStructure/@ClassCodeToUse" Order="DataDefInputParamConstant" />
+								<rul:Constant Type="string">1650</rul:Constant>
+							</rul:Equal>
+							<rul:Equal>
+								<rul:FirstValue Type="string" FromConstant="" FromDataDef="ancestor::CommercialPropertyStructure/@ClassCodeToUse" Order="DataDefInputParamConstant" />
+								<rul:Constant Type="string">1150</rul:Constant>
+							</rul:Equal>
+						</rul:Or>
+					</rul:Test>
+					<rul:Then>
+						<rul:Sequence>
+							<rul:WithArgs>
+								<rul:Arg Type="string" Param="SuperiorRoofingIndicatorParam">
+									<rul:RunRule Type="string" FileName="CommercialPropertyBuildersRiskRenovationsRules" Rule="SuperiorRoofingIndicator" ClearCache="true" />
+								</rul:Arg>
+								<rul:Choose>
+									<rul:When>
+										<rul:Test>
+											<rul:And>
+												<rul:Equal>
+													<rul:Value Type="string" FromParam="SuperiorRoofingIndicatorParam" />
+													<rul:Constant Type="string">Yes</rul:Constant>
+												</rul:Equal>
+												<rul:NotEqual>
+													<rul:FirstValue Type="string" FromConstant="" FromDataDef="@ConstructionType" Order="DataDefInputParamConstant" />
+													<rul:Constant Type="string"></rul:Constant>
+												</rul:NotEqual>
+											</rul:And>
+										</rul:Test>
+										<rul:Then>
+											<rul:Sequence>
+												<rul:RunRule Type="string" ToDataDef="@BGIISymbolToUseModified" FileName="CommercialPropertyBuildersRiskRenovationsRules" Rule="LookupBGIISymbolAdditionalClassesRoofConstruction" ClearCache="true" />
+											</rul:Sequence>
+										</rul:Then>
+									</rul:When>
+									<rul:When>
+										<rul:Test>
+											<rul:Equal>
+												<rul:FirstValue Type="string" FromConstant="" FromDataDef="@OpenSides" Order="DataDefInputParamConstant" />
+												<rul:Constant Type="string">Yes</rul:Constant>
+											</rul:Equal>
+										</rul:Test>
+										<rul:Then>
+											<rul:Sequence>
+												<rul:If>
+													<rul:Test>
+														<rul:GreaterThan>
+															<rul:FirstValue Type="integer" FromConstant="0" FromDataDef="@ConstructionCode" Order="DataDefInputParamConstant" />
+															<rul:Constant Type="integer">0</rul:Constant>
+														</rul:GreaterThan>
+													</rul:Test>
+													<rul:Then>
+														<rul:Sequence>
+															<rul:RunRule Type="string" ToDataDef="@BGIISymbolToUseModified" FileName="CommercialPropertyBuildersRiskRenovationsRules" Rule="LookupBasicGroupIISymbolAdditionalClasses" ClearCache="true">
+																<rul:Arg Type="string" Param="classificationCode">
+																	<rul:Constant Type="string">OpenSides</rul:Constant>
+																</rul:Arg>
+																<rul:Arg Type="integer" Param="constructionCode">
+																	<rul:FirstValue Type="integer" FromConstant="0" FromDataDef="@ConstructionCode" Order="DataDefInputParamConstant" />
+																</rul:Arg>
+															</rul:RunRule>
+														</rul:Sequence>
+													</rul:Then>
+													<rul:Else>
+														<rul:Sequence>
+															<rul:Constant Type="string" ToDataDef="@BGIISymbolToUseModified"></rul:Constant>
+														</rul:Sequence>
+													</rul:Else>
+												</rul:If>
+											</rul:Sequence>
+										</rul:Then>
+									</rul:When>
+									<rul:When>
+										<rul:Test>
+											<rul:Or>
+												<rul:Equal>
+													<rul:FirstValue Type="string" FromConstant="" FromDataDef="ancestor::CommercialPropertyStructure/@ClassCodeToUse" Order="DataDefInputParamConstant" />
+													<rul:Constant Type="string">0580</rul:Constant>
+												</rul:Equal>
+												<rul:Equal>
+													<rul:FirstValue Type="string" FromConstant="" FromDataDef="ancestor::CommercialPropertyStructure/@ClassCodeToUse" Order="DataDefInputParamConstant" />
+													<rul:Constant Type="string">1300</rul:Constant>
+												</rul:Equal>
+												<rul:Equal>
+													<rul:FirstValue Type="string" FromConstant="" FromDataDef="ancestor::CommercialPropertyStructure/@ClassCodeToUse" Order="DataDefInputParamConstant" />
+													<rul:Constant Type="string">1650</rul:Constant>
+												</rul:Equal>
+											</rul:Or>
+										</rul:Test>
+										<rul:Then>
+											<rul:Sequence>
+												<rul:If>
+													<rul:Test>
+														<rul:NotEqual>
+															<rul:FirstValue Type="string" FromConstant="" FromDataDef="ancestor::CommercialPropertyStructure/@ClassCodeToUse" Order="DataDefInputParamConstant" />
+															<rul:Constant Type="string"></rul:Constant>
+														</rul:NotEqual>
+													</rul:Test>
+													<rul:Then>
+														<rul:Sequence>
+															<rul:RunRule Type="string" ToDataDef="@BGIISymbolToUseModified" FileName="CommercialPropertyBuildersRiskRenovationsRules" Rule="LookupBasicGroupIISymbolAdditionalClasses" ClearCache="true">
+																<rul:Arg Type="string" Param="classificationCode">
+																	<rul:FirstValue Type="string" FromConstant="" FromDataDef="ancestor::CommercialPropertyStructure/@ClassCodeToUse" Order="DataDefInputParamConstant" />
+																</rul:Arg>
+																<rul:Arg Type="integer" Param="constructionCode">
+																	<rul:Constant Type="integer">1</rul:Constant>
+																</rul:Arg>
+															</rul:RunRule>
+														</rul:Sequence>
+													</rul:Then>
+													<rul:Else>
+														<rul:Sequence>
+															<rul:Constant Type="string" ToDataDef="@BGIISymbolToUseModified"></rul:Constant>
+														</rul:Sequence>
+													</rul:Else>
+												</rul:If>
+											</rul:Sequence>
+										</rul:Then>
+									</rul:When>
+									<rul:When>
+										<rul:Test>
+											<rul:And>
+												<rul:NotEqual>
+													<rul:FirstValue Type="string" FromConstant="" FromDataDef="ancestor::CommercialPropertyStructure/@ClassCodeToUse" Order="DataDefInputParamConstant" />
+													<rul:Constant Type="string"></rul:Constant>
+												</rul:NotEqual>
+												<rul:GreaterThan>
+													<rul:FirstValue Type="integer" FromConstant="0" FromDataDef="@ConstructionCode" Order="DataDefInputParamConstant" />
+													<rul:Constant Type="integer">0</rul:Constant>
+												</rul:GreaterThan>
+											</rul:And>
+										</rul:Test>
+										<rul:Then>
+											<rul:Sequence>
+												<rul:RunRule Type="string" ToDataDef="@BGIISymbolToUseModified" FileName="CommercialPropertyBuildersRiskRenovationsRules" Rule="LookupBasicGroupIISymbolAdditionalClasses" ClearCache="true">
+													<rul:Arg Type="string" Param="classificationCode">
+														<rul:FirstValue Type="string" FromConstant="" FromDataDef="ancestor::CommercialPropertyStructure/@ClassCodeToUse" Order="DataDefInputParamConstant" />
+													</rul:Arg>
+													<rul:Arg Type="integer" Param="constructionCode">
+														<rul:FirstValue Type="integer" FromConstant="0" FromDataDef="@ConstructionCode" Order="DataDefInputParamConstant" />
+													</rul:Arg>
+												</rul:RunRule>
+											</rul:Sequence>
+										</rul:Then>
+									</rul:When>
+									<rul:Otherwise>
+										<rul:Sequence>
+											<rul:Constant Type="string" ToDataDef="@BGIISymbolToUseModified"></rul:Constant>
+										</rul:Sequence>
+									</rul:Otherwise>
+								</rul:Choose>
+							</rul:WithArgs>
+						</rul:Sequence>
+					</rul:Then>
+				</rul:When>
+				<rul:When>
+					<rul:Test>
+						<rul:Or>
+							<rul:Equal>
+								<rul:FirstValue Type="string" FromConstant="" FromDataDef="ancestor::CommercialPropertyStructure/@ClassCodeToUse" Order="DataDefInputParamConstant" />
+								<rul:Constant Type="string">1751</rul:Constant>
+							</rul:Equal>
+							<rul:Equal>
+								<rul:FirstValue Type="string" FromConstant="" FromDataDef="ancestor::CommercialPropertyStructure/@ClassCodeToUse" Order="DataDefInputParamConstant" />
+								<rul:Constant Type="string">1752</rul:Constant>
+							</rul:Equal>
+						</rul:Or>
+					</rul:Test>
+					<rul:Then>
+						<rul:Sequence>
+							<rul:RunRule Type="string" ToDataDef="@BGIISymbolToUseModified" FileName="CommercialPropertyBuildersRiskRenovationsRules" Rule="LookupBasicGroupIISymbolOilDistributingStations" ClearCache="true" />
+						</rul:Sequence>
+					</rul:Then>
+				</rul:When>
+				<rul:Otherwise>
+					<rul:Copy Type="string" ToDataDef="@BGIISymbolToUseModified" FromDataDef="@BasicGroupIISymbol" />
+				</rul:Otherwise>
+			</rul:Choose>
+		</rul:Sequence>
+	</rul:Rule>
+	<rul:Rule Name="SetBuildersRiskRateCalcBGII" Type="none" DataDefGroup="CommercialPropertyBuildersRiskRenovations">
+		<rul:Sequence>
+			<!--Logic for tempBuildersRiskRateBGIIBaseRate moved to be inline where used.-->
+			<!--Logic for BCEGFactor moved to be inline where used.-->
+			<!--Logic for tempCompldBldrsRiskBasicGroupIINumericValue moved to be inline where used.-->
+			<rul:Choose>
+				<rul:When>
+					<rul:Test>
+						<rul:NotExist AtInputDataDef="ancestor::CommercialPropertyStructure/CommercialPropertyWindstormOrHailExclusionTable/CommercialPropertyWindstormOrHailExclusion" />
+					</rul:Test>
+					<rul:Then>
+						<rul:Sequence>
+							<rul:Constant Type="decimal" ToDataDef="@WindstormOrHailExclFactor">1.0</rul:Constant>
+						</rul:Sequence>
+					</rul:Then>
+				</rul:When>
+				<rul:When>
+					<rul:Test>
+						<rul:Exist AtInputDataDef="ancestor::CommercialPropertyStructure/CommercialPropertyWindstormOrHailExclusionTable/CommercialPropertyWindstormOrHailExclusion" />
+					</rul:Test>
+					<rul:Then>
+						<rul:Sequence>
+							<rul:WithArgs>
+								<rul:Arg Type="string" Param="BGIISymbolToUseParam">
+									<rul:RunRule Type="string" FileName="CommercialPropertyBuildersRiskRenovationsRules" Rule="BGIISymbolToUse" ClearCache="true" />
+								</rul:Arg>
+								<rul:If>
+									<rul:Test>
+										<rul:NotEqual>
+											<rul:Value Type="string" FromParam="BGIISymbolToUseParam" />
+											<rul:Constant Type="string"></rul:Constant>
+										</rul:NotEqual>
+									</rul:Test>
+									<rul:Then>
+										<rul:Sequence>
+											<rul:RunRule Type="decimal" ToDataDef="@WindstormOrHailExclFactor" FileName="CommercialPropertyBuildersRiskRenovationsRules" Rule="LookupWindstormOrHailExclFactor" ClearCache="true" />
+										</rul:Sequence>
+									</rul:Then>
+									<rul:Else>
+										<rul:Sequence>
+											<rul:Constant Type="decimal" ToDataDef="@WindstormOrHailExclFactor">0.0</rul:Constant>
+										</rul:Sequence>
+									</rul:Else>
+								</rul:If>
+							</rul:WithArgs>
+						</rul:Sequence>
+					</rul:Then>
+				</rul:When>
+			</rul:Choose>
+			<!--Logic for BuildersRiskRateCalcBGII moved to be inline where used.-->
+		</rul:Sequence>
+	</rul:Rule>
+	<rul:Rule Name="SetCompldBuildingRateCalcBGII" Type="none" DataDefGroup="CommercialPropertyBuildersRiskRenovations">
+		<rul:Sequence>
+			<!--Logic for tempCompldBuildingRateBGIIBaseRate moved to be inline where used.-->
+			<!--Logic for BCEGFactor moved to be inline where used.-->
+			<!--Logic for tempModBldrsRiskBasicGroupIINumericValue moved to be inline where used.-->
+			<rul:Choose>
+				<rul:When>
+					<rul:Test>
+						<rul:NotExist AtInputDataDef="ancestor::CommercialPropertyStructure/CommercialPropertyWindstormOrHailExclusionTable/CommercialPropertyWindstormOrHailExclusion" />
+					</rul:Test>
+					<rul:Then>
+						<rul:Sequence>
+							<rul:Constant Type="decimal" ToDataDef="@WindstormOrHailExclFactor">1.0</rul:Constant>
+						</rul:Sequence>
+					</rul:Then>
+				</rul:When>
+				<rul:When>
+					<rul:Test>
+						<rul:Exist AtInputDataDef="ancestor::CommercialPropertyStructure/CommercialPropertyWindstormOrHailExclusionTable/CommercialPropertyWindstormOrHailExclusion" />
+					</rul:Test>
+					<rul:Then>
+						<rul:Sequence>
+							<rul:WithArgs>
+								<rul:Arg Type="string" Param="BGIISymbolToUseParam">
+									<rul:RunRule Type="string" FileName="CommercialPropertyBuildersRiskRenovationsRules" Rule="BGIISymbolToUse" ClearCache="true" />
+								</rul:Arg>
+								<rul:If>
+									<rul:Test>
+										<rul:NotEqual>
+											<rul:Value Type="string" FromParam="BGIISymbolToUseParam" />
+											<rul:Constant Type="string"></rul:Constant>
+										</rul:NotEqual>
+									</rul:Test>
+									<rul:Then>
+										<rul:Sequence>
+											<rul:RunRule Type="decimal" ToDataDef="@WindstormOrHailExclFactor" FileName="CommercialPropertyBuildersRiskRenovationsRules" Rule="LookupWindstormOrHailExclFactor2" ClearCache="true" />
+										</rul:Sequence>
+									</rul:Then>
+									<rul:Else>
+										<rul:Sequence>
+											<rul:Constant Type="decimal" ToDataDef="@WindstormOrHailExclFactor">0.0</rul:Constant>
+										</rul:Sequence>
+									</rul:Else>
+								</rul:If>
+							</rul:WithArgs>
+						</rul:Sequence>
+					</rul:Then>
+				</rul:When>
+			</rul:Choose>
+			<!--Logic for CompldBuildingRateCalcBGII moved to be inline where used.-->
+		</rul:Sequence>
+	</rul:Rule>
+	<rul:Rule Name="SetBuildersRiskRateAndCompldBuildingRateCalcsBroad" Type="none" DataDefGroup="CommercialPropertyBuildersRiskRenovations">
+		<rul:Sequence>
+			<!--Logic for tempBuildersRiskRateBroadBaseRate moved to be inline where used.-->
+			<!--Logic for BuildersRiskRateCalcBroad moved to be inline where used.-->
+			<!--Logic for tempCompldBuildingRateBroadBaseRate moved to be inline where used.-->
+			<!--Logic for CompldBuildingRateCalcBroad moved to be inline where used.-->
+		</rul:Sequence>
+	</rul:Rule>
+	<rul:Rule Name="SetBuildersRiskRateAndCompldBuildingRateCalcsSpecial" Type="none" DataDefGroup="CommercialPropertyBuildersRiskRenovations">
+		<rul:Sequence>
+			<!--Logic for tempBuildersRiskRateSpecialBaseRate moved to be inline where used.-->
+			<!--Logic for BuildersRiskRateCalcSpecial moved to be inline where used.-->
+			<!--Logic for tempCompldBuildingRateSpecialBaseRate moved to be inline where used.-->
+			<!--Logic for CompldBuildingRateCalcSpecial moved to be inline where used.-->
+		</rul:Sequence>
+	</rul:Rule>
+	<rul:Rule Name="SetBuildersRiskRateAndCompldBuildingRateCalcsEQ" Type="none" DataDefGroup="CommercialPropertyBuildersRiskRenovations">
+		<rul:Sequence>
+			<rul:If>
+				<rul:Test>
+					<rul:And>
+						<rul:Equal>
+							<rul:FirstValue Type="string" FromConstant="" FromDataDef="ancestor::CommercialPropertyStructure/@ClassCodeToUse" Order="DataDefInputParamConstant" />
+							<rul:Constant Type="string">1150</rul:Constant>
+						</rul:Equal>
+						<rul:NotEqual>
+							<rul:FirstValue Type="string" FromConstant="" FromDataDef="@EQClass" Order="DataDefInputParamConstant" />
+							<rul:Constant Type="string"></rul:Constant>
+						</rul:NotEqual>
+						<rul:NotEqual>
+							<rul:FirstValue Type="string" FromConstant="" FromDataDef="@EQClass" Order="DataDefInputParamConstant" />
+							<rul:Constant Type="string">Not Applicable</rul:Constant>
+						</rul:NotEqual>
+					</rul:And>
+				</rul:Test>
+				<rul:Then>
+					<rul:Sequence>
+						<rul:RunRule Type="decimal" ToDataDef="@BuildersRiskEQFactor" FileName="CommercialPropertyBuildersRiskRenovationsRules" Rule="LookupBldrsRiskEQFactor" ClearCache="true" />
+					</rul:Sequence>
+				</rul:Then>
+				<rul:Else>
+					<rul:Sequence>
+						<rul:Constant Type="decimal" ToDataDef="@BuildersRiskEQFactor">1.0</rul:Constant>
+					</rul:Sequence>
+				</rul:Else>
+			</rul:If>
+			<!--Logic for BuildersRiskRateCalcEQ moved to be inline where used.-->
+			<!--Logic for CompldBuildingRateCalcEQ moved to be inline where used.-->
+		</rul:Sequence>
+	</rul:Rule>
+	<rul:Rule Name="ErcSetStatisticalCodes" Type="none" DataDefGroup="CommercialPropertyBuildersRiskRenovations">
+		<rul:Sequence>
+			<rul:If>
+				<rul:Test>
+					<rul:Exist AtInputDataDef="ancestor::MasterCFCW/Policy" />
+				</rul:Test>
+				<rul:Then>
+					<rul:Sequence>
+						<rul:RunRule Type="string" ToDataDef="@ClassCode" FileName="CommercialPropertyBuildersRiskRenovationsRules" Rule="LookupBuildersRiskClassCode" ClearCache="true" />
+						<rul:WithArgs>
+							<rul:Arg Type="integer" Param="calcExposureStatAmount">
+								<rul:FirstNonNull Type="integer">
+									<rul:If>
+										<rul:Test>
+											<rul:GreaterThan>
+												<rul:FirstValue Type="integer" FromConstant="0" FromDataDef="@Limit" Order="DataDefInputParamConstant" />
+												<rul:Constant Type="integer">0</rul:Constant>
+											</rul:GreaterThan>
+										</rul:Test>
+										<rul:Then>
+											<rul:Convert Type="integer">
+												<rul:Truncate>
+													<rul:Divide>
+														<rul:Value Type="integer" FromDataDef="@Limit" />
+														<rul:Constant Type="integer">1000</rul:Constant>
+													</rul:Divide>
+												</rul:Truncate>
+											</rul:Convert>
+										</rul:Then>
+									</rul:If>
+									<rul:Constant Type="integer">0</rul:Constant>
+								</rul:FirstNonNull>
+							</rul:Arg>
+							<rul:Value Type="integer" ToDataDef="@ExposureStatAmount" FromParam="calcExposureStatAmount" />
+						</rul:WithArgs>
+					</rul:Sequence>
+				</rul:Then>
+			</rul:If>
+		</rul:Sequence>
+	</rul:Rule>
+	<rul:Rule Name="ErcProcess" Type="none" DataDefGroup="CommercialPropertyBuildersRiskRenovations">
+		<rul:Sequence>
+			<rul:RunRule Type="none" FileName="CommercialPropertyBuildersRiskRenovationsRules" Rule="ErcSetRatesAndFactors" ClearCache="true" />
+			<rul:Locate AtDataDef="CommercialPropertyBuildersRiskRenovationsBasicGroupICoverage">
+				<rul:RunRule Type="none" FileName="CommercialPropertyBuildersRiskRenovationsBasicGroupICoverageRules" Rule="ErcProcess" ClearCache="true" />
+			</rul:Locate>
+			<rul:Locate AtDataDef="CommercialPropertyBuildersRiskRenovationsBasicGroupIICoverage">
+				<rul:RunRule Type="none" FileName="CommercialPropertyBuildersRiskRenovationsBasicGroupIICoverageRules" Rule="ErcProcess" ClearCache="true" />
+			</rul:Locate>
+			<rul:Locate AtDataDef="CommercialPropertyBuildersRiskRenovationsBroadCoverage">
+				<rul:RunRule Type="none" FileName="CommercialPropertyBuildersRiskRenovationsBroadCoverageRules" Rule="ErcProcess" ClearCache="true" />
+			</rul:Locate>
+			<rul:ForEach AtDataDef="CommercialPropertyBuildersRiskRenovationsDetailTable/CommercialPropertyBuildersRiskRenovationsDetail">
+				<rul:RunRule Type="none" FileName="CommercialPropertyBuildersRiskRenovationsDetailRules" Rule="ErcProcess" ClearCache="true" />
+			</rul:ForEach>
+			<rul:Locate AtDataDef="CommercialPropertyBuildersRiskRenovationsEarthquakeCoverage">
+				<rul:RunRule Type="none" FileName="CommercialPropertyBuildersRiskRenovationsEarthquakeCoverageRules" Rule="ErcProcess" ClearCache="true" />
+			</rul:Locate>
+			<rul:Locate AtDataDef="CommercialPropertyBuildersRiskRenovationsSpecialCoverage">
+				<rul:RunRule Type="none" FileName="CommercialPropertyBuildersRiskRenovationsSpecialCoverageRules" Rule="ErcProcess" ClearCache="true" />
+			</rul:Locate>
+			<rul:RunRule Type="none" FileName="CommercialPropertyBuildersRiskRenovationsRules" Rule="ErcSetStatisticalCodes" ClearCache="true" />
+		</rul:Sequence>
+	</rul:Rule>
+	<rul:Rule Name="BCEGFactor" Type="decimal" DataDefGroup="CommercialPropertyBuildersRiskRenovations">
+		<rul:FirstNonNull Type="decimal">
+			<rul:Choose>
+				<rul:When>
+					<rul:Test>
+						<rul:NotExist AtInputDataDef="ancestor::CommercialPropertyStructure/CommercialPropertyWindstormOrHailExclusionTable/CommercialPropertyWindstormOrHailExclusion" />
+					</rul:Test>
+					<rul:Then>
+						<rul:FirstValue Type="decimal" FromConstant="0" FromDataDef="ancestor::CommercialPropertyStructure/@BCEGFactor" Order="DataDefInputParamConstant" />
+					</rul:Then>
+				</rul:When>
+				<rul:When>
+					<rul:Test>
+						<rul:Exist AtInputDataDef="ancestor::CommercialPropertyStructure/CommercialPropertyWindstormOrHailExclusionTable/CommercialPropertyWindstormOrHailExclusion" />
+					</rul:Test>
+					<rul:Then>
+						<rul:Constant Type="decimal">1</rul:Constant>
+					</rul:Then>
+				</rul:When>
+			</rul:Choose>
+			<rul:Choose>
+				<rul:When>
+					<rul:Test>
+						<rul:NotExist AtInputDataDef="ancestor::CommercialPropertyStructure/CommercialPropertyWindstormOrHailExclusionTable/CommercialPropertyWindstormOrHailExclusion" />
+					</rul:Test>
+					<rul:Then>
+						<rul:FirstValue Type="decimal" FromConstant="0" FromDataDef="ancestor::CommercialPropertyStructure/@BCEGFactor" Order="DataDefInputParamConstant" />
+					</rul:Then>
+				</rul:When>
+				<rul:When>
+					<rul:Test>
+						<rul:Exist AtInputDataDef="ancestor::CommercialPropertyStructure/CommercialPropertyWindstormOrHailExclusionTable/CommercialPropertyWindstormOrHailExclusion" />
+					</rul:Test>
+					<rul:Then>
+						<rul:Constant Type="decimal">1</rul:Constant>
+					</rul:Then>
+				</rul:When>
+			</rul:Choose>
+			<rul:Constant Type="decimal">0</rul:Constant>
+		</rul:FirstNonNull>
+	</rul:Rule>
+	<rul:Rule Name="BGIISymbolToUse" Type="string" DataDefGroup="CommercialPropertyBuildersRiskRenovations">
+		<rul:FirstNonNull Type="string">
+			<rul:If>
+				<rul:Test>
+					<rul:GreaterThan>
+						<rul:FirstValue Type="integer" FromConstant="0" FromDataDef="@ConstructionCode" Order="DataDefInputParamConstant" />
+						<rul:Constant Type="integer">0</rul:Constant>
+					</rul:GreaterThan>
+				</rul:Test>
+				<rul:Then>
+					<rul:RunRule Type="string" FileName="CommercialPropertyBuildersRiskRenovationsRules" Rule="LookupBasicGroupIISymbolAdditionalClasses" ClearCache="true">
+						<rul:Arg Type="string" Param="classificationCode">
+							<rul:Constant Type="string">1150</rul:Constant>
+						</rul:Arg>
+						<rul:Arg Type="integer" Param="constructionCode">
+							<rul:FirstValue Type="integer" FromConstant="0" FromDataDef="@ConstructionCode" Order="DataDefInputParamConstant" />
+						</rul:Arg>
+					</rul:RunRule>
+				</rul:Then>
+				<rul:Else>
+					<rul:Constant Type="string"></rul:Constant>
+				</rul:Else>
+			</rul:If>
+			<rul:Constant Type="string"></rul:Constant>
+		</rul:FirstNonNull>
+	</rul:Rule>
+	<rul:Rule Name="BuildersRiskRateCalcBGI" Type="decimal" DataDefGroup="CommercialPropertyBuildersRiskRenovations">
+		<rul:WithArgs>
+			<rul:Arg Type="decimal" Param="calcBuildersRiskRateCalcBGI">
+				<rul:FirstNonNull Type="decimal">
+					<rul:Product DecimalPlaces="3">
+						<rul:Product DecimalPlaces="3">
+							<rul:Product DecimalPlaces="3">
+								<rul:Round DecimalPlaces="3">
+									<rul:Subtract>
+										<rul:Product DecimalPlaces="3">
+											<rul:Product DecimalPlaces="3">
+												<rul:Sum>
+													<rul:Product DecimalPlaces="3">
+														<rul:If>
+															<rul:Test>
+																<rul:NotEqual>
+																	<rul:FirstValue Type="integer" FromConstant="0" FromDataDef="@ConstructionCode" Order="DataDefInputParamConstant" />
+																	<rul:Constant Type="integer">0</rul:Constant>
+																</rul:NotEqual>
+															</rul:Test>
+															<rul:Then>
+																<rul:RunRule Type="decimal" FileName="CommercialPropertyBuildersRiskRenovationsRules" Rule="LookupBasicGroupIRate" ClearCache="true">
+																	<rul:Arg Type="string" Param="classCode">
+																		<rul:Constant Type="string">1150</rul:Constant>
+																	</rul:Arg>
+																</rul:RunRule>
+															</rul:Then>
+															<rul:Else>
+																<rul:Constant Type="decimal">0</rul:Constant>
+															</rul:Else>
+														</rul:If>
+														<rul:FirstValue Type="decimal" FromConstant="0" FromDataDef="ancestor::CommercialProperty/@LossCostMultiplier" Order="DataDefInputParamConstant" />
+													</rul:Product>
+													<rul:Value Type="decimal" FromDataDef="ancestor::CommercialPropertyStructure/@SubStdConditionRate" />
+												</rul:Sum>
+												<rul:FirstValue Type="decimal" FromConstant="0" FromDataDef="ancestor::CommercialPropertyLocation/@BasicGroupIRatingTerrFactor" Order="DataDefInputParamConstant" />
+												<rul:FirstValue Type="decimal" FromConstant="0" FromDataDef="ancestor::CommercialPropertyStructure/@ProtectionClassFactor" Order="DataDefInputParamConstant" />
+											</rul:Product>
+											<rul:FirstValue Type="decimal" FromConstant="0" FromDataDef="@CompletedValueMultiplier" Order="DataDefInputParamConstant" />
+										</rul:Product>
+										<rul:Value Type="decimal" FromDataDef="ancestor::CommercialPropertyStructure/@SprinklerLeakageExclNonSprinkleredBldgRate" />
+									</rul:Subtract>
+								</rul:Round>
+								<rul:FirstValue Type="decimal" FromConstant="0" FromDataDef="ancestor::CommercialPropertyStructure/@SprinklerLeakageExclSprinkleredFactor" Order="DataDefInputParamConstant" />
+							</rul:Product>
+							<rul:FirstValue Type="decimal" FromConstant="0" FromDataDef="@VandalismExclFactorBuildersRiskRateCalculation" Order="DataDefInputParamConstant" />
+						</rul:Product>
+						<rul:FirstValue Type="decimal" FromConstant="0" FromDataDef="@BasicGroupILOIFactor" Order="DataDefInputParamConstant" />
+					</rul:Product>
+					<rul:Constant Type="decimal">0</rul:Constant>
+				</rul:FirstNonNull>
+			</rul:Arg>
+			<rul:Value Type="decimal" FromParam="calcBuildersRiskRateCalcBGI" />
+		</rul:WithArgs>
+	</rul:Rule>
+	<rul:Rule Name="BuildersRiskRateCalcBGII" Type="decimal" DataDefGroup="CommercialPropertyBuildersRiskRenovations">
+		<rul:WithArgs>
+			<rul:Arg Type="decimal" Param="calcBuildersRiskRateCalcBGII">
+				<rul:FirstNonNull Type="decimal">
+					<rul:Product DecimalPlaces="3">
+						<rul:Product DecimalPlaces="3">
+							<rul:Product DecimalPlaces="3">
+								<rul:Product DecimalPlaces="3">
+									<rul:Product DecimalPlaces="3">
+										<rul:Product DecimalPlaces="3">
+											<rul:Choose>
+												<rul:When>
+													<rul:Test>
+														<rul:NotExist AtInputDataDef="ancestor::CommercialPropertyStructure/CommercialPropertyWindstormOrHailExclusionTable/CommercialPropertyWindstormOrHailExclusion" />
+													</rul:Test>
+													<rul:Then>
+														<rul:WithArgs>
+															<rul:Arg Type="string" Param="BGIISymbolToUseParam">
+																<rul:RunRule Type="string" FileName="CommercialPropertyBuildersRiskRenovationsRules" Rule="BGIISymbolToUse" ClearCache="true" />
+															</rul:Arg>
+															<rul:If>
+																<rul:Test>
+																	<rul:NotEqual>
+																		<rul:Value Type="string" FromParam="BGIISymbolToUseParam" />
+																		<rul:Constant Type="string"></rul:Constant>
+																	</rul:NotEqual>
+																</rul:Test>
+																<rul:Then>
+																	<rul:RunRule Type="decimal" FileName="CommercialPropertyBuildersRiskRenovationsRules" Rule="LookupBasicGroupIIRate" ClearCache="true">
+																		<rul:Arg Type="string" Param="BGIISymbol">
+																			<rul:Value Type="string" FromParam="BGIISymbolToUseParam" />
+																		</rul:Arg>
+																	</rul:RunRule>
+																</rul:Then>
+																<rul:Else>
+																	<rul:Constant Type="decimal">0</rul:Constant>
+																</rul:Else>
+															</rul:If>
+														</rul:WithArgs>
+													</rul:Then>
+												</rul:When>
+												<rul:When>
+													<rul:Test>
+														<rul:Exist AtInputDataDef="ancestor::CommercialPropertyStructure/CommercialPropertyWindstormOrHailExclusionTable/CommercialPropertyWindstormOrHailExclusion" />
+													</rul:Test>
+													<rul:Then>
+														<rul:WithArgs>
+															<rul:Arg Type="string" Param="BGIISymbolToUseParam">
+																<rul:RunRule Type="string" FileName="CommercialPropertyBuildersRiskRenovationsRules" Rule="BGIISymbolToUse" ClearCache="true" />
+															</rul:Arg>
+															<rul:RunRule Type="decimal" FileName="CommercialPropertyBuildersRiskRenovationsRules" Rule="LookupLowestBasicGroupIIRate" ClearCache="true">
+																<rul:Arg Type="string" Param="BGIISymbol">
+																	<rul:Value Type="string" FromParam="BGIISymbolToUseParam" />
+																</rul:Arg>
+															</rul:RunRule>
+														</rul:WithArgs>
+													</rul:Then>
+												</rul:When>
+											</rul:Choose>
+											<rul:FirstValue Type="decimal" FromConstant="0" FromDataDef="ancestor::CommercialProperty/@LossCostMultiplier" Order="DataDefInputParamConstant" />
+										</rul:Product>
+										<rul:Choose>
+											<rul:When>
+												<rul:Test>
+													<rul:NotExist AtInputDataDef="ancestor::CommercialPropertyStructure/CommercialPropertyWindstormOrHailExclusionTable/CommercialPropertyWindstormOrHailExclusion" />
+												</rul:Test>
+												<rul:Then>
+													<rul:If>
+														<rul:Test>
+															<rul:NotEqual>
+																<rul:FirstValue Type="integer" FromConstant="0" FromDataDef="@ConstructionCode" Order="DataDefInputParamConstant" />
+																<rul:Constant Type="integer">0</rul:Constant>
+															</rul:NotEqual>
+														</rul:Test>
+														<rul:Then>
+															<rul:RunRule Type="decimal" FileName="CommercialPropertyBuildersRiskRenovationsRules" Rule="LookupGroupIINumericValue" ClearCache="true">
+																<rul:Arg Type="string" Param="classCode">
+																	<rul:Constant Type="string">1150</rul:Constant>
+																</rul:Arg>
+															</rul:RunRule>
+														</rul:Then>
+														<rul:Else>
+															<rul:Constant Type="decimal">0</rul:Constant>
+														</rul:Else>
+													</rul:If>
+												</rul:Then>
+											</rul:When>
+											<rul:When>
+												<rul:Test>
+													<rul:Exist AtInputDataDef="ancestor::CommercialPropertyStructure/CommercialPropertyWindstormOrHailExclusionTable/CommercialPropertyWindstormOrHailExclusion" />
+												</rul:Test>
+												<rul:Then>
+													<rul:Constant Type="decimal">1</rul:Constant>
+												</rul:Then>
+											</rul:When>
+										</rul:Choose>
+									</rul:Product>
+									<rul:Choose>
+										<rul:When>
+											<rul:Test>
+												<rul:NotExist AtInputDataDef="ancestor::CommercialPropertyStructure/CommercialPropertyWindstormOrHailExclusionTable/CommercialPropertyWindstormOrHailExclusion" />
+											</rul:Test>
+											<rul:Then>
+												<rul:FirstValue Type="decimal" FromConstant="0" FromDataDef="ancestor::CommercialPropertyStructure/@BCEGFactor" Order="DataDefInputParamConstant" />
+											</rul:Then>
+										</rul:When>
+										<rul:When>
+											<rul:Test>
+												<rul:Exist AtInputDataDef="ancestor::CommercialPropertyStructure/CommercialPropertyWindstormOrHailExclusionTable/CommercialPropertyWindstormOrHailExclusion" />
+											</rul:Test>
+											<rul:Then>
+												<rul:Constant Type="decimal">1</rul:Constant>
+											</rul:Then>
+										</rul:When>
+									</rul:Choose>
+								</rul:Product>
+								<rul:FirstValue Type="decimal" FromConstant="0" FromDataDef="@CompletedValueMultiplier" Order="DataDefInputParamConstant" />
+							</rul:Product>
+							<rul:FirstValue Type="decimal" FromConstant="0" FromDataDef="@WindstormOrHailExclFactor" Order="DataDefInputParamConstant" />
+						</rul:Product>
+						<rul:FirstValue Type="decimal" FromConstant="0" FromDataDef="@BasicGroupIILOIFactor" Order="DataDefInputParamConstant" />
+					</rul:Product>
+					<rul:Constant Type="decimal">0</rul:Constant>
+				</rul:FirstNonNull>
+			</rul:Arg>
+			<rul:Value Type="decimal" FromParam="calcBuildersRiskRateCalcBGII" />
+		</rul:WithArgs>
+	</rul:Rule>
+	<rul:Rule Name="BuildersRiskRateCalcBroad" Type="decimal" DataDefGroup="CommercialPropertyBuildersRiskRenovations">
+		<rul:WithArgs>
+			<rul:Arg Type="decimal" Param="calcBuildersRiskRateCalcBroad">
+				<rul:FirstNonNull Type="decimal">
+					<rul:Product DecimalPlaces="3">
+						<rul:Product DecimalPlaces="3">
+							<rul:Product DecimalPlaces="3">
+								<rul:If>
+									<rul:Test>
+										<rul:NotEqual>
+											<rul:FirstValue Type="string" FromConstant="" FromDataDef="@ConstructionTypeToUse" Order="DataDefInputParamConstant" />
+											<rul:Constant Type="string"></rul:Constant>
+										</rul:NotEqual>
+									</rul:Test>
+									<rul:Then>
+										<rul:RunRule Type="decimal" FileName="CommercialPropertyBuildersRiskRenovationsRules" Rule="LookupBroadFormBaseRate" ClearCache="true">
+											<rul:Arg Type="string" Param="covType">
+												<rul:Constant Type="string">BldrRisk</rul:Constant>
+											</rul:Arg>
+										</rul:RunRule>
+									</rul:Then>
+									<rul:Else>
+										<rul:Constant Type="decimal">0</rul:Constant>
+									</rul:Else>
+								</rul:If>
+								<rul:FirstValue Type="decimal" FromConstant="0" FromDataDef="ancestor::CommercialProperty/@LossCostMultiplier" Order="DataDefInputParamConstant" />
+							</rul:Product>
+							<rul:FirstValue Type="decimal" FromConstant="0" FromDataDef="@CompletedValueMultiplier" Order="DataDefInputParamConstant" />
+						</rul:Product>
+						<rul:FirstValue Type="decimal" FromConstant="0" FromDataDef="@BroadLOIFactor" Order="DataDefInputParamConstant" />
+					</rul:Product>
+					<rul:Constant Type="decimal">0</rul:Constant>
+				</rul:FirstNonNull>
+			</rul:Arg>
+			<rul:Value Type="decimal" FromParam="calcBuildersRiskRateCalcBroad" />
+		</rul:WithArgs>
+	</rul:Rule>
+	<rul:Rule Name="BuildersRiskRateCalcSpecial" Type="decimal" DataDefGroup="CommercialPropertyBuildersRiskRenovations">
+		<rul:WithArgs>
+			<rul:Arg Type="decimal" Param="calcBuildersRiskRateCalcSpecial">
+				<rul:FirstNonNull Type="decimal">
+					<rul:Product DecimalPlaces="3">
+						<rul:Product DecimalPlaces="3">
+							<rul:Product DecimalPlaces="3">
+								<rul:Product DecimalPlaces="3">
+									<rul:RunRule Type="decimal" FileName="CommercialPropertyBuildersRiskRenovationsRules" Rule="LookupSpecialBuildersRiskRate" ClearCache="true" />
+									<rul:FirstValue Type="decimal" FromConstant="0" FromDataDef="ancestor::CommercialProperty/@LossCostMultiplier" Order="DataDefInputParamConstant" />
+								</rul:Product>
+								<rul:FirstValue Type="decimal" FromConstant="0" FromDataDef="ancestor::CommercialPropertyStructure/@SpecialTheftExclusionFactor" Order="DataDefInputParamConstant" />
+							</rul:Product>
+							<rul:FirstValue Type="decimal" FromConstant="0" FromDataDef="@CompletedValueMultiplier" Order="DataDefInputParamConstant" />
+						</rul:Product>
+						<rul:FirstValue Type="decimal" FromConstant="0" FromDataDef="@SpecialLOIFactor" Order="DataDefInputParamConstant" />
+					</rul:Product>
+					<rul:Constant Type="decimal">0</rul:Constant>
+				</rul:FirstNonNull>
+			</rul:Arg>
+			<rul:Value Type="decimal" FromParam="calcBuildersRiskRateCalcSpecial" />
+		</rul:WithArgs>
+	</rul:Rule>
+	<rul:Rule Name="BuildersRiskRateCalcEQ" Type="decimal" DataDefGroup="CommercialPropertyBuildersRiskRenovations">
+		<rul:WithArgs>
+			<rul:Arg Type="decimal" Param="calcBuildersRiskRateCalcEQ">
+				<rul:FirstNonNull Type="decimal">
+					<rul:Product DecimalPlaces="3">
+						<rul:Product DecimalPlaces="3">
+							<rul:Product DecimalPlaces="3">
+								<rul:FirstValue Type="decimal" FromConstant="0" FromDataDef="@EQBaseRate" Order="DataDefInputParamConstant" />
+								<rul:FirstValue Type="decimal" FromConstant="0" FromDataDef="ancestor::CommercialProperty/@LossCostMultiplier" Order="DataDefInputParamConstant" />
+							</rul:Product>
+							<rul:FirstValue Type="decimal" FromConstant="0" FromDataDef="@BuildersRiskEQFactor" Order="DataDefInputParamConstant" />
+							<rul:FirstValue Type="decimal" FromConstant="0" FromDataDef="ancestor::CommercialPropertyStructure/@EQRoofTankHazardFactor" Order="DataDefInputParamConstant" />
+							<rul:FirstValue Type="decimal" FromConstant="0" FromDataDef="ancestor::CommercialPropertyStructure/@EQSprinkleredRiskFactor" Order="DataDefInputParamConstant" />
+							<rul:FirstValue Type="decimal" FromConstant="0" FromDataDef="ancestor::CommercialPropertyStructure/@BldgHeightFactor" Order="DataDefInputParamConstant" />
+							<rul:FirstValue Type="decimal" FromConstant="0" FromDataDef="ancestor::CommercialPropertyStructure/@BCEGEQFactor" Order="DataDefInputParamConstant" />
+							<rul:FirstValue Type="decimal" FromConstant="0" FromDataDef="ancestor::CommercialPropertyStructure/@PctOfMasonryVeneerEQFactor" Order="DataDefInputParamConstant" />
+						</rul:Product>
+						<rul:FirstValue Type="decimal" FromConstant="0" FromDataDef="@CompletedValueMultiplier" Order="DataDefInputParamConstant" />
+					</rul:Product>
+					<rul:Constant Type="decimal">0</rul:Constant>
+				</rul:FirstNonNull>
+			</rul:Arg>
+			<rul:Value Type="decimal" FromParam="calcBuildersRiskRateCalcEQ" />
+		</rul:WithArgs>
+	</rul:Rule>
+	<rul:Rule Name="CompldBuildingRateCalcBGI" Type="decimal" DataDefGroup="CommercialPropertyBuildersRiskRenovations">
+		<rul:WithArgs>
+			<rul:Arg Type="decimal" Param="calcCompldBuildingRateCalcBGI">
+				<rul:FirstNonNull Type="decimal">
+					<rul:Product DecimalPlaces="3">
+						<rul:Product DecimalPlaces="3">
+							<rul:Product DecimalPlaces="3">
+								<rul:Product DecimalPlaces="3">
+									<rul:Product DecimalPlaces="3">
+										<rul:Round DecimalPlaces="3">
+											<rul:Subtract>
+												<rul:Choose>
+													<rul:When>
+														<rul:Test>
+															<rul:Equal>
+																<rul:FirstValue Type="string" FromConstant="" FromDataDef="@RatingType" Order="DataDefInputParamConstant" />
+																<rul:Constant Type="string">Class</rul:Constant>
+															</rul:Equal>
+														</rul:Test>
+														<rul:Then>
+															<rul:Product DecimalPlaces="3">
+																<rul:Sum>
+																	<rul:Product DecimalPlaces="3">
+																		<rul:If>
+																			<rul:Test>
+																				<rul:NotEqual>
+																					<rul:FirstValue Type="integer" FromConstant="0" FromDataDef="@ConstructionCode" Order="DataDefInputParamConstant" />
+																					<rul:Constant Type="integer">0</rul:Constant>
+																				</rul:NotEqual>
+																			</rul:Test>
+																			<rul:Then>
+																				<rul:RunRule Type="decimal" FileName="CommercialPropertyBuildersRiskRenovationsRules" Rule="LookupBasicGroupIRate" ClearCache="true">
+																					<rul:Arg Type="string" Param="classCode">
+																						<rul:FirstValue Type="string" FromConstant="" FromDataDef="ancestor::CommercialPropertyStructure/@ClassCode" Order="DataDefInputParamConstant" />
+																					</rul:Arg>
+																				</rul:RunRule>
+																			</rul:Then>
+																			<rul:Else>
+																				<rul:Constant Type="decimal">0</rul:Constant>
+																			</rul:Else>
+																		</rul:If>
+																		<rul:FirstValue Type="decimal" FromConstant="0" FromDataDef="ancestor::CommercialProperty/@LossCostMultiplier" Order="DataDefInputParamConstant" />
+																	</rul:Product>
+																	<rul:Value Type="decimal" FromDataDef="ancestor::CommercialPropertyStructure/@SubStdConditionRate" />
+																</rul:Sum>
+																<rul:FirstValue Type="decimal" FromConstant="0" FromDataDef="ancestor::CommercialPropertyLocation/@BasicGroupIRatingTerrFactor" Order="DataDefInputParamConstant" />
+																<rul:FirstValue Type="decimal" FromConstant="0" FromDataDef="ancestor::CommercialPropertyStructure/@ProtectionClassFactor" Order="DataDefInputParamConstant" />
+															</rul:Product>
+														</rul:Then>
+													</rul:When>
+													<rul:When>
+														<rul:Test>
+															<rul:Or>
+																<rul:Equal>
+																	<rul:FirstValue Type="string" FromConstant="" FromDataDef="@RatingType" Order="DataDefInputParamConstant" />
+																	<rul:Constant Type="string">Specific</rul:Constant>
+																</rul:Equal>
+																<rul:Equal>
+																	<rul:FirstValue Type="string" FromConstant="" FromDataDef="@RatingType" Order="DataDefInputParamConstant" />
+																	<rul:Constant Type="string">Tentative</rul:Constant>
+																</rul:Equal>
+															</rul:Or>
+														</rul:Test>
+														<rul:Then>
+															<rul:Product DecimalPlaces="3">
+																<rul:FirstValue Type="decimal" FromConstant="0" FromDataDef="@TentativeGroupIRate" Order="DataDefInputParamConstant" />
+																<rul:FirstValue Type="decimal" FromConstant="0" FromDataDef="ancestor::CommercialProperty/@LossCostMultiplier" Order="DataDefInputParamConstant" />
+															</rul:Product>
+														</rul:Then>
+													</rul:When>
+													<rul:Otherwise>
+														<rul:Constant Type="decimal">0</rul:Constant>
+													</rul:Otherwise>
+												</rul:Choose>
+												<rul:Value Type="decimal" FromDataDef="ancestor::CommercialPropertyStructure/@SprinklerLeakageExclNonSprinkleredBldgRate" />
+											</rul:Subtract>
+										</rul:Round>
+										<rul:FirstValue Type="decimal" FromConstant="0" FromDataDef="ancestor::CommercialPropertyStructure/@SprinklerLeakageExclSprinkleredFactor" Order="DataDefInputParamConstant" />
+									</rul:Product>
+									<rul:FirstValue Type="decimal" FromConstant="0" FromDataDef="@VandalismExclFactorCompletedBuildingRateCalculation" Order="DataDefInputParamConstant" />
+								</rul:Product>
+								<rul:FirstValue Type="decimal" FromConstant="0" FromDataDef="@BasicGroupILOIFactor" Order="DataDefInputParamConstant" />
+							</rul:Product>
+							<rul:FirstValue Type="decimal" FromConstant="0" FromDataDef="@CoinsuranceFactor" Order="DataDefInputParamConstant" />
+						</rul:Product>
+						<rul:FirstValue Type="decimal" FromConstant="0" FromDataDef="@CoinsuranceModFactor" Order="DataDefInputParamConstant" />
+					</rul:Product>
+					<rul:Constant Type="decimal">0</rul:Constant>
+				</rul:FirstNonNull>
+			</rul:Arg>
+			<rul:Value Type="decimal" FromParam="calcCompldBuildingRateCalcBGI" />
+		</rul:WithArgs>
+	</rul:Rule>
+	<rul:Rule Name="CompldBuildingRateCalcBGII" Type="decimal" DataDefGroup="CommercialPropertyBuildersRiskRenovations">
+		<rul:WithArgs>
+			<rul:Arg Type="decimal" Param="calcCompldBuildingRateCalcBGII">
+				<rul:FirstNonNull Type="decimal">
+					<rul:Product DecimalPlaces="3">
+						<rul:Product DecimalPlaces="3">
+							<rul:Product DecimalPlaces="3">
+								<rul:Product DecimalPlaces="3">
+									<rul:Product DecimalPlaces="3">
+										<rul:Product DecimalPlaces="3">
+											<rul:Product DecimalPlaces="3">
+												<rul:Choose>
+													<rul:When>
+														<rul:Test>
+															<rul:NotExist AtInputDataDef="ancestor::CommercialPropertyStructure/CommercialPropertyWindstormOrHailExclusionTable/CommercialPropertyWindstormOrHailExclusion" />
+														</rul:Test>
+														<rul:Then>
+															<rul:If>
+																<rul:Test>
+																	<rul:NotEqual>
+																		<rul:FirstValue Type="string" FromConstant="" FromDataDef="@BGIISymbolToUseModified" Order="DataDefInputParamConstant" />
+																		<rul:Constant Type="string"></rul:Constant>
+																	</rul:NotEqual>
+																</rul:Test>
+																<rul:Then>
+																	<rul:RunRule Type="decimal" FileName="CommercialPropertyBuildersRiskRenovationsRules" Rule="LookupBasicGroupIIRate" ClearCache="true">
+																		<rul:Arg Type="string" Param="BGIISymbol">
+																			<rul:FirstValue Type="string" FromConstant="" FromDataDef="@BGIISymbolToUseModified" Order="DataDefInputParamConstant" />
+																		</rul:Arg>
+																	</rul:RunRule>
+																</rul:Then>
+																<rul:Else>
+																	<rul:Constant Type="decimal">0</rul:Constant>
+																</rul:Else>
+															</rul:If>
+														</rul:Then>
+													</rul:When>
+													<rul:When>
+														<rul:Test>
+															<rul:Exist AtInputDataDef="ancestor::CommercialPropertyStructure/CommercialPropertyWindstormOrHailExclusionTable/CommercialPropertyWindstormOrHailExclusion" />
+														</rul:Test>
+														<rul:Then>
+															<rul:RunRule Type="decimal" FileName="CommercialPropertyBuildersRiskRenovationsRules" Rule="LookupLowestBasicGroupIIRate" ClearCache="true">
+																<rul:Arg Type="string" Param="BGIISymbol">
+																	<rul:FirstValue Type="string" FromConstant="" FromDataDef="@BGIISymbolToUseModified" Order="DataDefInputParamConstant" />
+																</rul:Arg>
+															</rul:RunRule>
+														</rul:Then>
+													</rul:When>
+												</rul:Choose>
+												<rul:FirstValue Type="decimal" FromConstant="0" FromDataDef="ancestor::CommercialProperty/@LossCostMultiplier" Order="DataDefInputParamConstant" />
+											</rul:Product>
+											<rul:Choose>
+												<rul:When>
+													<rul:Test>
+														<rul:NotExist AtInputDataDef="ancestor::CommercialPropertyStructure/CommercialPropertyWindstormOrHailExclusionTable/CommercialPropertyWindstormOrHailExclusion" />
+													</rul:Test>
+													<rul:Then>
+														<rul:If>
+															<rul:Test>
+																<rul:And>
+																	<rul:NotEqual>
+																		<rul:FirstValue Type="integer" FromConstant="0" FromDataDef="@ConstructionCode" Order="DataDefInputParamConstant" />
+																		<rul:Constant Type="integer">0</rul:Constant>
+																	</rul:NotEqual>
+																	<rul:Or>
+																		<rul:Equal>
+																			<rul:FirstValue Type="string" FromConstant="" FromDataDef="ancestor::CommercialPropertyStructure/@ClassCode" Order="DataDefInputParamConstant" />
+																			<rul:Constant Type="string">0580</rul:Constant>
+																		</rul:Equal>
+																		<rul:Equal>
+																			<rul:FirstValue Type="string" FromConstant="" FromDataDef="ancestor::CommercialPropertyStructure/@ClassCode" Order="DataDefInputParamConstant" />
+																			<rul:Constant Type="string">1150</rul:Constant>
+																		</rul:Equal>
+																		<rul:Equal>
+																			<rul:FirstValue Type="string" FromConstant="" FromDataDef="ancestor::CommercialPropertyStructure/@ClassCode" Order="DataDefInputParamConstant" />
+																			<rul:Constant Type="string">1300</rul:Constant>
+																		</rul:Equal>
+																		<rul:Equal>
+																			<rul:FirstValue Type="string" FromConstant="" FromDataDef="ancestor::CommercialPropertyStructure/@ClassCode" Order="DataDefInputParamConstant" />
+																			<rul:Constant Type="string">1650</rul:Constant>
+																		</rul:Equal>
+																	</rul:Or>
+																</rul:And>
+															</rul:Test>
+															<rul:Then>
+																<rul:RunRule Type="decimal" FileName="CommercialPropertyBuildersRiskRenovationsRules" Rule="LookupGroupIINumericValue" ClearCache="true">
+																	<rul:Arg Type="string" Param="classCode">
+																		<rul:FirstValue Type="string" FromConstant="" FromDataDef="ancestor::CommercialPropertyStructure/@ClassCode" Order="DataDefInputParamConstant" />
+																	</rul:Arg>
+																</rul:RunRule>
+															</rul:Then>
+															<rul:Else>
+																<rul:Constant Type="decimal">0</rul:Constant>
+															</rul:Else>
+														</rul:If>
+													</rul:Then>
+												</rul:When>
+												<rul:When>
+													<rul:Test>
+														<rul:Exist AtInputDataDef="ancestor::CommercialPropertyStructure/CommercialPropertyWindstormOrHailExclusionTable/CommercialPropertyWindstormOrHailExclusion" />
+													</rul:Test>
+													<rul:Then>
+														<rul:Constant Type="decimal">1</rul:Constant>
+													</rul:Then>
+												</rul:When>
+											</rul:Choose>
+										</rul:Product>
+										<rul:Choose>
+											<rul:When>
+												<rul:Test>
+													<rul:NotExist AtInputDataDef="ancestor::CommercialPropertyStructure/CommercialPropertyWindstormOrHailExclusionTable/CommercialPropertyWindstormOrHailExclusion" />
+												</rul:Test>
+												<rul:Then>
+													<rul:FirstValue Type="decimal" FromConstant="0" FromDataDef="ancestor::CommercialPropertyStructure/@BCEGFactor" Order="DataDefInputParamConstant" />
+												</rul:Then>
+											</rul:When>
+											<rul:When>
+												<rul:Test>
+													<rul:Exist AtInputDataDef="ancestor::CommercialPropertyStructure/CommercialPropertyWindstormOrHailExclusionTable/CommercialPropertyWindstormOrHailExclusion" />
+												</rul:Test>
+												<rul:Then>
+													<rul:Constant Type="decimal">1</rul:Constant>
+												</rul:Then>
+											</rul:When>
+										</rul:Choose>
+									</rul:Product>
+									<rul:FirstValue Type="decimal" FromConstant="0" FromDataDef="@WindstormOrHailExclFactor" Order="DataDefInputParamConstant" />
+								</rul:Product>
+								<rul:FirstValue Type="decimal" FromConstant="0" FromDataDef="@BasicGroupIILOIFactor" Order="DataDefInputParamConstant" />
+							</rul:Product>
+							<rul:FirstValue Type="decimal" FromConstant="0" FromDataDef="@CoinsuranceFactor" Order="DataDefInputParamConstant" />
+						</rul:Product>
+						<rul:FirstValue Type="decimal" FromConstant="0" FromDataDef="@CoinsuranceModFactor" Order="DataDefInputParamConstant" />
+					</rul:Product>
+					<rul:Constant Type="decimal">0</rul:Constant>
+				</rul:FirstNonNull>
+			</rul:Arg>
+			<rul:Value Type="decimal" FromParam="calcCompldBuildingRateCalcBGII" />
+		</rul:WithArgs>
+	</rul:Rule>
+	<rul:Rule Name="CompldBuildingRateCalcBroad" Type="decimal" DataDefGroup="CommercialPropertyBuildersRiskRenovations">
+		<rul:WithArgs>
+			<rul:Arg Type="decimal" Param="calcCompldBuildingRateCalcBroad">
+				<rul:FirstNonNull Type="decimal">
+					<rul:Product DecimalPlaces="3">
+						<rul:Product DecimalPlaces="3">
+							<rul:Product DecimalPlaces="3">
+								<rul:Product DecimalPlaces="3">
+									<rul:If>
+										<rul:Test>
+											<rul:NotEqual>
+												<rul:FirstValue Type="string" FromConstant="" FromDataDef="@ConstructionTypeToUse" Order="DataDefInputParamConstant" />
+												<rul:Constant Type="string"></rul:Constant>
+											</rul:NotEqual>
+										</rul:Test>
+										<rul:Then>
+											<rul:RunRule Type="decimal" FileName="CommercialPropertyBuildersRiskRenovationsRules" Rule="LookupBroadFormBaseRate" ClearCache="true">
+												<rul:Arg Type="string" Param="covType">
+													<rul:Constant Type="string">Bldg</rul:Constant>
+												</rul:Arg>
+											</rul:RunRule>
+										</rul:Then>
+										<rul:Else>
+											<rul:Constant Type="decimal">0</rul:Constant>
+										</rul:Else>
+									</rul:If>
+									<rul:FirstValue Type="decimal" FromConstant="0" FromDataDef="ancestor::CommercialProperty/@LossCostMultiplier" Order="DataDefInputParamConstant" />
+								</rul:Product>
+								<rul:FirstValue Type="decimal" FromConstant="0" FromDataDef="@BroadLOIFactor" Order="DataDefInputParamConstant" />
+							</rul:Product>
+							<rul:FirstValue Type="decimal" FromConstant="0" FromDataDef="@CoinsuranceFactor" Order="DataDefInputParamConstant" />
+						</rul:Product>
+						<rul:FirstValue Type="decimal" FromConstant="0" FromDataDef="@CoinsuranceModFactor" Order="DataDefInputParamConstant" />
+					</rul:Product>
+					<rul:Constant Type="decimal">0</rul:Constant>
+				</rul:FirstNonNull>
+			</rul:Arg>
+			<rul:Value Type="decimal" FromParam="calcCompldBuildingRateCalcBroad" />
+		</rul:WithArgs>
+	</rul:Rule>
+	<rul:Rule Name="CompldBuildingRateCalcSpecial" Type="decimal" DataDefGroup="CommercialPropertyBuildersRiskRenovations">
+		<rul:WithArgs>
+			<rul:Arg Type="decimal" Param="calcCompldBuildingRateCalcSpecial">
+				<rul:FirstNonNull Type="decimal">
+					<rul:Product DecimalPlaces="3">
+						<rul:Product DecimalPlaces="3">
+							<rul:Product DecimalPlaces="3">
+								<rul:Product DecimalPlaces="3">
+									<rul:Product DecimalPlaces="3">
+										<rul:If>
+											<rul:Test>
+												<rul:Equal>
+													<rul:FirstValue Type="string" FromConstant="" FromDataDef="ancestor::CommercialPropertyStructure/@CauseOfLoss" Order="DataDefInputParamConstant" />
+													<rul:Constant Type="string">Special</rul:Constant>
+												</rul:Equal>
+											</rul:Test>
+											<rul:Then>
+												<rul:RunRule Type="decimal" FileName="CommercialPropertyBuildersRiskRenovationsRules" Rule="LookupSpecialBuildingRate" ClearCache="true" />
+											</rul:Then>
+											<rul:Else>
+												<rul:Constant Type="decimal">0</rul:Constant>
+											</rul:Else>
+										</rul:If>
+										<rul:FirstValue Type="decimal" FromConstant="0" FromDataDef="ancestor::CommercialProperty/@LossCostMultiplier" Order="DataDefInputParamConstant" />
+									</rul:Product>
+									<rul:FirstValue Type="decimal" FromConstant="0" FromDataDef="ancestor::CommercialPropertyStructure/@SpecialTheftExclusionFactor" Order="DataDefInputParamConstant" />
+								</rul:Product>
+								<rul:FirstValue Type="decimal" FromConstant="0" FromDataDef="@SpecialLOIFactor" Order="DataDefInputParamConstant" />
+							</rul:Product>
+							<rul:FirstValue Type="decimal" FromConstant="0" FromDataDef="@CoinsuranceFactor" Order="DataDefInputParamConstant" />
+						</rul:Product>
+						<rul:FirstValue Type="decimal" FromConstant="0" FromDataDef="@CoinsuranceModFactor" Order="DataDefInputParamConstant" />
+					</rul:Product>
+					<rul:Constant Type="decimal">0</rul:Constant>
+				</rul:FirstNonNull>
+			</rul:Arg>
+			<rul:Value Type="decimal" FromParam="calcCompldBuildingRateCalcSpecial" />
+		</rul:WithArgs>
+	</rul:Rule>
+	<rul:Rule Name="CompldBuildingRateCalcEQ" Type="decimal" DataDefGroup="CommercialPropertyBuildersRiskRenovations">
+		<rul:WithArgs>
+			<rul:Arg Type="decimal" Param="calcCompldBuildingRateCalcEQ">
+				<rul:FirstNonNull Type="decimal">
+					<rul:Product DecimalPlaces="3">
+						<rul:Product DecimalPlaces="3">
+							<rul:Product DecimalPlaces="3">
+								<rul:FirstValue Type="decimal" FromConstant="0" FromDataDef="@EQBaseRate" Order="DataDefInputParamConstant" />
+								<rul:FirstValue Type="decimal" FromConstant="0" FromDataDef="ancestor::CommercialProperty/@LossCostMultiplier" Order="DataDefInputParamConstant" />
+							</rul:Product>
+							<rul:FirstValue Type="decimal" FromConstant="0" FromDataDef="@BuildersRiskEQFactor" Order="DataDefInputParamConstant" />
+							<rul:FirstValue Type="decimal" FromConstant="0" FromDataDef="ancestor::CommercialPropertyStructure/@EQRoofTankHazardFactor" Order="DataDefInputParamConstant" />
+							<rul:FirstValue Type="decimal" FromConstant="0" FromDataDef="ancestor::CommercialPropertyStructure/@EQSprinkleredRiskFactor" Order="DataDefInputParamConstant" />
+							<rul:FirstValue Type="decimal" FromConstant="0" FromDataDef="ancestor::CommercialPropertyStructure/@BldgHeightFactor" Order="DataDefInputParamConstant" />
+							<rul:FirstValue Type="decimal" FromConstant="0" FromDataDef="ancestor::CommercialPropertyStructure/@BCEGEQFactor" Order="DataDefInputParamConstant" />
+							<rul:FirstValue Type="decimal" FromConstant="0" FromDataDef="ancestor::CommercialPropertyStructure/@PctOfMasonryVeneerEQFactor" Order="DataDefInputParamConstant" />
+						</rul:Product>
+						<rul:FirstValue Type="decimal" FromConstant="0" FromDataDef="@CoinsuranceFactor" Order="DataDefInputParamConstant" />
+						<rul:FirstValue Type="decimal" FromConstant="0" FromDataDef="@CoinsuranceModFactor" Order="DataDefInputParamConstant" />
+					</rul:Product>
+					<rul:Constant Type="decimal">0</rul:Constant>
+				</rul:FirstNonNull>
+			</rul:Arg>
+			<rul:Value Type="decimal" FromParam="calcCompldBuildingRateCalcEQ" />
+		</rul:WithArgs>
+	</rul:Rule>
+	<rul:Rule Name="tempBuildersRiskRateBGIBaseRate" Type="decimal" DataDefGroup="CommercialPropertyBuildersRiskRenovations">
+		<rul:FirstNonNull Type="decimal">
+			<rul:If>
+				<rul:Test>
+					<rul:NotEqual>
+						<rul:FirstValue Type="integer" FromConstant="0" FromDataDef="@ConstructionCode" Order="DataDefInputParamConstant" />
+						<rul:Constant Type="integer">0</rul:Constant>
+					</rul:NotEqual>
+				</rul:Test>
+				<rul:Then>
+					<rul:RunRule Type="decimal" FileName="CommercialPropertyBuildersRiskRenovationsRules" Rule="LookupBasicGroupIRate" ClearCache="true">
+						<rul:Arg Type="string" Param="classCode">
+							<rul:Constant Type="string">1150</rul:Constant>
+						</rul:Arg>
+					</rul:RunRule>
+				</rul:Then>
+				<rul:Else>
+					<rul:Constant Type="decimal">0</rul:Constant>
+				</rul:Else>
+			</rul:If>
+			<rul:Constant Type="decimal">0.0</rul:Constant>
+		</rul:FirstNonNull>
+	</rul:Rule>
+	<rul:Rule Name="tempBuildersRiskRateBGIIBaseRate" Type="decimal" DataDefGroup="CommercialPropertyBuildersRiskRenovations">
+		<rul:FirstNonNull Type="decimal">
+			<rul:Choose>
+				<rul:When>
+					<rul:Test>
+						<rul:NotExist AtInputDataDef="ancestor::CommercialPropertyStructure/CommercialPropertyWindstormOrHailExclusionTable/CommercialPropertyWindstormOrHailExclusion" />
+					</rul:Test>
+					<rul:Then>
+						<rul:WithArgs>
+							<rul:Arg Type="string" Param="BGIISymbolToUseParam">
+								<rul:RunRule Type="string" FileName="CommercialPropertyBuildersRiskRenovationsRules" Rule="BGIISymbolToUse" ClearCache="true" />
+							</rul:Arg>
+							<rul:If>
+								<rul:Test>
+									<rul:NotEqual>
+										<rul:Value Type="string" FromParam="BGIISymbolToUseParam" />
+										<rul:Constant Type="string"></rul:Constant>
+									</rul:NotEqual>
+								</rul:Test>
+								<rul:Then>
+									<rul:RunRule Type="decimal" FileName="CommercialPropertyBuildersRiskRenovationsRules" Rule="LookupBasicGroupIIRate" ClearCache="true">
+										<rul:Arg Type="string" Param="BGIISymbol">
+											<rul:Value Type="string" FromParam="BGIISymbolToUseParam" />
+										</rul:Arg>
+									</rul:RunRule>
+								</rul:Then>
+								<rul:Else>
+									<rul:Constant Type="decimal">0</rul:Constant>
+								</rul:Else>
+							</rul:If>
+						</rul:WithArgs>
+					</rul:Then>
+				</rul:When>
+				<rul:When>
+					<rul:Test>
+						<rul:Exist AtInputDataDef="ancestor::CommercialPropertyStructure/CommercialPropertyWindstormOrHailExclusionTable/CommercialPropertyWindstormOrHailExclusion" />
+					</rul:Test>
+					<rul:Then>
+						<rul:WithArgs>
+							<rul:Arg Type="string" Param="BGIISymbolToUseParam">
+								<rul:RunRule Type="string" FileName="CommercialPropertyBuildersRiskRenovationsRules" Rule="BGIISymbolToUse" ClearCache="true" />
+							</rul:Arg>
+							<rul:RunRule Type="decimal" FileName="CommercialPropertyBuildersRiskRenovationsRules" Rule="LookupLowestBasicGroupIIRate" ClearCache="true">
+								<rul:Arg Type="string" Param="BGIISymbol">
+									<rul:Value Type="string" FromParam="BGIISymbolToUseParam" />
+								</rul:Arg>
+							</rul:RunRule>
+						</rul:WithArgs>
+					</rul:Then>
+				</rul:When>
+			</rul:Choose>
+			<rul:Constant Type="decimal">0.0</rul:Constant>
+		</rul:FirstNonNull>
+	</rul:Rule>
+	<rul:Rule Name="tempBuildersRiskRateBroadBaseRate" Type="decimal" DataDefGroup="CommercialPropertyBuildersRiskRenovations">
+		<rul:FirstNonNull Type="decimal">
+			<rul:If>
+				<rul:Test>
+					<rul:NotEqual>
+						<rul:FirstValue Type="string" FromConstant="" FromDataDef="@ConstructionTypeToUse" Order="DataDefInputParamConstant" />
+						<rul:Constant Type="string"></rul:Constant>
+					</rul:NotEqual>
+				</rul:Test>
+				<rul:Then>
+					<rul:RunRule Type="decimal" FileName="CommercialPropertyBuildersRiskRenovationsRules" Rule="LookupBroadFormBaseRate" ClearCache="true">
+						<rul:Arg Type="string" Param="covType">
+							<rul:Constant Type="string">BldrRisk</rul:Constant>
+						</rul:Arg>
+					</rul:RunRule>
+				</rul:Then>
+				<rul:Else>
+					<rul:Constant Type="decimal">0</rul:Constant>
+				</rul:Else>
+			</rul:If>
+			<rul:Constant Type="decimal">0.0</rul:Constant>
+		</rul:FirstNonNull>
+	</rul:Rule>
+	<rul:Rule Name="tempBuildersRiskRateSpecialBaseRate" Type="decimal" DataDefGroup="CommercialPropertyBuildersRiskRenovations">
+		<rul:RunRule Type="decimal" FileName="CommercialPropertyBuildersRiskRenovationsRules" Rule="LookupSpecialBuildersRiskRate" ClearCache="true" />
+	</rul:Rule>
+	<rul:Rule Name="tempCompldBuildingRateBGIBaseRate" Type="decimal" DataDefGroup="CommercialPropertyBuildersRiskRenovations">
+		<rul:FirstNonNull Type="decimal">
+			<rul:If>
+				<rul:Test>
+					<rul:Equal>
+						<rul:FirstValue Type="string" FromConstant="" FromDataDef="@RatingType" Order="DataDefInputParamConstant" />
+						<rul:Constant Type="string">Class</rul:Constant>
+					</rul:Equal>
+				</rul:Test>
+				<rul:Then>
+					<rul:If>
+						<rul:Test>
+							<rul:NotEqual>
+								<rul:FirstValue Type="integer" FromConstant="0" FromDataDef="@ConstructionCode" Order="DataDefInputParamConstant" />
+								<rul:Constant Type="integer">0</rul:Constant>
+							</rul:NotEqual>
+						</rul:Test>
+						<rul:Then>
+							<rul:RunRule Type="decimal" FileName="CommercialPropertyBuildersRiskRenovationsRules" Rule="LookupBasicGroupIRate" ClearCache="true">
+								<rul:Arg Type="string" Param="classCode">
+									<rul:FirstValue Type="string" FromConstant="" FromDataDef="ancestor::CommercialPropertyStructure/@ClassCode" Order="DataDefInputParamConstant" />
+								</rul:Arg>
+							</rul:RunRule>
+						</rul:Then>
+						<rul:Else>
+							<rul:Constant Type="decimal">0</rul:Constant>
+						</rul:Else>
+					</rul:If>
+				</rul:Then>
+			</rul:If>
+			<rul:Constant Type="decimal">0</rul:Constant>
+		</rul:FirstNonNull>
+	</rul:Rule>
+	<rul:Rule Name="tempCompldBuildingRateBGIIBaseRate" Type="decimal" DataDefGroup="CommercialPropertyBuildersRiskRenovations">
+		<rul:FirstNonNull Type="decimal">
+			<rul:Choose>
+				<rul:When>
+					<rul:Test>
+						<rul:NotExist AtInputDataDef="ancestor::CommercialPropertyStructure/CommercialPropertyWindstormOrHailExclusionTable/CommercialPropertyWindstormOrHailExclusion" />
+					</rul:Test>
+					<rul:Then>
+						<rul:If>
+							<rul:Test>
+								<rul:NotEqual>
+									<rul:FirstValue Type="string" FromConstant="" FromDataDef="@BGIISymbolToUseModified" Order="DataDefInputParamConstant" />
+									<rul:Constant Type="string"></rul:Constant>
+								</rul:NotEqual>
+							</rul:Test>
+							<rul:Then>
+								<rul:RunRule Type="decimal" FileName="CommercialPropertyBuildersRiskRenovationsRules" Rule="LookupBasicGroupIIRate" ClearCache="true">
+									<rul:Arg Type="string" Param="BGIISymbol">
+										<rul:FirstValue Type="string" FromConstant="" FromDataDef="@BGIISymbolToUseModified" Order="DataDefInputParamConstant" />
+									</rul:Arg>
+								</rul:RunRule>
+							</rul:Then>
+							<rul:Else>
+								<rul:Constant Type="decimal">0</rul:Constant>
+							</rul:Else>
+						</rul:If>
+					</rul:Then>
+				</rul:When>
+				<rul:When>
+					<rul:Test>
+						<rul:Exist AtInputDataDef="ancestor::CommercialPropertyStructure/CommercialPropertyWindstormOrHailExclusionTable/CommercialPropertyWindstormOrHailExclusion" />
+					</rul:Test>
+					<rul:Then>
+						<rul:RunRule Type="decimal" FileName="CommercialPropertyBuildersRiskRenovationsRules" Rule="LookupLowestBasicGroupIIRate" ClearCache="true">
+							<rul:Arg Type="string" Param="BGIISymbol">
+								<rul:FirstValue Type="string" FromConstant="" FromDataDef="@BGIISymbolToUseModified" Order="DataDefInputParamConstant" />
+							</rul:Arg>
+						</rul:RunRule>
+					</rul:Then>
+				</rul:When>
+			</rul:Choose>
+			<rul:Constant Type="decimal">0.0</rul:Constant>
+		</rul:FirstNonNull>
+	</rul:Rule>
+	<rul:Rule Name="tempCompldBuildingRateBroadBaseRate" Type="decimal" DataDefGroup="CommercialPropertyBuildersRiskRenovations">
+		<rul:FirstNonNull Type="decimal">
+			<rul:If>
+				<rul:Test>
+					<rul:NotEqual>
+						<rul:FirstValue Type="string" FromConstant="" FromDataDef="@ConstructionTypeToUse" Order="DataDefInputParamConstant" />
+						<rul:Constant Type="string"></rul:Constant>
+					</rul:NotEqual>
+				</rul:Test>
+				<rul:Then>
+					<rul:RunRule Type="decimal" FileName="CommercialPropertyBuildersRiskRenovationsRules" Rule="LookupBroadFormBaseRate" ClearCache="true">
+						<rul:Arg Type="string" Param="covType">
+							<rul:Constant Type="string">Bldg</rul:Constant>
+						</rul:Arg>
+					</rul:RunRule>
+				</rul:Then>
+				<rul:Else>
+					<rul:Constant Type="decimal">0</rul:Constant>
+				</rul:Else>
+			</rul:If>
+			<rul:Constant Type="decimal">0.0</rul:Constant>
+		</rul:FirstNonNull>
+	</rul:Rule>
+	<rul:Rule Name="tempCompldBuildingRateSpecialBaseRate" Type="decimal" DataDefGroup="CommercialPropertyBuildersRiskRenovations">
+		<rul:FirstNonNull Type="decimal">
+			<rul:If>
+				<rul:Test>
+					<rul:Equal>
+						<rul:FirstValue Type="string" FromConstant="" FromDataDef="ancestor::CommercialPropertyStructure/@CauseOfLoss" Order="DataDefInputParamConstant" />
+						<rul:Constant Type="string">Special</rul:Constant>
+					</rul:Equal>
+				</rul:Test>
+				<rul:Then>
+					<rul:RunRule Type="decimal" FileName="CommercialPropertyBuildersRiskRenovationsRules" Rule="LookupSpecialBuildingRate" ClearCache="true" />
+				</rul:Then>
+				<rul:Else>
+					<rul:Constant Type="decimal">0</rul:Constant>
+				</rul:Else>
+			</rul:If>
+			<rul:Constant Type="decimal">0.0</rul:Constant>
+		</rul:FirstNonNull>
+	</rul:Rule>
+	<rul:Rule Name="tempCompldBldrsRiskBasicGroupIINumericValue" Type="decimal" DataDefGroup="CommercialPropertyBuildersRiskRenovations">
+		<rul:FirstNonNull Type="decimal">
+			<rul:Choose>
+				<rul:When>
+					<rul:Test>
+						<rul:NotExist AtInputDataDef="ancestor::CommercialPropertyStructure/CommercialPropertyWindstormOrHailExclusionTable/CommercialPropertyWindstormOrHailExclusion" />
+					</rul:Test>
+					<rul:Then>
+						<rul:If>
+							<rul:Test>
+								<rul:NotEqual>
+									<rul:FirstValue Type="integer" FromConstant="0" FromDataDef="@ConstructionCode" Order="DataDefInputParamConstant" />
+									<rul:Constant Type="integer">0</rul:Constant>
+								</rul:NotEqual>
+							</rul:Test>
+							<rul:Then>
+								<rul:RunRule Type="decimal" FileName="CommercialPropertyBuildersRiskRenovationsRules" Rule="LookupGroupIINumericValue" ClearCache="true">
+									<rul:Arg Type="string" Param="classCode">
+										<rul:Constant Type="string">1150</rul:Constant>
+									</rul:Arg>
+								</rul:RunRule>
+							</rul:Then>
+							<rul:Else>
+								<rul:Constant Type="decimal">0</rul:Constant>
+							</rul:Else>
+						</rul:If>
+					</rul:Then>
+				</rul:When>
+				<rul:When>
+					<rul:Test>
+						<rul:Exist AtInputDataDef="ancestor::CommercialPropertyStructure/CommercialPropertyWindstormOrHailExclusionTable/CommercialPropertyWindstormOrHailExclusion" />
+					</rul:Test>
+					<rul:Then>
+						<rul:Constant Type="decimal">1</rul:Constant>
+					</rul:Then>
+				</rul:When>
+			</rul:Choose>
+			<rul:Constant Type="decimal">0.0</rul:Constant>
+		</rul:FirstNonNull>
+	</rul:Rule>
+	<rul:Rule Name="tempModBldrsRiskBasicGroupIINumericValue" Type="decimal" DataDefGroup="CommercialPropertyBuildersRiskRenovations">
+		<rul:FirstNonNull Type="decimal">
+			<rul:Choose>
+				<rul:When>
+					<rul:Test>
+						<rul:NotExist AtInputDataDef="ancestor::CommercialPropertyStructure/CommercialPropertyWindstormOrHailExclusionTable/CommercialPropertyWindstormOrHailExclusion" />
+					</rul:Test>
+					<rul:Then>
+						<rul:If>
+							<rul:Test>
+								<rul:And>
+									<rul:NotEqual>
+										<rul:FirstValue Type="integer" FromConstant="0" FromDataDef="@ConstructionCode" Order="DataDefInputParamConstant" />
+										<rul:Constant Type="integer">0</rul:Constant>
+									</rul:NotEqual>
+									<rul:Or>
+										<rul:Equal>
+											<rul:FirstValue Type="string" FromConstant="" FromDataDef="ancestor::CommercialPropertyStructure/@ClassCode" Order="DataDefInputParamConstant" />
+											<rul:Constant Type="string">0580</rul:Constant>
+										</rul:Equal>
+										<rul:Equal>
+											<rul:FirstValue Type="string" FromConstant="" FromDataDef="ancestor::CommercialPropertyStructure/@ClassCode" Order="DataDefInputParamConstant" />
+											<rul:Constant Type="string">1150</rul:Constant>
+										</rul:Equal>
+										<rul:Equal>
+											<rul:FirstValue Type="string" FromConstant="" FromDataDef="ancestor::CommercialPropertyStructure/@ClassCode" Order="DataDefInputParamConstant" />
+											<rul:Constant Type="string">1300</rul:Constant>
+										</rul:Equal>
+										<rul:Equal>
+											<rul:FirstValue Type="string" FromConstant="" FromDataDef="ancestor::CommercialPropertyStructure/@ClassCode" Order="DataDefInputParamConstant" />
+											<rul:Constant Type="string">1650</rul:Constant>
+										</rul:Equal>
+									</rul:Or>
+								</rul:And>
+							</rul:Test>
+							<rul:Then>
+								<rul:RunRule Type="decimal" FileName="CommercialPropertyBuildersRiskRenovationsRules" Rule="LookupGroupIINumericValue" ClearCache="true">
+									<rul:Arg Type="string" Param="classCode">
+										<rul:FirstValue Type="string" FromConstant="" FromDataDef="ancestor::CommercialPropertyStructure/@ClassCode" Order="DataDefInputParamConstant" />
+									</rul:Arg>
+								</rul:RunRule>
+							</rul:Then>
+							<rul:Else>
+								<rul:Constant Type="decimal">0</rul:Constant>
+							</rul:Else>
+						</rul:If>
+					</rul:Then>
+				</rul:When>
+				<rul:When>
+					<rul:Test>
+						<rul:Exist AtInputDataDef="ancestor::CommercialPropertyStructure/CommercialPropertyWindstormOrHailExclusionTable/CommercialPropertyWindstormOrHailExclusion" />
+					</rul:Test>
+					<rul:Then>
+						<rul:Constant Type="decimal">1</rul:Constant>
+					</rul:Then>
+				</rul:When>
+			</rul:Choose>
+			<rul:Constant Type="decimal">0.0</rul:Constant>
+		</rul:FirstNonNull>
+	</rul:Rule>
+	<rul:Rule Name="SuperiorRoofingIndicator" Type="string" DataDefGroup="CommercialPropertyBuildersRiskRenovations">
+		<rul:FirstNonNull Type="string">
+			<rul:If>
+				<rul:Test>
+					<rul:Or>
+						<rul:Equal>
+							<rul:FirstValue Type="string" FromConstant="" FromDataDef="@ConstructionType" Order="DataDefInputParamConstant" />
+							<rul:Constant Type="string">Joisted Masonry - Other Than Reinforced - Superior Roofing</rul:Constant>
+						</rul:Equal>
+						<rul:Equal>
+							<rul:FirstValue Type="string" FromConstant="" FromDataDef="@ConstructionType" Order="DataDefInputParamConstant" />
+							<rul:Constant Type="string">Joisted Masonry - Reinforced - Superior Roofing</rul:Constant>
+						</rul:Equal>
+						<rul:Equal>
+							<rul:FirstValue Type="string" FromConstant="" FromDataDef="@ConstructionType" Order="DataDefInputParamConstant" />
+							<rul:Constant Type="string">Non-Combustible - Light Steel - Superior Roofing</rul:Constant>
+						</rul:Equal>
+						<rul:Equal>
+							<rul:FirstValue Type="string" FromConstant="" FromDataDef="@ConstructionType" Order="DataDefInputParamConstant" />
+							<rul:Constant Type="string">Non-Combustible - Other Than Light Steel - Superior Roofing</rul:Constant>
+						</rul:Equal>
+						<rul:Equal>
+							<rul:FirstValue Type="string" FromConstant="" FromDataDef="@ConstructionType" Order="DataDefInputParamConstant" />
+							<rul:Constant Type="string">Masonry Non-Combustible - Other Than Reinforced - Light Steel - Superior Roofing</rul:Constant>
+						</rul:Equal>
+						<rul:Equal>
+							<rul:FirstValue Type="string" FromConstant="" FromDataDef="@ConstructionType" Order="DataDefInputParamConstant" />
+							<rul:Constant Type="string">Masonry Non-Combustible - OT Reinforced - OT Light Steel - Superior Roofing</rul:Constant>
+						</rul:Equal>
+						<rul:Equal>
+							<rul:FirstValue Type="string" FromConstant="" FromDataDef="@ConstructionType" Order="DataDefInputParamConstant" />
+							<rul:Constant Type="string">Masonry Non-Combustible - Reinforced - Light Steel - Superior Roofing</rul:Constant>
+						</rul:Equal>
+						<rul:Equal>
+							<rul:FirstValue Type="string" FromConstant="" FromDataDef="@ConstructionType" Order="DataDefInputParamConstant" />
+							<rul:Constant Type="string">Masonry Non-Combustible - Reinforced - Other Than Light Steel - Superior Roofing</rul:Constant>
+						</rul:Equal>
+					</rul:Or>
+				</rul:Test>
+				<rul:Then>
+					<rul:Constant Type="string">Yes</rul:Constant>
+				</rul:Then>
+				<rul:Else>
+					<rul:Constant Type="string">No</rul:Constant>
+				</rul:Else>
+			</rul:If>
+			<rul:Constant Type="string"></rul:Constant>
+		</rul:FirstNonNull>
+	</rul:Rule>
+	<rul:Rule Name="LookupBasicGroupIIRate" Type="decimal" DataDefGroup="CommercialPropertyBuildersRiskRenovations">
+		<rul:Param Name="BGIISymbol" Type="string" />
+		<rul:FirstNonNull Type="decimal">
+			<rul:Lookup Type="decimal" MatrixCol="Rate" MatrixDef="BasicGroupIIRateDef" MatrixFromConstant="BasicGroupIIRate" ResultMode="FirstResult">
+				<rul:Keys>
+					<rul:Value Type="string" FromDataDef="/State/@Code" />
+					<rul:FirstValue Type="string" FromConstant="" FromDataDef="ancestor::CommercialProperty/CommercialPropertyLocationTable/CommercialPropertyLocation[1]/@BasicGroupIIRatingTerr" Order="DataDefInputParamConstant" />
+					<rul:Value Type="string" FromParam="BGIISymbol" />
+					<rul:Constant Type="string">Bldg</rul:Constant>
+				</rul:Keys>
+			</rul:Lookup>
+			<rul:Lookup Type="decimal" MatrixCol="Rate" MatrixDef="BasicGroupIIRateDef" MatrixFromConstant="BasicGroupIIRate" ResultMode="SingleResult">
+				<rul:Keys>
+					<rul:Constant Type="string">CW</rul:Constant>
+					<rul:FirstValue Type="string" FromConstant="" FromDataDef="ancestor::CommercialProperty/CommercialPropertyLocationTable/CommercialPropertyLocation[1]/@BasicGroupIIRatingTerr" Order="DataDefInputParamConstant" />
+					<rul:Value Type="string" FromParam="BGIISymbol" />
+					<rul:Constant Type="string">Bldg</rul:Constant>
+				</rul:Keys>
+			</rul:Lookup>
+		</rul:FirstNonNull>
+	</rul:Rule>
+	<rul:Rule Name="LookupBasicGroupIRate" Type="decimal" DataDefGroup="CommercialPropertyBuildersRiskRenovations">
+		<rul:Param Name="classCode" Type="string" />
+		<rul:FirstNonNull Type="decimal">
+			<rul:Lookup Type="decimal" MatrixCol="Rate" MatrixDef="BasicGroupIRateDef" MatrixFromConstant="BasicGroupIRate" ResultMode="FirstResult">
+				<rul:Keys>
+					<rul:Value Type="string" FromDataDef="/State/@Code" />
+					<rul:Value Type="string" FromParam="classCode" />
+					<rul:FirstValue Type="integer" FromConstant="0" FromDataDef="@ConstructionCode" Order="DataDefInputParamConstant" />
+					<rul:Constant Type="string">Not Applicable</rul:Constant>
+					<rul:Constant Type="string">Building</rul:Constant>
+				</rul:Keys>
+			</rul:Lookup>
+			<rul:Lookup Type="decimal" MatrixCol="Rate" MatrixDef="BasicGroupIRateDef" MatrixFromConstant="BasicGroupIRate" ResultMode="SingleResult">
+				<rul:Keys>
+					<rul:Constant Type="string">CW</rul:Constant>
+					<rul:Value Type="string" FromParam="classCode" />
+					<rul:FirstValue Type="integer" FromConstant="0" FromDataDef="@ConstructionCode" Order="DataDefInputParamConstant" />
+					<rul:Constant Type="string">Not Applicable</rul:Constant>
+					<rul:Constant Type="string">Building</rul:Constant>
+				</rul:Keys>
+			</rul:Lookup>
+		</rul:FirstNonNull>
+	</rul:Rule>
+	<rul:Rule Name="LookupBldrsRiskEQFactor" Type="decimal" DataDefGroup="CommercialPropertyBuildersRiskRenovations">
+		<rul:FirstNonNull Type="decimal">
+			<rul:Lookup Type="decimal" MatrixCol="Factor" MatrixDef="BldrsRiskEQFactorDef" MatrixFromConstant="BldrsRiskEQFactor" ResultMode="FirstResult">
+				<rul:Keys>
+					<rul:Value Type="string" FromDataDef="/State/@Code" />
+					<rul:FirstValue Type="string" FromConstant="" FromDataDef="@EQClass" Order="DataDefInputParamConstant" />
+				</rul:Keys>
+			</rul:Lookup>
+			<rul:Lookup Type="decimal" MatrixCol="Factor" MatrixDef="BldrsRiskEQFactorDef" MatrixFromConstant="BldrsRiskEQFactor" ResultMode="SingleResult">
+				<rul:Keys>
+					<rul:Constant Type="string">CW</rul:Constant>
+					<rul:FirstValue Type="string" FromConstant="" FromDataDef="@EQClass" Order="DataDefInputParamConstant" />
+				</rul:Keys>
+			</rul:Lookup>
+		</rul:FirstNonNull>
+	</rul:Rule>
+	<rul:Rule Name="LookupBldrsRiskRenovationsCoinsuranceModFactor" Type="decimal" DataDefGroup="CommercialPropertyBuildersRiskRenovations">
+		<rul:FirstNonNull Type="decimal">
+			<rul:Lookup Type="decimal" MatrixCol="Factor" MatrixDef="BldrsRiskRenovationsCoinsuranceModFactorDef" MatrixFromConstant="BldrsRiskRenovationsCoinsuranceModFactor" ResultMode="FirstResult">
+				<rul:Keys>
+					<rul:Value Type="string" FromDataDef="/State/@Code" />
+					<rul:Constant Type="string">Y</rul:Constant>
+				</rul:Keys>
+			</rul:Lookup>
+			<rul:Lookup Type="decimal" MatrixCol="Factor" MatrixDef="BldrsRiskRenovationsCoinsuranceModFactorDef" MatrixFromConstant="BldrsRiskRenovationsCoinsuranceModFactor" ResultMode="SingleResult">
+				<rul:Keys>
+					<rul:Constant Type="string">CW</rul:Constant>
+					<rul:Constant Type="string">Y</rul:Constant>
+				</rul:Keys>
+			</rul:Lookup>
+		</rul:FirstNonNull>
+	</rul:Rule>
+	<rul:Rule Name="LookupBldrsRiskRenovationsCompldValMultiplierFactor" Type="decimal" DataDefGroup="CommercialPropertyBuildersRiskRenovations">
+		<rul:Param Name="option" Type="string" />
+		<rul:FirstNonNull Type="decimal">
+			<rul:Lookup Type="decimal" MatrixCol="Factor" MatrixDef="BldrsRiskRenovationsCompldValMultiplierFactorDef" MatrixFromConstant="BldrsRiskRenovationsCompldValMultiplierFactor" ResultMode="FirstResult">
+				<rul:Keys>
+					<rul:Value Type="string" FromDataDef="/State/@Code" />
+					<rul:Value Type="string" FromParam="option" />
+				</rul:Keys>
+			</rul:Lookup>
+			<rul:Lookup Type="decimal" MatrixCol="Factor" MatrixDef="BldrsRiskRenovationsCompldValMultiplierFactorDef" MatrixFromConstant="BldrsRiskRenovationsCompldValMultiplierFactor" ResultMode="SingleResult">
+				<rul:Keys>
+					<rul:Constant Type="string">CW</rul:Constant>
+					<rul:Value Type="string" FromParam="option" />
+				</rul:Keys>
+			</rul:Lookup>
+		</rul:FirstNonNull>
+	</rul:Rule>
+	<rul:Rule Name="LookupBroadFormBaseRate" Type="decimal" DataDefGroup="CommercialPropertyBuildersRiskRenovations">
+		<rul:Param Name="covType" Type="string" />
+		<rul:FirstNonNull Type="decimal">
+			<rul:Lookup Type="decimal" MatrixCol="Rate" MatrixDef="BroadFormBaseRateDef" MatrixFromConstant="BroadFormBaseRate" ResultMode="FirstResult">
+				<rul:Keys>
+					<rul:Value Type="string" FromDataDef="/State/@Code" />
+					<rul:FirstValue Type="string" FromConstant="" FromDataDef="@ConstructionTypeToUse" Order="DataDefInputParamConstant" />
+					<rul:Value Type="string" FromParam="covType" />
+				</rul:Keys>
+			</rul:Lookup>
+			<rul:Lookup Type="decimal" MatrixCol="Rate" MatrixDef="BroadFormBaseRateDef" MatrixFromConstant="BroadFormBaseRate" ResultMode="SingleResult">
+				<rul:Keys>
+					<rul:Constant Type="string">CW</rul:Constant>
+					<rul:FirstValue Type="string" FromConstant="" FromDataDef="@ConstructionTypeToUse" Order="DataDefInputParamConstant" />
+					<rul:Value Type="string" FromParam="covType" />
+				</rul:Keys>
+			</rul:Lookup>
+		</rul:FirstNonNull>
+	</rul:Rule>
+	<rul:Rule Name="LookupBuildersRiskClassCode" Type="string" DataDefGroup="CommercialPropertyBuildersRiskRenovations">
+		<rul:FirstNonNull Type="string">
+			<rul:Lookup Type="string" MatrixCol="Code" MatrixDef="BuildersRiskClassCodeDef" MatrixFromConstant="BuildersRiskClassCode" ResultMode="FirstResult">
+				<rul:Keys>
+					<rul:Value Type="string" FromDataDef="/State/@Code" />
+					<rul:Constant Type="string">Y</rul:Constant>
+				</rul:Keys>
+			</rul:Lookup>
+			<rul:Lookup Type="string" MatrixCol="Code" MatrixDef="BuildersRiskClassCodeDef" MatrixFromConstant="BuildersRiskClassCode" ResultMode="SingleResult">
+				<rul:Keys>
+					<rul:Constant Type="string">CW</rul:Constant>
+					<rul:Constant Type="string">Y</rul:Constant>
+				</rul:Keys>
+			</rul:Lookup>
+		</rul:FirstNonNull>
+	</rul:Rule>
+	<rul:Rule Name="LookupCoinsuranceFactor" Type="decimal" DataDefGroup="CommercialPropertyBuildersRiskRenovations">
+		<rul:FirstNonNull Type="decimal">
+			<rul:Lookup Type="decimal" MatrixCol="Factor" MatrixDef="CoinsuranceFactorDef" MatrixFromConstant="CoinsuranceFactor" ResultMode="FirstResult">
+				<rul:Keys>
+					<rul:Value Type="string" FromDataDef="/State/@Code" />
+					<rul:Constant Type="string">100%</rul:Constant>
+				</rul:Keys>
+			</rul:Lookup>
+			<rul:Lookup Type="decimal" MatrixCol="Factor" MatrixDef="CoinsuranceFactorDef" MatrixFromConstant="CoinsuranceFactor" ResultMode="SingleResult">
+				<rul:Keys>
+					<rul:Constant Type="string">CW</rul:Constant>
+					<rul:Constant Type="string">100%</rul:Constant>
+				</rul:Keys>
+			</rul:Lookup>
+		</rul:FirstNonNull>
+	</rul:Rule>
+	<rul:Rule Name="LookupConstructionCode" Type="integer" DataDefGroup="CommercialPropertyBuildersRiskRenovations">
+		<rul:FirstNonNull Type="integer">
+			<rul:Lookup Type="integer" MatrixCol="Value" MatrixDef="ConstructionCodeDef" MatrixFromConstant="ConstructionCode" ResultMode="FirstResult">
+				<rul:Keys>
+					<rul:Value Type="string" FromDataDef="/State/@Code" />
+					<rul:FirstValue Type="string" FromConstant="" FromDataDef="@ConstructionTypeToUse" Order="DataDefInputParamConstant" />
+				</rul:Keys>
+			</rul:Lookup>
+			<rul:Lookup Type="integer" MatrixCol="Value" MatrixDef="ConstructionCodeDef" MatrixFromConstant="ConstructionCode" ResultMode="SingleResult">
+				<rul:Keys>
+					<rul:Constant Type="string">CW</rul:Constant>
+					<rul:FirstValue Type="string" FromConstant="" FromDataDef="@ConstructionTypeToUse" Order="DataDefInputParamConstant" />
+				</rul:Keys>
+			</rul:Lookup>
+		</rul:FirstNonNull>
+	</rul:Rule>
+	<rul:Rule Name="LookupConstructionTypeToUse" Type="string" DataDefGroup="CommercialPropertyBuildersRiskRenovations">
+		<rul:FirstNonNull Type="string">
+			<rul:Lookup Type="string" MatrixCol="Value" MatrixDef="ConstructionTypeToUseDef" MatrixFromConstant="ConstructionTypeToUse" ResultMode="FirstResult">
+				<rul:Keys>
+					<rul:Value Type="string" FromDataDef="/State/@Code" />
+					<rul:FirstValue Type="string" FromConstant="" FromDataDef="@ConstructionType" Order="DataDefInputParamConstant" />
+				</rul:Keys>
+			</rul:Lookup>
+			<rul:Lookup Type="string" MatrixCol="Value" MatrixDef="ConstructionTypeToUseDef" MatrixFromConstant="ConstructionTypeToUse" ResultMode="SingleResult">
+				<rul:Keys>
+					<rul:Constant Type="string">CW</rul:Constant>
+					<rul:FirstValue Type="string" FromConstant="" FromDataDef="@ConstructionType" Order="DataDefInputParamConstant" />
+				</rul:Keys>
+			</rul:Lookup>
+		</rul:FirstNonNull>
+	</rul:Rule>
+	<rul:Rule Name="LookupEQLossCostBldg" Type="decimal" DataDefGroup="CommercialPropertyBuildersRiskRenovations">
+		<rul:FirstNonNull Type="decimal">
+			<rul:Lookup Type="decimal" MatrixCol="LossCost" MatrixDef="EQLossCostBldgDef" MatrixFromConstant="EQLossCostBldg" ResultMode="FirstResult">
+				<rul:Keys>
+					<rul:Value Type="string" FromDataDef="/State/@Code" />
+					<rul:FirstValue Type="string" FromConstant="" FromDataDef="@EQClass" Order="DataDefInputParamConstant" />
+					<rul:FirstValue Type="string" FromConstant="" FromDataDef="ancestor::CommercialProperty/CommercialPropertyLocationTable/CommercialPropertyLocation[1]/@EQTerr" Order="DataDefInputParamConstant" />
+				</rul:Keys>
+			</rul:Lookup>
+			<rul:Lookup Type="decimal" MatrixCol="LossCost" MatrixDef="EQLossCostBldgDef" MatrixFromConstant="EQLossCostBldg" ResultMode="SingleResult">
+				<rul:Keys>
+					<rul:Constant Type="string">CW</rul:Constant>
+					<rul:FirstValue Type="string" FromConstant="" FromDataDef="@EQClass" Order="DataDefInputParamConstant" />
+					<rul:FirstValue Type="string" FromConstant="" FromDataDef="ancestor::CommercialProperty/CommercialPropertyLocationTable/CommercialPropertyLocation[1]/@EQTerr" Order="DataDefInputParamConstant" />
+				</rul:Keys>
+			</rul:Lookup>
+		</rul:FirstNonNull>
+	</rul:Rule>
+	<rul:Rule Name="LookupGroupIINumericValue" Type="decimal" DataDefGroup="CommercialPropertyBuildersRiskRenovations">
+		<rul:Param Name="classCode" Type="string" />
+		<rul:FirstNonNull Type="decimal">
+			<rul:Lookup Type="decimal" MatrixCol="Rate" MatrixDef="GroupIINumericValueDef" MatrixFromConstant="GroupIINumericValue" ResultMode="FirstResult">
+				<rul:Keys>
+					<rul:Value Type="string" FromDataDef="/State/@Code" />
+					<rul:Value Type="string" FromParam="classCode" />
+					<rul:FirstValue Type="integer" FromConstant="0" FromDataDef="@ConstructionCode" Order="DataDefInputParamConstant" />
+				</rul:Keys>
+			</rul:Lookup>
+			<rul:Lookup Type="decimal" MatrixCol="Rate" MatrixDef="GroupIINumericValueDef" MatrixFromConstant="GroupIINumericValue" ResultMode="SingleResult">
+				<rul:Keys>
+					<rul:Constant Type="string">CW</rul:Constant>
+					<rul:Value Type="string" FromParam="classCode" />
+					<rul:FirstValue Type="integer" FromConstant="0" FromDataDef="@ConstructionCode" Order="DataDefInputParamConstant" />
+				</rul:Keys>
+			</rul:Lookup>
+		</rul:FirstNonNull>
+	</rul:Rule>
+	<rul:Rule Name="LookupLowestBasicGroupIIRate" Type="decimal" DataDefGroup="CommercialPropertyBuildersRiskRenovations">
+		<rul:Param Name="BGIISymbol" Type="string" />
+		<rul:FirstNonNull Type="decimal">
+			<rul:Lookup Type="decimal" MatrixCol="Rate" MatrixDef="LowestBasicGroupIIRateDef" MatrixFromConstant="LowestBasicGroupIIRate" ResultMode="FirstResult">
+				<rul:Keys>
+					<rul:Value Type="string" FromDataDef="/State/@Code" />
+					<rul:Value Type="string" FromParam="BGIISymbol" />
+					<rul:Constant Type="string">Bldg</rul:Constant>
+				</rul:Keys>
+			</rul:Lookup>
+			<rul:Lookup Type="decimal" MatrixCol="Rate" MatrixDef="LowestBasicGroupIIRateDef" MatrixFromConstant="LowestBasicGroupIIRate" ResultMode="SingleResult">
+				<rul:Keys>
+					<rul:Constant Type="string">CW</rul:Constant>
+					<rul:Value Type="string" FromParam="BGIISymbol" />
+					<rul:Constant Type="string">Bldg</rul:Constant>
+				</rul:Keys>
+			</rul:Lookup>
+		</rul:FirstNonNull>
+	</rul:Rule>
+	<rul:Rule Name="LookupSpecialBuildingRate" Type="decimal" DataDefGroup="CommercialPropertyBuildersRiskRenovations">
+		<rul:FirstNonNull Type="decimal">
+			<rul:Lookup Type="decimal" MatrixCol="Rate" MatrixDef="SpecialBuildingRateDef" MatrixFromConstant="SpecialBuildingRate" ResultMode="FirstResult">
+				<rul:Keys>
+					<rul:Value Type="string" FromDataDef="/State/@Code" />
+					<rul:Constant Type="string">Y</rul:Constant>
+				</rul:Keys>
+			</rul:Lookup>
+			<rul:Lookup Type="decimal" MatrixCol="Rate" MatrixDef="SpecialBuildingRateDef" MatrixFromConstant="SpecialBuildingRate" ResultMode="SingleResult">
+				<rul:Keys>
+					<rul:Constant Type="string">CW</rul:Constant>
+					<rul:Constant Type="string">Y</rul:Constant>
+				</rul:Keys>
+			</rul:Lookup>
+		</rul:FirstNonNull>
+	</rul:Rule>
+	<rul:Rule Name="LookupSpecialBuildersRiskRate" Type="decimal" DataDefGroup="CommercialPropertyBuildersRiskRenovations">
+		<rul:FirstNonNull Type="decimal">
+			<rul:Lookup Type="decimal" MatrixCol="Rate" MatrixDef="SpecialBuildersRiskRateDef" MatrixFromConstant="SpecialBuildersRiskRate" ResultMode="FirstResult">
+				<rul:Keys>
+					<rul:Value Type="string" FromDataDef="/State/@Code" />
+					<rul:Constant Type="string">Y</rul:Constant>
+				</rul:Keys>
+			</rul:Lookup>
+			<rul:Lookup Type="decimal" MatrixCol="Rate" MatrixDef="SpecialBuildersRiskRateDef" MatrixFromConstant="SpecialBuildersRiskRate" ResultMode="SingleResult">
+				<rul:Keys>
+					<rul:Constant Type="string">CW</rul:Constant>
+					<rul:Constant Type="string">Y</rul:Constant>
+				</rul:Keys>
+			</rul:Lookup>
+		</rul:FirstNonNull>
+	</rul:Rule>
+	<rul:Rule Name="LookupVandalismExclusionFactor" Type="decimal" DataDefGroup="CommercialPropertyBuildersRiskRenovations">
+		<rul:Param Name="classCode" Type="string" />
+		<rul:FirstNonNull Type="decimal">
+			<rul:Lookup Type="decimal" MatrixCol="Factor" MatrixDef="VandalismExclFactorDef" MatrixFromConstant="VandalismExclFactor" ResultMode="FirstResult">
+				<rul:Keys>
+					<rul:Value Type="string" FromDataDef="/State/@Code" />
+					<rul:Value Type="string" FromParam="classCode" />
+				</rul:Keys>
+			</rul:Lookup>
+			<rul:Lookup Type="decimal" MatrixCol="Factor" MatrixDef="VandalismExclFactorDef" MatrixFromConstant="VandalismExclFactor" ResultMode="SingleResult">
+				<rul:Keys>
+					<rul:Constant Type="string">CW</rul:Constant>
+					<rul:Value Type="string" FromParam="classCode" />
+				</rul:Keys>
+			</rul:Lookup>
+		</rul:FirstNonNull>
+	</rul:Rule>
+	<rul:Rule Name="LookupWindstormOrHailExclFactor" Type="decimal" DataDefGroup="CommercialPropertyBuildersRiskRenovations">
+		<rul:FirstNonNull Type="decimal">
+			<rul:Lookup Type="decimal" MatrixCol="Factor" MatrixDef="WindstormOrHailExclFactorDef" MatrixFromConstant="WindstormOrHailExclFactor" ResultMode="FirstResult">
+				<rul:Keys>
+					<rul:Value Type="string" FromDataDef="/State/@Code" />
+					<rul:RunRule Type="string" FileName="CommercialPropertyBuildersRiskRenovationsRules" Rule="BGIISymbolToUse" ClearCache="true" />
+				</rul:Keys>
+			</rul:Lookup>
+			<rul:Lookup Type="decimal" MatrixCol="Factor" MatrixDef="WindstormOrHailExclFactorDef" MatrixFromConstant="WindstormOrHailExclFactor" ResultMode="SingleResult">
+				<rul:Keys>
+					<rul:Constant Type="string">CW</rul:Constant>
+					<rul:RunRule Type="string" FileName="CommercialPropertyBuildersRiskRenovationsRules" Rule="BGIISymbolToUse" ClearCache="true" />
+				</rul:Keys>
+			</rul:Lookup>
+		</rul:FirstNonNull>
+	</rul:Rule>
+	<rul:Rule Name="LookupWindstormOrHailExclFactor2" Type="decimal" DataDefGroup="CommercialPropertyBuildersRiskRenovations">
+		<rul:FirstNonNull Type="decimal">
+			<rul:Lookup Type="decimal" MatrixCol="Factor" MatrixDef="WindstormOrHailExclFactorDef" MatrixFromConstant="WindstormOrHailExclFactor" ResultMode="FirstResult">
+				<rul:Keys>
+					<rul:Value Type="string" FromDataDef="/State/@Code" />
+					<rul:RunRule Type="string" FileName="CommercialPropertyBuildersRiskRenovationsRules" Rule="BGIISymbolToUse" ClearCache="true" />
+				</rul:Keys>
+			</rul:Lookup>
+			<rul:Lookup Type="decimal" MatrixCol="Factor" MatrixDef="WindstormOrHailExclFactorDef" MatrixFromConstant="WindstormOrHailExclFactor" ResultMode="SingleResult">
+				<rul:Keys>
+					<rul:Constant Type="string">CW</rul:Constant>
+					<rul:RunRule Type="string" FileName="CommercialPropertyBuildersRiskRenovationsRules" Rule="BGIISymbolToUse" ClearCache="true" />
+				</rul:Keys>
+			</rul:Lookup>
+		</rul:FirstNonNull>
+	</rul:Rule>
+	<rul:Rule Name="LookupBasicGroupILOIFactor" Type="decimal" DataDefGroup="CommercialPropertyBuildersRiskRenovations">
+		<rul:Param Name="limit" Type="integer" />
+		<rul:Round DecimalPlaces="3">
+			<rul:FirstNonNull Type="decimal">
+				<rul:Round DecimalPlaces="4">
+					<rul:Lookup Type="decimal" MatrixCol="Factor" MatrixDef="BasicGroupILOIFactorBldgDef" MatrixFromConstant="BasicGroupILOIFactorBldg" ResultMode="FirstResult">
+						<rul:Keys>
+							<rul:Value Type="string" FromDataDef="/State/@Code" />
+							<rul:Value Type="integer" FromParam="limit" />
+							<rul:FirstValue Type="integer" FromConstant="0" FromDataDef="@ConstructionCode" Order="DataDefInputParamConstant" />
+						</rul:Keys>
+					</rul:Lookup>
+				</rul:Round>
+				<rul:Round DecimalPlaces="4">
+					<rul:Lookup Type="decimal" MatrixCol="Factor" MatrixDef="BasicGroupILOIFactorBldgDef" MatrixFromConstant="BasicGroupILOIFactorBldg" ResultMode="SingleResult">
+						<rul:Keys>
+							<rul:Constant Type="string">CW</rul:Constant>
+							<rul:Value Type="integer" FromParam="limit" />
+							<rul:FirstValue Type="integer" FromConstant="0" FromDataDef="@ConstructionCode" Order="DataDefInputParamConstant" />
+						</rul:Keys>
+					</rul:Lookup>
+				</rul:Round>
+			</rul:FirstNonNull>
+		</rul:Round>
+	</rul:Rule>
+	<rul:Rule Name="LookupBasicGroupIILOIFactor" Type="decimal" DataDefGroup="CommercialPropertyBuildersRiskRenovations">
+		<rul:Param Name="limit" Type="integer" />
+		<rul:Round DecimalPlaces="3">
+			<rul:FirstNonNull Type="decimal">
+				<rul:Round DecimalPlaces="4">
+					<rul:Lookup Type="decimal" MatrixCol="Factor" MatrixDef="BasicGroupIILOIFactorBldgDef" MatrixFromConstant="BasicGroupIILOIFactorBldg" ResultMode="FirstResult">
+						<rul:Keys>
+							<rul:Value Type="string" FromDataDef="/State/@Code" />
+							<rul:Value Type="integer" FromParam="limit" />
+						</rul:Keys>
+					</rul:Lookup>
+				</rul:Round>
+				<rul:Round DecimalPlaces="4">
+					<rul:Lookup Type="decimal" MatrixCol="Factor" MatrixDef="BasicGroupIILOIFactorBldgDef" MatrixFromConstant="BasicGroupIILOIFactorBldg" ResultMode="SingleResult">
+						<rul:Keys>
+							<rul:Constant Type="string">CW</rul:Constant>
+							<rul:Value Type="integer" FromParam="limit" />
+						</rul:Keys>
+					</rul:Lookup>
+				</rul:Round>
+			</rul:FirstNonNull>
+		</rul:Round>
+	</rul:Rule>
+	<rul:Rule Name="LookupBroadLOIFactor" Type="decimal" DataDefGroup="CommercialPropertyBuildersRiskRenovations">
+		<rul:Param Name="limit" Type="integer" />
+		<rul:Round DecimalPlaces="3">
+			<rul:FirstNonNull Type="decimal">
+				<rul:Round DecimalPlaces="4">
+					<rul:Lookup Type="decimal" MatrixCol="Factor" MatrixDef="BroadSpecialLOIFactorBldgDef" MatrixFromConstant="BroadSpecialLOIFactorBldg" ResultMode="FirstResult">
+						<rul:Keys>
+							<rul:Value Type="string" FromDataDef="/State/@Code" />
+							<rul:Value Type="integer" FromParam="limit" />
+						</rul:Keys>
+					</rul:Lookup>
+				</rul:Round>
+				<rul:Round DecimalPlaces="4">
+					<rul:Lookup Type="decimal" MatrixCol="Factor" MatrixDef="BroadSpecialLOIFactorBldgDef" MatrixFromConstant="BroadSpecialLOIFactorBldg" ResultMode="SingleResult">
+						<rul:Keys>
+							<rul:Constant Type="string">CW</rul:Constant>
+							<rul:Value Type="integer" FromParam="limit" />
+						</rul:Keys>
+					</rul:Lookup>
+				</rul:Round>
+			</rul:FirstNonNull>
+		</rul:Round>
+	</rul:Rule>
+	<rul:Rule Name="LookupSpecialLOIFactor" Type="decimal" DataDefGroup="CommercialPropertyBuildersRiskRenovations">
+		<rul:Param Name="limit" Type="integer" />
+		<rul:Round DecimalPlaces="3">
+			<rul:FirstNonNull Type="decimal">
+				<rul:Round DecimalPlaces="4">
+					<rul:Lookup Type="decimal" MatrixCol="Factor" MatrixDef="BroadSpecialLOIFactorBldgDef" MatrixFromConstant="BroadSpecialLOIFactorBldg" ResultMode="FirstResult">
+						<rul:Keys>
+							<rul:Value Type="string" FromDataDef="/State/@Code" />
+							<rul:Value Type="integer" FromParam="limit" />
+						</rul:Keys>
+					</rul:Lookup>
+				</rul:Round>
+				<rul:Round DecimalPlaces="4">
+					<rul:Lookup Type="decimal" MatrixCol="Factor" MatrixDef="BroadSpecialLOIFactorBldgDef" MatrixFromConstant="BroadSpecialLOIFactorBldg" ResultMode="SingleResult">
+						<rul:Keys>
+							<rul:Constant Type="string">CW</rul:Constant>
+							<rul:Value Type="integer" FromParam="limit" />
+						</rul:Keys>
+					</rul:Lookup>
+				</rul:Round>
+			</rul:FirstNonNull>
+		</rul:Round>
+	</rul:Rule>
+	<rul:Rule Name="LookupBasicGroupIIConstructionSymbol" Type="string" DataDefGroup="CommercialPropertyBuildersRiskRenovations">
+		<rul:FirstNonNull Type="string">
+			<rul:Lookup Type="string" MatrixCol="Symbol" MatrixDef="BasicGroupIIConstructionSymbolDef" MatrixFromConstant="BasicGroupIIConstructionSymbol" ResultMode="FirstResult">
+				<rul:Keys>
+					<rul:Value Type="string" FromDataDef="/State/@Code" />
+					<rul:FirstValue Type="string" FromConstant="" FromDataDef="@ConstructionType" Order="DataDefInputParamConstant" />
+					<rul:FirstValue Type="string" FromConstant="" FromDataDef="@NumStories" Order="DataDefInputParamConstant" />
+				</rul:Keys>
+			</rul:Lookup>
+			<rul:Lookup Type="string" MatrixCol="Symbol" MatrixDef="BasicGroupIIConstructionSymbolDef" MatrixFromConstant="BasicGroupIIConstructionSymbol" ResultMode="SingleResult">
+				<rul:Keys>
+					<rul:Constant Type="string">CW</rul:Constant>
+					<rul:FirstValue Type="string" FromConstant="" FromDataDef="@ConstructionType" Order="DataDefInputParamConstant" />
+					<rul:FirstValue Type="string" FromConstant="" FromDataDef="@NumStories" Order="DataDefInputParamConstant" />
+				</rul:Keys>
+			</rul:Lookup>
+		</rul:FirstNonNull>
+	</rul:Rule>
+	<rul:Rule Name="LookupBGIISymbolAdditionalClassesRoofConstruction" Type="string" DataDefGroup="CommercialPropertyBuildersRiskRenovations">
+		<rul:FirstNonNull Type="string">
+			<rul:Lookup Type="string" MatrixCol="Symbol" MatrixDef="BGIISymbolAdditionalClassesRoofConstructionDef" MatrixFromConstant="BGIISymbolAdditionalClassesRoofConstruction" ResultMode="FirstResult">
+				<rul:Keys>
+					<rul:Value Type="string" FromDataDef="/State/@Code" />
+					<rul:FirstValue Type="string" FromConstant="" FromDataDef="@ConstructionType" Order="DataDefInputParamConstant" />
+				</rul:Keys>
+			</rul:Lookup>
+			<rul:Lookup Type="string" MatrixCol="Symbol" MatrixDef="BGIISymbolAdditionalClassesRoofConstructionDef" MatrixFromConstant="BGIISymbolAdditionalClassesRoofConstruction" ResultMode="SingleResult">
+				<rul:Keys>
+					<rul:Constant Type="string">CW</rul:Constant>
+					<rul:FirstValue Type="string" FromConstant="" FromDataDef="@ConstructionType" Order="DataDefInputParamConstant" />
+				</rul:Keys>
+			</rul:Lookup>
+		</rul:FirstNonNull>
+	</rul:Rule>
+	<rul:Rule Name="LookupBasicGroupIISymbolAdditionalClasses" Type="string" DataDefGroup="CommercialPropertyBuildersRiskRenovations">
+		<rul:Param Name="classificationCode" Type="string" />
+		<rul:Param Name="constructionCode" Type="integer" />
+		<rul:FirstNonNull Type="string">
+			<rul:Lookup Type="string" MatrixCol="Symbol" MatrixDef="BasicGroupIISymbolAdditionalClassesDef" MatrixFromConstant="BasicGroupIISymbolAdditionalClasses" ResultMode="FirstResult">
+				<rul:Keys>
+					<rul:Value Type="string" FromDataDef="/State/@Code" />
+					<rul:Value Type="string" FromParam="classificationCode" />
+					<rul:Value Type="integer" FromParam="constructionCode" />
+				</rul:Keys>
+			</rul:Lookup>
+			<rul:Lookup Type="string" MatrixCol="Symbol" MatrixDef="BasicGroupIISymbolAdditionalClassesDef" MatrixFromConstant="BasicGroupIISymbolAdditionalClasses" ResultMode="SingleResult">
+				<rul:Keys>
+					<rul:Constant Type="string">CW</rul:Constant>
+					<rul:Value Type="string" FromParam="classificationCode" />
+					<rul:Value Type="integer" FromParam="constructionCode" />
+				</rul:Keys>
+			</rul:Lookup>
+		</rul:FirstNonNull>
+	</rul:Rule>
+	<rul:Rule Name="LookupBasicGroupIISymbolOilDistributingStations" Type="string" DataDefGroup="CommercialPropertyBuildersRiskRenovations">
+		<rul:FirstNonNull Type="string">
+			<rul:Lookup Type="string" MatrixCol="Symbol" MatrixDef="BasicGroupIISymbolOilDistributingStationsDef" MatrixFromConstant="BasicGroupIISymbolOilDistributingStations" ResultMode="FirstResult">
+				<rul:Keys>
+					<rul:Value Type="string" FromDataDef="/State/@Code" />
+					<rul:Constant Type="string">Y</rul:Constant>
+				</rul:Keys>
+			</rul:Lookup>
+			<rul:Lookup Type="string" MatrixCol="Symbol" MatrixDef="BasicGroupIISymbolOilDistributingStationsDef" MatrixFromConstant="BasicGroupIISymbolOilDistributingStations" ResultMode="SingleResult">
+				<rul:Keys>
+					<rul:Constant Type="string">CW</rul:Constant>
+					<rul:Constant Type="string">Y</rul:Constant>
+				</rul:Keys>
+			</rul:Lookup>
+		</rul:FirstNonNull>
+	</rul:Rule>
+</rul:Rules>

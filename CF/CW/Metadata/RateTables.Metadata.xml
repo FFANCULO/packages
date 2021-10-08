@@ -1,0 +1,1504 @@
+<meta:Metadata xmlns:meta="http://www.verisk.com/iso/erc/Metadata">
+	<meta:MetadataEntry Code="RateTables" Name="Rate Tables">
+		<meta:MetadataEntry Code="RateTableAdditionalExpenseCoveragePercentageConverted" Name="AdditionalExpenseCoveragePercentageConverted">
+			<meta:Description>Additional Expense Coverage Percentage Converted</meta:Description>
+			<meta:Property Name="Comment" Type="string">Utility</meta:Property>
+		</meta:MetadataEntry>
+		<meta:MetadataEntry Code="RateTableAdditionalFloodConstructionCode" Name="AdditionalFloodConstructionCode">
+			<meta:Description>Additional Flood Construction Code</meta:Description>
+		</meta:MetadataEntry>
+		<meta:MetadataEntry Code="RateTableAdditionalInsurableIntOption" Name="AdditionalInsurableIntOption">
+			<meta:Description>Additional Insurable Int Option</meta:Description>
+		</meta:MetadataEntry>
+		<meta:MetadataEntry Code="RateTableAddlInsurableInterestFactor" Name="AddlInsurableInterestFactor">
+			<meta:Description>Additional Insurable Interest Factor</meta:Description>
+			<meta:Property Name="Comment" Type="string">Legal Liability Form</meta:Property>
+		</meta:MetadataEntry>
+		<meta:MetadataEntry Code="RateTableAddlLocSpclCoinsFactor" Name="AddlLocSpclCoinsFactor">
+			<meta:Description>Additional Location Special Coinsurance Factor</meta:Description>
+		</meta:MetadataEntry>
+		<meta:MetadataEntry Code="RateTableAddlOptionsExtraExpenseExpandedLimitsMaxFactor" Name="AddlOptionsExtraExpenseExpandedLimitsMaxFactor">
+			<meta:Description>Addional Options Extra Expense Expanded Limits Maximum Factor</meta:Description>
+		</meta:MetadataEntry>
+		<meta:MetadataEntry Code="RateTableAddlOptionsForExtraExpenseExpandedLimitsOnLossPaymentsFactor" Name="AddlOptionsForExtraExpenseExpandedLimitsOnLossPaymentsFactor">
+			<meta:Description>Addional Options For Extra Expense Expanded Limits on Loss Payments Factor</meta:Description>
+		</meta:MetadataEntry>
+		<meta:MetadataEntry Code="RateTableAgreedValueFactor" Name="AgreedValueFactor">
+			<meta:Description>Agreed Value Factor</meta:Description>
+		</meta:MetadataEntry>
+		<meta:MetadataEntry Code="RateTableAgreedValueFactorBusnIncome" Name="AgreedValueFactorBusnIncome">
+			<meta:Description>Agreed Value Factor Business Income</meta:Description>
+		</meta:MetadataEntry>
+		<meta:MetadataEntry Code="RateTableAllOtherConstructionStatCode" Name="AllOtherConstructionStatCode">
+			<meta:Description>All Other Construction Stat Code</meta:Description>
+			<meta:Property Name="Comment" Type="string">Stat Code</meta:Property>
+		</meta:MetadataEntry>
+		<meta:MetadataEntry Code="RateTableAllOtherDeductibleStatCode" Name="AllOtherDeductibleStatCode">
+			<meta:Description>All Other Deductible Stat Code</meta:Description>
+			<meta:Property Name="Comment" Type="string">Stat Code</meta:Property>
+		</meta:MetadataEntry>
+		<meta:MetadataEntry Code="RateTableAllOtherTerrsmCoverageStatCode" Name="AllOtherTerrsmCoverageStatCode">
+			<meta:Description>All Other Terrorism Coverage Stat Code</meta:Description>
+			<meta:Property Name="Comment" Type="string">Stat Code</meta:Property>
+		</meta:MetadataEntry>
+		<meta:MetadataEntry Code="RateTableAmmoniaContamination" Name="AmmoniaContamination">
+			<meta:Description>Ammonia Contamination</meta:Description>
+		</meta:MetadataEntry>
+		<meta:MetadataEntry Code="RateTableAnnualAggregateFactor" Name="AnnualAggregateFactor">
+			<meta:Description>Annual Aggregate Factor</meta:Description>
+		</meta:MetadataEntry>
+		<meta:MetadataEntry Code="RateTableASLOBAlliedLines" Name="ASLOBAlliedLines">
+			<meta:Description>ASLOB Allied Lines</meta:Description>
+			<meta:Property Name="Comment" Type="string">Stat Code</meta:Property>
+		</meta:MetadataEntry>
+		<meta:MetadataEntry Code="RateTableASLOBEarthquake" Name="ASLOBEarthquake">
+			<meta:Description>ASLOB Earthquake</meta:Description>
+			<meta:Property Name="Comment" Type="string">Stat Code</meta:Property>
+		</meta:MetadataEntry>
+		<meta:MetadataEntry Code="RateTableASLOBFire" Name="ASLOBFire">
+			<meta:Description>ASLOB Fire</meta:Description>
+			<meta:Property Name="Comment" Type="string">Stat Code</meta:Property>
+		</meta:MetadataEntry>
+		<meta:MetadataEntry Code="RateTableBaseRateAdjustmentFactor" Name="BaseRateAdjustmentFactor">
+			<meta:Description>Base Rate Adjustment Factor BI</meta:Description>
+		</meta:MetadataEntry>
+		<meta:MetadataEntry Code="RateTableBasicGroupIIConstructionStatCode" Name="BasicGroupIIConstructionStatCode">
+			<meta:Description>Basic Group II Construction Stat Code</meta:Description>
+			<meta:Property Name="Comment" Type="string">Stat Code</meta:Property>
+		</meta:MetadataEntry>
+		<meta:MetadataEntry Code="RateTableBasicGroupIIConstructionSymbol" Name="BasicGroupIIConstructionSymbol">
+			<meta:Description>Basic Group II Construction Symbol</meta:Description>
+		</meta:MetadataEntry>
+		<meta:MetadataEntry Code="RateTableBasicGroupIIFlatCoinsuranceFactor" Name="BasicGroupIIFlatCoinsuranceFactor">
+			<meta:Description>Basic Group II Flat Coinsurance Factor</meta:Description>
+		</meta:MetadataEntry>
+		<meta:MetadataEntry Code="RateTableBasicGroupIILOIFactorBldg" Name="BasicGroupIILOIFactorBldg">
+			<meta:Description>Basic Group II LOI Factor Building</meta:Description>
+			<meta:Property Name="Comment" Type="string">Building Level</meta:Property>
+		</meta:MetadataEntry>
+		<meta:MetadataEntry Code="RateTableBasicGroupIILOIFactorPersProp" Name="BasicGroupIILOIFactorPersProp">
+			<meta:Description>Basic Group II LOI Factor Personal Property</meta:Description>
+			<meta:Property Name="Comment" Type="string">Personal Property Level</meta:Property>
+		</meta:MetadataEntry>
+		<meta:MetadataEntry Code="RateTableBasicGroupIIRate" Name="BasicGroupIIRate">
+			<meta:Description>Basic Group II Rate</meta:Description>
+		</meta:MetadataEntry>
+		<meta:MetadataEntry Code="RateTableBasicGroupIISymbolAdditionalClasses" Name="BasicGroupIISymbolAdditionalClasses">
+			<meta:Description>Basic Group II Symbol Additional Classes</meta:Description>
+		</meta:MetadataEntry>
+		<meta:MetadataEntry Code="RateTableBasicGroupIISymbolOilDistributingStations" Name="BasicGroupIISymbolOilDistributingStations">
+			<meta:Description>Basic Group II Symbol Oil Distributing Stations</meta:Description>
+		</meta:MetadataEntry>
+		<meta:MetadataEntry Code="RateTableBasicGroupILOIFactorBldg" Name="BasicGroupILOIFactorBldg">
+			<meta:Description>Basic Group I LOI Factor Building</meta:Description>
+			<meta:Property Name="Comment" Type="string">Building Level</meta:Property>
+		</meta:MetadataEntry>
+		<meta:MetadataEntry Code="RateTableBasicGroupILOIFactorPersProp" Name="BasicGroupILOIFactorPersProp">
+			<meta:Description>Basic Group I LOI Factor Personal Property</meta:Description>
+			<meta:Property Name="Comment" Type="string">Personal Property Level</meta:Property>
+		</meta:MetadataEntry>
+		<meta:MetadataEntry Code="RateTableBasicGroupIRate" Name="BasicGroupIRate">
+			<meta:Description>Basic Group I Rate</meta:Description>
+		</meta:MetadataEntry>
+		<meta:MetadataEntry Code="RateTableBasicGroupIRateOutdoorTrees" Name="BasicGroupIRateOutdoorTrees">
+			<meta:Description>Basic Group I Rate Outdoor Trees</meta:Description>
+		</meta:MetadataEntry>
+		<meta:MetadataEntry Code="RateTableBasicGroupIRateSpecialClass" Name="BasicGroupIRateSpecialClass">
+			<meta:Description>Basic Group I Rates</meta:Description>
+			<meta:Property Name="Comment" Type="string">Special Class Level</meta:Property>
+		</meta:MetadataEntry>
+		<meta:MetadataEntry Code="RateTableBCEGEQFactor" Name="BCEGEQFactor">
+			<meta:Description>Building Code Effectiveness Grade EQ Factor</meta:Description>
+		</meta:MetadataEntry>
+		<meta:MetadataEntry Code="RateTableBCEGFactor" Name="BCEGFactor">
+			<meta:Description>Building Code Effectiveness Grade Factor</meta:Description>
+		</meta:MetadataEntry>
+		<meta:MetadataEntry Code="RateTableBGIISymbolAdditionalClassesRoofConstruction" Name="BGIISymbolAdditionalClassesRoofConstruction">
+			<meta:Description>Basic Group II Symbol Additional Classes Roof Construction</meta:Description>
+		</meta:MetadataEntry>
+		<meta:MetadataEntry Code="RateTableBldgCodeEffectivenessGradeStatCode" Name="BldgCodeEffectivenessGradeStatCode">
+			<meta:Description>Bldg Code Effectiveness Grade Stat Code</meta:Description>
+			<meta:Property Name="Comment" Type="string">Stat Code</meta:Property>
+		</meta:MetadataEntry>
+		<meta:MetadataEntry Code="RateTableBldgHeightFactor" Name="BldgHeightFactor">
+			<meta:Description>Building Height Factor</meta:Description>
+		</meta:MetadataEntry>
+		<meta:MetadataEntry Code="RateTableBldgPrsnlPropBlktCoverageCode" Name="BldgPrsnlPropBlktCoverageCode">
+			<meta:Description>Bldg Prsnl Prop Blkt Coverage Code</meta:Description>
+			<meta:Property Name="Comment" Type="string">Stat Code</meta:Property>
+		</meta:MetadataEntry>
+		<meta:MetadataEntry Code="RateTableBldrsRiskCollapseDuringConstrctnRate" Name="BldrsRiskCollapseDuringConstrctnRate">
+			<meta:Description>Builders Risk Collapse During Construction Rate</meta:Description>
+		</meta:MetadataEntry>
+		<meta:MetadataEntry Code="RateTableBldrsRiskEQFactor" Name="BldrsRiskEQFactor">
+			<meta:Description>Builders Risk EQ Factor</meta:Description>
+		</meta:MetadataEntry>
+		<meta:MetadataEntry Code="RateTableBldrsRiskFactorBusnIncome" Name="BldrsRiskFactorBusnIncome">
+			<meta:Description>Builders Risk Factor</meta:Description>
+			<meta:Property Name="Comment" Type="string">Business Income Level</meta:Property>
+		</meta:MetadataEntry>
+		<meta:MetadataEntry Code="RateTableBldrsRiskRenovationsCoinsuranceModFactor" Name="BldrsRiskRenovationsCoinsuranceModFactor">
+			<meta:Description>Builders Risk Renovations Coinsurance Modification Factor</meta:Description>
+		</meta:MetadataEntry>
+		<meta:MetadataEntry Code="RateTableBldrsRiskRenovationsCompldValMultiplierFactor" Name="BldrsRiskRenovationsCompldValMultiplierFactor">
+			<meta:Description>Builders Risk Renovations Completed Value Multiplier Factor</meta:Description>
+		</meta:MetadataEntry>
+		<meta:MetadataEntry Code="RateTableBldrsRiskReportingFormFactor" Name="BldrsRiskReportingFormFactor">
+			<meta:Description>Builders Risk Reporting Form Factor</meta:Description>
+		</meta:MetadataEntry>
+		<meta:MetadataEntry Code="RateTableBlktClassRatedRatingIdentificationCode" Name="BlktClassRatedRatingIdentificationCode">
+			<meta:Description>Blkt Class Rated Rating Identification Code</meta:Description>
+			<meta:Property Name="Comment" Type="string">Stat Code</meta:Property>
+		</meta:MetadataEntry>
+		<meta:MetadataEntry Code="RateTableBlktScheduleRatedRatingIdentificationCode" Name="BlktScheduleRatedRatingIdentificationCode">
+			<meta:Description>Blkt Schedule Rated Rating Identification Code</meta:Description>
+			<meta:Property Name="Comment" Type="string">Stat Code</meta:Property>
+		</meta:MetadataEntry>
+		<meta:MetadataEntry Code="RateTableBlktSprinkleredScheduleRatedRatingIdentificationCode" Name="BlktSprinkleredScheduleRatedRatingIdentificationCode">
+			<meta:Description>Blkt Sprinklered Schedule Rated Rating Identification Code</meta:Description>
+			<meta:Property Name="Comment" Type="string">Stat Code</meta:Property>
+		</meta:MetadataEntry>
+		<meta:MetadataEntry Code="RateTableBlktSubStandardClassRatedRatingIdentificationCode" Name="BlktSubStandardClassRatedRatingIdentificationCode">
+			<meta:Description>Blkt Sub Standard Class Rated Rating Identification Code</meta:Description>
+			<meta:Property Name="Comment" Type="string">Stat Code</meta:Property>
+		</meta:MetadataEntry>
+		<meta:MetadataEntry Code="RateTableBrandsAndLabelsFactor" Name="BrandsAndLabelsFactor">
+			<meta:Description>Brands And Labels Factor</meta:Description>
+		</meta:MetadataEntry>
+		<meta:MetadataEntry Code="RateTableBrandsAndLabelsMaxIncrease" Name="BrandsAndLabelsMaxIncrease">
+			<meta:Description>Brands and Label Maximum Increase</meta:Description>
+		</meta:MetadataEntry>
+		<meta:MetadataEntry Code="RateTableBroadFormBaseRate" Name="BroadFormBaseRate">
+			<meta:Description>Broad Form Base Rate</meta:Description>
+		</meta:MetadataEntry>
+		<meta:MetadataEntry Code="RateTableBroadSpecialLOIFactorBldg" Name="BroadSpecialLOIFactorBldg">
+			<meta:Description>Broad and Special LOI Factor Building</meta:Description>
+			<meta:Property Name="Comment" Type="string">Building Level</meta:Property>
+		</meta:MetadataEntry>
+		<meta:MetadataEntry Code="RateTableBroadSpecialLOIFactorPrsnlProp" Name="BroadSpecialLOIFactorPrsnlProp">
+			<meta:Description>Broad and Special LOI Factor Personal Property</meta:Description>
+			<meta:Property Name="Comment" Type="string">Personal Property Level</meta:Property>
+		</meta:MetadataEntry>
+		<meta:MetadataEntry Code="RateTableBuildersRiskBlanketFactor" Name="BuildersRiskBlanketFactor">
+			<meta:Description>Builders Risk Blanket Factor</meta:Description>
+		</meta:MetadataEntry>
+		<meta:MetadataEntry Code="RateTableBuildersRiskClassCode" Name="BuildersRiskClassCode">
+			<meta:Description>Builders Risk Class Code</meta:Description>
+		</meta:MetadataEntry>
+		<meta:MetadataEntry Code="RateTableBuildersRiskTheftOfBuildingMaterialsFixturesMachineryEquipmentFactor" Name="BuildersRiskTheftOfBuildingMaterialsFixturesMachineryEquipmentFactor">
+			<meta:Description>Builders Risk Theft Of Building Materials Fixtures Machinery Equipment Factor</meta:Description>
+			<meta:Property Name="Comment" Type="string">Obsolete</meta:Property>
+		</meta:MetadataEntry>
+		<meta:MetadataEntry Code="RateTableBuildersRiskTheftRate" Name="BuildersRiskTheftRate">
+			<meta:Description>Builders Risk Theft Of Building Materials Fixtures Machinery Equipment Rate</meta:Description>
+		</meta:MetadataEntry>
+		<meta:MetadataEntry Code="RateTableBuildingCoverageCode" Name="BuildingCoverageCode">
+			<meta:Description>Building Coverage Code</meta:Description>
+			<meta:Property Name="Comment" Type="string">Stat Code</meta:Property>
+		</meta:MetadataEntry>
+		<meta:MetadataEntry Code="RateTableBuildingGlassNoDeductibleFactor" Name="BuildingGlassNoDeductibleFactor">
+			<meta:Description>Building Glass No Deductible Factor</meta:Description>
+		</meta:MetadataEntry>
+		<meta:MetadataEntry Code="RateTableBurglarAlarmFactor" Name="BurglarAlarmFactor">
+			<meta:Description>Burglar Alarm Factor</meta:Description>
+			<meta:Property Name="Comment" Type="string">No longer in use.</meta:Property>
+		</meta:MetadataEntry>
+		<meta:MetadataEntry Code="RateTableBurgRobbery1Factor" Name="BurgRobbery1Factor">
+			<meta:Description>Burglary And Robbery Protective Safeguards BR1 Factor</meta:Description>
+		</meta:MetadataEntry>
+		<meta:MetadataEntry Code="RateTableBurgRobbery2Factor" Name="BurgRobbery2Factor">
+			<meta:Description>Burglary And Robbery Protective Safeguards BR2 Factor</meta:Description>
+		</meta:MetadataEntry>
+		<meta:MetadataEntry Code="RateTableBurgRobbery3Factor" Name="BurgRobbery3Factor">
+			<meta:Description>Burglary And Robbery Protective Safeguards BR3 Factor</meta:Description>
+		</meta:MetadataEntry>
+		<meta:MetadataEntry Code="RateTableBusnIncomeChangesEducationalInstitutions" Name="BusnIncomeChangesEducationalInstitutions">
+			<meta:Description>Business Income Changes - Educational Institutions</meta:Description>
+		</meta:MetadataEntry>
+		<meta:MetadataEntry Code="RateTableBusnIncomeChangesEducationalInstitutionsExtensionOfRecoveryPeriod" Name="BusnIncomeChangesEducationalInstitutionsExtensionOfRecoveryPeriod">
+			<meta:Description>Business Income Changes Educational Institutions Extension Of Recovery Period</meta:Description>
+		</meta:MetadataEntry>
+		<meta:MetadataEntry Code="RateTableBusnIncomeChangesTimePeriod" Name="BusnIncomeChangesTimePeriod">
+			<meta:Description>Busn Income Changes Time Period</meta:Description>
+		</meta:MetadataEntry>
+		<meta:MetadataEntry Code="RateTableBusnIncomeChangesTimePeriod24HourWaitingPeriod" Name="BusnIncomeChangesTimePeriod24HourWaitingPeriod">
+			<meta:Description>Business Income Changes - Time Period 24-Hour Waiting Period</meta:Description>
+			<meta:Property Name="Comment" Type="string">Not in use</meta:Property>
+		</meta:MetadataEntry>
+		<meta:MetadataEntry Code="RateTableBusnIncomeChangesTimePeriodNoWaitingPeriod" Name="BusnIncomeChangesTimePeriodNoWaitingPeriod">
+			<meta:Description>Business Income Changes -Time Period No Waiting Period</meta:Description>
+			<meta:Property Name="Comment" Type="string">Not in use</meta:Property>
+		</meta:MetadataEntry>
+		<meta:MetadataEntry Code="RateTableBusnIncomeEducationalInstitutionsExtOfRecoveryFactor" Name="BusnIncomeEducationalInstitutionsExtOfRecoveryFactor">
+			<meta:Description>Business Income Educational Institutions Extension of Recovery Factor</meta:Description>
+		</meta:MetadataEntry>
+		<meta:MetadataEntry Code="RateTableBusnIncomeFactor" Name="BusnIncomeFactor">
+			<meta:Description>Business Income Factor</meta:Description>
+		</meta:MetadataEntry>
+		<meta:MetadataEntry Code="RateTableCertfdActsTerrsmCoverageStatCode" Name="CertfdActsTerrsmCoverageStatCode">
+			<meta:Description>Certfd Acts Terrsm Coverage Stat Code</meta:Description>
+			<meta:Property Name="Comment" Type="string">Stat Code</meta:Property>
+		</meta:MetadataEntry>
+		<meta:MetadataEntry Code="RateTableCertfdActsTerrsmPremiumCoverageStatCode" Name="CertfdActsTerrsmPremiumCoverageStatCode">
+			<meta:Description>Certified Acts Terrorism Premium Coverage Stat Code</meta:Description>
+			<meta:Property Name="Comment" Type="string">Stat Code</meta:Property>
+		</meta:MetadataEntry>
+		<meta:MetadataEntry Code="RateTableCertfdActsTerrsmPremiumNoNonCertfdCoverageStatCode" Name="CertfdActsTerrsmPremiumNoNonCertfdCoverageStatCode">
+			<meta:Description>Certified Acts Terrorism Premium No Non Certified Coverage Stat Code</meta:Description>
+		</meta:MetadataEntry>
+		<meta:MetadataEntry Code="RateTableCivilAuthorityIncreasedCoveragePeriodEndtFactor" Name="CivilAuthorityIncreasedCoveragePeriodEndtFactor">
+			<meta:Description>Civil Authority Increased Coverage Period Endorsement Factor</meta:Description>
+		</meta:MetadataEntry>
+		<meta:MetadataEntry Code="RateTableClassLimitStatCode" Name="ClassLimitStatCode">
+			<meta:Description>Class Limit Stat Code</meta:Description>
+		</meta:MetadataEntry>
+		<meta:MetadataEntry Code="RateTableClassRatedRatingIdentificationCode" Name="ClassRatedRatingIdentificationCode">
+			<meta:Description>Class Rated Rating Identification Code</meta:Description>
+			<meta:Property Name="Comment" Type="string">Stat Code</meta:Property>
+		</meta:MetadataEntry>
+		<meta:MetadataEntry Code="RateTableCoinsuranceFactor" Name="CoinsuranceFactor">
+			<meta:Description>Coinsurance Factor</meta:Description>
+		</meta:MetadataEntry>
+		<meta:MetadataEntry Code="RateTableCoinsuranceFactorBlkt" Name="CoinsuranceFactorBlkt">
+			<meta:Description>Coinsurance Factor for Blanket</meta:Description>
+		</meta:MetadataEntry>
+		<meta:MetadataEntry Code="RateTableCoinsuranceStatCode" Name="CoinsuranceStatCode">
+			<meta:Description>Coinsurance Stat Code</meta:Description>
+			<meta:Property Name="Comment" Type="string">Stat Code</meta:Property>
+		</meta:MetadataEntry>
+		<meta:MetadataEntry Code="RateTableCommunityRatingSystemFactor" Name="CommunityRatingSystemFactor">
+			<meta:Description>Community Rating System Factor</meta:Description>
+		</meta:MetadataEntry>
+		<meta:MetadataEntry Code="RateTableConstructionCode" Name="ConstructionCode">
+			<meta:Description>Construction Code</meta:Description>
+		</meta:MetadataEntry>
+		<meta:MetadataEntry Code="RateTableConstructionTypeToUse" Name="ConstructionTypeToUse">
+			<meta:Description>Construction Type To Use</meta:Description>
+			<meta:Property Name="Comment" Type="string">Utility</meta:Property>
+		</meta:MetadataEntry>
+		<meta:MetadataEntry Code="RateTableCoverageForActsOfTerrorismUnderTRIAStatCode" Name="CoverageForActsOfTerrorismUnderTRIAStatCode">
+			<meta:Description>Coverage For Acts Of Terrorism Under TRIA Stat Code</meta:Description>
+		</meta:MetadataEntry>
+		<meta:MetadataEntry Code="RateTableCyberExclCoverageExclusionIndicatorCode" Name="CyberExclCoverageExclusionIndicatorCode">
+			<meta:Description>Cyber Excl Coverage Exclusion Indicator Code</meta:Description>
+		</meta:MetadataEntry>
+		<meta:MetadataEntry Code="RateTableCyberExclSpecifiedPerilCoverageExclusionIndicatorCode" Name="CyberExclSpecifiedPerilCoverageExclusionIndicatorCode">
+			<meta:Description>Cyber Excl Specified Peril Coverage Exclusion Indicator Code</meta:Description>
+		</meta:MetadataEntry>
+		<meta:MetadataEntry Code="RateTableCyberIncidentExclusionFactorMortgageholdersErrorsAndOmissions" Name="CyberIncidentExclusionFactorMortgageholdersErrorsAndOmissions">
+			<meta:Description>Cyber Incident Exclusion Factor Mortgageholders Errors And Omissions</meta:Description>
+		</meta:MetadataEntry>
+		<meta:MetadataEntry Code="RateTableCyberIncidentExclusionFactors" Name="CyberIncidentExclusionFactors">
+			<meta:Description>Cyber Incident Exclusion Factors</meta:Description>
+		</meta:MetadataEntry>
+		<meta:MetadataEntry Code="RateTableCyberIncidentExclusionWithEnsuingCauseOfLossExceptionsFactors" Name="CyberIncidentExclusionWithEnsuingCauseOfLossExceptionsFactors">
+			<meta:Description>Cyber Incident Exclusion With Ensuing Cause Of Loss Exceptions Factors</meta:Description>
+		</meta:MetadataEntry>
+		<meta:MetadataEntry Code="RateTableDebrisRemovalMinimumLimit" Name="DebrisRemovalMinimumLimit">
+			<meta:Description>Debris Removal Minimum Limit</meta:Description>
+		</meta:MetadataEntry>
+		<meta:MetadataEntry Code="RateTableDebrisRemovalRate" Name="DebrisRemovalRate">
+			<meta:Description>Debris Removal Rate</meta:Description>
+		</meta:MetadataEntry>
+		<meta:MetadataEntry Code="RateTableDeductible250Factor" Name="Deductible250Factor">
+			<meta:Description>250 Deductible Factor</meta:Description>
+		</meta:MetadataEntry>
+		<meta:MetadataEntry Code="RateTableDeductibleByLocationFactor" Name="DeductibleByLocationFactor">
+			<meta:Description>DeductibleByLocationFactor</meta:Description>
+		</meta:MetadataEntry>
+		<meta:MetadataEntry Code="RateTableDeductibleFactor" Name="DeductibleFactor">
+			<meta:Description>Deductible Factor</meta:Description>
+		</meta:MetadataEntry>
+		<meta:MetadataEntry Code="RateTableDeductibleNumberConversion" Name="DeductibleNumberConversion">
+			<meta:Description>Deductible Number  Conversion</meta:Description>
+		</meta:MetadataEntry>
+		<meta:MetadataEntry Code="RateTableDeductibleStatCode" Name="DeductibleStatCode">
+			<meta:Description>Deductible Stat Code</meta:Description>
+			<meta:Property Name="Comment" Type="string">Stat Code</meta:Property>
+		</meta:MetadataEntry>
+		<meta:MetadataEntry Code="RateTableDischargeFromSewerDrainOrPumpPropertyDamageCode" Name="DischargeFromSewerDrainOrPumpPropertyDamageCode">
+			<meta:Description>Discharge From Sewer Drain Or Pump Property Damage Code</meta:Description>
+			<meta:Property Name="Comment" Type="string">Stat Code</meta:Property>
+		</meta:MetadataEntry>
+		<meta:MetadataEntry Code="RateTableDischargeFromSewerDrainOrPumpPropertyDamageCoverageCode" Name="DischargeFromSewerDrainOrPumpPropertyDamageCoverageCode">
+			<meta:Description>Discharge From Sewer Drain Or Pump Property Damage Coverage Code</meta:Description>
+		</meta:MetadataEntry>
+		<meta:MetadataEntry Code="RateTableDischargeFromSewerDrainOrPumpTimeElementCode" Name="DischargeFromSewerDrainOrPumpTimeElementCode">
+			<meta:Description>Discharge From Sewer Drain Or Pump Time Element Code</meta:Description>
+			<meta:Property Name="Comment" Type="string">Stat Code</meta:Property>
+		</meta:MetadataEntry>
+		<meta:MetadataEntry Code="RateTableDischargeFromSewerDrainOrPumpTimeElementCoverageCode" Name="DischargeFromSewerDrainOrPumpTimeElementCoverageCode">
+			<meta:Description>Discharge From Sewer Drain Or Pump Time Element Coverage Code</meta:Description>
+		</meta:MetadataEntry>
+		<meta:MetadataEntry Code="RateTableDischargeFromSewerDrainOrSump" Name="DischargeFromSewerDrainOrSump">
+			<meta:Description>Discharge From Sewer, Drain Or Sump (Not Flood-related)</meta:Description>
+		</meta:MetadataEntry>
+		<meta:MetadataEntry Code="RateTableDroneModificationsCode" Name="DroneModificationsCode">
+			<meta:Description>Drone Modification Code</meta:Description>
+			<meta:Property Name="Comment" Type="string">Stat Code</meta:Property>
+		</meta:MetadataEntry>
+		<meta:MetadataEntry Code="RateTableEarthquakeAttachmentIndicatorCode" Name="EarthquakeAttachmentIndicatorCode">
+			<meta:Description>Earthquake Attachment Indicator Code</meta:Description>
+			<meta:Property Name="Comment" Type="string">Stat Code</meta:Property>
+		</meta:MetadataEntry>
+		<meta:MetadataEntry Code="RateTableEarthquakeBuildingCoverageCode" Name="EarthquakeBuildingCoverageCode">
+			<meta:Description>Earthquake Building Coverage Code</meta:Description>
+			<meta:Property Name="Comment" Type="string">Stat Code</meta:Property>
+		</meta:MetadataEntry>
+		<meta:MetadataEntry Code="RateTableEarthquakeBuildingHeightStatCode" Name="EarthquakeBuildingHeightStatCode">
+			<meta:Description>Earthquake Building Height Stat Code</meta:Description>
+			<meta:Property Name="Comment" Type="string">Stat Code</meta:Property>
+		</meta:MetadataEntry>
+		<meta:MetadataEntry Code="RateTableEarthquakeConstructionStatCode" Name="EarthquakeConstructionStatCode">
+			<meta:Description>Earthquake Construction Stat Code</meta:Description>
+			<meta:Property Name="Comment" Type="string">Stat Code</meta:Property>
+		</meta:MetadataEntry>
+		<meta:MetadataEntry Code="RateTableEarthquakeDeductibleStatCode" Name="EarthquakeDeductibleStatCode">
+			<meta:Description>Earthquake Deductible Stat Code</meta:Description>
+			<meta:Property Name="Comment" Type="string">Stat Code</meta:Property>
+		</meta:MetadataEntry>
+		<meta:MetadataEntry Code="RateTableEarthquakeDeductibleTier" Name="EarthquakeDeductibleTier">
+			<meta:Description>Earthquake Deductible Tier</meta:Description>
+		</meta:MetadataEntry>
+		<meta:MetadataEntry Code="RateTableEarthquakeExposureBaseStatCode" Name="EarthquakeExposureBaseStatCode">
+			<meta:Description>Earthquake Exposure Base Stat Code</meta:Description>
+			<meta:Property Name="Comment" Type="string">Stat Code</meta:Property>
+		</meta:MetadataEntry>
+		<meta:MetadataEntry Code="RateTableEarthquakeFlatDollarDeductibleStatCode" Name="EarthquakeFlatDollarDeductibleStatCode">
+			<meta:Description>Earthquake Flat Dollar Deductible Stat Code</meta:Description>
+		</meta:MetadataEntry>
+		<meta:MetadataEntry Code="RateTableEarthquakeNoBuildingHeightStatCode" Name="EarthquakeNoBuildingHeightStatCode">
+			<meta:Description>Earthquake No Building Height Stat Code</meta:Description>
+			<meta:Property Name="Comment" Type="string">Stat Code</meta:Property>
+		</meta:MetadataEntry>
+		<meta:MetadataEntry Code="RateTableEarthquakeNonSprinkleredBlanketRiskIDCode" Name="EarthquakeNonSprinkleredBlanketRiskIDCode">
+			<meta:Description>Earthquake Non Sprinklered Blanket Risk ID Code</meta:Description>
+			<meta:Property Name="Comment" Type="string">Stat Code</meta:Property>
+		</meta:MetadataEntry>
+		<meta:MetadataEntry Code="RateTableEarthquakeNonSprinkleredNonBlanketRiskIDCode" Name="EarthquakeNonSprinkleredNonBlanketRiskIDCode">
+			<meta:Description>Earthquake Non Sprinklered Non Blanket Risk ID Code</meta:Description>
+			<meta:Property Name="Comment" Type="string">Stat Code</meta:Property>
+		</meta:MetadataEntry>
+		<meta:MetadataEntry Code="RateTableEarthquakeOtherThanSprinklerLeakageExtensionCoverage" Name="EarthquakeOtherThanSprinklerLeakageExtensionCoverage">
+			<meta:Description>Earthquake Other Than Sprinkler Leakage Extension Coverage</meta:Description>
+			<meta:Property Name="Comment" Type="string">Stat Code</meta:Property>
+		</meta:MetadataEntry>
+		<meta:MetadataEntry Code="RateTableEarthquakePrsnlPropertyCoverageCode" Name="EarthquakePrsnlPropertyCoverageCode">
+			<meta:Description>Earthquake Personal Property Coverage Code</meta:Description>
+			<meta:Property Name="Comment" Type="string">Stat Code</meta:Property>
+		</meta:MetadataEntry>
+		<meta:MetadataEntry Code="RateTableEarthquakeRateGradeStatCode" Name="EarthquakeRateGradeStatCode">
+			<meta:Description>Earthquake Rate Grade Stat Code</meta:Description>
+		</meta:MetadataEntry>
+		<meta:MetadataEntry Code="RateTableEarthquakeSprinkleredBlanketRiskIDCode" Name="EarthquakeSprinkleredBlanketRiskIDCode">
+			<meta:Description>Earthquake Sprinklered Blanket Risk ID Code</meta:Description>
+			<meta:Property Name="Comment" Type="string">Stat Code</meta:Property>
+		</meta:MetadataEntry>
+		<meta:MetadataEntry Code="RateTableEarthquakeSprinkleredNonBlanketRiskIDCode" Name="EarthquakeSprinkleredNonBlanketRiskIDCode">
+			<meta:Description>Earthquake Sprinklered Non Blanket Risk ID Code</meta:Description>
+			<meta:Property Name="Comment" Type="string">Stat Code</meta:Property>
+		</meta:MetadataEntry>
+		<meta:MetadataEntry Code="RateTableEarthquakeSprinklerLeakageExtensionCoverage" Name="EarthquakeSprinklerLeakageExtensionCoverage">
+			<meta:Description>Earthquake Sprinkler Leakage Extension Coverage</meta:Description>
+			<meta:Property Name="Comment" Type="string">Stat Code</meta:Property>
+		</meta:MetadataEntry>
+		<meta:MetadataEntry Code="RateTableEarthquakeSubLimitCoverage" Name="EarthquakeSubLimitCoverage">
+			<meta:Description>Earthquake Sub Limit Coverage</meta:Description>
+			<meta:Property Name="Comment" Type="string">Stat Code</meta:Property>
+		</meta:MetadataEntry>
+		<meta:MetadataEntry Code="RateTableEarthquakeSubLimitExposureBaseStatCode" Name="EarthquakeSubLimitExposureBaseStatCode">
+			<meta:Description>Earthquake Sub Limit Exposure Base Stat Code</meta:Description>
+			<meta:Property Name="Comment" Type="string">Stat Code</meta:Property>
+		</meta:MetadataEntry>
+		<meta:MetadataEntry Code="RateTableEarthquakeSubLimitSprinklerLeakageExtensionCoverage" Name="EarthquakeSubLimitSprinklerLeakageExtensionCoverage">
+			<meta:Description>Earthquake SubLimit Sprinkler Leakage Extension Coverage</meta:Description>
+			<meta:Property Name="Comment" Type="string">Stat Code</meta:Property>
+		</meta:MetadataEntry>
+		<meta:MetadataEntry Code="RateTableEarthquakeSubLimitTimeElementFactor" Name="EarthquakeSubLimitTimeElementFactor">
+			<meta:Description>Earthquake SubLimit Time Element Factor</meta:Description>
+		</meta:MetadataEntry>
+		<meta:MetadataEntry Code="RateTableEarthquakeSusceptibilityGradeStatCode" Name="EarthquakeSusceptibilityGradeStatCode">
+			<meta:Description>Earthquake Susceptibility Grade Stat Code</meta:Description>
+			<meta:Property Name="Comment" Type="string">Stat Code</meta:Property>
+		</meta:MetadataEntry>
+		<meta:MetadataEntry Code="RateTableEarthquakeTimeElementCoverageCode" Name="EarthquakeTimeElementCoverageCode">
+			<meta:Description>Earthquake Time Element Coverage Code</meta:Description>
+			<meta:Property Name="Comment" Type="string">Stat Code</meta:Property>
+		</meta:MetadataEntry>
+		<meta:MetadataEntry Code="RateTableEducationalInstitutionsExtensionOfRecoverySubsequentMonthFactor" Name="EducationalInstitutionsExtensionOfRecoverySubsequentMonthFactor">
+			<meta:Description>Educational Institutions Extension Of Recovery Subsequent Month Factor</meta:Description>
+			<meta:Property Name="Comment" Type="string">EducationalInstitutionsExtensionOfRecoveCommercialPropertyStructureBusIncomeCoverage.SubsequentMonthFactor</meta:Property>
+		</meta:MetadataEntry>
+		<meta:MetadataEntry Code="RateTableElectronicMediaAndRecordsFactor" Name="ElectronicMediaAndRecordsFactor">
+			<meta:Description>Electronic Media And Records Factor</meta:Description>
+			<meta:Property Name="Comment" Type="string">No longer in use.</meta:Property>
+		</meta:MetadataEntry>
+		<meta:MetadataEntry Code="RateTableEleventh30DayRestorationFactor" Name="Eleventh30DayRestorationFactor">
+			<meta:Description>Eleventh 30 Day Restoration Factor</meta:Description>
+			<meta:Property Name="Comment" Type="string">No longer in use.</meta:Property>
+		</meta:MetadataEntry>
+		<meta:MetadataEntry Code="RateTableEQExposureBaseStatCode" Name="EQExposureBaseStatCode">
+			<meta:Description>EQ Exposure Base Stat Code</meta:Description>
+			<meta:Property Name="Comment" Type="string">Stat Code</meta:Property>
+		</meta:MetadataEntry>
+		<meta:MetadataEntry Code="RateTableEQFlatDeductibleFactor" Name="EQFlatDeductibleFactor">
+			<meta:Description>EQ Flat Deductible Factor</meta:Description>
+		</meta:MetadataEntry>
+		<meta:MetadataEntry Code="RateTableEQLossCostBldg" Name="EQLossCostBldg">
+			<meta:Description>Earthquake Loss Costs for Building</meta:Description>
+		</meta:MetadataEntry>
+		<meta:MetadataEntry Code="RateTableEQLossCostPrsnlProp" Name="EQLossCostPrsnlProp">
+			<meta:Description>Earthquake Loss Cost Personal Property</meta:Description>
+		</meta:MetadataEntry>
+		<meta:MetadataEntry Code="RateTableEQPercentageDeductibleFactor" Name="EQPercentageDeductibleFactor">
+			<meta:Description>Earthquake Percentage Deductible Factor</meta:Description>
+		</meta:MetadataEntry>
+		<meta:MetadataEntry Code="RateTableEQRateBldg" Name="EQRateBldg">
+			<meta:Description>Earthquake Rate for Building</meta:Description>
+		</meta:MetadataEntry>
+		<meta:MetadataEntry Code="RateTableEQRatePrsnlProp" Name="EQRatePrsnlProp">
+			<meta:Description>Earthquake Rate Personal Property</meta:Description>
+		</meta:MetadataEntry>
+		<meta:MetadataEntry Code="RateTableEQRoofTankHazardFactor" Name="EQRoofTankHazardFactor">
+			<meta:Description>Earthquake Roof Tank Hazard Factor</meta:Description>
+		</meta:MetadataEntry>
+		<meta:MetadataEntry Code="RateTableEQSprinkleredRiskFactor" Name="EQSprinkleredRiskFactor">
+			<meta:Description>Earthquake Sprinklered Risk Factor</meta:Description>
+		</meta:MetadataEntry>
+		<meta:MetadataEntry Code="RateTableEQSprinklerLeakageCoinsuranceFactor" Name="EQSprinklerLeakageCoinsuranceFactor">
+			<meta:Description>Coinsurance Modification Factors – Earthquake Sprinkler Leakage</meta:Description>
+		</meta:MetadataEntry>
+		<meta:MetadataEntry Code="RateTableEQSprinklerLeakageOnlyBldgFactor" Name="EQSprinklerLeakageOnlyBldgFactor">
+			<meta:Description>Earthquake Sprinkler Leakage Only Building Factor</meta:Description>
+			<meta:Property Name="Comment" Type="string">Building Rate</meta:Property>
+		</meta:MetadataEntry>
+		<meta:MetadataEntry Code="RateTableEQSprinklerLeakageOnlyLessThan80PctFactor" Name="EQSprinklerLeakageOnlyLessThan80PctFactor">
+			<meta:Description>Earthquake Sprinkler Leakage Only Less Than 80% Factor</meta:Description>
+		</meta:MetadataEntry>
+		<meta:MetadataEntry Code="RateTableEQSprinklerLeakageOnlyPrsnlPropFactor" Name="EQSprinklerLeakageOnlyPrsnlPropFactor">
+			<meta:Description>Earthquake Sprinkler Leakage Only Personal Property Factor</meta:Description>
+			<meta:Property Name="Comment" Type="string">Pers Prop Rate</meta:Property>
+		</meta:MetadataEntry>
+		<meta:MetadataEntry Code="RateTableEQSubLimit1000000FlatDeductibleFactor" Name="EQSubLimit1000000FlatDeductibleFactor">
+			<meta:Description>EQ ubLimit 1,000,000 Ded Factor</meta:Description>
+		</meta:MetadataEntry>
+		<meta:MetadataEntry Code="RateTableEQSubLimit100000FlatDeductibleFactor" Name="EQSubLimit100000FlatDeductibleFactor">
+			<meta:Description>EQ SubLimit 100000 Flat Deductible Factor</meta:Description>
+		</meta:MetadataEntry>
+		<meta:MetadataEntry Code="RateTableEQSubLimit10000FlatDeductibleFactor" Name="EQSubLimit10000FlatDeductibleFactor">
+			<meta:Description>EQ SubLimit 10000 Flat Deductible Factor</meta:Description>
+		</meta:MetadataEntry>
+		<meta:MetadataEntry Code="RateTableEQSubLimit1000FlatDeductibleFactor" Name="EQSubLimit1000FlatDeductibleFactor">
+			<meta:Description>EQ SubLimit 1000 Flat Deductible Factor</meta:Description>
+		</meta:MetadataEntry>
+		<meta:MetadataEntry Code="RateTableEQSubLimit250000FlatDeductibleFactor" Name="EQSubLimit250000FlatDeductibleFactor">
+			<meta:Description>EQ SubLimit 250000 Flat Deductible Factor</meta:Description>
+		</meta:MetadataEntry>
+		<meta:MetadataEntry Code="RateTableEQSubLimit25000FlatDeductibleFactor" Name="EQSubLimit25000FlatDeductibleFactor">
+			<meta:Description>EQ SubLimit 25000 Flat Deductible Factor</meta:Description>
+		</meta:MetadataEntry>
+		<meta:MetadataEntry Code="RateTableEQSubLimit2500FlatDeductibleFactor" Name="EQSubLimit2500FlatDeductibleFactor">
+			<meta:Description>EQ SubLimit 2500 Flat Deductible Factor</meta:Description>
+		</meta:MetadataEntry>
+		<meta:MetadataEntry Code="RateTableEQSubLimit500000FlatDeductibleFactor" Name="EQSubLimit500000FlatDeductibleFactor">
+			<meta:Description>EQ SubLimit 500000 Flat Deductible Factor</meta:Description>
+		</meta:MetadataEntry>
+		<meta:MetadataEntry Code="RateTableEQSubLimit50000FlatDeductibleFactor" Name="EQSubLimit50000FlatDeductibleFactor">
+			<meta:Description>EQ SubLimit 50000 Flat Deductible Factor</meta:Description>
+		</meta:MetadataEntry>
+		<meta:MetadataEntry Code="RateTableEQSubLimit5000FlatDeductibleFactor" Name="EQSubLimit5000FlatDeductibleFactor">
+			<meta:Description>EQ SubLimit 5000 Flat Deductible Factor</meta:Description>
+		</meta:MetadataEntry>
+		<meta:MetadataEntry Code="RateTableEQSubLimit500FlatDeductibleFactor" Name="EQSubLimit500FlatDeductibleFactor">
+			<meta:Description>EQ SubLimit 500 Flat Deductible Factor</meta:Description>
+		</meta:MetadataEntry>
+		<meta:MetadataEntry Code="RateTableEQSubLimit750000FlatDeductibleFactor" Name="EQSubLimit750000FlatDeductibleFactor">
+			<meta:Description>EQ SubLimit 750000 Flat Deductible Factor</meta:Description>
+		</meta:MetadataEntry>
+		<meta:MetadataEntry Code="RateTableEQSubLimit75000FlatDeductibleFactor" Name="EQSubLimit75000FlatDeductibleFactor">
+			<meta:Description>EQ SubLimit 75000 Flat Deductible Factor</meta:Description>
+		</meta:MetadataEntry>
+		<meta:MetadataEntry Code="RateTableEQSubLimitDeductibleFactor" Name="EQSubLimitDeductibleFactor">
+			<meta:Description>Earthquake Sub Limit Deductible Factors</meta:Description>
+		</meta:MetadataEntry>
+		<meta:MetadataEntry Code="RateTableEQSubLimitDeductibleTierCWTable" Name="EQSubLimitDeductibleTierCWTable">
+			<meta:Description>EQ Sub Limit Deductible Tier CW Table</meta:Description>
+		</meta:MetadataEntry>
+		<meta:MetadataEntry Code="RateTableEQSubLimitPctToTimeElementCoinsurance" Name="EQSubLimitPctToTimeElementCoinsurance">
+			<meta:Description>EQ Sub Limit Pct To Time Element Coinsurance</meta:Description>
+		</meta:MetadataEntry>
+		<meta:MetadataEntry Code="RateTableEQSublimitSprinklerLeakageFactor" Name="EQSublimitSprinklerLeakageFactor">
+			<meta:Description>Earthquake Sublimit Sprinkler Leakage Factor</meta:Description>
+		</meta:MetadataEntry>
+		<meta:MetadataEntry Code="RateTableEquipmentBreakdownPropertyDamageCode" Name="EquipmentBreakdownPropertyDamageCode">
+			<meta:Description>Equipment Breakdown Property Damage Code</meta:Description>
+			<meta:Property Name="Comment" Type="string">Stat Code</meta:Property>
+		</meta:MetadataEntry>
+		<meta:MetadataEntry Code="RateTableEquipmentBreakdownPropertyDamagePremium" Name="EquipmentBreakdownPropertyDamagePremium">
+			<meta:Description>Equipment Breakdown Property Damage Premium</meta:Description>
+		</meta:MetadataEntry>
+		<meta:MetadataEntry Code="RateTableEquipmentBreakdownTimeElementCode" Name="EquipmentBreakdownTimeElementCode">
+			<meta:Description>Equipment Breakdown Time Element Code</meta:Description>
+			<meta:Property Name="Comment" Type="string">Stat Code</meta:Property>
+		</meta:MetadataEntry>
+		<meta:MetadataEntry Code="RateTableEquipmentBreakdownTimeElementLossCost" Name="EquipmentBreakdownTimeElementLossCost">
+			<meta:Description>Equipment Breakdown Time Element Loss Cost</meta:Description>
+		</meta:MetadataEntry>
+		<meta:MetadataEntry Code="RateTableExpandedLimitsOnLossPaymentFactor" Name="ExpandedLimitsOnLossPaymentFactor">
+			<meta:Description>Expanded Limits On Loss Payment Factor</meta:Description>
+		</meta:MetadataEntry>
+		<meta:MetadataEntry Code="RateTableExtendedPeriodFactor" Name="ExtendedPeriodFactor">
+			<meta:Description>Extended Period Factor</meta:Description>
+		</meta:MetadataEntry>
+		<meta:MetadataEntry Code="RateTableExtraExpenseExpandedLimitsOnLossPaymentsFactor" Name="ExtraExpenseExpandedLimitsOnLossPaymentsFactor">
+			<meta:Description>Extra Expense Expanded Limits on Loss Payments Factor</meta:Description>
+		</meta:MetadataEntry>
+		<meta:MetadataEntry Code="RateTableExtraExpenseFactor" Name="ExtraExpenseFactor">
+			<meta:Description>Extra Expense Factor</meta:Description>
+		</meta:MetadataEntry>
+		<meta:MetadataEntry Code="RateTableFireDepartmentIncreasedFactor" Name="FireDepartmentIncreasedFactor">
+			<meta:Description>Fire Department Service Charge Coverage</meta:Description>
+			<meta:Property Name="Comment" Type="string">Fire Department Service Charge Coverage - Increased Limit</meta:Property>
+		</meta:MetadataEntry>
+		<meta:MetadataEntry Code="RateTableFireDepartmentIncreasedLimit" Name="FireDepartmentIncreasedLimit">
+			<meta:Description>Fire Department Service Charge Coverage</meta:Description>
+			<meta:Property Name="Comment" Type="string">Fire Department Service Charge Coverage - Increased Limit</meta:Property>
+		</meta:MetadataEntry>
+		<meta:MetadataEntry Code="RateTableFireSafeVaultFactor" Name="FireSafeVaultFactor">
+			<meta:Description>Fire Safe Vault Factor</meta:Description>
+		</meta:MetadataEntry>
+		<meta:MetadataEntry Code="RateTableFloodAttachmentIndicatorCode" Name="FloodAttachmentIndicatorCode">
+			<meta:Description>Flood Attachment Indicator Code</meta:Description>
+		</meta:MetadataEntry>
+		<meta:MetadataEntry Code="RateTableFloodBlanketRatingIdentificationBlanketCode" Name="FloodBlanketRatingIdentificationBlanketCode">
+			<meta:Description>Flood Blanket Rating Identification Blanket Code</meta:Description>
+		</meta:MetadataEntry>
+		<meta:MetadataEntry Code="RateTableFloodBlanketRatingIdentificationCode" Name="FloodBlanketRatingIdentificationCode">
+			<meta:Description>Flood Blanket Rating Identification Code</meta:Description>
+		</meta:MetadataEntry>
+		<meta:MetadataEntry Code="RateTableFloodCommunityRatingSystemClassCode" Name="FloodCommunityRatingSystemClassCode">
+			<meta:Description>Flood Community Rating System Class Code</meta:Description>
+		</meta:MetadataEntry>
+		<meta:MetadataEntry Code="RateTableFloodFloorOfInterestCode" Name="FloodFloorOfInterestCode">
+			<meta:Description>Flood Floor Of Interest Code</meta:Description>
+		</meta:MetadataEntry>
+		<meta:MetadataEntry Code="RateTableFloodLossCost" Name="FloodLossCost">
+			<meta:Description>Flood Loss Cost</meta:Description>
+		</meta:MetadataEntry>
+		<meta:MetadataEntry Code="RateTableFloodNumberOfStoriesCode" Name="FloodNumberOfStoriesCode">
+			<meta:Description>Flood Number Of Stories Code</meta:Description>
+		</meta:MetadataEntry>
+		<meta:MetadataEntry Code="RateTableFloodRatingIdentificationBlanketCode" Name="FloodRatingIdentificationBlanketCode">
+			<meta:Description>Flood Rating Identification Blanket Code</meta:Description>
+		</meta:MetadataEntry>
+		<meta:MetadataEntry Code="RateTableFloodRatingIdentificationCode" Name="FloodRatingIdentificationCode">
+			<meta:Description>Flood Rating Identification Code</meta:Description>
+		</meta:MetadataEntry>
+		<meta:MetadataEntry Code="RateTableFoodContaminationAdditionalAdvertisingExpenseRate" Name="FoodContaminationAdditionalAdvertisingExpenseRate">
+			<meta:Description>Food Contamination Additional Advertising Expense Rate</meta:Description>
+		</meta:MetadataEntry>
+		<meta:MetadataEntry Code="RateTableFoodContaminationCode" Name="FoodContaminationCode">
+			<meta:Description>Food Contamination Code</meta:Description>
+			<meta:Property Name="Comment" Type="string">Stat Code</meta:Property>
+		</meta:MetadataEntry>
+		<meta:MetadataEntry Code="RateTableFoodContaminationRate" Name="FoodContaminationRate">
+			<meta:Description>Food Contamination Rate</meta:Description>
+		</meta:MetadataEntry>
+		<meta:MetadataEntry Code="RateTableFunctionalValuationFactor" Name="FunctionalValuationFactor">
+			<meta:Description>Functional Valuation Factor</meta:Description>
+		</meta:MetadataEntry>
+		<meta:MetadataEntry Code="RateTableFungusExcessOfSubLimitRate" Name="FungusExcessOfSubLimitRate">
+			<meta:Description>Fungus Excess of Sublimit Rate</meta:Description>
+		</meta:MetadataEntry>
+		<meta:MetadataEntry Code="RateTableFungusIncrdPeriodFactor" Name="FungusIncrdPeriodFactor">
+			<meta:Description>Fungus Increased Period of Restoration Factor</meta:Description>
+		</meta:MetadataEntry>
+		<meta:MetadataEntry Code="RateTableFungusIncrementalRate" Name="FungusIncrementalRate">
+			<meta:Description>Fungus Incremental Rate</meta:Description>
+		</meta:MetadataEntry>
+		<meta:MetadataEntry Code="RateTableGroupIINumericValue" Name="GroupIINumericValue">
+			<meta:Description>Group II Numeric Value</meta:Description>
+			<meta:Property Name="Comment" Type="string">Class Codes 0580, 1150, 1300, 1650</meta:Property>
+		</meta:MetadataEntry>
+		<meta:MetadataEntry Code="RateTableGroupIIOpenSidesNumericValue" Name="GroupIIOpenSidesNumericValue">
+			<meta:Description>Group II Open Sides Numeric Value</meta:Description>
+		</meta:MetadataEntry>
+		<meta:MetadataEntry Code="RateTableIncreasedCostOfLossPctStatCode" Name="IncreasedCostOfLossPctStatCode">
+			<meta:Description>Increased Cost Of Loss Pct Stat Code</meta:Description>
+			<meta:Property Name="Comment" Type="string">Stat Code</meta:Property>
+		</meta:MetadataEntry>
+		<meta:MetadataEntry Code="RateTableIncreasedCostOfLossPercentConverted" Name="IncreasedCostOfLossPercentConverted">
+			<meta:Description>Increased Cost Of Loss Percent Converted</meta:Description>
+			<meta:Property Name="Comment" Type="string">Utility</meta:Property>
+		</meta:MetadataEntry>
+		<meta:MetadataEntry Code="RateTableIndivisiblePropertyConstructionStatCode" Name="IndivisiblePropertyConstructionStatCode">
+			<meta:Description>IndivisiblePropertyConstructionStatCode</meta:Description>
+		</meta:MetadataEntry>
+		<meta:MetadataEntry Code="RateTableIndivisibleSublineBasic" Name="IndivisibleSublineBasic">
+			<meta:Description>Indivisible Subline Basic</meta:Description>
+		</meta:MetadataEntry>
+		<meta:MetadataEntry Code="RateTableIndivisibleSublineBroad" Name="IndivisibleSublineBroad">
+			<meta:Description>Indivisible Subline Broad</meta:Description>
+		</meta:MetadataEntry>
+		<meta:MetadataEntry Code="RateTableIndivisibleSublineSpecial" Name="IndivisibleSublineSpecial">
+			<meta:Description>Indivisible Subline Special</meta:Description>
+		</meta:MetadataEntry>
+		<meta:MetadataEntry Code="RateTableInflationGuardBldg" Name="InflationGuardBldg">
+			<meta:Description>Inflation Guard</meta:Description>
+			<meta:Property Name="Comment" Type="string">Used for Personal Property also Rule 38.G.4</meta:Property>
+		</meta:MetadataEntry>
+		<meta:MetadataEntry Code="RateTableIRPMConversion" Name="IRPMConversion">
+			<meta:Description>IRPM Conversion</meta:Description>
+			<meta:Property Name="Comment" Type="string">Utility</meta:Property>
+		</meta:MetadataEntry>
+		<meta:MetadataEntry Code="RateTableIRPMMaximumCredit" Name="IRPMMaximumCredit">
+			<meta:Description>IRPM Maximum Credit</meta:Description>
+		</meta:MetadataEntry>
+		<meta:MetadataEntry Code="RateTableIRPMMaximumDebit" Name="IRPMMaximumDebit">
+			<meta:Description>IRPM Maximum Debit</meta:Description>
+		</meta:MetadataEntry>
+		<meta:MetadataEntry Code="RateTableLeaseholdInterestAnnuityConstant" Name="LeaseholdInterestAnnuityConstant">
+			<meta:Description>Leasehold Interest Annuity Constant</meta:Description>
+		</meta:MetadataEntry>
+		<meta:MetadataEntry Code="RateTableLeaseholdInterestBroadSpecialRate" Name="LeaseholdInterestBroadSpecialRate">
+			<meta:Description>Leasehold Interest Broad and Special Rate</meta:Description>
+		</meta:MetadataEntry>
+		<meta:MetadataEntry Code="RateTableLeaseholdInterestDiscFactor" Name="LeaseholdInterestDiscFactor">
+			<meta:Description>Leasehold Interest Discount Factor</meta:Description>
+		</meta:MetadataEntry>
+		<meta:MetadataEntry Code="RateTableLegalLiabilityFactor" Name="LegalLiabilityFactor">
+			<meta:Description>Legal Liability Factor</meta:Description>
+		</meta:MetadataEntry>
+		<meta:MetadataEntry Code="RateTableLessThan80PctAdditiveFactor" Name="LessThan80PctAdditiveFactor">
+			<meta:Description>Bldg Coins Less Than 80% Additive Factor</meta:Description>
+		</meta:MetadataEntry>
+		<meta:MetadataEntry Code="RateTableLessThan80PctLossCost" Name="LessThan80PctLossCost">
+			<meta:Description>Less Than 80 Percent Loss Cost</meta:Description>
+		</meta:MetadataEntry>
+		<meta:MetadataEntry Code="RateTableLessThan80PctMultiplicativeFactor" Name="LessThan80PctMultiplicativeFactor">
+			<meta:Description>Building Coinsurance Less Than 80% Multiplicative Factor</meta:Description>
+		</meta:MetadataEntry>
+		<meta:MetadataEntry Code="RateTableLimitationsOnCovForRoofSurfacingFactor" Name="LimitationsOnCovForRoofSurfacingFactor">
+			<meta:Description>Limitations On Coverage For Roof Surfacing Factor</meta:Description>
+		</meta:MetadataEntry>
+		<meta:MetadataEntry Code="RateTableLimitTextComparison" Name="LimitTextComparison">
+			<meta:Description>Limit Text Comparison</meta:Description>
+		</meta:MetadataEntry>
+		<meta:MetadataEntry Code="RateTableLossAssessmentLimit" Name="LossAssessmentLimit">
+			<meta:Description>Loss Assessment Limit</meta:Description>
+		</meta:MetadataEntry>
+		<meta:MetadataEntry Code="RateTableLossAssessmentLimitConverted" Name="LossAssessmentLimitConverted">
+			<meta:Description>Loss Assessment Limit Converted</meta:Description>
+			<meta:Property Name="Comment" Type="string">Utility</meta:Property>
+		</meta:MetadataEntry>
+		<meta:MetadataEntry Code="RateTableLossAssessmentRate" Name="LossAssessmentRate">
+			<meta:Description>Loss Assessment Rate</meta:Description>
+		</meta:MetadataEntry>
+		<meta:MetadataEntry Code="RateTableLossAssessmentSubLimitRate" Name="LossAssessmentSubLimitRate">
+			<meta:Description>Loss Assessment Sub Limit Rate</meta:Description>
+		</meta:MetadataEntry>
+		<meta:MetadataEntry Code="RateTableLossCostMultiplier" Name="LossCostMultiplier">
+			<meta:Description>Loss Cost Multiplier</meta:Description>
+			<meta:Property Name="Comment" Type="string">CommercialProperty.LossCostMultiplier Refer to Company Pages</meta:Property>
+		</meta:MetadataEntry>
+		<meta:MetadataEntry Code="RateTableLossCostMultiplierStatCode" Name="LossCostMultiplierStatCode">
+			<meta:Description>Loss Cost Multiplier Stat Code</meta:Description>
+		</meta:MetadataEntry>
+		<meta:MetadataEntry Code="RateTableLowestBasicGroupIIRate" Name="LowestBasicGroupIIRate">
+			<meta:Description>Lowest Basic Group II Rate</meta:Description>
+			<meta:Property Name="Comment" Type="string">This rate table is an abstract of the BGII loss costs.  This represents the lowest loss cost by Symbol for all territories in a state.</meta:Property>
+		</meta:MetadataEntry>
+		<meta:MetadataEntry Code="RateTableManufacturersConsequentialLossAssumptionFactor" Name="ManufacturersConsequentialLossAssumptionFactor">
+			<meta:Description>Manufacturers Consequential Loss Assumption Factor</meta:Description>
+		</meta:MetadataEntry>
+		<meta:MetadataEntry Code="RateTableMarginClauseRatingFactor" Name="MarginClauseRatingFactor">
+			<meta:Description>Margin Clause Rating Factor</meta:Description>
+		</meta:MetadataEntry>
+		<meta:MetadataEntry Code="RateTableMaxNFIPCoverageAmount" Name="MaxNFIPCoverageAmount">
+			<meta:Description>Max NFIP Coverage Amount</meta:Description>
+		</meta:MetadataEntry>
+		<meta:MetadataEntry Code="RateTableMaxPeriodOfIndemnityFactor" Name="MaxPeriodOfIndemnityFactor">
+			<meta:Description>Maximum Period Of Indemnity Factor</meta:Description>
+		</meta:MetadataEntry>
+		<meta:MetadataEntry Code="RateTableMinimumPremium" Name="MinimumPremium">
+			<meta:Description>Minimum Premium</meta:Description>
+		</meta:MetadataEntry>
+		<meta:MetadataEntry Code="RateTableMiningPropertiesBusnIncomeRate" Name="MiningPropertiesBusnIncomeRate">
+			<meta:Description>Mining Properties Business Income Rate</meta:Description>
+		</meta:MetadataEntry>
+		<meta:MetadataEntry Code="RateTableMiscRealPropRate" Name="MiscRealPropRate">
+			<meta:Description>Misc Real Prop Rate</meta:Description>
+		</meta:MetadataEntry>
+		<meta:MetadataEntry Code="RateTableMoldDamageCoverageStatCode" Name="MoldDamageCoverageStatCode">
+			<meta:Description>Mold Damage Coverage Stat Code</meta:Description>
+			<meta:Property Name="Comment" Type="string">Stat Code</meta:Property>
+		</meta:MetadataEntry>
+		<meta:MetadataEntry Code="RateTableMoldDamageNoCoverageStatCode" Name="MoldDamageNoCoverageStatCode">
+			<meta:Description>Mold Damage No Coverage Stat Code</meta:Description>
+			<meta:Property Name="Comment" Type="string">Stat Code</meta:Property>
+		</meta:MetadataEntry>
+		<meta:MetadataEntry Code="RateTableMoltenMaterialFactor" Name="MoltenMaterialFactor">
+			<meta:Description>Molten Material Factor</meta:Description>
+		</meta:MetadataEntry>
+		<meta:MetadataEntry Code="RateTableMonthlyLimitOfIndemnityFactor" Name="MonthlyLimitOfIndemnityFactor">
+			<meta:Description>Monthly Limit Of Indemnity Factor</meta:Description>
+		</meta:MetadataEntry>
+		<meta:MetadataEntry Code="RateTableMortgageholdersErrorsAndOmissRate" Name="MortgageholdersErrorsAndOmissRate">
+			<meta:Description>Mortgageholders Errors and Omissions Rate</meta:Description>
+		</meta:MetadataEntry>
+		<meta:MetadataEntry Code="RateTableMultiResidentialPropSpecialCreditControlFactor" Name="MultiResidentialPropSpecialCreditControlFactor">
+			<meta:Description>Multiple Residential Property Special Credit Control Factor</meta:Description>
+		</meta:MetadataEntry>
+		<meta:MetadataEntry Code="RateTableMultiResidentialPropSpecialCreditHeatFactor" Name="MultiResidentialPropSpecialCreditHeatFactor">
+			<meta:Description>Multiple Residential Property Special Credit Heat Factor</meta:Description>
+		</meta:MetadataEntry>
+		<meta:MetadataEntry Code="RateTableNatureOfDependentPropBroadFactor" Name="NatureOfDependentPropBroadFactor">
+			<meta:Description>Nature of Dependent Property Broad Factor</meta:Description>
+		</meta:MetadataEntry>
+		<meta:MetadataEntry Code="RateTableNatureOfDependentPropLimitedFactor" Name="NatureOfDependentPropLimitedFactor">
+			<meta:Description>Nature of Dependent Property Limited Factor</meta:Description>
+		</meta:MetadataEntry>
+		<meta:MetadataEntry Code="RateTableNewBusnFactor" Name="NewBusnFactor">
+			<meta:Description>New Busn Factor</meta:Description>
+		</meta:MetadataEntry>
+		<meta:MetadataEntry Code="RateTableNFIPFloodZoneCode" Name="NFIPFloodZoneCode">
+			<meta:Description>NFIP Flood Zone Code</meta:Description>
+		</meta:MetadataEntry>
+		<meta:MetadataEntry Code="RateTableNoConstructionStatCode" Name="NoConstructionStatCode">
+			<meta:Description>No Construction Stat Code</meta:Description>
+			<meta:Property Name="Comment" Type="string">Stat Code</meta:Property>
+		</meta:MetadataEntry>
+		<meta:MetadataEntry Code="RateTableNonCertfdAndCertfdActsTerrsmNoPremiumCoverageStatCode" Name="NonCertfdAndCertfdActsTerrsmNoPremiumCoverageStatCode">
+			<meta:Description>Non Certfd And Certfd Acts Terrsm No Premium Coverage Stat Code</meta:Description>
+			<meta:Property Name="Comment" Type="string">Stat Code</meta:Property>
+		</meta:MetadataEntry>
+		<meta:MetadataEntry Code="RateTableNonCertfdAndCertfdActsTerrsmPremiumCoverageStatCode" Name="NonCertfdAndCertfdActsTerrsmPremiumCoverageStatCode">
+			<meta:Description>Non Certfd And Certfd Acts Terrsm Premium Coverage Stat Code</meta:Description>
+			<meta:Property Name="Comment" Type="string">Stat Code</meta:Property>
+		</meta:MetadataEntry>
+		<meta:MetadataEntry Code="RateTableNonCertfdTerrsmPremiumCoverageStatCode" Name="NonCertfdTerrsmPremiumCoverageStatCode">
+			<meta:Description>Non Certified Terrorism Premium Coverage Stat Code</meta:Description>
+			<meta:Property Name="Comment" Type="string">Stat Code</meta:Property>
+		</meta:MetadataEntry>
+		<meta:MetadataEntry Code="RateTableNonGreenUpgradeStatCode" Name="NonGreenUpgradeStatCode">
+			<meta:Description>Non Green Upgrade Stat Code</meta:Description>
+			<meta:Property Name="Comment" Type="string">Stat Code</meta:Property>
+		</meta:MetadataEntry>
+		<meta:MetadataEntry Code="RateTableNumberToPercentageConversion" Name="NumberToPercentageConversion">
+			<meta:Description>Number To Percentage Conversion</meta:Description>
+		</meta:MetadataEntry>
+		<meta:MetadataEntry Code="RateTableOccupancyGroupNumber" Name="OccupancyGroupNumber">
+			<meta:Description>Occupancy Group Number</meta:Description>
+		</meta:MetadataEntry>
+		<meta:MetadataEntry Code="RateTableOccupCategoryRiskSeverity" Name="OccupCategoryRiskSeverity">
+			<meta:Description>Occupancy Category Risk Severity</meta:Description>
+		</meta:MetadataEntry>
+		<meta:MetadataEntry Code="RateTableOccupGroupStatCode" Name="OccupGroupStatCode">
+			<meta:Description>Occupancy Group Stat Code</meta:Description>
+			<meta:Property Name="Comment" Type="string">Stat Code</meta:Property>
+		</meta:MetadataEntry>
+		<meta:MetadataEntry Code="RateTableOffPremBusnIncCovWaitPeriodFactor" Name="OffPremBusnIncCovWaitPeriodFactor">
+			<meta:Description>Business Income Coverage Waiting Period Factor</meta:Description>
+		</meta:MetadataEntry>
+		<meta:MetadataEntry Code="RateTableOffPremBusnIncomeAndExtraExpnCollisionCoverageCode" Name="OffPremBusnIncomeAndExtraExpnCollisionCoverageCode">
+			<meta:Description>Off-Premises Business Income And Extra Expn Collision Coverage Code</meta:Description>
+			<meta:Property Name="Comment" Type="string">Stat Code</meta:Property>
+		</meta:MetadataEntry>
+		<meta:MetadataEntry Code="RateTableOffPremBusnIncomeAndExtraExpnOTCCoverageCode" Name="OffPremBusnIncomeAndExtraExpnOTCCoverageCode">
+			<meta:Description>Off-Premises Business Income And Extra Expn Other Than Collision Coverage Code</meta:Description>
+			<meta:Property Name="Comment" Type="string">Stat Code</meta:Property>
+		</meta:MetadataEntry>
+		<meta:MetadataEntry Code="RateTableOffPremBusnIncomeCollisionCoverageCode" Name="OffPremBusnIncomeCollisionCoverageCode">
+			<meta:Description>Off-Premises Business Income Only Collision Coverage Code</meta:Description>
+			<meta:Property Name="Comment" Type="string">Stat Code</meta:Property>
+		</meta:MetadataEntry>
+		<meta:MetadataEntry Code="RateTableOffPremBusnIncomeOTCCoverageCode" Name="OffPremBusnIncomeOTCCoverageCode">
+			<meta:Description>Off-Premises Business Income Only Other Than Collision Coverage Code</meta:Description>
+			<meta:Property Name="Comment" Type="string">Stat Code</meta:Property>
+		</meta:MetadataEntry>
+		<meta:MetadataEntry Code="RateTableOffPremEndtsModifyingCovdCOLFactor" Name="OffPremEndtsModifyingCovdCOLFactor">
+			<meta:Description>Endorsements Modifying Covered Causes Of Loss Factors</meta:Description>
+		</meta:MetadataEntry>
+		<meta:MetadataEntry Code="RateTableOffPremExtendedBusnIncCovFactor" Name="OffPremExtendedBusnIncCovFactor">
+			<meta:Description>Extended Business Income Coverage Factor</meta:Description>
+		</meta:MetadataEntry>
+		<meta:MetadataEntry Code="RateTableOffPremExtraExpenseCollisionCoverageCode" Name="OffPremExtraExpenseCollisionCoverageCode">
+			<meta:Description>Off-Premises Extra Expense Only Collision Coverage Code</meta:Description>
+			<meta:Property Name="Comment" Type="string">Stat Code</meta:Property>
+		</meta:MetadataEntry>
+		<meta:MetadataEntry Code="RateTableOffPremExtraExpenseOTCCoverageCode" Name="OffPremExtraExpenseOTCCoverageCode">
+			<meta:Description>Off-Premises Extra Expense Only Other Than Collision Coverage Code</meta:Description>
+			<meta:Property Name="Comment" Type="string">Stat Code</meta:Property>
+		</meta:MetadataEntry>
+		<meta:MetadataEntry Code="RateTableOffPremInsToExposureFactor" Name="OffPremInsToExposureFactor">
+			<meta:Description>Insurance To Exposure Factor</meta:Description>
+		</meta:MetadataEntry>
+		<meta:MetadataEntry Code="RateTableOffPremInsToExposureStatCode" Name="OffPremInsToExposureStatCode">
+			<meta:Description>Off-Premises Insurance To Exposure Stat Code</meta:Description>
+			<meta:Property Name="Comment" Type="string">Stat Code</meta:Property>
+		</meta:MetadataEntry>
+		<meta:MetadataEntry Code="RateTableOffPremInterruptionOfBusnVehsMobileEquipLossCost" Name="OffPremInterruptionOfBusnVehsMobileEquipLossCost">
+			<meta:Description>Off-Premises Interruption Of Business Vehicles And Mobile Equipment Loss Costs</meta:Description>
+		</meta:MetadataEntry>
+		<meta:MetadataEntry Code="RateTableOffPremOptionAStatCode" Name="OffPremOptionAStatCode">
+			<meta:Description>Off-Premises Option A Stat Code</meta:Description>
+			<meta:Property Name="Comment" Type="string">Stat Code</meta:Property>
+		</meta:MetadataEntry>
+		<meta:MetadataEntry Code="RateTableOrdinanceOrLawCovAEQFactor" Name="OrdinanceOrLawCovAEQFactor">
+			<meta:Description>Ordinance Or Law Coverage A Earthquake Factor</meta:Description>
+		</meta:MetadataEntry>
+		<meta:MetadataEntry Code="RateTableOrdinanceOrLawCoverageAFactor" Name="OrdinanceOrLawCoverageAFactor">
+			<meta:Description>Ordinance Or Law Coverage A Factor</meta:Description>
+		</meta:MetadataEntry>
+		<meta:MetadataEntry Code="RateTableOrdinanceOrLawCoverageIndicatorCovAAndCovB" Name="OrdinanceOrLawCoverageIndicatorCovAAndCovB">
+			<meta:Description>Ordinance Or Law Coverage Indicator Cov A And Cov B</meta:Description>
+			<meta:Property Name="Comment" Type="string">Stat Code</meta:Property>
+		</meta:MetadataEntry>
+		<meta:MetadataEntry Code="RateTableOrdinanceOrLawCoverageIndicatorCovACovBAndCovCCombined" Name="OrdinanceOrLawCoverageIndicatorCovACovBAndCovCCombined">
+			<meta:Description>Ordinance Or Law Coverage Indicator Cov A Cov B And Cov C Combined</meta:Description>
+			<meta:Property Name="Comment" Type="string">Stat Code</meta:Property>
+		</meta:MetadataEntry>
+		<meta:MetadataEntry Code="RateTableOrdinanceOrLawCoverageIndicatorCovACovBAndCovCSeparateCovB" Name="OrdinanceOrLawCoverageIndicatorCovACovBAndCovCSeparateCovB">
+			<meta:Description>Ordinance Or Law Coverage Indicator Cov A Cov B And Cov C Separate Cov B</meta:Description>
+			<meta:Property Name="Comment" Type="string">Stat Code</meta:Property>
+		</meta:MetadataEntry>
+		<meta:MetadataEntry Code="RateTableOrdinanceOrLawCoverageIndicatorCovACovBAndCovCSeparateCovC" Name="OrdinanceOrLawCoverageIndicatorCovACovBAndCovCSeparateCovC">
+			<meta:Description>Ordinance Or Law Coverage Indicator Cov A Cov B And Cov C Separate Cov C</meta:Description>
+			<meta:Property Name="Comment" Type="string">Stat Code</meta:Property>
+		</meta:MetadataEntry>
+		<meta:MetadataEntry Code="RateTableOrdinanceOrLawCoverageIndicatorCovAOnly" Name="OrdinanceOrLawCoverageIndicatorCovAOnly">
+			<meta:Description>Ordinance Or Law Coverage Indicator Cov A Only</meta:Description>
+			<meta:Property Name="Comment" Type="string">Stat Code</meta:Property>
+		</meta:MetadataEntry>
+		<meta:MetadataEntry Code="RateTableOrdinanceOrLawCoverageIndicatorCovCOnly" Name="OrdinanceOrLawCoverageIndicatorCovCOnly">
+			<meta:Description>Ordinance Or Law Coverage Indicator Cov C Only</meta:Description>
+			<meta:Property Name="Comment" Type="string">Stat Code</meta:Property>
+		</meta:MetadataEntry>
+		<meta:MetadataEntry Code="RateTableOrdinanceOrLawCoverageIndicatorNoCoverage" Name="OrdinanceOrLawCoverageIndicatorNoCoverage">
+			<meta:Description>Ordinance Or Law Coverage Indicator No Coverage</meta:Description>
+			<meta:Property Name="Comment" Type="string">Stat Code</meta:Property>
+		</meta:MetadataEntry>
+		<meta:MetadataEntry Code="RateTableOrdinaryPayrollExclusionFactor" Name="OrdinaryPayrollExclusionFactor">
+			<meta:Description>Ordinary Payroll Exclusion Factor</meta:Description>
+		</meta:MetadataEntry>
+		<meta:MetadataEntry Code="RateTableOrdOrLawIncrPeriodOfRestorationEQFactor" Name="OrdOrLawIncrPeriodOfRestorationEQFactor">
+			<meta:Description>Ordinance Or Law Increased Period Of Restoration EQ Factor</meta:Description>
+		</meta:MetadataEntry>
+		<meta:MetadataEntry Code="RateTableOrdOrLawIncrPeriodOfRestorationFactor" Name="OrdOrLawIncrPeriodOfRestorationFactor">
+			<meta:Description>Ordinance Or Law - Increased Period Of Restoration Factor</meta:Description>
+		</meta:MetadataEntry>
+		<meta:MetadataEntry Code="RateTableOutdoorTreeBasicGroupIISymbol" Name="OutdoorTreeBasicGroupIISymbol">
+			<meta:Description>Outdoor Tree Basic Group II Symbol</meta:Description>
+		</meta:MetadataEntry>
+		<meta:MetadataEntry Code="RateTableOutdoorTreesShrubsAndPlantsClassCode" Name="OutdoorTreesShrubsAndPlantsClassCode">
+			<meta:Description>Outdoor Trees Shrubs And Plants Class Code</meta:Description>
+		</meta:MetadataEntry>
+		<meta:MetadataEntry Code="RateTableOutdoorTreesShrubsAndPlantsCoverageCode" Name="OutdoorTreesShrubsAndPlantsCoverageCode">
+			<meta:Description>Outdoor Trees Shrubs And Plants Coverage Code</meta:Description>
+			<meta:Property Name="Comment" Type="string">Stat Code</meta:Property>
+		</meta:MetadataEntry>
+		<meta:MetadataEntry Code="RateTableOutdoorTreesShrubsAndPlantsRatingIdentificationCode" Name="OutdoorTreesShrubsAndPlantsRatingIdentificationCode">
+			<meta:Description>Outdoor Trees Shrubs And Plants Rating Identification Code</meta:Description>
+			<meta:Property Name="Comment" Type="string">Stat Code</meta:Property>
+		</meta:MetadataEntry>
+		<meta:MetadataEntry Code="RateTableOutsideSignsClassCode" Name="OutsideSignsClassCode">
+			<meta:Description>Outside Signs Class Code</meta:Description>
+		</meta:MetadataEntry>
+		<meta:MetadataEntry Code="RateTablePayrollExclusionAndLimitationFactor" Name="PayrollExclusionAndLimitationFactor">
+			<meta:Description>Payroll Exclusion And Limitation Factor</meta:Description>
+		</meta:MetadataEntry>
+		<meta:MetadataEntry Code="RateTablePctOfMasonryVeneerEQFactor" Name="PctOfMasonryVeneerEQFactor">
+			<meta:Description>Percent Of Masonry Veneer Earthquake Factor</meta:Description>
+		</meta:MetadataEntry>
+		<meta:MetadataEntry Code="RateTablePerilExclusionIndicatorBasicAndBroadStatCode" Name="PerilExclusionIndicatorBasicAndBroadStatCode">
+			<meta:Description>Peril Exclusion Indicator Basic And Broad Form Stat Code</meta:Description>
+		</meta:MetadataEntry>
+		<meta:MetadataEntry Code="RateTablePerilExclusionIndicatorBasicAndSpecialStatCode" Name="PerilExclusionIndicatorBasicAndSpecialStatCode">
+			<meta:Description>Peril Exclusion Indicator Basic And Special Form Stat Code</meta:Description>
+		</meta:MetadataEntry>
+		<meta:MetadataEntry Code="RateTablePeriodOfRestorationFactor" Name="PeriodOfRestorationFactor">
+			<meta:Description>Period Of Restoration Factor</meta:Description>
+		</meta:MetadataEntry>
+		<meta:MetadataEntry Code="RateTablePierAndWharfRates" Name="PierAndWharfRates">
+			<meta:Description>Pier and Wharf Additional Covered of Loss Rates</meta:Description>
+		</meta:MetadataEntry>
+		<meta:MetadataEntry Code="RateTablePollutantCleanUpAndRemovalCoverageCode" Name="PollutantCleanUpAndRemovalCoverageCode">
+			<meta:Description>PollutantCleanUpAndRemovalCoverageCode</meta:Description>
+			<meta:Property Name="Comment" Type="string">Stat Code</meta:Property>
+		</meta:MetadataEntry>
+		<meta:MetadataEntry Code="RateTablePollutantCleanUpAndRemovalDeductibleFactor" Name="PollutantCleanUpAndRemovalDeductibleFactor">
+			<meta:Description>Pollutant Clean Up And Removal Deductible Factor</meta:Description>
+		</meta:MetadataEntry>
+		<meta:MetadataEntry Code="RateTablePollutantCleanUpAndRemovalRate" Name="PollutantCleanUpAndRemovalRate">
+			<meta:Description>Pollutant Clean Up And Removal Rate</meta:Description>
+		</meta:MetadataEntry>
+		<meta:MetadataEntry Code="RateTablePolMinPremium" Name="PolMinPremium">
+			<meta:Description>Policy Minimum Premium</meta:Description>
+			<meta:Property Name="Comment" Type="string">CommercialPorperty.TotPolMinPremium Rule 8</meta:Property>
+		</meta:MetadataEntry>
+		<meta:MetadataEntry Code="RateTablePostLossOrdinanceOrLawOptionFactor" Name="PostLossOrdinanceOrLawOptionFactor">
+			<meta:Description>Post Loss Ordinance Or Law Option Factor</meta:Description>
+		</meta:MetadataEntry>
+		<meta:MetadataEntry Code="RateTablePowerHeatAndRefrigerationFactor" Name="PowerHeatAndRefrigerationFactor">
+			<meta:Description>Power Heat And Refrigeration Factor</meta:Description>
+		</meta:MetadataEntry>
+		<meta:MetadataEntry Code="RateTablePropertyRateModificationFactor1" Name="PropertyRateModificationFactor1">
+			<meta:Description>Property Rate Modification Factor # 1</meta:Description>
+		</meta:MetadataEntry>
+		<meta:MetadataEntry Code="RateTablePropertyRateModificationFactor2" Name="PropertyRateModificationFactor2">
+			<meta:Description>Property Rate Modification Factor # 2</meta:Description>
+		</meta:MetadataEntry>
+		<meta:MetadataEntry Code="RateTablePropertyRateModificationFactor3" Name="PropertyRateModificationFactor3">
+			<meta:Description>Property Rate Modification Factor # 3</meta:Description>
+		</meta:MetadataEntry>
+		<meta:MetadataEntry Code="RateTablePropertyRateModificationFactor4" Name="PropertyRateModificationFactor4">
+			<meta:Description>Property Rate Modification Factor # 4</meta:Description>
+		</meta:MetadataEntry>
+		<meta:MetadataEntry Code="RateTablePropertyRateModificationFactor5" Name="PropertyRateModificationFactor5">
+			<meta:Description>Property Rate Modification Factor # 5</meta:Description>
+		</meta:MetadataEntry>
+		<meta:MetadataEntry Code="RateTablePropertyRateModificationFactor6" Name="PropertyRateModificationFactor6">
+			<meta:Description>Property Rate Modification Factor # 6</meta:Description>
+		</meta:MetadataEntry>
+		<meta:MetadataEntry Code="RateTablePropertyRateModificationFactor7" Name="PropertyRateModificationFactor7">
+			<meta:Description>Property Rate Modification Factor # 7</meta:Description>
+		</meta:MetadataEntry>
+		<meta:MetadataEntry Code="RateTablePropertyRateModificationFactors1" Name="PropertyRateModificationFactors1">
+			<meta:Description>Property Rate Modification Factors # 1</meta:Description>
+		</meta:MetadataEntry>
+		<meta:MetadataEntry Code="RateTablePropertyRateModificationFactors2" Name="PropertyRateModificationFactors2">
+			<meta:Description>Property Rate Modification Factors # 2</meta:Description>
+		</meta:MetadataEntry>
+		<meta:MetadataEntry Code="RateTablePropertyRateModificationFactors3" Name="PropertyRateModificationFactors3">
+			<meta:Description>Property Rate Modification Factors # 3</meta:Description>
+		</meta:MetadataEntry>
+		<meta:MetadataEntry Code="RateTablePropertyRateModificationFactors4" Name="PropertyRateModificationFactors4">
+			<meta:Description>Property Rate Modification Factors # 4</meta:Description>
+		</meta:MetadataEntry>
+		<meta:MetadataEntry Code="RateTablePropertyRateModificationFactors5" Name="PropertyRateModificationFactors5">
+			<meta:Description>Property Rate Modification Factors # 5</meta:Description>
+		</meta:MetadataEntry>
+		<meta:MetadataEntry Code="RateTablePropertyRateModificationFactors6" Name="PropertyRateModificationFactors6">
+			<meta:Description>Property Rate Modification Factors # 6</meta:Description>
+		</meta:MetadataEntry>
+		<meta:MetadataEntry Code="RateTablePropertyRateModificationFactors7" Name="PropertyRateModificationFactors7">
+			<meta:Description>Property Rate Modification Factors # 7</meta:Description>
+		</meta:MetadataEntry>
+		<meta:MetadataEntry Code="RateTableProtectionClassFactor" Name="ProtectionClassFactor">
+			<meta:Description>Protection Class Factor</meta:Description>
+		</meta:MetadataEntry>
+		<meta:MetadataEntry Code="RateTableProtectionClassStatCode" Name="ProtectionClassStatCode">
+			<meta:Description>Protection Class Stat Code</meta:Description>
+			<meta:Property Name="Comment" Type="string">Stat Code</meta:Property>
+		</meta:MetadataEntry>
+		<meta:MetadataEntry Code="RateTablePrsnlPropCoverageCode" Name="PrsnlPropCoverageCode">
+			<meta:Description>Prsnl Prop Coverage Code</meta:Description>
+			<meta:Property Name="Comment" Type="string">Stat Code</meta:Property>
+		</meta:MetadataEntry>
+		<meta:MetadataEntry Code="RateTablePrsnlPropHazardGroupACoverageCode" Name="PrsnlPropHazardGroupACoverageCode">
+			<meta:Description>Prsnl Prop Hazard Group A Coverage Code</meta:Description>
+			<meta:Property Name="Comment" Type="string">Stat Code</meta:Property>
+		</meta:MetadataEntry>
+		<meta:MetadataEntry Code="RateTablePrsnlPropHazardGroupBCoverageCode" Name="PrsnlPropHazardGroupBCoverageCode">
+			<meta:Description>Prsnl Prop Hazard Group B Coverage Code</meta:Description>
+			<meta:Property Name="Comment" Type="string">Stat Code</meta:Property>
+		</meta:MetadataEntry>
+		<meta:MetadataEntry Code="RateTablePrsnlPropHazardGroupCCoverageCode" Name="PrsnlPropHazardGroupCCoverageCode">
+			<meta:Description>Prsnl Prop Hazard Group C Coverage Code</meta:Description>
+			<meta:Property Name="Comment" Type="string">Stat Code</meta:Property>
+		</meta:MetadataEntry>
+		<meta:MetadataEntry Code="RateTablePrsnlPropManufacturersConsequentialLossAssumptionStockFactor" Name="PrsnlPropManufacturersConsequentialLossAssumptionStockFactor">
+			<meta:Description>Personal Property Manufacturers Consequential Loss Assumption Stock Factor</meta:Description>
+		</meta:MetadataEntry>
+		<meta:MetadataEntry Code="RateTablePrsnlPropTerrMultiplier" Name="PrsnlPropTerrMultiplier">
+			<meta:Description>Personal Property Territory Multiplier</meta:Description>
+		</meta:MetadataEntry>
+		<meta:MetadataEntry Code="RateTablePrsnlPropYardCoverageCode" Name="PrsnlPropYardCoverageCode">
+			<meta:Description>Prsnl Prop Yard Coverage Code</meta:Description>
+			<meta:Property Name="Comment" Type="string">Stat Code</meta:Property>
+		</meta:MetadataEntry>
+		<meta:MetadataEntry Code="RateTableRadioOrTelevisionAntennasClassCode" Name="RadioOrTelevisionAntennasClassCode">
+			<meta:Description>Radio Or Television Antennas Class Code</meta:Description>
+		</meta:MetadataEntry>
+		<meta:MetadataEntry Code="RateTableRateGroupStatCode" Name="RateGroupStatCode">
+			<meta:Description>Rate Group Stat Code</meta:Description>
+		</meta:MetadataEntry>
+		<meta:MetadataEntry Code="RateTableRateModificationFactor" Name="RateModificationFactor">
+			<meta:Description>Rate Modification Factor</meta:Description>
+		</meta:MetadataEntry>
+		<meta:MetadataEntry Code="RateTableRatingTerrFactor" Name="RatingTerrFactor">
+			<meta:Description>Rating Territory Factor</meta:Description>
+			<meta:Property Name="Comment" Type="string">CommercialPropertyLocation.RatingTerrFactor Rule 23 B.1.a Refer to State Rates</meta:Property>
+		</meta:MetadataEntry>
+		<meta:MetadataEntry Code="RateTableRatingTerrGroupICode" Name="RatingTerrGroupICode">
+			<meta:Description>Rating Territory Group I Code</meta:Description>
+		</meta:MetadataEntry>
+		<meta:MetadataEntry Code="RateTableRatingTerrGroupIFactor" Name="RatingTerrGroupIFactor">
+			<meta:Description>Rating Territory Group I Factor</meta:Description>
+		</meta:MetadataEntry>
+		<meta:MetadataEntry Code="RateTableRatingTerritoryGroupIFactor" Name="RatingTerritoryGroupIFactor">
+			<meta:Description>RatingTerritoryGroupIFactor</meta:Description>
+			<meta:Property Name="Comment" Type="string">New Rating Territory Group I factor with city name as key</meta:Property>
+		</meta:MetadataEntry>
+		<meta:MetadataEntry Code="RateTableRebuildingExpensesFactor" Name="RebuildingExpensesFactor">
+			<meta:Description>Rebuilding Expenses Factor</meta:Description>
+		</meta:MetadataEntry>
+		<meta:MetadataEntry Code="RateTableRelatedExpensesFactor" Name="RelatedExpensesFactor">
+			<meta:Description>Related Expenses Factor</meta:Description>
+		</meta:MetadataEntry>
+		<meta:MetadataEntry Code="RateTableRelatedExpensesStatCode" Name="RelatedExpensesStatCode">
+			<meta:Description>Related Expenses Stat Code</meta:Description>
+			<meta:Property Name="Comment" Type="string">Stat Code</meta:Property>
+		</meta:MetadataEntry>
+		<meta:MetadataEntry Code="RateTableRelativity" Name="Relativity">
+			<meta:Description>Relativity</meta:Description>
+		</meta:MetadataEntry>
+		<meta:MetadataEntry Code="RateTableScheduleRatedRatingIdentificationCode" Name="ScheduleRatedRatingIdentificationCode">
+			<meta:Description>Schedule Rated Rating Identification Code</meta:Description>
+			<meta:Property Name="Comment" Type="string">Stat Code</meta:Property>
+		</meta:MetadataEntry>
+		<meta:MetadataEntry Code="RateTableSeasonalRiskFactor" Name="SeasonalRiskFactor">
+			<meta:Description>Seasonal Risk Factor</meta:Description>
+		</meta:MetadataEntry>
+		<meta:MetadataEntry Code="RateTableSecondaryLocationDependenciesFactor" Name="SecondaryLocationDependenciesFactor">
+			<meta:Description>Secondary Location Dependencies Factor</meta:Description>
+		</meta:MetadataEntry>
+		<meta:MetadataEntry Code="RateTableSpecialBldgRate" Name="SpecialBldgRate">
+			<meta:Description>Special Building Rate</meta:Description>
+			<meta:Property Name="Comment" Type="string">State Specific</meta:Property>
+		</meta:MetadataEntry>
+		<meta:MetadataEntry Code="RateTableSpecialBldgTheftExclusionFactor" Name="SpecialBldgTheftExclusionFactor">
+			<meta:Description>Special Theft Exclusion Factor - Building</meta:Description>
+		</meta:MetadataEntry>
+		<meta:MetadataEntry Code="RateTableSpecialBuildersRiskRate" Name="SpecialBuildersRiskRate">
+			<meta:Description>Special Builders Risk Rate</meta:Description>
+		</meta:MetadataEntry>
+		<meta:MetadataEntry Code="RateTableSpecialBuildingRate" Name="SpecialBuildingRate">
+			<meta:Description>Special Building Rate</meta:Description>
+		</meta:MetadataEntry>
+		<meta:MetadataEntry Code="RateTableSpecialClassBasicGroupIINumber" Name="SpecialClassBasicGroupIINumber">
+			<meta:Description>Special Class Basic Group II Number</meta:Description>
+		</meta:MetadataEntry>
+		<meta:MetadataEntry Code="RateTableSpecialClassCoverageCode" Name="SpecialClassCoverageCode">
+			<meta:Description>Special Class Coverage Code</meta:Description>
+			<meta:Property Name="Comment" Type="string">Stat Code</meta:Property>
+		</meta:MetadataEntry>
+		<meta:MetadataEntry Code="RateTableSpecialClassDescriptionConvertedOption" Name="SpecialClassDescriptionConvertedOption">
+			<meta:Description>Special Class Description Converted Option</meta:Description>
+			<meta:Property Name="Comment" Type="string">Utility only-option numbers not in CLM</meta:Property>
+		</meta:MetadataEntry>
+		<meta:MetadataEntry Code="RateTableSpecialFormBldrsRiskTimeElementBaseRate" Name="SpecialFormBldrsRiskTimeElementBaseRate">
+			<meta:Description>Special Form Builders Risk Time Element Base Rate</meta:Description>
+		</meta:MetadataEntry>
+		<meta:MetadataEntry Code="RateTableSpecialFormExclgTheftLeaseHoldBaseRate" Name="SpecialFormExclgTheftLeaseHoldBaseRate">
+			<meta:Description>Special Form Excluding Theft LeaseHold Base Rate</meta:Description>
+		</meta:MetadataEntry>
+		<meta:MetadataEntry Code="RateTableSpecialFormExclgTheftTimeElementBaseRate" Name="SpecialFormExclgTheftTimeElementBaseRate">
+			<meta:Description>Special Excluding Theft Time Element Base Rate</meta:Description>
+		</meta:MetadataEntry>
+		<meta:MetadataEntry Code="RateTableSpecialFormIncldgTheftLeaseHoldBaseRate" Name="SpecialFormIncldgTheftLeaseHoldBaseRate">
+			<meta:Description>SpecialForm Including Theft LeaseHold Base Rate</meta:Description>
+		</meta:MetadataEntry>
+		<meta:MetadataEntry Code="RateTableSpecialFormIncldgTheftTimeElementBaseRate" Name="SpecialFormIncldgTheftTimeElementBaseRate">
+			<meta:Description>Special Including Theft Time Element Base Rate</meta:Description>
+			<meta:Property Name="Comment" Type="string">See also SpecialFormIncldgTheftLeaseHoldBaseRate</meta:Property>
+		</meta:MetadataEntry>
+		<meta:MetadataEntry Code="RateTableSpecialIncldgTheftType1Or2BaseRate" Name="SpecialIncldgTheftType1Or2BaseRate">
+			<meta:Description>Special Including Theft Type 1 or 2 Base Rate</meta:Description>
+		</meta:MetadataEntry>
+		<meta:MetadataEntry Code="RateTableSpecialIncldgTheftType3BaseRate" Name="SpecialIncldgTheftType3BaseRate">
+			<meta:Description>Special Including Theft Type 3 Base Rate</meta:Description>
+		</meta:MetadataEntry>
+		<meta:MetadataEntry Code="RateTableSpecialLeaseHoldTimeElementTheftExclusionFactor" Name="SpecialLeaseHoldTimeElementTheftExclusionFactor">
+			<meta:Description>Special Theft Exclusion Factor - Leasehold Interest and Time Element</meta:Description>
+		</meta:MetadataEntry>
+		<meta:MetadataEntry Code="RateTableSpecialPrsnlPropExclgTheftBaseRate" Name="SpecialPrsnlPropExclgTheftBaseRate">
+			<meta:Description>Special Personal Property Excluding Theft Base Rate</meta:Description>
+		</meta:MetadataEntry>
+		<meta:MetadataEntry Code="RateTableSpecialPrsnlPropRate" Name="SpecialPrsnlPropRate">
+			<meta:Description>Special Personal Property Rate</meta:Description>
+		</meta:MetadataEntry>
+		<meta:MetadataEntry Code="RateTableSpecialPrsnlPropTheftExclusionFactor" Name="SpecialPrsnlPropTheftExclusionFactor">
+			<meta:Description>Special Theft Exclusion Factor - Personal Property</meta:Description>
+		</meta:MetadataEntry>
+		<meta:MetadataEntry Code="RateTableSpecifiedPropertyAwayFromPremisesAddlPremiumFactor" Name="SpecifiedPropertyAwayFromPremisesAddlPremiumFactor">
+			<meta:Description>Specified Property Away From Premises Additional Premium Factor</meta:Description>
+		</meta:MetadataEntry>
+		<meta:MetadataEntry Code="RateTableSpoilageClassification" Name="SpoilageClassification">
+			<meta:Description>Spoilage Classification</meta:Description>
+		</meta:MetadataEntry>
+		<meta:MetadataEntry Code="RateTableSpoilageCoverageCode" Name="SpoilageCoverageCode">
+			<meta:Description>Spoilage Coverage Code</meta:Description>
+			<meta:Property Name="Comment" Type="string">Stat Code</meta:Property>
+		</meta:MetadataEntry>
+		<meta:MetadataEntry Code="RateTableSpoilageCovRate" Name="SpoilageCovRate">
+			<meta:Description>Spoilage Coverage Rate</meta:Description>
+		</meta:MetadataEntry>
+		<meta:MetadataEntry Code="RateTableSpoilageSellingPriceFactor" Name="SpoilageSellingPriceFactor">
+			<meta:Description>Spoilage Selling Price Factor</meta:Description>
+		</meta:MetadataEntry>
+		<meta:MetadataEntry Code="RateTableSprinkleredScheduleRatedRatingIdentificationCode" Name="SprinkleredScheduleRatedRatingIdentificationCode">
+			<meta:Description>Sprinklered ScheduleRated Rating Identification Code</meta:Description>
+			<meta:Property Name="Comment" Type="string">Stat Code</meta:Property>
+		</meta:MetadataEntry>
+		<meta:MetadataEntry Code="RateTableSprinklerLeakageEQExtensionBldgRate" Name="SprinklerLeakageEQExtensionBldgRate">
+			<meta:Description>Sprinkler Leakage EQ Extension Building Rate</meta:Description>
+		</meta:MetadataEntry>
+		<meta:MetadataEntry Code="RateTableSprinklerLeakageEQExtensionPrsnlPropRate" Name="SprinklerLeakageEQExtensionPrsnlPropRate">
+			<meta:Description>Sprinkler Leakage EQ Extension Personal Property Rate</meta:Description>
+		</meta:MetadataEntry>
+		<meta:MetadataEntry Code="RateTableSprinklerLeakageEQExtensionZoneFactor" Name="SprinklerLeakageEQExtensionZoneFactor">
+			<meta:Description>Sprinkler Leakage EQ Extension Zone Factor</meta:Description>
+		</meta:MetadataEntry>
+		<meta:MetadataEntry Code="RateTableSprinklerLeakageExclNonSprinkleredRate" Name="SprinklerLeakageExclNonSprinkleredRate">
+			<meta:Description>Sprinkler Leakage Exclusion Non Sprinklered Rate</meta:Description>
+		</meta:MetadataEntry>
+		<meta:MetadataEntry Code="RateTableSprinklerLeakageExclSprinkleredFactor" Name="SprinklerLeakageExclSprinkleredFactor">
+			<meta:Description>Sprinkler Leakage Exclusion Sprinklered Factor</meta:Description>
+		</meta:MetadataEntry>
+		<meta:MetadataEntry Code="RateTableSprinklerLeakageNotExcluded" Name="SprinklerLeakageNotExcluded">
+			<meta:Description>Sprinkler Leakage Inclusion Sprinklered Bldg Factor</meta:Description>
+		</meta:MetadataEntry>
+		<meta:MetadataEntry Code="RateTableStateCode" Name="StateCode">
+			<meta:Description>State Code</meta:Description>
+			<meta:Property Name="Comment" Type="string">Stat Code</meta:Property>
+		</meta:MetadataEntry>
+		<meta:MetadataEntry Code="RateTableStateTerrorismPNumber" Name="StateTerrorismPNumber">
+			<meta:Description>State Terrorism P Number</meta:Description>
+			<meta:Property Name="Comment" Type="string">Not in use</meta:Property>
+		</meta:MetadataEntry>
+		<meta:MetadataEntry Code="RateTableStateTerrorismTNumber" Name="StateTerrorismTNumber">
+			<meta:Description>State Terrorism T Number</meta:Description>
+			<meta:Property Name="Comment" Type="string">Not in use</meta:Property>
+		</meta:MetadataEntry>
+		<meta:MetadataEntry Code="RateTableStdPropPolGroupIFactor" Name="StdPropPolGroupIFactor">
+			<meta:Description>Standard Property Policy Group I Factor</meta:Description>
+		</meta:MetadataEntry>
+		<meta:MetadataEntry Code="RateTableStdPropPolGroupIIFactor" Name="StdPropPolGroupIIFactor">
+			<meta:Description>Standard Property Policy Group II Factor</meta:Description>
+		</meta:MetadataEntry>
+		<meta:MetadataEntry Code="RateTableStoryModFactorTimeElement" Name="StoryModFactorTimeElement">
+			<meta:Description>Story Modification Factor Time Element</meta:Description>
+		</meta:MetadataEntry>
+		<meta:MetadataEntry Code="RateTableSublineAllOtherAlliedLines" Name="SublineAllOtherAlliedLines">
+			<meta:Description>Subline All Other Allied Lines</meta:Description>
+			<meta:Property Name="Comment" Type="string">Stat Code</meta:Property>
+		</meta:MetadataEntry>
+		<meta:MetadataEntry Code="RateTableSublineBasicGroupI" Name="SublineBasicGroupI">
+			<meta:Description>Subline Basic Group I</meta:Description>
+			<meta:Property Name="Comment" Type="string">Stat Code</meta:Property>
+		</meta:MetadataEntry>
+		<meta:MetadataEntry Code="RateTableSublineBasicGroupIExcludingSprinklerLeakage" Name="SublineBasicGroupIExcludingSprinklerLeakage">
+			<meta:Description>Subline Basic Group I Excluding Sprinkler Leakage</meta:Description>
+			<meta:Property Name="Comment" Type="string">Stat Code</meta:Property>
+		</meta:MetadataEntry>
+		<meta:MetadataEntry Code="RateTableSublineBasicGroupIExcludingVandalism" Name="SublineBasicGroupIExcludingVandalism">
+			<meta:Description>Subline Basic Group I Excluding Vandalism</meta:Description>
+			<meta:Property Name="Comment" Type="string">Stat Code</meta:Property>
+		</meta:MetadataEntry>
+		<meta:MetadataEntry Code="RateTableSublineBasicGroupIExcludingVandalismAndSprinklerLeakage" Name="SublineBasicGroupIExcludingVandalismAndSprinklerLeakage">
+			<meta:Description>Subline Basic Group I Excluding Vandalism And Sprinkler Leakage</meta:Description>
+			<meta:Property Name="Comment" Type="string">Stat Code</meta:Property>
+		</meta:MetadataEntry>
+		<meta:MetadataEntry Code="RateTableSublineBasicGroupII" Name="SublineBasicGroupII">
+			<meta:Description>Subline Basic Group II</meta:Description>
+			<meta:Property Name="Comment" Type="string">Stat Code</meta:Property>
+		</meta:MetadataEntry>
+		<meta:MetadataEntry Code="RateTableSublineBasicGroupIIExcludingWindstormOrHail" Name="SublineBasicGroupIIExcludingWindstormOrHail">
+			<meta:Description>Subline Basic Group II Excluding Windstorm Or Hail</meta:Description>
+			<meta:Property Name="Comment" Type="string">Stat Code</meta:Property>
+		</meta:MetadataEntry>
+		<meta:MetadataEntry Code="RateTableSublineBroadForm" Name="SublineBroadForm">
+			<meta:Description>Subline Broad Form</meta:Description>
+			<meta:Property Name="Comment" Type="string">Stat Code</meta:Property>
+		</meta:MetadataEntry>
+		<meta:MetadataEntry Code="RateTableSublineDischargeFromSewerDrainOrPump" Name="SublineDischargeFromSewerDrainOrPump">
+			<meta:Description>Subline Discharge FromS Sewer Drain Or Pump</meta:Description>
+			<meta:Property Name="Comment" Type="string">Stat Code</meta:Property>
+		</meta:MetadataEntry>
+		<meta:MetadataEntry Code="RateTableSublineEarthquake" Name="SublineEarthquake">
+			<meta:Description>Subline Earthquake</meta:Description>
+			<meta:Property Name="Comment" Type="string">Stat Code</meta:Property>
+		</meta:MetadataEntry>
+		<meta:MetadataEntry Code="RateTableSublineEquipmentBreakdown" Name="SublineEquipmentBreakdown">
+			<meta:Description>Subline Equipment Break Down</meta:Description>
+			<meta:Property Name="Comment" Type="string">Stat Code</meta:Property>
+		</meta:MetadataEntry>
+		<meta:MetadataEntry Code="RateTableSublineFloodCoverageWithNFIP" Name="SublineFloodCoverageWithNFIP">
+			<meta:Description>Subline Flood Coverage With NFIP</meta:Description>
+		</meta:MetadataEntry>
+		<meta:MetadataEntry Code="RateTableSublineFloodCoverageWithoutNFIP" Name="SublineFloodCoverageWithoutNFIP">
+			<meta:Description>Subline Flood Coverage  Without NFIP</meta:Description>
+		</meta:MetadataEntry>
+		<meta:MetadataEntry Code="RateTableSublineFoodContamination" Name="SublineFoodContamination">
+			<meta:Description>Subline Food Contamination</meta:Description>
+			<meta:Property Name="Comment" Type="string">Stat Code</meta:Property>
+		</meta:MetadataEntry>
+		<meta:MetadataEntry Code="RateTableSublineSpecialFormExcludingTheft" Name="SublineSpecialFormExcludingTheft">
+			<meta:Description>Subline Special Form Excluding Theft</meta:Description>
+			<meta:Property Name="Comment" Type="string">Stat Code</meta:Property>
+		</meta:MetadataEntry>
+		<meta:MetadataEntry Code="RateTableSublineSpecialFormIncludingTheft" Name="SublineSpecialFormIncludingTheft">
+			<meta:Description>Subline Special Form Including Theft</meta:Description>
+			<meta:Property Name="Comment" Type="string">Stat Code</meta:Property>
+		</meta:MetadataEntry>
+		<meta:MetadataEntry Code="RateTableSublineSpoilage" Name="SublineSpoilage">
+			<meta:Description>Subline Spoilage</meta:Description>
+			<meta:Property Name="Comment" Type="string">Stat Code</meta:Property>
+		</meta:MetadataEntry>
+		<meta:MetadataEntry Code="RateTableSublineUnmannedAircraftDrones" Name="SublineUnmannedAircraftDrones">
+			<meta:Description>Subline Unmanned Aircraft Drones</meta:Description>
+			<meta:Property Name="Comment" Type="string">Stat Code</meta:Property>
+		</meta:MetadataEntry>
+		<meta:MetadataEntry Code="RateTableSubStandardClassRatedRatingIdentificationCode" Name="SubStandardClassRatedRatingIdentificationCode">
+			<meta:Description>Sub Standard Class Rated Rating Identification Code</meta:Description>
+			<meta:Property Name="Comment" Type="string">Stat CCode</meta:Property>
+		</meta:MetadataEntry>
+		<meta:MetadataEntry Code="RateTableSubStdConditionRate" Name="SubStdConditionRate">
+			<meta:Description>Sub-Standard Condition Rate</meta:Description>
+		</meta:MetadataEntry>
+		<meta:MetadataEntry Code="RateTableSurchargeFactor" Name="SurchargeFactor">
+			<meta:Description>Surcharge Factor</meta:Description>
+		</meta:MetadataEntry>
+		<meta:MetadataEntry Code="RateTableTerrorismBiologicalChemicalExclusionFactor" Name="TerrorismBiologicalChemicalExclusionFactor">
+			<meta:Description>Terrorism Biological or Chemical Exclusion Factor</meta:Description>
+			<meta:Property Name="Comment" Type="string">Not in use</meta:Property>
+		</meta:MetadataEntry>
+		<meta:MetadataEntry Code="RateTableTerrorismExclgNuclearBiologicalChemicalEvents" Name="TerrorismExclgNuclearBiologicalChemicalEvents">
+			<meta:Description>Terrorism Excluding Nuclear, Biological and Chemical Events</meta:Description>
+			<meta:Property Name="Comment" Type="string">Not in use</meta:Property>
+		</meta:MetadataEntry>
+		<meta:MetadataEntry Code="RateTableTerrorismExclusionFactor" Name="TerrorismExclusionFactor">
+			<meta:Description>Terrorism Exclusion Factor</meta:Description>
+			<meta:Property Name="Comment" Type="string">Not in use</meta:Property>
+		</meta:MetadataEntry>
+		<meta:MetadataEntry Code="RateTableTerrorismLossCost" Name="TerrorismLossCost">
+			<meta:Description>Terrorism Loss Cost</meta:Description>
+		</meta:MetadataEntry>
+		<meta:MetadataEntry Code="RateTableTerrorismNBCExclFactor" Name="TerrorismNBCExclFactor">
+			<meta:Description>Terrorism Nuclear, Biological Chemical Exclusion Factors</meta:Description>
+		</meta:MetadataEntry>
+		<meta:MetadataEntry Code="RateTableTerrorismPEXNumber" Name="TerrorismPEXNumber">
+			<meta:Description>Terrorism PEX Number</meta:Description>
+		</meta:MetadataEntry>
+		<meta:MetadataEntry Code="RateTableTerrorismRate" Name="TerrorismRate">
+			<meta:Description>Terrorism Rate</meta:Description>
+			<meta:Property Name="Comment" Type="string">Not in use</meta:Property>
+		</meta:MetadataEntry>
+		<meta:MetadataEntry Code="RateTableTerrorismRejectionFactor" Name="TerrorismRejectionFactor">
+			<meta:Description>Terrorism Rejection Factor</meta:Description>
+			<meta:Property Name="Comment" Type="string">Not in use</meta:Property>
+		</meta:MetadataEntry>
+		<meta:MetadataEntry Code="RateTableTerrorismSubLimitFactor" Name="TerrorismSubLimitFactor">
+			<meta:Description>Terrorism Sub-Limit Factor</meta:Description>
+		</meta:MetadataEntry>
+		<meta:MetadataEntry Code="RateTableTerrorismTerritoryTier" Name="TerrorismTerritoryTier">
+			<meta:Description>Terrorism Territory Tier</meta:Description>
+		</meta:MetadataEntry>
+		<meta:MetadataEntry Code="RateTableTerrorismTEXNumber" Name="TerrorismTEXNumber">
+			<meta:Description>Terrorism TEX Number</meta:Description>
+		</meta:MetadataEntry>
+		<meta:MetadataEntry Code="RateTableTerrsmBldgBaseRate" Name="TerrsmBldgBaseRate">
+			<meta:Description>Terrorism Bldg Base Rate</meta:Description>
+		</meta:MetadataEntry>
+		<meta:MetadataEntry Code="RateTableTerrsmPremiumCoverageStatCode" Name="TerrsmPremiumCoverageStatCode">
+			<meta:Description>Terrorism Premium Coverage Stat Code</meta:Description>
+			<meta:Property Name="Comment" Type="string">Stat Code</meta:Property>
+		</meta:MetadataEntry>
+		<meta:MetadataEntry Code="RateTableTerrsmPremiumNoNonCertfdCoverageStatCode" Name="TerrsmPremiumNoNonCertfdCoverageStatCode">
+			<meta:Description>Terrorism Premium No Non Certified Coverage Stat Code</meta:Description>
+			<meta:Property Name="Comment" Type="string">Stat Code</meta:Property>
+		</meta:MetadataEntry>
+		<meta:MetadataEntry Code="RateTableTerrsmPrsnlPropBaseRate" Name="TerrsmPrsnlPropBaseRate">
+			<meta:Description>Terrorism Prsnl Prop Base Rate</meta:Description>
+		</meta:MetadataEntry>
+		<meta:MetadataEntry Code="RateTableTheftIncrementFactor" Name="TheftIncrementFactor">
+			<meta:Description>Theft Increment Factor</meta:Description>
+		</meta:MetadataEntry>
+		<meta:MetadataEntry Code="RateTableTheftOfBuildingMaterialsAndSuppliesOtherThanBuildersRiskRate" Name="TheftOfBuildingMaterialsAndSuppliesOtherThanBuildersRiskRate">
+			<meta:Description>Theft Of Building Materials And Supplies (Other Than Builders Risk) Rate</meta:Description>
+		</meta:MetadataEntry>
+		<meta:MetadataEntry Code="RateTableTimeElementAllOtherCoverageCode" Name="TimeElementAllOtherCoverageCode">
+			<meta:Description>Time Element All Other Coverage Code</meta:Description>
+			<meta:Property Name="Comment" Type="string">Stat Code</meta:Property>
+		</meta:MetadataEntry>
+		<meta:MetadataEntry Code="RateTableTimeElementExtraExpenseCoverageCode" Name="TimeElementExtraExpenseCoverageCode">
+			<meta:Description>Time Element Extra Expense Coverage Code</meta:Description>
+			<meta:Property Name="Comment" Type="string">Stat Code</meta:Property>
+		</meta:MetadataEntry>
+		<meta:MetadataEntry Code="RateTableTimeElementOtherThanRentalCoverageCode" Name="TimeElementOtherThanRentalCoverageCode">
+			<meta:Description>Time Element Other Than Rental Coverage Code</meta:Description>
+			<meta:Property Name="Comment" Type="string">Stat Code</meta:Property>
+		</meta:MetadataEntry>
+		<meta:MetadataEntry Code="RateTableTimeElementRentalCoverageCode" Name="TimeElementRentalCoverageCode">
+			<meta:Description>Time Element Rental Coverage Code</meta:Description>
+			<meta:Property Name="Comment" Type="string">Stat Code</meta:Property>
+		</meta:MetadataEntry>
+		<meta:MetadataEntry Code="RateTableTobaccoInSalesWarehousesRate" Name="TobaccoInSalesWarehousesRate">
+			<meta:Description>Tobacco In Sales Warehouses Rate</meta:Description>
+		</meta:MetadataEntry>
+		<meta:MetadataEntry Code="RateTableTotalRatingModicationStatCode" Name="TotalRatingModicationStatCode">
+			<meta:Description>Total Rating Modication Stat Code</meta:Description>
+			<meta:Property Name="Comment" Type="string">Stat Code</meta:Property>
+		</meta:MetadataEntry>
+		<meta:MetadataEntry Code="RateTableTuitionAndFeesFactor" Name="TuitionAndFeesFactor">
+			<meta:Description>Tuition and Fees Factor</meta:Description>
+		</meta:MetadataEntry>
+		<meta:MetadataEntry Code="RateTableTypeOfPolicyCode" Name="TypeOfPolicyCode">
+			<meta:Description>Type Of Policy Code</meta:Description>
+		</meta:MetadataEntry>
+		<meta:MetadataEntry Code="RateTableTypeOfPolicyEQStatCode" Name="TypeOfPolicyEQStatCode">
+			<meta:Description>Type Of Policy EQ Stat Code</meta:Description>
+			<meta:Property Name="Comment" Type="string">Stat Code</meta:Property>
+		</meta:MetadataEntry>
+		<meta:MetadataEntry Code="RateTableTypeOfPolicyStatCode" Name="TypeOfPolicyStatCode">
+			<meta:Description>Type of Policy Stat Code</meta:Description>
+			<meta:Property Name="Comment" Type="string">Stat Code</meta:Property>
+		</meta:MetadataEntry>
+		<meta:MetadataEntry Code="RateTableUnmannedAircraftClassCodes" Name="UnmannedAircraftClassCodes">
+			<meta:Description>Unmanned Aircraft Class Codes</meta:Description>
+			<meta:Property Name="Comment" Type="string">Stat Code</meta:Property>
+		</meta:MetadataEntry>
+		<meta:MetadataEntry Code="RateTableUnmannedAircraftLossCosts" Name="UnmannedAircraftLossCosts">
+			<meta:Description>Unmanned Aircraft Loss Costs</meta:Description>
+		</meta:MetadataEntry>
+		<meta:MetadataEntry Code="RateTableUnmannedAircraftLossSettlementCode" Name="UnmannedAircraftLossSettlementCode">
+			<meta:Description>Unmanned Aircraft Loss Settlement Code</meta:Description>
+			<meta:Property Name="Comment" Type="string">Stat Code</meta:Property>
+		</meta:MetadataEntry>
+		<meta:MetadataEntry Code="RateTableUnmannedAircraftMethodOfControlCode" Name="UnmannedAircraftMethodOfControlCode">
+			<meta:Description>Unmanned Aircraft Method Of Control Code</meta:Description>
+			<meta:Property Name="Comment" Type="string">Stat Code</meta:Property>
+		</meta:MetadataEntry>
+		<meta:MetadataEntry Code="RateTableUnmannedAircraftNewlyAcquiredPropertyFactor" Name="UnmannedAircraftNewlyAcquiredPropertyFactor">
+			<meta:Description>Unmanned Aircraft Newly Acquired Property Factor</meta:Description>
+		</meta:MetadataEntry>
+		<meta:MetadataEntry Code="RateTableUnmannedAircraftNoDeductibleFactor" Name="UnmannedAircraftNoDeductibleFactor">
+			<meta:Description>Unmanned Aircraft No Deductible Factor</meta:Description>
+		</meta:MetadataEntry>
+		<meta:MetadataEntry Code="RateTableUnmannedAircraftOwnershipAndOperationCode" Name="UnmannedAircraftOwnershipAndOperationCode">
+			<meta:Description>Unmanned Aircraft Ownership And Operation Code</meta:Description>
+			<meta:Property Name="Comment" Type="string">Stat Code</meta:Property>
+		</meta:MetadataEntry>
+		<meta:MetadataEntry Code="RateTableUnmannedAircraftPrimaryPlaceOfOperationCode" Name="UnmannedAircraftPrimaryPlaceOfOperationCode">
+			<meta:Description>Unmanned Aircraft Primary Place Of Operation Code</meta:Description>
+			<meta:Property Name="Comment" Type="string">Stat Code</meta:Property>
+		</meta:MetadataEntry>
+		<meta:MetadataEntry Code="RateTableUnmannedAircraftRatingIdentificationCode" Name="UnmannedAircraftRatingIdentificationCode">
+			<meta:Description>Unmanned Aircraft Rating Identification Code</meta:Description>
+			<meta:Property Name="Comment" Type="string">Stat Code</meta:Property>
+		</meta:MetadataEntry>
+		<meta:MetadataEntry Code="RateTableUnmannedAircraftRiskClass" Name="UnmannedAircraftRiskClass">
+			<meta:Description>Unmanned Aircraft Risk Class</meta:Description>
+		</meta:MetadataEntry>
+		<meta:MetadataEntry Code="RateTableUnmannedAircraftSecurityFeaturesCode" Name="UnmannedAircraftSecurityFeaturesCode">
+			<meta:Description>Unmanned Aircraft Security Features Code</meta:Description>
+			<meta:Property Name="Comment" Type="string">Stat Code</meta:Property>
+		</meta:MetadataEntry>
+		<meta:MetadataEntry Code="RateTableUnmannedAircraftSecurityFeaturesUnknownCode" Name="UnmannedAircraftSecurityFeaturesUnknownCode">
+			<meta:Description>Unmanned Aircraft Security Features Unknown Code</meta:Description>
+			<meta:Property Name="Comment" Type="string">Stat Code</meta:Property>
+		</meta:MetadataEntry>
+		<meta:MetadataEntry Code="RateTableUtilityServicesTimeElementWaitingPeriodFactor" Name="UtilityServicesTimeElementWaitingPeriodFactor">
+			<meta:Description>Utility Services Time Element Waiting Period Factor</meta:Description>
+		</meta:MetadataEntry>
+		<meta:MetadataEntry Code="RateTableUtilityServiceTimeElementRate" Name="UtilityServiceTimeElementRate">
+			<meta:Description>Utility Service Time Element Rate</meta:Description>
+		</meta:MetadataEntry>
+		<meta:MetadataEntry Code="RateTableUtilitySrvcDirectDamageOverheadPowerTransmissionAndCommunicationLines" Name="UtilitySrvcDirectDamageOverheadPowerTransmissionAndCommunicationLines">
+			<meta:Description>Utility Serv Direct Damage Overhead Power Transmission And Communication Lines</meta:Description>
+		</meta:MetadataEntry>
+		<meta:MetadataEntry Code="RateTableUtilitySrvcDirectDamageWaterPowerAndCommunicationSupply" Name="UtilitySrvcDirectDamageWaterPowerAndCommunicationSupply">
+			<meta:Description>Utility Serv Direct Damage Water, Power And Communication Supply</meta:Description>
+		</meta:MetadataEntry>
+		<meta:MetadataEntry Code="RateTableUtilitySrvcTimeElementCommunicationsSupply" Name="UtilitySrvcTimeElementCommunicationsSupply">
+			<meta:Description>Utility Service Time Element Communications Supply</meta:Description>
+		</meta:MetadataEntry>
+		<meta:MetadataEntry Code="RateTableUtilitySrvcTimeElementCommunicationsSupplyNonPublic" Name="UtilitySrvcTimeElementCommunicationsSupplyNonPublic">
+			<meta:Description>Utility Service Time Element Communications Supply NonPublic</meta:Description>
+		</meta:MetadataEntry>
+		<meta:MetadataEntry Code="RateTableUtilitySrvcTimeElementOverheadPowerTransmissionAndCommunicationLines" Name="UtilitySrvcTimeElementOverheadPowerTransmissionAndCommunicationLines">
+			<meta:Description>Utility Service Time Element Overhead Power Transmission And Communication Lines</meta:Description>
+		</meta:MetadataEntry>
+		<meta:MetadataEntry Code="RateTableUtilitySrvcTimeElementOverheadPowerTransmissionAndCommunicationLinesNonPublic" Name="UtilitySrvcTimeElementOverheadPowerTransmissionAndCommunicationLinesNonPublic">
+			<meta:Description>Utility Service Time Element Overhead Power Transmission And Communication Lines NonPublic</meta:Description>
+		</meta:MetadataEntry>
+		<meta:MetadataEntry Code="RateTableUtilitySrvcTimeElementWaterAndPowerSupply" Name="UtilitySrvcTimeElementWaterAndPowerSupply">
+			<meta:Description>Utility Service Time Element Water and Power Supply</meta:Description>
+		</meta:MetadataEntry>
+		<meta:MetadataEntry Code="RateTableUtilitySrvcTimeElementWaterAndPowerSupplyNonPublic" Name="UtilitySrvcTimeElementWaterAndPowerSupplyNonPublic">
+			<meta:Description>Utility Service Time Element Water and Power Supply NonPublic</meta:Description>
+		</meta:MetadataEntry>
+		<meta:MetadataEntry Code="RateTableVacancyPermitBasicGroupIIMinRate" Name="VacancyPermitBasicGroupIIMinRate">
+			<meta:Description>Vacancy Permit Basic Group II Minimum Rate</meta:Description>
+		</meta:MetadataEntry>
+		<meta:MetadataEntry Code="RateTableVacancyPermitBasicGroupIMinRate" Name="VacancyPermitBasicGroupIMinRate">
+			<meta:Description>Vacancy Permit Basic Group I Minimum Rate</meta:Description>
+		</meta:MetadataEntry>
+		<meta:MetadataEntry Code="RateTableVacancyPermitBasicGroupIStdPropPolIncldgVandalismRate" Name="VacancyPermitBasicGroupIStdPropPolIncldgVandalismRate">
+			<meta:Description>Vacancy Permit Basic Group I Standard Property Policy Including Vandalism Rate</meta:Description>
+		</meta:MetadataEntry>
+		<meta:MetadataEntry Code="RateTableVacancyPermitFactors" Name="VacancyPermitFactors">
+			<meta:Description>Vacancy Permit Factors</meta:Description>
+		</meta:MetadataEntry>
+		<meta:MetadataEntry Code="RateTableVacancyPermitOtherCausesOfLossFactor" Name="VacancyPermitOtherCausesOfLossFactor">
+			<meta:Description>Vacancy Permit Other Causes Of Loss Factor</meta:Description>
+		</meta:MetadataEntry>
+		<meta:MetadataEntry Code="RateTableVacantBldgPreviousOrIntendedOccup" Name="VacantBldgPreviousOrIntendedOccup">
+			<meta:Description>Vacant Building Prevoius Or Intended Occupancy</meta:Description>
+		</meta:MetadataEntry>
+		<meta:MetadataEntry Code="RateTableValRptgAcqrdLocsRate" Name="ValRptgAcqrdLocsRate">
+			<meta:Description>Value Reporting Acquired Locations Rate</meta:Description>
+		</meta:MetadataEntry>
+		<meta:MetadataEntry Code="RateTableValRptgFormNewBusnFactor" Name="ValRptgFormNewBusnFactor">
+			<meta:Description>Value Reporting Form New Busn Factor</meta:Description>
+			<meta:Property Name="Comment" Type="string">No longer in use.</meta:Property>
+		</meta:MetadataEntry>
+		<meta:MetadataEntry Code="RateTableValRptgIncLocsRate" Name="ValRptgIncLocsRate">
+			<meta:Description>Value Reporting Incidental Locations Rate</meta:Description>
+		</meta:MetadataEntry>
+		<meta:MetadataEntry Code="RateTableValRptgSeasonalRiskFactor" Name="ValRptgSeasonalRiskFactor">
+			<meta:Description>Value Reporting Seasonal Risk Factor</meta:Description>
+			<meta:Property Name="Comment" Type="string">No longer in use.</meta:Property>
+		</meta:MetadataEntry>
+		<meta:MetadataEntry Code="RateTableVandalismExclFactor" Name="VandalismExclFactor">
+			<meta:Description>Vandalism Excl Factor</meta:Description>
+		</meta:MetadataEntry>
+		<meta:MetadataEntry Code="RateTableVandalismExclRate" Name="VandalismExclRate">
+			<meta:Description>Vandalism Exclusion Rate</meta:Description>
+			<meta:Property Name="Comment" Type="string">No Longer used see VandalismExclFactor</meta:Property>
+		</meta:MetadataEntry>
+		<meta:MetadataEntry Code="RateTableVandalismStatus" Name="VandalismStatus">
+			<meta:Description>Vandalism Status</meta:Description>
+		</meta:MetadataEntry>
+		<meta:MetadataEntry Code="RateTableVehExclFactorOutdoorTrees" Name="VehExclFactorOutdoorTrees">
+			<meta:Description>Vehicle Exclusion Factor</meta:Description>
+		</meta:MetadataEntry>
+		<meta:MetadataEntry Code="RateTableWatchmanCreditFactor" Name="WatchmanCreditFactor">
+			<meta:Description>Watchman Credit Factor</meta:Description>
+		</meta:MetadataEntry>
+		<meta:MetadataEntry Code="RateTableWatercraftExclBuybackFactor" Name="WatercraftExclBuybackFactor">
+			<meta:Description>Watercraft Exclusion Buyback Factor</meta:Description>
+		</meta:MetadataEntry>
+		<meta:MetadataEntry Code="RateTableWatercraftExclusionBuybackConstructionOptionsConverted" Name="WatercraftExclusionBuybackConstructionOptionsConverted">
+			<meta:Description>Watercraft Exclusion Buyback Construction Options Converted</meta:Description>
+		</meta:MetadataEntry>
+		<meta:MetadataEntry Code="RateTableWindstormOrHailDeductibleAsNumber" Name="WindstormOrHailDeductibleAsNumber">
+			<meta:Description>Windstorm Or Hail Deductible As Number</meta:Description>
+			<meta:Property Name="Comment" Type="string">Utility</meta:Property>
+		</meta:MetadataEntry>
+		<meta:MetadataEntry Code="RateTableWindstormOrHailDeductibleFactor" Name="WindstormOrHailDeductibleFactor">
+			<meta:Description>Windstorm or Hail Deductible Factor</meta:Description>
+		</meta:MetadataEntry>
+		<meta:MetadataEntry Code="RateTableWindstormOrHailDeductibleStatCode" Name="WindstormOrHailDeductibleStatCode">
+			<meta:Description>Windstorm Or Hail Deductible Stat Code</meta:Description>
+			<meta:Property Name="Comment" Type="string">Stat Code</meta:Property>
+		</meta:MetadataEntry>
+		<meta:MetadataEntry Code="RateTableWindstormOrHailExclFactor" Name="WindstormOrHailExclFactor">
+			<meta:Description>Windstorm Or Hail Exclusion Factor</meta:Description>
+		</meta:MetadataEntry>
+		<meta:MetadataEntry Code="RateTableYearOfConstructionCode" Name="YearOfConstructionCode">
+			<meta:Description>Year Of Construction Code</meta:Description>
+		</meta:MetadataEntry>
+	</meta:MetadataEntry>
+</meta:Metadata>

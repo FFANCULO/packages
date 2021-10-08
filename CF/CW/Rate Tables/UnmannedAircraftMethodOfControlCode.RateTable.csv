@@ -1,0 +1,4 @@
+"StateCode","MethodOfControl","Code"
+"CW","Autonomous drones","1"
+"CW","Remote controlled drones","2"
+"CW","Unknown","3"

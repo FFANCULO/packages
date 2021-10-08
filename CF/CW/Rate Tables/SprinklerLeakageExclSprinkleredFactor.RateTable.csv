@@ -1,0 +1,13 @@
+"StateCode","ConstructionCode","CovType","Factor"
+"CW",1,"Bldg",0.92
+"CW",1,"PrsnlProp",0.93
+"CW",2,"Bldg",0.93
+"CW",2,"PrsnlProp",0.86
+"CW",3,"Bldg",0.77
+"CW",3,"PrsnlProp",0.81
+"CW",4,"Bldg",0.81
+"CW",4,"PrsnlProp",0.83
+"CW",5,"Bldg",0.84
+"CW",5,"PrsnlProp",0.87
+"CW",6,"Bldg",0.84
+"CW",6,"PrsnlProp",0.87

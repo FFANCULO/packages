@@ -1,0 +1,6 @@
+"StateCode","OrdinanceOrLawCovType","DisplayValue","DataValue","MinimumValue","MaximumValue"
+"CW","Coverage A Only","","",0,0
+"CW","Coverage C Only","","",0,0
+"CW","Coverages A and B","","",1,9999999
+"CW","Coverages A and B & C Separate","","",1,9999999
+"CW","Coverages A and B & C Combined","","",0,0

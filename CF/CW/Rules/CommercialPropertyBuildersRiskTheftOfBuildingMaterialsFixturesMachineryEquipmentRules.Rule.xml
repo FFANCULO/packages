@@ -1,0 +1,313 @@
+<rul:Rules xmlns:rul="http://www.verisk.com/iso/erc/Rule">
+	<rul:Rule Name="InitializeRuleSet" DataDefGroup="CommercialPropertyBuildersRiskTheftOfBuildingMaterialsFixturesMachineryEquipment">
+		<rul:Sequence />
+	</rul:Rule>
+	<rul:Rule Name="CalculateTotalPremium" Type="decimal" DataDefGroup="CommercialPropertyBuildersRiskTheftOfBuildingMaterialsFixturesMachineryEquipment">
+		<rul:If>
+			<rul:Test>
+				<rul:And>
+					<rul:Equal>
+						<rul:FirstValue Type="integer" FromConstant="0" FromDataDef="@PremiumIndicator" Order="DataDefInputParamConstant" />
+						<rul:Constant Type="integer">1</rul:Constant>
+					</rul:Equal>
+					<rul:NotEqual>
+						<rul:FirstValue Type="decimal" FromConstant="0" FromDataDef="@Premium" Order="DataDefInputParamConstant" />
+						<rul:Constant Type="decimal">0</rul:Constant>
+					</rul:NotEqual>
+				</rul:And>
+			</rul:Test>
+			<rul:Then>
+				<rul:FirstValue Type="decimal" FromConstant="0" FromDataDef="@Premium" Order="DataDefInputParamConstant" />
+			</rul:Then>
+			<rul:Else>
+				<rul:Constant Type="decimal">0</rul:Constant>
+			</rul:Else>
+		</rul:If>
+	</rul:Rule>
+	<rul:Rule Name="ErcSetRatesAndFactors" Type="none" DataDefGroup="CommercialPropertyBuildersRiskTheftOfBuildingMaterialsFixturesMachineryEquipment">
+		<rul:Sequence>
+			<rul:RunRule Type="decimal" ToDataDef="@BuildersRiskTheftRate" FileName="CommercialPropertyBuildersRiskTheftOfBuildingMaterialsFixturesMachineryEquipmentRules" Rule="LookupBuildersRiskTheftRate" ClearCache="true" />
+		</rul:Sequence>
+	</rul:Rule>
+	<rul:Rule Name="ErcRate" Type="none" DataDefGroup="CommercialPropertyBuildersRiskTheftOfBuildingMaterialsFixturesMachineryEquipment">
+		<rul:Sequence>
+			<rul:WithArgs>
+				<rul:Arg Type="decimal" Param="calcPremium">
+					<rul:FirstNonNull Type="decimal">
+						<rul:Product DecimalPlaces="0">
+							<rul:Product DecimalPlaces="0">
+								<rul:Product DecimalPlaces="0">
+									<rul:Product DecimalPlaces="0">
+										<rul:Product DecimalPlaces="0">
+											<rul:Product DecimalPlaces="3">
+												<rul:FirstValue Type="decimal" FromConstant="0" FromDataDef="@BuildersRiskTheftRate" Order="DataDefInputParamConstant" />
+												<rul:FirstValue Type="decimal" FromConstant="0" FromDataDef="ancestor::CommercialProperty/@LossCostMultiplier" Order="DataDefInputParamConstant" />
+											</rul:Product>
+											<rul:Divide>
+												<rul:Value Type="integer" FromDataDef="@Limit" />
+												<rul:Constant Type="decimal">100</rul:Constant>
+											</rul:Divide>
+										</rul:Product>
+										<rul:FirstValue Type="decimal" FromConstant="0" FromDataDef="ancestor::CommercialProperty/@PackageModFactor" Order="DataDefInputParamConstant" />
+									</rul:Product>
+									<rul:FirstValue Type="decimal" FromConstant="0" FromDataDef="ancestor::CommercialProperty/@IRPMFactor" Order="DataDefInputParamConstant" />
+								</rul:Product>
+								<rul:FirstValue Type="decimal" FromConstant="0" FromDataDef="../../../../../../@CyberIncidentExclusionFactorSpecial" Order="DataDefInputParamConstant" />
+							</rul:Product>
+							<rul:FirstValue Type="decimal" FromConstant="0" FromDataDef="../../../../../../@CyberIncidentExclusionCOLExcptnsFactorSpecial" Order="DataDefInputParamConstant" />
+						</rul:Product>
+						<rul:Constant Type="decimal">0</rul:Constant>
+					</rul:FirstNonNull>
+				</rul:Arg>
+				<rul:Value Type="decimal" ToDataDef="@Premium" FromParam="calcPremium" />
+			</rul:WithArgs>
+			<rul:If>
+				<rul:Test>
+					<rul:NotEqual>
+						<rul:FirstValue Type="decimal" FromConstant="0" FromDataDef="@Premium" Order="DataDefInputParamConstant" />
+						<rul:Constant Type="decimal">0</rul:Constant>
+					</rul:NotEqual>
+				</rul:Test>
+				<rul:Then>
+					<rul:Sequence>
+						<rul:Constant Type="integer" ToDataDef="@PremiumIndicator">1</rul:Constant>
+					</rul:Sequence>
+				</rul:Then>
+				<rul:Else>
+					<rul:Sequence>
+						<rul:Constant Type="integer" ToDataDef="@PremiumIndicator">0</rul:Constant>
+					</rul:Sequence>
+				</rul:Else>
+			</rul:If>
+		</rul:Sequence>
+	</rul:Rule>
+	<rul:Rule Name="ErcSetStatisticalCodes" Type="none" DataDefGroup="CommercialPropertyBuildersRiskTheftOfBuildingMaterialsFixturesMachineryEquipment">
+		<rul:Sequence>
+			<rul:If>
+				<rul:Test>
+					<rul:Exist AtInputDataDef="ancestor::MasterCFCW/Policy" />
+				</rul:Test>
+				<rul:Then>
+					<rul:Sequence>
+						<rul:If>
+							<rul:Test>
+								<rul:Or>
+									<rul:And>
+										<rul:Equal>
+											<rul:FirstValue Type="string" FromConstant="" FromDataDef="ancestor::CommercialPropertyStructure/@CauseOfLossToUse" Order="DataDefInputParamConstant" />
+											<rul:Constant Type="string">Basic</rul:Constant>
+										</rul:Equal>
+										<rul:NotExist AtInputDataDef="ancestor::CommercialPropertyStructure/CommercialPropertyWindstormOrHailExclusionTable/CommercialPropertyWindstormOrHailExclusion" />
+									</rul:And>
+									<rul:And>
+										<rul:Or>
+											<rul:Equal>
+												<rul:FirstValue Type="string" FromConstant="" FromDataDef="ancestor::CommercialPropertyStructure/@CauseOfLoss" Order="DataDefInputParamConstant" />
+												<rul:Constant Type="string">Broad</rul:Constant>
+											</rul:Equal>
+											<rul:Equal>
+												<rul:FirstValue Type="string" FromConstant="" FromDataDef="ancestor::CommercialPropertyStructure/@CauseOfLoss" Order="DataDefInputParamConstant" />
+												<rul:Constant Type="string">Special</rul:Constant>
+											</rul:Equal>
+											<rul:Equal>
+												<rul:FirstValue Type="string" FromConstant="" FromDataDef="ancestor::CommercialPropertyStructure/@BlktCauseOfLossValue" Order="DataDefInputParamConstant" />
+												<rul:Constant Type="string">Broad</rul:Constant>
+											</rul:Equal>
+											<rul:Equal>
+												<rul:FirstValue Type="string" FromConstant="" FromDataDef="ancestor::CommercialPropertyStructure/@BlktCauseOfLossValue" Order="DataDefInputParamConstant" />
+												<rul:Constant Type="string">Special</rul:Constant>
+											</rul:Equal>
+										</rul:Or>
+										<rul:NotEqual>
+											<rul:FirstValue Type="string" FromConstant="" FromDataDef="@Deductible" Order="DataDefInputParamConstant" />
+											<rul:Constant Type="string"></rul:Constant>
+										</rul:NotEqual>
+									</rul:And>
+								</rul:Or>
+							</rul:Test>
+							<rul:Then>
+								<rul:Sequence>
+									<rul:RunRule Type="string" ToDataDef="@AllOtherDeductibleStatCode" FileName="CommercialPropertyBuildersRiskTheftOfBuildingMaterialsFixturesMachineryEquipmentRules" Rule="LookupAllOtherDeductibleStatCode" ClearCache="true" />
+								</rul:Sequence>
+							</rul:Then>
+							<rul:Else>
+								<rul:Sequence>
+									<rul:Constant Type="string" ToDataDef="@AllOtherDeductibleStatCode"></rul:Constant>
+								</rul:Sequence>
+							</rul:Else>
+						</rul:If>
+						<rul:WithArgs>
+							<rul:Arg Type="integer" Param="calcExposureStatAmount">
+								<rul:FirstNonNull Type="integer">
+									<rul:If>
+										<rul:Test>
+											<rul:GreaterThan>
+												<rul:FirstValue Type="integer" FromConstant="0" FromDataDef="@Limit" Order="DataDefInputParamConstant" />
+												<rul:Constant Type="integer">0</rul:Constant>
+											</rul:GreaterThan>
+										</rul:Test>
+										<rul:Then>
+											<rul:Convert Type="integer">
+												<rul:Truncate>
+													<rul:Divide>
+														<rul:Value Type="integer" FromDataDef="@Limit" />
+														<rul:Constant Type="integer">1000</rul:Constant>
+													</rul:Divide>
+												</rul:Truncate>
+											</rul:Convert>
+										</rul:Then>
+									</rul:If>
+									<rul:Constant Type="integer">0</rul:Constant>
+								</rul:FirstNonNull>
+							</rul:Arg>
+							<rul:Value Type="integer" ToDataDef="@ExposureStatAmount" FromParam="calcExposureStatAmount" />
+						</rul:WithArgs>
+						<rul:If>
+							<rul:Test>
+								<rul:And>
+									<rul:NotExist AtInputDataDef="ancestor::CommercialPropertyStructure/CommercialPropertyWindstormOrHailExclusionTable/CommercialPropertyWindstormOrHailExclusion" />
+									<rul:NotEqual>
+										<rul:FirstValue Type="string" FromConstant="" FromDataDef="@Deductible" Order="DataDefInputParamConstant" />
+										<rul:Constant Type="string"></rul:Constant>
+									</rul:NotEqual>
+								</rul:And>
+							</rul:Test>
+							<rul:Then>
+								<rul:Sequence>
+									<rul:RunRule Type="string" ToDataDef="@WindstormOrHailDeductibleStatCode" FileName="CommercialPropertyBuildersRiskTheftOfBuildingMaterialsFixturesMachineryEquipmentRules" Rule="LookupWindstormOrHailDeductibleStatCodeAllOtherDeductibleStatCode" ClearCache="true" />
+								</rul:Sequence>
+							</rul:Then>
+							<rul:Else>
+								<rul:Sequence>
+									<rul:Constant Type="string" ToDataDef="@WindstormOrHailDeductibleStatCode"></rul:Constant>
+								</rul:Sequence>
+							</rul:Else>
+						</rul:If>
+						<rul:If>
+							<rul:Test>
+								<rul:NotEqual>
+									<rul:FirstValue Type="string" FromConstant="" FromDataDef="@Deductible" Order="DataDefInputParamConstant" />
+									<rul:Constant Type="string"></rul:Constant>
+								</rul:NotEqual>
+							</rul:Test>
+							<rul:Then>
+								<rul:Sequence>
+									<rul:RunRule Type="string" ToDataDef="@BasicGroupIDeductibleStatCode" FileName="CommercialPropertyBuildersRiskTheftOfBuildingMaterialsFixturesMachineryEquipmentRules" Rule="LookupBasicGroupIDeductibleStatCodeAllOtherDeductibleStatCode" ClearCache="true" />
+								</rul:Sequence>
+							</rul:Then>
+							<rul:Else>
+								<rul:Sequence>
+									<rul:Constant Type="string" ToDataDef="@BasicGroupIDeductibleStatCode"></rul:Constant>
+								</rul:Sequence>
+							</rul:Else>
+						</rul:If>
+						<rul:RunRule Type="string" ToDataDef="@ClassCode" FileName="CommercialPropertyBuildersRiskTheftOfBuildingMaterialsFixturesMachineryEquipmentRules" Rule="LookupBuildersRiskClassCode" ClearCache="true" />
+					</rul:Sequence>
+				</rul:Then>
+			</rul:If>
+		</rul:Sequence>
+	</rul:Rule>
+	<rul:Rule Name="ErcProcess" Type="none" DataDefGroup="CommercialPropertyBuildersRiskTheftOfBuildingMaterialsFixturesMachineryEquipment">
+		<rul:Sequence>
+			<rul:RunRule Type="none" FileName="CommercialPropertyBuildersRiskTheftOfBuildingMaterialsFixturesMachineryEquipmentRules" Rule="ErcSetRatesAndFactors" ClearCache="true" />
+			<rul:RunRule Type="none" FileName="CommercialPropertyBuildersRiskTheftOfBuildingMaterialsFixturesMachineryEquipmentRules" Rule="ErcRate" ClearCache="true" />
+			<rul:RunRule Type="none" FileName="CommercialPropertyBuildersRiskTheftOfBuildingMaterialsFixturesMachineryEquipmentRules" Rule="ErcSetStatisticalCodes" ClearCache="true" />
+		</rul:Sequence>
+	</rul:Rule>
+	<rul:Rule Name="LookupBuildersRiskTheftRate" Type="decimal" DataDefGroup="CommercialPropertyBuildersRiskTheftOfBuildingMaterialsFixturesMachineryEquipment">
+		<rul:FirstNonNull Type="decimal">
+			<rul:Lookup Type="decimal" MatrixCol="Rate" MatrixDef="BuildersRiskTheftRateDef" MatrixFromConstant="BuildersRiskTheftRate" ResultMode="FirstResult">
+				<rul:Keys>
+					<rul:Value Type="string" FromDataDef="/State/@Code" />
+					<rul:Constant Type="string">Y</rul:Constant>
+				</rul:Keys>
+			</rul:Lookup>
+			<rul:Lookup Type="decimal" MatrixCol="Rate" MatrixDef="BuildersRiskTheftRateDef" MatrixFromConstant="BuildersRiskTheftRate" ResultMode="SingleResult">
+				<rul:Keys>
+					<rul:Constant Type="string">CW</rul:Constant>
+					<rul:Constant Type="string">Y</rul:Constant>
+				</rul:Keys>
+			</rul:Lookup>
+		</rul:FirstNonNull>
+	</rul:Rule>
+	<rul:Rule Name="LookupWindstormOrHailDeductibleStatCodeAllOtherDeductibleStatCode" Type="string" DataDefGroup="CommercialPropertyBuildersRiskTheftOfBuildingMaterialsFixturesMachineryEquipment">
+		<rul:FirstNonNull Type="string">
+			<rul:Lookup Type="string" MatrixCol="Code" MatrixDef="AllOtherDeductibleStatCodeDef" MatrixFromConstant="AllOtherDeductibleStatCode" ResultMode="FirstResult">
+				<rul:Keys>
+					<rul:Value Type="string" FromDataDef="/State/@Code" />
+					<rul:FirstValue Type="string" FromConstant="" FromDataDef="@Deductible" Order="DataDefInputParamConstant" />
+				</rul:Keys>
+			</rul:Lookup>
+			<rul:Lookup Type="string" MatrixCol="Code" MatrixDef="AllOtherDeductibleStatCodeDef" MatrixFromConstant="AllOtherDeductibleStatCode" ResultMode="SingleResult">
+				<rul:Keys>
+					<rul:Constant Type="string">CW</rul:Constant>
+					<rul:FirstValue Type="string" FromConstant="" FromDataDef="@Deductible" Order="DataDefInputParamConstant" />
+				</rul:Keys>
+			</rul:Lookup>
+		</rul:FirstNonNull>
+	</rul:Rule>
+	<rul:Rule Name="LookupBasicGroupIDeductibleStatCodeAllOtherDeductibleStatCode" Type="string" DataDefGroup="CommercialPropertyBuildersRiskTheftOfBuildingMaterialsFixturesMachineryEquipment">
+		<rul:FirstNonNull Type="string">
+			<rul:Lookup Type="string" MatrixCol="Code" MatrixDef="AllOtherDeductibleStatCodeDef" MatrixFromConstant="AllOtherDeductibleStatCode" ResultMode="FirstResult">
+				<rul:Keys>
+					<rul:Value Type="string" FromDataDef="/State/@Code" />
+					<rul:FirstValue Type="string" FromConstant="" FromDataDef="@Deductible" Order="DataDefInputParamConstant" />
+				</rul:Keys>
+			</rul:Lookup>
+			<rul:Lookup Type="string" MatrixCol="Code" MatrixDef="AllOtherDeductibleStatCodeDef" MatrixFromConstant="AllOtherDeductibleStatCode" ResultMode="SingleResult">
+				<rul:Keys>
+					<rul:Constant Type="string">CW</rul:Constant>
+					<rul:FirstValue Type="string" FromConstant="" FromDataDef="@Deductible" Order="DataDefInputParamConstant" />
+				</rul:Keys>
+			</rul:Lookup>
+		</rul:FirstNonNull>
+	</rul:Rule>
+	<rul:Rule Name="LookupAllOtherDeductibleStatCode" Type="string" DataDefGroup="CommercialPropertyBuildersRiskTheftOfBuildingMaterialsFixturesMachineryEquipment">
+		<rul:FirstNonNull Type="string">
+			<rul:Lookup Type="string" MatrixCol="Code" MatrixDef="AllOtherDeductibleStatCodeDef" MatrixFromConstant="AllOtherDeductibleStatCode" ResultMode="FirstResult">
+				<rul:Keys>
+					<rul:Value Type="string" FromDataDef="/State/@Code" />
+					<rul:FirstValue Type="string" FromConstant="" FromDataDef="@Deductible" Order="DataDefInputParamConstant" />
+				</rul:Keys>
+			</rul:Lookup>
+			<rul:Lookup Type="string" MatrixCol="Code" MatrixDef="AllOtherDeductibleStatCodeDef" MatrixFromConstant="AllOtherDeductibleStatCode" ResultMode="SingleResult">
+				<rul:Keys>
+					<rul:Constant Type="string">CW</rul:Constant>
+					<rul:FirstValue Type="string" FromConstant="" FromDataDef="@Deductible" Order="DataDefInputParamConstant" />
+				</rul:Keys>
+			</rul:Lookup>
+		</rul:FirstNonNull>
+	</rul:Rule>
+	<rul:Rule Name="LookupBuildersRiskClassCode" Type="string" DataDefGroup="CommercialPropertyBuildersRiskTheftOfBuildingMaterialsFixturesMachineryEquipment">
+		<rul:FirstNonNull Type="string">
+			<rul:Lookup Type="string" MatrixCol="Code" MatrixDef="BuildersRiskClassCodeDef" MatrixFromConstant="BuildersRiskClassCode" ResultMode="FirstResult">
+				<rul:Keys>
+					<rul:Value Type="string" FromDataDef="/State/@Code" />
+					<rul:Constant Type="string">Y</rul:Constant>
+				</rul:Keys>
+			</rul:Lookup>
+			<rul:Lookup Type="string" MatrixCol="Code" MatrixDef="BuildersRiskClassCodeDef" MatrixFromConstant="BuildersRiskClassCode" ResultMode="SingleResult">
+				<rul:Keys>
+					<rul:Constant Type="string">CW</rul:Constant>
+					<rul:Constant Type="string">Y</rul:Constant>
+				</rul:Keys>
+			</rul:Lookup>
+		</rul:FirstNonNull>
+	</rul:Rule>
+	<rul:Rule Name="LookupBuildersRiskTheftOfBuildingMaterialsFixturesMachineryEquipmentFactor" Type="decimal" DataDefGroup="CommercialPropertyBuildersRiskTheftOfBuildingMaterialsFixturesMachineryEquipment">
+		<rul:FirstNonNull Type="decimal">
+			<rul:Lookup Type="decimal" MatrixCol="Factor" MatrixDef="BuildersRiskTheftOfBuildingMaterialsFixturesMachineryEquipmentFactorDef" MatrixFromConstant="BuildersRiskTheftOfBuildingMaterialsFixturesMachineryEquipmentFactor" ResultMode="FirstResult">
+				<rul:Keys>
+					<rul:Value Type="string" FromDataDef="/State/@Code" />
+					<rul:Constant Type="string">Y</rul:Constant>
+				</rul:Keys>
+			</rul:Lookup>
+			<rul:Lookup Type="decimal" MatrixCol="Factor" MatrixDef="BuildersRiskTheftOfBuildingMaterialsFixturesMachineryEquipmentFactorDef" MatrixFromConstant="BuildersRiskTheftOfBuildingMaterialsFixturesMachineryEquipmentFactor" ResultMode="SingleResult">
+				<rul:Keys>
+					<rul:Constant Type="string">CW</rul:Constant>
+					<rul:Constant Type="string">Y</rul:Constant>
+				</rul:Keys>
+			</rul:Lookup>
+		</rul:FirstNonNull>
+	</rul:Rule>
+</rul:Rules>

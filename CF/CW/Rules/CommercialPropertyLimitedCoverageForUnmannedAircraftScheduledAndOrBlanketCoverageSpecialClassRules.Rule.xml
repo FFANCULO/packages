@@ -1,0 +1,214 @@
+<rul:Rules xmlns:rul="http://www.verisk.com/iso/erc/Rule">
+	<rul:Rule Name="InitializeRuleSet" DataDefGroup="CommercialPropertyLimitedCoverageForUnmannedAircraftScheduledAndOrBlanketCoverageSpecialClass">
+		<rul:Sequence>
+			<rul:ForEach AtDataDef="CommercialPropertyLimitedCoverageForUnmannedAircraftScheduledAndOrBlanketCoverageSpecialClassDetailTable/CommercialPropertyLimitedCoverageForUnmannedAircraftScheduledAndOrBlanketCoverageSpecialClassDetail">
+				<rul:RunRule Type="none" FileName="CommercialPropertyLimitedCoverageForUnmannedAircraftScheduledAndOrBlanketCoverageSpecialClassDetailRules" Rule="InitializeRuleSet" ClearCache="true" />
+			</rul:ForEach>
+		</rul:Sequence>
+	</rul:Rule>
+	<rul:Rule Name="CalculateTotalPremium" Type="decimal" DataDefGroup="CommercialPropertyLimitedCoverageForUnmannedAircraftScheduledAndOrBlanketCoverageSpecialClass">
+		<rul:Sum>
+			<rul:ForEach AtDataDef="CommercialPropertyLimitedCoverageForUnmannedAircraftScheduledAndOrBlanketCoverageSpecialClassDetailTable/CommercialPropertyLimitedCoverageForUnmannedAircraftScheduledAndOrBlanketCoverageSpecialClassDetail">
+				<rul:RunRule Type="decimal" FileName="CommercialPropertyLimitedCoverageForUnmannedAircraftScheduledAndOrBlanketCoverageSpecialClassDetailRules" Rule="CalculateTotalPremium" ClearCache="true" />
+			</rul:ForEach>
+			<rul:If>
+				<rul:Test>
+					<rul:And>
+						<rul:Equal>
+							<rul:FirstValue Type="integer" FromConstant="0" FromDataDef="@PremiumIndicator" Order="DataDefInputParamConstant" />
+							<rul:Constant Type="integer">1</rul:Constant>
+						</rul:Equal>
+						<rul:NotEqual>
+							<rul:FirstValue Type="decimal" FromConstant="0" FromDataDef="@Premium" Order="DataDefInputParamConstant" />
+							<rul:Constant Type="decimal">0</rul:Constant>
+						</rul:NotEqual>
+					</rul:And>
+				</rul:Test>
+				<rul:Then>
+					<rul:FirstValue Type="decimal" FromConstant="0" FromDataDef="@Premium" Order="DataDefInputParamConstant" />
+				</rul:Then>
+				<rul:Else>
+					<rul:Constant Type="decimal">0</rul:Constant>
+				</rul:Else>
+			</rul:If>
+		</rul:Sum>
+	</rul:Rule>
+	<rul:Rule Name="ErcSetRatesAndFactors" Type="none" DataDefGroup="CommercialPropertyLimitedCoverageForUnmannedAircraftScheduledAndOrBlanketCoverageSpecialClass">
+		<rul:Sequence>
+			<rul:RunRule Type="none" FileName="CommercialPropertyLimitedCoverageForUnmannedAircraftScheduledAndOrBlanketCoverageSpecialClassRules" Rule="SetTotalScheduleLimit" ClearCache="true" />
+		</rul:Sequence>
+	</rul:Rule>
+	<rul:Rule Name="SetTotalScheduleLimit" Type="none" DataDefGroup="CommercialPropertyLimitedCoverageForUnmannedAircraftScheduledAndOrBlanketCoverageSpecialClass">
+		<rul:Sequence>
+			<rul:Constant Type="integer" ToDataDef="@TotalScheduleLimit">0</rul:Constant>
+			<rul:ForEach AtInputDataDef="CommercialPropertyLimitedCoverageForUnmannedAircraftScheduledAndOrBlanketCoverageSpecialClassDetailTable/CommercialPropertyLimitedCoverageForUnmannedAircraftScheduledAndOrBlanketCoverageSpecialClassDetail">
+				<rul:If>
+					<rul:Test>
+						<rul:And>
+							<rul:IsNotNull>
+								<rul:Value Type="string" FromDataDef="@BlanketCoverageUnmannedAircraftAppliesToUnmannedAircraftNotIndividuallyDescribed" />
+							</rul:IsNotNull>
+							<rul:Equal>
+								<rul:FirstValue Type="string" FromConstant="" FromDataDef="@BlanketCoverageUnmannedAircraftAppliesToUnmannedAircraftNotIndividuallyDescribed" Order="DataDefInputParamConstant" />
+								<rul:Constant Type="string">Yes</rul:Constant>
+							</rul:Equal>
+							<rul:IsNotNull>
+								<rul:Value Type="integer" FromDataDef="@BlanketLimitOfInsurance" />
+							</rul:IsNotNull>
+							<rul:GreaterThan>
+								<rul:FirstValue Type="integer" FromConstant="0" FromDataDef="@BlanketLimitOfInsurance" Order="DataDefInputParamConstant" />
+								<rul:Constant Type="integer">0</rul:Constant>
+							</rul:GreaterThan>
+							<rul:IsNotNull>
+								<rul:Value Type="integer" FromDataDef="@BlanketLimitOfInsurance" />
+							</rul:IsNotNull>
+						</rul:And>
+					</rul:Test>
+					<rul:Then>
+						<rul:Sequence>
+							<rul:Copy Type="integer" ToDataDef="@TotalScheduleLimit" FromDataDef="@BlanketLimitOfInsurance" />
+							<rul:Break />
+						</rul:Sequence>
+					</rul:Then>
+				</rul:If>
+			</rul:ForEach>
+			<rul:WithArgs>
+				<rul:Arg Type="integer" Param="TotalScheduleLimitIncrementParam">
+					<rul:Sum>
+						<rul:ForEach AtInputDataDef="CommercialPropertyLimitedCoverageForUnmannedAircraftScheduledAndOrBlanketCoverageSpecialClassDetailTable/CommercialPropertyLimitedCoverageForUnmannedAircraftScheduledAndOrBlanketCoverageSpecialClassDetail">
+							<rul:If>
+								<rul:Test>
+									<rul:And>
+										<rul:IsNotNull>
+											<rul:Value Type="string" FromDataDef="@BlanketCoverageUnmannedAircraftAppliesToUnmannedAircraftNotIndividuallyDescribed" />
+										</rul:IsNotNull>
+										<rul:Equal>
+											<rul:FirstValue Type="string" FromConstant="" FromDataDef="@BlanketCoverageUnmannedAircraftAppliesToUnmannedAircraftNotIndividuallyDescribed" Order="DataDefInputParamConstant" />
+											<rul:Constant Type="string">No</rul:Constant>
+										</rul:Equal>
+										<rul:IsNotNull>
+											<rul:Value Type="integer" FromDataDef="@LimitOfInsurance" />
+										</rul:IsNotNull>
+										<rul:GreaterThan>
+											<rul:FirstValue Type="integer" FromConstant="0" FromDataDef="@LimitOfInsurance" Order="DataDefInputParamConstant" />
+											<rul:Constant Type="integer">0</rul:Constant>
+										</rul:GreaterThan>
+										<rul:IsNotNull>
+											<rul:Value Type="integer" FromDataDef="@LimitOfInsurance" />
+										</rul:IsNotNull>
+									</rul:And>
+								</rul:Test>
+								<rul:Then>
+									<rul:FirstValue Type="integer" FromConstant="0" FromDataDef="@LimitOfInsurance" Order="DataDefInputParamConstant" />
+								</rul:Then>
+							</rul:If>
+						</rul:ForEach>
+						<rul:FirstValue Type="integer" FromConstant="0" FromDataDef="@TotalScheduleLimit" Order="DataDefInputParamConstant" />
+					</rul:Sum>
+				</rul:Arg>
+				<rul:Value Type="integer" ToDataDef="@TotalScheduleLimit" FromParam="TotalScheduleLimitIncrementParam" />
+			</rul:WithArgs>
+		</rul:Sequence>
+	</rul:Rule>
+	<rul:Rule Name="ErcRunPostUnderwritingLogic" Type="none" DataDefGroup="CommercialPropertyLimitedCoverageForUnmannedAircraftScheduledAndOrBlanketCoverageSpecialClass">
+		<rul:Sequence>
+			<rul:RunRule Type="none" FileName="CommercialPropertyLimitedCoverageForUnmannedAircraftScheduledAndOrBlanketCoverageSpecialClassRules" Rule="DoMessageThereCanOnlyBeOneDetailPageWhenTheFormIsBlanketed" ClearCache="true" />
+		</rul:Sequence>
+	</rul:Rule>
+	<rul:Rule Name="DoMessageThereCanOnlyBeOneDetailPageWhenTheFormIsBlanketed" Type="none" DataDefGroup="CommercialPropertyLimitedCoverageForUnmannedAircraftScheduledAndOrBlanketCoverageSpecialClass">
+		<rul:Sequence>
+			<rul:WithArgs>
+				<rul:Arg Type="string" Param="blanketCoverageApplies">
+					<rul:FirstNonNull Type="string">
+						<rul:ForEach AtDataDef="CommercialPropertyLimitedCoverageForUnmannedAircraftScheduledAndOrBlanketCoverageSpecialClassDetailTable/CommercialPropertyLimitedCoverageForUnmannedAircraftScheduledAndOrBlanketCoverageSpecialClassDetail">
+							<rul:If>
+								<rul:Test>
+									<rul:And>
+										<rul:IsNotNull>
+											<rul:Value Type="string" FromDataDef="@BlanketCoverageUnmannedAircraftAppliesToUnmannedAircraftNotIndividuallyDescribed" />
+										</rul:IsNotNull>
+										<rul:Equal>
+											<rul:FirstValue Type="string" FromConstant="" FromDataDef="@BlanketCoverageUnmannedAircraftAppliesToUnmannedAircraftNotIndividuallyDescribed" Order="DataDefInputParamConstant" />
+											<rul:Constant Type="string">Yes</rul:Constant>
+										</rul:Equal>
+									</rul:And>
+								</rul:Test>
+								<rul:Then>
+									<rul:GetList>
+										<rul:Constant Type="string">Yes</rul:Constant>
+										<rul:Break />
+									</rul:GetList>
+								</rul:Then>
+							</rul:If>
+						</rul:ForEach>
+						<rul:Constant Type="string"></rul:Constant>
+					</rul:FirstNonNull>
+				</rul:Arg>
+				<rul:If>
+					<rul:Test>
+						<rul:And>
+							<rul:Equal>
+								<rul:Value Type="string" FromParam="blanketCoverageApplies" />
+								<rul:Constant Type="string">Yes</rul:Constant>
+							</rul:Equal>
+							<rul:GreaterThan>
+								<rul:Count AtInputDataDef="CommercialPropertyLimitedCoverageForUnmannedAircraftScheduledAndOrBlanketCoverageSpecialClassDetailTable/CommercialPropertyLimitedCoverageForUnmannedAircraftScheduledAndOrBlanketCoverageSpecialClassDetail" />
+								<rul:Constant Type="integer">1</rul:Constant>
+							</rul:GreaterThan>
+						</rul:And>
+					</rul:Test>
+					<rul:Then>
+						<rul:RunRule Type="none" FileName="MessageHelper" Rule="AddErrorMessage" ClearCache="true">
+							<rul:Arg Type="string" Param="Message">
+								<rul:Constant Type="string">There can only be one Detail page when the form is blanketed</rul:Constant>
+							</rul:Arg>
+						</rul:RunRule>
+					</rul:Then>
+				</rul:If>
+			</rul:WithArgs>
+		</rul:Sequence>
+	</rul:Rule>
+	<rul:Rule Name="ErcSetStatisticalCodes" Type="none" DataDefGroup="CommercialPropertyLimitedCoverageForUnmannedAircraftScheduledAndOrBlanketCoverageSpecialClass">
+		<rul:Sequence>
+			<rul:If>
+				<rul:Test>
+					<rul:Exist AtInputDataDef="ancestor::MasterCFCW/Policy" />
+				</rul:Test>
+				<rul:Then>
+					<rul:RunRule Type="none" FileName="CommercialPropertyLimitedCoverageForUnmannedAircraftScheduledAndOrBlanketCoverageSpecialClassRules" Rule="SetSublineUnmannedAircraftDrones" ClearCache="true" />
+				</rul:Then>
+			</rul:If>
+		</rul:Sequence>
+	</rul:Rule>
+	<rul:Rule Name="SetSublineUnmannedAircraftDrones" Type="none" DataDefGroup="CommercialPropertyLimitedCoverageForUnmannedAircraftScheduledAndOrBlanketCoverageSpecialClass">
+		<rul:Sequence>
+			<rul:RunRule Type="string" ToDataDef="@SublineUnmannedAircraftDrones" FileName="CommercialPropertyLimitedCoverageForUnmannedAircraftScheduledAndOrBlanketCoverageSpecialClassRules" Rule="LookupSublineUnmannedAircraftDrones" ClearCache="true" />
+		</rul:Sequence>
+	</rul:Rule>
+	<rul:Rule Name="ErcProcess" Type="none" DataDefGroup="CommercialPropertyLimitedCoverageForUnmannedAircraftScheduledAndOrBlanketCoverageSpecialClass">
+		<rul:Sequence>
+			<rul:RunRule Type="none" FileName="CommercialPropertyLimitedCoverageForUnmannedAircraftScheduledAndOrBlanketCoverageSpecialClassRules" Rule="ErcSetRatesAndFactors" ClearCache="true" />
+			<rul:ForEach AtDataDef="CommercialPropertyLimitedCoverageForUnmannedAircraftScheduledAndOrBlanketCoverageSpecialClassDetailTable/CommercialPropertyLimitedCoverageForUnmannedAircraftScheduledAndOrBlanketCoverageSpecialClassDetail">
+				<rul:RunRule Type="none" FileName="CommercialPropertyLimitedCoverageForUnmannedAircraftScheduledAndOrBlanketCoverageSpecialClassDetailRules" Rule="ErcProcess" ClearCache="true" />
+			</rul:ForEach>
+			<rul:RunRule Type="none" FileName="CommercialPropertyLimitedCoverageForUnmannedAircraftScheduledAndOrBlanketCoverageSpecialClassRules" Rule="ErcRunPostUnderwritingLogic" ClearCache="true" />
+			<rul:RunRule Type="none" FileName="CommercialPropertyLimitedCoverageForUnmannedAircraftScheduledAndOrBlanketCoverageSpecialClassRules" Rule="ErcSetStatisticalCodes" ClearCache="true" />
+		</rul:Sequence>
+	</rul:Rule>
+	<rul:Rule Name="LookupSublineUnmannedAircraftDrones" Type="string" DataDefGroup="CommercialPropertyLimitedCoverageForUnmannedAircraftScheduledAndOrBlanketCoverageSpecialClass">
+		<rul:FirstNonNull Type="string">
+			<rul:Lookup Type="string" MatrixCol="Code" MatrixDef="SublineUnmannedAircraftDronesDef" MatrixFromConstant="SublineUnmannedAircraftDrones" ResultMode="FirstResult">
+				<rul:Keys>
+					<rul:Value Type="string" FromDataDef="/State/@Code" />
+					<rul:Constant Type="string">Y</rul:Constant>
+				</rul:Keys>
+			</rul:Lookup>
+			<rul:Lookup Type="string" MatrixCol="Code" MatrixDef="SublineUnmannedAircraftDronesDef" MatrixFromConstant="SublineUnmannedAircraftDrones" ResultMode="SingleResult">
+				<rul:Keys>
+					<rul:Constant Type="string">CW</rul:Constant>
+					<rul:Constant Type="string">Y</rul:Constant>
+				</rul:Keys>
+			</rul:Lookup>
+		</rul:FirstNonNull>
+	</rul:Rule>
+</rul:Rules>

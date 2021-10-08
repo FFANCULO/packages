@@ -1,0 +1,8 @@
+"StateCode","WatercraftExclBuybackConstrctnOptions","Value"
+"CW","Fire Resistive Including Pier Deck and Pier Platform, but Without Superstructure","Option1"
+"CW","Fire Resistive - Substructure Including Superstructure, All Sides Enclosed","Option2"
+"CW","Non-Combustible and Heavy Timber - Substructure Including Superstructure, All Sides Enclosed","Option3"
+"CW","All Other Construction Including Pier Deck and Pier Platform, but Without Superstructure","Option4"
+"CW","All Other Construction - Substructure Including Superstructure, All Sides Enclosed","Option5"
+"CW","Substructure with Canopy Superstructure, Sides Not Enclosed","Option6"
+"CW","Not Applicable","Not Applicable"
